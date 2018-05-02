@@ -22,7 +22,7 @@ extension UITextField{
 }
 
 
-class loginViewController: UIViewController
+class loginViewController: UIViewController,UITextFieldDelegate
 {
     @IBOutlet weak var txt_MobileNo: UITextField!
     
@@ -30,13 +30,20 @@ class loginViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //open number pad
+          self.txt_MobileNo?.becomeFirstResponder()
+        
         //Set Textfield bottom border line
         txt_MobileNo.underlined1()
 
-        //hide back button
+       //navigation bar
         self.navigationItem.hidesBackButton = true
-        //set sext
+       
          self.navigationItem.title = "LOGIN"
+        
+//        self.navigationController?.navigationBar.barTintColor = UIColor.white
+//      
+        
         
        
     }
@@ -46,11 +53,17 @@ class loginViewController: UIViewController
        
     }
     
-    @IBAction func btnLogin(_ sender: Any)
+    @IBAction func btnSignup(_ sender: Any)
     {
         let lv : signupViewController = self.storyboard?.instantiateViewController(withIdentifier: "signupVC") as! signupViewController
         self.navigationController?.pushViewController(lv, animated: true)
-        
+    }
+    
+    @IBAction func btnSignin(_ sender: Any)
+    {
+       
+//        let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+//        self.navigationController?.pushViewController(lv, animated: true)
     }
     
 
