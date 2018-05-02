@@ -29,6 +29,11 @@ class splashApartmentServices
         
     }
     
+    @IBAction func btnLetsGetStarted(_ sender: Any)
+    {
+        let lv : signupViewController = self.storyboard?.instantiateViewController(withIdentifier: "signupVC") as! signupViewController
+        self.navigationController?.pushViewController(lv, animated: true)
+    }
     
     
 }

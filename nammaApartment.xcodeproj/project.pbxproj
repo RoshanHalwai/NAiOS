@@ -28,6 +28,8 @@
 		8641CE0B20978577006BEC5F /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0120978577006BEC5F /* Lato-BlackItalic.ttf */; };
 		8641CE0C20978577006BEC5F /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0220978577006BEC5F /* Lato-Light.ttf */; };
 		8641CE0D20978577006BEC5F /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */; };
+		86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E420999DE200B159A3 /* OTPViewController.swift */; };
+		86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */; };
 		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
 		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
 /* End PBXBuildFile section */
@@ -77,6 +79,8 @@
 		8641CE0120978577006BEC5F /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		8641CE0220978577006BEC5F /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
 		8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-HairlineItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		86BD74E420999DE200B159A3 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
+		86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFlatDetailsViewController.swift; sourceTree = "<group>"; };
 		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +135,8 @@
 			children = (
 				86DCB9F2209841CF00C67C70 /* signu */,
 				86DCB9F52098A7DF00C67C70 /* Login */,
+				86BD74E320999DBF00B159A3 /* OTP */,
+				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
 				86270127209714F5004B28EB /* splashScreen */,
 				862700F6209707BB004B28EB /* AppDelegate.swift */,
 				862700FA209707BB004B28EB /* Main.storyboard */,
@@ -187,6 +193,22 @@
 				8641CDFD20978576006BEC5F /* Lato-Regular.ttf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		86BD74E320999DBF00B159A3 /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+				86BD74E420999DE200B159A3 /* OTPViewController.swift */,
+			);
+			path = OTP;
+			sourceTree = "<group>";
+		};
+		86BD74E62099B5FF00B159A3 /* myFlatDetails */ = {
+			isa = PBXGroup;
+			children = (
+				86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */,
+			);
+			path = myFlatDetails;
 			sourceTree = "<group>";
 		};
 		86DCB9F2209841CF00C67C70 /* signu */ = {
@@ -349,8 +371,10 @@
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
+				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
+				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
