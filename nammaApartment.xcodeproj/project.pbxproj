@@ -8,13 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		862700F7209707BB004B28EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F6209707BB004B28EB /* AppDelegate.swift */; };
-		862700F9209707BB004B28EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F8209707BB004B28EB /* ViewController.swift */; };
 		862700FC209707BB004B28EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862700FA209707BB004B28EB /* Main.storyboard */; };
-		862700FF209707BB004B28EB /* namaAppartment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862700FD209707BB004B28EB /* namaAppartment.xcdatamodeld */; };
+		862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */; };
 		86270101209707BC004B28EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86270100209707BC004B28EB /* Assets.xcassets */; };
 		86270104209707BC004B28EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86270102209707BC004B28EB /* LaunchScreen.storyboard */; };
-		8627010F209707BC004B28EB /* namaAppartmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627010E209707BC004B28EB /* namaAppartmentTests.swift */; };
-		8627011A209707BC004B28EB /* namaAppartmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86270119209707BC004B28EB /* namaAppartmentUITests.swift */; };
+		8627010F209707BC004B28EB /* namaApartmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627010E209707BC004B28EB /* namaApartmentTests.swift */; };
+		8627011A209707BC004B28EB /* namaApartmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86270119209707BC004B28EB /* namaApartmentUITests.swift */; };
+		8627012920971585004B28EB /* splashRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012820971585004B28EB /* splashRootViewController.swift */; };
+		8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012A209715D5004B28EB /* splashNammaApartments.swift */; };
+		8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012C209715E5004B28EB /* splashApartmentServices.swift */; };
+		8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012E209715FD004B28EB /* splashSocietyServices.swift */; };
+		8641CE0420978577006BEC5F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CDFA20978575006BEC5F /* Lato-Bold.ttf */; };
+		8641CE0520978577006BEC5F /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CDFB20978575006BEC5F /* Lato-BoldItalic.ttf */; };
+		8641CE0620978577006BEC5F /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CDFC20978575006BEC5F /* Lato-Italic.ttf */; };
+		8641CE0720978577006BEC5F /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CDFD20978576006BEC5F /* Lato-Regular.ttf */; };
+		8641CE0820978577006BEC5F /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CDFE20978576006BEC5F /* Lato-LightItalic.ttf */; };
+		8641CE0920978577006BEC5F /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CDFF20978576006BEC5F /* Lato-Hairline.ttf */; };
+		8641CE0A20978577006BEC5F /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0020978576006BEC5F /* Lato-Black.ttf */; };
+		8641CE0B20978577006BEC5F /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0120978577006BEC5F /* Lato-BlackItalic.ttf */; };
+		8641CE0C20978577006BEC5F /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0220978577006BEC5F /* Lato-Light.ttf */; };
+		8641CE0D20978577006BEC5F /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */; };
+		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
+		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,20 +50,35 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		862700F3209707BB004B28EB /* namaAppartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = namaAppartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		862700F3209707BB004B28EB /* nammaApartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862700F6209707BB004B28EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		862700F8209707BB004B28EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		862700FB209707BB004B28EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		862700FE209707BB004B28EB /* namaAppartment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = namaAppartment.xcdatamodel; sourceTree = "<group>"; };
 		86270100209707BC004B28EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86270103209707BC004B28EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86270105209707BC004B28EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8627010A209707BC004B28EB /* namaAppartmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = namaAppartmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8627010E209707BC004B28EB /* namaAppartmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = namaAppartmentTests.swift; sourceTree = "<group>"; };
+		8627010A209707BC004B28EB /* nammaApartmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nammaApartmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8627010E209707BC004B28EB /* namaApartmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = namaApartmentTests.swift; sourceTree = "<group>"; };
 		86270110209707BC004B28EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		86270115209707BC004B28EB /* namaAppartmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = namaAppartmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		86270119209707BC004B28EB /* namaAppartmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = namaAppartmentUITests.swift; sourceTree = "<group>"; };
+		86270115209707BC004B28EB /* nammaApartmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nammaApartmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		86270119209707BC004B28EB /* namaApartmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = namaApartmentUITests.swift; sourceTree = "<group>"; };
 		8627011B209707BC004B28EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8627012820971585004B28EB /* splashRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashRootViewController.swift; sourceTree = "<group>"; };
+		8627012A209715D5004B28EB /* splashNammaApartments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashNammaApartments.swift; sourceTree = "<group>"; };
+		8627012C209715E5004B28EB /* splashApartmentServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashApartmentServices.swift; sourceTree = "<group>"; };
+		8627012E209715FD004B28EB /* splashSocietyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashSocietyServices.swift; sourceTree = "<group>"; };
+		8641CDFA20978575006BEC5F /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Bold.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		8641CDFB20978575006BEC5F /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BoldItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
+		8641CDFC20978575006BEC5F /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Italic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-Italic.ttf"; sourceTree = "<group>"; };
+		8641CDFD20978576006BEC5F /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		8641CDFE20978576006BEC5F /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-LightItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		8641CDFF20978576006BEC5F /* Lato-Hairline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Hairline.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-Hairline.ttf"; sourceTree = "<group>"; };
+		8641CE0020978576006BEC5F /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Black.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-Black.ttf"; sourceTree = "<group>"; };
+		8641CE0120978577006BEC5F /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
+		8641CE0220978577006BEC5F /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
+		8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-HairlineItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
+		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +109,9 @@
 		862700EA209707BB004B28EB = {
 			isa = PBXGroup;
 			children = (
-				862700F5209707BB004B28EB /* namaAppartment */,
-				8627010D209707BC004B28EB /* namaAppartmentTests */,
-				86270118209707BC004B28EB /* namaAppartmentUITests */,
+				862700F5209707BB004B28EB /* namaApartment */,
+				8627010D209707BC004B28EB /* namaApartmentTests */,
+				86270118209707BC004B28EB /* namaApartmentUITests */,
 				862700F4209707BB004B28EB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,51 +119,98 @@
 		862700F4209707BB004B28EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				862700F3209707BB004B28EB /* namaAppartment.app */,
-				8627010A209707BC004B28EB /* namaAppartmentTests.xctest */,
-				86270115209707BC004B28EB /* namaAppartmentUITests.xctest */,
+				862700F3209707BB004B28EB /* nammaApartment.app */,
+				8627010A209707BC004B28EB /* nammaApartmentTests.xctest */,
+				86270115209707BC004B28EB /* nammaApartmentUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		862700F5209707BB004B28EB /* namaAppartment */ = {
+		862700F5209707BB004B28EB /* namaApartment */ = {
 			isa = PBXGroup;
 			children = (
+				86DCB9F2209841CF00C67C70 /* signu */,
+				86DCB9F52098A7DF00C67C70 /* Login */,
+				86270127209714F5004B28EB /* splashScreen */,
 				862700F6209707BB004B28EB /* AppDelegate.swift */,
-				862700F8209707BB004B28EB /* ViewController.swift */,
 				862700FA209707BB004B28EB /* Main.storyboard */,
 				86270100209707BC004B28EB /* Assets.xcassets */,
+				8641CDF920977ED5006BEC5F /* Font */,
 				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
 				86270105209707BC004B28EB /* Info.plist */,
-				862700FD209707BB004B28EB /* namaAppartment.xcdatamodeld */,
+				862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */,
 			);
-			path = namaAppartment;
+			path = namaApartment;
 			sourceTree = "<group>";
 		};
-		8627010D209707BC004B28EB /* namaAppartmentTests */ = {
+		8627010D209707BC004B28EB /* namaApartmentTests */ = {
 			isa = PBXGroup;
 			children = (
-				8627010E209707BC004B28EB /* namaAppartmentTests.swift */,
+				8627010E209707BC004B28EB /* namaApartmentTests.swift */,
 				86270110209707BC004B28EB /* Info.plist */,
 			);
-			path = namaAppartmentTests;
+			path = namaApartmentTests;
 			sourceTree = "<group>";
 		};
-		86270118209707BC004B28EB /* namaAppartmentUITests */ = {
+		86270118209707BC004B28EB /* namaApartmentUITests */ = {
 			isa = PBXGroup;
 			children = (
-				86270119209707BC004B28EB /* namaAppartmentUITests.swift */,
+				86270119209707BC004B28EB /* namaApartmentUITests.swift */,
 				8627011B209707BC004B28EB /* Info.plist */,
 			);
-			path = namaAppartmentUITests;
+			path = namaApartmentUITests;
+			sourceTree = "<group>";
+		};
+		86270127209714F5004B28EB /* splashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				8627012820971585004B28EB /* splashRootViewController.swift */,
+				8627012A209715D5004B28EB /* splashNammaApartments.swift */,
+				8627012E209715FD004B28EB /* splashSocietyServices.swift */,
+				8627012C209715E5004B28EB /* splashApartmentServices.swift */,
+			);
+			path = splashScreen;
+			sourceTree = "<group>";
+		};
+		8641CDF920977ED5006BEC5F /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				8641CE0020978576006BEC5F /* Lato-Black.ttf */,
+				8641CE0120978577006BEC5F /* Lato-BlackItalic.ttf */,
+				8641CDFA20978575006BEC5F /* Lato-Bold.ttf */,
+				8641CDFB20978575006BEC5F /* Lato-BoldItalic.ttf */,
+				8641CDFF20978576006BEC5F /* Lato-Hairline.ttf */,
+				8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */,
+				8641CDFC20978575006BEC5F /* Lato-Italic.ttf */,
+				8641CE0220978577006BEC5F /* Lato-Light.ttf */,
+				8641CDFE20978576006BEC5F /* Lato-LightItalic.ttf */,
+				8641CDFD20978576006BEC5F /* Lato-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		86DCB9F2209841CF00C67C70 /* signu */ = {
+			isa = PBXGroup;
+			children = (
+				86DCB9F32098443D00C67C70 /* signupViewController.swift */,
+			);
+			path = signu;
+			sourceTree = "<group>";
+		};
+		86DCB9F52098A7DF00C67C70 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				86DCB9F62098A80800C67C70 /* loginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		862700F2209707BB004B28EB /* namaAppartment */ = {
+		862700F2209707BB004B28EB /* nammaApartment */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8627011E209707BC004B28EB /* Build configuration list for PBXNativeTarget "namaAppartment" */;
+			buildConfigurationList = 8627011E209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartment" */;
 			buildPhases = (
 				862700EF209707BB004B28EB /* Sources */,
 				862700F0209707BB004B28EB /* Frameworks */,
@@ -143,14 +220,14 @@
 			);
 			dependencies = (
 			);
-			name = namaAppartment;
+			name = nammaApartment;
 			productName = namaAppartment;
-			productReference = 862700F3209707BB004B28EB /* namaAppartment.app */;
+			productReference = 862700F3209707BB004B28EB /* nammaApartment.app */;
 			productType = "com.apple.product-type.application";
 		};
-		86270109209707BC004B28EB /* namaAppartmentTests */ = {
+		86270109209707BC004B28EB /* nammaApartmentTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 86270121209707BC004B28EB /* Build configuration list for PBXNativeTarget "namaAppartmentTests" */;
+			buildConfigurationList = 86270121209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartmentTests" */;
 			buildPhases = (
 				86270106209707BC004B28EB /* Sources */,
 				86270107209707BC004B28EB /* Frameworks */,
@@ -161,14 +238,14 @@
 			dependencies = (
 				8627010C209707BC004B28EB /* PBXTargetDependency */,
 			);
-			name = namaAppartmentTests;
+			name = nammaApartmentTests;
 			productName = namaAppartmentTests;
-			productReference = 8627010A209707BC004B28EB /* namaAppartmentTests.xctest */;
+			productReference = 8627010A209707BC004B28EB /* nammaApartmentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		86270114209707BC004B28EB /* namaAppartmentUITests */ = {
+		86270114209707BC004B28EB /* nammaApartmentUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 86270124209707BC004B28EB /* Build configuration list for PBXNativeTarget "namaAppartmentUITests" */;
+			buildConfigurationList = 86270124209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartmentUITests" */;
 			buildPhases = (
 				86270111209707BC004B28EB /* Sources */,
 				86270112209707BC004B28EB /* Frameworks */,
@@ -179,9 +256,9 @@
 			dependencies = (
 				86270117209707BC004B28EB /* PBXTargetDependency */,
 			);
-			name = namaAppartmentUITests;
+			name = nammaApartmentUITests;
 			productName = namaAppartmentUITests;
-			productReference = 86270115209707BC004B28EB /* namaAppartmentUITests.xctest */;
+			productReference = 86270115209707BC004B28EB /* nammaApartmentUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -207,7 +284,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 862700EE209707BB004B28EB /* Build configuration list for PBXProject "namaAppartment" */;
+			buildConfigurationList = 862700EE209707BB004B28EB /* Build configuration list for PBXProject "nammaApartment" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -220,9 +297,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				862700F2209707BB004B28EB /* namaAppartment */,
-				86270109209707BC004B28EB /* namaAppartmentTests */,
-				86270114209707BC004B28EB /* namaAppartmentUITests */,
+				862700F2209707BB004B28EB /* nammaApartment */,
+				86270109209707BC004B28EB /* nammaApartmentTests */,
+				86270114209707BC004B28EB /* nammaApartmentUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +312,16 @@
 				86270104209707BC004B28EB /* LaunchScreen.storyboard in Resources */,
 				86270101209707BC004B28EB /* Assets.xcassets in Resources */,
 				862700FC209707BB004B28EB /* Main.storyboard in Resources */,
+				8641CE0C20978577006BEC5F /* Lato-Light.ttf in Resources */,
+				8641CE0820978577006BEC5F /* Lato-LightItalic.ttf in Resources */,
+				8641CE0B20978577006BEC5F /* Lato-BlackItalic.ttf in Resources */,
+				8641CE0420978577006BEC5F /* Lato-Bold.ttf in Resources */,
+				8641CE0D20978577006BEC5F /* Lato-HairlineItalic.ttf in Resources */,
+				8641CE0920978577006BEC5F /* Lato-Hairline.ttf in Resources */,
+				8641CE0720978577006BEC5F /* Lato-Regular.ttf in Resources */,
+				8641CE0620978577006BEC5F /* Lato-Italic.ttf in Resources */,
+				8641CE0A20978577006BEC5F /* Lato-Black.ttf in Resources */,
+				8641CE0520978577006BEC5F /* Lato-BoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,9 +346,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				862700F9209707BB004B28EB /* ViewController.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
-				862700FF209707BB004B28EB /* namaAppartment.xcdatamodeld in Sources */,
+				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
+				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
+				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
+				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
+				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
+				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
+				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8627010F209707BC004B28EB /* namaAppartmentTests.swift in Sources */,
+				8627010F209707BC004B28EB /* namaApartmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8627011A209707BC004B28EB /* namaAppartmentUITests.swift in Sources */,
+				8627011A209707BC004B28EB /* namaApartmentUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,12 +378,12 @@
 /* Begin PBXTargetDependency section */
 		8627010C209707BC004B28EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 862700F2209707BB004B28EB /* namaAppartment */;
+			target = 862700F2209707BB004B28EB /* nammaApartment */;
 			targetProxy = 8627010B209707BC004B28EB /* PBXContainerItemProxy */;
 		};
 		86270117209707BC004B28EB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 862700F2209707BB004B28EB /* namaAppartment */;
+			target = 862700F2209707BB004B28EB /* nammaApartment */;
 			targetProxy = 86270116209707BC004B28EB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -436,12 +528,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
-				INFOPLIST_FILE = namaAppartment/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/namaApartment/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.nammaApartment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -454,12 +546,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
-				INFOPLIST_FILE = namaAppartment/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/namaApartment/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.nammaApartment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -483,7 +575,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/namaAppartment.app/namaAppartment";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nammaApartment.app/nammaApartment";
 			};
 			name = Debug;
 		};
@@ -504,7 +596,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/namaAppartment.app/namaAppartment";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nammaApartment.app/nammaApartment";
 			};
 			name = Release;
 		};
@@ -551,7 +643,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		862700EE209707BB004B28EB /* Build configuration list for PBXProject "namaAppartment" */ = {
+		862700EE209707BB004B28EB /* Build configuration list for PBXProject "nammaApartment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8627011C209707BC004B28EB /* Debug */,
@@ -560,7 +652,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8627011E209707BC004B28EB /* Build configuration list for PBXNativeTarget "namaAppartment" */ = {
+		8627011E209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8627011F209707BC004B28EB /* Debug */,
@@ -569,7 +661,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		86270121209707BC004B28EB /* Build configuration list for PBXNativeTarget "namaAppartmentTests" */ = {
+		86270121209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartmentTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86270122209707BC004B28EB /* Debug */,
@@ -578,7 +670,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		86270124209707BC004B28EB /* Build configuration list for PBXNativeTarget "namaAppartmentUITests" */ = {
+		86270124209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartmentUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				86270125209707BC004B28EB /* Debug */,
@@ -590,13 +682,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		862700FD209707BB004B28EB /* namaAppartment.xcdatamodeld */ = {
+		862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				862700FE209707BB004B28EB /* namaAppartment.xcdatamodel */,
 			);
 			currentVersion = 862700FE209707BB004B28EB /* namaAppartment.xcdatamodel */;
-			path = namaAppartment.xcdatamodeld;
+			path = namaApartment.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
