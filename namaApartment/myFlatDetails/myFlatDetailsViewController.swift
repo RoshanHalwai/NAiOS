@@ -40,7 +40,7 @@ class myFlatDetailsViewController: UIViewController,UITextFieldDelegate
         
         
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+       // self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         //Set Textfield bottom border line
         txtCity.underlinedMyFlatDetails()
@@ -55,7 +55,9 @@ class myFlatDetailsViewController: UIViewController,UITextFieldDelegate
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
         
+       
         self.navigationItem.title = "MY FLAT DETAILS"
+        
 
        
     }

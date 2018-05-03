@@ -20,7 +20,7 @@ class splashApartmentServices
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+self.navigationController?.isNavigationBarHidden = true
         
     }
 
