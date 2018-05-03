@@ -30,8 +30,16 @@
 		8641CE0D20978577006BEC5F /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */; };
 		86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E420999DE200B159A3 /* OTPViewController.swift */; };
 		86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */; };
+		86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74EB209A2E7000B159A3 /* NAFont.swift */; };
+		86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74ED209A2EB500B159A3 /* NAColor.swift */; };
+		86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13B209AF45E00D75D0F /* HomeViewController.swift */; };
+		86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */; };
 		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
 		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
+		86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */; };
+		86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */; };
+		86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73C209B1803008A57B3 /* SocietyTableViewCell.swift */; };
+		86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73E209B181C008A57B3 /* SocietyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +89,16 @@
 		8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-HairlineItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
 		86BD74E420999DE200B159A3 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFlatDetailsViewController.swift; sourceTree = "<group>"; };
+		86BD74EB209A2E7000B159A3 /* NAFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFont.swift; sourceTree = "<group>"; };
+		86BD74ED209A2EB500B159A3 /* NAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAColor.swift; sourceTree = "<group>"; };
+		86C1A13B209AF45E00D75D0F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentViewController.swift; sourceTree = "<group>"; };
+		86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentTableViewCell.swift; sourceTree = "<group>"; };
+		86FFD73C209B1803008A57B3 /* SocietyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyTableViewCell.swift; sourceTree = "<group>"; };
+		86FFD73E209B181C008A57B3 /* SocietyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,13 +149,15 @@
 		862700F5209707BB004B28EB /* namaApartment */ = {
 			isa = PBXGroup;
 			children = (
-				86DCB9F2209841CF00C67C70 /* signu */,
+				86DCB9F2209841CF00C67C70 /* signup */,
 				86DCB9F52098A7DF00C67C70 /* Login */,
 				86BD74E320999DBF00B159A3 /* OTP */,
 				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
 				86270127209714F5004B28EB /* splashScreen */,
-				862700F6209707BB004B28EB /* AppDelegate.swift */,
-				862700FA209707BB004B28EB /* Main.storyboard */,
+				86C1A136209AF38300D75D0F /* Homescreen */,
+				86C1A138209AF3FC00D75D0F /* StoryBoard */,
+				86C1A137209AF3C000D75D0F /* AppDelegate */,
+				86BD74E9209A2DD000B159A3 /* utilities */,
 				86270100209707BC004B28EB /* Assets.xcassets */,
 				8641CDF920977ED5006BEC5F /* Font */,
 				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
@@ -211,12 +229,66 @@
 			path = myFlatDetails;
 			sourceTree = "<group>";
 		};
-		86DCB9F2209841CF00C67C70 /* signu */ = {
+		86BD74E9209A2DD000B159A3 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				86BD74EB209A2E7000B159A3 /* NAFont.swift */,
+				86BD74ED209A2EB500B159A3 /* NAColor.swift */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+		86C1A136209AF38300D75D0F /* Homescreen */ = {
+			isa = PBXGroup;
+			children = (
+				86C1A13B209AF45E00D75D0F /* HomeViewController.swift */,
+				86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */,
+				86C1A13A209AF43700D75D0F /* ApartmentServices */,
+				86C1A139209AF42700D75D0F /* SocietyServices */,
+			);
+			path = Homescreen;
+			sourceTree = "<group>";
+		};
+		86C1A137209AF3C000D75D0F /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				862700F6209707BB004B28EB /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		86C1A138209AF3FC00D75D0F /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				862700FA209707BB004B28EB /* Main.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		86C1A139209AF42700D75D0F /* SocietyServices */ = {
+			isa = PBXGroup;
+			children = (
+				86FFD73C209B1803008A57B3 /* SocietyTableViewCell.swift */,
+				86FFD73E209B181C008A57B3 /* SocietyViewController.swift */,
+			);
+			path = SocietyServices;
+			sourceTree = "<group>";
+		};
+		86C1A13A209AF43700D75D0F /* ApartmentServices */ = {
+			isa = PBXGroup;
+			children = (
+				86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */,
+				86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */,
+			);
+			path = ApartmentServices;
+			sourceTree = "<group>";
+		};
+		86DCB9F2209841CF00C67C70 /* signup */ = {
 			isa = PBXGroup;
 			children = (
 				86DCB9F32098443D00C67C70 /* signupViewController.swift */,
 			);
-			path = signu;
+			path = signup;
 			sourceTree = "<group>";
 		};
 		86DCB9F52098A7DF00C67C70 /* Login */ = {
@@ -368,15 +440,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
+				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
+				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
+				86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
+				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
 				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
 				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
+				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
+				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
+				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
