@@ -28,6 +28,12 @@
 		8641CE0B20978577006BEC5F /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0120978577006BEC5F /* Lato-BlackItalic.ttf */; };
 		8641CE0C20978577006BEC5F /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0220978577006BEC5F /* Lato-Light.ttf */; };
 		8641CE0D20978577006BEC5F /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */; };
+		86548D7E209C1F7500C700DA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D7D209C1F7500C700DA /* DataModel.swift */; };
+		86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */; };
+		86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D81209C1FB500C700DA /* MainScreenViewController.swift */; };
+		86548D84209C343F00C700DA /* NAString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D83209C343F00C700DA /* NAString.swift */; };
+		86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D86209C63C700C700DA /* DigitalGateViewController.swift */; };
+		86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */; };
 		86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E420999DE200B159A3 /* OTPViewController.swift */; };
 		86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */; };
 		86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74EB209A2E7000B159A3 /* NAFont.swift */; };
@@ -87,6 +93,12 @@
 		8641CE0120978577006BEC5F /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-BlackItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		8641CE0220978577006BEC5F /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
 		8641CE0320978577006BEC5F /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-HairlineItalic.ttf"; path = "../../../Misc Things For Project/nammaApartment/fonts/Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		86548D7D209C1F7500C700DA /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
+		86548D81209C1FB500C700DA /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		86548D83209C343F00C700DA /* NAString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAString.swift; sourceTree = "<group>"; };
+		86548D86209C63C700C700DA /* DigitalGateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalGateViewController.swift; sourceTree = "<group>"; };
+		86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalGateCollectionViewCell.swift; sourceTree = "<group>"; };
 		86BD74E420999DE200B159A3 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFlatDetailsViewController.swift; sourceTree = "<group>"; };
 		86BD74EB209A2E7000B159A3 /* NAFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFont.swift; sourceTree = "<group>"; };
@@ -155,6 +167,7 @@
 				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
 				86270127209714F5004B28EB /* splashScreen */,
 				86C1A136209AF38300D75D0F /* Homescreen */,
+				86548D85209C621F00C700DA /* DigitalGate */,
 				86C1A138209AF3FC00D75D0F /* StoryBoard */,
 				86C1A137209AF3C000D75D0F /* AppDelegate */,
 				86BD74E9209A2DD000B159A3 /* utilities */,
@@ -213,6 +226,25 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		86548D7C209C1F5400C700DA /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				86548D7D209C1F7500C700DA /* DataModel.swift */,
+				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
+				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		86548D85209C621F00C700DA /* DigitalGate */ = {
+			isa = PBXGroup;
+			children = (
+				86548D86209C63C700C700DA /* DigitalGateViewController.swift */,
+				86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */,
+			);
+			path = DigitalGate;
+			sourceTree = "<group>";
+		};
 		86BD74E320999DBF00B159A3 /* OTP */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +266,7 @@
 			children = (
 				86BD74EB209A2E7000B159A3 /* NAFont.swift */,
 				86BD74ED209A2EB500B159A3 /* NAColor.swift */,
+				86548D83209C343F00C700DA /* NAString.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -245,6 +278,7 @@
 				86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */,
 				86C1A13A209AF43700D75D0F /* ApartmentServices */,
 				86C1A139209AF42700D75D0F /* SocietyServices */,
+				86548D7C209C1F5400C700DA /* MainScreen */,
 			);
 			path = Homescreen;
 			sourceTree = "<group>";
@@ -442,6 +476,9 @@
 			files = (
 				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
+				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,
+				86548D84209C343F00C700DA /* NAString.swift in Sources */,
+				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
@@ -452,8 +489,11 @@
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
 				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
 				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
+				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
 				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
 				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
+				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
+				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
