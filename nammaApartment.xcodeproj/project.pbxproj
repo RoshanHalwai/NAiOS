@@ -138,10 +138,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		860FAEEF209D700000D563F5 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				86DCB9F52098A7DF00C67C70 /* Login */,
+				86270127209714F5004B28EB /* splashScreen */,
+				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
+				862700F5209707BB004B28EB /* namaApartment */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		860FAEF1209D74E000D563F5 /* m */ = {
+			isa = PBXGroup;
+			children = (
+				86548D7D209C1F7500C700DA /* DataModel.swift */,
+				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
+				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
+			);
+			path = m;
+			sourceTree = "<group>";
+		};
+		860FAEF2209D763700D563F5 /* SocietyServices */ = {
+			isa = PBXGroup;
+			children = (
+				86548D85209C621F00C700DA /* DigitalGate */,
+			);
+			path = SocietyServices;
+			sourceTree = "<group>";
+		};
+		860FAEF3209D764800D563F5 /* ApartmentServices */ = {
+			isa = PBXGroup;
+			children = (
+				86C1A136209AF38300D75D0F /* Homescreen */,
+			);
+			path = ApartmentServices;
+			sourceTree = "<group>";
+		};
 		862700EA209707BB004B28EB = {
 			isa = PBXGroup;
 			children = (
-				862700F5209707BB004B28EB /* namaApartment */,
+				860FAEEF209D700000D563F5 /* Onboarding */,
+				86C1A137209AF3C000D75D0F /* AppDelegate */,
+				86C1A138209AF3FC00D75D0F /* StoryBoard */,
+				86BD74E9209A2DD000B159A3 /* utilities */,
+				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
+				86270105209707BC004B28EB /* Info.plist */,
+				862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */,
 				8627010D209707BC004B28EB /* namaApartmentTests */,
 				86270118209707BC004B28EB /* namaApartmentUITests */,
 				862700F4209707BB004B28EB /* Products */,
@@ -161,21 +204,8 @@
 		862700F5209707BB004B28EB /* namaApartment */ = {
 			isa = PBXGroup;
 			children = (
-				86DCB9F2209841CF00C67C70 /* signup */,
-				86DCB9F52098A7DF00C67C70 /* Login */,
-				86BD74E320999DBF00B159A3 /* OTP */,
-				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
-				86270127209714F5004B28EB /* splashScreen */,
-				86C1A136209AF38300D75D0F /* Homescreen */,
-				86548D85209C621F00C700DA /* DigitalGate */,
-				86C1A138209AF3FC00D75D0F /* StoryBoard */,
-				86C1A137209AF3C000D75D0F /* AppDelegate */,
-				86BD74E9209A2DD000B159A3 /* utilities */,
-				86270100209707BC004B28EB /* Assets.xcassets */,
-				8641CDF920977ED5006BEC5F /* Font */,
-				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
-				86270105209707BC004B28EB /* Info.plist */,
-				862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */,
+				860FAEF3209D764800D563F5 /* ApartmentServices */,
+				860FAEF2209D763700D563F5 /* SocietyServices */,
 			);
 			path = namaApartment;
 			sourceTree = "<group>";
@@ -229,9 +259,7 @@
 		86548D7C209C1F5400C700DA /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				86548D7D209C1F7500C700DA /* DataModel.swift */,
-				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
-				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
+				860FAEF1209D74E000D563F5 /* m */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -257,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */,
+				86548D7C209C1F5400C700DA /* MainScreen */,
 			);
 			path = myFlatDetails;
 			sourceTree = "<group>";
@@ -264,6 +293,8 @@
 		86BD74E9209A2DD000B159A3 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
+				86270100209707BC004B28EB /* Assets.xcassets */,
+				8641CDF920977ED5006BEC5F /* Font */,
 				86BD74EB209A2E7000B159A3 /* NAFont.swift */,
 				86BD74ED209A2EB500B159A3 /* NAColor.swift */,
 				86548D83209C343F00C700DA /* NAString.swift */,
@@ -278,7 +309,6 @@
 				86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */,
 				86C1A13A209AF43700D75D0F /* ApartmentServices */,
 				86C1A139209AF42700D75D0F /* SocietyServices */,
-				86548D7C209C1F5400C700DA /* MainScreen */,
 			);
 			path = Homescreen;
 			sourceTree = "<group>";
@@ -329,6 +359,8 @@
 			isa = PBXGroup;
 			children = (
 				86DCB9F62098A80800C67C70 /* loginViewController.swift */,
+				86DCB9F2209841CF00C67C70 /* signup */,
+				86BD74E320999DBF00B159A3 /* OTP */,
 			);
 			path = Login;
 			sourceTree = "<group>";
