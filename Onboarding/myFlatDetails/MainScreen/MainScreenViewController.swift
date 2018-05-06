@@ -42,7 +42,7 @@ class MainScreenViewController: UIViewController
     //assigning values in struct
         
         societyData = [
-            societyServicesModel(cellTitle: "Digital Gate",cellImage:  #imageLiteral(resourceName: "Digital_Gate_2")),
+            societyServicesModel(cellTitle: "Digi Gate",cellImage:  #imageLiteral(resourceName: "Digital_Gate_2")),
             societyServicesModel(cellTitle: "Plumber",cellImage:  #imageLiteral(resourceName: "plumbing (2)")),
             societyServicesModel(cellTitle: "Carpenter",cellImage:  #imageLiteral(resourceName: "Carpenter Service")),
             societyServicesModel(cellTitle: "Electrician",cellImage: #imageLiteral(resourceName: "switchBoard") ),
@@ -94,23 +94,7 @@ class MainScreenViewController: UIViewController
             } else {
                 cell.NAModel = apartmentData[indexPath.row]
             }
-          //  cell.NSModel = isSocietyServices ? societyData[indexPath.row] : apartmentData[indexPath.row]
-//            switch segmentSelection.selectedSegmentIndex {
-//            case 0:
-//                cell.NSModel = societyData[indexPath.row]
-//
-////                cell.cellTitle.text = societyData[indexPath.row].cellTitle
-////                cell.cellImage.image = societyData[indexPath.row].cellImage
-//                break
-//            case 1:
-//                cell.NAModel = apartmentData[indexPath.row]
-//
-////                cell.cellTitle.text = apartmentData[indexPath.row].cellTitle
-////                cell.cellImage.image = apartmentData[indexPath.row].cellImage
-//                break
-//            default:
-//                break
-//            }
+        
             return cell
         }
         
@@ -120,9 +104,6 @@ class MainScreenViewController: UIViewController
             
             let viewController = storyboard?.instantiateViewController(withIdentifier: name)
             self.navigationController?.pushViewController(viewController!, animated: true)
-            // self.navigationController?.isNavigationBarHidden = true
-            
-            
         }
         
         
