@@ -61,11 +61,9 @@ class OTPViewController: UIViewController,UITextFieldDelegate
         txtOTP5.delegate = self
         txtOTP6.delegate = self
         
-      
         //hide back button
         self.navigationItem.hidesBackButton = true
         self.navigationItem.title = "PHONE VERIFICATION"
-        
         
         //Set Textfield bottom border line
         txtOTP1.underlinedOTP()
@@ -74,8 +72,6 @@ class OTPViewController: UIViewController,UITextFieldDelegate
         txtOTP4.underlinedOTP()
         txtOTP5.underlinedOTP()
         txtOTP6.underlinedOTP()
-        
-        
     }
 
     override func didReceiveMemoryWarning() {

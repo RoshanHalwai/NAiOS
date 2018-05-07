@@ -34,6 +34,9 @@
 		86548D84209C343F00C700DA /* NAString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D83209C343F00C700DA /* NAString.swift */; };
 		86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D86209C63C700C700DA /* DigitalGateViewController.swift */; };
 		86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */; };
+		865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */; };
+		86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
+		86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */; };
 		86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E420999DE200B159A3 /* OTPViewController.swift */; };
 		86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */; };
 		86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74EB209A2E7000B159A3 /* NAFont.swift */; };
@@ -99,6 +102,9 @@
 		86548D83209C343F00C700DA /* NAString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAString.swift; sourceTree = "<group>"; };
 		86548D86209C63C700C700DA /* DigitalGateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalGateViewController.swift; sourceTree = "<group>"; };
 		86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalGateCollectionViewCell.swift; sourceTree = "<group>"; };
+		865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteVisitorViewController.swift; sourceTree = "<group>"; };
+		86A8B934209EC9FF00EA1C35 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		86BD74E420999DE200B159A3 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFlatDetailsViewController.swift; sourceTree = "<group>"; };
 		86BD74EB209A2E7000B159A3 /* NAFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFont.swift; sourceTree = "<group>"; };
@@ -118,6 +124,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */,
+				86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,16 +157,6 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		860FAEF1209D74E000D563F5 /* m */ = {
-			isa = PBXGroup;
-			children = (
-				86548D7D209C1F7500C700DA /* DataModel.swift */,
-				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
-				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
-			);
-			path = m;
-			sourceTree = "<group>";
-		};
 		860FAEF2209D763700D563F5 /* SocietyServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +186,7 @@
 				8627010D209707BC004B28EB /* namaApartmentTests */,
 				86270118209707BC004B28EB /* namaApartmentUITests */,
 				862700F4209707BB004B28EB /* Products */,
+				86A8B933209EC9FE00EA1C35 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -259,7 +258,10 @@
 		86548D7C209C1F5400C700DA /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				860FAEF1209D74E000D563F5 /* m */,
+				86548D7D209C1F7500C700DA /* DataModel.swift */,
+				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
+				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
+				865C7BCA209D835800443C75 /* InviteVisitor */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -271,6 +273,23 @@
 				86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */,
 			);
 			path = DigitalGate;
+			sourceTree = "<group>";
+		};
+		865C7BCA209D835800443C75 /* InviteVisitor */ = {
+			isa = PBXGroup;
+			children = (
+				865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */,
+			);
+			path = InviteVisitor;
+			sourceTree = "<group>";
+		};
+		86A8B933209EC9FE00EA1C35 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				86A8B934209EC9FF00EA1C35 /* Contacts.framework */,
+				86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		86BD74E320999DBF00B159A3 /* OTP */ = {
@@ -516,6 +535,7 @@
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
 				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
+				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
@@ -704,7 +724,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
-				INFOPLIST_FILE = "$(SRCROOT)/namaApartment/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -722,7 +742,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
-				INFOPLIST_FILE = "$(SRCROOT)/namaApartment/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

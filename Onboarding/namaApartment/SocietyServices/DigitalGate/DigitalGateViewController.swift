@@ -15,7 +15,7 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
     
      var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","sweetHome","Medical"]
     
-    var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digital Gate","My Sweet Home","Emergency"]
+    var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +55,13 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
         self.navigationController?.popViewController(animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+       
+        let lv : InviteVisitorViewController = self.storyboard?.instantiateViewController(withIdentifier: "inviteVisitorVC") as! InviteVisitorViewController
+        self.navigationController?.setNavigationBarHidden(true, animated: true);
+        self.navigationController?.pushViewController(lv, animated: true)
+    }
     
     
 
