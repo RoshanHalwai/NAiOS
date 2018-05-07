@@ -21,9 +21,6 @@ class SocietyViewController: UIViewController,UITableViewDataSource,UITableViewD
         super.viewDidLoad()
         
         lbl_Title.font = NAFont().viewTitleFont()
-
-        //self.navigationItem.hidesBackButton = true
-        //self.navigationItem.title = "Society Services"
          self.navigationController?.isNavigationBarHidden = true
     }
 
@@ -55,21 +52,10 @@ class SocietyViewController: UIViewController,UITableViewDataSource,UITableViewD
     @IBAction func btnBackToHome(_ sender: Any)
     {
         let lv : HomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "homeVC") as! HomeViewController
-         //self.navigationController?.setNavigationBarHidden(false, animated: false);
+      
          self.navigationController?.pushViewController(lv, animated: true)
     }
-    
-    
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    //    {
-    //
-    //        let name = VCNames[indexPath.row]
-    //        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
-    //        self.navigationController?.pushViewController(viewController!, animated: true)
-    //
-    //
-    //    }
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return 70
