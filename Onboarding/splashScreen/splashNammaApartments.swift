@@ -25,18 +25,11 @@ class splashNammaApartments: UIViewController
         lblHeader_NammaApartment.font = NAFont().headerFont()
         lblDesc_NammaApartment.font = NAFont().splashdescriptionFont()
         
-    
-        
-
+        lblHeader_NammaApartment.text = NAString().splash_NammaHeader_Title()
+        lblDesc_NammaApartment.text = NAString().splash_NammaApartements_Description()
         
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
-    
-
-    
-
 }

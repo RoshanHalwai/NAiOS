@@ -14,12 +14,17 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
     @IBOutlet weak var collectionView: UICollectionView!
     
      var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","sweetHome","Medical"]
-    
     var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
+    
+    //array for navigation
+   var VCNames = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //onclick story oard id names for segue
+        VCNames = ["inviteVisitorVC","myVisitorListVC","","notifyDigiGateVC","",""]
+        
         //hide navigation bar
          self.navigationController?.isNavigationBarHidden = true
         
@@ -29,10 +34,6 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
         super.didReceiveMemoryWarning()
         
     }
-    
-    
-    
-    
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
      {
         
@@ -49,7 +50,6 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
         return cell
     }
 
-    
     @IBAction func BackToMainScreen(_ sender: UIBarButtonItem)
     {
         self.navigationController?.popViewController(animated: true)
@@ -57,12 +57,8 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-       
-        let lv : InviteVisitorViewController = self.storyboard?.instantiateViewController(withIdentifier: "inviteVisitorVC") as! InviteVisitorViewController
-        self.navigationController?.setNavigationBarHidden(true, animated: true);
-        self.navigationController?.pushViewController(lv, animated: true)
+        let name = VCNames[indexPath.row]
+        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
+        self.navigationController?.pushViewController(viewController!, animated: true)
     }
-    
-    
-
 }

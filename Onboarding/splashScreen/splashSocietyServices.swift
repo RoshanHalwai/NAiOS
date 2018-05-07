@@ -23,7 +23,10 @@ class splashSocietyServices: UIViewController
         //setting font for labes & style
         lblHeader_SocietyServices.font = NAFont().headerFont()
         lblDesc_SocietyServices.font = NAFont().splashdescriptionFont()
-
+        
+        lblHeader_SocietyServices.text = NAString().splash_ApartementServices_Title()
+        lblDesc_SocietyServices.text = NAString().splash_SocietyServices_Description()
+        
        self.navigationController?.isNavigationBarHidden = true
     }
 

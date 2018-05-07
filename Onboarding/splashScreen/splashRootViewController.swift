@@ -10,6 +10,7 @@ import UIKit
 
 class splashRootViewController: UIPageViewController,UIPageViewControllerDataSource,UIPageViewControllerDelegate
 {
+    
     lazy var viewControllerList : [UIViewController] = {
         
         let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -26,6 +27,8 @@ class splashRootViewController: UIPageViewController,UIPageViewControllerDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      
+        
        
 
         
@@ -36,7 +39,6 @@ class splashRootViewController: UIPageViewController,UIPageViewControllerDataSou
         {
             self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
-       
     }
 
     override func didReceiveMemoryWarning() {

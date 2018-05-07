@@ -55,22 +55,28 @@ class signupViewController: UIViewController,UITextFieldDelegate
         signup_TxtEmailId.font = NAFont().textFieldFont()
         signup_TxtCountryCode.font = NAFont().textFieldFont()
         signup_TxtMobileNo.font = NAFont().textFieldFont()
-        
+
         lbl_Fullname.font = NAFont().headerFont()
         lbl_EmailId.font = NAFont().headerFont()
         lbl_MobileNo.font = NAFont().headerFont()
     
         lbl_TermsCondition.font = NAFont().descriptionFont()
         
-        
-        
-        
+        //set string on lables
+        lbl_Fullname.text = NAString().full_name()
+        lbl_MobileNo.text = NAString().phone_numbe()
+        lbl_EmailId.text = NAString().email_id()
+        signup_TxtCountryCode.text = NAString()._91()
+        lbl_TermsCondition.text = NAString().i_agree_to_terms_and_conditions()
+    
+        btnSignup.setTitle(NAString().signup(), for: .normal)
         
         //color & font for button
         btnSignup.backgroundColor = NAColor().buttonBgColor()
        
+        
         btnSignup.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btnLogin.titleLabel?.font = NAFont().buttonFont()
+       
     
         //scrollView
          signupScrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)

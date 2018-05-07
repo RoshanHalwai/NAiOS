@@ -24,6 +24,7 @@ class OTPViewController: UIViewController,UITextFieldDelegate
 {
     
     @IBOutlet weak var btnVerify: UIButton!
+    @IBOutlet weak var lbl_OTPDescription: UILabel!
     
     @IBOutlet weak var txtOTP1: UITextField!
     @IBOutlet weak var txtOTP2: UITextField!
@@ -39,7 +40,11 @@ class OTPViewController: UIViewController,UITextFieldDelegate
         
         //color & font for button
         btnVerify.backgroundColor = NAColor().buttonBgColor()
+       lbl_OTPDescription.text = NAString().enter_verification_code()
+        lbl_OTPDescription.font = NAFont().headerFont()
         btnVerify.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        
+        
         
         txtOTP1.font = NAFont().textFieldFont()
         txtOTP2.font = NAFont().textFieldFont()

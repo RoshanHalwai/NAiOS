@@ -28,6 +28,11 @@ class splashApartmentServices
         lblHeader_ApartmentServices.font = NAFont().headerFont()
         lblDesc_ApartmentServices.font = NAFont().splashdescriptionFont()
         
+        //set text
+        lblHeader_ApartmentServices.text = NAString().splash_ApartementServices_Title()
+        lblDesc_ApartmentServices.text = NAString().splash_ApartementServices_Description()
+        btnLetsGetStarted.setTitle(NAString().splash_ApartementServices_Button(), for: .normal)
+        
         //color & font for button
         btnLetsGetStarted.backgroundColor = NAColor().buttonBgColor()
         btnLetsGetStarted.setTitleColor(NAColor().buttonFontColor(), for: .normal)

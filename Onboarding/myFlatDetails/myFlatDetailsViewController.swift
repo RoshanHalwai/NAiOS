@@ -59,18 +59,11 @@ class myFlatDetailsViewController: UIViewController,UITextFieldDelegate
          lbl_Society.font = NAFont().headerFont()
          lbl_Apartment.font = NAFont().headerFont()
          lbl_ResidentType.font = NAFont().headerFont()
-        
          lbl_Description.font = NAFont().descriptionFont()
-        
-        
         
         //color & font for button
         btnContinue.backgroundColor = NAColor().buttonBgColor()
         btnContinue.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        
-        
-        
-       // self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         //Set Textfield bottom border line
         txtCity.underlinedMyFlatDetails()
@@ -81,6 +74,14 @@ class myFlatDetailsViewController: UIViewController,UITextFieldDelegate
         
         txtCity.becomeFirstResponder()
         
+        //set strings
+        lbl_City.text = NAString().city()
+        lbl_Society.text = NAString().society()
+        lbl_Flat.text = NAString().flat()
+        lbl_Apartment.text = NAString().apartment()
+        lbl_ResidentType.text = NAString().resident_type()
+        lbl_Description.text = NAString().verification_message()
+    btnContinue.setTitle(NAString().continue_button(), for: .normal)
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
