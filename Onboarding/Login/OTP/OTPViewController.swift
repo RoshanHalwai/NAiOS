@@ -19,9 +19,7 @@ extension UITextField{
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
     }
-    
 }
-
 class OTPViewController: UIViewController,UITextFieldDelegate
 {
     

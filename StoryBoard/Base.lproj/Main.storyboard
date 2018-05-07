@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xpH-eD-j9k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eOT-LZ-0gx">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -721,13 +721,13 @@
                                                 <rect key="frame" x="20" y="239" width="335" height="24"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date &amp; Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVh-E6-7aI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="98.5" height="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="24"/>
                                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j5r-Hz-tib">
-                                                        <rect key="frame" x="108.5" y="0.0" width="180.5" height="24"/>
+                                                        <rect key="frame" x="110" y="0.0" width="179" height="24"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -739,7 +739,7 @@
                                                         </constraints>
                                                         <state key="normal" title="Button" image="calender24"/>
                                                         <connections>
-                                                            <action selector="btnShowCalander:" destination="eOT-LZ-0gx" eventType="touchUpInside" id="9ew-v9-Xuc"/>
+                                                            <action selector="btnShowCalender:" destination="eOT-LZ-0gx" eventType="touchUpInside" id="8At-ef-uPP"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -991,6 +991,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIa-de-zvz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1573.5999999999999" y="2049.6251874062968"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="rl8-97-QVJ">
+            <objects>
+                <viewController id="S2a-Fm-OSW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2iE-x5-Ees">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="syX-py-0It"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0IS-0Q-vxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1543" y="2855"/>
         </scene>
         <!--Society View Controller-->
         <scene sceneID="2E5-1B-mq3">

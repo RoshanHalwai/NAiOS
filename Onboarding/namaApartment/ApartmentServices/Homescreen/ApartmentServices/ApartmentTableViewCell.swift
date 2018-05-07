@@ -17,13 +17,13 @@ class ApartmentTableViewCell: UITableViewCell
         super.awakeFromNib()
         
         cellLabel.font = NAFont().headerFont()
-        // Initialization code
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
 
 }

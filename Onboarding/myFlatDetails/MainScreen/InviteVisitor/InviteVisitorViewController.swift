@@ -94,6 +94,8 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+       
+        
         toolbar.setItems([done], animated: false)
         
         txtDate.inputAccessoryView = toolbar
@@ -119,16 +121,8 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-   
-    
     @IBAction func btnSelectContact(_ sender: Any)
     {
-
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
         
@@ -152,8 +146,9 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
             print("Get Authorization")
         }
     }
-        
-  
+    
+    
+    //to call default address book app
     func openContacts()
     {
         let contactPicker = CNContactPickerViewController.init()
@@ -161,7 +156,6 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         
         //uses did select method here
         self.present(contactPicker, animated: true, completion: nil)
-        
     }
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController)
@@ -191,6 +185,12 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         self.navigationController?.pushViewController(lv, animated: true)
         
     }
+    
+    @IBAction func btnShowCalender(_ sender: UIButton)
+    {
+        createDatePicker()
+    }
+    
     
     
     
