@@ -11,8 +11,5 @@ import UIKit
 class DigitalGateCollectionViewCell: UICollectionViewCell
 {
     @IBOutlet weak var cellImage: UIImageView!
-    
     @IBOutlet weak var cellTitle: UILabel!
-    
-    
 }

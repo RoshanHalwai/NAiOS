@@ -17,6 +17,13 @@ class NAString : NSObject
         return String("Namma Apartments")
     }
     
+    func society_Services_Title() -> String {
+        return String("Society Services")
+    }
+    func Apartment_Services_Title() -> String {
+        return String("Apartment  Services")
+    }
+    
     func splash_NammaApartements_Description() -> String {
         return String("One stop shop solution for all your Society needs.")
     }
@@ -96,13 +103,13 @@ class NAString : NSObject
     }
     
     func continue_button() -> String {
-        return String("Continue")
+        return String("CONTINUE")
     }
     
     //SignUp screen
     
     func full_name() -> String {
-        return String("Full Name")
+        return String("FULL NAME")
     }
     
     func _91() -> String {
@@ -110,15 +117,15 @@ class NAString : NSObject
     }
     
     func phone_numbe() -> String {
-        return String("Mobile Number")
+        return String("MOBILE NUMBER")
     }
     
     func email_id() -> String {
-        return String("Email-Id")
+        return String("EMAIL-ID")
     }
     
     func signup() -> String {
-        return String("Sign Up")
+        return String("SIGN UP")
     }
     
     func i_agree_to_terms_and_conditions() -> String {
@@ -135,48 +142,241 @@ class NAString : NSObject
     }
     
     func login_button() -> String {
-        return String("Login")
+        return String("LOGIN")
     }
     
-    //Home Activity
+    //Society Services Activity
     
-//    func namma_apartments_society_services_image() -> String {
-//        return String("Namma Apartments Society Services image")
-//    }
+    func digital_gate() -> String {
+        return String("Digi Gate")
+    }
     
-//    func namma_apartments_apartment_services_image() -> String {
-//        return String("Namma Apartments Apartment Services image")
-//    }
+    func plumber() -> String {
+        return String("Plumber")
+    }
     
-//    func service_icon() -> String {
-//        return String("Service Icon")
-//    }
+    func carpenter() -> String {
+        return String("Carpenter")
+    }
     
+    func electrician() -> String {
+        return String("Electrician")
+    }
     
-//    func title_activity_home() -> String {
-//        return String("Home")
-//    }
+    func garbage_management() -> String {
+        return String("Garbage Management")
+    }
     
-    //
+    func event_management() -> String
+    {
+        return String("Event Management")
+    }
     
-//    func back_button_description() -> String {
-//        return String("Back button to navigate previous activity")
-//    }
+    func medical_emergency() -> String {
+        return String("Medical Emergency")
+    }
     
-//    func namma_apartments() -> String {
-//        return String("Namma Apartments")
-//    }
+    func water_services() -> String {
+        return String("Water Services")
+    }
     
-//    
-//    func title_activity_splash_screen() -> String {
-//        return String("SplashScreen")
-//    }
-//    
-//    func action_settings() -> String {
-//        return String("Settings")
-//    }
-//    func section_format() -> String {
-//        return String("Hello World from section: %1$d")
-//    }
+    //Apartment Services Activity
+    
+    func cook() -> String {
+        return String("Cook")
+    }
+    
+    func maid() -> String {
+        return String("Maid")
+    }
+    
+    func car_bike_cleaning() -> String {
+        return String("Car/Bike Cleaning")
+    }
+    
+    func child_day_care() -> String {
+        return String("Child Day Care")
+    }
+    
+    func daily_newspaper() -> String {
+        return String("Daily NewsPaper")
+    }
+    
+    func milk_man() -> String {
+        return String("Milk Man")
+    }
+    
+    func laundry() -> String {
+        return String("Laundry")
+    }
+    
+    func driver() -> String {
+        return String("Driver")
+    }
+    
+    func groceries() -> String {
+        return String("Groceries")
+    }
+    
+    func images_of_digital_gate_services() -> String {
+        return String("Images of Digital Gate Services")
+    }
+    
+    //Digital Gate Service Activity
+    
+    func digital_gate_title() -> String {
+        return String("Digital Gate")
+    }
+    
+    func invite_visitors() -> String {
+        return String("Invite Visitors")
+    }
+    
+    func my_visitors_list() -> String {
+        return String("My Visitors List")
+    }
+    
+    func my_daily_services() -> String {
+        return String("My Daily Services")
+    }
+    
+    func notify_digital_gate() -> String {
+        return String("Notify Digital Gate")
+    }
+    
+    func my_sweet_home() -> String {
+        return String("My Sweet Home")
+    }
+    
+    func emergency() -> String {
+        return String("Emergency")
+    }
+    
+    //Invite Visitor ViewController
+    func visitorNameViewTitle() -> String {
+        return String("Invite Visitor")
+    }
+    func visitorName() -> String {
+        return String("Visitor Name")
+    }
+    
+    func visitorMobile() -> String {
+        return String("Visitor Mobile")
+    }
+    
+    func BtnselectFromContact() -> String {
+        return String("Select From Contact")
+    }
+    
+    func date_Time() -> String {
+        return String("Date & Time")
+    }
+    
+    func inviteVisitorOTPDesc() -> String {
+        return String("We will send an OTP to your visitor allowing them to enter into your society.")
+    }
+    func btnInvite() -> String {
+        return String("INVITE")
+    }
+    
+    //MyVisitorList
+    func myVisitorViewTitle() -> String {
+        return String("My Visitor List")
+    }
+    
+    func myVisitorVisitor() -> String {
+        return String("Visitor:")
+    }
+    
+    func myVisitorType() -> String {
+        return String("Type:")
+    }
+    
+    func myVisitorDate() -> String {
+        return String("Date:")
+    }
+    
+    func myVisitorTime() -> String {
+        return String("Time:")
+    }
+    
+    func myVisitorInvitedBy() -> String {
+        return String("Invited By:")
+    }
+    
+    //notify Digi gate
+    
+    func notifyDigiGateHeader() -> String {
+        return String("Notify Digi Gate")
+    }
+   
+    func expecting_cab_arrival() -> String {
+        return String("Expecting Cab Arrival")
+    }
+    
+    func expecting_package_arrival() -> String {
+        return String("Expecting Package Arrival")
+    }
+    
+    func expecting_visitor() -> String {
+        return String("Expecting Visitor")
+    }
+    
+    func handed_things_to_my_guest() -> String {
+        return String("Handed things to my Guest")
+    }
+    
+    func handed_things_to_my_daily_services() -> String {
+        return String("Handed things to my Daily Services")
+    }
+    
+    func package_number() -> String {
+        return String("Package Number")
+    }
+    
+    func notify_gate() -> String {
+        return String("NOTIFY GATE")
+    }
+    
+    func cab_number() -> String {
+        return String("Cab Number")
+    }
+    
+    func valid_for() -> String {
+        return String("Valid For")
+    }
+    
+    func _1_hr() -> String {
+        return String("1 hr")
+    }
+    
+    func _2_hrs() -> String {
+        return String("2 hrs")
+    }
+    
+    func _4_hrs() -> String {
+        return String("4 hrs")
+    }
+    
+    func _6_hrs() -> String {
+        return String("6 hrs")
+    }
+    
+    func _8_hrs() -> String {
+        return String("8 hrs")
+    }
+    
+    func _12_hrs() -> String {
+        return String("12 hrs")
+    }
+    
+    func _16_hrs() -> String {
+        return String("16 hrs")
+    }
+    
+    func _24_hrs() -> String {
+        return String("24 hrs")
+    }
     
 }
+

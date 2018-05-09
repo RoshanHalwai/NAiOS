@@ -19,10 +19,4 @@ class NAColor: NSObject
         return UIColor.black
     }
     
-    
-    //set btn bg,fontstyle,font,color programtically
-    
-   // btnLogin.backgroundColor = NAColor().buttonBgColor()
-    
-   // btnLogin.setTitleColor(NAColor().buttonFontColor(), for: .normal)
 }

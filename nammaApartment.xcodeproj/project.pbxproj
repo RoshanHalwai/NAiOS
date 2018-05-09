@@ -41,8 +41,15 @@
 		86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */; };
 		86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74EB209A2E7000B159A3 /* NAFont.swift */; };
 		86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74ED209A2EB500B159A3 /* NAColor.swift */; };
+		86BF6A4120A0325200B175A1 /* MyVistorListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4020A0325200B175A1 /* MyVistorListCollectionViewCell.swift */; };
+		86BF6A4320A0326E00B175A1 /* MyVisitorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4220A0326E00B175A1 /* MyVisitorListViewController.swift */; };
+		86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */; };
+		86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */; };
 		86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13B209AF45E00D75D0F /* HomeViewController.swift */; };
 		86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */; };
+		86D19EF720A2132000FB7DC8 /* localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86D19EF620A2132000FB7DC8 /* localized.strings */; };
+		86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */; };
+		86D19EFF20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EFE20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift */; };
 		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
 		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
 		86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */; };
@@ -109,8 +116,15 @@
 		86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFlatDetailsViewController.swift; sourceTree = "<group>"; };
 		86BD74EB209A2E7000B159A3 /* NAFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFont.swift; sourceTree = "<group>"; };
 		86BD74ED209A2EB500B159A3 /* NAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAColor.swift; sourceTree = "<group>"; };
+		86BF6A4020A0325200B175A1 /* MyVistorListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVistorListCollectionViewCell.swift; sourceTree = "<group>"; };
+		86BF6A4220A0326E00B175A1 /* MyVisitorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorListViewController.swift; sourceTree = "<group>"; };
+		86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateViewController.swift; sourceTree = "<group>"; };
+		86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateCollectionViewCell.swift; sourceTree = "<group>"; };
 		86C1A13B209AF45E00D75D0F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		86D19EF620A2132000FB7DC8 /* localized.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = localized.strings; sourceTree = "<group>"; };
+		86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingCabArrivalViewController.swift; sourceTree = "<group>"; };
+		86D19EFE20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingPackageArrivalViewController.swift; sourceTree = "<group>"; };
 		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentViewController.swift; sourceTree = "<group>"; };
@@ -149,9 +163,10 @@
 		860FAEEF209D700000D563F5 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				86DCB9F52098A7DF00C67C70 /* Login */,
 				86270127209714F5004B28EB /* splashScreen */,
+				86DCB9F52098A7DF00C67C70 /* Login */,
 				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
+				86548D7C209C1F5400C700DA /* MainScreen */,
 				862700F5209707BB004B28EB /* namaApartment */,
 			);
 			path = Onboarding;
@@ -163,14 +178,6 @@
 				86548D85209C621F00C700DA /* DigitalGate */,
 			);
 			path = SocietyServices;
-			sourceTree = "<group>";
-		};
-		860FAEF3209D764800D563F5 /* ApartmentServices */ = {
-			isa = PBXGroup;
-			children = (
-				86C1A136209AF38300D75D0F /* Homescreen */,
-			);
-			path = ApartmentServices;
 			sourceTree = "<group>";
 		};
 		862700EA209707BB004B28EB = {
@@ -203,8 +210,7 @@
 		862700F5209707BB004B28EB /* namaApartment */ = {
 			isa = PBXGroup;
 			children = (
-				860FAEF3209D764800D563F5 /* ApartmentServices */,
-				860FAEF2209D763700D563F5 /* SocietyServices */,
+				86C1A136209AF38300D75D0F /* Homescreen */,
 			);
 			path = namaApartment;
 			sourceTree = "<group>";
@@ -261,7 +267,8 @@
 				86548D7D209C1F7500C700DA /* DataModel.swift */,
 				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
 				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
-				865C7BCA209D835800443C75 /* InviteVisitor */,
+				860FAEF2209D763700D563F5 /* SocietyServices */,
+				86D19EF520A1C7BD00FB7DC8 /* ApartmentServices */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -271,6 +278,9 @@
 			children = (
 				86548D86209C63C700C700DA /* DigitalGateViewController.swift */,
 				86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */,
+				86BF6A4420A0572A00B175A1 /* NotifyDigiGate */,
+				865C7BCA209D835800443C75 /* InviteVisitor */,
+				86BF6A3F20A0322100B175A1 /* MyVisitorList */,
 			);
 			path = DigitalGate;
 			sourceTree = "<group>";
@@ -304,7 +314,6 @@
 			isa = PBXGroup;
 			children = (
 				86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */,
-				86548D7C209C1F5400C700DA /* MainScreen */,
 			);
 			path = myFlatDetails;
 			sourceTree = "<group>";
@@ -317,8 +326,29 @@
 				86BD74EB209A2E7000B159A3 /* NAFont.swift */,
 				86BD74ED209A2EB500B159A3 /* NAColor.swift */,
 				86548D83209C343F00C700DA /* NAString.swift */,
+				86D19EF620A2132000FB7DC8 /* localized.strings */,
 			);
 			path = utilities;
+			sourceTree = "<group>";
+		};
+		86BF6A3F20A0322100B175A1 /* MyVisitorList */ = {
+			isa = PBXGroup;
+			children = (
+				86BF6A4020A0325200B175A1 /* MyVistorListCollectionViewCell.swift */,
+				86BF6A4220A0326E00B175A1 /* MyVisitorListViewController.swift */,
+			);
+			path = MyVisitorList;
+			sourceTree = "<group>";
+		};
+		86BF6A4420A0572A00B175A1 /* NotifyDigiGate */ = {
+			isa = PBXGroup;
+			children = (
+				86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */,
+				86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */,
+				86D19EFD20A2EE6900FB7DC8 /* ExpectingPackageArrival */,
+				86D19EF820A2B20200FB7DC8 /* ExpectingCabArrival */,
+			);
+			path = NotifyDigiGate;
 			sourceTree = "<group>";
 		};
 		86C1A136209AF38300D75D0F /* Homescreen */ = {
@@ -364,6 +394,29 @@
 				86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */,
 			);
 			path = ApartmentServices;
+			sourceTree = "<group>";
+		};
+		86D19EF520A1C7BD00FB7DC8 /* ApartmentServices */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ApartmentServices;
+			sourceTree = "<group>";
+		};
+		86D19EF820A2B20200FB7DC8 /* ExpectingCabArrival */ = {
+			isa = PBXGroup;
+			children = (
+				86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */,
+			);
+			path = ExpectingCabArrival;
+			sourceTree = "<group>";
+		};
+		86D19EFD20A2EE6900FB7DC8 /* ExpectingPackageArrival */ = {
+			isa = PBXGroup;
+			children = (
+				86D19EFE20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift */,
+			);
+			path = ExpectingPackageArrival;
 			sourceTree = "<group>";
 		};
 		86DCB9F2209841CF00C67C70 /* signup */ = {
@@ -494,6 +547,7 @@
 				8641CE0C20978577006BEC5F /* Lato-Light.ttf in Resources */,
 				8641CE0820978577006BEC5F /* Lato-LightItalic.ttf in Resources */,
 				8641CE0B20978577006BEC5F /* Lato-BlackItalic.ttf in Resources */,
+				86D19EF720A2132000FB7DC8 /* localized.strings in Resources */,
 				8641CE0420978577006BEC5F /* Lato-Bold.ttf in Resources */,
 				8641CE0D20978577006BEC5F /* Lato-HairlineItalic.ttf in Resources */,
 				8641CE0920978577006BEC5F /* Lato-Hairline.ttf in Resources */,
@@ -528,14 +582,18 @@
 				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
 				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,
+				86D19EFF20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift in Sources */,
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
+				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
+				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
 				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
+				86BF6A4120A0325200B175A1 /* MyVistorListCollectionViewCell.swift in Sources */,
 				86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
@@ -545,11 +603,13 @@
 				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
 				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
 				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
+				86BF6A4320A0326E00B175A1 /* MyVisitorListViewController.swift in Sources */,
 				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
+				86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

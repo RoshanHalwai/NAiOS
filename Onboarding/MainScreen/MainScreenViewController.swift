@@ -28,6 +28,8 @@ class MainScreenViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        lbl_Title.text = NAString().splash_NammaHeader_Title()
+        
         //for navigation
         VCNamesSociety = ["digitalGateVC"]
         VCNamesApartment = ["homeVC"]

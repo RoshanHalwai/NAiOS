@@ -10,6 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    @IBOutlet weak var lbl_Header: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lbl_Title: UILabel!
     
@@ -24,6 +26,8 @@ class HomeViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         super.viewDidLoad()
 
         lbl_Title.font = NAFont().viewTitleFont()
+        lbl_Header.font = NAFont().headerFont()
+        
         
         //onclick story oard id names for segue
        VCNames = ["societyVC","appartmentVC"]

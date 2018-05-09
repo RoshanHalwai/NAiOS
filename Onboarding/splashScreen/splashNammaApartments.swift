@@ -10,33 +10,25 @@ import UIKit
 
 class splashNammaApartments: UIViewController
 {
-    @IBOutlet weak var imageView_NammaApartment: UIImageView!
-    
-    @IBOutlet weak var lblHeader_NammaApartment: UILabel!
-    
-    @IBOutlet weak var lblDesc_NammaApartment: UILabel!
+    @IBOutlet weak var imageView_NammaApartments: UIImageView!
+    @IBOutlet weak var lbl_HeaderNammaApartments: UILabel!
+    @IBOutlet weak var lbl_DescNammaApartments: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //hide navigationbar
         self.navigationController?.isNavigationBarHidden = true
         
-        //setting font for labes & style
-        lblHeader_NammaApartment.font = NAFont().headerFont()
-        lblDesc_NammaApartment.font = NAFont().splashdescriptionFont()
+        //label formatting & setting
+        lbl_HeaderNammaApartments.font = NAFont().headerFont()
+        lbl_DescNammaApartments.font = NAFont().splashdescriptionFont()
         
-    
-        
-
-        
+        //text formatting & setting
+        lbl_HeaderNammaApartments.text = NAString().splash_NammaHeader_Title().uppercased()
+        lbl_DescNammaApartments.text = NAString().splash_NammaApartements_Description()
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
-    
-
-    
-
 }

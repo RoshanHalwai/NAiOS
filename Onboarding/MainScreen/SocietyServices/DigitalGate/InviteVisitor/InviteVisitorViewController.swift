@@ -16,21 +16,13 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
     @IBOutlet weak var lbl_InvitorMobile: UILabel!
     @IBOutlet weak var lbl_Or: UILabel!
     @IBOutlet weak var lbl_Date: UILabel!
-   
-    
     @IBOutlet weak var txtInvitorName: UITextField!
-    
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet weak var txtInvitorMobile: UITextField!
-    
     @IBOutlet weak var btnSelectContact: UIButton!
     @IBOutlet weak var btnCalander: UIButton!
-    
      @IBOutlet weak var lbl_InviteDescription: UILabel!
     @IBOutlet weak var btnInviteVisitor: UIButton!
-    
-    
-    
     @IBOutlet weak var scrollView: UIScrollView!
    
     //created date picker programtically
@@ -40,68 +32,68 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
     var dataName : String!
     var dataMobile : String!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //hide navigation bar
+        self.navigationController?.isNavigationBarHidden = true
         
         txtDate.delegate = self
         
         //hide invite Desc & invite button
         self.lbl_InviteDescription.isHidden = true
-      self.btnInviteVisitor.isHidden = true
+        self.btnInviteVisitor.isHidden = true
 
-        
          createDatePicker()
+        
+        //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
 
-        
         //assign values to upper strings
         txtInvitorName.text = dataName
         txtInvitorMobile.text = dataMobile
         
-       // self.datePicker.isHidden = true
-        
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
 
-        //balck under line
+        //For Textfield under black line
         txtDate.underlined()
         txtInvitorName.underlined()
         txtInvitorMobile.underlined()
 
-       //set font  & color to ui controllers
+      
         lbl_InvitorName.font = NAFont().headerFont()
         lbl_InvitorMobile.font = NAFont().headerFont()
         lbl_Or.font = NAFont().headerFont()
-
         lbl_Date.font = NAFont().headerFont()
         txtInvitorMobile.font = NAFont().textFieldFont()
         txtInvitorName.font = NAFont().textFieldFont()
         txtDate.font =  NAFont().textFieldFont()
-        
         btnSelectContact.titleLabel?.font = NAFont().buttonFont()
         btnSelectContact.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btnSelectContact.backgroundColor = NAColor().buttonBgColor()
         
+      
+        lbl_InvitorName.text = NAString().visitorName()
+        lbl_InvitorMobile.text = NAString().visitorMobile()
+        btnInviteVisitor.setTitle(NAString().btnInvite(), for: .normal)
+        btnSelectContact.setTitle(NAString().BtnselectFromContact(), for: .normal)
+        lbl_InviteDescription.text = NAString().inviteVisitorOTPDesc()
+        
+        
+        
+        
     }
-
     //for datePicker
     func createDatePicker() {
-        
         // toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-       
-        
         toolbar.setItems([done], animated: false)
-        
         txtDate.inputAccessoryView = toolbar
-        
         txtDate.inputView = picker
-        
         // format picker for date
         picker.datePickerMode = .dateAndTime
     }
@@ -109,16 +101,12 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d YY, HH:mm"
-        
+        date.dateFormat = "MMM d, YY \t HH:mm"
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
-        
         self.view.endEditing(true)
-        
         self.btnInviteVisitor.isHidden = false
         self.lbl_InviteDescription.isHidden = false
-        
     }
     
     @IBAction func btnSelectContact(_ sender: Any)
@@ -147,13 +135,11 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         }
     }
     
-    
     //to call default address book app
     func openContacts()
     {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
-        
         //uses did select method here
         self.present(contactPicker, animated: true, completion: nil)
     }
@@ -174,25 +160,17 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
             
         mobileNo = mobileString! as! String
         self.txtInvitorMobile.text = mobileNo
-        
     }
     
- 
     @IBAction func btnBackToVisitor(_ sender: UIBarButtonItem)
     {
         let lv : DigitalGateViewController = self.storyboard?.instantiateViewController(withIdentifier: "digitalGateVC") as! DigitalGateViewController
         self.navigationController?.setNavigationBarHidden(true, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
-        
     }
     
     @IBAction func btnShowCalender(_ sender: UIButton)
     {
         createDatePicker()
     }
-    
-    
-    
-    
-    
 }
