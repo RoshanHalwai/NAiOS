@@ -14,7 +14,14 @@ class NAString : NSObject
     //Splash screen strings
     
     func splash_NammaHeader_Title() -> String {
-        return String("NAMMA APARTMENTS")
+        return String("Namma Apartments")
+    }
+    
+    func society_Services_Title() -> String {
+        return String("Society Services")
+    }
+    func Apartment_Services_Title() -> String {
+        return String("Apartment  Services")
     }
     
     func splash_NammaApartements_Description() -> String {
@@ -22,7 +29,7 @@ class NAString : NSObject
     }
     
     func splash_SocietyServices_Title() -> String {
-        return String("SOCIETY SERVICES")
+        return String("Society Services")
     }
     
     func splash_SocietyServices_Description() -> String {
@@ -30,7 +37,7 @@ class NAString : NSObject
     }
     
     func splash_ApartementServices_Title() -> String {
-        return String("APARTMENT SERVICES")
+        return String("Apartment Services")
     }
     
     func splash_ApartementServices_Description() -> String {
@@ -176,73 +183,73 @@ class NAString : NSObject
     //Apartment Services Activity
     
     func cook() -> String {
-    return String("Cook")
+        return String("Cook")
     }
-
+    
     func maid() -> String {
-    return String("Maid")
+        return String("Maid")
     }
-
+    
     func car_bike_cleaning() -> String {
-    return String("Car/Bike Cleaning")
+        return String("Car/Bike Cleaning")
     }
-
+    
     func child_day_care() -> String {
-    return String("Child Day Care")
+        return String("Child Day Care")
     }
-
+    
     func daily_newspaper() -> String {
-    return String("Daily NewsPaper")
+        return String("Daily NewsPaper")
     }
-
+    
     func milk_man() -> String {
-    return String("Milk Man")
+        return String("Milk Man")
     }
-
+    
     func laundry() -> String {
-    return String("Laundry")
+        return String("Laundry")
     }
-
+    
     func driver() -> String {
-    return String("Driver")
+        return String("Driver")
     }
-
+    
     func groceries() -> String {
-    return String("Groceries")
+        return String("Groceries")
     }
-
+    
     func images_of_digital_gate_services() -> String {
-    return String("Images of Digital Gate Services")
+        return String("Images of Digital Gate Services")
     }
-
+    
     //Digital Gate Service Activity
-
+    
     func digital_gate_title() -> String {
-    return String("Digital Gate")
+        return String("Digital Gate")
     }
-
+    
     func invite_visitors() -> String {
-    return String("Invite Visitors")
+        return String("Invite Visitors")
     }
-
+    
     func my_visitors_list() -> String {
-    return String("My Visitors List")
+        return String("My Visitors List")
     }
-
+    
     func my_daily_services() -> String {
-    return String("My Daily Services")
+        return String("My Daily Services")
     }
-
+    
     func notify_digital_gate() -> String {
-    return String("Notify Digital Gate")
+        return String("Notify Digital Gate")
     }
-
+    
     func my_sweet_home() -> String {
-    return String("My Sweet Home")
+        return String("My Sweet Home")
     }
-
+    
     func emergency() -> String {
-    return String("Emergency")
+        return String("Emergency")
     }
     
     //Invite Visitor ViewController
@@ -271,7 +278,7 @@ class NAString : NSObject
     func btnInvite() -> String {
         return String("INVITE")
     }
-
+    
     //MyVisitorList
     func myVisitorViewTitle() -> String {
         return String("My Visitor List")
@@ -280,15 +287,19 @@ class NAString : NSObject
     func myVisitorVisitor() -> String {
         return String("Visitor:")
     }
+    
     func myVisitorType() -> String {
         return String("Type:")
     }
+    
     func myVisitorDate() -> String {
         return String("Date:")
     }
+    
     func myVisitorTime() -> String {
         return String("Time:")
     }
+    
     func myVisitorInvitedBy() -> String {
         return String("Invited By:")
     }
@@ -298,7 +309,74 @@ class NAString : NSObject
     func notifyDigiGateHeader() -> String {
         return String("Notify Digi Gate")
     }
+   
+    func expecting_cab_arrival() -> String {
+        return String("Expecting Cab Arrival")
+    }
     
+    func expecting_package_arrival() -> String {
+        return String("Expecting Package Arrival")
+    }
+    
+    func expecting_visitor() -> String {
+        return String("Expecting Visitor")
+    }
+    
+    func handed_things_to_my_guest() -> String {
+        return String("Handed things to my Guest")
+    }
+    
+    func handed_things_to_my_daily_services() -> String {
+        return String("Handed things to my Daily Services")
+    }
+    
+    func package_number() -> String {
+        return String("Package Number")
+    }
+    
+    func notify_gate() -> String {
+        return String("NOTIFY GATE")
+    }
+    
+    func cab_number() -> String {
+        return String("Cab Number")
+    }
+    
+    func valid_for() -> String {
+        return String("Valid For")
+    }
+    
+    func _1_hr() -> String {
+        return String("1 hr")
+    }
+    
+    func _2_hrs() -> String {
+        return String("2 hrs")
+    }
+    
+    func _4_hrs() -> String {
+        return String("4 hrs")
+    }
+    
+    func _6_hrs() -> String {
+        return String("6 hrs")
+    }
+    
+    func _8_hrs() -> String {
+        return String("8 hrs")
+    }
+    
+    func _12_hrs() -> String {
+        return String("12 hrs")
+    }
+    
+    func _16_hrs() -> String {
+        return String("16 hrs")
+    }
+    
+    func _24_hrs() -> String {
+        return String("24 hrs")
+    }
     
 }
 

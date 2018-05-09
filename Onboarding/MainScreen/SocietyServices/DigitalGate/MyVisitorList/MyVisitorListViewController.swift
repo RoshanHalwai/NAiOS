@@ -11,10 +11,9 @@ import UIKit
 class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource
     
 {
-    
     @IBOutlet weak var lbl_Header: UILabel!
     
-//array for displaying card view data
+    //array for displaying card view data
     var cardImageList = [#imageLiteral(resourceName: "InviteVisitors"),#imageLiteral(resourceName: "InviteVisitors"),#imageLiteral(resourceName: "InviteVisitors"),#imageLiteral(resourceName: "InviteVisitors")]
     var MyVisitorName = ["Vikas Nayak","Chaitanya","Vinod Kumar","Avinash"]
     var MyVisitorDate = ["May 1 2018","May 2 2018","May 3 2018","Apr 30 2017"]
@@ -27,6 +26,7 @@ class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UIC
         
         //assign font & style to header
         self.lbl_Header.font = NAFont().headerFont()
+        
         
         //hide navigation bar
     self.navigationController?.isNavigationBarHidden = true

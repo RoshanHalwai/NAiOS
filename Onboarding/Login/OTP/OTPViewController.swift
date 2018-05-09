@@ -8,24 +8,10 @@
 
 import UIKit
 
-extension UITextField{
-    
-    func underlinedOTP(){
-        let border = CALayer()
-        let width = CGFloat(1.0)
-        border.borderColor = UIColor.black.cgColor
-        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width:  self.frame.size.width, height: self.frame.size.height)
-        border.borderWidth = width
-        self.layer.addSublayer(border)
-        self.layer.masksToBounds = true
-    }
-}
 class OTPViewController: UIViewController,UITextFieldDelegate
 {
-    
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
-    
     @IBOutlet weak var txtOTP1: UITextField!
     @IBOutlet weak var txtOTP2: UITextField!
     @IBOutlet weak var txtOTP3: UITextField!
@@ -33,19 +19,20 @@ class OTPViewController: UIViewController,UITextFieldDelegate
     @IBOutlet weak var txtOTP5: UITextField!
     @IBOutlet weak var txtOTP6: UITextField!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //color & font for button
+        //Button formatting & setting
         btnVerify.backgroundColor = NAColor().buttonBgColor()
-       lbl_OTPDescription.text = NAString().enter_verification_code()
-        lbl_OTPDescription.font = NAFont().headerFont()
         btnVerify.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        btnVerify.setTitle(NAString().verify_otp_button(), for: .normal)
+        btnVerify.titleLabel?.font = NAFont().buttonFont()
         
+        //Label formatting & setting
+        lbl_OTPDescription.text = NAString().enter_verification_code()
+        lbl_OTPDescription.font = NAFont().headerFont()
         
-        
+        //Textfield formatting & setting
         txtOTP1.font = NAFont().textFieldFont()
         txtOTP2.font = NAFont().textFieldFont()
         txtOTP3.font = NAFont().textFieldFont()
@@ -53,7 +40,10 @@ class OTPViewController: UIViewController,UITextFieldDelegate
         txtOTP4.font = NAFont().textFieldFont()
         txtOTP5.font = NAFont().textFieldFont()
         
+        //Become First Responder
         self.txtOTP1?.becomeFirstResponder()
+        
+        //Hiding Btn Verify
         self.btnVerify.isHidden =  true
         
         //textfield set targetting for the responder to next textview
@@ -69,17 +59,16 @@ class OTPViewController: UIViewController,UITextFieldDelegate
         self.navigationItem.title = "PHONE VERIFICATION"
         
         //Set Textfield bottom border line
-        txtOTP1.underlinedOTP()
-        txtOTP2.underlinedOTP()
-        txtOTP3.underlinedOTP()
-        txtOTP4.underlinedOTP()
-        txtOTP5.underlinedOTP()
-        txtOTP6.underlinedOTP()
+        txtOTP1.underlined()
+        txtOTP2.underlined()
+        txtOTP3.underlined()
+        txtOTP4.underlined()
+        txtOTP5.underlined()
+        txtOTP6.underlined()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
     
     @IBAction func btnVerifyOTP(_ sender: Any)

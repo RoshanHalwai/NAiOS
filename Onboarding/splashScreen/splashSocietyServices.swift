@@ -11,22 +11,20 @@ import UIKit
 class splashSocietyServices: UIViewController
 {
     @IBOutlet weak var imageView_SocietyServices: UIImageView!
+    @IBOutlet weak var lbl_HeaderSocietyServices: UILabel!
+    @IBOutlet weak var lbl_DescSocietyServices: UILabel!
     
-    @IBOutlet weak var lblHeader_SocietyServices: UILabel!
-    
-    @IBOutlet weak var lblDesc_SocietyServices: UILabel!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         //label formatting & setting
+        lbl_HeaderSocietyServices.font = NAFont().headerFont()
+        lbl_DescSocietyServices.font = NAFont().splashdescriptionFont()
         
-        //setting font for labes & style
-        lblHeader_SocietyServices.font = NAFont().headerFont()
-        lblDesc_SocietyServices.font = NAFont().splashdescriptionFont()
+        lbl_HeaderSocietyServices.text = NAString().splash_SocietyServices_Title().uppercased()
+        lbl_DescSocietyServices.text = NAString().splash_SocietyServices_Description()
         
-        lblHeader_SocietyServices.text = NAString().splash_ApartementServices_Title()
-        lblDesc_SocietyServices.text = NAString().splash_SocietyServices_Description()
-        
+        //hide navigation bar
        self.navigationController?.isNavigationBarHidden = true
     }
 
@@ -34,9 +32,4 @@ class splashSocietyServices: UIViewController
         super.didReceiveMemoryWarning()
        
     }
-    
-    
-    
-
-
 }

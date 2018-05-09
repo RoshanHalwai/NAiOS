@@ -42,9 +42,11 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         
         //hide invite Desc & invite button
         self.lbl_InviteDescription.isHidden = true
-      self.btnInviteVisitor.isHidden = true
+        self.btnInviteVisitor.isHidden = true
 
          createDatePicker()
+        
+        //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
 
         //assign values to upper strings
@@ -54,12 +56,12 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
 
-        //balck under line
+        //For Textfield under black line
         txtDate.underlined()
         txtInvitorName.underlined()
         txtInvitorMobile.underlined()
 
-       //set font & color
+      
         lbl_InvitorName.font = NAFont().headerFont()
         lbl_InvitorMobile.font = NAFont().headerFont()
         lbl_Or.font = NAFont().headerFont()
@@ -71,7 +73,7 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         btnSelectContact.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btnSelectContact.backgroundColor = NAColor().buttonBgColor()
         
-        //set text
+      
         lbl_InvitorName.text = NAString().visitorName()
         lbl_InvitorMobile.text = NAString().visitorMobile()
         btnInviteVisitor.setTitle(NAString().btnInvite(), for: .normal)
@@ -132,7 +134,6 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
             print("Get Authorization")
         }
     }
-    
     
     //to call default address book app
     func openContacts()

@@ -12,10 +12,11 @@ class MyVistorListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var myVisitorImage: UIImageView!
     
+    @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var lbl_MyVisitorName: UILabel!
     @IBOutlet weak var lbl_MyVisitorDate: UILabel!
     @IBOutlet weak var lbl_MyVisitorType: UILabel!
     @IBOutlet weak var lbl_MyVisitorTime: UILabel!
     @IBOutlet weak var lbl_InvitedName: UILabel!
-
+    
 }
