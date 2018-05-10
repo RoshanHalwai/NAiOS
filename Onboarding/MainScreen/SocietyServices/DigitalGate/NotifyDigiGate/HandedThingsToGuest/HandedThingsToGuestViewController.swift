@@ -23,7 +23,6 @@ class HandedThingsToGuestViewController: UIViewController,UICollectionViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         //hide navigation bar
         self.navigationController?.isNavigationBarHidden = true
         
@@ -33,7 +32,6 @@ class HandedThingsToGuestViewController: UIViewController,UICollectionViewDelega
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-       
     }
     
     @IBAction func btnBackToNotifyGate(_ sender: Any)
@@ -45,11 +43,9 @@ class HandedThingsToGuestViewController: UIViewController,UICollectionViewDelega
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return cardImageList.count
-        
-            }
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {

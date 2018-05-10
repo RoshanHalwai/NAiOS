@@ -2067,7 +2067,7 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vTI-ec-Jzw">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="vTI-ec-Jzw">
                                                     <rect key="frame" x="126" y="163" width="213" height="29"/>
                                                     <segments>
                                                         <segment title="YES"/>

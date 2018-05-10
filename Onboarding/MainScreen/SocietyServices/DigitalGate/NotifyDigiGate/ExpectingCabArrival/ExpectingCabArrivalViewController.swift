@@ -101,6 +101,7 @@ class ExpectingCabArrivalViewController: UIViewController
         btn_16Hour.setTitleColor(UIColor.black, for: .selected)
         btn_24Hour.setTitleColor(UIColor.black, for: .selected)
         
+        //Button Formatting & settings
         btn_NotifyGate.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_NotifyGate.backgroundColor = NAColor().buttonBgColor()
         
@@ -175,26 +176,21 @@ class ExpectingCabArrivalViewController: UIViewController
         let dateString = date.string(from: picker.date)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
-
     }
     
     @IBAction func btnSelectHours(_ sender: UIButton)
     {
-        //let btn = sender
         selectedColor(tag: sender.tag )
-       
     }
     
     
     @IBAction func btnShowCalender(_ sender: Any)
     {
-       // createDatePicker()
-        
+      
     }
     
     @IBAction func btnNotifyGate(_ sender: Any)
     {
-        
     }
     
     @IBAction func btnBackToDigiGate(_ sender: Any)

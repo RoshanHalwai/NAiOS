@@ -70,8 +70,6 @@ class NotifyDigiGateViewController: UIViewController,UICollectionViewDelegate,UI
     
     @IBAction func btnBackToDigiGate(_ sender: UIBarButtonItem)
     {
-
         _ = navigationController?.popViewController(animated: true)
     }
-    
 }

@@ -89,9 +89,7 @@ class ExpectingPackageArrivalViewController: UIViewController
         btn_16Hour.setTitle(NAString()._16_hrs(), for: .normal)
         btn_24Hour.setTitle(NAString()._24_hrs(), for: .normal)
         btn_NotifyGate.setTitle(NAString().notify_gate(), for: .normal)
-        
-
-        
+    
         //color set on selected
         btn_1Hour.setTitleColor(UIColor.black, for: .selected)
         btn_2Hour.setTitleColor(UIColor.black, for: .selected)
@@ -102,10 +100,9 @@ class ExpectingPackageArrivalViewController: UIViewController
         btn_16Hour.setTitleColor(UIColor.black, for: .selected)
         btn_24Hour.setTitleColor(UIColor.black, for: .selected)
         
-        
+        //Buttons Formatting & settings
         btn_NotifyGate.backgroundColor = NAColor().buttonBgColor()
         btn_NotifyGate.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        
         btn_NotifyGate.titleLabel?.font = NAFont().buttonFont()
         
         //make buttons rounded corner
@@ -178,14 +175,11 @@ class ExpectingPackageArrivalViewController: UIViewController
         let dateString = date.string(from: picker.date)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
-        
     }
     
     @IBAction func btnSelectHours(_ sender: UIButton)
     {
-        //let btn = sender
         selectedColor(tag: sender.tag )
-        
     }
     
     
@@ -215,5 +209,4 @@ class ExpectingPackageArrivalViewController: UIViewController
             button.tintColor = color
         }
     }
-    
 }

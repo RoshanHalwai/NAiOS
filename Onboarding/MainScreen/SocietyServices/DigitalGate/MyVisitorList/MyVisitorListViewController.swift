@@ -27,14 +27,12 @@ class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UIC
         //assign font & style to header
         self.lbl_Header.font = NAFont().headerFont()
         
-        
         //hide navigation bar
     self.navigationController?.isNavigationBarHidden = true
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
-        
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
