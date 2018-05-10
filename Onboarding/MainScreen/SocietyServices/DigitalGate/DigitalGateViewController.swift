@@ -57,7 +57,7 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
 
     @IBAction func BackToMainScreen(_ sender: UIBarButtonItem)
     {
-        self.navigationController?.popViewController(animated: true)
+       _ = navigationController?.popViewController(animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)

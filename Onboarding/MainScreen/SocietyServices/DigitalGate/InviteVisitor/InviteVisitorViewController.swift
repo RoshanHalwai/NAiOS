@@ -164,9 +164,7 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
     
     @IBAction func btnBackToVisitor(_ sender: UIBarButtonItem)
     {
-        let lv : DigitalGateViewController = self.storyboard?.instantiateViewController(withIdentifier: "digitalGateVC") as! DigitalGateViewController
-        self.navigationController?.setNavigationBarHidden(true, animated: true);
-        self.navigationController?.pushViewController(lv, animated: true)
+         _ = navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnShowCalender(_ sender: UIButton)

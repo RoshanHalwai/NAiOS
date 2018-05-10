@@ -35,6 +35,8 @@
 		86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D86209C63C700C700DA /* DigitalGateViewController.swift */; };
 		86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */; };
 		865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */; };
+		867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
+		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift */; };
 		86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
 		86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */; };
 		86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E420999DE200B159A3 /* OTPViewController.swift */; };
@@ -47,7 +49,6 @@
 		86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */; };
 		86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13B209AF45E00D75D0F /* HomeViewController.swift */; };
 		86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */; };
-		86D19EF720A2132000FB7DC8 /* localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86D19EF620A2132000FB7DC8 /* localized.strings */; };
 		86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */; };
 		86D19EFF20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EFE20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift */; };
 		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
@@ -110,6 +111,8 @@
 		86548D86209C63C700C700DA /* DigitalGateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalGateViewController.swift; sourceTree = "<group>"; };
 		86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalGateCollectionViewCell.swift; sourceTree = "<group>"; };
 		865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteVisitorViewController.swift; sourceTree = "<group>"; };
+		867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestViewController.swift; sourceTree = "<group>"; };
+		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestCollectionViewCell.swift; sourceTree = "<group>"; };
 		86A8B934209EC9FF00EA1C35 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		86BD74E420999DE200B159A3 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +125,6 @@
 		86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateCollectionViewCell.swift; sourceTree = "<group>"; };
 		86C1A13B209AF45E00D75D0F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		86D19EF620A2132000FB7DC8 /* localized.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = localized.strings; sourceTree = "<group>"; };
 		86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingCabArrivalViewController.swift; sourceTree = "<group>"; };
 		86D19EFE20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingPackageArrivalViewController.swift; sourceTree = "<group>"; };
 		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,22 @@
 			path = InviteVisitor;
 			sourceTree = "<group>";
 		};
+		867CFF2620A43DE600EDB966 /* HandedThingsToGuest */ = {
+			isa = PBXGroup;
+			children = (
+				867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */,
+				867CFF2A20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift */,
+			);
+			path = HandedThingsToGuest;
+			sourceTree = "<group>";
+		};
+		867CFF2720A43E1600EDB966 /* HandedThingsToDailyServices */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HandedThingsToDailyServices;
+			sourceTree = "<group>";
+		};
 		86A8B933209EC9FE00EA1C35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,7 +344,6 @@
 				86BD74EB209A2E7000B159A3 /* NAFont.swift */,
 				86BD74ED209A2EB500B159A3 /* NAColor.swift */,
 				86548D83209C343F00C700DA /* NAString.swift */,
-				86D19EF620A2132000FB7DC8 /* localized.strings */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -345,8 +362,10 @@
 			children = (
 				86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */,
 				86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */,
-				86D19EFD20A2EE6900FB7DC8 /* ExpectingPackageArrival */,
 				86D19EF820A2B20200FB7DC8 /* ExpectingCabArrival */,
+				86D19EFD20A2EE6900FB7DC8 /* ExpectingPackageArrival */,
+				867CFF2620A43DE600EDB966 /* HandedThingsToGuest */,
+				867CFF2720A43E1600EDB966 /* HandedThingsToDailyServices */,
 			);
 			path = NotifyDigiGate;
 			sourceTree = "<group>";
@@ -547,7 +566,6 @@
 				8641CE0C20978577006BEC5F /* Lato-Light.ttf in Resources */,
 				8641CE0820978577006BEC5F /* Lato-LightItalic.ttf in Resources */,
 				8641CE0B20978577006BEC5F /* Lato-BlackItalic.ttf in Resources */,
-				86D19EF720A2132000FB7DC8 /* localized.strings in Resources */,
 				8641CE0420978577006BEC5F /* Lato-Bold.ttf in Resources */,
 				8641CE0D20978577006BEC5F /* Lato-HairlineItalic.ttf in Resources */,
 				8641CE0920978577006BEC5F /* Lato-Hairline.ttf in Resources */,
@@ -606,8 +624,10 @@
 				86BF6A4320A0326E00B175A1 /* MyVisitorListViewController.swift in Sources */,
 				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
+				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
+				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */,
 			);

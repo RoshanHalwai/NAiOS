@@ -14,7 +14,7 @@ class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UIC
     @IBOutlet weak var lbl_Header: UILabel!
     
     //array for displaying card view data
-    var cardImageList = [#imageLiteral(resourceName: "InviteVisitors"),#imageLiteral(resourceName: "InviteVisitors"),#imageLiteral(resourceName: "InviteVisitors"),#imageLiteral(resourceName: "InviteVisitors")]
+    var cardImageList = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MyVisitorName = ["Vikas Nayak","Chaitanya","Vinod Kumar","Avinash"]
     var MyVisitorDate = ["May 1 2018","May 2 2018","May 3 2018","Apr 30 2017"]
     var MyVisitorType = ["Guest","Guest","Guest","Guest"]
@@ -70,14 +70,16 @@ class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UIC
         cell.lbl_MyVisitorName.font = NAFont().headerFont()
         cell.lbl_MyVisitorDate.font = NAFont().headerFont()
         cell.lbl_MyVisitorTime.font = NAFont().headerFont()
+        
+        //setting image round
+        cell.myVisitorImage.layer.cornerRadius = cell.myVisitorImage.frame.size.width/2
+        cell.myVisitorImage.clipsToBounds = true
     
         return cell
     }
     
     @IBAction func btnBackToDigiGate(_ sender: UIBarButtonItem)
     {
-        let lv : DigitalGateViewController = self.storyboard?.instantiateViewController(withIdentifier: "digitalGateVC") as! DigitalGateViewController
-        self.navigationController?.setNavigationBarHidden(true, animated: true);
-        self.navigationController?.pushViewController(lv, animated: true)
+         _ = navigationController?.popViewController(animated: true)
     }
 }

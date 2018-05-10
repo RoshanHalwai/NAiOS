@@ -30,6 +30,9 @@ class ExpectingPackageArrivalViewController: UIViewController
     @IBOutlet weak var btn_16Hour: UIButton!
     @IBOutlet weak var btn_24Hour: UIButton!
     
+    //array of buttons for color changing purpose
+    var buttons : [UIButton] = []
+    
     //for card view
     @IBOutlet weak var cardView: UIView!
     // for scroll view
@@ -40,6 +43,16 @@ class ExpectingPackageArrivalViewController: UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set tag values to buttons
+        btn_1Hour.tag = 1
+        btn_2Hour.tag = 2
+        btn_4Hour.tag = 3
+        btn_6Hour.tag = 4
+        btn_8Hour.tag = 5
+        btn_12Hour.tag = 6
+        btn_16Hour.tag = 7
+        btn_24Hour.tag = 8
         
         //putting black bottom line on textFields
         txt_PacageVendor.underlined()
@@ -77,17 +90,21 @@ class ExpectingPackageArrivalViewController: UIViewController
         btn_24Hour.setTitle(NAString()._24_hrs(), for: .normal)
         btn_NotifyGate.setTitle(NAString().notify_gate(), for: .normal)
         
-        btn_1Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_2Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_4Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_6Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_8Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_12Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_16Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_24Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_NotifyGate.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+
+        
+        //color set on selected
+        btn_1Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_2Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_4Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_6Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_8Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_12Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_16Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_24Hour.setTitleColor(UIColor.black, for: .selected)
+        
         
         btn_NotifyGate.backgroundColor = NAColor().buttonBgColor()
+        btn_NotifyGate.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         
         btn_NotifyGate.titleLabel?.font = NAFont().buttonFont()
         
@@ -110,6 +127,17 @@ class ExpectingPackageArrivalViewController: UIViewController
         btn_12Hour.layer.borderWidth = 1
         btn_16Hour.layer.borderWidth = 1
         btn_24Hour.layer.borderWidth = 1
+        
+        //for changing button color
+        buttons.removeAll()
+        buttons.append(btn_1Hour)
+        buttons.append(btn_2Hour)
+        buttons.append(btn_4Hour)
+        buttons.append(btn_6Hour)
+        buttons.append(btn_8Hour)
+        buttons.append(btn_12Hour)
+        buttons.append(btn_16Hour)
+        buttons.append(btn_24Hour)
         
         //setting button hight
         btn_16Hour.heightAnchor.constraint(equalToConstant: 39.0).isActive = true
@@ -153,6 +181,14 @@ class ExpectingPackageArrivalViewController: UIViewController
         
     }
     
+    @IBAction func btnSelectHours(_ sender: UIButton)
+    {
+        //let btn = sender
+        selectedColor(tag: sender.tag )
+        
+    }
+    
+    
     @IBAction func btnShowCalender(_ sender: Any)
     {
         
@@ -162,4 +198,22 @@ class ExpectingPackageArrivalViewController: UIViewController
     {
         
     }
+    
+    @IBAction func btnBackToDigiGate(_ sender: Any)
+    {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    func selectedColor(tag: Int) {
+        for button in buttons as [UIButton] {
+            if button.tag == tag {
+                button.isSelected = true
+            } else {
+                button.isSelected = false
+            }
+            let color = button.isSelected ? NAColor().buttonFontColor() : UIColor.white
+            button.backgroundColor = color
+            button.tintColor = color
+        }
+    }
+    
 }

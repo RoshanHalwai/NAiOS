@@ -15,8 +15,14 @@ class NotifyDigiGateViewController: UIViewController,UICollectionViewDelegate,UI
     var ImageList = [#imageLiteral(resourceName: "ExpectingCabs256"),#imageLiteral(resourceName: "ExpectingPackage256"),#imageLiteral(resourceName: "ExpectiingVisitor256"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
     var ExpectingList = ["Excpecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed things to my Guest","Handed things to my Daily Services"]
     
+    //array for navigation
+    var VCNames = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //To navigate from Digi gate to its Sub-screens
+        VCNames = ["expectingCabArrivalVC","expectingPackageArrivalVC","inviteVisitorVC","handedThingsToGuestVC",""]
         
         //hide navigation bar
         self.navigationController?.isNavigationBarHidden = true
@@ -55,11 +61,17 @@ class NotifyDigiGateViewController: UIViewController,UICollectionViewDelegate,UI
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let name = VCNames[indexPath.row]
+        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
+        self.navigationController?.pushViewController(viewController!, animated: true)
+    }
+    
     @IBAction func btnBackToDigiGate(_ sender: UIBarButtonItem)
     {
-        let lv : DigitalGateViewController = self.storyboard?.instantiateViewController(withIdentifier: "digitalGateVC") as! DigitalGateViewController
-        self.navigationController?.setNavigationBarHidden(true, animated: true);
-        self.navigationController?.pushViewController(lv, animated: true)
+
+        _ = navigationController?.popViewController(animated: true)
     }
     
 }
