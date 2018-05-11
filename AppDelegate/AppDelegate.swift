@@ -22,12 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().clipsToBounds = true
         
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
-        
         statusBar.backgroundColor = UIColor.black
-        
-        
-        
-        
+
         // Override point for customization after application launch.
         return true
     }

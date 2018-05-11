@@ -30,13 +30,16 @@ class ExpectingCabArrivalViewController: UIViewController
     @IBOutlet weak var btn_16Hour: UIButton!
     @IBOutlet weak var btn_24Hour: UIButton!
     
+    //array of buttons for color changing purpose
+    var buttons : [UIButton] = []
+    
     //for card view
     @IBOutlet weak var cardView: UIView!
     // for scroll view
     @IBOutlet weak var scrollView: UIScrollView!
     
     //created date picker programtically
-    let picker = UIDatePicker()
+    var picker: UIDatePicker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +69,17 @@ class ExpectingCabArrivalViewController: UIViewController
         txt_CabNumber.font = NAFont().textFieldFont()
         txt_DateTime.font = NAFont().textFieldFont()
         
-    
+        //for changing button color
+        buttons.removeAll()
+        buttons.append(btn_1Hour)
+        buttons.append(btn_2Hour)
+        buttons.append(btn_4Hour)
+        buttons.append(btn_6Hour)
+        buttons.append(btn_8Hour)
+        buttons.append(btn_12Hour)
+        buttons.append(btn_16Hour)
+        buttons.append(btn_24Hour)
+        
         //button Formatting & setting
         btn_1Hour.setTitle(NAString()._1_hr(), for: .normal)
         btn_2Hour.setTitle(NAString()._2_hrs(), for: .normal)
@@ -78,14 +91,17 @@ class ExpectingCabArrivalViewController: UIViewController
         btn_24Hour.setTitle(NAString()._24_hrs(), for: .normal)
         btn_NotifyGate.setTitle(NAString().notify_gate(), for: .normal)
         
-        btn_1Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_2Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_4Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_6Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_8Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_12Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_16Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_24Hour.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        //color set on selected
+        btn_1Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_2Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_4Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_6Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_8Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_12Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_16Hour.setTitleColor(UIColor.black, for: .selected)
+        btn_24Hour.setTitleColor(UIColor.black, for: .selected)
+        
+        //Button Formatting & settings
         btn_NotifyGate.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_NotifyGate.backgroundColor = NAColor().buttonBgColor()
         
@@ -111,7 +127,7 @@ class ExpectingCabArrivalViewController: UIViewController
         btn_12Hour.layer.cornerRadius = 15.0
         btn_16Hour.layer.cornerRadius = 15.0
         btn_24Hour.layer.cornerRadius = 15.0
-        
+
          //settin border width for buttons
         btn_1Hour.layer.borderWidth = 1
         btn_2Hour.layer.borderWidth = 1
@@ -125,7 +141,6 @@ class ExpectingCabArrivalViewController: UIViewController
    //setting button hight 
     btn_16Hour.heightAnchor.constraint(equalToConstant: 39.0).isActive = true
     btn_1Hour.heightAnchor.constraint(equalToConstant: 39).isActive = true
-        
     btn_NotifyGate.heightAnchor.constraint(equalToConstant: 39).isActive = true
        
         //cardUIView
@@ -143,43 +158,65 @@ class ExpectingCabArrivalViewController: UIViewController
     //for datePicker
     func createDatePicker() {
         // toolbar
+        picker = UIDatePicker()
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_DateTime.inputAccessoryView = toolbar
-        txt_DateTime.inputView = picker
+        txt_DateTime.inputView =  picker
         // format picker for date
-        picker.datePickerMode = .dateAndTime
+        picker?.datePickerMode = .dateAndTime
+        
+//        let pickerSize : CGSize = picker!.sizeThatFits(CGSize.zero)
+//        picker?.frame = CGRect(x:0.0, y:cardView.frame.size.height + 60, width:pickerSize.width, height:300)
+//        // you probably don't want to set background color as black
+//        // picker.backgroundColor = UIColor.blackColor()
+//        self.view.addSubview(picker!)
     }
     
     @objc func donePressed() {
         // format date
+        
         let date = DateFormatter()
         date.dateFormat = "MMM d, YY \t HH:mm"
-        let dateString = date.string(from: picker.date)
+        let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
-
     }
     
-    @IBAction func btnSelectHours(_ sender: Any)
+    @IBAction func btnSelectHours(_ sender: UIButton)
     {
-        //let btn = sender
-       
+        selectedColor(tag: sender.tag )
     }
     
     
     @IBAction func btnShowCalender(_ sender: Any)
     {
-        createDatePicker()
-        
+      createDatePicker()
     }
     
     @IBAction func btnNotifyGate(_ sender: Any)
     {
-        
     }
     
+    @IBAction func btnBackToDigiGate(_ sender: Any)
+    {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    //To highlight selected button in hours section at a time.
+    func selectedColor(tag: Int) {
+        for button in buttons as [UIButton] {
+            if button.tag == tag {
+                button.isSelected = true
+            } else {
+                button.isSelected = false
+            }
+            let color = button.isSelected ? NAColor().buttonFontColor() : UIColor.white
+            button.backgroundColor = color
+            button.tintColor = color
+        }
+    }
 }

@@ -18,5 +18,4 @@ class MyVistorListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_MyVisitorType: UILabel!
     @IBOutlet weak var lbl_MyVisitorTime: UILabel!
     @IBOutlet weak var lbl_InvitedName: UILabel!
-    
 }
