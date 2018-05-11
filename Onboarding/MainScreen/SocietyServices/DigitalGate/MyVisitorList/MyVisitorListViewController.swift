@@ -78,6 +78,6 @@ class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UIC
     
     @IBAction func btnBackToDigiGate(_ sender: UIBarButtonItem)
     {
-         _ = navigationController?.popViewController(animated: true)
+         self.navigationController?.popViewController(animated: true)
     }
 }

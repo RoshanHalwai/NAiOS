@@ -164,7 +164,7 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
     
     @IBAction func btnBackToVisitor(_ sender: UIBarButtonItem)
     {
-         _ = navigationController?.popViewController(animated: true)
+         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnShowCalender(_ sender: UIButton)

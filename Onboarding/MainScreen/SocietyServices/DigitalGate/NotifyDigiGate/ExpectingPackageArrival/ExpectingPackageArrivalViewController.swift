@@ -195,8 +195,10 @@ class ExpectingPackageArrivalViewController: UIViewController
     
     @IBAction func btnBackToDigiGate(_ sender: Any)
     {
-        _ = navigationController?.popViewController(animated: true)
+         self.navigationController?.popViewController(animated: true)
     }
+    
+    //To highlight selected button in hours section at a time.
     func selectedColor(tag: Int) {
         for button in buttons as [UIButton] {
             if button.tag == tag {

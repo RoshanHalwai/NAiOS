@@ -39,7 +39,7 @@ class ExpectingCabArrivalViewController: UIViewController
     @IBOutlet weak var scrollView: UIScrollView!
     
     //created date picker programtically
-    let picker = UIDatePicker()
+    var picker: UIDatePicker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,22 +158,30 @@ class ExpectingCabArrivalViewController: UIViewController
     //for datePicker
     func createDatePicker() {
         // toolbar
+        picker = UIDatePicker()
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_DateTime.inputAccessoryView = toolbar
-        txt_DateTime.inputView = picker
+        txt_DateTime.inputView =  picker
         // format picker for date
-        picker.datePickerMode = .dateAndTime
+        picker?.datePickerMode = .dateAndTime
+        
+//        let pickerSize : CGSize = picker!.sizeThatFits(CGSize.zero)
+//        picker?.frame = CGRect(x:0.0, y:cardView.frame.size.height + 60, width:pickerSize.width, height:300)
+//        // you probably don't want to set background color as black
+//        // picker.backgroundColor = UIColor.blackColor()
+//        self.view.addSubview(picker!)
     }
     
     @objc func donePressed() {
         // format date
+        
         let date = DateFormatter()
         date.dateFormat = "MMM d, YY \t HH:mm"
-        let dateString = date.string(from: picker.date)
+        let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
     }
@@ -186,7 +194,7 @@ class ExpectingCabArrivalViewController: UIViewController
     
     @IBAction func btnShowCalender(_ sender: Any)
     {
-      
+      createDatePicker()
     }
     
     @IBAction func btnNotifyGate(_ sender: Any)
@@ -195,9 +203,10 @@ class ExpectingCabArrivalViewController: UIViewController
     
     @IBAction func btnBackToDigiGate(_ sender: Any)
     {
-        _ = navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
+    //To highlight selected button in hours section at a time.
     func selectedColor(tag: Int) {
         for button in buttons as [UIButton] {
             if button.tag == tag {
