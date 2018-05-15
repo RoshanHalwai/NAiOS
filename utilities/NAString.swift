@@ -378,5 +378,93 @@ class NAString : NSObject
         return String("24 hrs")
     }
     
+    //Handed things to my guest
+    
+    func yes() -> String {
+        return String("Yes")
+    }
+    func no() -> String {
+        return String("No")
+    }
+    func given_things() -> String {
+        return String("Given Things")
+    }
+    func description() -> String {
+        return String("Description")
+    }
+    func feature_unavailable_message() -> String {
+        return String("Sorry you cannot use this feature since currently you do not have any visitors at your resident.")
+    }
+    func feature_unavailable_image_desc() -> String {
+        return String("Image to indicate feature is currently unavailable to the resident.")
+    }
+    func _title_activity_daily_services() -> String {
+        return String("DailyServices")
+    }
+    
+    //My daily services
+    func car_bike_cleaner() -> String {
+        return String("Car/Bike cleaner")
+    }
+    func child_care_taker() -> String {
+        return String("Child Caretaker")
+    }
+    func newspaper_paper_man() -> String {
+        return String("NewsPaper man")
+    }
+    func laundry_man() -> String {
+        return String("Laundry man")
+    }
+    
+    //adding my daily services
+    
+    func add_my_service() -> String {
+        return String("Add My Service")
+    }
+    func name() -> String {
+        return String("Name")
+    }
+    func mobile() -> String {
+        return String("Mobile")
+    }
+    func pick_time() -> String {
+        return String("Time")
+    }
+    func add() -> String {
+        return String("Add")
+    }
+    
+    //visitor list
+    func visitor() -> String {
+        return String("Visitor")
+    }
+    func type() -> String {
+        return String("Type:")
+    }
+    func date() -> String {
+        return String("Date:")
+    }
+    func time() -> String {
+        return String("Time:")
+    }
+    func invited_by() -> String {
+        return String("Invited By:")
+    }
+    func call() -> String {
+        return String("Call")
+    }
+    func message() -> String {
+        return String("Message")
+    }
+    func reschedule() -> String {
+        return String("Reschedule")
+    }
+    func cancel() -> String {
+        return String("Cancel")
+    }
+    func edit() -> String {
+        return String("Edit")
+    }
+    
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OTPViewController: UIViewController,UITextFieldDelegate
+class OTPViewController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var lbl_OTPDescription: UILabel!

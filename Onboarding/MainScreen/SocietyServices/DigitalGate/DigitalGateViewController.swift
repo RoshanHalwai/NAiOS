@@ -25,10 +25,10 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
         super.viewDidLoad()
         
         //To navigate from Digi gate to its Sub-screens
-        VCNames = ["inviteVisitorVC","myVisitorListVC","","notifyDigiGateVC","",""]
+        VCNames = ["inviteVisitorVC","myVisitorListVC","myDailyServicesVC","notifyDigiGateVC","",""]
         
         //hide navigation bar
-         self.navigationController?.isNavigationBarHidden = true
+         //self.navigationController?.isNavigationBarHidden = true
         
         //Label Formatting & setting
         lbl_Title.text = NAString().digital_gate()
@@ -64,6 +64,10 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
     {
         let name = VCNames[indexPath.row]
         let viewController = storyboard?.instantiateViewController(withIdentifier: name)
+        
+        self.navigationItem.title = ""
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
 }
