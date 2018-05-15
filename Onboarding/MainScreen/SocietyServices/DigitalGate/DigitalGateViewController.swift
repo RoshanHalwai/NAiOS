@@ -25,7 +25,7 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
         super.viewDidLoad()
         
         //To navigate from Digi gate to its Sub-screens
-        VCNames = ["inviteVisitorVC","myVisitorListVC","myDailyServicesVC","notifyDigiGateVC","",""]
+        VCNames = ["inviteVisitorVC","myVisitorListVC","myDailyServicesVC","notifyDigiGateVC","","emergencyVC"]
         
         //hide navigation bar
          //self.navigationController?.isNavigationBarHidden = true
