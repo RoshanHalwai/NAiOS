@@ -43,7 +43,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         roundButton.setImage(UIImage(named:"Floating3"), for: .normal)
         roundButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            roundButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+             roundButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
+            
             roundButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
             roundButton.widthAnchor.constraint(equalToConstant: 60),
             roundButton.heightAnchor.constraint(equalToConstant: 60)

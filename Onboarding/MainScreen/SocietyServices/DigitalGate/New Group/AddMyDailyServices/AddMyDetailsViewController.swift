@@ -34,8 +34,14 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     //created date picker programtically
     let picker = UIDatePicker()
     
+    //scrollview
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //scrollView
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
         
         //Calling datePicker
           createDatePicker()
