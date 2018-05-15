@@ -31,16 +31,16 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.view.addSubview(self.roundButton)
     
         //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: "My Daily Services")
+        super.ConfigureNavBarTitle(title: "Add My Services")
     }
     
     //for setting & formatting floating button
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         roundButton.layer.cornerRadius = roundButton.layer.frame.size.width/2
-        roundButton.backgroundColor = UIColor.blue
+        roundButton.backgroundColor = UIColor.black
         roundButton.clipsToBounds = true
-        roundButton.setImage(UIImage(named:"ic_add_white_2x"), for: .normal)
+        roundButton.setImage(UIImage(named:"Floating3"), for: .normal)
         roundButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             roundButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -64,40 +64,118 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action1 = UIAlertAction(title: "Cook", style: .default, handler: {
             
             (alert: UIAlertAction!) -> Void in
+            //passing string
             let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
             
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            //passing
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Cook")
+            lv.AddOtpString = replaced
+            
+           self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
+          
         })
         
         let action2 = UIAlertAction(title: "Maid", style: .default, handler: {
             
             (alert: UIAlertAction!) -> Void in
+            //passing string
+            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            
+            //passing
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Maid")
+            lv.AddOtpString = replaced
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
             
         })
         
         let action3 = UIAlertAction(title: "Car/Bike Cleaning", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            //passing string
+            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            
+            //passing
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Car/Bike Clearner")
+            lv.AddOtpString = replaced
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
         })
         
         let action4 = UIAlertAction(title: "Child Day Care", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            //passing string
+            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            
+            //passing
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Child Day Care")
+            lv.AddOtpString = replaced
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
         })
         
         let action5 = UIAlertAction(title: "Daily Newspaper", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            //passing string
+            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            
+            //passing
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Newspaper Man")
+            lv.AddOtpString = replaced
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
+            
         })
         
         let action6 = UIAlertAction(title: "Milk Man", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            //passing string
+            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            
+            //passing
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Milk Man")
+            lv.AddOtpString = replaced
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
         })
         
         let action7 = UIAlertAction(title: "Laundry", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            //passing string
+            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            
+            //passing
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Laundry Man")
+            lv.AddOtpString = replaced
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
         })
         
         let action8 = UIAlertAction(title: "Driver", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
+            //passing string
+            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            
+            //passing
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Driver")
+            lv.AddOtpString = replaced
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
@@ -122,11 +200,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.present(actionSheet, animated: true, completion: nil)
         
         self.roundButton.isHidden = true
-        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
