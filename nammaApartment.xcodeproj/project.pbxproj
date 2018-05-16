@@ -35,6 +35,9 @@
 		86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D86209C63C700C700DA /* DigitalGateViewController.swift */; };
 		86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */; };
 		865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */; };
+		86646BBE20AB0472002A92B8 /* EmergencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86646BBD20AB0472002A92B8 /* EmergencyViewController.swift */; };
+		86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86646BBF20AB0704002A92B8 /* EmergencyCollectionViewCell.swift */; };
+		86646BC220AB1530002A92B8 /* RaiseAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86646BC120AB1530002A92B8 /* RaiseAlarmViewController.swift */; };
 		8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */; };
 		8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */; };
 		8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */; };
@@ -115,6 +118,9 @@
 		86548D86209C63C700C700DA /* DigitalGateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalGateViewController.swift; sourceTree = "<group>"; };
 		86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalGateCollectionViewCell.swift; sourceTree = "<group>"; };
 		865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteVisitorViewController.swift; sourceTree = "<group>"; };
+		86646BBD20AB0472002A92B8 /* EmergencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyViewController.swift; sourceTree = "<group>"; };
+		86646BBF20AB0704002A92B8 /* EmergencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyCollectionViewCell.swift; sourceTree = "<group>"; };
+		86646BC120AB1530002A92B8 /* RaiseAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaiseAlarmViewController.swift; sourceTree = "<group>"; };
 		8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyServicesViewController.swift; sourceTree = "<group>"; };
 		8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANavigationViewController.swift; sourceTree = "<group>"; };
 		8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyServicesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -292,6 +298,7 @@
 				865C7BCA209D835800443C75 /* InviteVisitor */,
 				86BF6A3F20A0322100B175A1 /* MyVisitorList */,
 				8672B3B920A97EFC0040A5E2 /* MyDailyServices */,
+				86646BBC20AB042B002A92B8 /* Emergency */,
 			);
 			path = DigitalGate;
 			sourceTree = "<group>";
@@ -302,6 +309,16 @@
 				865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */,
 			);
 			path = InviteVisitor;
+			sourceTree = "<group>";
+		};
+		86646BBC20AB042B002A92B8 /* Emergency */ = {
+			isa = PBXGroup;
+			children = (
+				86646BBD20AB0472002A92B8 /* EmergencyViewController.swift */,
+				86646BBF20AB0704002A92B8 /* EmergencyCollectionViewCell.swift */,
+				86646BC120AB1530002A92B8 /* RaiseAlarmViewController.swift */,
+			);
+			path = Emergency;
 			sourceTree = "<group>";
 		};
 		8672B3B920A97EFC0040A5E2 /* MyDailyServices */ = {
@@ -643,7 +660,9 @@
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				86BF6A4120A0325200B175A1 /* MyVistorListCollectionViewCell.swift in Sources */,
+				86646BC220AB1530002A92B8 /* RaiseAlarmViewController.swift in Sources */,
 				86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */,
+				86646BBE20AB0472002A92B8 /* EmergencyViewController.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
 				86E83E4520A9B0D000FA7CA7 /* AddMyDetailsViewController.swift in Sources */,
@@ -655,6 +674,7 @@
 				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
 				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
 				86BF6A4320A0326E00B175A1 /* MyVisitorListViewController.swift in Sources */,
+				86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */,
 				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift in Sources */,
