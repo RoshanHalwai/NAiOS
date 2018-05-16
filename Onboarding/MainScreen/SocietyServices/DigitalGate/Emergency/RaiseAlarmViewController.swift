@@ -13,7 +13,8 @@ class RaiseAlarmViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Header: UILabel!
     @IBOutlet weak var lbl_Description: UILabel!
     
-
+    var titleName =  String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +22,8 @@ class RaiseAlarmViewController: NANavigationViewController {
         self.lbl_Description.isHidden = true
         
         //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: "Emergency")
-
-        
+       // super.ConfigureNavBarTitle(title: "Emergency")
+        super.ConfigureNavBarTitle(title: titleName)
     }
 
     override func didReceiveMemoryWarning() {

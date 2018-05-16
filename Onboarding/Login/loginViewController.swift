@@ -58,6 +58,7 @@ class loginViewController: UIViewController,UITextFieldDelegate
     @IBAction func btnSignup(_ sender: Any)
     {
         let lv : signupViewController = self.storyboard?.instantiateViewController(withIdentifier: "signupVC") as! signupViewController
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }
@@ -66,6 +67,8 @@ class loginViewController: UIViewController,UITextFieldDelegate
     {
         let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
         
+        let otpString = NAString().enter_verification_code()
+        lv.newOtpString = otpString
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }

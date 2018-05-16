@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OTPViewController: UIViewController, UITextFieldDelegate
+class OTPViewController: NANavigationViewController, UITextFieldDelegate
 {
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
@@ -19,9 +19,15 @@ class OTPViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var txtOTP5: UITextField!
     @IBOutlet weak var txtOTP6: UITextField!
     
+    //to take data from add my services
+     var newOtpString = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //creating string to take OTP Description from Add my daily services according to service which user will select.
+        self.lbl_OTPDescription.text = newOtpString
+       
         //Button formatting & setting
         btnVerify.backgroundColor = NAColor().buttonBgColor()
         btnVerify.setTitleColor(NAColor().buttonFontColor(), for: .normal)
@@ -29,7 +35,6 @@ class OTPViewController: UIViewController, UITextFieldDelegate
         btnVerify.titleLabel?.font = NAFont().buttonFont()
         
         //Label formatting & setting
-        lbl_OTPDescription.text = NAString().enter_verification_code()
         lbl_OTPDescription.font = NAFont().headerFont()
         
         //Textfield formatting & setting
@@ -73,10 +78,20 @@ class OTPViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func btnVerifyOTP(_ sender: Any)
     {
+        if (lbl_OTPDescription.text == NAString().enter_verification_code())
+        {
         let lv : MainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
         
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
+        }
+        else
+        {
+            let lv : MyDailyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "myDailyServicesVC") as! MyDailyServicesViewController
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool

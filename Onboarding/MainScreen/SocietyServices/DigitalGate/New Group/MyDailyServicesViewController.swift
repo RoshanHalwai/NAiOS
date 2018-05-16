@@ -31,7 +31,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.view.addSubview(self.roundButton)
     
         //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: "Add My Services")
+        super.ConfigureNavBarTitle(title: "My Daily Services")
     }
     
     //for setting & formatting floating button
@@ -57,7 +57,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     }
     
     //for creating action sheet to select my daily services
-    
     @IBAction func ButtonClick(_ sender: UIButton)
     {
         let actionSheet = UIAlertController(title: "My Daily Services", message: "Choose Your Services From Here.", preferredStyle: .actionSheet)
@@ -72,6 +71,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let cookString = NAString().inviteVisitorOTPDesc()
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Cook")
             lv.AddOtpString = replaced
+            
+            //temp variable
+            let tempVar = "Cook account"
+            lv.holdString = tempVar
             
            self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
@@ -89,6 +92,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Maid")
             lv.AddOtpString = replaced
             
+            // //temp variable
+            let tempVar = "Maid account"
+            lv.holdString = tempVar
+            
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
             
@@ -104,6 +111,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Car/Bike Clearner")
             lv.AddOtpString = replaced
             
+            //temp variable
+            let tempVar = "Car/Bike Cleaner account"
+            lv.holdString = tempVar
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -117,7 +127,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let cookString = NAString().inviteVisitorOTPDesc()
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Child Day Care")
             lv.AddOtpString = replaced
-            
+           
+           //temp variable
+            let tempVar = "Child Day Care account"
+            lv.holdString = tempVar
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -131,6 +144,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let cookString = NAString().inviteVisitorOTPDesc()
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Newspaper Man")
             lv.AddOtpString = replaced
+            
+            //temp variable
+            let tempVar = "Newspaper Man account"
+            lv.holdString = tempVar
             
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
@@ -147,6 +164,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Milk Man")
             lv.AddOtpString = replaced
             
+            //extra
+            let tempVar = "Milk man account"
+            lv.holdString = tempVar
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -161,6 +181,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Laundry Man")
             lv.AddOtpString = replaced
             
+            //extra
+            let tempVar = "Laundry man account"
+            lv.holdString = tempVar
+            
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -174,6 +198,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let cookString = NAString().inviteVisitorOTPDesc()
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Driver")
             lv.AddOtpString = replaced
+            
+            //extra
+            let tempVar = "Driver account"
+            lv.holdString = tempVar
             
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)

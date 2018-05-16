@@ -55,5 +55,9 @@
 	</array>
 	<key>NSContactsUsageDescription</key>
 	<string>Let me use contacts</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To click image</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To choose image</string>
 </dict>
 </plist>

@@ -433,6 +433,10 @@ class NAString : NSObject
     func add() -> String {
         return String("Add")
     }
+        
+    func dailyServicesOTPDescription() -> String {
+        return String("We need to verify your account. Please enter the 6 digit verification code from the text message")
+    }
     
     //visitor list
     func visitor() -> String {

@@ -14,7 +14,7 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
     var EmergencyList = ["Medical Emergency","Raise Fire Alarm","Raise Theft Alarm"]
 
     //array for navigation
-    var VCNames = [String]()
+  //  var VCNames = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         super.ConfigureNavBarTitle(title: "Emergency")
         
        //To navigate from Digi gate to its Sub-screens
-        VCNames = ["raiseEmergencyVC","raiseEmergencyVC","raiseEmergencyVC"]
+     //   VCNames = ["raiseEmergencyVC","raiseEmergencyVC","raiseEmergencyVC"]
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -55,10 +55,30 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let name = VCNames[indexPath.row]
-        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
-        self.navigationController?.pushViewController(viewController!, animated: true)
-    }
     
+        if indexPath.row == 0
+        {
+            let lv : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
+
+            self.navigationController?.pushViewController(lv, animated: true)
+            lv.titleName = "Medical Emergency"
+           
+        }
+        if indexPath.row == 1
+        {
+        let lv1 : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
+
+        self.navigationController?.pushViewController(lv1, animated: true)
+               lv1.titleName = "Raise Fire Alarm"
+            
+    }
+        if indexPath.row == 2
+        {
+    let lv2 : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
+
+    self.navigationController?.pushViewController(lv2, animated: true)
+               lv2.titleName = "Raise Theft Alarm"
+}
+}
     
 }
