@@ -8,11 +8,8 @@
 
 import UIKit
 
-class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource
-    
+class MyVisitorListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
 {
-    @IBOutlet weak var lbl_Header: UILabel!
-    
     //array for displaying card view data
     var cardImageList = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MyVisitorName = ["Vikas Nayak","Chaitanya","Vinod Kumar","Avinash"]
@@ -24,11 +21,9 @@ class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //assign font & style to header
-        self.lbl_Header.font = NAFont().headerFont()
-        
-        //hide navigation bar
-    self.navigationController?.isNavigationBarHidden = true
+        //Setting & Formatting Navigation bar
+        super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
+        self.navigationItem.title = ""
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -74,10 +69,5 @@ class MyVisitorListViewController: UIViewController,UICollectionViewDelegate,UIC
         cell.myVisitorImage.clipsToBounds = true
     
         return cell
-    }
-    
-    @IBAction func btnBackToDigiGate(_ sender: UIBarButtonItem)
-    {
-         self.navigationController?.popViewController(animated: true)
     }
 }

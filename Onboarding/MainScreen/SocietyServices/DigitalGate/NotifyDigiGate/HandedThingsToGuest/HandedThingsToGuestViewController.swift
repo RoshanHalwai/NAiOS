@@ -8,9 +8,7 @@
 
 import UIKit
 
-class HandedThingsToGuestViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource {
-    
-    @IBOutlet weak var lbl_Title: UILabel!
+class HandedThingsToGuestViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     //array for displaying card view data
     var cardImageList = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
@@ -23,22 +21,11 @@ class HandedThingsToGuestViewController: UIViewController,UICollectionViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //hide navigation bar
-        self.navigationController?.isNavigationBarHidden = true
-        
-        //assign font & style to header
-        self.lbl_Title.font = NAFont().headerFont()
+        //Formatting & setting navigation bar
+        super.ConfigureNavBarTitle(title: NAString().handed_things_to_my_guest().capitalized)
+        self.navigationItem.title = ""
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    @IBAction func btnBackToNotifyGate(_ sender: Any)
-    {
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -103,5 +90,4 @@ class HandedThingsToGuestViewController: UIViewController,UICollectionViewDelega
         
         return cell
     }
-    
 }

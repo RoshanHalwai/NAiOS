@@ -13,17 +13,12 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
     var ImageList = [#imageLiteral(resourceName: "hospital"),#imageLiteral(resourceName: "flame"),#imageLiteral(resourceName: "alarm")]
     var EmergencyList = ["Medical Emergency","Raise Fire Alarm","Raise Theft Alarm"]
 
-    //array for navigation
-  //  var VCNames = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: "Emergency")
-        
-       //To navigate from Digi gate to its Sub-screens
-     //   VCNames = ["raiseEmergencyVC","raiseEmergencyVC","raiseEmergencyVC"]
+        super.ConfigureNavBarTitle(title: NAString().emergency())
+        self.navigationItem.rightBarButtonItem = nil
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -55,7 +50,6 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-    
         if indexPath.row == 0
         {
             let lv : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController

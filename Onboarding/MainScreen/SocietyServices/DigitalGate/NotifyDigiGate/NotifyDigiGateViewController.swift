@@ -8,12 +8,10 @@
 
 import UIKit
 
-class NotifyDigiGateViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource
+class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
 {
-    @IBOutlet weak var lbl_Header: UILabel!
-    
     var ImageList = [#imageLiteral(resourceName: "ExpectingCabs256"),#imageLiteral(resourceName: "ExpectingPackage256"),#imageLiteral(resourceName: "ExpectiingVisitor256"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
-    var ExpectingList = ["Excpecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed things to my Guest","Handed things to my Daily Services"]
+    var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed Things To My Guest","Handed Things To My Daily Services"]
     
     //array for navigation
     var VCNames = [String]()
@@ -21,14 +19,13 @@ class NotifyDigiGateViewController: UIViewController,UICollectionViewDelegate,UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Setting & fromatting Navigation Bar
+        super.ConfigureNavBarTitle(title: NAString().notifyDigiGateHeader())
+        self.navigationItem.title = ""
+        navigationItem.rightBarButtonItem = nil
+        
         //To navigate from Digi gate to its Sub-screens
         VCNames = ["expectingCabArrivalVC","expectingPackageArrivalVC","inviteVisitorVC","handedThingsToGuestVC",""]
-        
-        //hide navigation bar
-        self.navigationController?.isNavigationBarHidden = true
-        
-        //assigned font style & size
-        lbl_Header.font = NAFont().headerFont()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -66,10 +63,5 @@ class NotifyDigiGateViewController: UIViewController,UICollectionViewDelegate,UI
         let name = VCNames[indexPath.row]
         let viewController = storyboard?.instantiateViewController(withIdentifier: name)
         self.navigationController?.pushViewController(viewController!, animated: true)
-    }
-    
-    @IBAction func btnBackToDigiGate(_ sender: UIBarButtonItem)
-    {
-         self.navigationController?.popViewController(animated: true)
     }
 }

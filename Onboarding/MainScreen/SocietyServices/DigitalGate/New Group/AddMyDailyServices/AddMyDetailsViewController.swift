@@ -43,6 +43,16 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Setting Title of the screen
+        super.ConfigureNavBarTitle(title: NAString().add_my_service())
+        
+        //become first responder
+        self.txt_Name.becomeFirstResponder()
+        
+        //hide otp Desc & add button
+        self.lbl_OTPDescription.isHidden = true
+        self.btn_AddDetails.isHidden = true
+        
         //getting string from my Daily Services for OTP
         self.lbl_OTPDescription.text = AddOtpString
         
@@ -81,7 +91,7 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
-        self.lbl_Date.text = NAString().date()
+        self.lbl_Date.text = NAString().pick_time()
         
         //textField formatting & setting
         self.txt_Date.font = NAFont().textFieldFont()
@@ -147,7 +157,6 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -162,24 +171,27 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         // toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_Date.inputAccessoryView = toolbar
         txt_Date.inputView = picker
+        
         // format picker for date
-        picker.datePickerMode = .dateAndTime
+        picker.datePickerMode = .time
     }
     
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YY \t HH:mm"
+        date.dateFormat = "HH:mm"
         let dateString = date.string(from: picker.date)
         txt_Date.text = dateString
         self.view.endEditing(true)
-      // self.btnInviteVisitor.isHidden = false
-       // self.lbl_InviteDescription.isHidden = false
+        //show if text field with date
+        self.lbl_OTPDescription.isHidden = false
+        self.btn_AddDetails.isHidden = false
     }
     
     @IBAction func btnSelectContact(_ sender: Any) {
@@ -245,9 +257,5 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
-        
-        
-       
     }
-    
 }

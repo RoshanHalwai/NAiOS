@@ -225,7 +225,7 @@ class NAString : NSObject
     //Digital Gate Service Activity
     
     func digital_gate_title() -> String {
-        return String("Digital Gate")
+        return String("Digi Gate")
     }
     
     func invite_visitors() -> String {
@@ -331,7 +331,7 @@ class NAString : NSObject
     }
     
     func package_number() -> String {
-        return String("Package Number")
+        return String("Package Vendor")
     }
     
     func notify_gate() -> String {
@@ -428,7 +428,7 @@ class NAString : NSObject
         return String("Mobile")
     }
     func pick_time() -> String {
-        return String("Time")
+        return String("In Time:")
     }
     func add() -> String {
         return String("Add")
@@ -449,8 +449,16 @@ class NAString : NSObject
         return String("Date:")
     }
     func time() -> String {
-        return String("Time:")
+        return String("In Time:")
     }
+    func rating() -> String {
+        return String("Rating:")
+    }
+    
+    func flats() -> String {
+        return String("Flats:")
+    }
+    
     func invited_by() -> String {
         return String("Invited By:")
     }

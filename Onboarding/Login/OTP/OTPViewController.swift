@@ -59,10 +59,11 @@ class OTPViewController: NANavigationViewController, UITextFieldDelegate
         txtOTP5.delegate = self
         txtOTP6.delegate = self
         
-        //hide back button
-        self.navigationItem.hidesBackButton = true
-        self.navigationItem.title = "PHONE VERIFICATION"
-        
+        //Setting & fromatting Navigation Bar
+        super.ConfigureNavBarTitle(title: NAString().phone_verification_activity_title())
+       navigationItem.rightBarButtonItem = nil
+         self.navigationItem.hidesBackButton = true
+       
         //Set Textfield bottom border line
         txtOTP1.underlined()
         txtOTP2.underlined()
@@ -70,10 +71,6 @@ class OTPViewController: NANavigationViewController, UITextFieldDelegate
         txtOTP4.underlined()
         txtOTP5.underlined()
         txtOTP6.underlined()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     @IBAction func btnVerifyOTP(_ sender: Any)

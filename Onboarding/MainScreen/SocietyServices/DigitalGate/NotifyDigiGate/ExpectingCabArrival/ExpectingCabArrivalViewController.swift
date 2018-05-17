@@ -8,9 +8,8 @@
 
 import UIKit
 
-class ExpectingCabArrivalViewController: UIViewController
+class ExpectingCabArrivalViewController: NANavigationViewController
 {
-    @IBOutlet weak var lbl_Title: UILabel!
     @IBOutlet weak var lbl_CabNumber: UILabel!
     @IBOutlet weak var lbl_DateTime: UILabel!
     @IBOutlet weak var lbl_ValidFor: UILabel!
@@ -44,6 +43,13 @@ class ExpectingCabArrivalViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // become first responder
+        self.txt_CabNumber.becomeFirstResponder()
+        
+        //Setting & fromatting Navigation Bar
+        super.ConfigureNavBarTitle(title: NAString().expecting_cab_arrival())
+        self.navigationItem.title = ""
+    
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
         
@@ -55,12 +61,11 @@ class ExpectingCabArrivalViewController: UIViewController
         txt_DateTime.underlined()
         
         //Label formatting & setting
-        lbl_Title.text = NAString().expecting_cab_arrival()
         lbl_CabNumber.text = NAString().cab_number()
         lbl_DateTime.text = NAString().date_Time()
         lbl_ValidFor.text = NAString().valid_for()
         
-        lbl_Title.font = NAFont().headerFont()
+        //lbl_Title.font = NAFont().headerFont()
         lbl_ValidFor.font = NAFont().headerFont()
         lbl_DateTime.font = NAFont().headerFont()
         lbl_CabNumber.font = NAFont().headerFont()
@@ -151,36 +156,33 @@ class ExpectingCabArrivalViewController: UIViewController
         cardView.layer.shadowOpacity = 0.45
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     //for datePicker
     func createDatePicker() {
         // toolbar
         picker = UIDatePicker()
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_DateTime.inputAccessoryView = toolbar
         txt_DateTime.inputView =  picker
+        
         // format picker for date
         picker?.datePickerMode = .dateAndTime
         
-//        let pickerSize : CGSize = picker!.sizeThatFits(CGSize.zero)
-//        picker?.frame = CGRect(x:0.0, y:cardView.frame.size.height + 60, width:pickerSize.width, height:300)
-//        // you probably don't want to set background color as black
-//        // picker.backgroundColor = UIColor.blackColor()
-//        self.view.addSubview(picker!)
+        //minimum date
+        picker?.minimumDate = NSDate() as Date
+        
+        //set local date to Europe to show 24 hours
+        picker?.locale = Locale(identifier: "en_GB")
     }
     
     @objc func donePressed() {
         // format date
-        
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YY \t HH:mm"
+        date.dateFormat = "MMM d, YYYY \t HH:mm"
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
@@ -201,12 +203,7 @@ class ExpectingCabArrivalViewController: UIViewController
     {
     }
     
-    @IBAction func btnBackToDigiGate(_ sender: Any)
-    {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    //To highlight selected button in hours section at a time.
+    //creating function to highlight select button color
     func selectedColor(tag: Int) {
         for button in buttons as [UIButton] {
             if button.tag == tag {
