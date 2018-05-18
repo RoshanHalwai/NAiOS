@@ -10,8 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITextFieldDelegate {
-    
+class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate,UITextFieldDelegate {
     @IBOutlet weak var lbl_InvitorName: UILabel!
     @IBOutlet weak var lbl_InvitorMobile: UILabel!
     @IBOutlet weak var lbl_Or: UILabel!
@@ -35,14 +34,19 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //hide navigation bar
-        self.navigationController?.isNavigationBarHidden = true
+       
+       //Formatting & setting navigation bar
+        super.ConfigureNavBarTitle(title: NAString().visitorNameViewTitle())
+        self.navigationItem.title = ""
+
+       //become first responder
+        self.txtInvitorName.becomeFirstResponder()
         
         txtDate.delegate = self
         
         //hide invite Desc & invite button
-        self.lbl_InviteDescription.isHidden = true
-        self.btnInviteVisitor.isHidden = true
+       self.lbl_InviteDescription.isHidden = true
+       self.btnInviteVisitor.isHidden = true
 
          createDatePicker()
         
@@ -61,47 +65,49 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
         txtInvitorName.underlined()
         txtInvitorMobile.underlined()
 
-      
+        //Label formatting & setting
         lbl_InvitorName.font = NAFont().headerFont()
         lbl_InvitorMobile.font = NAFont().headerFont()
         lbl_Or.font = NAFont().headerFont()
         lbl_Date.font = NAFont().headerFont()
+        lbl_InvitorName.text = NAString().visitorName()
+        lbl_InvitorMobile.text = NAString().visitorMobile()
+        lbl_InviteDescription.text = NAString().inviteVisitorOTPDesc()
+        
+        //TextField Formatting & setting
         txtInvitorMobile.font = NAFont().textFieldFont()
         txtInvitorName.font = NAFont().textFieldFont()
         txtDate.font =  NAFont().textFieldFont()
+        
+        //Button formatting & Setting
         btnSelectContact.titleLabel?.font = NAFont().buttonFont()
         btnSelectContact.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btnSelectContact.backgroundColor = NAColor().buttonBgColor()
-        
-      
-        lbl_InvitorName.text = NAString().visitorName()
-        lbl_InvitorMobile.text = NAString().visitorMobile()
         btnInviteVisitor.setTitle(NAString().btnInvite(), for: .normal)
         btnSelectContact.setTitle(NAString().BtnselectFromContact(), for: .normal)
-        lbl_InviteDescription.text = NAString().inviteVisitorOTPDesc()
-        
-        
-        
-        
     }
+    
     //for datePicker
     func createDatePicker() {
         // toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txtDate.inputAccessoryView = toolbar
         txtDate.inputView = picker
+        
         // format picker for date
         picker.datePickerMode = .dateAndTime
+        picker.minimumDate = NSDate() as Date
     }
     
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YY \t HH:mm"
+        date.dateFormat = "MMM d, YYYY \t HH:mm"
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)
@@ -160,11 +166,6 @@ class InviteVisitorViewController: UIViewController,CNContactPickerDelegate,UITe
             
         mobileNo = mobileString! as! String
         self.txtInvitorMobile.text = mobileNo
-    }
-    
-    @IBAction func btnBackToVisitor(_ sender: UIBarButtonItem)
-    {
-         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnShowCalender(_ sender: UIButton)

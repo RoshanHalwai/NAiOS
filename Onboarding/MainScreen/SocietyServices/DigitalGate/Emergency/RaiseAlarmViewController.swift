@@ -13,23 +13,18 @@ class RaiseAlarmViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Header: UILabel!
     @IBOutlet weak var lbl_Description: UILabel!
     
-
+    var titleName =  String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //hide description label on view load
         self.lbl_Description.isHidden = true
         
-        //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: "Emergency")
-
-        
+        //Formatting & setting Navigation bar
+        super.ConfigureNavBarTitle(title: titleName)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-       
-    }
     @IBAction func btnRaiseAlarm(_ sender: UIButton)
     {
         self.lbl_Description.isHidden = false

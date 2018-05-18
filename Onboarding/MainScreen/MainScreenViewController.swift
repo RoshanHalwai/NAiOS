@@ -8,12 +8,11 @@
 
 import UIKit
 
-class MainScreenViewController: UIViewController
+class MainScreenViewController: NANavigationViewController
 {
     @IBOutlet weak var segmentSelection: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var lbl_Title: UILabel!
-    
+   
     fileprivate var isSocietyServices = true
     
     //for navigation purpose
@@ -24,47 +23,40 @@ class MainScreenViewController: UIViewController
     var societyData : [societyServicesModel] = []
     var apartmentData : [apartmentServicesModel] = []
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lbl_Title.text = NAString().splash_NammaHeader_Title()
-        
         //for navigation
-        VCNamesSociety = ["digitalGateVC"]
+        VCNamesSociety = ["digiGateVC"]
         VCNamesApartment = ["homeVC"]
         
-        //hide navigation bar
-         self.navigationController?.isNavigationBarHidden = true
-        
-        //color & font size
-//       let font = UIFont.systemFont(ofSize: 14)
-//        segmentSelection.setTitleTextAttributes([NSAttributedStringKey.font: font],for: .normal)
-        
+       //Setting & fromatting Navigation Bar
+        super.ConfigureNavBarTitle(title: NAString().splash_NammaHeader_Title())
+        navigationItem.rightBarButtonItem = nil
+        super.navigationItem.hidesBackButton = true
+     
     //assigning values in struct
-        
         societyData = [
             societyServicesModel(cellTitle: "Digi Gate",cellImage:  #imageLiteral(resourceName: "Digital_Gate_2")),
             societyServicesModel(cellTitle: "Plumber",cellImage:  #imageLiteral(resourceName: "plumbing (2)")),
             societyServicesModel(cellTitle: "Carpenter",cellImage:  #imageLiteral(resourceName: "Carpenter Service")),
             societyServicesModel(cellTitle: "Electrician",cellImage: #imageLiteral(resourceName: "switchBoard") ),
             societyServicesModel(cellTitle: "Garbage Management",cellImage:  #imageLiteral(resourceName: "garbage-bin (2)")),
-            societyServicesModel(cellTitle: "Event Management",cellImage: #imageLiteral(resourceName: "event")),
             societyServicesModel(cellTitle: "Medical Emergency",cellImage:  #imageLiteral(resourceName: "Medical_Emergency_1")),
-            societyServicesModel(cellTitle: "Water Services",cellImage: #imageLiteral(resourceName: "water") )
+            societyServicesModel(cellTitle: "Event Management",cellImage: #imageLiteral(resourceName: "event")),
+            societyServicesModel(cellTitle: "Water Services",cellImage: #imageLiteral(resourceName: "New waterTank") )
         ]
-
+        
         apartmentData = [
             apartmentServicesModel(cellTitle: "Cook", cellImage: #imageLiteral(resourceName: "cook_Service")),
             apartmentServicesModel(cellTitle: "Maid",cellImage: #imageLiteral(resourceName: "maidServices") ),
             apartmentServicesModel(cellTitle: "Car / Bike Cleaning",cellImage:  #imageLiteral(resourceName: "carCleaning")),
             apartmentServicesModel(cellTitle: "Child Day Care",cellImage:  #imageLiteral(resourceName: "Child_care_Services_2")),
-            apartmentServicesModel(cellTitle: "Daily Newspaper",cellImage:  #imageLiteral(resourceName: "newspaper")),
+            apartmentServicesModel(cellTitle: "Daily NewsPaper",cellImage:  #imageLiteral(resourceName: "newspaper")),
             apartmentServicesModel(cellTitle: "Milk Man",cellImage:  #imageLiteral(resourceName: "milk")),
             apartmentServicesModel(cellTitle: "Laundry",cellImage:  #imageLiteral(resourceName: "laundry_Service")),
-            apartmentServicesModel(cellTitle: "Driver",cellImage:  #imageLiteral(resourceName: "driving-test")),
+            apartmentServicesModel(cellTitle: "Driver",cellImage:  #imageLiteral(resourceName: "Newdriver")),
             apartmentServicesModel(cellTitle: "Groceries", cellImage: #imageLiteral(resourceName: "groceries"))
-            
         ]
     }
     
@@ -73,9 +65,7 @@ class MainScreenViewController: UIViewController
     {
         isSocietyServices = sender.selectedSegmentIndex == 0 ? true : false
         self.tableView.reloadData()
-        
     }
-    
 }
 
     extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource
@@ -96,7 +86,6 @@ class MainScreenViewController: UIViewController
             } else {
                 cell.NAModel = apartmentData[indexPath.row]
             }
-        
             return cell
         }
         
@@ -107,8 +96,6 @@ class MainScreenViewController: UIViewController
             let viewController = storyboard?.instantiateViewController(withIdentifier: name)
             self.navigationController?.pushViewController(viewController!, animated: true)
         }
-        
-        
     }
 
 

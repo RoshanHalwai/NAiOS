@@ -21,7 +21,7 @@ extension UITextField{
     }
 }
 
-class signupViewController: UIViewController,UITextFieldDelegate
+class signupViewController: NANavigationViewController,UITextFieldDelegate
 {
     @IBOutlet weak var signupScrollView : UIScrollView!
     
@@ -81,11 +81,9 @@ class signupViewController: UIViewController,UITextFieldDelegate
          self.navigationItem.hidesBackButton = true
         
         //set Title to Navigation Bar
-        self.navigationItem.title = "SIGN UP"
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+         super.ConfigureNavBarTitle(title: NAString().signup())
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.backBarButtonItem = nil
     }
     
     @IBAction func signup_BtnSignup(_ sender: Any)
@@ -101,7 +99,4 @@ class signupViewController: UIViewController,UITextFieldDelegate
        self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }
-    
-    
-
 }

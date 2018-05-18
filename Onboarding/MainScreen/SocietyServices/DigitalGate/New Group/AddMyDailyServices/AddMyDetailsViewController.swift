@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate,CNContactPickerDelegate
+class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var lbl_Name: UILabel!
@@ -31,6 +31,9 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     //gettig data from previous screen string
     var AddOtpString = String()
     
+    //created variable to hold mydailybservices temp variable
+    var holdString = String()
+    
     //created date picker programtically
     let picker = UIDatePicker()
     
@@ -39,6 +42,25 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Setting Title of the screen
+        super.ConfigureNavBarTitle(title: NAString().add_my_service())
+        
+        //become first responder
+        self.txt_Name.becomeFirstResponder()
+        
+        //hide otp Desc & add button
+        self.lbl_OTPDescription.isHidden = true
+        self.btn_AddDetails.isHidden = true
+        
+        //getting string from my Daily Services for OTP
+        self.lbl_OTPDescription.text = AddOtpString
+        
+        //tapGasture for upload new image
+        img_Profile.isUserInteractionEnabled = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
+        self.img_Profile.addGestureRecognizer(tapGesture)
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
@@ -49,16 +71,13 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
         
-        //getting string from my Daily Services for OTP
-        self.lbl_OTPDescription.text = AddOtpString
-        
         //black underline for textfileds
         txt_Date.underlined()
         txt_Name.underlined()
         txt_MobileNo.underlined()
     
         //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: "My Daily Services")
+        super.ConfigureNavBarTitle(title: "Add My Service")
         
         //hide info button from navigation bar
         navigationItem.rightBarButtonItem = nil
@@ -72,17 +91,13 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
-        self.lbl_Date.text = NAString().date()
-        
-        //pending
-      //  self.lbl_OTPDescription.text = NAString().name()
+        self.lbl_Date.text = NAString().pick_time()
         
         //textField formatting & setting
         self.txt_Date.font = NAFont().textFieldFont()
         self.txt_MobileNo.font = NAFont().textFieldFont()
         self.txt_Name.font = NAFont().textFieldFont()
         self.txt_CountryCode.font = NAFont().textFieldFont()
-        
         
         //button formatting & setting
         self.btn_SelectContact.backgroundColor = NAColor().buttonBgColor()
@@ -101,29 +116,82 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         img_Profile.clipsToBounds = true
     }
     
+    //Function to appear select image from by tapping image
+    @objc func imageTapped()
+    {
+        let actionSheet = UIAlertController(title: "Choose one to select image ", message: "Choose your image from your Destination.", preferredStyle: .actionSheet)
+        
+        let actionCamera = UIAlertAction(title: "Camera", style: .default, handler: {
+            
+            (alert: UIAlertAction!) -> Void in
+            let pickerController = UIImagePickerController()
+            pickerController.delegate = self
+            pickerController.sourceType = UIImagePickerControllerSourceType.camera
+            pickerController.allowsEditing = true
+
+            self.present(pickerController, animated: true, completion: nil)
+            print("Camera tapped")
+        })
+        
+        let actionGallery = UIAlertAction(title: "Gallery", style: .default, handler: {
+            
+            (alert: UIAlertAction!) -> Void in
+            let pickerController = UIImagePickerController()
+            pickerController.delegate = self
+            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            pickerController.allowsEditing = true
+            
+            print("Gallery tapped")
+            
+            self.present(pickerController, animated: true, completion: nil)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            
+            (alert: UIAlertAction!) -> Void in
+        })
+        
+        actionSheet.addAction(actionCamera)
+        actionSheet.addAction(actionGallery)
+        actionSheet.addAction(cancel)
+        
+        actionSheet.view.tintColor = UIColor.black
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            img_Profile.image = image
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     //for datePicker
     func createDatePicker() {
         // toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
+        
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_Date.inputAccessoryView = toolbar
         txt_Date.inputView = picker
+        
         // format picker for date
-        picker.datePickerMode = .dateAndTime
+        picker.datePickerMode = .time
     }
     
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YY \t HH:mm"
+        date.dateFormat = "HH:mm"
         let dateString = date.string(from: picker.date)
         txt_Date.text = dateString
         self.view.endEditing(true)
-      // self.btnInviteVisitor.isHidden = false
-       // self.lbl_InviteDescription.isHidden = false
+        //show if text field with date
+        self.lbl_OTPDescription.isHidden = false
+        self.btn_AddDetails.isHidden = false
     }
     
     @IBAction func btnSelectContact(_ sender: Any) {
@@ -157,7 +225,6 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
-        //uses did select method here
         self.present(contactPicker, animated: true, completion: nil)
     }
     
@@ -182,8 +249,13 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     @IBAction func btnAddDetails(_ sender: Any)
     {
         let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+        
+       // passing data
+        let cookString = NAString().dailyServicesOTPDescription()
+        let replaced = cookString.replacingOccurrences(of: "account", with: (self.holdString))
+        lv.newOtpString = replaced
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }
-    
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class loginViewController: UIViewController,UITextFieldDelegate
+class loginViewController: NANavigationViewController,UITextFieldDelegate
 {
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
@@ -19,8 +19,8 @@ class loginViewController: UIViewController,UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //hide Signup button
-        self.btnSignup.isHidden = true
+       //hide Signup button
+       self.btnSignup.isHidden = true
         
         //Button formatting & setting
         btnSignup.titleLabel?.font = NAFont().buttonFont()
@@ -48,11 +48,11 @@ class loginViewController: UIViewController,UITextFieldDelegate
          self.navigationItem.hidesBackButton = true
         
         //set Title to Navigation Bar
-         self.navigationItem.title = "LOGIN"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        super.ConfigureNavBarTitle(title: NAString().login_button())
+       // navigationItem.title = ""
+        navigationItem.rightBarButtonItem = nil
+        //navigationItem.backBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
     }
     
     @IBAction func btnSignup(_ sender: Any)
@@ -66,6 +66,8 @@ class loginViewController: UIViewController,UITextFieldDelegate
     {
         let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
         
+        let otpString = NAString().enter_verification_code()
+        lv.newOtpString = otpString
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }

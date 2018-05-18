@@ -31,13 +31,15 @@ class NANavigationViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(customView: backButton)
     }
     
+   
     func ConfigureNavBarTitle(title: String)
     {
         let name = UILabel()
         name.text = title
         name.textColor =  UIColor.white
         name.textAlignment = .center
-        name.font = UIFont (name: "Helvetica Neue", size: 22)
+       // name.font = UIFont (name: "Helvetica Neue", size: 22)
+        name.font = NAFont().viewTitleFont()
         navigationItem.titleView = name
     }
 }

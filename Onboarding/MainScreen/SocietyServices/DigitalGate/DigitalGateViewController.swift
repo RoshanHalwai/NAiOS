@@ -8,13 +8,12 @@
 
 import UIKit
 
-//To Identifier cell
+//To Identify cell
 private let reuseIdentifier = "Cell"
-
-class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource
+class DigitalGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
 {
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var lbl_Title: UILabel!
+  
     var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","sweetHome","Medical"]
     var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
     
@@ -27,17 +26,11 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
         //To navigate from Digi gate to its Sub-screens
         VCNames = ["inviteVisitorVC","myVisitorListVC","myDailyServicesVC","notifyDigiGateVC","","emergencyVC"]
         
-        //hide navigation bar
-         //self.navigationController?.isNavigationBarHidden = true
-        
-        //Label Formatting & setting
-        lbl_Title.text = NAString().digital_gate()
-        lbl_Title.font = NAFont().headerFont()
+        //Setting & fromatting Navigation Bar
+        super.ConfigureNavBarTitle(title: NAString().digital_gate_title())
+        self.navigationItem.title = ""
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
      {
         return DGimageList.count
@@ -54,20 +47,11 @@ class DigitalGateViewController: UIViewController,UICollectionViewDelegate,UICol
         
         return cell
     }
-
-    @IBAction func BackToMainScreen(_ sender: UIBarButtonItem)
-    {
-       self.navigationController?.popViewController(animated: true)
-    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         let name = VCNames[indexPath.row]
         let viewController = storyboard?.instantiateViewController(withIdentifier: name)
-        
-        self.navigationItem.title = ""
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(viewController!, animated: true)
     }
 }

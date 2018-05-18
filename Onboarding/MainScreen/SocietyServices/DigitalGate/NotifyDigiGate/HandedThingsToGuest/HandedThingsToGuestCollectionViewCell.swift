@@ -21,18 +21,13 @@ class HandedThingsToGuestCollectionViewCell: UICollectionViewCell
     @IBOutlet weak var lbl_GuestDate: UILabel!
     @IBOutlet weak var lbl_GuestTime: UILabel!
     @IBOutlet weak var lbl_GuestInvitedBy: UILabel!
-    
     @IBOutlet weak var lbl_ThingsGiven: UILabel!
     @IBOutlet weak var lbl_Description: UILabel!
-    
     @IBOutlet weak var txt_Description: UITextField!
-    
     @IBOutlet weak var segmentSelect: UISegmentedControl!
     
     @IBAction func btnSegment(_ sender: Any)
     {
-       
-        
         switch segmentSelect.selectedSegmentIndex {
         case 0:
             lbl_Description.isHidden = false
@@ -41,7 +36,6 @@ class HandedThingsToGuestCollectionViewCell: UICollectionViewCell
         case 1:
             lbl_Description.isHidden = true
             txt_Description.isHidden = true
-            
         default:
             break
         }

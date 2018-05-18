@@ -15,7 +15,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     var myDailyName =  ["Vikas"]
     var myDailyType = ["Cook"]
     var myDailyIntime = ["08:40"]
-    var myDailyMobileNo = ["9725098236"]
+    var myDailyFlats = ["4"]
+    var myDailyRating = ["4.2"]
     
     //for floating Button
     private var roundButton = UIButton()
@@ -30,8 +31,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.roundButton.addTarget(self, action: #selector(self.ButtonClick(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(self.roundButton)
     
-        //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: "Add My Services")
+        //Formatting & setting Navigation bar
+        super.ConfigureNavBarTitle(title: NAString().my_daily_services().capitalized)
     }
     
     //for setting & formatting floating button
@@ -57,7 +58,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     }
     
     //for creating action sheet to select my daily services
-    
     @IBAction func ButtonClick(_ sender: UIButton)
     {
         let actionSheet = UIAlertController(title: "My Daily Services", message: "Choose Your Services From Here.", preferredStyle: .actionSheet)
@@ -73,9 +73,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Cook")
             lv.AddOtpString = replaced
             
+            //temp variable
+            let tempVar = "Cook account"
+            lv.holdString = tempVar
+            
            self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
-          
         })
         
         let action2 = UIAlertAction(title: "Maid", style: .default, handler: {
@@ -89,9 +92,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Maid")
             lv.AddOtpString = replaced
             
+            // //temp variable
+            let tempVar = "Maid account"
+            lv.holdString = tempVar
+            
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
-            
         })
         
         let action3 = UIAlertAction(title: "Car/Bike Cleaning", style: .default, handler: {
@@ -104,6 +110,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Car/Bike Clearner")
             lv.AddOtpString = replaced
             
+            //temp variable
+            let tempVar = "Car/Bike Cleaner account"
+            lv.holdString = tempVar
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -117,7 +126,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let cookString = NAString().inviteVisitorOTPDesc()
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Child Day Care")
             lv.AddOtpString = replaced
-            
+           
+           //temp variable
+            let tempVar = "Child Day Care account"
+            lv.holdString = tempVar
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -132,9 +144,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Newspaper Man")
             lv.AddOtpString = replaced
             
+            //temp variable
+            let tempVar = "Newspaper Man account"
+            lv.holdString = tempVar
+            
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
-            
         })
         
         let action6 = UIAlertAction(title: "Milk Man", style: .default, handler: {
@@ -147,6 +162,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Milk Man")
             lv.AddOtpString = replaced
             
+            //extra
+            let tempVar = "Milk man account"
+            lv.holdString = tempVar
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -161,6 +179,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Laundry Man")
             lv.AddOtpString = replaced
             
+            //extra
+            let tempVar = "Laundry man account"
+            lv.holdString = tempVar
+            
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -174,6 +196,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let cookString = NAString().inviteVisitorOTPDesc()
             let replaced = cookString.replacingOccurrences(of: "visitor", with: "Driver")
             lv.AddOtpString = replaced
+            
+            //extra
+            let tempVar = "Driver account"
+            lv.holdString = tempVar
             
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
@@ -219,7 +245,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServiceName.text = myDailyName[indexPath.row]
         cell.lbl_MyDailyServiceType.text = myDailyType[indexPath.row]
         cell.lbl_MyDailyServicesInTime.text = myDailyIntime[indexPath.row]
-        cell.lbl_MyDailyServicesMobileNo.text = myDailyMobileNo[indexPath.row]
+        cell.lbl_MyDailyServicesRating.text = myDailyRating[indexPath.row]
+        cell.lbl_MyDailyServicesFlats.text =  myDailyFlats[indexPath.row]
     
         cell.myDailyServicesImage.image = myDailyImages[indexPath.row]
         
@@ -250,15 +277,18 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServiceName.font = NAFont().headerFont()
         cell.lbl_MyDailyServiceType.font = NAFont().headerFont()
         cell.lbl_MyDailyServicesInTime.font = NAFont().headerFont()
-        cell.lbl_MyDailyServicesMobileNo.font = NAFont().headerFont()
+        cell.lbl_MyDailyServicesFlats.font = NAFont().headerFont()
+        cell.lbl_MyDailyServicesRating.font = NAFont().headerFont()
         cell.lbl_myDailyTime.font = NAFont().headerFont()
-        cell.lbl_myDailyMobile.font = NAFont().headerFont()
+        cell.lbl_myDailyFlats.font = NAFont().headerFont()
         cell.lbl_myDailyName.font = NAFont().headerFont()
+        cell.lbl_myDailyRating.font = NAFont().headerFont()
         
         cell.lbl_myDailyName.text = NAString().name()
         cell.lbl_myDailytype.text = NAString().type()
-        cell.lbl_myDailyMobile.text = NAString().mobile()
+        cell.lbl_myDailyFlats.text = NAString().flats()
         cell.lbl_myDailyTime.text = NAString().time()
+        cell.lbl_myDailyRating.text = NAString().rating()
         
         //buttons formatting & setting
         cell.btn_Call.setTitle(NAString().call(), for: .normal)
@@ -269,4 +299,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         return cell
     }
     
+    @objc func back() {
+        let vc = NotifyDigiGateViewController()
+        navigationController?.popToViewController(vc, animated: true)
+    }
 }

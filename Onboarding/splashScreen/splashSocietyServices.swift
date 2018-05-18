@@ -27,9 +27,4 @@ class splashSocietyServices: UIViewController
         //hide navigation bar
        self.navigationController?.isNavigationBarHidden = true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-       
-    }
 }

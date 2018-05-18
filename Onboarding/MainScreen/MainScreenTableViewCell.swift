@@ -10,7 +10,6 @@ import UIKit
 
 class MainScreenTableViewCell: UITableViewCell
 {
-    
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
     
@@ -36,7 +35,5 @@ class MainScreenTableViewCell: UITableViewCell
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
-
 }
