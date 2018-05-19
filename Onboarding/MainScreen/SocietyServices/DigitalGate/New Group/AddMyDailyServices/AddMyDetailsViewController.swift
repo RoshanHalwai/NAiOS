@@ -25,7 +25,6 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     @IBOutlet weak var txt_Date: UITextField!
     
     @IBOutlet weak var btn_SelectContact: UIButton!
-    @IBOutlet weak var btn_ShowCalender: UIButton!
     @IBOutlet weak var btn_AddDetails: UIButton!
     
     //gettig data from previous screen string
@@ -33,6 +32,9 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     
     //created variable to hold mydailybservices temp variable
     var holdString = String()
+    
+    //to check from which view value is comming
+    var vcValue = String()
     
     //created date picker programtically
     let picker = UIDatePicker()
@@ -43,22 +45,22 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: NAString().add_my_service())
-        
+        // adding image on date TextField
+        txt_Date.rightViewMode = UITextFieldViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let image = UIImage(named: "newClock")
+        imageView.image = image
+        txt_Date.rightView = imageView
+    
+       
         //become first responder
         self.txt_Name.becomeFirstResponder()
-        
-        //hide otp Desc & add button
-        self.lbl_OTPDescription.isHidden = true
-        self.btn_AddDetails.isHidden = true
         
         //getting string from my Daily Services for OTP
         self.lbl_OTPDescription.text = AddOtpString
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         self.img_Profile.addGestureRecognizer(tapGesture)
         
@@ -76,12 +78,6 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         txt_Name.underlined()
         txt_MobileNo.underlined()
     
-        //Setting Title of the screen
-        super.ConfigureNavBarTitle(title: "Add My Service")
-        
-        //hide info button from navigation bar
-        navigationItem.rightBarButtonItem = nil
-        
         //label formatting & setting
         self.lbl_OR.font = NAFont().headerFont()
         self.lbl_MobileNo.font = NAFont().headerFont()
@@ -198,7 +194,6 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
-        
         if authStatus == CNAuthorizationStatus.notDetermined
         {
             let contactStore = CNContactStore.init()
@@ -248,14 +243,27 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     
     @IBAction func btnAddDetails(_ sender: Any)
     {
+        if (self.navigationController?.title == NAString().add_my_service())
+        {
         let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
         
        // passing data
-        let cookString = NAString().dailyServicesOTPDescription()
-        let replaced = cookString.replacingOccurrences(of: "account", with: (self.holdString))
-        lv.newOtpString = replaced
+        let cookString = NAString().enter_verification_code(first: "your \(holdString)", second: "their")
+       // let replaced = cookString.replacingOccurrences(of: "account", with: (self.holdString))
+        lv.newOtpString = cookString
         
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
+        }
+        else
+        {
+             let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+            
+            let cookString = NAString().enter_verification_code(first:"your Family Member \(txt_Name.text ?? "")", second: "their")
+            
+                lv.newOtpString = cookString
+            
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
     }
 }

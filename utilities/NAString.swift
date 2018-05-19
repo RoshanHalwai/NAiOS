@@ -54,9 +54,11 @@ class NAString : NSObject
         return String("Phone Verification")
     }
     
-    func enter_verification_code() -> String {
-        return String("We need to verify your account. Please enter the 6 digit verification code from the text message.")
+    func enter_verification_code(first : String ,second : String) -> String {
+        return String("We need to verify \(first) account. Please enter the 6 digit verification code sent to \(second) mobile number.")
     }
+    
+
     func verify_otp_button() -> String {
         return String("VERIFY OTP")
     }
@@ -477,6 +479,21 @@ class NAString : NSObject
     func edit() -> String {
         return String("Edit")
     }
+    
+//my sweet home
+    func btn_mySweet_home() -> String {
+        return String ("Add My Family Members")
+    }
+    func addFamilyMemberTitle() -> String {
+        return String ("Add Family Members Details")
+    }
+    
+    func grant_access() -> String {
+        return String ("Grant Aceess")
+    }
+    
+    
+    
     
 }
 
