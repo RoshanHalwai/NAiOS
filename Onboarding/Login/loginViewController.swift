@@ -66,7 +66,7 @@ class loginViewController: NANavigationViewController,UITextFieldDelegate
     {
         let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
         
-        let otpString = NAString().enter_verification_code()
+        let otpString = NAString().enter_verification_code(first: "your", second: "your")
         lv.newOtpString = otpString
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)

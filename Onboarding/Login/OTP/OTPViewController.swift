@@ -75,7 +75,7 @@ class OTPViewController: NANavigationViewController, UITextFieldDelegate
     
     @IBAction func btnVerifyOTP(_ sender: Any)
     {
-        if (lbl_OTPDescription.text == NAString().enter_verification_code())
+        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your"))
         {
         let lv : MainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
         

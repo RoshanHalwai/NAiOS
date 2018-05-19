@@ -24,6 +24,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //created backbuttom custome to go to digi gate screen
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
+        self.navigationItem.leftBarButtonItem = backButton
+
+        self.navigationItem.hidesBackButton = true
+        
         //for creating floating button
         self.roundButton = UIButton(type: .custom)
         self.roundButton.setTitleColor(UIColor.orange, for: .normal)
@@ -35,6 +41,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         super.ConfigureNavBarTitle(title: NAString().my_daily_services().capitalized)
     }
     
+    //created custome back button to go back to digi gate
+    @objc func goBackToDigiGate()
+    {
+        let vcName = UIStoryboard(name: "Main", bundle: nil)
+        let destVC = vcName.instantiateViewController(withIdentifier: "digiGateVC")
+        self.navigationController?.pushViewController(destVC, animated: true)
+    }
+
     //for setting & formatting floating button
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -77,6 +91,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let tempVar = "Cook account"
             lv.holdString = tempVar
             
+            //passing value to my services VC
+            let passVC = "myDailyServicesVC"
+            lv.vcValue = passVC
+            
+             lv.navTitle =  NAString().add_my_service().capitalized
            self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -96,6 +115,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let tempVar = "Maid account"
             lv.holdString = tempVar
             
+            //passing value to my services VC
+            let passVC = "myDailyServicesVC"
+            lv.vcValue = passVC
+            
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -113,6 +137,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             //temp variable
             let tempVar = "Car/Bike Cleaner account"
             lv.holdString = tempVar
+            
+            //passing value to my services VC
+            let passVC = "myDailyServicesVC"
+            lv.vcValue = passVC
+            
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -130,6 +160,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
            //temp variable
             let tempVar = "Child Day Care account"
             lv.holdString = tempVar
+            
+            //passing value to my services VC
+            let passVC = "myDailyServicesVC"
+            lv.vcValue = passVC
+            
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -148,6 +184,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let tempVar = "Newspaper Man account"
             lv.holdString = tempVar
             
+            //hide segment cotroller
+            lv.segment.isHidden = true
+            
+            //passing value to my services VC
+            let passVC = "myDailyServicesVC"
+            lv.vcValue = passVC
+            
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -165,6 +209,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             //extra
             let tempVar = "Milk man account"
             lv.holdString = tempVar
+            
+            //passing value to my services VC
+            let passVC = "myDailyServicesVC"
+            lv.vcValue = passVC
+            
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -183,6 +233,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let tempVar = "Laundry man account"
             lv.holdString = tempVar
             
+            //passing value to my services VC
+            let passVC = "myDailyServicesVC"
+            lv.vcValue = passVC
+            
+            lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -200,6 +255,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             //extra
             let tempVar = "Driver account"
             lv.holdString = tempVar
+            
+            //passing value to my services VC
+            let passVC = "myDailyServicesVC"
+            lv.vcValue = passVC
+            
+             lv.navTitle =  NAString().add_my_service().capitalized
             
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
@@ -297,10 +358,5 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.btn_Edit.setTitle(NAString().edit(), for: .normal)
         
         return cell
-    }
-    
-    @objc func back() {
-        let vc = NotifyDigiGateViewController()
-        navigationController?.popToViewController(vc, animated: true)
     }
 }

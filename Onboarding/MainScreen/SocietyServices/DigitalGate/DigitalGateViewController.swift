@@ -23,13 +23,29 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //created backbuttom custom to go to digi gate screen
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        
+        self.navigationItem.hidesBackButton = true
+        
+        
         //To navigate from Digi gate to its Sub-screens
-        VCNames = ["inviteVisitorVC","myVisitorListVC","myDailyServicesVC","notifyDigiGateVC","","emergencyVC"]
+        VCNames = ["inviteVisitorVC","myVisitorListVC","myDailyServicesVC","notifyDigiGateVC","mySweetHomeVC","emergencyVC"]
         
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().digital_gate_title())
         self.navigationItem.title = ""
     }
+    
+    //created custome back button to go back to digi gate
+    @objc func goBackToDigiGate()
+    {
+        let vcName = UIStoryboard(name: "Main", bundle: nil)
+        let destVC = vcName.instantiateViewController(withIdentifier: "mainScreenVC")
+        self.navigationController?.pushViewController(destVC, animated: true)
+    }
+    
     
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
      {

@@ -75,7 +75,6 @@ class ExpectingPackageArrivalViewController: NANavigationViewController
         lbl_DateTime.text = NAString().date_Time()
         lbl_ValidFor.text = NAString().valid_for()
         
-       // lbl_Title.font = NAFont().headerFont()
         lbl_ValidFor.font = NAFont().headerFont()
         lbl_DateTime.font = NAFont().headerFont()
         lbl_PackageVendor.font = NAFont().headerFont()
@@ -144,7 +143,6 @@ class ExpectingPackageArrivalViewController: NANavigationViewController
         //setting button hight
         btn_16Hour.heightAnchor.constraint(equalToConstant: 39.0).isActive = true
         btn_1Hour.heightAnchor.constraint(equalToConstant: 39).isActive = true
-        
         btn_NotifyGate.heightAnchor.constraint(equalToConstant: 39).isActive = true
         
         //cardUIView

@@ -39,9 +39,4 @@ class NAFont: NSObject {
         return UIFont(name: "Lato-Regular", size: 26)!
     }
     
-    
-
-    //how to use this colors on viewDidLoad
-    // txtName.font = NAFont().headerFont()
-    
 }
