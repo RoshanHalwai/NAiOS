@@ -2450,7 +2450,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nov-mK-CWk">
-                                                                <rect key="frame" x="63" y="0.0" width="272" height="22"/>
+                                                                <rect key="frame" x="63" y="0.0" width="193" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="22" id="NR3-U3-tBH"/>
                                                                 </constraints>
@@ -2458,6 +2458,16 @@
                                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
+                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="CB1-hU-I0r">
+                                                                <rect key="frame" x="256" y="0.0" width="79" height="23"/>
+                                                                <segments>
+                                                                    <segment title="YES"/>
+                                                                    <segment title="NO"/>
+                                                                </segments>
+                                                                <connections>
+                                                                    <action selector="SegmentAcessGranted:" destination="P9T-k0-CBF" eventType="valueChanged" id="xTk-Pw-Rdh"/>
+                                                                </connections>
+                                                            </segmentedControl>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fvF-07-LFF">
@@ -2485,7 +2495,7 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.94509803920000002" green="0.34064893540000002" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="fvF-07-LFF" firstAttribute="top" secondItem="yYk-fs-KET" secondAttribute="bottom" constant="20" id="25I-BS-nIH"/>
                                                     <constraint firstItem="yYk-fs-KET" firstAttribute="leading" secondItem="93m-MC-HYD" secondAttribute="leading" constant="10" id="8rf-nh-BQe"/>
@@ -2549,6 +2559,7 @@
                         <outlet property="lbl_OR" destination="aga-2x-Fik" id="jnD-4Z-aig"/>
                         <outlet property="lbl_OTPDescription" destination="2Pf-3M-tkC" id="3ya-53-Q0S"/>
                         <outlet property="scrollView" destination="3tg-NH-nea" id="bUa-zg-WUs"/>
+                        <outlet property="segment" destination="CB1-hU-I0r" id="y8d-9k-SAc"/>
                         <outlet property="txt_CountryCode" destination="Xjg-tF-GZB" id="Xud-3g-I4z"/>
                         <outlet property="txt_Date" destination="Nov-mK-CWk" id="Xm1-Yn-dQO"/>
                         <outlet property="txt_MobileNo" destination="b6A-BY-jzX" id="OGB-7o-YAc"/>

@@ -69,7 +69,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     //for appearing floating button on screen load
     override func viewWillAppear(_ animated: Bool) {
         self.roundButton.isHidden = false
-        
     }
     
     //for creating action sheet to select my daily services
@@ -96,7 +95,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let passVC = "myDailyServicesVC"
             lv.vcValue = passVC
             
-             lv.ConfigureNavBarTitle(title: NAString().add_my_service().capitalized)
+             lv.navTitle =  NAString().add_my_service().capitalized
            self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -120,7 +119,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let passVC = "myDailyServicesVC"
             lv.vcValue = passVC
             
-             lv.ConfigureNavBarTitle(title: NAString().add_my_service().capitalized)
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -143,7 +142,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let passVC = "myDailyServicesVC"
             lv.vcValue = passVC
             
-             lv.ConfigureNavBarTitle(title: NAString().add_my_service().capitalized)
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -166,7 +165,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let passVC = "myDailyServicesVC"
             lv.vcValue = passVC
             
-             lv.ConfigureNavBarTitle(title: NAString().add_my_service().capitalized)
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -185,11 +184,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let tempVar = "Newspaper Man account"
             lv.holdString = tempVar
             
+            //hide segment cotroller
+            lv.segment.isHidden = true
+            
             //passing value to my services VC
             let passVC = "myDailyServicesVC"
             lv.vcValue = passVC
             
-             lv.ConfigureNavBarTitle(title: NAString().add_my_service().capitalized)
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -212,7 +214,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let passVC = "myDailyServicesVC"
             lv.vcValue = passVC
             
-             lv.ConfigureNavBarTitle(title: NAString().add_my_service().capitalized)
+             lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -235,7 +237,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let passVC = "myDailyServicesVC"
             lv.vcValue = passVC
             
-             lv.ConfigureNavBarTitle(title: NAString().add_my_service().capitalized)
+            lv.navTitle =  NAString().add_my_service().capitalized
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         })
@@ -258,7 +260,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let passVC = "myDailyServicesVC"
             lv.vcValue = passVC
             
-              lv.ConfigureNavBarTitle(title: NAString().add_my_service().capitalized)
+             lv.navTitle =  NAString().add_my_service().capitalized
             
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)

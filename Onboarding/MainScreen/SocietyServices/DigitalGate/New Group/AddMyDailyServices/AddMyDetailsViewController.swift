@@ -27,6 +27,11 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     @IBOutlet weak var btn_SelectContact: UIButton!
     @IBOutlet weak var btn_AddDetails: UIButton!
     
+    @IBOutlet weak var segment: UISegmentedControl!
+    
+    //to set navigation title
+    var navTitle: String?
+    
     //gettig data from previous screen string
     var AddOtpString = String()
     
@@ -45,6 +50,22 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //hiding dateTextField & segment
+        self.txt_Date.isHidden = true
+        self.segment.isHidden = true
+        
+        if self.navTitle == NAString().addFamilyMemberTitle() {
+            self.segment.isHidden = false
+            self.txt_Date.isHidden = true
+             self.lbl_Date.text = NAString().grant_access().capitalized
+            self.lbl_OTPDescription.isHidden = true
+            self.btn_AddDetails.isHidden = true
+        } else {
+            self.segment.isHidden = true
+            self.txt_Date.isHidden = false
+             self.lbl_Date.text = NAString().time()
+        }
+        
         // adding image on date TextField
         txt_Date.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -52,7 +73,7 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         imageView.image = image
         txt_Date.rightView = imageView
     
-       
+        super.ConfigureNavBarTitle(title: navTitle!)
         //become first responder
         self.txt_Name.becomeFirstResponder()
         
@@ -87,7 +108,6 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
-        self.lbl_Date.text = NAString().pick_time()
         
         //textField formatting & setting
         self.txt_Date.font = NAFont().textFieldFont()
@@ -107,9 +127,27 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         self.btn_SelectContact.titleLabel?.font = NAFont().buttonFont()
         
         self.btn_AddDetails.titleLabel?.font = NAFont().buttonFont()
+        
         //creating image round
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
+    }
+    
+    @IBAction func SegmentAcessGranted(_ sender: Any)
+    {
+        if (segment.selectedSegmentIndex == 0)
+        {
+            self.btn_AddDetails.isHidden = false
+            self.lbl_OTPDescription.isHidden = false
+            let FamilyString = NAString().inviteVisitorOTPDesc()
+            let replaced = FamilyString.replacingOccurrences(of: "visitor", with: "Family Member")
+            self.lbl_OTPDescription.text = replaced
+        }
+        else
+        {
+            self.btn_AddDetails.isHidden = true
+            self.lbl_OTPDescription.isHidden = true
+        }
     }
     
     //Function to appear select image from by tapping image
@@ -185,7 +223,8 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         let dateString = date.string(from: picker.date)
         txt_Date.text = dateString
         self.view.endEditing(true)
-        //show if text field with date
+        
+        //after adding date this will shows
         self.lbl_OTPDescription.isHidden = false
         self.btn_AddDetails.isHidden = false
     }
@@ -243,20 +282,21 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     
     @IBAction func btnAddDetails(_ sender: Any)
     {
-        if (self.navigationController?.title == NAString().add_my_service())
+        if (navTitle! == NAString().add_my_service().capitalized)
         {
+            print("add my services")
         let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
         
        // passing data
-        let cookString = NAString().enter_verification_code(first: "your \(holdString)", second: "their")
-       // let replaced = cookString.replacingOccurrences(of: "account", with: (self.holdString))
-        lv.newOtpString = cookString
+        let servicesString = NAString().enter_verification_code(first: "your \(holdString)", second: "their")
+        lv.newOtpString = servicesString
         
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
         }
         else
         {
+            print("my family member")
              let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
             
             let cookString = NAString().enter_verification_code(first:"your Family Member \(txt_Name.text ?? "")", second: "their")
