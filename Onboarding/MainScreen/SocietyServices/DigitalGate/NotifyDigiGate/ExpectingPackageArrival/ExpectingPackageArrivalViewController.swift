@@ -17,7 +17,6 @@ class ExpectingPackageArrivalViewController: NANavigationViewController
     @IBOutlet weak var txt_PacageVendor: UITextField!
     @IBOutlet weak var txt_DateTime: UITextField!
     
-    @IBOutlet weak var btn_DateTime: UIButton!
     @IBOutlet weak var btn_NotifyGate: UIButton!
     
     @IBOutlet weak var btn_1Hour: UIButton!
@@ -42,6 +41,13 @@ class ExpectingPackageArrivalViewController: NANavigationViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //placing image calender imgage inside the Date&Time TextField
+        self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let image = UIImage(named: "newCalender")
+        imageView.image = image
+        txt_DateTime.rightView = imageView
         
         //become first responder
         self.txt_PacageVendor.becomeFirstResponder()
@@ -188,10 +194,6 @@ class ExpectingPackageArrivalViewController: NANavigationViewController
     @IBAction func btnSelectHours(_ sender: UIButton)
     {
         selectedColor(tag: sender.tag )
-    }
-    
-    @IBAction func btnShowCalender(_ sender: Any)
-    {
     }
     
     @IBAction func btnNotifyGate(_ sender: Any)
