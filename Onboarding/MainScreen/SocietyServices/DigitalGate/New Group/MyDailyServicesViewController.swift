@@ -88,7 +88,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             lv.AddOtpString = replaced
             
             //temp variable
-            let tempVar = "Cook account"
+            let tempVar = "Cook"
             lv.holdString = tempVar
             
             //passing value to my services VC

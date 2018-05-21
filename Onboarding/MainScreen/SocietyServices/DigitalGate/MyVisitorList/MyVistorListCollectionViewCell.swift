@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class MyVistorListCollectionViewCell: UICollectionViewCell {
+class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var myVisitorImage: UIImageView!
     
@@ -18,4 +19,25 @@ class MyVistorListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_MyVisitorType: UILabel!
     @IBOutlet weak var lbl_MyVisitorTime: UILabel!
     @IBOutlet weak var lbl_InvitedName: UILabel!
+    
+    @IBAction func btnCall(_ sender: UIButton)
+    {
+         UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func btnMessage(_ sender: UIButton)
+    {
+    MFMessageComposeViewController.canSendText()
+        let sms = MFMessageComposeViewController()
+        sms.body = ""
+        sms.recipients = ["9725098236"]
+        sms.messageComposeDelegate = self
+        
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+    print ("called message App")
+    }
+    
+    
 }

@@ -19,7 +19,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet weak var txtInvitorMobile: UITextField!
     @IBOutlet weak var btnSelectContact: UIButton!
-    @IBOutlet weak var btnCalander: UIButton!
+   
      @IBOutlet weak var lbl_InviteDescription: UILabel!
     @IBOutlet weak var btnInviteVisitor: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -34,6 +34,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //placing image calender imgage inside the Date&Time TextField
+        self.txtDate.rightViewMode = UITextFieldViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let image = UIImage(named: "newCalender")
+        imageView.image = image
+        txtDate.rightView = imageView
        
        //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: NAString().visitorNameViewTitle())
@@ -168,8 +174,4 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         self.txtInvitorMobile.text = mobileNo
     }
     
-    @IBAction func btnShowCalender(_ sender: UIButton)
-    {
-        createDatePicker()
-    }
 }
