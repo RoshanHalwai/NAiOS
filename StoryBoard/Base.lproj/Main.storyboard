@@ -1969,10 +1969,16 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eXc-De-Hjf">
                                                             <rect key="frame" x="0.0" y="0.0" width="72.5" height="32"/>
                                                             <state key="normal" image="phone32"/>
+                                                            <connections>
+                                                                <action selector="btnCall:" destination="8By-VR-XWJ" eventType="touchUpInside" id="QWn-OE-v3O"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-Oa-d9L">
                                                             <rect key="frame" x="82.5" y="0.0" width="72" height="32"/>
                                                             <state key="normal" image="message32"/>
+                                                            <connections>
+                                                                <action selector="btnMessage:" destination="8By-VR-XWJ" eventType="touchUpInside" id="ziH-Y0-0IF"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTC-8j-70L">
                                                             <rect key="frame" x="164.5" y="0.0" width="72.5" height="32"/>

@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class MyDailyServicesCollectionViewCell: UICollectionViewCell {
+class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var myDailyServicesImage: UIImageView!
     
@@ -29,5 +30,24 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btn_Edit: UIButton!
     @IBOutlet weak var btn_Cancel: UIButton!
     
+    
+    @IBAction func btnCall(_ sender: UIButton)
+    {
+        UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func btnMessage(_ sender: UIButton)
+    {
+        MFMessageComposeViewController.canSendText()
+        let sms = MFMessageComposeViewController()
+        sms.body = ""
+        sms.recipients = ["9725098236"]
+        sms.messageComposeDelegate = self
+        
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        print ("called message App")
+    }
     
 }
