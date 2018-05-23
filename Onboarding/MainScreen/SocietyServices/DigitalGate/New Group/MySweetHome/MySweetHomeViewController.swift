@@ -28,22 +28,24 @@ class MySweetHomeViewController: NANavigationViewController {
     override func viewWillLayoutSubviews() {
         self.addMemberButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            addMemberButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 20),
+            addMemberButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
             
             addMemberButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-              addMemberButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: -20)])
+              addMemberButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20)])
         
         addMemberButton.layer.frame = CGRect(x: 20, y: 570, width: 335, height: 39)
     }
 
     @IBAction func ButtonClick(_ sender: UIButton)
     {
-        let vc : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+        let vc : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
         //passing value to my services VC
         let passVC = "mySweetHomeVC"
         vc.vcValue = passVC
       
        vc.navTitle =  NAString().addFamilyMemberTitle().capitalized
         self.navigationController?.pushViewController(vc, animated: true)
+        
+        
     }
 }

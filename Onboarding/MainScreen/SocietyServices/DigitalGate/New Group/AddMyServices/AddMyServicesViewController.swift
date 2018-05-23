@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegate,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var lbl_Name: UILabel!
@@ -27,6 +27,7 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     @IBOutlet weak var btn_SelectContact: UIButton!
     @IBOutlet weak var btn_AddDetails: UIButton!
     
+    //for Coming from my sweet home
     @IBOutlet weak var segment: UISegmentedControl!
     
     //to set navigation title
@@ -50,22 +51,12 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //hiding dateTextField & segment
-        self.txt_Date.isHidden = true
+        //hiding dateTextField & segment when screen is coming from ADD MY SERVICES VC
         self.segment.isHidden = true
         
-        if self.navTitle == NAString().addFamilyMemberTitle() {
-            self.segment.isHidden = false
-            self.txt_Date.isHidden = true
-             self.lbl_Date.text = NAString().grant_access().capitalized
-            self.lbl_OTPDescription.isHidden = true
-            self.btn_AddDetails.isHidden = true
-        } else {
-            self.segment.isHidden = true
-            self.txt_Date.isHidden = false
-             self.lbl_Date.text = NAString().time()
-        }
-        
+        //identify screen coming from which screen
+        screenComingFrom()
+
         // adding image on date TextField
         txt_Date.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -78,7 +69,7 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         self.txt_Name.becomeFirstResponder()
         
         //getting string from my Daily Services for OTP
-        self.lbl_OTPDescription.text = AddOtpString
+                    //self.lbl_OTPDescription.text = AddOtpString
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -133,21 +124,37 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         img_Profile.clipsToBounds = true
     }
     
+    //Grant access -> if yes the go to OTP else back to self view
     @IBAction func SegmentAcessGranted(_ sender: Any)
     {
-        if (segment.selectedSegmentIndex == 0)
-        {
-            self.btn_AddDetails.isHidden = false
-            self.lbl_OTPDescription.isHidden = false
-            let FamilyString = NAString().inviteVisitorOTPDesc()
-            let replaced = FamilyString.replacingOccurrences(of: "visitor", with: "Family Member")
-            self.lbl_OTPDescription.text = replaced
+
+    }
+    
+    //alert Popup when user give  grant access & try to add details
+    func grantAccessAlert() {
+        
+        //creating alert controller
+        let alert = UIAlertController(title: "Notification Alert" , message: NAString().family_member_alert_message(), preferredStyle: .alert)
+
+          //creating Reject alert actions
+        let rejectAction = UIAlertAction(title: "Reject", style: .cancel) { (action) in
+            print("Rejected")
         }
-        else
-        {
-            self.btn_AddDetails.isHidden = true
-            self.lbl_OTPDescription.isHidden = true
+        
+        //creating Accept alert actions
+        let acceptAction = UIAlertAction(title: "Accept", style: .default) { (action) in
+
+            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+            let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
+            lv.newOtpString = familyString
+            self.navigationController?.pushViewController(lv, animated: true)
+            
+            print("Accepted")
         }
+        
+        alert.addAction(rejectAction)
+        alert.addAction(acceptAction)
+        present(alert, animated: true, completion: nil)
     }
     
     //Function to appear select image from by tapping image
@@ -280,6 +287,32 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         self.txt_MobileNo.text = mobileNo
     }
     
+    //identify from which page screen is coming
+    func screenComingFrom() {
+        if self.navTitle == NAString().addFamilyMemberTitle() {
+            self.segment.isHidden = false
+            self.txt_Date.isHidden = true
+            self.lbl_Date.text = NAString().grant_access().capitalized
+            self.lbl_OTPDescription.isHidden = false
+            
+            let FamilyString = NAString().otp_message_family_member()
+            self.lbl_OTPDescription.text = FamilyString
+    
+        } else {
+            
+            self.segment.isHidden = true
+            self.txt_Date.isHidden = false
+            self.lbl_Date.text = NAString().time()
+            self.lbl_OTPDescription.text = AddOtpString
+            
+            if (txt_Date.text?.isEmpty)!
+            {
+                lbl_OTPDescription.isHidden = true
+                btn_AddDetails.isHidden = true
+            }
+        }
+    }
+    
     @IBAction func btnAddDetails(_ sender: Any)
     {
         if (navTitle! == NAString().add_my_service().capitalized)
@@ -294,16 +327,25 @@ class AddMyDetailsViewController: NANavigationViewController,UITextFieldDelegate
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
         }
-        else
+            
+        else if (navTitle! == NAString().addFamilyMemberTitle().capitalized)
         {
-            print("my family member")
-             let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+           if(segment.selectedSegmentIndex == 0)
+           {
+            //calling AlertBox on click of YES
+            grantAccessAlert()
+            print("Selected Yes")
+            }
+            else
+           {
+        //if NO is selected then directly it will go to OTP Page.
+            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+            let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
+            lv.newOtpString = familyString
+              self.navigationController?.pushViewController(lv, animated: true)
             
-            let cookString = NAString().enter_verification_code(first:"your Family Member \(txt_Name.text ?? "")", second: "their")
-            
-                lv.newOtpString = cookString
-            
-            self.navigationController?.pushViewController(lv, animated: true)
+            print("Selected No")
+            }
         }
     }
 }

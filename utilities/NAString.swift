@@ -256,7 +256,7 @@ class NAString : NSObject
     
     //Invite Visitor ViewController
     func visitorNameViewTitle() -> String {
-        return String("Invite Visitor")
+        return String("Inviting Visitors")
     }
     func visitorName() -> String {
         return String("Visitor Name")
@@ -487,13 +487,28 @@ class NAString : NSObject
     func addFamilyMemberTitle() -> String {
         return String ("Add Family Members Details")
     }
+    func relation() -> String {
+        return String ("Relation")
+    }
     
     func grant_access() -> String {
         return String ("Grant Aceess")
     }
+    func otp_message_family_member() -> String {
+        return String ("We will send an OTP to your family member for Authentication.")
+    }
+    func family_member_alert_message() -> String {
+        return String ("Please note that the following member will now have access to all notifications.")
+    }
     
     
+    //fire Alarm
+    func tap_on_bell_icon_to_create_alert() -> String {
+        return String ("Tap on bell icon to create alert")
+    }
     
-    
+    func emergency_alarm_raised() -> String {
+        return String ("Emergency alarm raised")
+    }
 }
 

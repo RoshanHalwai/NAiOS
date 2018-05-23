@@ -75,6 +75,7 @@ class OTPViewController: NANavigationViewController, UITextFieldDelegate
     
     @IBAction func btnVerifyOTP(_ sender: Any)
     {
+        //back to Namma Apartment Home Screen
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your"))
         {
         let lv : MainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
@@ -82,6 +83,15 @@ class OTPViewController: NANavigationViewController, UITextFieldDelegate
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
         }
+            
+        //Back to My Sweet Home screen
+        else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their"))
+        {
+            let lv : MySweetHomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "mySweetHomeVC") as! MySweetHomeViewController
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
+            
+        //Back to My Daily Services Screen
         else
         {
             let lv : MyDailyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "myDailyServicesVC") as! MyDailyServicesViewController
