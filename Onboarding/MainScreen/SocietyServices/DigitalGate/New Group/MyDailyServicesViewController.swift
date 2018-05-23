@@ -80,7 +80,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             
             (alert: UIAlertAction!) -> Void in
             //passing string
-            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
             
             //passing
             let cookString = NAString().inviteVisitorOTPDesc()
@@ -104,7 +104,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             
             (alert: UIAlertAction!) -> Void in
             //passing string
-            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
             
             //passing
             let cookString = NAString().inviteVisitorOTPDesc()
@@ -127,7 +127,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action3 = UIAlertAction(title: "Car/Bike Cleaning", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             //passing string
-            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
             
             //passing
             let cookString = NAString().inviteVisitorOTPDesc()
@@ -150,7 +150,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action4 = UIAlertAction(title: "Child Day Care", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             //passing string
-            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
             
             //passing
             let cookString = NAString().inviteVisitorOTPDesc()
@@ -173,7 +173,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action5 = UIAlertAction(title: "Daily Newspaper", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             //passing string
-            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
             
             //passing
             let cookString = NAString().inviteVisitorOTPDesc()
@@ -183,9 +183,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             //temp variable
             let tempVar = "Newspaper Man account"
             lv.holdString = tempVar
-            
-            //hide segment cotroller
-            lv.segment.isHidden = true
             
             //passing value to my services VC
             let passVC = "myDailyServicesVC"
@@ -199,7 +196,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action6 = UIAlertAction(title: "Milk Man", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             //passing string
-            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
             
             //passing
             let cookString = NAString().inviteVisitorOTPDesc()
@@ -222,7 +219,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action7 = UIAlertAction(title: "Laundry", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             //passing string
-            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
             
             //passing
             let cookString = NAString().inviteVisitorOTPDesc()
@@ -245,7 +242,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action8 = UIAlertAction(title: "Driver", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             //passing string
-            let lv : AddMyDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyDetailsViewController
+            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
             
             //passing
             let cookString = NAString().inviteVisitorOTPDesc()

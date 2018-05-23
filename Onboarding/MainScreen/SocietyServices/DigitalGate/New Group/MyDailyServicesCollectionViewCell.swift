@@ -30,12 +30,13 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     @IBOutlet weak var btn_Edit: UIButton!
     @IBOutlet weak var btn_Cancel: UIButton!
     
-    
+    //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton)
     {
         UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
     }
     
+    //To message your visitor directly from app
     @IBAction func btnMessage(_ sender: UIButton)
     {
         MFMessageComposeViewController.canSendText()
