@@ -65,13 +65,12 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         let image = UIImage(named: "newClock")
         imageView.image = image
         txt_Date.rightView = imageView
-    
+        
+        //setting navigation title
         super.ConfigureNavBarTitle(title: navTitle!)
+        
         //become first responder
         self.txt_Name.becomeFirstResponder()
-        
-        //getting string from my Daily Services for OTP
-                    //self.lbl_OTPDescription.text = AddOtpString
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -128,12 +127,6 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         //creating image round
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
-    }
-    
-    //Grant access -> if yes the go to OTP else back to self view
-    @IBAction func SegmentAcessGranted(_ sender: Any)
-    {
-
     }
     
     //alert Popup when user give  grant access & try to add details
@@ -348,7 +341,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
             }
             else
            {
-        //if NO is selected then directly it will go to OTP Page.
+            //if NO is selected then directly it will go to OTP Page.
             let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
             lv.newOtpString = familyString
