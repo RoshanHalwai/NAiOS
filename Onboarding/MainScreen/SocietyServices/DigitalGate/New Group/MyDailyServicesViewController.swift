@@ -356,4 +356,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        //navigate to edit screen after click on particular cell edit button
+        
+        
+    }
+    
 }
