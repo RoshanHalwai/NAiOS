@@ -18,11 +18,13 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
     @IBOutlet weak var lbl_OR: UILabel!
     @IBOutlet weak var lbl_Date: UILabel!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
+    @IBOutlet weak var lbl_Relation: UILabel!
     
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
     @IBOutlet weak var txt_Date: UITextField!
+    @IBOutlet weak var txt_Relation: UITextField!
     
     @IBOutlet weak var btn_SelectContact: UIButton!
     @IBOutlet weak var btn_AddDetails: UIButton!
@@ -89,6 +91,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         txt_Date.underlined()
         txt_Name.underlined()
         txt_MobileNo.underlined()
+        txt_Relation.underlined()
     
         //label formatting & setting
         self.lbl_OR.font = NAFont().headerFont()
@@ -96,6 +99,8 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         self.lbl_Name.font = NAFont().headerFont()
         self.lbl_Date.font = NAFont().headerFont()
         self.lbl_OTPDescription.font = NAFont().descriptionFont()
+        self.lbl_Relation.font = NAFont().headerFont()
+        self.lbl_Relation.text = NAString().relation()
     
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
@@ -105,6 +110,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         self.txt_MobileNo.font = NAFont().textFieldFont()
         self.txt_Name.font = NAFont().textFieldFont()
         self.txt_CountryCode.font = NAFont().textFieldFont()
+        self.txt_Relation.font = NAFont().textFieldFont()
         
         //button formatting & setting
         self.btn_SelectContact.backgroundColor = NAColor().buttonBgColor()
@@ -292,6 +298,8 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         if self.navTitle == NAString().addFamilyMemberTitle() {
             self.segment.isHidden = false
             self.txt_Date.isHidden = true
+            self.txt_Relation.isHidden = false
+            self.lbl_Relation.isHidden = false
             self.lbl_Date.text = NAString().grant_access().capitalized
             self.lbl_OTPDescription.isHidden = false
             
@@ -302,6 +310,8 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
             
             self.segment.isHidden = true
             self.txt_Date.isHidden = false
+            self.txt_Relation.isHidden = true
+            self.lbl_Relation.isHidden = true
             self.lbl_Date.text = NAString().time()
             self.lbl_OTPDescription.text = AddOtpString
             
