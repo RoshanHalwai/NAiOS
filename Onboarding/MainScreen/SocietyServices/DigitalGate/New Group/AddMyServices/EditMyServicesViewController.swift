@@ -69,15 +69,7 @@ class EditMyServicesViewController: NANavigationViewController {
         self.btn_Update.setTitle(NAString().update(), for: .normal)
         self.btn_Update.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_Update.backgroundColor = UIColor.black
-       
-        
+            
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
-
 
 }

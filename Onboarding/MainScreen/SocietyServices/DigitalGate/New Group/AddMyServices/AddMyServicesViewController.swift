@@ -143,7 +143,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         //creating Accept alert actions
         let acceptAction = UIAlertAction(title: "Accept", style: .default) { (action) in
 
-            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+            let lv = NAViewPresenter().otpViewController()
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
             lv.newOtpString = familyString
             self.navigationController?.pushViewController(lv, animated: true)
@@ -306,7 +306,9 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
             self.txt_Relation.isHidden = true
             self.lbl_Relation.isHidden = true
             self.lbl_Date.text = NAString().time()
-            self.lbl_OTPDescription.text = AddOtpString
+            let cookString = NAString().inviteVisitorOTPDesc()
+            let replaced = cookString.replacingOccurrences(of: "visitor", with: holdString)
+            self.lbl_OTPDescription.text = replaced
             
             if (txt_Date.text?.isEmpty)!
             {
@@ -321,7 +323,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         if (navTitle! == NAString().add_my_service().capitalized)
         {
             print("add my services")
-        let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+         let lv = NAViewPresenter().otpViewController()
         
        // passing data
         let servicesString = NAString().enter_verification_code(first: "your \(holdString)", second: "their")
@@ -342,7 +344,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
             else
            {
             //if NO is selected then directly it will go to OTP Page.
-            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+             let lv = NAViewPresenter().otpViewController()
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
             lv.newOtpString = familyString
               self.navigationController?.pushViewController(lv, animated: true)
