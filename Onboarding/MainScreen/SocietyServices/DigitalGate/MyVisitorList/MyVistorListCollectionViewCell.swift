@@ -23,22 +23,28 @@ class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewC
      //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton)
     {
+        //TODO : Need to change mobile number here
          UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
     }
     
     //To message your visitor directly from app
     @IBAction func btnMessage(_ sender: UIButton)
     {
+         //TODO : Need to change mobile number here
     MFMessageComposeViewController.canSendText()
         let sms = MFMessageComposeViewController()
         sms.body = ""
         sms.recipients = ["9725098236"]
         sms.messageComposeDelegate = self
-        
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
     print ("called message App")
+    }
+    
+    @IBAction func btnEdit(_ sender: UIButton)
+    {
+        
     }
     
     

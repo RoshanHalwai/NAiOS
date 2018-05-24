@@ -501,7 +501,6 @@ class NAString : NSObject
         return String ("Please note that the following member will now have access to all notifications.")
     }
     
-    
     //fire Alarm
     func tap_on_bell_icon_to_create_alert() -> String {
         return String ("Tap on bell icon to create alert")
@@ -509,6 +508,17 @@ class NAString : NSObject
     
     func emergency_alarm_raised() -> String {
         return String ("Emergency alarm raised")
+    }
+    
+    //Edit My daily services
+    func edit_my_daily_service_details() -> String {
+        return String ("Edit My Daily Service Details")
+    }
+    func update() -> String {
+        return String ("Update")
+    }
+    func reschedule_alertBox() -> String {
+        return String ("Reschedule Dialog")
     }
 }
 

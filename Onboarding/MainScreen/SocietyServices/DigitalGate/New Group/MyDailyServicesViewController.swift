@@ -18,6 +18,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     var myDailyFlats = ["4"]
     var myDailyRating = ["4.2"]
     
+    //Array of Action sheet items.
+    var dailyService = ["Cook", "Maid", "Car/Bike Cleaning", "Child Day Care", "Daily Newspaper", "Milk Man", "Laundry", "Driver"]
+    
     //for floating Button
     private var roundButton = UIButton()
 
@@ -34,7 +37,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.roundButton = UIButton(type: .custom)
         self.roundButton.setTitleColor(UIColor.orange, for: .normal)
         self.roundButton.layer.cornerRadius = roundButton.layer.frame.size.width/2
-        self.roundButton.addTarget(self, action: #selector(self.ButtonClick(_:)), for: UIControlEvents.touchUpInside)
+        self.roundButton.addTarget(self, action: #selector(self.floatingButton(_:)), for: UIControlEvents.touchUpInside)
         self.view.addSubview(self.roundButton)
     
         //Formatting & setting Navigation bar
@@ -72,203 +75,25 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     }
     
     //for creating action sheet to select my daily services
-    @IBAction func ButtonClick(_ sender: UIButton)
+    @IBAction func floatingButton(_ sender: UIButton)
     {
         let actionSheet = UIAlertController(title: "My Daily Services", message: "Choose Your Services From Here.", preferredStyle: .actionSheet)
         
-        let action1 = UIAlertAction(title: "Cook", style: .default, handler: {
-            
-            (alert: UIAlertAction!) -> Void in
-            //passing string
-            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
-            
-            //passing
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Cook")
-            lv.AddOtpString = replaced
-            
-            //temp variable
-            let tempVar = "Cook"
-            lv.holdString = tempVar
-            
-            //passing value to my services VC
-            let passVC = "myDailyServicesVC"
-            lv.vcValue = passVC
-            
-             lv.navTitle =  NAString().add_my_service().capitalized
-           self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-        })
-        
-        let action2 = UIAlertAction(title: "Maid", style: .default, handler: {
-            
-            (alert: UIAlertAction!) -> Void in
-            //passing string
-            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
-            
-            //passing
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Maid")
-            lv.AddOtpString = replaced
-            
-            // //temp variable
-            let tempVar = "Maid account"
-            lv.holdString = tempVar
-            
-            //passing value to my services VC
-            let passVC = "myDailyServicesVC"
-            lv.vcValue = passVC
-            
-             lv.navTitle =  NAString().add_my_service().capitalized
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-        })
-        
-        let action3 = UIAlertAction(title: "Car/Bike Cleaning", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            //passing string
-            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
-            
-            //passing
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Car/Bike Clearner")
-            lv.AddOtpString = replaced
-            
-            //temp variable
-            let tempVar = "Car/Bike Cleaner account"
-            lv.holdString = tempVar
-            
-            //passing value to my services VC
-            let passVC = "myDailyServicesVC"
-            lv.vcValue = passVC
-            
-             lv.navTitle =  NAString().add_my_service().capitalized
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-        })
-        
-        let action4 = UIAlertAction(title: "Child Day Care", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            //passing string
-            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
-            
-            //passing
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Child Day Care")
-            lv.AddOtpString = replaced
-           
-           //temp variable
-            let tempVar = "Child Day Care account"
-            lv.holdString = tempVar
-            
-            //passing value to my services VC
-            let passVC = "myDailyServicesVC"
-            lv.vcValue = passVC
-            
-             lv.navTitle =  NAString().add_my_service().capitalized
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-        })
-        
-        let action5 = UIAlertAction(title: "Daily Newspaper", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            //passing string
-            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
-            
-            //passing
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Newspaper Man")
-            lv.AddOtpString = replaced
-            
-            //temp variable
-            let tempVar = "Newspaper Man account"
-            lv.holdString = tempVar
-            
-            //passing value to my services VC
-            let passVC = "myDailyServicesVC"
-            lv.vcValue = passVC
-            
-             lv.navTitle =  NAString().add_my_service().capitalized
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-        })
-        
-        let action6 = UIAlertAction(title: "Milk Man", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            //passing string
-            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
-            
-            //passing
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Milk Man")
-            lv.AddOtpString = replaced
-            
-            //extra
-            let tempVar = "Milk man account"
-            lv.holdString = tempVar
-            
-            //passing value to my services VC
-            let passVC = "myDailyServicesVC"
-            lv.vcValue = passVC
-            
-             lv.navTitle =  NAString().add_my_service().capitalized
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-        })
-        
-        let action7 = UIAlertAction(title: "Laundry", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            //passing string
-            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
-            
-            //passing
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Laundry Man")
-            lv.AddOtpString = replaced
-            
-            //extra
-            let tempVar = "Laundry man account"
-            lv.holdString = tempVar
-            
-            //passing value to my services VC
-            let passVC = "myDailyServicesVC"
-            lv.vcValue = passVC
-            
-            lv.navTitle =  NAString().add_my_service().capitalized
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-        })
-        
-        let action8 = UIAlertAction(title: "Driver", style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            //passing string
-            let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
-            
-            //passing
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: "Driver")
-            lv.AddOtpString = replaced
-            
-            //extra
-            let tempVar = "Driver account"
-            lv.holdString = tempVar
-            
-            //passing value to my services VC
-            let passVC = "myDailyServicesVC"
-            lv.vcValue = passVC
-            
-             lv.navTitle =  NAString().add_my_service().capitalized
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-        })
+        let action1 = UIAlertAction(title: dailyService[0], style: .default, handler: dailyServiceSelected)
+        let action2 = UIAlertAction(title: dailyService[1], style: .default, handler: dailyServiceSelected)
+        let action3 = UIAlertAction(title: dailyService[2], style: .default, handler: dailyServiceSelected)
+        let action4 = UIAlertAction(title: dailyService[3], style: .default, handler: dailyServiceSelected)
+        let action5 = UIAlertAction(title: dailyService[4], style: .default, handler: dailyServiceSelected)
+        let action6 = UIAlertAction(title: dailyService[5], style: .default, handler: dailyServiceSelected)
+        let action7 = UIAlertAction(title: dailyService[6], style: .default, handler: dailyServiceSelected)
+        let action8 = UIAlertAction(title: dailyService[7], style: .default, handler: dailyServiceSelected)
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
-            
+
             (alert: UIAlertAction!) -> Void in
             self.roundButton.isHidden = false
         })
-        
+
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
         actionSheet.addAction(action3)
@@ -277,7 +102,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         actionSheet.addAction(action6)
         actionSheet.addAction(action7)
         actionSheet.addAction(action8)
-        
+
         actionSheet.addAction(cancel)
         
         actionSheet.view.tintColor = UIColor.black
@@ -285,6 +110,22 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.present(actionSheet, animated: true, completion: nil)
         
         self.roundButton.isHidden = true
+    }
+    
+    func dailyServiceSelected(alert: UIAlertAction!) {
+        let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
+        
+        //temp variable
+        let tempVar = alert.title!
+        lv.holdString = tempVar
+        
+        //passing value to my services VC
+        let passVC = "myDailyServicesVC"
+        lv.vcValue = passVC
+        
+        lv.navTitle =  NAString().add_my_service().capitalized
+        self.navigationController?.setNavigationBarHidden(false, animated: true);
+        self.navigationController?.pushViewController(lv, animated: true)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -355,5 +196,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.btn_Edit.setTitle(NAString().edit(), for: .normal)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        //navigate to edit screen after click on particular cell edit button
     }
 }
