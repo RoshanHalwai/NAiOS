@@ -424,7 +424,7 @@ class NAString : NSObject
         return String("Add My Service")
     }
     func name() -> String {
-        return String("Name")
+        return String("Name:")
     }
     func mobile() -> String {
         return String("Mobile")

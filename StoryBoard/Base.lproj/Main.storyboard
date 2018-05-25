@@ -571,6 +571,14 @@
             </objects>
             <point key="canvasLocation" x="808.79999999999995" y="1396.5517241379312"/>
         </scene>
+        <!--Main Page View Controller-->
+        <scene sceneID="4a5-am-0Ny">
+            <objects>
+                <pageViewController storyboardIdentifier="MainPVC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="W0B-d0-fwf" customClass="MainPageViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KQQ-Lv-Bta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="66" y="2054"/>
+        </scene>
         <!--Main Screen View Controller-->
         <scene sceneID="H5C-n5-761">
             <objects>
@@ -1186,7 +1194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0IS-0Q-vxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1518" y="2731"/>
+            <point key="canvasLocation" x="1518" y="2723"/>
         </scene>
         <!--Notify Digi Gate View Controller-->
         <scene sceneID="5ng-nd-fxE">
@@ -1701,7 +1709,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEE-5n-42G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2887.1999999999998" y="3420.5397301349326"/>
+            <point key="canvasLocation" x="2932" y="3394"/>
         </scene>
         <!--Handed Things To Guest View Controller-->
         <scene sceneID="tMt-OT-Gb5">

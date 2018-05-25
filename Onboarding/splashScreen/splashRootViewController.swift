@@ -27,11 +27,6 @@ class splashRootViewController: UIPageViewController,UIPageViewControllerDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
-        
-       
-
-        
          self.dataSource = self
         self.delegate = self
         

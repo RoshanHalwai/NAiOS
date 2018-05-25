@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
 		86114E5E20B5A88D00656B56 /* viewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* viewPresenter.swift */; };
+		86114E6420B7402F00656B56 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E6320B7402F00656B56 /* MainPageViewController.swift */; };
 		862700F7209707BB004B28EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F6209707BB004B28EB /* AppDelegate.swift */; };
 		862700FC209707BB004B28EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862700FA209707BB004B28EB /* Main.storyboard */; };
 		862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */; };
@@ -89,6 +90,7 @@
 /* Begin PBXFileReference section */
 		86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyServicesViewController.swift; sourceTree = "<group>"; };
 		86114E5D20B5A88D00656B56 /* viewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewPresenter.swift; sourceTree = "<group>"; };
+		86114E6320B7402F00656B56 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		862700F3209707BB004B28EB /* nammaApartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862700F6209707BB004B28EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		862700FB209707BB004B28EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 		86548D7C209C1F5400C700DA /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				86114E6320B7402F00656B56 /* MainPageViewController.swift */,
 				86548D7D209C1F7500C700DA /* DataModel.swift */,
 				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
 				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
@@ -668,6 +671,7 @@
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
+				86114E6420B7402F00656B56 /* MainPageViewController.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
