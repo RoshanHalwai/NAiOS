@@ -11,19 +11,9 @@ import UIKit
 
 class MainPageViewController: UIPageViewController,UIPageViewControllerDataSource,UIPageViewControllerDelegate
 {
-    
     let sb = UIStoryboard(name: "Main", bundle: nil)
     
     var VC: UIViewController?
-//    lazy var viewControllerList : [UIViewController] = {
-//
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//
-//        let VC = sb.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
-//
-//        return[VC]
-//    }()
-    
     var currentIndex = 0
     var customView = UIView()
     
@@ -35,27 +25,14 @@ class MainPageViewController: UIPageViewController,UIPageViewControllerDataSourc
         self.dataSource = self
         self.delegate = self
         
-        
         if VC == nil
         {
             self.setViewControllers([VC] as? [UIViewController], direction: .forward, animated: true, completion: nil)
         }
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController?
     {
-        
-//        guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
-//        let previousIndex = vcIndex - 1
-//        guard previousIndex >= 0 else {return nil}
-//
-//        guard viewControllerList.count > previousIndex else {return nil}
         if currentIndex <= 1 {
             currentIndex = currentIndex - 1
         }
@@ -63,18 +40,13 @@ class MainPageViewController: UIPageViewController,UIPageViewControllerDataSourc
         tmpVc.currentIndex = currentIndex
         
         return tmpVc
-        
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController?
     {
-//        guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
-//        let nextIndex = vcIndex + 1
-        
         if currentIndex <= 0 {
             currentIndex = currentIndex + 1
         }
-        
         
         let tmpVc =  sb.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
         tmpVc.currentIndex = currentIndex

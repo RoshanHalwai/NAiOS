@@ -17,9 +17,6 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","sweetHome","Medical"]
     var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
     
-    //array for navigation
-   var VCNames = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +25,6 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         self.navigationItem.leftBarButtonItem = backButton
         
         self.navigationItem.hidesBackButton = true
-        
         
         //To navigate from Digi gate to its Sub-screens
         VCNames = ["inviteVisitorVC","myVisitorListVC","myDailyServicesVC","notifyDigiGateVC","mySweetHomeVC","emergencyVC"]
@@ -45,7 +41,6 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         let destVC = vcName.instantiateViewController(withIdentifier: "mainScreenVC")
         self.navigationController?.pushViewController(destVC, animated: true)
     }
-    
     
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
      {

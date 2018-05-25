@@ -53,7 +53,6 @@ class MySweetHomeViewController: NANavigationViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate()
     {
@@ -61,7 +60,4 @@ class MySweetHomeViewController: NANavigationViewController {
         let destVC = vcName.instantiateViewController(withIdentifier: "digiGateVC")
         self.navigationController?.pushViewController(destVC, animated: true)
     }
-    
-    
-    
 }

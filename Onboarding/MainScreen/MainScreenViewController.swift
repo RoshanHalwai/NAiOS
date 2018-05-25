@@ -10,7 +10,6 @@ import UIKit
 
 class MainScreenViewController: NANavigationViewController
 {
-
     @IBOutlet weak var segmentSelection: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
    
@@ -101,7 +100,6 @@ class MainScreenViewController: NANavigationViewController
         if currentIndex <= 0 {
             currentIndex = currentIndex + 1
         }
-        
         return self
     }
     
@@ -116,10 +114,8 @@ class MainScreenViewController: NANavigationViewController
         return self
     }
    
-    
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl)
     {
-    
         isSocietyServices = sender.selectedSegmentIndex == 0 ? true : false
         self.tableView.reloadData()
     }

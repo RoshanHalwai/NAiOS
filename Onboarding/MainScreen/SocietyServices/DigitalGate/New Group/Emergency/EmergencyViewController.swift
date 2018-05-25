@@ -60,18 +60,18 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         }
         if indexPath.row == 1
         {
-        let lv1 : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
+            let lv1 : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
 
-        self.navigationController?.pushViewController(lv1, animated: true)
-               lv1.titleName = "Raise Fire Alarm"
+            self.navigationController?.pushViewController(lv1, animated: true)
+            lv1.titleName = "Raise Fire Alarm"
             
     }
         if indexPath.row == 2
         {
-    let lv2 : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
+            let lv2 : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
 
-    self.navigationController?.pushViewController(lv2, animated: true)
-               lv2.titleName = "Raise Theft Alarm"
+            self.navigationController?.pushViewController(lv2, animated: true)
+            lv2.titleName = "Raise Theft Alarm"
 }
 }
     

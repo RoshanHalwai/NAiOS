@@ -37,7 +37,4 @@ class NAViewPresenter: NSObject {
     func handedThingsToMyGuestVC() -> HandedThingsToGuestViewController {
         return storyBoard.instantiateViewController(withIdentifier: "handedThingsToGuestVC") as! HandedThingsToGuestViewController
     }
-    
-    
-    
 }

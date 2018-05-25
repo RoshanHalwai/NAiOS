@@ -13,9 +13,6 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
     var ImageList = [#imageLiteral(resourceName: "ExpectingCabs256"),#imageLiteral(resourceName: "ExpectingPackage256"),#imageLiteral(resourceName: "ExpectiingVisitor256"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
     var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed Things To My Guest","Handed Things To My Daily Services"]
     
-    //array for navigation
-   // var VCNames = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,10 +55,6 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-//        let name = VCNames[indexPath.row]
-//        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
-//        self.navigationController?.pushViewController(viewController!, animated: true)
-        
         if indexPath.row == 0
         {
             let lv = NAViewPresenter().expectingCabArrivalVC()
