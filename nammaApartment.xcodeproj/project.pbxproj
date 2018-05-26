@@ -10,6 +10,9 @@
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
 		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
 		86114E6420B7402F00656B56 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E6320B7402F00656B56 /* MainPageViewController.swift */; };
+		861CBFEC20B9976F009EC0EF /* Font in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFEB20B9976F009EC0EF /* Font */; };
+		861CBFED20B9976F009EC0EF /* Font in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFEB20B9976F009EC0EF /* Font */; };
+		861CBFEE20B9976F009EC0EF /* Font in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFEB20B9976F009EC0EF /* Font */; };
 		862700F7209707BB004B28EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F6209707BB004B28EB /* AppDelegate.swift */; };
 		862700FC209707BB004B28EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862700FA209707BB004B28EB /* Main.storyboard */; };
 		862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */; };
@@ -81,6 +84,7 @@
 		86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyServicesViewController.swift; sourceTree = "<group>"; };
 		86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewPresenter.swift; sourceTree = "<group>"; };
 		86114E6320B7402F00656B56 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		861CBFEB20B9976F009EC0EF /* Font */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Font; path = "../../Misc Things For Project/nammaApartment/Font"; sourceTree = "<group>"; };
 		862700F3209707BB004B28EB /* nammaApartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862700F6209707BB004B28EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		862700FB209707BB004B28EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 		86BD74E9209A2DD000B159A3 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
+				861CBFEB20B9976F009EC0EF /* Font */,
 				86270100209707BC004B28EB /* Assets.xcassets */,
 				86BD74EB209A2E7000B159A3 /* NAFont.swift */,
 				86BD74ED209A2EB500B159A3 /* NAColor.swift */,
@@ -591,6 +596,7 @@
 				86270104209707BC004B28EB /* LaunchScreen.storyboard in Resources */,
 				86270101209707BC004B28EB /* Assets.xcassets in Resources */,
 				862700FC209707BB004B28EB /* Main.storyboard in Resources */,
+				861CBFEC20B9976F009EC0EF /* Font in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +604,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861CBFED20B9976F009EC0EF /* Font in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +612,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861CBFEE20B9976F009EC0EF /* Font in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
