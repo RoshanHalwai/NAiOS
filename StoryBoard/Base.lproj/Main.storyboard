@@ -1086,10 +1086,16 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lI-hs-qu2">
                                                             <rect key="frame" x="0.0" y="0.0" width="47.5" height="32"/>
                                                             <state key="normal" image="phone32"/>
+                                                            <connections>
+                                                                <action selector="btnCall:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="wUr-Jn-JcK"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkD-Qq-s1D">
                                                             <rect key="frame" x="87.5" y="0.0" width="47" height="32"/>
                                                             <state key="normal" title="Message" image="message32"/>
+                                                            <connections>
+                                                                <action selector="btnMessage:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="w6c-2E-rjT"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3S-wB-HhT">
                                                             <rect key="frame" x="174.5" y="0.0" width="47.5" height="32"/>
@@ -2741,7 +2747,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YW3-ce-lTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5757.6000000000004" y="3393.5532233883059"/>
+            <point key="canvasLocation" x="5716" y="3394"/>
         </scene>
         <!--Society View Controller-->
         <scene sceneID="2E5-1B-mq3">

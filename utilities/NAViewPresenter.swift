@@ -65,6 +65,11 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "emergencyVC") as! EmergencyViewController
     }
     
+    //edit My Daily Services VC
+    
+    func editMyDailyServices() -> EditMyServicesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "editMyServicesVc") as! EditMyServicesViewController
+    }
     
     
 }

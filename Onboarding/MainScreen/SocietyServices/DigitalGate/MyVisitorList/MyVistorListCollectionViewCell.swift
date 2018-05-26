@@ -31,21 +31,20 @@ class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewC
     @IBAction func btnMessage(_ sender: UIButton)
     {
          //TODO : Need to change mobile number here
-    MFMessageComposeViewController.canSendText()
-        let sms = MFMessageComposeViewController()
-        sms.body = ""
-        sms.recipients = ["9725098236"]
-        sms.messageComposeDelegate = self
+        if (MFMessageComposeViewController.canSendText()) {
+            let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
+            messageSheet.messageComposeDelegate = self
+            messageSheet.recipients = ["9725098236"]
+            messageSheet.body = "Hellow vikas"
+            self.window?.rootViewController?.present(messageSheet, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Warning", message: "The device can't send SMS", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        }
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-    print ("called message App")
-    }
-    
-    @IBAction func btnEdit(_ sender: UIButton)
-    {
         
+        controller.dismiss(animated: true, completion: nil)
     }
-    
-    
 }
