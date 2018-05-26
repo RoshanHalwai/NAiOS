@@ -1,0 +1,12 @@
+# Ignore files
+.DS_Store
+**/.DS_Store
+*.lock
+
+## Build generated
+build/
+DerivedData/
+
+# Ignore directories
+xcworkspace/
+xcuserdata/
