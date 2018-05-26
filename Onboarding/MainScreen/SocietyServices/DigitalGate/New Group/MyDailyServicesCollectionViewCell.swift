@@ -59,6 +59,9 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     }
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         
-        self.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
+    
+    
+    
 }
