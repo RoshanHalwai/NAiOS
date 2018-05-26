@@ -50,29 +50,25 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        if indexPath.row == 0
-        {
-            let lv : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
-
+        switch indexPath.row {
+        case 0:
+            let lv = NAViewPresenter().raiseAlarmVC()
             self.navigationController?.pushViewController(lv, animated: true)
-            lv.titleName = "Medical Emergency"
-           
-        }
-        if indexPath.row == 1
-        {
-            let lv1 : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
-
-            self.navigationController?.pushViewController(lv1, animated: true)
-            lv1.titleName = "Raise Fire Alarm"
+            lv.titleName = NAString().medical_emergency_Title().capitalized
             
-    }
-        if indexPath.row == 2
-        {
-            let lv2 : RaiseAlarmViewController = self.storyboard?.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
-
+        case 1:
+            let lv1 = NAViewPresenter().raiseAlarmVC()
+            self.navigationController?.pushViewController(lv1, animated: true)
+            lv1.titleName = NAString().raise_Fire_Alarm_Title().capitalized
+            
+        case 2:
+            let lv2 = NAViewPresenter().raiseAlarmVC()
             self.navigationController?.pushViewController(lv2, animated: true)
-            lv2.titleName = "Raise Theft Alarm"
-}
+            lv2.titleName = NAString().raise_Theft_Alarm_Title().capitalized
+            
+        default:
+            break
+        }
 }
     
 }

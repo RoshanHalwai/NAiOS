@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
-		86114E5E20B5A88D00656B56 /* viewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* viewPresenter.swift */; };
+		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
 		86114E6420B7402F00656B56 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E6320B7402F00656B56 /* MainPageViewController.swift */; };
 		862700F7209707BB004B28EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F6209707BB004B28EB /* AppDelegate.swift */; };
 		862700FC209707BB004B28EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862700FA209707BB004B28EB /* Main.storyboard */; };
@@ -89,7 +89,7 @@
 
 /* Begin PBXFileReference section */
 		86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyServicesViewController.swift; sourceTree = "<group>"; };
-		86114E5D20B5A88D00656B56 /* viewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewPresenter.swift; sourceTree = "<group>"; };
+		86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewPresenter.swift; sourceTree = "<group>"; };
 		86114E6320B7402F00656B56 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		862700F3209707BB004B28EB /* nammaApartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862700F6209707BB004B28EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -400,7 +400,7 @@
 				86BD74ED209A2EB500B159A3 /* NAColor.swift */,
 				86548D83209C343F00C700DA /* NAString.swift */,
 				8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */,
-				86114E5D20B5A88D00656B56 /* viewPresenter.swift */,
+				86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -682,7 +682,7 @@
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
-				86114E5E20B5A88D00656B56 /* viewPresenter.swift in Sources */,
+				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
 				86BF6A4120A0325200B175A1 /* MyVistorListCollectionViewCell.swift in Sources */,
 				86646BC220AB1530002A92B8 /* RaiseAlarmViewController.swift in Sources */,
 				86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */,

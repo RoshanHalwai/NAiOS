@@ -26,9 +26,6 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         
         self.navigationItem.hidesBackButton = true
         
-        //To navigate from Digi gate to its Sub-screens
-        VCNames = ["inviteVisitorVC","myVisitorListVC","myDailyServicesVC","notifyDigiGateVC","mySweetHomeVC","emergencyVC"]
-        
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().digital_gate_title())
         self.navigationItem.title = ""
@@ -61,8 +58,35 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let name = VCNames[indexPath.row]
-        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
-        self.navigationController?.pushViewController(viewController!, animated: true)
+        switch indexPath.row {
+        case 0:
+            let lv = NAViewPresenter().inviteVisitorVC()
+            self.navigationController?.pushViewController(lv, animated: true)
+            
+        case 1:
+            let lv1 = NAViewPresenter().myVisitorListVC()
+            self.navigationController?.pushViewController(lv1, animated: true)
+            
+        case 2:
+            let lv2 = NAViewPresenter().myDailyServicesVC()
+            self.navigationController?.pushViewController(lv2, animated: true)
+            
+        case 3:
+            let lv3 = NAViewPresenter().notifyDigiGateVC()
+            self.navigationController?.pushViewController(lv3, animated: true)
+
+            
+        case 4:
+            let lv4 = NAViewPresenter().mySweetHomeVC()
+            self.navigationController?.pushViewController(lv4, animated: true)
+          
+            
+        case 5:
+            let lv5 = NAViewPresenter().emergencyVC()
+            self.navigationController?.pushViewController(lv5, animated: true)
+            
+        default:
+            break
+        }
     }
 }

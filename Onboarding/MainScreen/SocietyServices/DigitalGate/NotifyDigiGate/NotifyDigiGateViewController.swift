@@ -55,38 +55,32 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        if indexPath.row == 0
-        {
+        switch indexPath.row {
+        case 0:
             let lv = NAViewPresenter().expectingCabArrivalVC()
             self.navigationController?.pushViewController(lv, animated: true)
-        }
-        
-        if indexPath.row == 1
-        {
+            
+        case 1:
             let lv1 = NAViewPresenter().expectingPackageArrivalVC()
-            
             self.navigationController?.pushViewController(lv1, animated: true)
-        }
-        
-        if indexPath.row == 2
-        {
-            let lv2 = NAViewPresenter().inviteVisitorVC()
             
+        case 2:
+            let lv2 = NAViewPresenter().inviteVisitorVC()
             self.navigationController?.pushViewController(lv2, animated: true)
-        }
-        
-        if indexPath.row == 3
-        {
+            
+        case 3:
             let lv3 = NAViewPresenter().handedThingsToMyGuestVC()
             self.navigationController?.pushViewController(lv3, animated: true)
             lv3.titleName = NAString().handed_things_to_my_guest().capitalized
-        }
-        
-        if indexPath.row == 4
-        {
+            
+        case 4:
             let lv4 = NAViewPresenter().handedThingsToMyGuestVC()
             self.navigationController?.pushViewController(lv4, animated: true)
             lv4.titleName = NAString().handed_things_to_my_daily_services().capitalized
+            
+        default:
+            break
         }
+
 }
 }

@@ -510,6 +510,18 @@ class NAString : NSObject
         return String ("Emergency alarm raised")
     }
     
+    func medical_emergency_Title() -> String {
+        return String ("Medical Emergency")
+    }
+    
+    func raise_Fire_Alarm_Title() -> String {
+        return String ("Raise Fire Alarm")
+    }
+    
+    func raise_Theft_Alarm_Title() -> String {
+        return String ("Raise Theft Alarm")
+    }
+    
     //Edit My daily services
     func edit_my_daily_service_details() -> String {
         return String ("Edit My Daily Service Details")

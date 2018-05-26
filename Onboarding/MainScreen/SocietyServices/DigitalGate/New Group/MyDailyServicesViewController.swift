@@ -197,9 +197,4 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
-        
-    }
 }

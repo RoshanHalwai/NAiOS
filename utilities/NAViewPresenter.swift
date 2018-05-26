@@ -37,4 +37,34 @@ class NAViewPresenter: NSObject {
     func handedThingsToMyGuestVC() -> HandedThingsToGuestViewController {
         return storyBoard.instantiateViewController(withIdentifier: "handedThingsToGuestVC") as! HandedThingsToGuestViewController
     }
+    
+    //Emeregency VC
+    func raiseAlarmVC() -> RaiseAlarmViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
+    }
+   
+    //digi gate Vc
+    
+    func myVisitorListVC() -> MyVisitorListViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myVisitorListVC") as! MyVisitorListViewController
+    }
+    
+    func myDailyServicesVC() -> MyDailyServicesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myDailyServicesVC") as! MyDailyServicesViewController
+    }
+    
+    func notifyDigiGateVC() -> NotifyDigiGateViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "notifyDigiGateVC") as! NotifyDigiGateViewController
+    }
+    
+    func mySweetHomeVC() -> MySweetHomeViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "mySweetHomeVC") as! MySweetHomeViewController
+    }
+    
+    func emergencyVC() -> EmergencyViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "emergencyVC") as! EmergencyViewController
+    }
+    
+    
+    
 }
