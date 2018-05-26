@@ -13,9 +13,6 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
     var ImageList = [#imageLiteral(resourceName: "ExpectingCabs256"),#imageLiteral(resourceName: "ExpectingPackage256"),#imageLiteral(resourceName: "ExpectiingVisitor256"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
     var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed Things To My Guest","Handed Things To My Daily Services"]
     
-    //array for navigation
-    var VCNames = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,9 +20,7 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         super.ConfigureNavBarTitle(title: NAString().notifyDigiGateHeader())
         self.navigationItem.title = ""
         navigationItem.rightBarButtonItem = nil
-        
-        //To navigate from Digi gate to its Sub-screens
-        VCNames = ["expectingCabArrivalVC","expectingPackageArrivalVC","inviteVisitorVC","handedThingsToGuestVC",""]
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -60,8 +55,32 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let name = VCNames[indexPath.row]
-        let viewController = storyboard?.instantiateViewController(withIdentifier: name)
-        self.navigationController?.pushViewController(viewController!, animated: true)
-    }
+        switch indexPath.row {
+        case 0:
+            let lv = NAViewPresenter().expectingCabArrivalVC()
+            self.navigationController?.pushViewController(lv, animated: true)
+            
+        case 1:
+            let lv1 = NAViewPresenter().expectingPackageArrivalVC()
+            self.navigationController?.pushViewController(lv1, animated: true)
+            
+        case 2:
+            let lv2 = NAViewPresenter().inviteVisitorVC()
+            self.navigationController?.pushViewController(lv2, animated: true)
+            
+        case 3:
+            let lv3 = NAViewPresenter().handedThingsToMyGuestVC()
+            self.navigationController?.pushViewController(lv3, animated: true)
+            lv3.titleName = NAString().handed_things_to_my_guest().capitalized
+            
+        case 4:
+            let lv4 = NAViewPresenter().handedThingsToMyGuestVC()
+            self.navigationController?.pushViewController(lv4, animated: true)
+            lv4.titleName = NAString().handed_things_to_my_daily_services().capitalized
+            
+        default:
+            break
+        }
+
+}
 }

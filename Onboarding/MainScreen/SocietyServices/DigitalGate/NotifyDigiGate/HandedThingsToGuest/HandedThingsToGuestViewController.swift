@@ -10,7 +10,7 @@ import UIKit
 
 class HandedThingsToGuestViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
-    //array for displaying card view data
+    //Handed Things to my guest array for displaying card view data
     var cardImageList = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MyVisitorName = ["Vikas Nayak","Chaitanya","Vinod Kumar","Avinash"]
     var MyVisitorDate = ["May 1 2018","May 2 2018","May 3 2018","Apr 30 2017"]
@@ -18,11 +18,14 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
     var MyVisitorTime = ["12:14","14:09","09:12","05:50"]
     var InvitorName = ["Vinod Kumar","Rohit Mishra","Yuvaraj","Akash Patel"]
     
+     //set title from previous page
+    var titleName =  String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Formatting & setting navigation bar
-        super.ConfigureNavBarTitle(title: NAString().handed_things_to_my_guest().capitalized)
+        super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
     }
 
@@ -36,16 +39,17 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestCollectionViewCell
         
-        cell.lbl_VisiterName.text = InvitorName[indexPath.row]
-        cell.lbl_GuestDate.text = MyVisitorDate[indexPath.row]
-        cell.lbl_GuestTime.text = MyVisitorTime[indexPath.row]
-        cell.lbl_GuestInvitedBy.text = MyVisitorName[indexPath.row]
-        cell.lbl_GuestType.text = MyVisitorType[indexPath.row]
-        cell.cellImage
-            .image = cardImageList[indexPath.row]
-        
+            cell.lbl_VisiterName.text = InvitorName[indexPath.row]
+            cell.lbl_GuestDate.text = MyVisitorDate[indexPath.row]
+            cell.lbl_GuestTime.text = MyVisitorTime[indexPath.row]
+            cell.lbl_GuestInvitedBy.text = MyVisitorName[indexPath.row]
+            cell.lbl_GuestType.text = MyVisitorType[indexPath.row]
+            cell.cellImage
+                .image = cardImageList[indexPath.row]
+       
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0

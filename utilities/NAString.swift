@@ -424,7 +424,7 @@ class NAString : NSObject
         return String("Add My Service")
     }
     func name() -> String {
-        return String("Name")
+        return String("Name:")
     }
     func mobile() -> String {
         return String("Mobile")
@@ -508,6 +508,18 @@ class NAString : NSObject
     
     func emergency_alarm_raised() -> String {
         return String ("Emergency alarm raised")
+    }
+    
+    func medical_emergency_Title() -> String {
+        return String ("Medical Emergency")
+    }
+    
+    func raise_Fire_Alarm_Title() -> String {
+        return String ("Raise Fire Alarm")
+    }
+    
+    func raise_Theft_Alarm_Title() -> String {
+        return String ("Raise Theft Alarm")
     }
     
     //Edit My daily services

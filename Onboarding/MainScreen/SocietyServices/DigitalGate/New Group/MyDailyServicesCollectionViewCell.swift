@@ -33,22 +33,32 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton)
     {
+        //TODO : need to change  contact number.
         UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
     }
     
     //To message your visitor directly from app
     @IBAction func btnMessage(_ sender: UIButton)
     {
-        MFMessageComposeViewController.canSendText()
-        let sms = MFMessageComposeViewController()
-        sms.body = ""
-        sms.recipients = ["9725098236"]
-        sms.messageComposeDelegate = self
-        
+        if (MFMessageComposeViewController.canSendText()) {
+            
+            let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
+            messageSheet.messageComposeDelegate = self
+            
+             //TODO : need to change  contact number.
+            messageSheet.recipients = ["9725098236"]
+            messageSheet.body = "hi"
+            
+            self.window?.rootViewController?.present(messageSheet,animated: true, completion: nil)
+            
+        } else {
+            
+            let alert = UIAlertController(title: "Warning", message: "The device can't send SMS", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        }
     }
-    
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        print ("called message App")
+        
+        self.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
-    
 }
