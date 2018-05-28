@@ -7,9 +7,14 @@
 //
 
 import UIKit
-class MySweetHomeViewController: NANavigationViewController {
+class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
 
     private var addMemberButton = UIButton()
+    
+    var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen")]
+    var MySweetHomeName =  ["Vinod"]
+    var MySweetHomeRelation = ["Brother"]
+    var MySweetHomeGrantAccess = ["Yes"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,4 +65,63 @@ class MySweetHomeViewController: NANavigationViewController {
         let destVC = vcName.instantiateViewController(withIdentifier: "digiGateVC")
         self.navigationController?.pushViewController(destVC, animated: true)
     }
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return mysweethomeImages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
+    
+        cell.lbl_mySweetHomeName.text = MySweetHomeName[indexPath.row]
+        cell.lbl_mySweetHomeRelation.text = MySweetHomeRelation[indexPath.row]
+        cell.lbl_mySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
+        
+        //This creates the shadows and modifies the cards a little bit
+        cell.contentView.layer.cornerRadius = 4.0
+        cell.contentView.layer.borderWidth = 1.0
+        cell.contentView.layer.borderColor = UIColor.clear.cgColor
+        cell.contentView.layer.masksToBounds = false
+        cell.layer.shadowColor = UIColor.gray.cgColor
+        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        cell.layer.shadowRadius = 4.0
+        cell.layer.shadowOpacity = 1.0
+        cell.layer.masksToBounds = false
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+    
+        //setting the image in round shape
+        cell.MySweeetHomeimg.layer.cornerRadius = cell.MySweeetHomeimg.frame.size.width/2
+        cell.MySweeetHomeimg.clipsToBounds = true
+        
+        //setting fonts for labels
+        cell.lbl_MySweetHomeName.font = NAFont().headerFont()
+        cell.lbl_MySweetHomeRelation.font = NAFont().headerFont()
+        cell.lbl_MySweetHomeGrantAccess.font = NAFont().headerFont()
+        cell.lbl_mySweetHomeName.font = NAFont().headerFont()
+        cell.lbl_mySweetHomeRelation.font = NAFont().headerFont()
+        cell.lbl_mySweetHomeGrantAccess.font = NAFont().headerFont()
+        cell.lbl_Call.font = NAFont().headerFont()
+        cell.lbl_Message.font = NAFont().headerFont()
+        cell.lbl_Edit.font = NAFont().headerFont()
+        cell.lbl_Remove.font = NAFont().headerFont()
+        
+        //setting strings to labels
+        cell.lbl_mySweetHomeName.text = NAString().name()
+        cell.lbl_mySweetHomeRelation.text = NAString().relation()
+        cell.lbl_mySweetHomeGrantAccess.text = NAString().grant_access()
+        cell.lbl_Call.text = NAString().call()
+        cell.lbl_Message.text = NAString().message()
+        cell.lbl_Edit.text = NAString().edit()
+        cell.lbl_Remove.text = NAString().remove()
+    
+    return cell
+}
 }

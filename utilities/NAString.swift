@@ -488,12 +488,17 @@ class NAString : NSObject
         return String ("Add Family Members Details")
     }
     func relation() -> String {
-        return String ("Relation")
+        return String ("Relation:")
     }
     
     func grant_access() -> String {
-        return String ("Grant Aceess")
+        return String ("Granted Aceess:")
     }
+    
+    func remove() -> String {
+        return String ("Remove")
+    }
+    
     func otp_message_family_member() -> String {
         return String ("We will send an OTP to your family member for Authentication.")
     }
