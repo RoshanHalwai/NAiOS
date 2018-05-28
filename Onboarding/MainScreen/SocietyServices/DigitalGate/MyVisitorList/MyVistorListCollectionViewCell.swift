@@ -50,8 +50,8 @@ class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewC
     @IBAction func btnCancel(_ sender: UIButton)
     {
         delegate?.deleteData(ind: (index?.row)!)
+        
     }
-    
     
     //To message your visitor directly from app
     @IBAction func btnMessage(_ sender: UIButton)

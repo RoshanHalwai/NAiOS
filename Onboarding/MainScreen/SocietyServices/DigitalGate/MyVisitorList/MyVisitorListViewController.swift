@@ -72,6 +72,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         cell.myVisitorImage.layer.cornerRadius = cell.myVisitorImage.frame.size.width/2
         cell.myVisitorImage.clipsToBounds = true
     
+        //delete particular cell from list
         cell.index = indexPath
         cell.delegate = self
 
@@ -160,6 +161,8 @@ extension MyVisitorListViewController : dataCollectionProtocol{
     func deleteData(ind: Int) {
         cardImageList.remove(at: ind)
         
-collectionView.reloadData()
+    
+        
+        collectionView.reloadData()
     }
 }
