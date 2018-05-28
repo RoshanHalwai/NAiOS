@@ -195,6 +195,26 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.btn_Cancel.setTitle(NAString().cancel(), for: .normal)
         cell.btn_Edit.setTitle(NAString().edit(), for: .normal)
         
+        //calling button action on particular cell
+        cell.yourobj = {
+            let lv = NAViewPresenter().editMyDailyServices()
+            lv.getTitle = NAString().edit_my_daily_service_details().capitalized
+            lv.getMobile = "9725098236"
+            lv.getName = cell.lbl_MyDailyServiceName.text!
+            lv.getTime = cell.lbl_MyDailyServicesInTime.text!
+
+            //displaying particular string according to services
+            
+            let servicesString = NAString().inviteVisitorOTPDesc()
+            let replaced = servicesString.replacingOccurrences(of: "visitor", with: cell.lbl_MyDailyServiceType.text!)
+            lv.getDescription = replaced
+            
+            //new string which is comin from Edit My Services VC to store Particular Type of services.
+            lv.servicesString = cell.lbl_MyDailyServiceType.text!
+            
+             self.navigationController?.pushViewController(lv, animated: true)
+        }
+        
         return cell
     }
 }

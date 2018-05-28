@@ -30,11 +30,23 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     @IBOutlet weak var btn_Edit: UIButton!
     @IBOutlet weak var btn_Cancel: UIButton!
     
+    //created object to call button action in cell class
+     var yourobj : (() -> Void)? = nil
+    
     //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton)
     {
         //TODO : need to change  contact number.
         UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
+    }
+    
+    //calling object in button action
+    @IBAction func btnEditMyDailyServices(_ sender: UIButton)
+    {
+        if let btnAction = self.yourobj
+        {
+            btnAction()
+        }
     }
     
     //To message your visitor directly from app
