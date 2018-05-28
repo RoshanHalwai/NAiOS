@@ -9,7 +9,14 @@
 import UIKit
 import MessageUI
 
+protocol dataCollectionProtocol {
+    func deleteData(ind: Int)
+}
+
 class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
+    
+    var delegate : dataCollectionProtocol?
+    var index : IndexPath?
     
     @IBOutlet weak var myVisitorImage: UIImageView!
     
@@ -20,12 +27,31 @@ class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewC
     @IBOutlet weak var lbl_MyVisitorTime: UILabel!
     @IBOutlet weak var lbl_InvitedName: UILabel!
     
+    //created object to use reschedule button action in cell class
+    var objReschduling : (() -> Void)? = nil
+        
      //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton)
     {
         //TODO : Need to change mobile number here
          UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
     }
+    
+    //calling object on Reschedule button action
+    @IBAction func btnReschedule(_ sender: UIButton)
+    {
+        if let btnAction = self.objReschduling
+        {
+            btnAction()
+        }
+    }
+
+    //calling object on Cancel button action
+    @IBAction func btnCancel(_ sender: UIButton)
+    {
+        delegate?.deleteData(ind: (index?.row)!)
+    }
+    
     
     //To message your visitor directly from app
     @IBAction func btnMessage(_ sender: UIButton)

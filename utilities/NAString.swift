@@ -530,7 +530,7 @@ class NAString : NSObject
         return String ("Update")
     }
     func reschedule_alertBox() -> String {
-        return String ("Reschedule Dialog")
+        return String ("Reschedule")
     }
 }
 

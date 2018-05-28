@@ -138,6 +138,11 @@ class EditMyServicesViewController: NANavigationViewController {
         dv.newOtpString = passToOTP
         self.navigationController?.pushViewController(dv, animated: true)
         }
+        else
+        {
+        let lv = NAViewPresenter().myDailyServicesVC()
+        self.navigationController?.pushViewController(lv, animated: true)
+        }
     }
 }
 

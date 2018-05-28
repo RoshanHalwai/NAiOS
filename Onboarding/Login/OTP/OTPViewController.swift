@@ -99,9 +99,6 @@ class OTPViewController: NANavigationViewController, UITextFieldDelegate
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         }
-        
-       
-        
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool
