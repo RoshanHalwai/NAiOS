@@ -11,13 +11,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
 
     private var addMemberButton = UIButton()
     
-    
     var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen")]
-    var MySweetHomeName =  ["vinod"]
-    var MySweetHomeRelation = ["brother"]
+    var MySweetHomeName =  ["Vinod"]
+    var MySweetHomeRelation = ["Brother"]
     var MySweetHomeGrantAccess = ["Yes"]
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,12 +80,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
-        
-        
-        cell.Lbl_MySweetHomeName.text = MySweetHomeName[indexPath.row]
-        cell.Lbl_MySweetHomeRelation.text = MySweetHomeRelation[indexPath.row]
-        cell.Lbl_MySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
-        
+    
+        cell.lbl_mySweetHomeName.text = MySweetHomeName[indexPath.row]
+        cell.lbl_mySweetHomeRelation.text = MySweetHomeRelation[indexPath.row]
+        cell.lbl_mySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
@@ -102,30 +97,31 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
     
-        
         //setting the image in round shape
         cell.MySweeetHomeimg.layer.cornerRadius = cell.MySweeetHomeimg.frame.size.width/2
         cell.MySweeetHomeimg.clipsToBounds = true
         
         //setting fonts for labels
-        cell.Lbl_MySweetHomeName.font = NAFont().headerFont()
-        cell.Lbl_MySweetHomeRelation.font = NAFont().headerFont()
-        cell.Lbl_MySweetHomeGrantAccess.font = NAFont().headerFont()
-        cell.lbl_mysweethomename.font = NAFont().headerFont()
-        cell.lbl_mysweethomeRelation.font = NAFont().headerFont()
-        cell.lbl_mysweethomeGrantAccess.font = NAFont().headerFont()
-        cell.lblcall_mysweethome.font = NAFont().headerFont()
-        cell.lblmessage_mysweethome.font = NAFont().headerFont()
-        cell.lbledit_mysweethome.font = NAFont().headerFont()
-        cell.lblremove_mysweethome.font = NAFont().headerFont()
-        
+        cell.lbl_MySweetHomeName.font = NAFont().headerFont()
+        cell.lbl_MySweetHomeRelation.font = NAFont().headerFont()
+        cell.lbl_MySweetHomeGrantAccess.font = NAFont().headerFont()
+        cell.lbl_mySweetHomeName.font = NAFont().headerFont()
+        cell.lbl_mySweetHomeRelation.font = NAFont().headerFont()
+        cell.lbl_mySweetHomeGrantAccess.font = NAFont().headerFont()
+        cell.lbl_Call.font = NAFont().headerFont()
+        cell.lbl_Message.font = NAFont().headerFont()
+        cell.lbl_Edit.font = NAFont().headerFont()
+        cell.lbl_Remove.font = NAFont().headerFont()
         
         //setting strings to labels
-        cell.lbl_mysweethomename.text = NAString().name()
-        cell.lbl_mysweethomeRelation.text = NAString().relation()
-        cell.lbl_mysweethomeGrantAccess.text = NAString().grant_access()
-        
-        
+        cell.lbl_mySweetHomeName.text = NAString().name()
+        cell.lbl_mySweetHomeRelation.text = NAString().relation()
+        cell.lbl_mySweetHomeGrantAccess.text = NAString().grant_access()
+        cell.lbl_Call.text = NAString().call()
+        cell.lbl_Message.text = NAString().message()
+        cell.lbl_Edit.text = NAString().edit()
+        cell.lbl_Remove.text = NAString().remove()
+    
     return cell
 }
 }
