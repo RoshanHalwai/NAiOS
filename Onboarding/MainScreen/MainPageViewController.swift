@@ -15,7 +15,6 @@ class MainPageViewController: UIPageViewController,UIPageViewControllerDataSourc
     
     var VC: UIViewController?
     var currentIndex = 0
-    var customView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +34,7 @@ class MainPageViewController: UIPageViewController,UIPageViewControllerDataSourc
     {
         if currentIndex <= 1 {
             currentIndex = currentIndex - 1
+            
         }
         let tmpVc =  sb.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
         tmpVc.currentIndex = currentIndex
@@ -60,11 +60,6 @@ class MainPageViewController: UIPageViewController,UIPageViewControllerDataSourc
     }
     
     public func presentationCount(for pageViewController: UIPageViewController) -> Int {
-        return 2
-    }
-    
-    public func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        
         return 2
     }
 }
