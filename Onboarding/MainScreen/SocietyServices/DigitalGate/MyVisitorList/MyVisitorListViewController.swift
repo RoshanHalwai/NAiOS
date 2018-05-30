@@ -115,8 +115,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
             txt_ReDate.inputView = pickerDate
             
             pickerDate.datePickerMode = .date
-        }
-        
+            
         alert.addTextField { (txt_ReTime) in
             txt_ReTime.placeholder = "Modify Time from here"
             txt_ReTime.borderStyle = .none
@@ -145,6 +144,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
             print("Cancel")
         }
         
+            
         //creating Accept alert actions
         let rescheduleAction = UIAlertAction(title: "Reschedule", style: .default) { (action) in
             print("Reschedule")
@@ -152,17 +152,31 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         
         alert.addAction(cancelAction)
         alert.addAction(rescheduleAction)
-        present(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
+    }
+        
+    }
+    
+    //date action fucntion
+    @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
+        // format date
+        let date = DateFormatter()
+        date.dateFormat = "MMM d, YYYY"
+        let dateString = date.string(from: picker.date)
+        txtDate.text = dateString
+        self.view.endEditing(true)
     }
 }
 
 extension MyVisitorListViewController : dataCollectionProtocol{
-  
-    func deleteData(ind: Int) {
-        cardImageList.remove(at: ind)
+
+    func deleteData(ind: IndexPath) {
+        cardImageList.remove(at: ind.row)
+        collectionView.beginInteractiveMovementForItem(at: ind)
         
-    
-        
+        collectionView?.performBatchUpdates({() -> Void in self.collectionView?.deleteItems(at: [ind])}, completion: nil)
+
         collectionView.reloadData()
     }
 }
+
