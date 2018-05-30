@@ -149,16 +149,13 @@ class EditMyServicesViewController: NANavigationViewController {
  //Created separate extention to use UITextfiled delegate Properties
 extension EditMyServicesViewController : UITextFieldDelegate
 {
-    
     func configureTextFields()
     {
         txt_MobileNo.delegate = self
         txt_Name.delegate = self
         txt_InTime.delegate = self
         txt_MobileNo.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-        
         txt_Name.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-       
     }
     
     //Created to Dismiss keyboard when return key is pressed
@@ -168,7 +165,7 @@ extension EditMyServicesViewController : UITextFieldDelegate
     }
 
 @objc func textFieldDidChange(textField: UITextField) {
-        //your code
+    
     if textField == txt_MobileNo {
         lbl_Description.isHidden = false
     }
