@@ -22,9 +22,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
+    
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         self.navigationItem.title = ""

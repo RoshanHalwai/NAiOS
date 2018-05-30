@@ -442,7 +442,7 @@ class NAString : NSObject
     
     //visitor list
     func visitor() -> String {
-        return String("Visitor")
+        return String("Visitor:")
     }
     func type() -> String {
         return String("Type:")
