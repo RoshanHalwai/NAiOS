@@ -18,6 +18,14 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
     var MyVisitorTime = ["12:14","14:09","09:12","05:50"]
     var InvitorName = ["Vinod Kumar","Rohit Mishra","Yuvaraj","Akash Patel"]
     
+    //Handed Things to My Daily Services array for displaying card view data
+    var cardImageHandedThigs = [#imageLiteral(resourceName: "splashScreen")]
+    var nameHandedThings = ["Ramesh"]
+    var typeHandedThings = ["cook"]
+    var ratingHandedThings = ["4.2"]
+    var inTimeHandedThings = ["14:30"]
+    var flatHandedThings = ["4"]
+    
      //set title from previous page
     var titleName =  String()
 
@@ -34,14 +42,23 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        if (titleName == NAString().handed_things_to_my_guest().capitalized)
+        {
         return cardImageList.count
+        }
+        else
+        {
+            return cardImageHandedThigs.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        
+    
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestCollectionViewCell
         
+          if (titleName == NAString().handed_things_to_my_guest().capitalized)
+          {
             cell.lbl_VisiterName.text = InvitorName[indexPath.row]
             cell.lbl_GuestDate.text = MyVisitorDate[indexPath.row]
             cell.lbl_GuestTime.text = MyVisitorTime[indexPath.row]
@@ -49,6 +66,31 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
             cell.lbl_GuestType.text = MyVisitorType[indexPath.row]
             cell.cellImage
                 .image = cardImageList[indexPath.row]
+            
+            //assining title to cell Labels
+            cell.lbl_Visiter.text = NAString().visitor()
+            cell.lbl_Type.text = NAString().type()
+            cell.lbl_Date.text = NAString().date()
+            cell.lbl_Time.text = NAString().time()
+            cell.lbl_Invited.text = NAString().invited_by()
+        }
+        else{
+            cell.lbl_VisiterName.text = nameHandedThings[indexPath.row]
+            cell.lbl_GuestType.text = typeHandedThings[indexPath.row]
+            cell.lbl_GuestDate.text = ratingHandedThings[indexPath.row]
+            cell.lbl_GuestTime.text = inTimeHandedThings[indexPath.row]
+            cell.lbl_GuestInvitedBy.text = flatHandedThings[indexPath.row]
+           
+            cell.cellImage
+                .image = cardImageHandedThigs[indexPath.row]
+            
+             //assining title to cell Labels
+            cell.lbl_Visiter.text = NAString().name()
+            cell.lbl_Type.text = NAString().type()
+            cell.lbl_Date.text = NAString().rating()
+            cell.lbl_Time.text = NAString().time()
+            cell.lbl_Invited.text = NAString().flats()
+        }
        
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
