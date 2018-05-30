@@ -91,6 +91,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         txt_Name.underlined()
         txt_MobileNo.underlined()
         txt_Relation.underlined()
+        txt_CountryCode.underlined()
     
         //label formatting & setting
         self.lbl_OR.font = NAFont().headerFont()
@@ -110,6 +111,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         self.txt_Name.font = NAFont().textFieldFont()
         self.txt_CountryCode.font = NAFont().textFieldFont()
         self.txt_Relation.font = NAFont().textFieldFont()
+        self.txt_CountryCode.text = NAString()._91()
         
         //button formatting & setting
         self.btn_SelectContact.backgroundColor = NAColor().buttonBgColor()
