@@ -133,10 +133,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                 
                 if success {
                     self.openContacts()
+                    print("Authorization")
                 }
                 else
                 {
                     print("No Authorization")
+                   
                 }
             })
         }
@@ -144,6 +146,24 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         {
             self.openContacts()
             print("Get Authorization")
+        }
+        
+        //Open App Setting if user cannot able to access Contacts
+        else if authStatus == CNAuthorizationStatus.denied
+        {
+            //creating alert controller
+            let alert = UIAlertController(title: "Please allow permission from settings" , message: nil, preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            }
+            
+            let settingAction = UIAlertAction(title: "Settings", style: .default) { (action) in
+                 UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)
+            }
+            
+            alert.addAction(cancelAction)
+            alert.addAction(settingAction)
+            present(alert, animated: true, completion: nil)
         }
     }
     
