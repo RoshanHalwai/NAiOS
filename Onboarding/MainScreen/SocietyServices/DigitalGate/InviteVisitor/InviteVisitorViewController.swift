@@ -152,7 +152,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         else if authStatus == CNAuthorizationStatus.denied
         {
             //creating alert controller
-            let alert = UIAlertController(title: "Please allow permission from settings" , message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: NAString().setting_Permission() , message: nil, preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             }
