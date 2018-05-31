@@ -537,5 +537,15 @@ class NAString : NSObject
     func reschedule_alertBox() -> String {
         return String ("Reschedule")
     }
+    
+    //settings permission
+    func setting_Permission_AlertBox() -> String {
+        return String ("Please allow permission from settings")
+    }
+    
+    func settings() -> String {
+        return String ("Settings")
+    }
+    
 }
 

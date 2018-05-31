@@ -260,6 +260,24 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
             self.openContacts()
             print("Get Authorization")
         }
+            
+        //Open App Setting if user cannot able to access Contacts
+        else if authStatus == CNAuthorizationStatus.denied
+        {
+            //creating alert controller
+            let alert = UIAlertController(title: NAString().setting_Permission_AlertBox() , message: nil, preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: NAString().cancel(), style: .cancel) { (action) in
+            }
+            
+            let settingAction = UIAlertAction(title: NAString().settings(), style: .default) { (action) in
+                UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)
+            }
+            
+            alert.addAction(cancelAction)
+            alert.addAction(settingAction)
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     //to call default address book app
