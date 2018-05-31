@@ -539,8 +539,13 @@ class NAString : NSObject
     }
     
     //settings permission
-    func setting_Permission() -> String {
+    func setting_Permission_AlertBox() -> String {
         return String ("Please allow permission from settings")
     }
+    
+    func settings() -> String {
+        return String ("Settings")
+    }
+    
 }
 

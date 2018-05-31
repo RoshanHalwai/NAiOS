@@ -265,12 +265,12 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         else if authStatus == CNAuthorizationStatus.denied
         {
             //creating alert controller
-            let alert = UIAlertController(title: NAString().setting_Permission() , message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: NAString().setting_Permission_AlertBox() , message: nil, preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            let cancelAction = UIAlertAction(title: NAString().cancel(), style: .cancel) { (action) in
             }
             
-            let settingAction = UIAlertAction(title: "Settings", style: .default) { (action) in
+            let settingAction = UIAlertAction(title: NAString().settings(), style: .default) { (action) in
                 UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)
             }
             
