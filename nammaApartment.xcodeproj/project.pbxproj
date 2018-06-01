@@ -31,6 +31,7 @@
 		8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012A209715D5004B28EB /* splashNammaApartments.swift */; };
 		8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012C209715E5004B28EB /* splashApartmentServices.swift */; };
 		8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012E209715FD004B28EB /* splashSocietyServices.swift */; };
+		86494B8D20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86494B8C20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift */; };
 		86548D7E209C1F7500C700DA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D7D209C1F7500C700DA /* DataModel.swift */; };
 		86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */; };
 		86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D81209C1FB500C700DA /* MainScreenViewController.swift */; };
@@ -118,6 +119,7 @@
 		8627012A209715D5004B28EB /* splashNammaApartments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashNammaApartments.swift; sourceTree = "<group>"; };
 		8627012C209715E5004B28EB /* splashApartmentServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashApartmentServices.swift; sourceTree = "<group>"; };
 		8627012E209715FD004B28EB /* splashSocietyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashSocietyServices.swift; sourceTree = "<group>"; };
+		86494B8C20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescheduleMyVisitorListViewController.swift; sourceTree = "<group>"; };
 		86548D7D209C1F7500C700DA /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
 		86548D81209C1FB500C700DA /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 			children = (
 				86BF6A4020A0325200B175A1 /* MyVistorListCollectionViewCell.swift */,
 				86BF6A4220A0326E00B175A1 /* MyVisitorListViewController.swift */,
+				86494B8C20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift */,
 			);
 			path = MyVisitorList;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
+				86494B8D20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

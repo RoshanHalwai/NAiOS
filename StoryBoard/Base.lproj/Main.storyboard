@@ -1210,6 +1210,122 @@
             </objects>
             <point key="canvasLocation" x="1518" y="2723"/>
         </scene>
+        <!--Reschedule My Visitor List View Controller-->
+        <scene sceneID="Lw6-bf-p2s">
+            <objects>
+                <viewController storyboardIdentifier="rescheduleMyVisitorVC" modalPresentationStyle="overCurrentContext" id="pQ4-Mt-NNo" customClass="RescheduleMyVisitorListViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qEG-tv-uUG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ry4-Fb-evj">
+                                <rect key="frame" x="20" y="145" width="335" height="340"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rescheduling Your Visitor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fz-XI-LY8">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="39"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="nRi-fL-yOl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rechedule Date " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zAa-ER-Gya">
+                                        <rect key="frame" x="20" y="44" width="295" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="7Lf-vg-v2D"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0LO-dc-dqG">
+                                        <rect key="frame" x="0.0" y="152" width="335" height="129"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="129" id="Nlr-kf-KLh"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="549523556.46853697">
+                                            <!--2018-06-01 05:25:56 +0000-->
+                                        </date>
+                                        <connections>
+                                            <action selector="datePicker:" destination="pQ4-Mt-NNo" eventType="valueChanged" id="tvN-MM-v9t"/>
+                                        </connections>
+                                    </datePicker>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-Aa-RCm">
+                                        <rect key="frame" x="0.0" y="301" width="335" height="39"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAM-dN-QXZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="39"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <action selector="btnCancel:" destination="pQ4-Mt-NNo" eventType="touchUpInside" id="GUf-t4-kVM"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e28-iQ-3Qx">
+                                                <rect key="frame" x="167.5" y="0.0" width="167.5" height="39"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Reschedule"/>
+                                                <connections>
+                                                    <action selector="btnReschedule:" destination="pQ4-Mt-NNo" eventType="touchUpInside" id="1RB-As-d5P"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rechedule Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDN-MI-bhi">
+                                        <rect key="frame" x="20" y="93" width="295" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="086-tT-R94"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="3Fz-XI-LY8" secondAttribute="trailing" id="717-Vo-M0r"/>
+                                    <constraint firstItem="3Fz-XI-LY8" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" id="7Ik-0N-ghR"/>
+                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="top" secondItem="0LO-dc-dqG" secondAttribute="bottom" constant="20" id="If8-Iy-Gkh"/>
+                                    <constraint firstItem="zAa-ER-Gya" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" constant="20" id="Izn-Mv-ROb"/>
+                                    <constraint firstItem="0LO-dc-dqG" firstAttribute="leading" secondItem="3Fz-XI-LY8" secondAttribute="leading" id="N0Q-Yn-NZR"/>
+                                    <constraint firstItem="EDN-MI-bhi" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" constant="20" id="PKU-0J-b8m"/>
+                                    <constraint firstItem="3Fz-XI-LY8" firstAttribute="top" secondItem="Ry4-Fb-evj" secondAttribute="top" id="RiX-wT-0ja"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Og-Aa-RCm" secondAttribute="bottom" id="TPT-Xr-qZI"/>
+                                    <constraint firstAttribute="trailing" secondItem="EDN-MI-bhi" secondAttribute="trailing" constant="20" id="VuD-z7-VfT"/>
+                                    <constraint firstItem="EDN-MI-bhi" firstAttribute="top" secondItem="zAa-ER-Gya" secondAttribute="bottom" constant="10" id="bdG-5b-19b"/>
+                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="leading" secondItem="0LO-dc-dqG" secondAttribute="leading" id="bsi-XX-euP"/>
+                                    <constraint firstItem="zAa-ER-Gya" firstAttribute="top" secondItem="3Fz-XI-LY8" secondAttribute="bottom" constant="5" id="gxm-YL-6No"/>
+                                    <constraint firstItem="0LO-dc-dqG" firstAttribute="top" secondItem="EDN-MI-bhi" secondAttribute="bottom" constant="20" id="kdI-a9-R9I"/>
+                                    <constraint firstItem="0LO-dc-dqG" firstAttribute="trailing" secondItem="3Fz-XI-LY8" secondAttribute="trailing" id="nYK-mQ-Ym1"/>
+                                    <constraint firstAttribute="trailing" secondItem="zAa-ER-Gya" secondAttribute="trailing" constant="20" id="pZg-0q-ygu"/>
+                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="trailing" secondItem="0LO-dc-dqG" secondAttribute="trailing" id="uQ8-0o-k8y"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.82384200507614214" green="0.82384200507614214" blue="0.82384200507614214" alpha="0.4044038955479452" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RoA-9V-I7X" firstAttribute="bottom" secondItem="Ry4-Fb-evj" secondAttribute="bottom" constant="182" id="DEW-7r-nfF"/>
+                            <constraint firstItem="Ry4-Fb-evj" firstAttribute="top" secondItem="RoA-9V-I7X" secondAttribute="top" constant="125" id="G1i-qf-0rZ"/>
+                            <constraint firstItem="RoA-9V-I7X" firstAttribute="trailing" secondItem="Ry4-Fb-evj" secondAttribute="trailing" constant="20" id="m3F-ib-36N"/>
+                            <constraint firstItem="Ry4-Fb-evj" firstAttribute="leading" secondItem="RoA-9V-I7X" secondAttribute="leading" constant="20" id="rNX-AH-xJH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RoA-9V-I7X"/>
+                    </view>
+                    <connections>
+                        <outlet property="btn_Cancel" destination="WAM-dN-QXZ" id="1ez-fS-2ND"/>
+                        <outlet property="btn_Reschedule" destination="e28-iQ-3Qx" id="aAB-DO-uz8"/>
+                        <outlet property="datePicker" destination="0LO-dc-dqG" id="UQJ-Q6-4kg"/>
+                        <outlet property="lbl_Title" destination="3Fz-XI-LY8" id="JkO-vc-SNd"/>
+                        <outlet property="txt_ReDate" destination="zAa-ER-Gya" id="eqb-2L-cCW"/>
+                        <outlet property="txt_ReTime" destination="EDN-MI-bhi" id="tM1-W5-mdu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EkG-59-5Id" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2168.8000000000002" y="2721.5892053973016"/>
+        </scene>
         <!--Notify Digi Gate View Controller-->
         <scene sceneID="5ng-nd-fxE">
             <objects>
@@ -1284,7 +1400,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ChU-Ig-4oy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2225" y="2723"/>
+            <point key="canvasLocation" x="2900" y="2723"/>
         </scene>
         <!--Expecting Cab Arrival View Controller-->
         <scene sceneID="Nvl-7K-l2z">
@@ -2551,7 +2667,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anV-uu-yVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5127" y="3394"/>
+            <point key="canvasLocation" x="5089" y="3394"/>
         </scene>
         <!--Edit My Services View Controller-->
         <scene sceneID="qmR-zQ-a5l">

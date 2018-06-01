@@ -537,5 +537,15 @@ class NAString : NSObject
     func setting_Permission() -> String {
         return String ("Please allow permission from settings")
     }
+    
+    //date & time format
+    func dateFormate() -> String {
+        return String("MMM d, YYYY")
+    }
+    
+    func timeFormate() -> String {
+        return String("HH:mm")
+    }
+    
 }
 
