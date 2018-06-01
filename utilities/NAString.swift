@@ -545,7 +545,15 @@ class NAString : NSObject
     
     func settings() -> String {
         return String ("Settings")
+        
+    //date & time format
+    func dateFormate() -> String {
+        return String("MMM d, YYYY")
+    }
+    
+    func timeFormate() -> String {
+        return String("HH:mm")
     }
     
 }
-
+}
