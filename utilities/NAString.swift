@@ -545,6 +545,7 @@ class NAString : NSObject
     
     func settings() -> String {
         return String ("Settings")
+    }
         
     //date & time format
     func dateFormate() -> String {
@@ -554,6 +555,4 @@ class NAString : NSObject
     func timeFormate() -> String {
         return String("HH:mm")
     }
-    
-}
 }
