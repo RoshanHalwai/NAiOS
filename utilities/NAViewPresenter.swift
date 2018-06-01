@@ -71,7 +71,14 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "editMyServicesVc") as! EditMyServicesViewController
     }
     
+    //reschedule my visitor list
+    func rescheduleMyVisitorVC() -> RescheduleMyVisitorListViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "rescheduleMyVisitorVC") as! RescheduleMyVisitorListViewController
+    }
     
+    func mainScreenVCID() -> String {
+        return String("mainScreenVC")
+    }
     
     
 }

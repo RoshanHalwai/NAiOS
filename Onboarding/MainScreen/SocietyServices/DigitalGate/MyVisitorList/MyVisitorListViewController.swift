@@ -26,6 +26,20 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         self.navigationItem.title = ""
+        
+        //created custom back button for goto digi gate screen
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    //created custome back button to go back to digi gate
+    @objc func goBackToDigiGate()
+    {
+        let vcName = UIStoryboard(name: "Main", bundle: nil)
+        let destVC = vcName.instantiateViewController(withIdentifier:NAViewPresenter().mainScreenVCID())
+        self.navigationController?.pushViewController(destVC, animated: true)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -81,85 +95,22 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         return cell
     }
 
-    //create function to generate alert with UITextFields
+    //create function to show subview with rechedule view
     func rescheduling() {
-        //creating alert controller
-        let alert = UIAlertController(title: NAString().reschedule_alertBox() , message: nil, preferredStyle: .alert)
-    
-        //datePicker toolbar
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
+       let dv = NAViewPresenter().rescheduleMyVisitorVC()
+       self.navigationController?.pushViewController(dv, animated: true)
         
-        //adding UITextField to show Date & Time
-        alert.addTextField { (txt_ReDate) in
-            txt_ReDate.placeholder = "Modify Date from here"
-            txt_ReDate.borderStyle = UITextBorderStyle.roundedRect
-            txt_ReDate.borderStyle = .none
-            txt_ReDate.addConstraint(txt_ReDate.heightAnchor.constraint(equalToConstant: 40))
-            //textfield formatting & Setting
-            txt_ReDate.font = NAFont().textFieldFont()
+        //hide navigation bar with backButton
+        self.navigationController?.isNavigationBarHidden = true
+        self.navigationItem.hidesBackButton = true
         
-            txt_ReDate.rightViewMode = UITextFieldViewMode.always
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            let image = UIImage(named: "newCalender")
-            imageView.image = image
-            txt_ReDate.rightView = imageView
-            
-            //datePicker show Date Only
-            let pickerDate = UIDatePicker()
-            pickerDate.locale = Locale(identifier: "en_GB")
-            
-            txt_ReDate.inputAccessoryView = toolbar
-            txt_ReDate.inputView = pickerDate
-            
-            pickerDate.datePickerMode = .date
-            
-        alert.addTextField { (txt_ReTime) in
-            txt_ReTime.placeholder = "Modify Time from here"
-            txt_ReTime.borderStyle = .none
-            txt_ReTime.addConstraint(txt_ReTime.heightAnchor.constraint(equalToConstant: 40))
-            //textfield formatting & Setting
-            txt_ReTime.font = NAFont().textFieldFont()
-            
-            txt_ReTime.rightViewMode = UITextFieldViewMode.always
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            let image = UIImage(named: "newClock")
-            imageView.image = image
-            txt_ReTime.rightView = imageView
-            
-            //datePicker Show Time Only
-            let pickerTime = UIDatePicker()
-            pickerTime.locale = Locale(identifier: "en_GB")
-            
-            txt_ReTime.inputAccessoryView = toolbar
-            txt_ReTime.inputView = pickerTime
-            
-            pickerTime.datePickerMode = .time
         }
-        
-        //creating Reject alert actions
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
-            print("Cancel")
-        }
-        
-            
-        //creating Accept alert actions
-        let rescheduleAction = UIAlertAction(title: "Reschedule", style: .default) { (action) in
-            print("Reschedule")
-        }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(rescheduleAction)
-        self.present(alert, animated: true, completion: nil)
-    }
-        
-    }
-    
+
     //date action fucntion
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YYYY"
+        date.dateFormat = NAString().dateFormate()
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)

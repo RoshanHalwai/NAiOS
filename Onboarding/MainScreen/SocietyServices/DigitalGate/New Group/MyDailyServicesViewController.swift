@@ -212,7 +212,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             //new string which is comin from Edit My Services VC to store Particular Type of services.
             lv.servicesString = cell.lbl_MyDailyServiceType.text!
             
-             self.navigationController?.pushViewController(lv, animated: true)
+            self.navigationController?.pushViewController(lv, animated: true)
         }
         
         return cell
