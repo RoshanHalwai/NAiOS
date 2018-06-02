@@ -176,7 +176,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             present(alert, animated: true, completion: nil)
         }
     }
-
         
     //to call default address book app
     func openContacts()
@@ -210,7 +209,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         inviteAlertView()
     }
 
-    
     //AlertView For navigation
     func inviteAlertView() {
         
