@@ -281,6 +281,15 @@ class NAString : NSObject
         return String("INVITE")
     }
     
+    func inviteButtonAlertViewMessage() -> String {
+        return String("You have successfully invited your visitor")
+    }
+    
+    func inviteButtonAlertViewTitle() -> String {
+        return String("Invitation Message")
+    }
+    
+    
     //MyVisitorList
     func myVisitorViewTitle() -> String {
         return String("My Visitor List")
@@ -545,6 +554,20 @@ class NAString : NSObject
     
     func timeFormate() -> String {
         return String("HH:mm")
+    }
+    
+    //Misc
+    func gallery() -> String {
+        return String("Gallery")
+    }
+    func camera() -> String {
+        return String("Camera")
+    }
+    func ok() -> String {
+        return String("OK")
+    }
+    func settings() -> String {
+        return String("Settings")
     }
     
 }
