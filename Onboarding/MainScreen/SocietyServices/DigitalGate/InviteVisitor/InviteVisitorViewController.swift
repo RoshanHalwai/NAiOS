@@ -156,33 +156,27 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         {
             self.openContacts()
             print("Get Authorization")
-
         }
-        
+
         //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied
         {
             //creating alert controller
-            let alert = UIAlertController(title: NAString().setting_Permission_AlertBox() , message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title:NAString().setting_Permission_AlertBox() , message: nil, preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: NAString().cancel(), style: .cancel) { (action) in
-            }
-            
-            let settingAction = UIAlertAction(title: NAString().settings(), style: .default) { (action) in
-
             let cancelAction = UIAlertAction(title:NAString().cancel(), style: .cancel) { (action) in
             }
             
             let settingAction = UIAlertAction(title:NAString().settings(), style: .default) { (action) in
-
-                 UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)
+                UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)
             }
             
             alert.addAction(cancelAction)
             alert.addAction(settingAction)
-            self.present(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
     }
+
         
     //to call default address book app
     func openContacts()
@@ -211,6 +205,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         self.txtInvitorMobile.text = mobileNo
     }
     
+    //Navigate to My Visitor List Screen After Click on Inviting button alertView
+    @IBAction func btnInviteVisitor(_ sender: UIButton) {
+        inviteAlertView()
+    }
+
+    
     //AlertView For navigation
     func inviteAlertView() {
         
@@ -229,12 +229,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     }
     }
     
-    @IBAction func btnInviteVisitor(_ sender: UIButton) {
-        let dv = NAViewPresenter().myVisitorListVC()
-        self.navigationController?.pushViewController(dv, animated: true)
-    }
-}
-
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate
 {
     //Function to appear select image from by tapping image
