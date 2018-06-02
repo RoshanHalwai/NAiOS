@@ -744,7 +744,7 @@
                                                             <color key="titleColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="btnInviteVisitor:" destination="eOT-LZ-0gx" eventType="touchUpInside" id="uUK-Mc-PjO"/>
+                                                            <action selector="btnInviteVisitor:" destination="eOT-LZ-0gx" eventType="touchUpInside" id="kr2-6Q-rl4"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

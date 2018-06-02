@@ -156,6 +156,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         {
             self.openContacts()
             print("Get Authorization")
+
         }
         
         //Open App Setting if user cannot able to access Contacts
@@ -179,10 +180,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             alert.addAction(cancelAction)
             alert.addAction(settingAction)
-            present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
-    
+        
     //to call default address book app
     func openContacts()
     {
@@ -210,11 +211,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         self.txtInvitorMobile.text = mobileNo
     }
     
-    //Navigate to My Visitor List Screen After Click on Inviting button alertView
-    @IBAction func btnInviteVisitor(_ sender: UIButton) {
-        inviteAlertView()
-    }
-    
     //AlertView For navigation
     func inviteAlertView() {
         
@@ -231,7 +227,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-}
+    }
+    
+    @IBAction func btnInviteVisitor(_ sender: UIButton) {
+        let dv = NAViewPresenter().myVisitorListVC()
+        self.navigationController?.pushViewController(dv, animated: true)
+    }
 }
 
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate
