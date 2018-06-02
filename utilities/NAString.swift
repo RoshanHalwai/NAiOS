@@ -575,8 +575,5 @@ class NAString : NSObject
     func ok() -> String {
         return String("OK")
     }
-    func settings() -> String {
-        return String("Settings")
-    }
     
 }

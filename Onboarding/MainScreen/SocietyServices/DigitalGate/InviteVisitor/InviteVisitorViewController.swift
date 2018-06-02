@@ -232,6 +232,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         present(alert, animated: true, completion: nil)
     }
 }
+}
 
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate
 {
