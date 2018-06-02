@@ -37,9 +37,8 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate()
     {
-        let vcName = UIStoryboard(name: "Main", bundle: nil)
-        let destVC = vcName.instantiateViewController(withIdentifier:NAViewPresenter().mainScreenVCID())
-        self.navigationController?.pushViewController(destVC, animated: true)
+        let dv = NAViewPresenter().digiGateVC()
+        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -20,9 +20,11 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var txtInvitorMobile: UITextField!
     @IBOutlet weak var btnSelectContact: UIButton!
    
-     @IBOutlet weak var lbl_InviteDescription: UILabel!
+    @IBOutlet weak var lbl_InviteDescription: UILabel!
     @IBOutlet weak var btnInviteVisitor: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    
+     @IBOutlet weak var img_Profile: UIImageView!
    
     //created date picker programtically
     let picker = UIDatePicker()
@@ -34,13 +36,22 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //tapGasture for upload new image
+        img_Profile.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
+        self.img_Profile.addGestureRecognizer(tapGesture)
+        
         //placing image calender imgage inside the Date&Time TextField
         self.txtDate.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         let image = UIImage(named: "newCalender")
         imageView.image = image
         txtDate.rightView = imageView
-       
+        
+        //creating image round
+        self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
+        img_Profile.clipsToBounds = true
+        
        //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: NAString().visitorNameViewTitle())
         self.navigationItem.title = ""
@@ -64,7 +75,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         txtInvitorMobile.text = dataMobile
         
         //scrollView
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0)
 
         //For Textfield under black line
         txtDate.underlined()
@@ -138,7 +149,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                 else
                 {
                     print("No Authorization")
-                   
                 }
             })
         }
@@ -158,6 +168,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             }
             
             let settingAction = UIAlertAction(title: NAString().settings(), style: .default) { (action) in
+
+            let cancelAction = UIAlertAction(title:NAString().cancel(), style: .cancel) { (action) in
+            }
+            
+            let settingAction = UIAlertAction(title:NAString().settings(), style: .default) { (action) in
+
                  UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)
             }
             
@@ -194,4 +210,77 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         self.txtInvitorMobile.text = mobileNo
     }
     
+    //Navigate to My Visitor List Screen After Click on Inviting button alertView
+    @IBAction func btnInviteVisitor(_ sender: UIButton) {
+        inviteAlertView()
+    }
+    
+    //AlertView For navigation
+    func inviteAlertView() {
+        
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().inviteButtonAlertViewTitle() , message: NAString().inviteButtonAlertViewMessage(), preferredStyle: .alert)
+       
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+            
+            let dv = NAViewPresenter().myVisitorListVC()
+            self.navigationController?.pushViewController(dv, animated: true)
+        }
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
 }
+
+extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate
+{
+    //Function to appear select image from by tapping image
+    @objc func imageTapped()
+    {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let actionCamera = UIAlertAction(title: NAString().camera(), style: .default, handler: {
+            
+            (alert: UIAlertAction!) -> Void in
+            let pickerController = UIImagePickerController()
+            pickerController.delegate = self
+            pickerController.sourceType = UIImagePickerControllerSourceType.camera
+            pickerController.allowsEditing = true
+            
+            self.present(pickerController, animated: true, completion: nil)
+    
+        })
+        
+        let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
+            
+            (alert: UIAlertAction!) -> Void in
+            let pickerController = UIImagePickerController()
+            pickerController.delegate = self
+            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            pickerController.allowsEditing = true
+            
+            self.present(pickerController, animated: true, completion: nil)
+        })
+        
+        let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
+            
+            (alert: UIAlertAction!) -> Void in
+        })
+        
+        actionSheet.addAction(actionCamera)
+        actionSheet.addAction(actionGallery)
+        actionSheet.addAction(cancel)
+        
+        actionSheet.view.tintColor = UIColor.black
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            img_Profile.image = image
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
