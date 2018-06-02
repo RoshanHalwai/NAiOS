@@ -89,21 +89,21 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
 
         //calling Reschdule button action on particular cell
         cell.objReschduling = {
-            self.rescheduling()
+        
+            let dv = NAViewPresenter().rescheduleMyVisitorVC()
+            self.navigationController?.pushViewController(dv, animated: true)
+            
+            //passing cell date & time to Reschedule VC
+            dv.getTime = cell.lbl_MyVisitorTime.text!
+            dv.getDate = cell.lbl_MyVisitorDate.text!
+            
+            //hide navigation bar with backButton
+            self.navigationController?.isNavigationBarHidden = true
+            self.navigationItem.hidesBackButton = true
+            
         }
         return cell
     }
-
-    //create function to show subview with rechedule view
-    func rescheduling() {
-       let dv = NAViewPresenter().rescheduleMyVisitorVC()
-       self.navigationController?.pushViewController(dv, animated: true)
-        
-        //hide navigation bar with backButton
-        self.navigationController?.isNavigationBarHidden = true
-        self.navigationItem.hidesBackButton = true
-        
-        }
 
     //date action fucntion
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
