@@ -1105,7 +1105,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkD-Qq-s1D">
                                                             <rect key="frame" x="87.5" y="0.0" width="47" height="32"/>
-                                                            <state key="normal" title="Message" image="message32"/>
+                                                            <state key="normal" image="message32"/>
                                                             <connections>
                                                                 <action selector="btnMessage:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="w6c-2E-rjT"/>
                                                             </connections>
@@ -1119,7 +1119,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-pt-PzB">
                                                             <rect key="frame" x="262" y="0.0" width="47" height="32"/>
-                                                            <state key="normal" title="Cancel" image="cancel32"/>
+                                                            <state key="normal" title="can" image="cancel32"/>
                                                             <connections>
                                                                 <action selector="btnCancel:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="Y4I-Ws-muf"/>
                                                             </connections>

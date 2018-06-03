@@ -46,7 +46,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cardImageList.count
+        return MyVisitorName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -100,7 +100,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
             //hide navigation bar with backButton
             self.navigationController?.isNavigationBarHidden = true
             self.navigationItem.hidesBackButton = true
-            
         }
         return cell
     }
@@ -117,14 +116,12 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
 }
 
 extension MyVisitorListViewController : dataCollectionProtocol{
+    func deleteData(indx: Int) {
 
-    func deleteData(ind: IndexPath) {
-        cardImageList.remove(at: ind.row)
-        collectionView.beginInteractiveMovementForItem(at: ind)
-        
-        collectionView?.performBatchUpdates({() -> Void in self.collectionView?.deleteItems(at: [ind])}, completion: nil)
-
+            MyVisitorName.remove(at: indx)
+            collectionView.beginInteractiveMovementForItem(at: [indx])
         collectionView.reloadData()
     }
+    
 }
 
