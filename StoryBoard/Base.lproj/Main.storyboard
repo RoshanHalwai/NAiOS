@@ -2314,7 +2314,7 @@
                                                                 <action selector="btnCall:" destination="8By-VR-XWJ" eventType="touchUpInside" id="QWn-OE-v3O"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-Oa-d9L">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-Oa-d9L">
                                                             <rect key="frame" x="82.5" y="0.0" width="72" height="32"/>
                                                             <state key="normal" image="message32"/>
                                                             <connections>
@@ -2331,6 +2331,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="md6-Yv-2Q4">
                                                             <rect key="frame" x="247" y="0.0" width="72" height="32"/>
                                                             <state key="normal" image="cancel32"/>
+                                                            <connections>
+                                                                <action selector="btnCancel:" destination="8By-VR-XWJ" eventType="touchUpInside" id="ZxN-5f-ZDd"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -2343,7 +2346,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L2-RZ-bDZ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L2-RZ-bDZ">
                                                             <rect key="frame" x="80" y="0.0" width="69.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -2462,11 +2465,15 @@
                                             <outlet property="btn_Cancel" destination="md6-Yv-2Q4" id="Gwv-2S-Aah"/>
                                             <outlet property="btn_Edit" destination="MTC-8j-70L" id="Dks-5c-Mg9"/>
                                             <outlet property="btn_Message" destination="bxe-Oa-d9L" id="OkJ-Bl-ev6"/>
+                                            <outlet property="lbl_Call" destination="qJF-n8-evb" id="32V-7E-DXY"/>
+                                            <outlet property="lbl_Edit" destination="B13-Cn-24P" id="dbQ-ij-jNq"/>
+                                            <outlet property="lbl_Message" destination="5L2-RZ-bDZ" id="7Xi-e5-ulO"/>
                                             <outlet property="lbl_MyDailyServiceName" destination="8p0-dh-9w4" id="fpQ-3E-LvG"/>
                                             <outlet property="lbl_MyDailyServiceType" destination="CPp-s0-MNz" id="AiT-YT-8dP"/>
                                             <outlet property="lbl_MyDailyServicesFlats" destination="5KH-Qi-HKa" id="p0D-4s-fyp"/>
                                             <outlet property="lbl_MyDailyServicesInTime" destination="8ne-v2-aT3" id="vgg-Ui-iKH"/>
                                             <outlet property="lbl_MyDailyServicesRating" destination="6Ai-uI-8iD" id="7PE-tW-ood"/>
+                                            <outlet property="lbl_Remove" destination="XnO-YA-P7X" id="06V-R2-hHN"/>
                                             <outlet property="lbl_myDailyFlats" destination="GgV-8g-9OQ" id="h66-fc-Ob6"/>
                                             <outlet property="lbl_myDailyName" destination="Won-Ie-Bhy" id="RR1-7v-P0Q"/>
                                             <outlet property="lbl_myDailyRating" destination="fJZ-nQ-de1" id="yez-01-XRD"/>
@@ -2491,6 +2498,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mAs-0R-Auy"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="XyI-gK-YVG" id="s44-Hm-2wR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZm-4K-8O7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

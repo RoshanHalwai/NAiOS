@@ -21,6 +21,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     //Array of Action sheet items.
     var dailyService = ["Cook", "Maid", "Car/Bike Cleaning", "Child Day Care", "Daily Newspaper", "Milk Man", "Laundry", "Driver"]
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     //for floating Button
     private var roundButton = UIButton()
 
@@ -30,7 +32,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         //created backbuttom custome to go to digi gate screen
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
         self.navigationItem.leftBarButtonItem = backButton
-
         self.navigationItem.hidesBackButton = true
         
         //for creating floating button
@@ -47,9 +48,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate()
     {
-        let vcName = UIStoryboard(name: "Main", bundle: nil)
-        let destVC = vcName.instantiateViewController(withIdentifier: "digiGateVC")
-        self.navigationController?.pushViewController(destVC, animated: true)
+        let dv = NAViewPresenter().digiGateVC()
+        self.navigationController?.pushViewController(dv, animated: true)
     }
 
     //for setting & formatting floating button
@@ -77,7 +77,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     //for creating action sheet to select my daily services
     @IBAction func floatingButton(_ sender: UIButton)
     {
-        let actionSheet = UIAlertController(title: "My Daily Services", message: "Choose Your Services From Here.", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title:NAString().my_daily_services(), message: nil, preferredStyle: .actionSheet)
         
         let action1 = UIAlertAction(title: dailyService[0], style: .default, handler: dailyServiceSelected)
         let action2 = UIAlertAction(title: dailyService[1], style: .default, handler: dailyServiceSelected)
@@ -88,7 +88,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action7 = UIAlertAction(title: dailyService[6], style: .default, handler: dailyServiceSelected)
         let action8 = UIAlertAction(title: dailyService[7], style: .default, handler: dailyServiceSelected)
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+        let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
 
             (alert: UIAlertAction!) -> Void in
             self.roundButton.isHidden = false
@@ -113,7 +113,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     }
     
     func dailyServiceSelected(alert: UIAlertAction!) {
-        let lv : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
+        let lv = NAViewPresenter().addMySerivesVC()
         
         //temp variable
         let tempVar = alert.title!
@@ -134,7 +134,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return myDailyImages.count
+        return myDailyName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -161,27 +161,27 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         
-        //set button images in center
-        cell.btn_Call.contentMode = .center
-        cell.btn_Edit.contentMode = .center
-        cell.btn_Cancel.contentMode = .center
-        cell.btn_Message.contentMode = .center
-        
         //to display image in round shape
         cell.myDailyServicesImage.layer.cornerRadius = cell.myDailyServicesImage.frame.size.width/2
         cell.myDailyServicesImage.clipsToBounds = true
         
         //Labels Formatting & setting
-        cell.lbl_myDailytype.font = NAFont().headerFont()
         cell.lbl_MyDailyServiceName.font = NAFont().headerFont()
         cell.lbl_MyDailyServiceType.font = NAFont().headerFont()
         cell.lbl_MyDailyServicesInTime.font = NAFont().headerFont()
         cell.lbl_MyDailyServicesFlats.font = NAFont().headerFont()
         cell.lbl_MyDailyServicesRating.font = NAFont().headerFont()
-        cell.lbl_myDailyTime.font = NAFont().headerFont()
-        cell.lbl_myDailyFlats.font = NAFont().headerFont()
-        cell.lbl_myDailyName.font = NAFont().headerFont()
-        cell.lbl_myDailyRating.font = NAFont().headerFont()
+        
+        cell.lbl_myDailytype.font = NAFont().textFieldFont()
+        cell.lbl_myDailyTime.font = NAFont().textFieldFont()
+        cell.lbl_myDailyFlats.font = NAFont().textFieldFont()
+        cell.lbl_myDailyName.font = NAFont().textFieldFont()
+        cell.lbl_myDailyRating.font = NAFont().textFieldFont()
+        
+        cell.lbl_Call.text = NAString().call()
+        cell.lbl_Edit.text = NAString().edit()
+        cell.lbl_Remove.text = NAString().remove()
+        cell.lbl_Message.text = NAString().message()
         
         cell.lbl_myDailyName.text = NAString().name()
         cell.lbl_myDailytype.text = NAString().type()
@@ -189,16 +189,16 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_myDailyTime.text = NAString().time()
         cell.lbl_myDailyRating.text = NAString().rating()
         
-        //buttons formatting & setting
-        cell.btn_Call.setTitle(NAString().call(), for: .normal)
-        cell.btn_Message.setTitle(NAString().message(), for: .normal)
-        cell.btn_Cancel.setTitle(NAString().cancel(), for: .normal)
-        cell.btn_Edit.setTitle(NAString().edit(), for: .normal)
+        //delete particular cell from list
+        cell.index = indexPath
+        cell.delegate = self
         
         //calling button action on particular cell
         cell.yourobj = {
             let lv = NAViewPresenter().editMyDailyServices()
             lv.getTitle = NAString().edit_my_daily_service_details().capitalized
+            
+            //TODO : Need to replace hardcoded Mobile No. string
             lv.getMobile = "9725098236"
             lv.getName = cell.lbl_MyDailyServiceName.text!
             lv.getTime = cell.lbl_MyDailyServicesInTime.text!
@@ -217,4 +217,15 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         return cell
     }
+}
+
+extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
+    func deleteData(indx: Int) {
+        
+       myDailyName.remove(at: indx)
+    
+       collectionView.beginInteractiveMovementForItem(at: [indx])
+       collectionView.reloadData()
+    }
+    
 }

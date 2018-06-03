@@ -9,7 +9,13 @@
 import UIKit
 import MessageUI
 
+protocol dataCollectionProtocolMyDailySVC {
+    func deleteData(indx: Int)
+}
 class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
+    
+    var delegate : dataCollectionProtocolMyDailySVC?
+    var index : IndexPath?
     
     @IBOutlet weak var myDailyServicesImage: UIImageView!
     
@@ -30,8 +36,19 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     @IBOutlet weak var btn_Edit: UIButton!
     @IBOutlet weak var btn_Cancel: UIButton!
     
+    @IBOutlet weak var lbl_Remove: UILabel!
+    @IBOutlet weak var lbl_Edit: UILabel!
+    @IBOutlet weak var lbl_Message: UILabel!
+    @IBOutlet weak var lbl_Call: UILabel!
+    
     //created object to call button action in cell class
      var yourobj : (() -> Void)? = nil
+    
+    //calling object on Cancel button action
+    @IBAction func btnCancel(_ sender: UIButton)
+    {
+        delegate?.deleteData(indx: (index?.row)!)
+    }
     
     //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton)
@@ -59,21 +76,18 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
             
              //TODO : need to change  contact number.
             messageSheet.recipients = ["9725098236"]
-            messageSheet.body = "hi"
+            messageSheet.body = ""
             
             self.window?.rootViewController?.present(messageSheet,animated: true, completion: nil)
             
         } else {
             
-            let alert = UIAlertController(title: "Warning", message: "The device can't send SMS", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title:NAString().warning(), message:NAString().message_warning_text(), preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title:NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
         }
     }
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         
         controller.dismiss(animated: true, completion: nil)
     }
-    
-    
-    
 }
