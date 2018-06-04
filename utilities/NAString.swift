@@ -575,5 +575,11 @@ class NAString : NSObject
     func ok() -> String {
         return String("OK")
     }
+    func warning() -> String {
+        return String("Warning")
+    }
+    func message_warning_text() -> String {
+        return String("The device can't send SMS")
+    }
     
 }

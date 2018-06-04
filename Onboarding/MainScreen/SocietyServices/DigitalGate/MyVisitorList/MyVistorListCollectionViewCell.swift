@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 protocol dataCollectionProtocol {
-    func deleteData(ind: IndexPath)
+    func deleteData(indx: Int)
 }
 class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
     
@@ -48,7 +48,7 @@ class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewC
     //calling object on Cancel button action
     @IBAction func btnCancel(_ sender: UIButton)
     {
-        delegate?.deleteData(ind: (index)!)
+        delegate?.deleteData(indx: (index?.row)!)
     }
     
     //To message your visitor directly from app

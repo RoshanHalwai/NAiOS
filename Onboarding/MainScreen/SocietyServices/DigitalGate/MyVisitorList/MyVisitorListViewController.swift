@@ -46,7 +46,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cardImageList.count
+        return MyVisitorName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -89,21 +89,20 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
 
         //calling Reschdule button action on particular cell
         cell.objReschduling = {
-            self.rescheduling()
+        
+            let dv = NAViewPresenter().rescheduleMyVisitorVC()
+            self.navigationController?.pushViewController(dv, animated: true)
+            
+            //passing cell date & time to Reschedule VC
+            dv.getTime = cell.lbl_MyVisitorTime.text!
+            dv.getDate = cell.lbl_MyVisitorDate.text!
+            
+            //hide navigation bar with backButton
+            self.navigationController?.isNavigationBarHidden = true
+            self.navigationItem.hidesBackButton = true
         }
         return cell
     }
-
-    //create function to show subview with rechedule view
-    func rescheduling() {
-       let dv = NAViewPresenter().rescheduleMyVisitorVC()
-       self.navigationController?.pushViewController(dv, animated: true)
-        
-        //hide navigation bar with backButton
-        self.navigationController?.isNavigationBarHidden = true
-        self.navigationItem.hidesBackButton = true
-        
-        }
 
     //date action fucntion
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
@@ -117,14 +116,12 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
 }
 
 extension MyVisitorListViewController : dataCollectionProtocol{
+    func deleteData(indx: Int) {
 
-    func deleteData(ind: IndexPath) {
-        cardImageList.remove(at: ind.row)
-        collectionView.beginInteractiveMovementForItem(at: ind)
-        
-        collectionView?.performBatchUpdates({() -> Void in self.collectionView?.deleteItems(at: [ind])}, completion: nil)
-
+            MyVisitorName.remove(at: indx)
+            collectionView.beginInteractiveMovementForItem(at: [indx])
         collectionView.reloadData()
     }
+    
 }
 

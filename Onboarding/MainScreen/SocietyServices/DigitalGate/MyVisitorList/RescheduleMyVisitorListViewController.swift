@@ -10,22 +10,23 @@ import UIKit
 
 class RescheduleMyVisitorListViewController: NANavigationViewController,UITextFieldDelegate {
     
-    @IBOutlet weak var lbl_Title: UILabel!
     @IBOutlet weak var txt_ReDate: UITextField!
     @IBOutlet weak var txt_ReTime: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var btn_Cancel: UIButton!
     @IBOutlet weak var btn_Reschedule: UIButton!
     
+    //created string to get Time & Date for rescheduling purpose
+    var getDate = String()
+    var getTime = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Label Formatting & Settings
-        lbl_Title.text = NAString().reschedule()
-        lbl_Title.font = NAFont().headerFont()
-        lbl_Title.backgroundColor = NAColor().buttonBgColor()
-        lbl_Title.textColor = NAColor().buttonFontColor()
-    
+        //assigning strings to TextFields to get data from myVisitorList Cell
+        self.txt_ReDate.text = getDate
+        self.txt_ReTime.text = getTime
+        
         //TextField formatting & Settings
         txt_ReDate.underlined()
         txt_ReTime.underlined()

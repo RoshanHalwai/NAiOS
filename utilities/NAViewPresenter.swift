@@ -85,6 +85,8 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController
     }
     
-    
-    
+    //Add My Services VC
+    func addMySerivesVC() -> AddMyServicesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
+    }
 }

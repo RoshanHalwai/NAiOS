@@ -1105,7 +1105,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkD-Qq-s1D">
                                                             <rect key="frame" x="87.5" y="0.0" width="47" height="32"/>
-                                                            <state key="normal" title="Message" image="message32"/>
+                                                            <state key="normal" image="message32"/>
                                                             <connections>
                                                                 <action selector="btnMessage:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="w6c-2E-rjT"/>
                                                             </connections>
@@ -1119,7 +1119,7 @@
                                                         </button>
                                                         <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-pt-PzB">
                                                             <rect key="frame" x="262" y="0.0" width="47" height="32"/>
-                                                            <state key="normal" title="Cancel" image="cancel32"/>
+                                                            <state key="normal" title="can" image="cancel32"/>
                                                             <connections>
                                                                 <action selector="btnCancel:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="Y4I-Ws-muf"/>
                                                             </connections>
@@ -1235,18 +1235,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ry4-Fb-evj">
                                 <rect key="frame" x="20" y="145" width="335" height="340"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rescheduling Your Visitor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fz-XI-LY8">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="39"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="39" id="nRi-fL-yOl"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rechedule Date " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zAa-ER-Gya">
-                                        <rect key="frame" x="20" y="44" width="295" height="39"/>
+                                        <rect key="frame" x="20" y="11" width="295" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="7Lf-vg-v2D"/>
                                         </constraints>
@@ -1254,10 +1244,10 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0LO-dc-dqG">
-                                        <rect key="frame" x="0.0" y="152" width="335" height="129"/>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="0LO-dc-dqG">
+                                        <rect key="frame" x="0.0" y="119" width="335" height="162"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="129" id="Nlr-kf-KLh"/>
+                                            <constraint firstAttribute="height" constant="162" id="Nlr-kf-KLh"/>
                                         </constraints>
                                         <date key="date" timeIntervalSinceReferenceDate="549523556.46853697">
                                             <!--2018-06-01 05:25:56 +0000-->
@@ -1286,9 +1276,12 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="dK9-PN-w1f"/>
+                                        </constraints>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Rechedule Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDN-MI-bhi">
-                                        <rect key="frame" x="20" y="93" width="295" height="39"/>
+                                        <rect key="frame" x="20" y="60" width="295" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="086-tT-R94"/>
                                         </constraints>
@@ -1299,22 +1292,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="3Fz-XI-LY8" secondAttribute="trailing" id="717-Vo-M0r"/>
-                                    <constraint firstItem="3Fz-XI-LY8" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" id="7Ik-0N-ghR"/>
-                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="top" secondItem="0LO-dc-dqG" secondAttribute="bottom" constant="20" id="If8-Iy-Gkh"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Og-Aa-RCm" secondAttribute="bottom" id="6K8-Iu-og8"/>
+                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" id="Ckd-R8-baM"/>
                                     <constraint firstItem="zAa-ER-Gya" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" constant="20" id="Izn-Mv-ROb"/>
-                                    <constraint firstItem="0LO-dc-dqG" firstAttribute="leading" secondItem="3Fz-XI-LY8" secondAttribute="leading" id="N0Q-Yn-NZR"/>
                                     <constraint firstItem="EDN-MI-bhi" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" constant="20" id="PKU-0J-b8m"/>
-                                    <constraint firstItem="3Fz-XI-LY8" firstAttribute="top" secondItem="Ry4-Fb-evj" secondAttribute="top" id="RiX-wT-0ja"/>
-                                    <constraint firstAttribute="bottom" secondItem="9Og-Aa-RCm" secondAttribute="bottom" id="TPT-Xr-qZI"/>
+                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="top" secondItem="0LO-dc-dqG" secondAttribute="bottom" constant="20" id="R3D-1e-t1m"/>
                                     <constraint firstAttribute="trailing" secondItem="EDN-MI-bhi" secondAttribute="trailing" constant="20" id="VuD-z7-VfT"/>
                                     <constraint firstItem="EDN-MI-bhi" firstAttribute="top" secondItem="zAa-ER-Gya" secondAttribute="bottom" constant="10" id="bdG-5b-19b"/>
-                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="leading" secondItem="0LO-dc-dqG" secondAttribute="leading" id="bsi-XX-euP"/>
-                                    <constraint firstItem="zAa-ER-Gya" firstAttribute="top" secondItem="3Fz-XI-LY8" secondAttribute="bottom" constant="5" id="gxm-YL-6No"/>
+                                    <constraint firstItem="0LO-dc-dqG" firstAttribute="leading" secondItem="9Og-Aa-RCm" secondAttribute="leading" id="hND-TY-5dy"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Og-Aa-RCm" secondAttribute="trailing" id="iUB-eS-vJv"/>
                                     <constraint firstItem="0LO-dc-dqG" firstAttribute="top" secondItem="EDN-MI-bhi" secondAttribute="bottom" constant="20" id="kdI-a9-R9I"/>
-                                    <constraint firstItem="0LO-dc-dqG" firstAttribute="trailing" secondItem="3Fz-XI-LY8" secondAttribute="trailing" id="nYK-mQ-Ym1"/>
+                                    <constraint firstItem="0LO-dc-dqG" firstAttribute="trailing" secondItem="9Og-Aa-RCm" secondAttribute="trailing" id="m10-p0-s1Z"/>
                                     <constraint firstAttribute="trailing" secondItem="zAa-ER-Gya" secondAttribute="trailing" constant="20" id="pZg-0q-ygu"/>
-                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="trailing" secondItem="0LO-dc-dqG" secondAttribute="trailing" id="uQ8-0o-k8y"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1331,7 +1320,6 @@
                         <outlet property="btn_Cancel" destination="WAM-dN-QXZ" id="1ez-fS-2ND"/>
                         <outlet property="btn_Reschedule" destination="e28-iQ-3Qx" id="aAB-DO-uz8"/>
                         <outlet property="datePicker" destination="0LO-dc-dqG" id="UQJ-Q6-4kg"/>
-                        <outlet property="lbl_Title" destination="3Fz-XI-LY8" id="JkO-vc-SNd"/>
                         <outlet property="txt_ReDate" destination="zAa-ER-Gya" id="eqb-2L-cCW"/>
                         <outlet property="txt_ReTime" destination="EDN-MI-bhi" id="tM1-W5-mdu"/>
                     </connections>
@@ -1632,7 +1620,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjV-yg-kah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2225" y="3421"/>
+            <point key="canvasLocation" x="2169" y="3394"/>
         </scene>
         <!--Expecting Package Arrival View Controller-->
         <scene sceneID="gZt-4R-UvK">
@@ -1853,7 +1841,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEE-5n-42G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2932" y="3394"/>
+            <point key="canvasLocation" x="2900" y="3394"/>
         </scene>
         <!--Handed Things To Guest View Controller-->
         <scene sceneID="tMt-OT-Gb5">
@@ -2062,7 +2050,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHc-hp-dEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3688.8000000000002" y="3393.5532233883059"/>
+            <point key="canvasLocation" x="3690" y="3394"/>
         </scene>
         <!--My Sweet Home View Controller-->
         <scene sceneID="IrM-s8-dxQ">
@@ -2326,7 +2314,7 @@
                                                                 <action selector="btnCall:" destination="8By-VR-XWJ" eventType="touchUpInside" id="QWn-OE-v3O"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-Oa-d9L">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-Oa-d9L">
                                                             <rect key="frame" x="82.5" y="0.0" width="72" height="32"/>
                                                             <state key="normal" image="message32"/>
                                                             <connections>
@@ -2343,6 +2331,9 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="md6-Yv-2Q4">
                                                             <rect key="frame" x="247" y="0.0" width="72" height="32"/>
                                                             <state key="normal" image="cancel32"/>
+                                                            <connections>
+                                                                <action selector="btnCancel:" destination="8By-VR-XWJ" eventType="touchUpInside" id="ZxN-5f-ZDd"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -2355,7 +2346,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L2-RZ-bDZ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L2-RZ-bDZ">
                                                             <rect key="frame" x="80" y="0.0" width="69.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                             <nil key="textColor"/>
@@ -2474,11 +2465,15 @@
                                             <outlet property="btn_Cancel" destination="md6-Yv-2Q4" id="Gwv-2S-Aah"/>
                                             <outlet property="btn_Edit" destination="MTC-8j-70L" id="Dks-5c-Mg9"/>
                                             <outlet property="btn_Message" destination="bxe-Oa-d9L" id="OkJ-Bl-ev6"/>
+                                            <outlet property="lbl_Call" destination="qJF-n8-evb" id="32V-7E-DXY"/>
+                                            <outlet property="lbl_Edit" destination="B13-Cn-24P" id="dbQ-ij-jNq"/>
+                                            <outlet property="lbl_Message" destination="5L2-RZ-bDZ" id="7Xi-e5-ulO"/>
                                             <outlet property="lbl_MyDailyServiceName" destination="8p0-dh-9w4" id="fpQ-3E-LvG"/>
                                             <outlet property="lbl_MyDailyServiceType" destination="CPp-s0-MNz" id="AiT-YT-8dP"/>
                                             <outlet property="lbl_MyDailyServicesFlats" destination="5KH-Qi-HKa" id="p0D-4s-fyp"/>
                                             <outlet property="lbl_MyDailyServicesInTime" destination="8ne-v2-aT3" id="vgg-Ui-iKH"/>
                                             <outlet property="lbl_MyDailyServicesRating" destination="6Ai-uI-8iD" id="7PE-tW-ood"/>
+                                            <outlet property="lbl_Remove" destination="XnO-YA-P7X" id="06V-R2-hHN"/>
                                             <outlet property="lbl_myDailyFlats" destination="GgV-8g-9OQ" id="h66-fc-Ob6"/>
                                             <outlet property="lbl_myDailyName" destination="Won-Ie-Bhy" id="RR1-7v-P0Q"/>
                                             <outlet property="lbl_myDailyRating" destination="fJZ-nQ-de1" id="yez-01-XRD"/>
@@ -2503,10 +2498,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mAs-0R-Auy"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="XyI-gK-YVG" id="s44-Hm-2wR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZm-4K-8O7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5850" y="3394"/>
+            <point key="canvasLocation" x="5718" y="3394"/>
         </scene>
         <!--Emergency View Controller-->
         <scene sceneID="LR5-br-Dwq">
@@ -2633,7 +2631,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ss6-la-mUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4385" y="3394"/>
+            <point key="canvasLocation" x="4362" y="3394"/>
         </scene>
         <!--Add My Services View Controller-->
         <scene sceneID="qXd-0t-agQ">
@@ -2882,7 +2880,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anV-uu-yVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5089" y="3394"/>
+            <point key="canvasLocation" x="5039" y="3394"/>
         </scene>
         <!--Edit My Services View Controller-->
         <scene sceneID="qmR-zQ-a5l">
@@ -3054,7 +3052,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YW3-ce-lTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6615" y="3421"/>
+            <point key="canvasLocation" x="6382" y="3394"/>
         </scene>
         <!--Society View Controller-->
         <scene sceneID="2E5-1B-mq3">
