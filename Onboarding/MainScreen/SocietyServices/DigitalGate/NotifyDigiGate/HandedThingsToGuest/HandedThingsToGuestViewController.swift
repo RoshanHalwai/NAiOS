@@ -8,7 +8,12 @@
 
 import UIKit
 
-class HandedThingsToGuestViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class HandedThingsToGuestViewController: NANavigationViewController,UITableViewDataSource,UITableViewDelegate {
+    //temp
+    var selectedIndexPath : Int?
+    var currentTag: Int?
+    
+    @IBOutlet weak var TableView: UITableView!
     
     //Handed Things to my guest array for displaying card view data
     var cardImageList = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
@@ -32,19 +37,22 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Disable Table view cell selection.
+        TableView.allowsSelection = false
+        
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
     }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (titleName == NAString().handed_things_to_my_guest().capitalized)
         {
-        return cardImageList.count
+            return cardImageList.count
         }
         else
         {
@@ -52,13 +60,11 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-    
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestTableViewCell
         
-          if (titleName == NAString().handed_things_to_my_guest().capitalized)
-          {
+        if (titleName == NAString().handed_things_to_my_guest().capitalized)
+        {
             cell.lbl_VisiterName.text = InvitorName[indexPath.row]
             cell.lbl_GuestDate.text = MyVisitorDate[indexPath.row]
             cell.lbl_GuestTime.text = MyVisitorTime[indexPath.row]
@@ -74,35 +80,36 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
             cell.lbl_Time.text = NAString().time()
             cell.lbl_Invited.text = NAString().invited_by()
         }
+            
         else{
             cell.lbl_VisiterName.text = nameHandedThings[indexPath.row]
             cell.lbl_GuestType.text = typeHandedThings[indexPath.row]
             cell.lbl_GuestDate.text = ratingHandedThings[indexPath.row]
             cell.lbl_GuestTime.text = inTimeHandedThings[indexPath.row]
             cell.lbl_GuestInvitedBy.text = flatHandedThings[indexPath.row]
-           
+            
             cell.cellImage
                 .image = cardImageHandedThigs[indexPath.row]
             
-             //assining title to cell Labels
+            //assining title to cell Labels
             cell.lbl_Visiter.text = NAString().name()
             cell.lbl_Type.text = NAString().type()
             cell.lbl_Date.text = NAString().rating()
             cell.lbl_Time.text = NAString().time()
             cell.lbl_Invited.text = NAString().flats()
         }
-       
+        
+        
         //This creates the shadows and modifies the cards a little bit
-        cell.contentView.layer.cornerRadius = 4.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = false
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        cell.layer.shadowRadius = 4.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        cell.backgroundCardView.backgroundColor = UIColor.white
+        cell.contentView.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
+        cell.backgroundCardView.layer.borderWidth = 1.0
+        cell.backgroundCardView.layer.borderColor = UIColor.clear.cgColor
+        cell.backgroundCardView.layer.cornerRadius = 4.0
+        cell.backgroundCardView.layer.masksToBounds = false
+        cell.backgroundCardView.layer.shadowColor = UIColor.gray.cgColor
+        cell.backgroundCardView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell.backgroundCardView.layer.shadowOpacity = 1
         
         //Lables Formatting & setting
         cell.lbl_Visiter.font = NAFont().headerFont()
@@ -123,17 +130,49 @@ class HandedThingsToGuestViewController: NANavigationViewController,UICollection
         //TextField Formatting & setting
         cell.txt_Description.font = NAFont().textFieldFont()
         
+        //Button Formatting & Setting
+        cell.btn_NotifyGate.setTitle(NAString().notify_gate(), for: .normal)
+        cell.btn_NotifyGate.backgroundColor = NAColor().buttonBgColor()
+        cell.btn_NotifyGate.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        
         //Creating black bottom line
         cell.txt_Description.underlined()
-        
-        //hidding description part on cell load
-        cell.lbl_Description.isHidden = true
-        cell.txt_Description.isHidden = true
         
         //image makes round
         cell.cellImage.layer.cornerRadius = cell.cellImage.frame.size.width/2
         cell.cellImage.clipsToBounds = true
         
+        //Dynamically Change Cell Height while selecting segment Controller
+        //by default which index is selected on view load
+        cell.segmentSelect.tag = indexPath.row
+        cell.segmentSelect.selectedSegmentIndex = 0
+        if currentTag != nil && currentTag == indexPath.row {
+            cell.segmentSelect.selectedSegmentIndex = 1
+        }
+        cell.segmentSelect.addTarget(self, action: #selector(selectSegment(sender:)), for: .valueChanged)
+        
         return cell
+    }
+    
+    //Dynamically Change Cell Height while selecting segment Controller
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if selectedIndexPath == 1  && selectedIndexPath != nil && currentTag != nil && currentTag == indexPath.row {
+            return HandedThingsToGuestTableViewCell.expandedHeight
+        } else {
+            return HandedThingsToGuestTableViewCell.defaultHeight
+        }
+    }
+    
+    //Dynamically Change Cell Height while selecting segment Controller
+    @objc func selectSegment(sender: UISegmentedControl) {
+        
+        if sender.selectedSegmentIndex == 0 {
+            selectedIndexPath = 0
+        } else {
+            selectedIndexPath = 1
+        }
+        currentTag = sender.tag
+        self.TableView.reloadData()
     }
 }
