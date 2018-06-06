@@ -2050,7 +2050,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHc-hp-dEX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3690" y="3394"/>
+            <point key="canvasLocation" x="3642" y="3394"/>
         </scene>
         <!--My Sweet Home View Controller-->
         <scene sceneID="IrM-s8-dxQ">

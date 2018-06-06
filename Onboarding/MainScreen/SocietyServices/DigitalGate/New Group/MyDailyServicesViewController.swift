@@ -223,7 +223,6 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
     func deleteData(indx: Int) {
         
        myDailyName.remove(at: indx)
-    
        collectionView.beginInteractiveMovementForItem(at: [indx])
        collectionView.reloadData()
     }
