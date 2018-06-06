@@ -11,12 +11,12 @@ import UIKit
 class MyDailyServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
    
     //array to display items on collectionView
-    var myDailyImages = [#imageLiteral(resourceName: "splashScreen")]
-    var myDailyName =  ["Vikas"]
-    var myDailyType = ["Cook"]
-    var myDailyIntime = ["08:40"]
-    var myDailyFlats = ["4"]
-    var myDailyRating = ["4.2"]
+    var myDailyImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
+    var myDailyName =  ["Vikas","GC","Sudhir"]
+    var myDailyType = ["Cook","Maid","Driver"]
+    var myDailyIntime = ["08:40","17:45","08:40"]
+    var myDailyFlats = ["4","5","2"]
+    var myDailyRating = ["4.2","4.9","3.2"]
     
     //Array of Action sheet items.
     var dailyService = ["Cook", "Maid", "Car/Bike Cleaning", "Child Day Care", "Daily Newspaper", "Milk Man", "Laundry", "Driver"]
@@ -129,7 +129,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -217,14 +217,33 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    
+    }
 }
 
 extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
-    func deleteData(indx: Int) {
+    func deleteData(indx: Int, cell: UICollectionViewCell) {
         
-       myDailyName.remove(at: indx)
+        
+        myDailyName.remove(at: indx)
+        //animation at final state
+        cell.alpha = 1
+        cell.layer.transform = CATransform3DIdentity
+        
+        UIView.animate(withDuration: 0.3)
+        {
+            cell.alpha = 0.0
+            let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
+            cell.layer.transform = transform
+        }
+        
+        Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
+       
        collectionView.beginInteractiveMovementForItem(at: [indx])
-       collectionView.reloadData()
     }
     
+    @objc func reloadCollectionData() {
+        collectionView.reloadData()
+    }
 }
