@@ -35,8 +35,8 @@ class HandedThingsToGuestTableViewCell: UITableViewCell
     @IBOutlet weak var segmentSelect: UISegmentedControl!
     
     //Defining cell Height
-    class var expandedHeight: CGFloat { get { return 321 } }
-    class var defaultHeight: CGFloat  { get { return 200 } }
+    class var expandedHeight: CGFloat { get { return 340 } }
+    class var defaultHeight: CGFloat  { get { return 215 } }
     
 }
 

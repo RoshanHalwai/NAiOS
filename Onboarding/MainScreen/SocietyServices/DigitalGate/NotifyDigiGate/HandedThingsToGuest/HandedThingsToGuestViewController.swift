@@ -10,7 +10,7 @@ import UIKit
 
 class HandedThingsToGuestViewController: NANavigationViewController,UITableViewDataSource,UITableViewDelegate {
     //temp
-    var selectedIndexPath : Int?
+    var selectedRow : Int?
     var currentTag: Int?
     
     @IBOutlet weak var TableView: UITableView!
@@ -37,8 +37,9 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Disable Table view cell selection.
+        //Disable Table view cell selection & cell border line.
         TableView.allowsSelection = false
+        self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
@@ -105,10 +106,10 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.contentView.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
         cell.backgroundCardView.layer.borderWidth = 1.0
         cell.backgroundCardView.layer.borderColor = UIColor.clear.cgColor
-        cell.backgroundCardView.layer.cornerRadius = 4.0
+        cell.backgroundCardView.layer.cornerRadius = 8.0
         cell.backgroundCardView.layer.masksToBounds = false
         cell.backgroundCardView.layer.shadowColor = UIColor.gray.cgColor
-        cell.backgroundCardView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell.backgroundCardView.layer.shadowOffset = CGSize(width: 1, height: 1)
         cell.backgroundCardView.layer.shadowOpacity = 1
         
         //Lables Formatting & setting
@@ -146,7 +147,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //by default which index is selected on view load
         cell.segmentSelect.tag = indexPath.row
         cell.segmentSelect.selectedSegmentIndex = 0
-        if currentTag != nil && currentTag == indexPath.row {
+        
+        if currentTag != nil && currentTag == indexPath.row  && selectedRow != cell.segmentSelect.selectedSegmentIndex {
             cell.segmentSelect.selectedSegmentIndex = 1
         }
         cell.segmentSelect.addTarget(self, action: #selector(selectSegment(sender:)), for: .valueChanged)
@@ -157,7 +159,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     //Dynamically Change Cell Height while selecting segment Controller
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if selectedIndexPath == 1  && selectedIndexPath != nil && currentTag != nil && currentTag == indexPath.row {
+        if selectedRow == 1  && selectedRow != nil && currentTag != nil && currentTag == indexPath.row {
             return HandedThingsToGuestTableViewCell.expandedHeight
         } else {
             return HandedThingsToGuestTableViewCell.defaultHeight
@@ -168,9 +170,9 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     @objc func selectSegment(sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
-            selectedIndexPath = 0
+            selectedRow = 0
         } else {
-            selectedIndexPath = 1
+            selectedRow = 1
         }
         currentTag = sender.tag
         self.TableView.reloadData()
