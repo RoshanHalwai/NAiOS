@@ -47,7 +47,7 @@
 		8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */; };
 		8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */; };
 		867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
-		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift */; };
+		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */; };
 		867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */; };
 		86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
 		86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */; };
@@ -137,7 +137,7 @@
 		8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANavigationViewController.swift; sourceTree = "<group>"; };
 		8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyServicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestViewController.swift; sourceTree = "<group>"; };
-		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestCollectionViewCell.swift; sourceTree = "<group>"; };
+		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestTableViewCell.swift; sourceTree = "<group>"; };
 		867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySweetHomeViewController.swift; sourceTree = "<group>"; };
 		86A8B934209EC9FF00EA1C35 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
@@ -193,10 +193,6 @@
 		860FAEEF209D700000D563F5 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				86270127209714F5004B28EB /* splashScreen */,
-				86DCB9F52098A7DF00C67C70 /* Login */,
-				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
-				86548D7C209C1F5400C700DA /* MainScreen */,
 				862700F5209707BB004B28EB /* namaApartment */,
 			);
 			path = Onboarding;
@@ -231,9 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				860FAEEF209D700000D563F5 /* Onboarding */,
-				86C1A137209AF3C000D75D0F /* AppDelegate */,
-				86C1A138209AF3FC00D75D0F /* StoryBoard */,
-				86BD74E9209A2DD000B159A3 /* utilities */,
 				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
 				86270105209707BC004B28EB /* Info.plist */,
 				862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */,
@@ -257,7 +250,14 @@
 		862700F5209707BB004B28EB /* namaApartment */ = {
 			isa = PBXGroup;
 			children = (
+				86DCB9F52098A7DF00C67C70 /* Login */,
+				86270127209714F5004B28EB /* splashScreen */,
+				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
+				86548D7C209C1F5400C700DA /* MainScreen */,
 				86C1A136209AF38300D75D0F /* Homescreen */,
+				86C1A137209AF3C000D75D0F /* AppDelegate */,
+				86C1A138209AF3FC00D75D0F /* StoryBoard */,
+				86BD74E9209A2DD000B159A3 /* utilities */,
 			);
 			path = namaApartment;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */,
-				867CFF2A20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift */,
+				867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */,
 			);
 			path = HandedThingsToGuest;
 			sourceTree = "<group>";
@@ -719,7 +719,7 @@
 				86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */,
 				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
-				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestCollectionViewCell.swift in Sources */,
+				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,

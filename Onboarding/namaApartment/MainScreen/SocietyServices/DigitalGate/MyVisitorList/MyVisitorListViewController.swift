@@ -116,12 +116,26 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
 }
 
 extension MyVisitorListViewController : dataCollectionProtocol{
-    func deleteData(indx: Int) {
+     func deleteData(indx: Int, cell: UICollectionViewCell) {
 
-            MyVisitorName.remove(at: indx)
-            collectionView.beginInteractiveMovementForItem(at: [indx])
-        collectionView.reloadData()
+        //Remove collection view cell item with animation
+        MyVisitorName.remove(at: indx)
+        //animation at final state
+        cell.alpha = 1
+        cell.layer.transform = CATransform3DIdentity
+        
+        UIView.animate(withDuration: 0.3)
+        {
+            cell.alpha = 0.0
+            let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
+            cell.layer.transform = transform
+        }
+        
+        Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
     }
     
+    @objc func reloadCollectionData() {
+        collectionView.reloadData()
+    }
 }
 
