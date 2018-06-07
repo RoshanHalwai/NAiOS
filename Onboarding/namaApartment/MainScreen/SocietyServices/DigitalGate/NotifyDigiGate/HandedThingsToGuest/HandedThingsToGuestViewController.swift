@@ -74,7 +74,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             cell.cellImage
                 .image = cardImageList[indexPath.row]
             
-            //assining title to cell Labels
+            //assigning title to cell Labels
             cell.lbl_Visiter.text = NAString().visitor()
             cell.lbl_Type.text = NAString().type()
             cell.lbl_Date.text = NAString().date()
@@ -91,7 +91,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             cell.cellImage
                 .image = cardImageHandedThigs[indexPath.row]
             
-            //assining title to cell Labels
+            //assigning title to cell Labels
             cell.lbl_Visiter.text = NAString().name()
             cell.lbl_Type.text = NAString().type()
             cell.lbl_Date.text = NAString().rating()
