@@ -128,10 +128,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.navigationController?.pushViewController(lv, animated: true)
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        //TODO : To change Number of section here
-        return 1
-    }
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        //TODO : To change Number of section here
+//        return 1
+//    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
