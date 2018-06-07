@@ -58,7 +58,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         self.navigationItem.title = ""
     
         //scrollView
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
         
         //calling datePicker On ViewLoad
         createDatePicker()

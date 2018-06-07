@@ -71,7 +71,7 @@ class ExpectingPackageArrivalViewController: NANavigationViewController
         txt_DateTime.underlined()
         
         //scrollView
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
         
         //calling datePicker On ViewLoad
         createDatePicker()
