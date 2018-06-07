@@ -9,7 +9,7 @@
 import UIKit
 
 class HandedThingsToGuestViewController: NANavigationViewController,UITableViewDataSource,UITableViewDelegate {
-    //temp
+    //variable taken to remove cell from list
     var selectedRow : Int?
     var currentTag: Int?
     
@@ -81,7 +81,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             cell.lbl_Time.text = NAString().time()
             cell.lbl_Invited.text = NAString().invited_by()
         }
-            
         else{
             cell.lbl_VisiterName.text = nameHandedThings[indexPath.row]
             cell.lbl_GuestType.text = typeHandedThings[indexPath.row]
@@ -100,6 +99,12 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             cell.lbl_Invited.text = NAString().flats()
         }
         
+        //Label Formatting & setting
+        cell.lbl_Visiter.font = NAFont().textFieldFont()
+        cell.lbl_Type.font = NAFont().textFieldFont()
+        cell.lbl_Date.font = NAFont().textFieldFont()
+        cell.lbl_Time.font = NAFont().textFieldFont()
+        cell.lbl_Invited.font = NAFont().textFieldFont()
         
         //This creates the shadows and modifies the cards a little bit
         cell.backgroundCardView.backgroundColor = UIColor.white

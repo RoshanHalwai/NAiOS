@@ -10,8 +10,6 @@ import UIKit
 
 class HandedThingsToGuestTableViewCell: UITableViewCell
 {
-    
-    
     @IBOutlet weak var lbl_Visiter: UILabel!
     @IBOutlet weak var lbl_Type: UILabel!
     @IBOutlet weak var lbl_Date: UILabel!

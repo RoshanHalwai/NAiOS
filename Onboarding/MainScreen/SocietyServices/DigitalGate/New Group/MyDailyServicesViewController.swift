@@ -214,18 +214,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             
             self.navigationController?.pushViewController(lv, animated: true)
         }
-        
         return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    
     }
 }
 
 extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
-        
+        //Remove collection view cell item with animation
         myDailyName.remove(at: indx)
         //animation at final state
         cell.alpha = 1
