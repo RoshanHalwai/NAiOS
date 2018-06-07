@@ -193,10 +193,6 @@
 		860FAEEF209D700000D563F5 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				86270127209714F5004B28EB /* splashScreen */,
-				86DCB9F52098A7DF00C67C70 /* Login */,
-				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
-				86548D7C209C1F5400C700DA /* MainScreen */,
 				862700F5209707BB004B28EB /* namaApartment */,
 			);
 			path = Onboarding;
@@ -231,9 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				860FAEEF209D700000D563F5 /* Onboarding */,
-				86C1A137209AF3C000D75D0F /* AppDelegate */,
-				86C1A138209AF3FC00D75D0F /* StoryBoard */,
-				86BD74E9209A2DD000B159A3 /* utilities */,
 				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
 				86270105209707BC004B28EB /* Info.plist */,
 				862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */,
@@ -257,7 +250,14 @@
 		862700F5209707BB004B28EB /* namaApartment */ = {
 			isa = PBXGroup;
 			children = (
+				86DCB9F52098A7DF00C67C70 /* Login */,
+				86270127209714F5004B28EB /* splashScreen */,
+				86BD74E62099B5FF00B159A3 /* myFlatDetails */,
+				86548D7C209C1F5400C700DA /* MainScreen */,
 				86C1A136209AF38300D75D0F /* Homescreen */,
+				86C1A137209AF3C000D75D0F /* AppDelegate */,
+				86C1A138209AF3FC00D75D0F /* StoryBoard */,
+				86BD74E9209A2DD000B159A3 /* utilities */,
 			);
 			path = namaApartment;
 			sourceTree = "<group>";

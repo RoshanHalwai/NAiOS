@@ -2367,9 +2367,9 @@
                                                                 <action selector="btnCall:" destination="8By-VR-XWJ" eventType="touchUpInside" id="QWn-OE-v3O"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-Oa-d9L">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxe-Oa-d9L">
                                                             <rect key="frame" x="82.5" y="0.0" width="72" height="32"/>
-                                                            <state key="normal" image="message32"/>
+                                                            <state key="normal" title="b" image="message32"/>
                                                             <connections>
                                                                 <action selector="btnMessage:" destination="8By-VR-XWJ" eventType="touchUpInside" id="ziH-Y0-0IF"/>
                                                             </connections>

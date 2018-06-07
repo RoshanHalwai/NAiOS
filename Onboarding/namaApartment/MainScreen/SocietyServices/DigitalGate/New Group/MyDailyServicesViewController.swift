@@ -235,8 +235,6 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
         }
         
         Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
-       
-       collectionView.beginInteractiveMovementForItem(at: [indx])
     }
     
     @objc func reloadCollectionData() {

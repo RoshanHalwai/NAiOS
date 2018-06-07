@@ -20,7 +20,7 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         super.ConfigureNavBarTitle(title: NAString().notifyDigiGateHeader())
         self.navigationItem.title = ""
         navigationItem.rightBarButtonItem = nil
-    
+
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int

@@ -10,7 +10,6 @@ import UIKit
 import MessageUI
 
 protocol dataCollectionProtocolMyDailySVC {
-    //func deleteData(indx: Int)
     func deleteData(indx: Int, cell: UICollectionViewCell)
 }
 class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
@@ -48,7 +47,6 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     //calling object on Cancel button action
     @IBAction func btnCancel(_ sender: UIButton)
     {
-       // delegate?.deleteData(indx: (index?.row)!)
         delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
     
