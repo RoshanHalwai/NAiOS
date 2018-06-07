@@ -50,7 +50,7 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
             let messagesheet : MFMessageComposeViewController = MFMessageComposeViewController()
             messagesheet.messageComposeDelegate = self
             messagesheet.recipients = ["9739591077"]
-            messagesheet.body = "Hello Vinod"
+            messagesheet.body = ""
             self.window?.rootViewController?.present(messagesheet , animated: true , completion: nil)
         } else {
            
