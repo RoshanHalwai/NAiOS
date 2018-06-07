@@ -2302,14 +2302,14 @@
                                             <outlet property="btn_Remove" destination="Thn-Io-J2Z" id="Mft-60-Xp6"/>
                                             <outlet property="lbl_Call" destination="9aX-Zj-GcR" id="ZYj-qx-h9c"/>
                                             <outlet property="lbl_Edit" destination="Mxj-ND-Oxi" id="H5H-lO-ymQ"/>
+                                            <outlet property="lbl_GrantAccess" destination="63o-mf-3Ld" id="dal-eo-nFx"/>
                                             <outlet property="lbl_Message" destination="9N3-rA-v60" id="7VT-kH-Hb7"/>
                                             <outlet property="lbl_MySweetHomeGrantAccess" destination="LrM-o4-L1U" id="Twu-i9-DBS"/>
                                             <outlet property="lbl_MySweetHomeName" destination="REl-pY-j3j" id="deP-IJ-r4n"/>
                                             <outlet property="lbl_MySweetHomeRelation" destination="bAd-HE-WWB" id="U0x-KM-2ST"/>
+                                            <outlet property="lbl_Name" destination="G5e-eA-YtP" id="5bo-gk-XvZ"/>
+                                            <outlet property="lbl_Relation" destination="zz8-jv-Kkh" id="X2r-9H-490"/>
                                             <outlet property="lbl_Remove" destination="3nq-Kd-UuX" id="iGG-i1-gLZ"/>
-                                            <outlet property="lbl_mySweetHomeGrantAccess" destination="63o-mf-3Ld" id="XqY-TI-sVi"/>
-                                            <outlet property="lbl_mySweetHomeName" destination="G5e-eA-YtP" id="T6d-0x-AFI"/>
-                                            <outlet property="lbl_mySweetHomeRelation" destination="zz8-jv-Kkh" id="iEX-7f-Hhi"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -2328,6 +2328,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3cz-UB-DR6"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="VZr-ya-GF6" id="Eid-7H-ZN8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLf-Q4-xve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

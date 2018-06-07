@@ -11,6 +11,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
 
     private var addMemberButton = UIButton()
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen")]
     var MySweetHomeName =  ["Vinod"]
     var MySweetHomeRelation = ["Brother"]
@@ -19,7 +21,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //creating back buttom going back to
+        //creating back buttom going back to digigate
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
         self.navigationItem.leftBarButtonItem = backButton
         
@@ -32,19 +34,19 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         self.addMemberButton.backgroundColor = UIColor.black
         self.addMemberButton.setTitle(NAString().btn_mySweet_home(), for: .normal)
         self.addMemberButton.addTarget(self, action: #selector(self.btnAddFamilyMember(_:)), for: UIControlEvents.touchUpInside)
-    
+        
         self.view.addSubview(self.addMemberButton)
     }
     
     override func viewWillLayoutSubviews() {
+        
+        //Constrains & Height setting programatically
         self.addMemberButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addMemberButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
-            
+            addMemberButton.heightAnchor.constraint(equalToConstant: 39),
             addMemberButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
               addMemberButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20)])
-        
-        addMemberButton.layer.frame = CGRect(x: 20, y: 570, width: 335, height: 39)
     }
 
     @IBAction func btnAddFamilyMember(_ sender: UIButton)
@@ -61,14 +63,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate()
     {
-        let vcName = UIStoryboard(name: "Main", bundle: nil)
-        let destVC = vcName.instantiateViewController(withIdentifier: "digiGateVC")
-        self.navigationController?.pushViewController(destVC, animated: true)
-    }
-    
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        let lv = NAViewPresenter().digiGateVC()
+        self.navigationController?.pushViewController(lv, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -81,9 +77,9 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
     
-        cell.lbl_mySweetHomeName.text = MySweetHomeName[indexPath.row]
-        cell.lbl_mySweetHomeRelation.text = MySweetHomeRelation[indexPath.row]
-        cell.lbl_mySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
+        cell.lbl_Name.text = MySweetHomeName[indexPath.row]
+        cell.lbl_Relation.text = MySweetHomeRelation[indexPath.row]
+        cell.lbl_GrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
@@ -105,23 +101,55 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_MySweetHomeName.font = NAFont().headerFont()
         cell.lbl_MySweetHomeRelation.font = NAFont().headerFont()
         cell.lbl_MySweetHomeGrantAccess.font = NAFont().headerFont()
-        cell.lbl_mySweetHomeName.font = NAFont().headerFont()
-        cell.lbl_mySweetHomeRelation.font = NAFont().headerFont()
-        cell.lbl_mySweetHomeGrantAccess.font = NAFont().headerFont()
+        cell.lbl_Name.font = NAFont().headerFont()
+        cell.lbl_Relation.font = NAFont().headerFont()
+        cell.lbl_GrantAccess.font = NAFont().headerFont()
         cell.lbl_Call.font = NAFont().headerFont()
         cell.lbl_Message.font = NAFont().headerFont()
         cell.lbl_Edit.font = NAFont().headerFont()
         cell.lbl_Remove.font = NAFont().headerFont()
         
+        cell.lbl_Name.font = NAFont().textFieldFont()
+        cell.lbl_Relation.font = NAFont().textFieldFont()
+        cell.lbl_GrantAccess.font = NAFont().textFieldFont()
+        
         //setting strings to labels
-        cell.lbl_mySweetHomeName.text = NAString().name()
-        cell.lbl_mySweetHomeRelation.text = NAString().relation()
-        cell.lbl_mySweetHomeGrantAccess.text = NAString().grant_access()
+        cell.lbl_Name.text = NAString().name()
+        cell.lbl_Relation.text = NAString().relation()
+        cell.lbl_GrantAccess.text = NAString().grant_access()
         cell.lbl_Call.text = NAString().call()
         cell.lbl_Message.text = NAString().message()
         cell.lbl_Edit.text = NAString().edit()
         cell.lbl_Remove.text = NAString().remove()
+        
+        //delete particular cell from list
+        cell.index = indexPath
+        cell.delegate = self
     
     return cell
 }
 }
+
+extension MySweetHomeViewController : removeCollectionProtocol{
+    func deleteData(indx: Int, cell: UICollectionViewCell) {
+        //Remove collection view cell item with animation
+        mysweethomeImages.remove(at: indx)
+        //animation at final state
+        cell.alpha = 1
+        cell.layer.transform = CATransform3DIdentity
+        
+        UIView.animate(withDuration: 0.3)
+        {
+            cell.alpha = 0.0
+            let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
+            cell.layer.transform = transform
+        }
+        
+        Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
+    }
+    
+    @objc func reloadCollectionData() {
+        collectionView.reloadData()
+    }
+}
+
