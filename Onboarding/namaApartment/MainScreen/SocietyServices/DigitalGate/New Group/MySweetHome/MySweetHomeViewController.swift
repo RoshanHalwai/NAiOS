@@ -138,21 +138,20 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             dv.getMobile = "9725098237"
             
         }
-    
     return cell
-}
+    }
 }
 
 extension MySweetHomeViewController : removeCollectionProtocol{
     
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
-        //AlertView will Display while remo
+        //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
-         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
-            }
-         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
+            let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
+                }
+            let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
                 //Remove collection view cell item with animation
                 self.mysweethomeImages.remove(at: indx)
