@@ -595,4 +595,11 @@ class NAString : NSObject
     func reject() -> String {
         return String("Reject")
     }
+    func remove_alertview_description() -> String {
+        return String("Are you sure you want to remove this data?")
+    }
+    func delete() -> String {
+        return String("Delete")
+    }
+    
 }
