@@ -138,31 +138,48 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             dv.getMobile = "9725098237"
             
         }
-    
     return cell
-}
+    }
 }
 
 extension MySweetHomeViewController : removeCollectionProtocol{
-    func deleteData(indx: Int, cell: UICollectionViewCell) {
-        //Remove collection view cell item with animation
-        mysweethomeImages.remove(at: indx)
-        //animation at final state
-        cell.alpha = 1
-        cell.layer.transform = CATransform3DIdentity
-        
-        UIView.animate(withDuration: 0.3)
-        {
-            cell.alpha = 0.0
-            let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
-            cell.layer.transform = transform
-        }
-        
-        Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
-    }
     
-    @objc func reloadCollectionData() {
+    func deleteData(indx: Int, cell: UICollectionViewCell) {
+        
+        //AlertView will Display while removing Card view
+        let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
+        
+            let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
+                }
+            let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
+            
+                //Remove collection view cell item with animation
+                self.mysweethomeImages.remove(at: indx)
+            
+                //animation at final state
+                cell.alpha = 1
+                cell.layer.transform = CATransform3DIdentity
+            
+                UIView.animate(withDuration: 0.3)
+                {
+                cell.alpha = 0.0
+                let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
+                cell.layer.transform = transform
+                }
+            
+                Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
+                }
+        
+            alert.addAction(actionNO) //add No action on AlertView
+            alert.addAction(actionYES) //add YES action on AlertView
+            present(alert, animated: true, completion: nil)
+    }
+        @objc func reloadCollectionData() {
         collectionView.reloadData()
     }
 }
+    
+    
+    
+
 
