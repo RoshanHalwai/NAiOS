@@ -155,14 +155,22 @@ class EditMyServicesViewController: NANavigationViewController {
     
     @IBAction func btnUpdate(_ sender: UIButton){
         
-        if (getTitle == NAString().edit_my_daily_service_details().capitalized)
+            //if Mobile Number will change then navigate to OTP Screen
+        if ((getTitle == NAString().edit_my_daily_service_details().capitalized) && lbl_Description.isHidden == false)
         {
             let dv = NAViewPresenter().otpViewController()
             let passToOTP = NAString().enter_verification_code(first: "your \(servicesString)", second: "their")
                 dv.newOtpString = passToOTP
             self.navigationController?.pushViewController(dv, animated: true)
         }
+            //if Mobile Number will not change then navigate to My Daily Services VC
+        else if (getTitle == NAString().edit_my_daily_service_details().capitalized)
+        {
+            let dv = NAViewPresenter().myDailyServicesVC()
+            self.navigationController?.pushViewController(dv, animated: true)
             
+        }
+         
         else if (getTitle == NAString().edit_my_family_member_details().capitalized)
         {
             if segment.selectedSegmentIndex == 0
@@ -170,14 +178,13 @@ class EditMyServicesViewController: NANavigationViewController {
                 let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox() , message:nil, preferredStyle: .alert)
                 
                 let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
-                    print("Reject")
     
                 }
                 let accept = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
-                    print("Accepted")
                     
                     if (self.lbl_Description.isHidden == false)
                     {
+                        //navigate to OTP
                         let dv = NAViewPresenter().otpViewController()
                         let passToOTP = NAString().enter_verification_code(first:"your Family Member", second: "their")
                         dv.newOtpString = passToOTP
@@ -212,7 +219,7 @@ class EditMyServicesViewController: NANavigationViewController {
         }
     }
     
-    //Displaying Update Button on change of both the index values on segmentController
+    //Displaying Update Button on change of both the index values of segmentController
     @IBAction func btnSegmentController(_ sender: Any) {
         if segment.selectedSegmentIndex == 0
         {
