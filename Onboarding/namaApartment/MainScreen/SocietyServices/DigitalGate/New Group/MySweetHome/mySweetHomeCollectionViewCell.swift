@@ -9,16 +9,20 @@
 import UIKit
 import MessageUI
 
+protocol removeCollectionProtocol {
+    func deleteData(indx: Int, cell: UICollectionViewCell)
+}
+
 class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewControllerDelegate {
+    
+    var delegate : removeCollectionProtocol?
+    var index : IndexPath?
    
-    
-    
     @IBOutlet weak var MySweeetHomeimg: UIImageView!
     
-    @IBOutlet weak var lbl_mySweetHomeName: UILabel!
-    @IBOutlet weak var lbl_mySweetHomeRelation: UILabel!
-    @IBOutlet weak var lbl_mySweetHomeGrantAccess: UILabel!
-    
+    @IBOutlet weak var lbl_Name: UILabel!
+    @IBOutlet weak var lbl_Relation: UILabel!
+    @IBOutlet weak var lbl_GrantAccess: UILabel!
     
     @IBOutlet weak var lbl_MySweetHomeName: UILabel!
     @IBOutlet weak var lbl_MySweetHomeRelation: UILabel!
@@ -34,13 +38,13 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
     @IBOutlet weak var lbl_Edit: UILabel!
     @IBOutlet weak var lbl_Remove: UILabel!
     
+    //created object to use Edit button action in cell class
+    var objEdit : (() -> Void)? = nil
     
-   
     @IBAction func btnCall(_ sender: Any) {
        
         //TODO : Need to change mobile number here
         UIApplication.shared.open(NSURL(string: "tel://9739591077")! as URL, options: [:], completionHandler: nil)
-        
     }
     
     @IBAction func btnMessage(_ sender: Any) {
@@ -50,22 +54,25 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
             let messagesheet : MFMessageComposeViewController = MFMessageComposeViewController()
             messagesheet.messageComposeDelegate = self
             messagesheet.recipients = ["9739591077"]
-            messagesheet.body = "Hello Vinod"
+            messagesheet.body = ""
             self.window?.rootViewController?.present(messagesheet , animated: true , completion: nil)
         } else {
            
             let alert = UIAlertController(title: "Warning", message: "The device can't send SMS", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-            
-            
         }
-        
     }
     
     @IBAction func btnEdit(_ sender: Any) {
+        if let btnAction = self.objEdit
+        {
+            btnAction()
+        }
     
     }
+    
     @IBAction func btnRemove(_ sender: Any) {
+         delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {

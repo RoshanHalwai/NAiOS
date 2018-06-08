@@ -436,7 +436,7 @@ class NAString : NSObject
         return String("Name:")
     }
     func mobile() -> String {
-        return String("Mobile")
+        return String("Mobile:")
     }
     func pick_time() -> String {
         return String("In Time:")
@@ -547,6 +547,10 @@ class NAString : NSObject
         return String ("Reschedule")
     }
     
+    func edit_my_family_member_details() -> String {
+        return String ("Edit My Family Member Details")
+    }
+    
     //settings permission
     func setting_Permission_AlertBox() -> String {
         return String ("Please allow permission from settings")
@@ -554,6 +558,10 @@ class NAString : NSObject
     
     func settings() -> String {
         return String ("Settings")
+    }
+    
+    func edit_my_family_member_grantAccess_alertBox() -> String {
+        return String ("Please note that this member will now have access to all notifications.")
     }
         
     //date & time format
@@ -581,5 +589,10 @@ class NAString : NSObject
     func message_warning_text() -> String {
         return String("The device can't send SMS")
     }
-    
+    func accept() -> String {
+        return String("Accept")
+    }
+    func reject() -> String {
+        return String("Reject")
+    }
 }
