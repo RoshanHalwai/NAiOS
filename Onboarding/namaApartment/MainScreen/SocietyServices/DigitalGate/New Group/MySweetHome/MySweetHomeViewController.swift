@@ -125,6 +125,19 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         //delete particular cell from list
         cell.index = indexPath
         cell.delegate = self
+        
+        //calling edit button action on particular cell
+        cell.objEdit = {
+            
+            let dv = NAViewPresenter().editMyDailyServices()
+            self.navigationController?.pushViewController(dv, animated: true)
+            dv.getTitle = NAString().edit_my_family_member_details().capitalized
+            dv.getName = cell.lbl_MySweetHomeName.text!
+            
+            // TODO : To Change Mobile number here.
+            dv.getMobile = "9725098237"
+            
+        }
     
     return cell
 }
