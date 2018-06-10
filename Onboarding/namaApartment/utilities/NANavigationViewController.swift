@@ -9,12 +9,17 @@
 import UIKit
 import Foundation
 
-class NANavigationViewController: UIViewController {
+class NANavigationViewController: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackBarButton()
         configureInfoButton()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     func configureInfoButton() {
