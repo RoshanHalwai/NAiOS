@@ -8,7 +8,7 @@
 
 import UIKit
 
-class loginViewController: NANavigationViewController,UITextFieldDelegate
+class loginViewController: NANavigationViewController
 {
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
@@ -18,6 +18,10 @@ class loginViewController: NANavigationViewController,UITextFieldDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //assigned delegate method on textFields
+        txt_MobileNo.delegate = self
+        txt_CountryCode.delegate = self
         
        //hide Signup button
        self.btnSignup.isHidden = true

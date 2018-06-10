@@ -45,6 +45,9 @@ class EditMyServicesViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //keyboard appear when screen load
+        self.txt_Name.becomeFirstResponder()
+        
         //hide stackview according to Title of the view
         hideStackViews()
         
@@ -233,7 +236,7 @@ class EditMyServicesViewController: NANavigationViewController {
 }
 
  //Created separate extention to use UITextfiled delegate Properties
-extension EditMyServicesViewController : UITextFieldDelegate
+extension EditMyServicesViewController 
 {
     func configureTextFields()
     {
@@ -244,12 +247,6 @@ extension EditMyServicesViewController : UITextFieldDelegate
         txt_Name.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     }
     
-    //Created to Dismiss keyboard when return key is pressed
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-
 @objc func textFieldDidChange(textField: UITextField) {
     
     //update button show after editing start on textfield

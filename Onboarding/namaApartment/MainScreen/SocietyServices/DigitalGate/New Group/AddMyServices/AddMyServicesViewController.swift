@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegate,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class AddMyServicesViewController: NANavigationViewController,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var lbl_Name: UILabel!
@@ -53,6 +53,14 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //assigned delegate method on textFields
+        txt_Name.delegate = self
+        txt_CountryCode.delegate = self
+        txt_MobileNo.delegate = self
+        txt_Date.delegate = self
+        txt_Relation.delegate = self
+        
+    
         //hiding dateTextField & segment when screen is coming from ADD MY SERVICES VC
         self.segment.isHidden = true
         

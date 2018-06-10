@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OTPViewController: NANavigationViewController, UITextFieldDelegate
+class OTPViewController: NANavigationViewController
 {
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
@@ -51,7 +51,7 @@ class OTPViewController: NANavigationViewController, UITextFieldDelegate
         //Hiding Btn Verify
         self.btnVerify.isHidden =  true
         
-        //textfield set targetting for the responder to next textview
+       //assigned delegate method on textFields
         txtOTP1.delegate = self
         txtOTP2.delegate = self
         txtOTP3.delegate = self

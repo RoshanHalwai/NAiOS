@@ -42,6 +42,10 @@ class ExpectingPackageArrivalViewController: NANavigationViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //assigned delegate method on textFields
+        txt_DateTime.delegate = self
+        txt_PacageVendor.delegate = self
+        
         //placing image calender imgage inside the Date&Time TextField
         self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
