@@ -601,5 +601,8 @@ class NAString : NSObject
     func delete() -> String {
         return String("Delete")
     }
+    func mobile_number_not_available() -> String {
+        return String("Not Available")
+    }
     
 }

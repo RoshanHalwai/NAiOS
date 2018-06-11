@@ -8,7 +8,7 @@
 
 import UIKit
 
-class myFlatDetailsViewController: UIViewController,UITextFieldDelegate
+class myFlatDetailsViewController: NANavigationViewController
 {
     @IBOutlet weak var btnContinue: UIButton!
     @IBOutlet weak var segment_ResidentType: UISegmentedControl!

@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegate,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class AddMyServicesViewController: NANavigationViewController,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var lbl_Name: UILabel!
@@ -53,6 +53,14 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //assigned delegate method on textFields
+        txt_Name.delegate = self
+        txt_CountryCode.delegate = self
+        txt_MobileNo.delegate = self
+        txt_Date.delegate = self
+        txt_Relation.delegate = self
+        
+    
         //hiding dateTextField & segment when screen is coming from ADD MY SERVICES VC
         self.segment.isHidden = true
         
@@ -91,7 +99,6 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         txt_Name.underlined()
         txt_MobileNo.underlined()
         txt_Relation.underlined()
-        txt_CountryCode.underlined()
     
         //label formatting & setting
         self.lbl_OR.font = NAFont().headerFont()
@@ -109,7 +116,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         self.txt_Date.font = NAFont().textFieldFont()
         self.txt_MobileNo.font = NAFont().textFieldFont()
         self.txt_Name.font = NAFont().textFieldFont()
-        self.txt_CountryCode.font = NAFont().textFieldFont()
+        self.txt_CountryCode.font = NAFont().headerFont()
         self.txt_Relation.font = NAFont().textFieldFont()
         self.txt_CountryCode.text = NAString()._91()
         
@@ -135,15 +142,15 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
     func grantAccessAlert() {
         
         //creating alert controller
-        let alert = UIAlertController(title: "Notification Alert" , message: NAString().family_member_alert_message(), preferredStyle: .alert)
+        let alert = UIAlertController(title:nil , message: NAString().family_member_alert_message(), preferredStyle: .alert)
 
           //creating Reject alert actions
-        let rejectAction = UIAlertAction(title: "Reject", style: .cancel) { (action) in
+        let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
             print("Rejected")
         }
         
         //creating Accept alert actions
-        let acceptAction = UIAlertAction(title: "Accept", style: .default) { (action) in
+        let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
 
             let lv = NAViewPresenter().otpViewController()
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
@@ -161,9 +168,9 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
     //Function to appear select image from by tapping image
     @objc func imageTapped()
     {
-        let actionSheet = UIAlertController(title: "Choose one to select image ", message: "Choose your image from your Destination.", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         
-        let actionCamera = UIAlertAction(title: "Camera", style: .default, handler: {
+        let actionCamera = UIAlertAction(title:NAString().camera(), style: .default, handler: {
             
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
@@ -175,7 +182,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
             print("Camera tapped")
         })
         
-        let actionGallery = UIAlertAction(title: "Gallery", style: .default, handler: {
+        let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
             
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
@@ -188,7 +195,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
             self.present(pickerController, animated: true, completion: nil)
         })
         
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+        let cancel = UIAlertAction(title:NAString().cancel(), style: .cancel, handler: {
             
             (alert: UIAlertAction!) -> Void in
         })
@@ -227,7 +234,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "HH:mm"
+        date.dateFormat = NAString().timeFormate()
         let dateString = date.string(from: picker.date)
         txt_Date.text = dateString
         self.view.endEditing(true)
@@ -299,7 +306,7 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
         let fullName = "\(contact.givenName) \(contact.familyName)"
         self.txt_Name.text = fullName
         
-        var mobileNo = "Not Available"
+        var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         
         mobileNo = mobileString! as! String
@@ -342,7 +349,6 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
     {
         if (navTitle! == NAString().add_my_service().capitalized)
         {
-            print("add my services")
          let lv = NAViewPresenter().otpViewController()
         
        // passing data
@@ -359,7 +365,6 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
            {
             //calling AlertBox on click of YES
             grantAccessAlert()
-            print("Selected Yes")
             }
             else
            {
@@ -369,7 +374,6 @@ class AddMyServicesViewController: NANavigationViewController,UITextFieldDelegat
             lv.newOtpString = familyString
               self.navigationController?.pushViewController(lv, animated: true)
             
-            print("Selected No")
             }
         }
     }

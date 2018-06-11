@@ -64,6 +64,9 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestTableViewCell
         
+            //assigning delegate method to textFiled
+            cell.txt_Description.delegate = self
+        
         if (titleName == NAString().handed_things_to_my_guest().capitalized)
         {
             cell.lbl_VisiterName.text = InvitorName[indexPath.row]

@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate,UITextFieldDelegate {
+class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
     @IBOutlet weak var lbl_InvitorName: UILabel!
     @IBOutlet weak var lbl_InvitorMobile: UILabel!
     @IBOutlet weak var lbl_Or: UILabel!
@@ -35,6 +35,11 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //assigned delegate method on textFields
+        txtInvitorMobile.delegate = self
+        txtInvitorName.delegate = self
+        txtDate.delegate = self
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true

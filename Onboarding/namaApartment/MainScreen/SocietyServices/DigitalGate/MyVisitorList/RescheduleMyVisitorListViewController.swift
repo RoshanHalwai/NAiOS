@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RescheduleMyVisitorListViewController: NANavigationViewController,UITextFieldDelegate {
+class RescheduleMyVisitorListViewController: NANavigationViewController {
     
     @IBOutlet weak var txt_ReDate: UITextField!
     @IBOutlet weak var txt_ReTime: UITextField!
@@ -57,14 +57,9 @@ class RescheduleMyVisitorListViewController: NANavigationViewController,UITextFi
         dateTextFieldIcon()
         timeTextFieldIcon()
         
-        //setting TextField Delegate
+        //assigned delegate method on textFields
         txt_ReTime.delegate = self
         txt_ReDate.delegate = self
-    }
-    
-    //hide keyboad in View
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        return false
     }
     
     @IBAction func datePicker(_ sender: UIDatePicker) {

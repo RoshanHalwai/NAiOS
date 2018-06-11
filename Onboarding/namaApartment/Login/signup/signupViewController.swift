@@ -21,7 +21,7 @@ extension UITextField{
     }
 }
 
-class signupViewController: NANavigationViewController,UITextFieldDelegate
+class signupViewController: NANavigationViewController
 {
     @IBOutlet weak var signupScrollView : UIScrollView!
     
@@ -40,6 +40,12 @@ class signupViewController: NANavigationViewController,UITextFieldDelegate
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //assigned delegate method on textFields
+        signup_TxtEmailId.delegate = self
+        signup_TxtFullName.delegate = self
+        signup_TxtCountryCode.delegate = self
+        signup_TxtEmailId.delegate = self
         
          //Label formatting & setting
         lbl_Fullname.font = NAFont().headerFont()

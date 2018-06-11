@@ -42,6 +42,9 @@ class ExpectingCabArrivalViewController: NANavigationViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //assigned delegate method on textFields
+        txt_DateTime.delegate = self
+        txt_CabNumber.delegate = self
         
         //placing image calender imgage inside the Date&Time TextField
         self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
