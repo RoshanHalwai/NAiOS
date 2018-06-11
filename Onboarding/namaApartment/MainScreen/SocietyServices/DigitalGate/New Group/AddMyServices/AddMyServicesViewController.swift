@@ -13,12 +13,14 @@ import ContactsUI
 class AddMyServicesViewController: NANavigationViewController,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     @IBOutlet weak var img_Profile: UIImageView!
+    
     @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var lbl_OR: UILabel!
     @IBOutlet weak var lbl_Date: UILabel!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
     @IBOutlet weak var lbl_Relation: UILabel!
+    @IBOutlet weak var lbl_GrantAccess: UILabel!
     
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
@@ -28,6 +30,9 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
     
     @IBOutlet weak var btn_SelectContact: UIButton!
     @IBOutlet weak var btn_AddDetails: UIButton!
+    
+    @IBOutlet weak var stackView_InTime: UIStackView!
+    @IBOutlet weak var stackView_GrantAccess: UIStackView!
     
     //for Coming from my sweet home
     @IBOutlet weak var segment: UISegmentedControl!
@@ -60,9 +65,8 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         txt_Date.delegate = self
         txt_Relation.delegate = self
         
-    
-        //hiding dateTextField & segment when screen is coming from ADD MY SERVICES VC
-        self.segment.isHidden = true
+        //hiding StackView_GrantAccess when screen is coming from ADD MY SERVICES VC
+        self.stackView_GrantAccess.isHidden = true
         
         //identify screen coming from which screen
         screenComingFrom()
@@ -107,7 +111,10 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         self.lbl_Date.font = NAFont().headerFont()
         self.lbl_OTPDescription.font = NAFont().descriptionFont()
         self.lbl_Relation.font = NAFont().headerFont()
+        self.lbl_GrantAccess.font = NAFont().headerFont()
+        
         self.lbl_Relation.text = NAString().relation()
+        self.lbl_GrantAccess.text = NAString().grant_access()
     
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
@@ -138,10 +145,10 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         img_Profile.clipsToBounds = true
     }
     
-    //alert Popup when user give  grant access & try to add details
-    func grantAccessAlert() {
+        //alert Popup when user give  grant access & try to add details
+        func grantAccessAlert() {
         
-        //creating alert controller
+        //showing alert controller while giving Grant Access to family members
         let alert = UIAlertController(title:nil , message: NAString().family_member_alert_message(), preferredStyle: .alert)
 
           //creating Reject alert actions
@@ -316,8 +323,10 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
     //identify from which page screen is coming
     func screenComingFrom() {
         if self.navTitle == NAString().addFamilyMemberTitle() {
-            self.segment.isHidden = false
-            self.txt_Date.isHidden = true
+           
+            self.stackView_GrantAccess.isHidden = false
+            self.stackView_InTime.isHidden = true
+            
             self.txt_Relation.isHidden = false
             self.lbl_Relation.isHidden = false
             self.lbl_Date.text = NAString().grant_access().capitalized
@@ -328,8 +337,9 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
     
         } else {
             
-            self.segment.isHidden = true
-            self.txt_Date.isHidden = false
+            self.stackView_GrantAccess.isHidden = true
+            self.stackView_InTime.isHidden = false
+            
             self.txt_Relation.isHidden = true
             self.lbl_Relation.isHidden = true
             self.lbl_Date.text = NAString().time()
