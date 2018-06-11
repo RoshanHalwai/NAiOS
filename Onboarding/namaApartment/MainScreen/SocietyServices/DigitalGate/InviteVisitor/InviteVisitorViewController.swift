@@ -48,7 +48,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         //placing image calender imgage inside the Date&Time TextField
         self.txtDate.rightViewMode = UITextFieldViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         let image = UIImage(named: "newCalender")
         imageView.image = image
         txtDate.rightView = imageView

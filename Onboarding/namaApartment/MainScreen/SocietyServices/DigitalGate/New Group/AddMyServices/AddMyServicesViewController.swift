@@ -73,7 +73,7 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
 
         // adding image on date TextField
         txt_Date.rightViewMode = UITextFieldViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         let image = UIImage(named: "newClock")
         imageView.image = image
         txt_Date.rightView = imageView

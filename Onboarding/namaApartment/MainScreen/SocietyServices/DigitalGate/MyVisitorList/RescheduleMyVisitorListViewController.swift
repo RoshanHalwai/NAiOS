@@ -111,7 +111,7 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
     // adding image on Date TextField
     func dateTextFieldIcon() {
         txt_ReDate.rightViewMode = UITextFieldViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         let image = UIImage(named: "newCalender")
         imageView.image = image
         txt_ReDate.rightView = imageView
@@ -120,7 +120,7 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
     // adding image on Time TextField
     func timeTextFieldIcon() {
         txt_ReTime.rightViewMode = UITextFieldViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         let image = UIImage(named: "newClock")
         imageView.image = image
         txt_ReTime.rightView = imageView
