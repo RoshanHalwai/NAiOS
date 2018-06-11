@@ -511,10 +511,7 @@ class NAString : NSObject
     func otp_message_family_member() -> String {
         return String ("We will send an OTP to your family member for Authentication.")
     }
-    func family_member_alert_message() -> String {
-        return String ("Please note that the following member will now have access to all notifications.")
-    }
-    
+   
     //fire Alarm
     func tap_on_bell_icon_to_create_alert() -> String {
         return String ("Tap on bell icon to create alert")
@@ -560,10 +557,10 @@ class NAString : NSObject
         return String ("Settings")
     }
     
-    func edit_my_family_member_grantAccess_alertBox() -> String {
-        return String ("Please note that this member will now have access to all notifications.")
+    func edit_my_family_member_grantAccess_alertBox(first : String) -> String {
+        return String ("Please note that this member will \(first) have access to all notifications.")
     }
-        
+    
     //date & time format
     func dateFormate() -> String {
         return String("MMM d, YYYY")
@@ -603,6 +600,12 @@ class NAString : NSObject
     }
     func mobile_number_not_available() -> String {
         return String("Not Available")
+    }
+    func not_granting_access() -> String {
+        return String("not")
+    }
+    func granting_access() -> String {
+        return String("now")
     }
     
 }

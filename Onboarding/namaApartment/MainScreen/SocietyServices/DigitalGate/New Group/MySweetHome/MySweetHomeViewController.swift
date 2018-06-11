@@ -13,10 +13,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen")]
-    var MySweetHomeName =  ["Vinod"]
-    var MySweetHomeRelation = ["Brother"]
-    var MySweetHomeGrantAccess = ["Yes"]
+    var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
+    var MySweetHomeName =  ["Preeti","Vikas"]
+    var MySweetHomeRelation = ["Sister","Brother"]
+    var MySweetHomeGrantAccess = ["Yes","No"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
 
     @IBAction func btnAddFamilyMember(_ sender: UIButton)
     {
-        let vc : AddMyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
+        let vc = NAViewPresenter().addMySerivesVC()
+        
         //passing value to my services VC
         let passVC = "mySweetHomeVC"
         vc.vcValue = passVC
@@ -69,7 +70,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return mysweethomeImages.count
+        return MySweetHomeName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -77,9 +78,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
     
-        cell.lbl_Name.text = MySweetHomeName[indexPath.row]
-        cell.lbl_Relation.text = MySweetHomeRelation[indexPath.row]
-        cell.lbl_GrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
+        cell.lbl_MySweetHomeName.text = MySweetHomeName[indexPath.row]
+        cell.lbl_MySweetHomeRelation.text = MySweetHomeRelation[indexPath.row]
+        cell.lbl_MySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
+        cell.MySweeetHomeimg.image = mysweethomeImages[indexPath.row]
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
@@ -134,9 +136,12 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             dv.getTitle = NAString().edit_my_family_member_details().capitalized
             dv.getName = cell.lbl_MySweetHomeName.text!
             
+            //EDIT MY FAMILY MEMBER VC's segment is selected according to cardView GrantAccess Text
+            dv.getSegmentValue = cell.lbl_MySweetHomeGrantAccess.text!
+            
             // TODO : To Change Mobile number here.
             dv.getMobile = "9725098237"
-            
+        
         }
     return cell
     }
@@ -154,7 +159,7 @@ extension MySweetHomeViewController : removeCollectionProtocol{
             let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
                 //Remove collection view cell item with animation
-                self.mysweethomeImages.remove(at: indx)
+                self.MySweetHomeName.remove(at: indx)
             
                 //animation at final state
                 cell.alpha = 1

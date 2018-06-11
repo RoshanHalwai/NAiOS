@@ -53,13 +53,15 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
             
             let messagesheet : MFMessageComposeViewController = MFMessageComposeViewController()
             messagesheet.messageComposeDelegate = self
+            
+            //TODO : Nedd to change phone Number.
             messagesheet.recipients = ["9739591077"]
             messagesheet.body = ""
             self.window?.rootViewController?.present(messagesheet , animated: true , completion: nil)
         } else {
            
-            let alert = UIAlertController(title: "Warning", message: "The device can't send SMS", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title:NAString().warning(), message: NAString().message_warning_text(), preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title:NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
         }
     }
     
