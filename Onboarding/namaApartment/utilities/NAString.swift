@@ -601,5 +601,11 @@ class NAString : NSObject
     func mobile_number_not_available() -> String {
         return String("Not Available")
     }
+    func not_granting_access() -> String {
+        return String("not")
+    }
+    func granting_access() -> String {
+        return String("now")
+    }
     
 }

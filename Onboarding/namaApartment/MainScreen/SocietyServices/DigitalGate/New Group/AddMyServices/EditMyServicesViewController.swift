@@ -190,7 +190,7 @@ class EditMyServicesViewController: NANavigationViewController {
             //Modify EDIT MY FAMILY MEMBER VC while YES is already selected while modifying
             if segment.selectedSegmentIndex == 0
             {
-                let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first: "now") , message:nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()) , message:nil, preferredStyle: .alert)
                 
                 let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
     
@@ -255,7 +255,7 @@ class EditMyServicesViewController: NANavigationViewController {
    
     //Creted alertview to Modify EDIT MY FAMILY MEMBER VC while YES is already selected at the time of modifying
     func isNoSegmentSelected() {
-            let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first: "not") , message:nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().not_granting_access()) , message:nil, preferredStyle: .alert)
             
             let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
             }

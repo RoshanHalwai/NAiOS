@@ -149,7 +149,7 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         func grantAccessAlert() {
         
         //showing alert controller while giving Grant Access to family members
-        let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first: "now"), preferredStyle: .alert)
+        let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()), preferredStyle: .alert)
 
           //creating Reject alert actions
         let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
