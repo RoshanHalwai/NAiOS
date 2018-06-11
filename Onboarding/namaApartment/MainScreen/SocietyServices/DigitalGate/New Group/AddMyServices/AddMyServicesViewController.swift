@@ -73,7 +73,7 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
 
         // adding image on date TextField
         txt_Date.rightViewMode = UITextFieldViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         let image = UIImage(named: "newClock")
         imageView.image = image
         txt_Date.rightView = imageView
@@ -130,10 +130,10 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         //button formatting & setting
         self.btn_SelectContact.backgroundColor = NAColor().buttonBgColor()
         self.btn_SelectContact.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        self.btn_SelectContact.setTitle(NAString().BtnselectFromContact(), for: .normal)
+        self.btn_SelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
         
         self.btn_AddDetails.backgroundColor = NAColor().buttonBgColor()
-        self.btn_AddDetails.setTitle(NAString().add(), for: .normal)
+        self.btn_AddDetails.setTitle(NAString().add().uppercased(), for: .normal)
         self.btn_AddDetails.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         
         self.btn_SelectContact.titleLabel?.font = NAFont().buttonFont()

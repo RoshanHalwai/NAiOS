@@ -111,13 +111,14 @@ class EditMyServicesViewController: NANavigationViewController {
         self.txt_InTime.underlined()
         
         //Formatting & setting Button
-        self.btn_Update.setTitle(NAString().update(), for: .normal)
+        self.btn_Update.setTitle(NAString().update().uppercased(), for: .normal)
+        self.btn_Update.titleLabel?.font = NAFont().buttonFont()
         self.btn_Update.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_Update.backgroundColor = UIColor.black
         
         // adding image on date TextField
         self.txt_InTime.rightViewMode = UITextFieldViewMode.always
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         let image = UIImage(named: "newClock")
         imageView.image = image
         txt_InTime.rightView = imageView
