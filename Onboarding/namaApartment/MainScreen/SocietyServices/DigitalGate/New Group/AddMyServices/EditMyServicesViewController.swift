@@ -184,12 +184,13 @@ class EditMyServicesViewController: NANavigationViewController {
             self.navigationController?.pushViewController(dv, animated: true)
             
         }
-         
+            
         else if (getTitle == NAString().edit_my_family_member_details().capitalized)
         {
+            //Modify EDIT MY FAMILY MEMBER VC while YES is already selected while modifying
             if segment.selectedSegmentIndex == 0
             {
-                let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox() , message:nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first: "now") , message:nil, preferredStyle: .alert)
                 
                 let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
     
@@ -204,6 +205,7 @@ class EditMyServicesViewController: NANavigationViewController {
                         dv.newOtpString = passToOTP
                         self.navigationController?.pushViewController(dv, animated: true)
                     }
+
                     else
                     {
                         //navigate back to card view
@@ -215,6 +217,12 @@ class EditMyServicesViewController: NANavigationViewController {
                 alert.addAction(accept) //add accept action on AlertView
                 alert.addAction(reject) //add reject action on AlertView
                 present(alert, animated: true, completion: nil)
+            }
+            
+             //Modify EDIT MY FAMILY MEMBER VC while NO is already selected at the time of modifying
+            if segment.selectedSegmentIndex == 1
+            {
+                isNoSegmentSelected()
             }
         }
         
@@ -244,6 +252,37 @@ class EditMyServicesViewController: NANavigationViewController {
             self.btn_Update.isHidden = false
         }
     }
+   
+    //Creted alertview to Modify EDIT MY FAMILY MEMBER VC while YES is already selected at the time of modifying
+    func isNoSegmentSelected() {
+            let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first: "not") , message:nil, preferredStyle: .alert)
+            
+            let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
+            }
+        
+            let accept = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
+                
+                if (self.lbl_Description.isHidden == false)
+                {
+                    //navigate to OTP
+                    let dv = NAViewPresenter().otpViewController()
+                    let passToOTP = NAString().enter_verification_code(first:"your Family Member", second: "their")
+                    dv.newOtpString = passToOTP
+                    self.navigationController?.pushViewController(dv, animated: true)
+                }
+                    
+                else
+                {
+                    //navigate back to card view
+                    let dv = NAViewPresenter().mySweetHomeVC()
+                    self.navigationController?.pushViewController(dv, animated: true)
+                }
+            }
+            
+            alert.addAction(accept) //add accept action on AlertView
+            alert.addAction(reject) //add reject action on AlertView
+            present(alert, animated: true, completion: nil)
+        }
 }
 
  //Created separate extention to use UITextfiled delegate Properties
