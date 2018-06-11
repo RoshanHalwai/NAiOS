@@ -42,8 +42,19 @@ class EditMyServicesViewController: NANavigationViewController {
     //To get particular service type string from Add My Services 
     var servicesString = String()
     
+    //get segmented string from card view to select default IndexValue
+    var getSegmentValue = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Segmented Controller is selected according to CardView Data.
+       if getSegmentValue == NAString().yes(){
+        segment.selectedSegmentIndex = 0
+        }
+        else{
+        segment.selectedSegmentIndex = 1
+        }
         
         //keyboard appear when screen load
         self.txt_Name.becomeFirstResponder()
