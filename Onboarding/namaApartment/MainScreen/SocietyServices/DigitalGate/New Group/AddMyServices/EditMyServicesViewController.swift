@@ -111,7 +111,8 @@ class EditMyServicesViewController: NANavigationViewController {
         self.txt_InTime.underlined()
         
         //Formatting & setting Button
-        self.btn_Update.setTitle(NAString().update(), for: .normal)
+        self.btn_Update.setTitle(NAString().update().uppercased(), for: .normal)
+        self.btn_Update.titleLabel?.font = NAFont().buttonFont()
         self.btn_Update.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_Update.backgroundColor = UIColor.black
         

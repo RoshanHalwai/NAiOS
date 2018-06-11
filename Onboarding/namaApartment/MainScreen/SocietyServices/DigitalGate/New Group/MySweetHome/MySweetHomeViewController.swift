@@ -30,6 +30,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         super.ConfigureNavBarTitle(title: NAString().my_sweet_home().capitalized)
        
         self.addMemberButton = UIButton(type: .custom)
+        self.addMemberButton.titleLabel?.font = NAFont().buttonFont()
         self.addMemberButton.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.addMemberButton.backgroundColor = UIColor.black
         self.addMemberButton.setTitle(NAString().btn_mySweet_home(), for: .normal)

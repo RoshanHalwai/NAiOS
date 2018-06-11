@@ -105,8 +105,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         btnSelectContact.titleLabel?.font = NAFont().buttonFont()
         btnSelectContact.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btnSelectContact.backgroundColor = NAColor().buttonBgColor()
-        btnInviteVisitor.setTitle(NAString().btnInvite(), for: .normal)
-        btnSelectContact.setTitle(NAString().BtnselectFromContact(), for: .normal)
+        btnInviteVisitor.setTitle(NAString().btnInvite().uppercased(), for: .normal)
+        btnSelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
     }
     
     //for datePicker

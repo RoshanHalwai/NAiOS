@@ -143,6 +143,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.btn_NotifyGate.setTitle(NAString().notify_gate(), for: .normal)
         cell.btn_NotifyGate.backgroundColor = NAColor().buttonBgColor()
         cell.btn_NotifyGate.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        cell.btn_NotifyGate.titleLabel?.font = NAFont().buttonFont()
         
         //Creating black bottom line
         cell.txt_Description.underlined()
