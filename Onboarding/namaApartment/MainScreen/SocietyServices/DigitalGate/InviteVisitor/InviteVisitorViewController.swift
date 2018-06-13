@@ -123,7 +123,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         }
         if (txtInvitorMobile.text == " "){
             lbl_Mob_Validation.isHidden = true
-            //txtInvitorMobile.underlined()
         }
     }
     
