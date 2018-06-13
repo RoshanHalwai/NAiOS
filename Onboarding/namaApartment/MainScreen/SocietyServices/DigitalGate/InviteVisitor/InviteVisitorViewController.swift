@@ -24,7 +24,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var btnInviteVisitor: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
-     @IBOutlet weak var img_Profile: UIImageView!
+    @IBOutlet weak var lbl_Name_Validation: UILabel!
+    @IBOutlet weak var lbl_Mob_Validation: UILabel!
+    @IBOutlet weak var img_Profile: UIImageView!
    
     //created date picker programtically
     let picker = UIDatePicker()
@@ -35,6 +37,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lbl_Name_Validation.isHidden = true
+        lbl_Mob_Validation.isHidden = true
         
         //assigned delegate method on textFields
         txtInvitorMobile.delegate = self
@@ -64,13 +69,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
        //become first responder
         self.txtInvitorName.becomeFirstResponder()
         
-        txtDate.delegate = self
-        
         //hide invite Desc & invite button
-       self.lbl_InviteDescription.isHidden = true
-       self.btnInviteVisitor.isHidden = true
+        self.lbl_InviteDescription.isHidden = true
+        self.btnInviteVisitor.isHidden = true
 
-         createDatePicker()
+        //calling date picker function on view didload.
+        createDatePicker()
         
         //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
@@ -107,6 +111,20 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         btnSelectContact.backgroundColor = NAColor().buttonBgColor()
         btnInviteVisitor.setTitle(NAString().btnInvite().uppercased(), for: .normal)
         btnSelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
+        
+        if ((txtInvitorName.text != "") && (txtInvitorMobile.text?.count == 10) && (txtDate.text != "")) {
+            lbl_InviteDescription.isHidden = false
+            btnInviteVisitor.isHidden = true
+        }
+        else {
+            lbl_InviteDescription.isHidden = true
+            btnInviteVisitor.isHidden = true
+            
+        }
+        if (txtInvitorMobile.text == " "){
+            lbl_Mob_Validation.isHidden = true
+            //txtInvitorMobile.underlined()
+        }
     }
     
     //for datePicker
@@ -127,6 +145,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     }
     
     @objc func donePressed() {
+        
         // format date
         let date = DateFormatter()
         date.dateFormat = "MMM d, YYYY \t HH:mm"
@@ -135,6 +154,46 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         self.view.endEditing(true)
         self.btnInviteVisitor.isHidden = false
         self.lbl_InviteDescription.isHidden = false
+        
+        if (txtInvitorName.text == ""){
+            lbl_Name_Validation.isHidden = false
+            txtInvitorName.redunderlined()
+            txtDate.text = ""
+            lbl_Name_Validation.text = NAString().please_enter_name()
+        }else{
+            lbl_Name_Validation.isHidden = true
+            txtInvitorName.underlined()
+            txtDate.text = dateString
+        }
+        if txtInvitorMobile.text == "" {
+            lbl_Mob_Validation.isHidden = false
+            txtInvitorMobile.redunderlined()
+            txtDate.text = ""
+            lbl_Mob_Validation.text = NAString().please_enter_mobile_no()
+        }else{
+            lbl_Mob_Validation.isHidden = true
+            txtDate.text = dateString
+            txtInvitorMobile.underlined()
+        }
+        if (txtInvitorMobile.text?.count != 10) && (txtInvitorMobile.text != ""){
+            txtDate.text = ""
+            lbl_Mob_Validation.isHidden = false
+            txtInvitorMobile.redunderlined()
+            lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
+            
+        }else if (txtInvitorMobile.text?.count == 10){
+            txtDate.text = dateString
+            txtInvitorMobile.underlined()
+            lbl_Mob_Validation.isHidden = true
+        }
+        if (txtInvitorName.text != "") && (txtInvitorMobile.text?.count == 10){
+            txtDate.text = dateString
+        }else{
+            txtDate.text = ""
+        }
+        
+        //To update visiblity of InviteButton according to text changes.
+        updateInviteButtonVisibility()
     }
     
     @IBAction func btnSelectContact(_ sender: Any)
@@ -248,11 +307,8 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             pickerController.allowsEditing = true
             
             self.present(pickerController, animated: true, completion: nil)
-    
         })
-        
         let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
-            
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
             pickerController.delegate = self
@@ -266,7 +322,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             
             (alert: UIAlertAction!) -> Void in
         })
-        
         actionSheet.addAction(actionCamera)
         actionSheet.addAction(actionGallery)
         actionSheet.addAction(cancel)
@@ -274,12 +329,86 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             img_Profile.image = image
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
+    //Accept only 10 digit mobile number
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let text = textField.text else { return true }
+        
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        
+        if textField == txtInvitorMobile {
+            if (newLength >= 10){
+                lbl_Mob_Validation.isHidden = true
+                txtInvitorMobile.underlined()
+            }else{
+                lbl_Mob_Validation.isHidden = false
+                txtDate.text = ""
+                txtInvitorMobile.redunderlined()
+                lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
+            }
+            if (newLength == 0){
+                lbl_Mob_Validation.isHidden = true
+                txtInvitorMobile.underlined()
+            }
+            
+            //Check for Text Removal
+            if string == ""{
+                return true
+            }else{
+                return newLength <= 10 // Bool
+            }
+        }
+        else{
+            if (newLength > 0){
+                lbl_Name_Validation.isHidden = true
+                txtInvitorName.underlined()
+            }else if (newLength <= 0){
+                lbl_Mob_Validation.isHidden = true
+                txtDate.underlined()
+            }
+        }
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == txtInvitorMobile{
+            if ((txtInvitorMobile.text?.count)! >= 10){
+                lbl_Mob_Validation.isHidden = true
+                txtInvitorMobile.underlined()
+                txtDate.text = ""
+                txtInvitorMobile.underlined()
+            }else if (txtInvitorMobile.text?.count != 10) && (txtInvitorMobile.text != "") {
+                lbl_Mob_Validation.isHidden = false
+                txtDate.text = ""
+                txtInvitorMobile.redunderlined()
+                lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
+            }
+            if(txtInvitorMobile.text == ""){
+                lbl_Mob_Validation.isHidden = true
+                txtInvitorMobile.underlined()
+            }
+        }
+    }
+    
+    func updateInviteButtonVisibility() {
+        
+        //Conditions 1.Atleast 1 character. 2.10 Chracters Must. 3.Date Should Set
+        if txtInvitorName.text != "" && (txtInvitorMobile.text?.count)! >= 10 && txtDate.text != "" {
+            lbl_InviteDescription.isHidden = false
+            btnInviteVisitor.isHidden = false
+        }else{
+            lbl_InviteDescription.isHidden = true
+            btnInviteVisitor.isHidden = true
+        }
+    }
 }
+
+
 

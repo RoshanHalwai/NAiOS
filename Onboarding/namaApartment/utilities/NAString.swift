@@ -137,7 +137,7 @@ class NAString : NSObject
         return String("I already have an Account")
     }
     
-    //Signin screen
+    //Signin screen and Visitor screen
     
     func create_an_account_button() -> String {
         return String("Create an Account")
@@ -152,6 +152,9 @@ class NAString : NSObject
     }
     func please_enter_10_digit_no() -> String{
         return String("Please enter a valid 10 digit mobile number")
+    }
+    func please_enter_name() -> String{
+        return String("Please enter your name")
     }
     
     //Society Services Activity
