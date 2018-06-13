@@ -15,6 +15,7 @@ class loginViewController: NANavigationViewController
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnSignup: UIButton!
+    @IBOutlet weak var lbl_Validation: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,10 @@ class loginViewController: NANavigationViewController
         
        //hide Signup button
        self.btnSignup.isHidden = true
-        
+
+        //hide validation label
+        lbl_Validation.isHidden = true
+       
         //Button formatting & setting
         btnSignup.titleLabel?.font = NAFont().buttonFont()
         btnLogin.titleLabel?.font = NAFont().buttonFont()
@@ -36,6 +40,7 @@ class loginViewController: NANavigationViewController
         //Label formatting & setting
         lbl_MobileNo.font = NAFont().headerFont()
         lbl_MobileNo.text = NAString().phone_numbe()
+        lbl_Validation.font = NAFont().descriptionFont()
         
         //TextField formatting & setting
         txt_MobileNo.font = NAFont().textFieldFont()
@@ -61,18 +66,56 @@ class loginViewController: NANavigationViewController
     
     @IBAction func btnSignup(_ sender: Any)
     {
-        let lv : signupViewController = self.storyboard?.instantiateViewController(withIdentifier: "signupVC") as! signupViewController
-        self.navigationController?.setNavigationBarHidden(false, animated: true);
+        let lv = NAViewPresenter().signupVC()
         self.navigationController?.pushViewController(lv, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true);
     }
     
-    @IBAction func btnSignin(_ sender: Any)
-    {
-        let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+    //Accept only 10 digit mobile number in MobileNumber TextField
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let otpString = NAString().enter_verification_code(first: "your", second: "your")
-        lv.newOtpString = otpString
-        self.navigationController?.setNavigationBarHidden(false, animated: true);
-        self.navigationController?.pushViewController(lv, animated: true)
+        guard let text = textField.text else { return true }
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        
+        if ((txt_MobileNo.text) == "")
+        {
+            lbl_Validation.isHidden = true
+            txt_MobileNo.underlined()
+        }
+        else if((txt_MobileNo.text?.count) != 10){
+            lbl_Validation.isHidden = true
+            txt_MobileNo.underlined()
+        }
+        return newLength < 11 // Bool
+    }
+    
+    @IBAction func btnSignin(_ sender: Any) {
+        
+        //Provide Validation Functionality on button click
+        lbl_Validation.isHidden = true
+        
+        if (self.txt_MobileNo.text == "")
+        {
+            lbl_Validation.isHidden = false
+            lbl_Validation.text = NAString().please_enter_mobile_no()
+            txt_MobileNo.redunderlined()
+        }
+        else if ((txt_MobileNo.text?.count)! < 10)
+        {
+            lbl_Validation.isHidden = false
+            lbl_Validation.text =  NAString().please_enter_10_digit_no()
+            txt_MobileNo.redunderlined()
+        }
+        else if ((txt_MobileNo.text?.count)! == 10) {
+            do {
+                let lv = NAViewPresenter().otpViewController()
+                let otpString = NAString().enter_verification_code(first: "your", second: "your")
+                lv.newOtpString = otpString
+                self.navigationController?.setNavigationBarHidden(false, animated: true);
+                self.navigationController?.pushViewController(lv, animated: true)
+            }
+        }
     }
 }
+
+

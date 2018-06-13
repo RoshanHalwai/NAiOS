@@ -147,6 +147,13 @@ class NAString : NSObject
         return String("LOGIN")
     }
     
+    func please_enter_mobile_no() -> String{
+        return String("Please enter your mobile number")
+    }
+    func please_enter_10_digit_no() -> String{
+        return String("Please enter a valid 10 digit mobile number")
+    }
+    
     //Society Services Activity
     
     func digital_gate() -> String {
