@@ -156,6 +156,13 @@ class NAString : NSObject
     func please_enter_name() -> String{
         return String("Please enter your name")
     }
+    func required_mobileNo_Length() -> Int{
+        return Int(10)
+    }
+    func zero_length() -> Int{
+        return Int(0)
+    }
+    
     
     //Society Services Activity
     

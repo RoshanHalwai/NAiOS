@@ -63,50 +63,40 @@ class loginViewController: NANavigationViewController
         //navigationItem.backBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
     }
-    
     @IBAction func btnSignup(_ sender: Any)
     {
         let lv = NAViewPresenter().signupVC()
         self.navigationController?.pushViewController(lv, animated: true)
         self.navigationController?.setNavigationBarHidden(false, animated: true);
     }
-    
     //Accept only 10 digit mobile number in MobileNumber TextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         guard let text = textField.text else { return true }
         let newLength = text.utf16.count + string.utf16.count - range.length
         
-        if ((txt_MobileNo.text) == "")
-        {
-            lbl_Validation.isHidden = true
-            txt_MobileNo.underlined()
-        }
-        else if((txt_MobileNo.text?.count) != 10){
-            lbl_Validation.isHidden = true
-            txt_MobileNo.underlined()
-        }
-        return newLength < 11 // Bool
+        lbl_Validation.isHidden = true
+        txt_MobileNo.underlined()
+        
+        return newLength <= NAString().required_mobileNo_Length() // Bool
     }
-    
     @IBAction func btnSignin(_ sender: Any) {
         
         //Provide Validation Functionality on button click
         lbl_Validation.isHidden = true
         
-        if (self.txt_MobileNo.text == "")
+        if (self.txt_MobileNo.text?.isEmpty)!
         {
             lbl_Validation.isHidden = false
             lbl_Validation.text = NAString().please_enter_mobile_no()
             txt_MobileNo.redunderlined()
         }
-        else if ((txt_MobileNo.text?.count)! < 10)
+        else if ((txt_MobileNo.text?.count)! < NAString().required_mobileNo_Length())
         {
             lbl_Validation.isHidden = false
             lbl_Validation.text =  NAString().please_enter_10_digit_no()
             txt_MobileNo.redunderlined()
         }
-        else if ((txt_MobileNo.text?.count)! == 10) {
+        else if ((txt_MobileNo.text?.count)! == NAString().required_mobileNo_Length()) {
             do {
                 let lv = NAViewPresenter().otpViewController()
                 let otpString = NAString().enter_verification_code(first: "your", second: "your")
@@ -117,5 +107,4 @@ class loginViewController: NANavigationViewController
         }
     }
 }
-
 
