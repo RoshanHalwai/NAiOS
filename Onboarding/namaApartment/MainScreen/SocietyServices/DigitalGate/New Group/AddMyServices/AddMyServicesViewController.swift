@@ -423,6 +423,8 @@ extension AddMyServicesViewController{
             updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
         }
         if textField == txt_Relation{
+            let allowedCharacters = CharacterSet.letters
+            let characterSet = CharacterSet(charactersIn: string)
             if (newLength == NAString().zero_length()){
                 txt_Relation.redunderlined()
             }else{
@@ -433,6 +435,7 @@ extension AddMyServicesViewController{
             nameTextFieldLength = txt_Name.text!.count
             mobileNumberTextFieldLength = txt_MobileNo.text!.count
             updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
+             return allowedCharacters.isSuperset(of: characterSet)
         }
         if textField == txt_Name {
                 if (newLength == NAString().zero_length())
@@ -501,4 +504,5 @@ extension AddMyServicesViewController{
             }
         }
     }
+   
 }
