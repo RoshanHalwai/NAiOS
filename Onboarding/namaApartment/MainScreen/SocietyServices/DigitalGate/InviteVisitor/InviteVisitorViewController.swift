@@ -319,10 +319,11 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             {
             lbl_Name_Validation.isHidden = false
             lbl_Name_Validation.text = NAString().please_enter_name()
+                
             }
         }
         if textField == txtInvitorMobile {
-            if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength)
+            if NAValidation().isValidMobileNumberLength(isNewMobileNoLength: newLength)
             {
                 lbl_Mob_Validation.isHidden = true
                 txtInvitorMobile.underlined()
@@ -357,7 +358,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         return true
     }
 
-    func updateInviteButtonVisibility() {
+     func updateInviteButtonVisibility() {
         //Conditions 1.Atleast 1 character. 2.10 Chracters Must. 3.Date Should Set
         if !(txtInvitorName.text?.isEmpty)! && (txtInvitorMobile.text?.count)! >= NAString().required_mobileNo_Length() && !(txtDate.text?.isEmpty)! {
             lbl_InviteDescription.isHidden = false
