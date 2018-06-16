@@ -24,7 +24,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var btnInviteVisitor: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
-     @IBOutlet weak var img_Profile: UIImageView!
+    @IBOutlet weak var lbl_Name_Validation: UILabel!
+    @IBOutlet weak var lbl_Mob_Validation: UILabel!
+    @IBOutlet weak var img_Profile: UIImageView!
    
     //created date picker programtically
     let picker = UIDatePicker()
@@ -35,6 +37,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Hiding error labels while view load.
+        lbl_Name_Validation.isHidden = true
+        lbl_Mob_Validation.isHidden = true
         
         //assigned delegate method on textFields
         txtInvitorMobile.delegate = self
@@ -64,13 +70,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
        //become first responder
         self.txtInvitorName.becomeFirstResponder()
         
-        txtDate.delegate = self
-        
         //hide invite Desc & invite button
-       self.lbl_InviteDescription.isHidden = true
-       self.btnInviteVisitor.isHidden = true
+        self.lbl_InviteDescription.isHidden = true
+        self.btnInviteVisitor.isHidden = true
 
-         createDatePicker()
+        //calling date picker function on view didload.
+        createDatePicker(dateTextField: txtDate)
         
         //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
@@ -110,7 +115,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     }
     
     //for datePicker
-    func createDatePicker() {
+    func createDatePicker(dateTextField : UITextField) {
         // toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -118,8 +123,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
-        txtDate.inputAccessoryView = toolbar
-        txtDate.inputView = picker
+        dateTextField.inputAccessoryView = toolbar
+        dateTextField.inputView = picker
         
         // format picker for date
         picker.datePickerMode = .dateAndTime
@@ -133,10 +138,47 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)
-        self.btnInviteVisitor.isHidden = false
-        self.lbl_InviteDescription.isHidden = false
+        self.btnInviteVisitor.isHidden = true
+        self.lbl_InviteDescription.isHidden = true
+        
+        if (txtInvitorName.text?.isEmpty)!{
+            lbl_Name_Validation.isHidden = false
+            txtInvitorName.redunderlined()
+            txtDate.text = ""
+            lbl_Name_Validation.text = NAString().please_enter_name()
+        }else{
+            lbl_Name_Validation.isHidden = true
+            txtInvitorName.underlined()
+            txtDate.text = dateString
+        }
+        if (txtInvitorMobile.text?.isEmpty)! {
+            lbl_Mob_Validation.isHidden = false
+            lbl_Mob_Validation.text = NAString().please_enter_mobile_no()
+            txtInvitorMobile.redunderlined()
+            txtDate.text = ""
+        }else{
+            lbl_Mob_Validation.isHidden = true
+            txtDate.text = dateString
+            txtInvitorMobile.underlined()
+        }
+        if (!(txtInvitorMobile.text?.isEmpty)!) && (txtInvitorMobile.text?.count != NAString().required_mobileNo_Length())  {
+            txtDate.text = ""
+            lbl_Mob_Validation.isHidden = false
+            txtInvitorMobile.redunderlined()
+            lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
+        }else if (txtInvitorMobile.text?.count == NAString().required_mobileNo_Length()){
+            txtDate.text = dateString
+            txtInvitorMobile.underlined()
+            lbl_Mob_Validation.isHidden = true
+        }
+        if (!(txtInvitorName.text?.isEmpty)!) && (txtInvitorMobile.text?.count == NAString().required_mobileNo_Length()){
+            txtDate.text = dateString
+        }else{
+            txtDate.text = ""
+        }
+        //To update visiblity of InviteButton according to text changes.
+        updateInviteButtonVisibility()
     }
-    
     @IBAction func btnSelectContact(_ sender: Any)
     {
         let entityType = CNEntityType.contacts
@@ -162,26 +204,19 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             self.openContacts()
             print("Get Authorization")
         }
-
         //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied
         {
             //creating alert controller
             let alert = UIAlertController(title:NAString().setting_Permission_AlertBox() , message: nil, preferredStyle: .alert)
-            
-            let cancelAction = UIAlertAction(title:NAString().cancel(), style: .cancel) { (action) in
-            }
-            
+            let cancelAction = UIAlertAction(title:NAString().cancel(), style: .cancel) { (action) in}
             let settingAction = UIAlertAction(title:NAString().settings(), style: .default) { (action) in
-                UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)
-            }
-            
+                UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)}
             alert.addAction(cancelAction)
             alert.addAction(settingAction)
             present(alert, animated: true, completion: nil)
         }
     }
-        
     //to call default address book app
     func openContacts()
     {
@@ -190,12 +225,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //uses did select method here
         self.present(contactPicker, animated: true, completion: nil)
     }
-    
     func contactPickerDidCancel(_ picker: CNContactPickerViewController)
     {
         picker.dismiss(animated: true, completion: nil)
     }
-    
     //user select any contact particular part
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact)
     {
@@ -204,16 +237,13 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         var mobileNo = "Not Available"
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
-            
         mobileNo = mobileString! as! String
         self.txtInvitorMobile.text = mobileNo
     }
-    
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
     @IBAction func btnInviteVisitor(_ sender: UIButton) {
         inviteAlertView()
     }
-
     //AlertView For navigation
     func inviteAlertView() {
         
@@ -226,12 +256,11 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             let dv = NAViewPresenter().myVisitorListVC()
             self.navigationController?.pushViewController(dv, animated: true)
         }
-        
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
     }
-    
+
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate
 {
     //Function to appear select image from by tapping image
@@ -240,19 +269,14 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let actionCamera = UIAlertAction(title: NAString().camera(), style: .default, handler: {
-            
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
             pickerController.delegate = self
             pickerController.sourceType = UIImagePickerControllerSourceType.camera
             pickerController.allowsEditing = true
-            
             self.present(pickerController, animated: true, completion: nil)
-    
         })
-        
         let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
-            
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
             pickerController.delegate = self
@@ -261,12 +285,10 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             
             self.present(pickerController, animated: true, completion: nil)
         })
-        
         let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
             
             (alert: UIAlertAction!) -> Void in
         })
-        
         actionSheet.addAction(actionCamera)
         actionSheet.addAction(actionGallery)
         actionSheet.addAction(cancel)
@@ -274,12 +296,81 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             img_Profile.image = image
         }
         self.dismiss(animated: true, completion: nil)
     }
+
+    //Accept only 10 digit mobile number
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let text = textField.text else { return true}
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        
+        if !(txtInvitorName.text?.isEmpty)! && !(txtDate.text?.isEmpty)!{
+            btnInviteVisitor.isHidden = false
+            lbl_InviteDescription.isHidden = false
+        }
+        if textField == txtInvitorName
+        {
+            if(newLength == NAString().zero_length())
+            {
+            lbl_Name_Validation.isHidden = false
+            lbl_Name_Validation.text = NAString().please_enter_name()
+            }
+        }
+        if textField == txtInvitorMobile {
+            if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength)
+            {
+                lbl_Mob_Validation.isHidden = true
+                txtInvitorMobile.underlined()
+            }else{
+                lbl_Mob_Validation.isHidden = false
+                txtInvitorMobile.redunderlined()
+                lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
+                btnInviteVisitor.isHidden = true
+                lbl_InviteDescription.isHidden = true
+            }
+            if (newLength == NAString().required_mobileNo_Length()) && !(txtDate.text?.isEmpty)!{
+                btnInviteVisitor.isHidden = false
+                lbl_InviteDescription.isHidden = false
+            }
+            //Check for Text Removal
+            if string.isEmpty{
+                return true
+            }else{
+                return newLength <= NAString().required_mobileNo_Length() // Bool
+            }
+        }
+        else{
+            if (newLength > NAString().zero_length()){
+                lbl_Name_Validation.isHidden = true
+                txtInvitorName.underlined()
+            }else if (newLength == NAString().zero_length()){
+                lbl_Mob_Validation.isHidden = true
+                txtInvitorName.underlined()
+            }
+        }
+        updateInviteButtonVisibility()
+        return true
+    }
+
+    func updateInviteButtonVisibility() {
+        //Conditions 1.Atleast 1 character. 2.10 Chracters Must. 3.Date Should Set
+        if !(txtInvitorName.text?.isEmpty)! && (txtInvitorMobile.text?.count)! >= NAString().required_mobileNo_Length() && !(txtDate.text?.isEmpty)! {
+            lbl_InviteDescription.isHidden = false
+            btnInviteVisitor.isHidden = false
+        }
+        else
+        {
+            lbl_InviteDescription.isHidden = true
+            btnInviteVisitor.isHidden = true
+        }
+    }
 }
+
+
+
 
