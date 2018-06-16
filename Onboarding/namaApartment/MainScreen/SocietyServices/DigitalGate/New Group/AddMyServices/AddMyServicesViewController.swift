@@ -170,7 +170,6 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
 
           //creating Reject alert actions
         let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
-            print("Rejected")
         }
         //creating Accept alert actions
         let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
@@ -179,7 +178,6 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
             lv.newOtpString = familyString
             self.navigationController?.pushViewController(lv, animated: true)
-            print("Accepted")
         }
         alert.addAction(rejectAction)
         alert.addAction(acceptAction)
@@ -196,7 +194,6 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             pickerController.sourceType = UIImagePickerControllerSourceType.camera
             pickerController.allowsEditing = true
             self.present(pickerController, animated: true, completion: nil)
-            print("Camera tapped")
         })
         let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -204,7 +201,6 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             pickerController.delegate = self
             pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
             pickerController.allowsEditing = true
-            print("Gallery tapped")
             self.present(pickerController, animated: true, completion: nil)
         })
         let cancel = UIAlertAction(title:NAString().cancel(), style: .cancel, handler: {
@@ -255,7 +251,8 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             btn_AddDetails.isHidden = true
             lbl_OTPDescription.isHidden = true
             lbl_Name_Validation.text = NAString().please_enter_name()
-        }else{
+        }
+        else{
             lbl_Name_Validation.isHidden = true
             txt_Name.underlined()
             txt_Date.text = dateString
@@ -267,7 +264,8 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             txt_Date.text = ""
             btn_AddDetails.isHidden = true
             lbl_OTPDescription.isHidden = true
-        }else{
+        }
+        else{
             lbl_Mobile_Validation.isHidden = true
             txt_Date.text = dateString
             txt_MobileNo.underlined()
@@ -278,7 +276,8 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             btn_AddDetails.isHidden = true
             lbl_OTPDescription.isHidden = true
             lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
-        }else if (txt_MobileNo.text?.count == NAString().required_mobileNo_Length()){
+        }
+        else if (txt_MobileNo.text?.count == NAString().required_mobileNo_Length()){
             txt_Date.text = dateString
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
@@ -286,7 +285,8 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         if (!(txt_Name.text?.isEmpty)!) && (txt_MobileNo.text?.count == NAString().required_mobileNo_Length()){
             txt_Date.text = dateString
             btn_AddDetails.isHidden = false
-        }else{
+        }
+        else{
             txt_Date.text = ""
         }
     }
@@ -301,16 +301,11 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
                 if success {
                     self.openContacts()
                 }
-                else
-                {
-                    print("No Authorization")
-                }
             })
         }
         else if authStatus == CNAuthorizationStatus.authorized
         {
             self.openContacts()
-            print("Get Authorization")
         }
         //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied
@@ -363,8 +358,8 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             self.lbl_OTPDescription.isHidden = false
             let FamilyString = NAString().otp_message_family_member()
             self.lbl_OTPDescription.text = FamilyString
-    
-        } else {
+        }
+        else {
             self.stackView_GrantAccess.isHidden = true
             self.stackView_InTime.isHidden = false
             self.txt_Relation.isHidden = true
@@ -403,7 +398,7 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             else
            {
             //if NO is selected then directly it will go to OTP Page.
-             let lv = NAViewPresenter().otpViewController()
+            let lv = NAViewPresenter().otpViewController()
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
             lv.newOtpString = familyString
               self.navigationController?.pushViewController(lv, animated: true)
@@ -427,7 +422,8 @@ extension AddMyServicesViewController{
             let characterSet = CharacterSet(charactersIn: string)
             if (newLength == NAString().zero_length()){
                 txt_Relation.redunderlined()
-            }else{
+            }
+            else{
                 txt_Relation.underlined()
             }
             relationTextFieldLength = newLength
@@ -443,7 +439,8 @@ extension AddMyServicesViewController{
                 lbl_Name_Validation.isHidden = false
                 txt_Name.redunderlined()
                 lbl_Name_Validation.text = NAString().please_enter_name()
-                }else{
+                }
+                else{
                 lbl_Name_Validation.isHidden = true
                 txt_Name.underlined()
                 }
@@ -458,7 +455,8 @@ extension AddMyServicesViewController{
             {
                 lbl_Mobile_Validation.isHidden = true
                 txt_MobileNo.underlined()
-            }else{
+            }
+            else{
                 lbl_Mobile_Validation.isHidden = false
                 txt_MobileNo.redunderlined()
                 btn_AddDetails.isHidden = true
@@ -478,8 +476,9 @@ extension AddMyServicesViewController{
             //Check for Text Removal
             if string.isEmpty{
                 return true
-            }else{
-                return newLength <= NAString().required_mobileNo_Length() // Bool
+            }
+            else{
+                return newLength <= NAString().required_mobileNo_Length()
             }
         }
         return true
@@ -490,15 +489,18 @@ extension AddMyServicesViewController{
             if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && relationLength > NAString().zero_length() {
                 btn_AddDetails.isHidden = false
                 lbl_OTPDescription.isHidden = false
-            }else{
+            }
+            else{
                 btn_AddDetails.isHidden = true
                 lbl_OTPDescription.isHidden = true
             }
-        }else if txt_Relation.isHidden == true{
+        }
+        else if txt_Relation.isHidden == true{
             if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length(){
                 btn_AddDetails.isHidden = false
                 lbl_OTPDescription.isHidden = false
-            }else if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length(){
+            }
+             if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length(){
                 btn_AddDetails.isHidden = true
                 lbl_OTPDescription.isHidden = true
             }
