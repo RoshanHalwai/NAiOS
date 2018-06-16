@@ -10,4 +10,3 @@ DerivedData/
 # Ignore directories
 xcworkspace/
 xcuserdata/
-Pods/
