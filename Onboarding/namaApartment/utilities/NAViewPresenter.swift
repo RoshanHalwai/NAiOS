@@ -89,4 +89,10 @@ class NAViewPresenter: NSObject {
     func addMySerivesVC() -> AddMyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
     }
+    
+    //signup vc
+    func signupVC() -> signupViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "signupVC") as! signupViewController
+    }
+    
 }
