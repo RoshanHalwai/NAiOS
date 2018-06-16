@@ -22,6 +22,9 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var lbl_Relation: UILabel!
     @IBOutlet weak var lbl_GrantAccess: UILabel!
     
+    @IBOutlet weak var lbl_Name_Validation: UILabel!
+    @IBOutlet weak var lbl_Mobile_Validation: UILabel!
+    
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
@@ -55,8 +58,22 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     
+    //Length Variables
+    var nameTextFieldLength = NAString().zero_length()
+    var mobileNumberTextFieldLength = NAString().zero_length()
+    var dateTextFieldLength = NAString().zero_length()
+    var relationTextFieldLength = NAString().zero_length()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //hiding error labels
+        lbl_Name_Validation.isHidden = true
+        lbl_Mobile_Validation.isHidden = true
+        
+        //hiding add button & otp Label
+        btn_AddDetails.isHidden = true
+        lbl_OTPDescription.isHidden = true
         
         //assigned delegate method on textFields
         txt_Name.delegate = self
@@ -112,10 +129,11 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         self.lbl_OTPDescription.font = NAFont().descriptionFont()
         self.lbl_Relation.font = NAFont().headerFont()
         self.lbl_GrantAccess.font = NAFont().headerFont()
+        self.lbl_Name_Validation.font = NAFont().descriptionFont()
+        self.lbl_Mobile_Validation.font = NAFont().descriptionFont()
         
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
-    
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
         
@@ -125,6 +143,7 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         self.txt_Name.font = NAFont().textFieldFont()
         self.txt_CountryCode.font = NAFont().headerFont()
         self.txt_Relation.font = NAFont().textFieldFont()
+        
         self.txt_CountryCode.text = NAString()._91()
         
         //button formatting & setting
@@ -137,25 +156,22 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         self.btn_AddDetails.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         
         self.btn_SelectContact.titleLabel?.font = NAFont().buttonFont()
-        
         self.btn_AddDetails.titleLabel?.font = NAFont().buttonFont()
         
         //creating image round
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
     }
-    
         //alert Popup when user give  grant access & try to add details
-        func grantAccessAlert() {
+        func grantAccessAlert()
+        {
         
         //showing alert controller while giving Grant Access to family members
         let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()), preferredStyle: .alert)
 
           //creating Reject alert actions
         let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
-            print("Rejected")
         }
-        
         //creating Accept alert actions
         let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
 
@@ -163,67 +179,50 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
             lv.newOtpString = familyString
             self.navigationController?.pushViewController(lv, animated: true)
-            
-            print("Accepted")
         }
-        
         alert.addAction(rejectAction)
         alert.addAction(acceptAction)
         present(alert, animated: true, completion: nil)
     }
-    
     //Function to appear select image from by tapping image
     @objc func imageTapped()
     {
         let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-        
         let actionCamera = UIAlertAction(title:NAString().camera(), style: .default, handler: {
-            
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
             pickerController.delegate = self
             pickerController.sourceType = UIImagePickerControllerSourceType.camera
             pickerController.allowsEditing = true
-
             self.present(pickerController, animated: true, completion: nil)
-            print("Camera tapped")
         })
-        
         let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
-            
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
             pickerController.delegate = self
             pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
             pickerController.allowsEditing = true
-            
-            print("Gallery tapped")
-            
             self.present(pickerController, animated: true, completion: nil)
         })
-        
         let cancel = UIAlertAction(title:NAString().cancel(), style: .cancel, handler: {
-            
-            (alert: UIAlertAction!) -> Void in
-        })
-        
+            (alert: UIAlertAction!) -> Void in})
         actionSheet.addAction(actionCamera)
         actionSheet.addAction(actionGallery)
         actionSheet.addAction(cancel)
-        
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        {
             img_Profile.image = image
         }
         self.dismiss(animated: true, completion: nil)
     }
-    
     //for datePicker
-    func createDatePicker() {
+    func createDatePicker()
+    {
         // toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -237,7 +236,6 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         // format picker for date
         picker.datePickerMode = .time
     }
-    
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
@@ -249,32 +247,79 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         //after adding date this will shows
         self.lbl_OTPDescription.isHidden = false
         self.btn_AddDetails.isHidden = false
-    }
-    
-    @IBAction func btnSelectContact(_ sender: Any) {
         
+        if (txt_Name.text?.isEmpty)!
+        {
+            lbl_Name_Validation.isHidden = false
+            txt_Name.redunderlined()
+            txt_Date.text = ""
+            btn_AddDetails.isHidden = true
+            lbl_OTPDescription.isHidden = true
+            lbl_Name_Validation.text = NAString().please_enter_name()
+        }
+        else
+        {
+            lbl_Name_Validation.isHidden = true
+            txt_Name.underlined()
+            txt_Date.text = dateString
+        }
+        if (txt_MobileNo.text?.isEmpty)!
+        {
+            lbl_Mobile_Validation.isHidden = false
+            lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
+            txt_MobileNo.redunderlined()
+            txt_Date.text = ""
+            btn_AddDetails.isHidden = true
+            lbl_OTPDescription.isHidden = true
+        }
+        else
+        {
+            lbl_Mobile_Validation.isHidden = true
+            txt_Date.text = dateString
+            txt_MobileNo.underlined()
+        }
+        if (!(txt_MobileNo.text?.isEmpty)!) && (txt_MobileNo.text?.count != NAString().required_mobileNo_Length())
+        {
+            lbl_Mobile_Validation.isHidden = false
+            txt_MobileNo.redunderlined()
+            btn_AddDetails.isHidden = true
+            lbl_OTPDescription.isHidden = true
+            lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
+        }
+        else if (txt_MobileNo.text?.count == NAString().required_mobileNo_Length())
+        {
+            txt_Date.text = dateString
+            txt_MobileNo.underlined()
+            lbl_Mobile_Validation.isHidden = true
+        }
+        if (!(txt_Name.text?.isEmpty)!) && (txt_MobileNo.text?.count == NAString().required_mobileNo_Length())
+        {
+            txt_Date.text = dateString
+            btn_AddDetails.isHidden = false
+        }
+        else
+        {
+            txt_Date.text = ""
+        }
+    }
+    @IBAction func btnSelectContact(_ sender: Any)
+    {
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
         if authStatus == CNAuthorizationStatus.notDetermined
         {
             let contactStore = CNContactStore.init()
             contactStore.requestAccess(for: entityType, completionHandler: { (success, nil) in
-                
-                if success {
-                    self.openContacts()
-                }
-                else
+                if success
                 {
-                    print("No Authorization")
+                    self.openContacts()
                 }
             })
         }
         else if authStatus == CNAuthorizationStatus.authorized
         {
             self.openContacts()
-            print("Get Authorization")
         }
-            
         //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied
         {
@@ -283,17 +328,14 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             
             let cancelAction = UIAlertAction(title: NAString().cancel(), style: .cancel) { (action) in
             }
-            
             let settingAction = UIAlertAction(title: NAString().settings(), style: .default) { (action) in
                 UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)
             }
-            
             alert.addAction(cancelAction)
             alert.addAction(settingAction)
             present(alert, animated: true, completion: nil)
         }
     }
-    
     //to call default address book app
     func openContacts()
     {
@@ -301,12 +343,10 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         contactPicker.delegate = self
         self.present(contactPicker, animated: true, completion: nil)
     }
-    
     func contactPickerDidCancel(_ picker: CNContactPickerViewController)
     {
         picker.dismiss(animated: true, completion: nil)
     }
-    
     //user select any contact particular part
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact)
     {
@@ -319,27 +359,25 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
         mobileNo = mobileString! as! String
         self.txt_MobileNo.text = mobileNo
     }
-    
     //identify from which page screen is coming
-    func screenComingFrom() {
-        if self.navTitle == NAString().addFamilyMemberTitle() {
+    func screenComingFrom()
+    {
+        if self.navTitle == NAString().addFamilyMemberTitle()
+        {
            
             self.stackView_GrantAccess.isHidden = false
             self.stackView_InTime.isHidden = true
-            
             self.txt_Relation.isHidden = false
             self.lbl_Relation.isHidden = false
             self.lbl_Date.text = NAString().grant_access().capitalized
             self.lbl_OTPDescription.isHidden = false
-            
             let FamilyString = NAString().otp_message_family_member()
             self.lbl_OTPDescription.text = FamilyString
-    
-        } else {
-            
+        }
+        else
+        {
             self.stackView_GrantAccess.isHidden = true
             self.stackView_InTime.isHidden = false
-            
             self.txt_Relation.isHidden = true
             self.lbl_Relation.isHidden = true
             self.lbl_Date.text = NAString().time()
@@ -354,7 +392,6 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             }
         }
     }
-    
     @IBAction func btnAddDetails(_ sender: Any)
     {
         if (navTitle! == NAString().add_my_service().capitalized)
@@ -364,11 +401,9 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
        // passing data
         let servicesString = NAString().enter_verification_code(first: "your \(holdString)", second: "their")
         lv.newOtpString = servicesString
-        
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
         }
-            
         else if (navTitle! == NAString().addFamilyMemberTitle().capitalized)
         {
            if(segment.selectedSegmentIndex == 0)
@@ -379,12 +414,132 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
             else
            {
             //if NO is selected then directly it will go to OTP Page.
-             let lv = NAViewPresenter().otpViewController()
+            let lv = NAViewPresenter().otpViewController()
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
             lv.newOtpString = familyString
               self.navigationController?.pushViewController(lv, animated: true)
-            
             }
         }
     }
+}
+extension AddMyServicesViewController{
+    //Accept only 10 digit mobile number
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        guard let text = textField.text else { return true}
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        if textField == txt_Date
+        {
+            dateTextFieldLength = newLength
+            nameTextFieldLength = txt_Name.text!.count
+            mobileNumberTextFieldLength = txt_MobileNo.text!.count
+            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
+        }
+        if textField == txt_Relation
+        {
+            let allowedCharacters = CharacterSet.letters
+            let characterSet = CharacterSet(charactersIn: string)
+            if (newLength == NAString().zero_length())
+            {
+                txt_Relation.redunderlined()
+            }
+            else
+            {
+                txt_Relation.underlined()
+            }
+            relationTextFieldLength = newLength
+            dateTextFieldLength = txt_Date.text!.count
+            nameTextFieldLength = txt_Name.text!.count
+            mobileNumberTextFieldLength = txt_MobileNo.text!.count
+            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
+             return allowedCharacters.isSuperset(of: characterSet)
+        }
+        if textField == txt_Name
+        {
+                if (newLength == NAString().zero_length())
+                {
+                lbl_Name_Validation.isHidden = false
+                txt_Name.redunderlined()
+                lbl_Name_Validation.text = NAString().please_enter_name()
+                }
+                else
+                {
+                lbl_Name_Validation.isHidden = true
+                txt_Name.underlined()
+                }
+            nameTextFieldLength = newLength
+            relationTextFieldLength = txt_Relation.text!.count
+            dateTextFieldLength = txt_Date.text!.count
+            mobileNumberTextFieldLength = txt_MobileNo.text!.count
+            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
+        }
+        if textField == txt_MobileNo
+        {
+            if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength)
+            {
+                lbl_Mobile_Validation.isHidden = true
+                txt_MobileNo.underlined()
+            }
+            else
+            {
+                lbl_Mobile_Validation.isHidden = false
+                txt_MobileNo.redunderlined()
+                btn_AddDetails.isHidden = true
+                lbl_OTPDescription.isHidden = true
+                lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
+            }
+            if (newLength == NAString().required_mobileNo_Length()) && !(txt_Date.text?.isEmpty)!
+            {
+                btn_AddDetails.isHidden = false
+                lbl_OTPDescription.isHidden = false
+            }
+            nameTextFieldLength = txt_Name.text!.count
+            relationTextFieldLength = txt_Relation.text!.count
+            dateTextFieldLength = txt_Date.text!.count
+            mobileNumberTextFieldLength = newLength
+            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
+            
+            //Check for Text Removal
+            if string.isEmpty
+            {
+                return true
+            }
+            else
+            {
+                return newLength <= NAString().required_mobileNo_Length()
+            }
+        }
+        return true
+    }
+    func updateAddButtonVisibilty(nameLength:Int, mobileNumberLength:Int, relationLength:Int, dateLength:Int)
+    {
+        
+        if  txt_Relation.isHidden == false
+        {
+            if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && relationLength > NAString().zero_length()
+            {
+                btn_AddDetails.isHidden = false
+                lbl_OTPDescription.isHidden = false
+            }
+            else
+            {
+                btn_AddDetails.isHidden = true
+                lbl_OTPDescription.isHidden = true
+            }
+        }
+        else if txt_Relation.isHidden == true
+        {
+            if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length()
+            {
+                btn_AddDetails.isHidden = false
+                lbl_OTPDescription.isHidden = false
+            }
+             if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length()
+             {
+                btn_AddDetails.isHidden = true
+                lbl_OTPDescription.isHidden = true
+            }
+        }
+    }
+   
 }

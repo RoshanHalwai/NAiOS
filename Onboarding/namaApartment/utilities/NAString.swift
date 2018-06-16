@@ -154,7 +154,7 @@ class NAString : NSObject
         return String("Please enter a valid 10 digit mobile number")
     }
     func please_enter_name() -> String{
-        return String("Please enter your name")
+        return String("Please enter name")
     }
     func required_mobileNo_Length() -> Int{
         return Int(10)

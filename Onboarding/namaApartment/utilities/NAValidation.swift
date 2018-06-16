@@ -13,10 +13,17 @@ class NAValidation: NSObject {
     
     //shouldChangeCharacters mobile Length function
     func isValidMobileNumber(isNewMobileNoLength: Int) -> Bool{
-        if (isNewMobileNoLength >= NAString().required_mobileNo_Length()) || (isNewMobileNoLength == NAString().zero_length()){
+        if (isNewMobileNoLength >= NAString().required_mobileNo_Length()){
             return true
         }else{
             return false
         }
+    }
+    func isValidMobileNumberLength(isNewMobileNoLength: Int) -> Bool{
+         if (isNewMobileNoLength >= NAString().required_mobileNo_Length()) || (isNewMobileNoLength == NAString().zero_length()){
+         return true
+         }else{
+         return false
+         }
     }
 }
