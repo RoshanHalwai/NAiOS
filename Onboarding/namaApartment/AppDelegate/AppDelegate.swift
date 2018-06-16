@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import FirebaseCore
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         statusBar.backgroundColor = UIColor.black
 
+        //Configuring firebase when app launch.
+        FirebaseApp.configure()
+        
         // Override point for customization after application launch.
         return true
     }
