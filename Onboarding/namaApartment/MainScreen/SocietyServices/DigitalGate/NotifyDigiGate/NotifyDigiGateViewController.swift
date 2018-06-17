@@ -58,10 +58,14 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         switch indexPath.row {
         case 0:
             let lv = NAViewPresenter().expectingCabArrivalVC()
+            lv.navTitle = NAString().expecting_cab_arrival()
+            lv.vendorCabNameString = NAString().cab_number()
             self.navigationController?.pushViewController(lv, animated: true)
             
         case 1:
-            let lv1 = NAViewPresenter().expectingPackageArrivalVC()
+            let lv1 = NAViewPresenter().expectingCabArrivalVC()
+            lv1.navTitle = NAString().expecting_package_arrival()
+            lv1.vendorCabNameString = NAString().package_number()
             self.navigationController?.pushViewController(lv1, animated: true)
             
         case 2:

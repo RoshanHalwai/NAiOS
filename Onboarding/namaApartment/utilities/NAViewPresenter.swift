@@ -23,11 +23,6 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "expectingCabArrivalVC") as! ExpectingCabArrivalViewController
     }
     
-    //expecting package arrival VC
-    func expectingPackageArrivalVC() -> ExpectingPackageArrivalViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "expectingPackageArrivalVC") as! ExpectingPackageArrivalViewController
-    }
-    
     //Invite Visitor VC
     func inviteVisitorVC() -> InviteVisitorViewController {
         return storyBoard.instantiateViewController(withIdentifier: "inviteVisitorVC") as! InviteVisitorViewController
