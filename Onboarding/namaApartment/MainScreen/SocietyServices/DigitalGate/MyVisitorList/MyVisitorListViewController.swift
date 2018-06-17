@@ -11,37 +11,33 @@ import FirebaseDatabase
 
 class MyVisitorListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate
 {
-    //array for displaying card view data
-//    var cardImageList = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
-//    var MyVisitorName = ["Vikas Nayak","Chaitanya","Vinod Kumar","Avinash"]
-//    var MyVisitorDate = ["May 1 2018","May 2 2018","May 3 2018","Apr 30 2017"]
-//    var MyVisitorType = ["Guest","Guest","Guest","Guest"]
-//    var MyVisitorTime = ["12:14","14:09","09:12","05:50"]
-//    var InvitorName = ["Vinod Kumar","Rohit Mishra","Yuvaraj","Akash Patel"]
+    //Created variable of DBReference for storing data in firebase
+    var myVisitorListReference : DatabaseReference?
     
-    //for storing data in firebase
-    var dbReference : DatabaseReference?
+    //Created variable for NAVisitorFile to fetch data from firebase with the help of NAVisitor's variables.
+    var myVisitorList = [NAVisitor]()
     
-     var myVisitorList = [NAVisitor]()
+    //Created instance of 
+    var NAObject = NAFBObjects()
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //db reference
-        dbReference = Database.database().reference().child("visitors").child("preApprovedVisitors")
+        //Assigning Child from where to get data in Visitor List.
+        myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
         
-        //
-        dbReference?.observe(DataEventType.value, with: { (snapshot) in
+        myVisitorListReference?.observe(DataEventType.value, with: { (snapshot) in
+            
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
-            if snapshot.childrenCount > 0
-            {
+            if snapshot.childrenCount > 0 {
                 self.myVisitorList.removeAll()
                 
-                //forloop for getting all the data in tableview
-                for visitors in snapshot.children.allObjects as! [DataSnapshot]
-                {
+                //for loop for getting all the data in tableview
+                for visitors in snapshot.children.allObjects as! [DataSnapshot] {
+                    
                     let visitorObject = visitors.value as? [String: AnyObject]
                     
                     let dateAndTimeOfVisit = visitorObject?["dateAndTimeOfVisit"]
@@ -52,23 +48,18 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     let status = visitorObject?["status"]
                     let uid = visitorObject?["uid"]
                     
-                    
                     //creating userAccount model & set earlier created let variables in userObject in the below parameter
                     let user = NAVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
                     
-                    //add users In UserList
+                    //Adding visitor in visitor List
                     self.myVisitorList.append(user)
                 }
                 
-                //reload tableview
+                //reload collection view.
                 self.collectionView.reloadData()
             }
-            
         })
-
         
-        
-    
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         self.navigationItem.title = ""
@@ -81,16 +72,12 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     }
     
     //created custome back button to go back to digi gate
-    @objc func goBackToDigiGate()
-    {
+    @objc func goBackToDigiGate() {
+        
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myVisitorList.count
     }
@@ -98,18 +85,21 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MyVistorListCollectionViewCell
         
-         let myList : NAVisitor
+        let myList : NAVisitor
+        
         
         myList = myVisitorList[indexPath.row]
         
-      //  cell.lbl_InvitedName.text = myList.
+        //  cell.lbl_InvitedName.text = myList
         cell.lbl_MyVisitorDate.text = myList.dateAndTimeOfVisit
-       // cell.lbl_MyVisitorTime.text =
-        //cell.lbl_MyVisitorName.text =
-        //cell.lbl_MyVisitorType.text =
+        cell.lbl_InvitedName.text = NAObject.getUser().fullName
         
-   //     cell.myVisitorImage
-//        .image = cardImageList[indexPath.row]
+        // cell.lbl_MyVisitorTime.text = myList
+        cell.lbl_MyVisitorName.text = myList.fullName
+        // cell.lbl_MyVisitorType.text = myList.
+        
+        //     cell.myVisitorImage
+        //        .image = cardImageList[indexPath.row]
         
         
         //This creates the shadows and modifies the cards a little bit
@@ -134,14 +124,14 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         //setting image round
         cell.myVisitorImage.layer.cornerRadius = cell.myVisitorImage.frame.size.width/2
         cell.myVisitorImage.clipsToBounds = true
-    
+        
         //delete particular cell from list
         cell.index = indexPath
         cell.delegate = self
-
+        
         //calling Reschdule button action on particular cell
         cell.objReschduling = {
-        
+            
             let dv = NAViewPresenter().rescheduleMyVisitorVC()
             self.navigationController?.pushViewController(dv, animated: true)
             
@@ -155,7 +145,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         }
         return cell
     }
-
+    
     //date action fucntion
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
         // format date
@@ -168,41 +158,40 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
 }
 
 extension MyVisitorListViewController : dataCollectionProtocol{
-     func deleteData(indx: Int, cell: UICollectionViewCell) {
+    
+    func deleteData(indx: Int, cell: UICollectionViewCell) {
         
         //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
-            let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
-                }
-            let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
-
-                //Remove collection view cell item with animation
+        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
+        }
+        let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
+            
+            //Remove collection view cell item with animation
+             self.myVisitorList.remove(at: indx)
+            
+            //animation at final state
+            cell.alpha = 1
+            cell.layer.transform = CATransform3DIdentity
+            
+            UIView.animate(withDuration: 0.3) {
                 
-                
-               // self.MyVisitorName.remove(at: indx)
-                
-                //animation at final state
-                cell.alpha = 1
-                cell.layer.transform = CATransform3DIdentity
-        
-                UIView.animate(withDuration: 0.3)
-                {
-                    cell.alpha = 0.0
-                    let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
-                    cell.layer.transform = transform
-                }
-        
-                Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
-    }
+                cell.alpha = 0.0
+                let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
+                cell.layer.transform = transform
+            }
+            
+            Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
+        }
         
         alert.addAction(actionNO) //add No action on AlertView
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)
     }
     
-        @objc func reloadCollectionData() {
-            collectionView.reloadData()
+    @objc func reloadCollectionData() {
+        collectionView.reloadData()
     }
 }
 

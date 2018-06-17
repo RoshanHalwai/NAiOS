@@ -12,6 +12,7 @@ import UIKit
 private let reuseIdentifier = "Cell"
 class DigitalGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
 {
+    
     @IBOutlet weak var collectionView: UICollectionView!
   
     var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","sweetHome","Medical"]
