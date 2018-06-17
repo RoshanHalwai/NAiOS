@@ -18,7 +18,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     var myVisitorList = [NAVisitor]()
     
     //Created instance of 
-    var NAObject = NAFBObjects()
+    var NAObject = NAUserObjects()
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -67,7 +67,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         //created custom back button for goto digi gate screen
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
         self.navigationItem.leftBarButtonItem = backButton
-        
         self.navigationItem.hidesBackButton = true
     }
     
@@ -87,20 +86,11 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         
         let myList : NAVisitor
         
-        
         myList = myVisitorList[indexPath.row]
         
-        //  cell.lbl_InvitedName.text = myList
         cell.lbl_MyVisitorDate.text = myList.dateAndTimeOfVisit
         cell.lbl_InvitedName.text = NAObject.getUser().fullName
-        
-        // cell.lbl_MyVisitorTime.text = myList
         cell.lbl_MyVisitorName.text = myList.fullName
-        // cell.lbl_MyVisitorType.text = myList.
-        
-        //     cell.myVisitorImage
-        //        .image = cardImageList[indexPath.row]
-        
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0

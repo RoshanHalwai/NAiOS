@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class NAFBObjects: NSObject {
+class NAUserObjects: NSObject {
     
     //Created global varible to get info. about user after login successfull
     var userName = [NAUser]()
