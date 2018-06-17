@@ -52,9 +52,12 @@
 		867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
 		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */; };
 		867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */; };
+		86A4D4A520D57047007890D2 /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
+		86A4D4A820D57CB1007890D2 /* NAFBObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A720D57CB1007890D2 /* NAFBObjects.swift */; };
 		86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
 		86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */; };
 		86B1A8DA20D50EAB00D90D88 /* MyVisitorListFB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1A8D920D50EAB00D90D88 /* MyVisitorListFB.swift */; };
+		86B1A8DC20D5276200D90D88 /* NAFBReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1A8DB20D5276200D90D88 /* NAFBReferences.swift */; };
 		86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E420999DE200B159A3 /* OTPViewController.swift */; };
 		86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */; };
 		86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74EB209A2E7000B159A3 /* NAFont.swift */; };
@@ -151,9 +154,12 @@
 		867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestViewController.swift; sourceTree = "<group>"; };
 		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestTableViewCell.swift; sourceTree = "<group>"; };
 		867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySweetHomeViewController.swift; sourceTree = "<group>"; };
+		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
+		86A4D4A720D57CB1007890D2 /* NAFBObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFBObjects.swift; sourceTree = "<group>"; };
 		86A8B934209EC9FF00EA1C35 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		86B1A8D920D50EAB00D90D88 /* MyVisitorListFB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorListFB.swift; sourceTree = "<group>"; };
+		86B1A8DB20D5276200D90D88 /* NAFBReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFBReferences.swift; sourceTree = "<group>"; };
 		86BD74E420999DE200B159A3 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFlatDetailsViewController.swift; sourceTree = "<group>"; };
 		86BD74EB209A2E7000B159A3 /* NAFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFont.swift; sourceTree = "<group>"; };
@@ -406,6 +412,16 @@
 			path = MySweetHome;
 			sourceTree = "<group>";
 		};
+		86A4D4A620D57675007890D2 /* FBDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				86B1A8DB20D5276200D90D88 /* NAFBReferences.swift */,
+				86A4D4A420D57047007890D2 /* NAUser.swift */,
+				86A4D4A720D57CB1007890D2 /* NAFBObjects.swift */,
+			);
+			path = FBDatabase;
+			sourceTree = "<group>";
+		};
 		86A8B933209EC9FE00EA1C35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +453,7 @@
 		86BD74E9209A2DD000B159A3 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
+				86A4D4A620D57675007890D2 /* FBDatabase */,
 				86CE8E5D20C26AC10067F031 /* FirebasePlistFile */,
 				861CBFFD20B9AA98009EC0EF /* Font */,
 				86270100209707BC004B28EB /* Assets.xcassets */,
@@ -845,11 +862,14 @@
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
+				86A4D4A820D57CB1007890D2 /* NAFBObjects.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
 				86B1A8DA20D50EAB00D90D88 /* MyVisitorListFB.swift in Sources */,
+				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift in Sources */,
+				86B1A8DC20D5276200D90D88 /* NAFBReferences.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
 			);
