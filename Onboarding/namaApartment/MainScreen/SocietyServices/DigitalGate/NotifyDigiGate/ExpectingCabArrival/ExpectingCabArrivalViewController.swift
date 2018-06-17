@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ExpectingCabArrivalViewController: NANavigationViewController
-{
+class ExpectingCabArrivalViewController: NANavigationViewController {
     @IBOutlet weak var lbl_CabNumber: UILabel!
     @IBOutlet weak var lbl_DateTime: UILabel!
     @IBOutlet weak var lbl_ValidFor: UILabel!
+    
+    @IBOutlet weak var lbl_cabNumber_Validation: UILabel!
+    @IBOutlet weak var lbl_dateField_Validation: UILabel!
+    @IBOutlet weak var lbl_expectedHours_Validation: UILabel!
     
     @IBOutlet weak var txt_CabNumber: UITextField!
     @IBOutlet weak var txt_DateTime: UITextField!
@@ -30,9 +33,17 @@ class ExpectingCabArrivalViewController: NANavigationViewController
     
     //array of buttons for color changing purpose
     var buttons : [UIButton] = []
+    var isValidButtonClicked: [Bool] = []
+    
+    //to set navigation title
+    var navTitle: String?
+    
+    //Assigning Strings according to title
+    var vendorCabNameString: String?
     
     //for card view
     @IBOutlet weak var cardView: UIView!
+    
     // for scroll view
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -41,6 +52,11 @@ class ExpectingCabArrivalViewController: NANavigationViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //hiding error Label
+        lbl_cabNumber_Validation.isHidden = true
+        lbl_dateField_Validation.isHidden = true
+        lbl_expectedHours_Validation.isHidden = true
         
         //assigned delegate method on textFields
         txt_DateTime.delegate = self
@@ -57,9 +73,11 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         self.txt_CabNumber.becomeFirstResponder()
         
         //Setting & fromatting Navigation Bar
-        super.ConfigureNavBarTitle(title: NAString().expecting_cab_arrival())
-        self.navigationItem.title = ""
-    
+        super.ConfigureNavBarTitle(title: navTitle!)
+        
+        //Assigning Strings to the label tile according to title
+        self.lbl_CabNumber.text = vendorCabNameString
+        
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
         
@@ -71,7 +89,6 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         txt_DateTime.underlined()
         
         //Label formatting & setting
-        lbl_CabNumber.text = NAString().cab_number()
         lbl_DateTime.text = NAString().date_Time()
         lbl_ValidFor.text = NAString().valid_for()
         
@@ -79,6 +96,11 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         lbl_ValidFor.font = NAFont().headerFont()
         lbl_DateTime.font = NAFont().headerFont()
         lbl_CabNumber.font = NAFont().headerFont()
+        
+        //Error Labels Font Style
+        lbl_cabNumber_Validation.font = NAFont().descriptionFont()
+        lbl_dateField_Validation.font = NAFont().descriptionFont()
+        lbl_expectedHours_Validation.font = NAFont().descriptionFont()
         
         //Textfield formatting & setting
         txt_CabNumber.font = NAFont().textFieldFont()
@@ -119,7 +141,6 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         //Button Formatting & settings
         btn_NotifyGate.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_NotifyGate.backgroundColor = NAColor().buttonBgColor()
-        
         btn_NotifyGate.titleLabel?.font = NAFont().buttonFont()
         
         //set tag values to buttons
@@ -137,13 +158,12 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         btn_2Hour.layer.cornerRadius = 15.0
         btn_4Hour.layer.cornerRadius = 15.0
         btn_6Hour.layer.cornerRadius = 15.0
-
         btn_8Hour.layer.cornerRadius = 15.0
         btn_12Hour.layer.cornerRadius = 15.0
         btn_16Hour.layer.cornerRadius = 15.0
         btn_24Hour.layer.cornerRadius = 15.0
-
-         //settin border width for buttons
+        
+        //settin border width for buttons
         btn_1Hour.layer.borderWidth = 1
         btn_2Hour.layer.borderWidth = 1
         btn_4Hour.layer.borderWidth = 1
@@ -152,12 +172,12 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         btn_12Hour.layer.borderWidth = 1
         btn_16Hour.layer.borderWidth = 1
         btn_24Hour.layer.borderWidth = 1
-       
-   //setting button hight 
-    btn_16Hour.heightAnchor.constraint(equalToConstant: 39.0).isActive = true
-    btn_1Hour.heightAnchor.constraint(equalToConstant: 39).isActive = true
-    btn_NotifyGate.heightAnchor.constraint(equalToConstant: 39).isActive = true
-       
+        
+        //setting button hight
+        btn_16Hour.heightAnchor.constraint(equalToConstant: 39.0).isActive = true
+        btn_1Hour.heightAnchor.constraint(equalToConstant: 39).isActive = true
+        btn_NotifyGate.heightAnchor.constraint(equalToConstant: 39).isActive = true
+        
         //cardUIView
         cardView.layer.cornerRadius = 3
         cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
@@ -165,9 +185,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
     }
-
+    
     //for datePicker
     func createDatePicker() {
+        
         // toolbar
         picker = UIDatePicker()
         let toolbar = UIToolbar()
@@ -196,22 +217,69 @@ class ExpectingCabArrivalViewController: NANavigationViewController
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
+        
+        if !(txt_DateTime.text?.isEmpty)! {
+            lbl_dateField_Validation.isHidden = true
+            txt_DateTime.underlined()
+        }
     }
     
-    @IBAction func btnSelectHours(_ sender: UIButton)
-    {
-        selectedColor(tag: sender.tag )
+    @IBAction func btnSelectHours(_ sender: UIButton) {
+        
+        selectedColor(tag: sender.tag)
     }
     
-    @IBAction func btnNotifyGate(_ sender: Any)
-    {
+    @IBAction func btnNotifyGate(_ sender: Any) {
+        
+        if (txt_CabNumber.text?.isEmpty)! {
+            lbl_cabNumber_Validation.isHidden = false
+            lbl_cabNumber_Validation.text = NAString().please_fill_details()
+            txt_CabNumber.redunderlined()
+        } else {
+            lbl_cabNumber_Validation.isHidden = true
+            txt_CabNumber.underlined()
+        }
+        if (txt_DateTime.text?.isEmpty)! {
+            lbl_dateField_Validation.isHidden = false
+            lbl_dateField_Validation.text = NAString().Please_select_date()
+            txt_DateTime.redunderlined()
+        } else {
+            lbl_dateField_Validation.isHidden = true
+            txt_DateTime.underlined()
+        }
+        if !(txt_DateTime.text?.isEmpty)! && (isValidButtonClicked.index(of: true) == nil) {
+            lbl_expectedHours_Validation.isHidden = false
+            lbl_expectedHours_Validation.text = NAString().Please_select_expected_Hours()
+        } else if (isValidButtonClicked.index(of: true) != nil) {
+            lbl_expectedHours_Validation.isHidden = true
+        }
+        if !(txt_CabNumber.text?.isEmpty)! && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
+            inviteAlertView()
+        }
+    }
+    
+    //AlertView For navigation
+    func inviteAlertView() {
+        
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().notifyButtonAlertViewTitle() , message: NAString().notifyButtonAlertViewMessage(), preferredStyle: .alert)
+        
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+        }
+        
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
     //creating function to highlight select button color
     func selectedColor(tag: Int) {
+        
         for button in buttons as [UIButton] {
+            isValidButtonClicked = [true]
             if button.tag == tag {
                 button.isSelected = true
+                lbl_expectedHours_Validation.isHidden = true
             } else {
                 button.isSelected = false
             }
@@ -219,5 +287,35 @@ class ExpectingCabArrivalViewController: NANavigationViewController
             button.backgroundColor = color
             button.tintColor = color
         }
+    }
+}
+
+extension ExpectingCabArrivalViewController {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let text = textField.text else { return true}
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        
+        if textField == txt_CabNumber {
+            if (newLength == NAString().zero_length()) {
+                lbl_cabNumber_Validation.isHidden = false
+                lbl_cabNumber_Validation.text = NAString().please_fill_details()
+                txt_CabNumber.redunderlined()
+            } else {
+                lbl_cabNumber_Validation.isHidden = true
+                txt_CabNumber.underlined()
+            }
+        }
+        if textField == txt_DateTime {
+            if (newLength == NAString().zero_length()) {
+                lbl_dateField_Validation.isHidden = false
+                txt_DateTime.redunderlined()
+                lbl_dateField_Validation.text = NAString().Please_select_date()
+            } else {
+                lbl_dateField_Validation.isHidden = true
+                txt_DateTime.underlined()
+            }
+        }
+        return true
     }
 }

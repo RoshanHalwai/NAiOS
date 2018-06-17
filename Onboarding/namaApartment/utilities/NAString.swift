@@ -625,4 +625,22 @@ class NAString : NSObject
         return String("now")
     }
     
+    //Cab Arrival and Package Arrival Validation
+    func please_fill_details() -> String {
+        return String("Please fill details here")
+    }
+    func Please_select_date() -> String {
+        return String("Please select Date")
+    }
+    func Please_select_expected_Hours() -> String {
+        return String("Please select Expected Arrival in Hours")
+    }
+    func notifyButtonAlertViewMessage() -> String {
+        return String("Notification is sent to your Security Guard.")
+    }
+    func notifyButtonAlertViewTitle() -> String {
+        return String("Notification Message")
+    }
+    
+    
 }
