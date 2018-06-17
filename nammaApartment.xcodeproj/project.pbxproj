@@ -64,7 +64,6 @@
 		86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */; };
 		86CE8E5F20C26AFF0067F031 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86CE8E5E20C26AFF0067F031 /* GoogleService-Info.plist */; };
 		86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */; };
-		86D19EFF20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EFE20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift */; };
 		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
 		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
@@ -155,7 +154,6 @@
 		86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		86CE8E5E20C26AFF0067F031 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingCabArrivalViewController.swift; sourceTree = "<group>"; };
-		86D19EFE20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingPackageArrivalViewController.swift; sourceTree = "<group>"; };
 		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
@@ -432,7 +430,6 @@
 				86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */,
 				86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */,
 				86D19EF820A2B20200FB7DC8 /* ExpectingCabArrival */,
-				86D19EFD20A2EE6900FB7DC8 /* ExpectingPackageArrival */,
 				867CFF2620A43DE600EDB966 /* HandedThingsToGuest */,
 				867CFF2720A43E1600EDB966 /* HandedThingsToDailyServices */,
 			);
@@ -505,14 +502,6 @@
 				86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */,
 			);
 			path = ExpectingCabArrival;
-			sourceTree = "<group>";
-		};
-		86D19EFD20A2EE6900FB7DC8 /* ExpectingPackageArrival */ = {
-			isa = PBXGroup;
-			children = (
-				86D19EFE20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift */,
-			);
-			path = ExpectingPackageArrival;
 			sourceTree = "<group>";
 		};
 		86DCB9F2209841CF00C67C70 /* signup */ = {
@@ -688,7 +677,6 @@
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
 				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,
-				86D19EFF20A2EEDA00FB7DC8 /* ExpectingPackageArrivalViewController.swift in Sources */,
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
