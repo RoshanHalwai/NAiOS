@@ -2881,6 +2881,20 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJ4-gz-ibI">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter a valid 10 digit mobile number" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0q-TH-5jF">
+                                                <rect key="frame" x="86" y="170" width="269" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9x-Sm-RBY">
+                                                <rect key="frame" x="134" y="92" width="221" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0H7-iT-MQ7">
                                                 <rect key="frame" x="20" y="20" width="335" height="30"/>
                                                 <constraints>
@@ -3055,7 +3069,9 @@
                         <outlet property="lbl_GetAccess" destination="lnx-03-U3E" id="Qar-32-zxA"/>
                         <outlet property="lbl_InTime" destination="K7U-rX-IIg" id="n72-9A-UMc"/>
                         <outlet property="lbl_MobileNo" destination="VBC-c6-SnC" id="mqS-QL-4EX"/>
+                        <outlet property="lbl_Mobile_Validation" destination="a0q-TH-5jF" id="boj-wk-NLU"/>
                         <outlet property="lbl_Name" destination="0H7-iT-MQ7" id="Plq-fO-kjW"/>
+                        <outlet property="lbl_Name_Validation" destination="N9x-Sm-RBY" id="rcJ-Y3-bCZ"/>
                         <outlet property="scrollView" destination="fqJ-ux-pVs" id="Lnt-t6-qei"/>
                         <outlet property="segment" destination="yR4-bv-hz2" id="orE-Q3-zGt"/>
                         <outlet property="stack_GrantAccess" destination="9RR-ca-hGN" id="OV9-uL-6p7"/>

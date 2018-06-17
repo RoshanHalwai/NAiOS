@@ -16,6 +16,10 @@ class EditMyServicesViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Description: UILabel!
     @IBOutlet weak var lbl_GetAccess: UILabel!
     
+    @IBOutlet weak var lbl_Name_Validation: UILabel!
+    @IBOutlet weak var lbl_Mobile_Validation: UILabel!
+    
+    
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
@@ -39,22 +43,33 @@ class EditMyServicesViewController: NANavigationViewController {
     var getDescription = String()
     var getTitle = String()
     
+    var getNewName = String()
+    var getNewMobile = String()
+    var getNewTime = String()
+    
     //To get particular service type string from Add My Services 
     var servicesString = String()
     
     //get segmented string from card view to select default IndexValue
     var getSegmentValue = String()
     
+    //Length Variables
+    var nameTextFieldLength = NAString().zero_length()
+    var mobileNumberTextFieldLength = NAString().zero_length()
+    var dateTextFieldLength = NAString().zero_length()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Segmented Controller is selected according to CardView Data.
-       if getSegmentValue == NAString().yes(){
+       if getSegmentValue == NAString().yes() {
         segment.selectedSegmentIndex = 0
-        }
-        else{
+        } else {
         segment.selectedSegmentIndex = 1
         }
+        //hide error labels
+        lbl_Name_Validation.isHidden = true
+        lbl_Mobile_Validation.isHidden = true
         
         //keyboard appear when screen load
         self.txt_Name.becomeFirstResponder()
@@ -130,9 +145,7 @@ class EditMyServicesViewController: NANavigationViewController {
             self.stack_InTime.isHidden = true
             self.stack_GrantAccess.isHidden = false
             self.lbl_Description.text = NAString().otp_message_family_member()
-        }
-        else
-        {
+        } else {
             self.stack_InTime.isHidden = false
             self.stack_GrantAccess.isHidden = true
             self.lbl_Description.text! = getDescription
@@ -168,142 +181,208 @@ class EditMyServicesViewController: NANavigationViewController {
         btn_Update.isHidden = false
     }
     
-    @IBAction func btnUpdate(_ sender: UIButton){
+    @IBAction func btnUpdate(_ sender: UIButton) {
         
             //if Mobile Number will change then navigate to OTP Screen
-        if ((getTitle == NAString().edit_my_daily_service_details().capitalized) && lbl_Description.isHidden == false)
-        {
+        if ((getTitle == NAString().edit_my_daily_service_details().capitalized) && lbl_Description.isHidden == false) {
             let dv = NAViewPresenter().otpViewController()
             let passToOTP = NAString().enter_verification_code(first: "your \(servicesString)", second: "their")
                 dv.newOtpString = passToOTP
             self.navigationController?.pushViewController(dv, animated: true)
         }
             //if Mobile Number will not change then navigate to My Daily Services VC
-        else if (getTitle == NAString().edit_my_daily_service_details().capitalized)
-        {
+        else if (getTitle == NAString().edit_my_daily_service_details().capitalized) {
             let dv = NAViewPresenter().myDailyServicesVC()
             self.navigationController?.pushViewController(dv, animated: true)
             
-        }
-            
-        else if (getTitle == NAString().edit_my_family_member_details().capitalized)
-        {
+        } else if (getTitle == NAString().edit_my_family_member_details().capitalized) {
             //Modify EDIT MY FAMILY MEMBER VC while YES is already selected while modifying
-            if segment.selectedSegmentIndex == 0
-            {
+            if segment.selectedSegmentIndex == 0 {
                 let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()) , message:nil, preferredStyle: .alert)
                 
-                let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
-    
-                }
+                let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
                 let accept = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
                     
-                    if (self.lbl_Description.isHidden == false)
-                    {
+                    if (self.lbl_Description.isHidden == false) {
                         //navigate to OTP
                         let dv = NAViewPresenter().otpViewController()
                         let passToOTP = NAString().enter_verification_code(first:"your Family Member", second: "their")
                         dv.newOtpString = passToOTP
                         self.navigationController?.pushViewController(dv, animated: true)
-                    }
-
-                    else
-                    {
+                    } else {
                         //navigate back to card view
                         let dv = NAViewPresenter().mySweetHomeVC()
                         self.navigationController?.pushViewController(dv, animated: true)
                     }
                 }
-                
                 alert.addAction(accept) //add accept action on AlertView
                 alert.addAction(reject) //add reject action on AlertView
                 present(alert, animated: true, completion: nil)
             }
             
              //Modify EDIT MY FAMILY MEMBER VC while NO is already selected at the time of modifying
-            if segment.selectedSegmentIndex == 1
-            {
+            if segment.selectedSegmentIndex == 1 {
                 isNoSegmentSelected()
             }
         }
-        
-        if ((getTitle == NAString().edit_my_family_member_details().capitalized) && lbl_Description.isHidden == false)
-        {
+        if ((getTitle == NAString().edit_my_family_member_details().capitalized) && lbl_Description.isHidden == false) {
             let dv = NAViewPresenter().otpViewController()
             let passToOTP = NAString().enter_verification_code(first: "your Family Member", second: "their")
             dv.newOtpString = passToOTP
             self.navigationController?.pushViewController(dv, animated: true)
         }
-        
-         if (getTitle == NAString().edit_my_family_member_details().capitalized) && lbl_Description.isHidden == true
-        {
+         if (getTitle == NAString().edit_my_family_member_details().capitalized) && lbl_Description.isHidden == true {
             let dv = NAViewPresenter().mySweetHomeVC()
             self.navigationController?.pushViewController(dv, animated: true)
         }
     }
-    
     //Displaying Update Button on change of both the index values of segmentController
     @IBAction func btnSegmentController(_ sender: Any) {
-        if segment.selectedSegmentIndex == 0
-        {
+        if segment.selectedSegmentIndex == 0 {
             self.btn_Update.isHidden = false
         }
-        if segment.selectedSegmentIndex == 1
-        {
+        if segment.selectedSegmentIndex == 1 {
             self.btn_Update.isHidden = false
         }
     }
-   
     //Creted alertview to Modify EDIT MY FAMILY MEMBER VC while YES is already selected at the time of modifying
     func isNoSegmentSelected() {
             let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().not_granting_access()) , message:nil, preferredStyle: .alert)
             
-            let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
-            }
+            let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
         
             let accept = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
                 
-                if (self.lbl_Description.isHidden == false)
-                {
+                if (self.lbl_Description.isHidden == false) {
                     //navigate to OTP
                     let dv = NAViewPresenter().otpViewController()
                     let passToOTP = NAString().enter_verification_code(first:"your Family Member", second: "their")
                     dv.newOtpString = passToOTP
                     self.navigationController?.pushViewController(dv, animated: true)
-                }
-                    
-                else
-                {
+                } else {
                     //navigate back to card view
                     let dv = NAViewPresenter().mySweetHomeVC()
                     self.navigationController?.pushViewController(dv, animated: true)
                 }
             }
-            
             alert.addAction(accept) //add accept action on AlertView
             alert.addAction(reject) //add reject action on AlertView
             present(alert, animated: true, completion: nil)
         }
 }
 
- //Created separate extention to use UITextfiled delegate Properties
-extension EditMyServicesViewController 
-{
-    func configureTextFields()
+//Created separate extention to use UITextfiled delegate Properties
+extension EditMyServicesViewController {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
+        guard let text = textField.text else { return true}
+        let newLength = text.utf16.count + string.utf16.count - range.length
+        if textField == txt_InTime
+        {
+            lbl_Description.isHidden = true
+            dateTextFieldLength = newLength
+            nameTextFieldLength = txt_Name.text!.count
+            mobileNumberTextFieldLength = txt_MobileNo.text!.count
+            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
+        }
+        if textField == txt_Name {
+            if newLength == getName.count{
+                btn_Update.isHidden = true
+            } else {
+                btn_Update.isHidden = false
+            }
+            if txt_Name.text == txt_Name.text! {
+                btn_Update.isHidden = true
+                lbl_Description.isHidden = true
+            }
+            if (newLength == NAString().zero_length()) {
+                lbl_Name_Validation.isHidden = false
+                txt_Name.redunderlined()
+                lbl_Name_Validation.text = NAString().please_enter_name()
+                btn_Update.isHidden = true
+            } else {
+                lbl_Name_Validation.isHidden = true
+                txt_Name.underlined()
+                btn_Update.isHidden = false
+            }
+        }
+        if textField == txt_MobileNo
+        {
+            if (newLength > NAString().required_mobileNo_Length()){
+                btn_Update.isHidden = true
+                lbl_Description.isHidden = true
+            }
+            if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength)
+            {
+                lbl_Mobile_Validation.isHidden = true
+                txt_MobileNo.underlined()
+            }
+            else
+            {
+                lbl_Mobile_Validation.isHidden = false
+                txt_MobileNo.redunderlined()
+                btn_Update.isHidden = true
+                lbl_Description.isHidden = true
+                lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
+            }
+            if (newLength == NAString().required_mobileNo_Length()) && !(txt_InTime.text?.isEmpty)!
+            {
+                btn_Update.isHidden = false
+                lbl_Description.isHidden = false
+            }
+            nameTextFieldLength = txt_Name.text!.count
+            dateTextFieldLength = txt_InTime.text!.count
+            mobileNumberTextFieldLength = newLength
+            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
+            
+            //Check for Text Removal
+            if string.isEmpty
+            {
+                return true
+            }
+            else
+            {
+                return newLength <= NAString().required_mobileNo_Length()
+            }
+        }
+        return true
+    }
+    
+    func configureTextFields() {
         txt_MobileNo.delegate = self
         txt_Name.delegate = self
         txt_InTime.delegate = self
-        txt_MobileNo.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-        txt_Name.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        //txt_MobileNo.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        //txt_Name.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     }
+/*@objc func textFieldDidChange(textField: UITextField) {
     
-@objc func textFieldDidChange(textField: UITextField) {
+}*/
     
-    //update button show after editing start on textfield
-    if textField == txt_MobileNo {
-        lbl_Description.isHidden = false
-    }
-        btn_Update.isHidden = false
+    func updateAddButtonVisibilty(nameLength:Int, mobileNumberLength:Int, dateLength:Int)
+    {
+        if stack_InTime.isHidden == true {
+            if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength)
+            {
+                btn_Update.isHidden = false
+                lbl_Description.isHidden = false
+            } else {
+                btn_Update.isHidden = true
+                lbl_Description.isHidden = true
+            }
+        }
+        if stack_GrantAccess.isHidden == true {
+            if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length()
+            {
+                btn_Update.isHidden = false
+                lbl_Description.isHidden = false
+            }
+            if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length()
+            {
+                btn_Update.isHidden = true
+                lbl_Description.isHidden = true
+            }
+        }
     }
 }
