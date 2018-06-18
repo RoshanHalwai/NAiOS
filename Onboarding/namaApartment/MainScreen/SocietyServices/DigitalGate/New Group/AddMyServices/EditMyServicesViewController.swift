@@ -67,6 +67,7 @@ class EditMyServicesViewController: NANavigationViewController {
         } else {
         segment.selectedSegmentIndex = 1
         }
+        
         //hide error labels
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true
@@ -77,8 +78,10 @@ class EditMyServicesViewController: NANavigationViewController {
         //hide stackview according to Title of the view
         hideStackViews()
         
-        //calling function for delegate purpose
-        configureTextFields()
+        //Assigning delegates on textFields.
+        txt_MobileNo.delegate = self
+        txt_Name.delegate = self
+        txt_InTime.delegate = self
         
         //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
@@ -107,6 +110,9 @@ class EditMyServicesViewController: NANavigationViewController {
         self.lbl_MobileNo.font = NAFont().headerFont()
         self.lbl_Description.font = NAFont().descriptionFont()
         self.lbl_GetAccess.font = NAFont().headerFont()
+        
+        self.lbl_Mobile_Validation.font = NAFont().descriptionFont()
+        self.lbl_Name_Validation.font = NAFont().descriptionFont()
         
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
@@ -274,97 +280,95 @@ class EditMyServicesViewController: NANavigationViewController {
 //Created separate extention to use UITextfiled delegate Properties
 extension EditMyServicesViewController {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-        if textField == txt_InTime
-        {
-            lbl_Description.isHidden = true
-            dateTextFieldLength = newLength
-            nameTextFieldLength = txt_Name.text!.count
-            mobileNumberTextFieldLength = txt_MobileNo.text!.count
-            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
-        }
-        if textField == txt_Name {
-            if newLength == getName.count{
+        
+        if let text = textField.text,
+            let textRange = Range(range, in: text) {
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            if getName == updatedText  && getMobile == updatedText  {
+                btn_Update.isHidden = true
+            } else if newLength != NAString().required_mobileNo_Length() {
                 btn_Update.isHidden = true
             } else {
                 btn_Update.isHidden = false
             }
-            if txt_Name.text == txt_Name.text! {
-                btn_Update.isHidden = true
-                lbl_Description.isHidden = true
-            }
-            if (newLength == NAString().zero_length()) {
-                lbl_Name_Validation.isHidden = false
-                txt_Name.redunderlined()
-                lbl_Name_Validation.text = NAString().please_enter_name()
-                btn_Update.isHidden = true
-            } else {
-                lbl_Name_Validation.isHidden = true
-                txt_Name.underlined()
-                btn_Update.isHidden = false
-            }
-        }
-        if textField == txt_MobileNo
-        {
-            if (newLength > NAString().required_mobileNo_Length()){
-                btn_Update.isHidden = true
-                lbl_Description.isHidden = true
-            }
-            if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength)
-            {
-                lbl_Mobile_Validation.isHidden = true
-                txt_MobileNo.underlined()
-            }
-            else
-            {
-                lbl_Mobile_Validation.isHidden = false
-                txt_MobileNo.redunderlined()
-                btn_Update.isHidden = true
-                lbl_Description.isHidden = true
-                lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
-            }
-            if (newLength == NAString().required_mobileNo_Length()) && !(txt_InTime.text?.isEmpty)!
-            {
-                btn_Update.isHidden = false
-                lbl_Description.isHidden = false
-            }
-            nameTextFieldLength = txt_Name.text!.count
-            dateTextFieldLength = txt_InTime.text!.count
-            mobileNumberTextFieldLength = newLength
-            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
             
-            //Check for Text Removal
-            if string.isEmpty
-            {
-                return true
+            if textField == txt_InTime {
+                
+                lbl_Description.isHidden = true
+                dateTextFieldLength = newLength
+                nameTextFieldLength = txt_Name.text!.count
+                mobileNumberTextFieldLength = txt_MobileNo.text!.count
+                updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
             }
-            else
-            {
-                return newLength <= NAString().required_mobileNo_Length()
+            if textField == txt_Name {
+                if getName == updatedText {
+                    print("data Updated")
+                    btn_Update.isHidden = true
+                } else {
+                    btn_Update.isHidden = false
+                }
+                if (newLength == NAString().zero_length()) {
+                    lbl_Name_Validation.isHidden = false
+                    txt_Name.redunderlined()
+                    lbl_Name_Validation.text = NAString().please_enter_name()
+                    btn_Update.isHidden = true
+                } else if getName != updatedText {
+                    lbl_Name_Validation.isHidden = true
+                    txt_Name.underlined()
+                    btn_Update.isHidden = false
+                }
+            }
+            if textField == txt_MobileNo {
+                if newLength > NAString().required_mobileNo_Length() {
+                    if getMobile == updatedText && newLength != NAString().required_mobileNo_Length() {
+                        btn_Update.isHidden = true
+                    }
+                }
+                if getMobile == updatedText {
+                    if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) && getMobile == updatedText {
+                        lbl_Mobile_Validation.isHidden = true
+                        txt_MobileNo.underlined()
+                        btn_Update.isHidden = true
+                        lbl_Description.isHidden = true
+                    } else {
+                        btn_Update.isHidden = false
+                        lbl_Description.isHidden = true
+                    }
+                }
+                if newLength <= NAString().required_mobileNo_Length() && getMobile != updatedText {
+                    if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
+                        lbl_Mobile_Validation.isHidden = true
+                        txt_MobileNo.underlined()
+                    } else {
+                        lbl_Mobile_Validation.isHidden = false
+                        txt_MobileNo.redunderlined()
+                        lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
+                    }
+                    nameTextFieldLength = txt_Name.text!.count
+                    dateTextFieldLength = txt_InTime.text!.count
+                    mobileNumberTextFieldLength = newLength
+                    updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
+                }
+                
+                //Check for Text Removal
+                if string.isEmpty {
+                    return true
+                } else {
+                    return newLength <= NAString().required_mobileNo_Length()
+                }
             }
         }
         return true
     }
     
-    func configureTextFields() {
-        txt_MobileNo.delegate = self
-        txt_Name.delegate = self
-        txt_InTime.delegate = self
-        //txt_MobileNo.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-        //txt_Name.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-    }
-/*@objc func textFieldDidChange(textField: UITextField) {
-    
-}*/
-    
-    func updateAddButtonVisibilty(nameLength:Int, mobileNumberLength:Int, dateLength:Int)
-    {
+    func updateAddButtonVisibilty(nameLength:Int, mobileNumberLength:Int, dateLength:Int) {
+        
         if stack_InTime.isHidden == true {
-            if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength)
-            {
+            if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) {
                 btn_Update.isHidden = false
                 lbl_Description.isHidden = false
             } else {
@@ -373,13 +377,11 @@ extension EditMyServicesViewController {
             }
         }
         if stack_GrantAccess.isHidden == true {
-            if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length()
-            {
+            if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length() {
                 btn_Update.isHidden = false
                 lbl_Description.isHidden = false
             }
-            if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length()
-            {
+            if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length() {
                 btn_Update.isHidden = true
                 lbl_Description.isHidden = true
             }
