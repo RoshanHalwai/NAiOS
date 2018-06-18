@@ -39,13 +39,13 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     
                     let visitorObject = visitors.value as? [String: AnyObject]
                     
-                    let dateAndTimeOfVisit = visitorObject?["dateAndTimeOfVisit"]
-                    let fullName = visitorObject?["fullName"]
-                    let inviterUID = visitorObject?["inviterUID"]
-                    let mobileNumber = visitorObject?["mobileNumber"]
-                    let profilePhoto = visitorObject?["profilePhoto"]
-                    let status = visitorObject?["status"]
-                    let uid = visitorObject?["uid"]
+                    let dateAndTimeOfVisit = visitorObject?[Constants.VISITOR_dateAndTimeOfVisit]
+                    let fullName = visitorObject?[Constants.VISITOR_fullName]
+                    let inviterUID = visitorObject?[Constants.VISITOR_inviterUID]
+                    let mobileNumber = visitorObject?[Constants.VISITOR_mobileNumber]
+                    let profilePhoto = visitorObject?[Constants.VISITOR_profilePhoto]
+                    let status = visitorObject?[Constants.VISITOR_status]
+                    let uid = visitorObject?[Constants.VISITOR_uid]
                     
                     //creating userAccount model & set earlier created let variables in userObject in the below parameter
                     let user = VisitorListFBObjects(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
@@ -80,7 +80,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MyVistorListCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVistorListCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
         let myList : VisitorListFBObjects

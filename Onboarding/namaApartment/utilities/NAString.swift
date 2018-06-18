@@ -627,6 +627,9 @@ class NAString : NSObject
     func guest() -> String {
         return String("Guest")
     }
+    func cellID() -> String {
+        return String ("Cell")
+    }
     
     //Cab Arrival and Package Arrival Validation
     func please_fill_details() -> String {
