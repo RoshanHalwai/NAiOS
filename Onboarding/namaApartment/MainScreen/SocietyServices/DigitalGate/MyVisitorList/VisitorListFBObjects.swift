@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NAVisitor {
+class VisitorListFBObjects {
     
     //defining strings according to firebase names which is inside the visitor Node.
     var dateAndTimeOfVisit: String?

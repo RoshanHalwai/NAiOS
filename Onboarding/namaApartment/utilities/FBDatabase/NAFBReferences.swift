@@ -19,7 +19,5 @@ struct Constants {
     static let FIREBASE_USER = "users"
     static let FIREBASE_USER_CHILD_PRIVATE = "private"
     static let FIREBASE_USER_CHILD_ALL = "all"
-    
-    
-    
+
 }

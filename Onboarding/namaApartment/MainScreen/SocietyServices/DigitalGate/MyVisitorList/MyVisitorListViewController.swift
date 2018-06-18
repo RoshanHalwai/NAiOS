@@ -15,11 +15,10 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     var myVisitorListReference : DatabaseReference?
     
     //Created variable for NAVisitorFile to fetch data from firebase with the help of NAVisitor's variables.
-    var myVisitorList = [NAVisitor]()
+    var myVisitorList = [VisitorListFBObjects]()
     
     //Created instance of 
     var NAObject = NAUserObjects()
-    
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -49,7 +48,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     let uid = visitorObject?["uid"]
                     
                     //creating userAccount model & set earlier created let variables in userObject in the below parameter
-                    let user = NAVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
+                    let user = VisitorListFBObjects(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
                     
                     //Adding visitor in visitor List
                     self.myVisitorList.append(user)
@@ -84,13 +83,29 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MyVistorListCollectionViewCell
         
-        let myList : NAVisitor
-        
+        //Created constant variable to store all the firebase data in it.
+        let myList : VisitorListFBObjects
         myList = myVisitorList[indexPath.row]
         
-        cell.lbl_MyVisitorDate.text = myList.dateAndTimeOfVisit
-        cell.lbl_InvitedName.text = NAObject.getUser().fullName
+        //Created local variable to store Date & Time from firebase
+        var dateTimeString : String
+        dateTimeString  = myList.dateAndTimeOfVisit!
+        
+        //Created array to spilt Date & time in separate variables
+        let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
+        let dateString: String = arrayOfDateTime[0]
+        let timeString: String = arrayOfDateTime[1]
+        
         cell.lbl_MyVisitorName.text = myList.fullName
+        cell.lbl_MyVisitorType.text = NAString().guest()
+        //cell.myVisitorImage.image = 
+        
+        //Assigning date & time separate variables to get data in cell labels.
+        cell.lbl_MyVisitorTime.text = timeString
+        cell.lbl_MyVisitorDate.text = dateString
+        
+        //TODO : Need to get data from Firebase (According to user)
+        cell.lbl_InvitedName.text = "Vikas"
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
