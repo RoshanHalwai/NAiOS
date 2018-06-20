@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-import FirebaseDatabase
-import FirebaseCore
 
 struct Constants {
     static let FIREBASE_CHILD_CLIENTS = "clients"

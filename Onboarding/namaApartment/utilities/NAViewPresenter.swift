@@ -75,6 +75,10 @@ class NAViewPresenter: NSObject {
         return String("mainScreenVC")
     }
     
+    func main() -> String {
+        return String("Main")
+    }
+    
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController

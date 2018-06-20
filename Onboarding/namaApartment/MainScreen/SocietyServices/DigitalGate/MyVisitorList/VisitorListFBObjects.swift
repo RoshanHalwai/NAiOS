@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class VisitorListFBObjects {
+class VisitorListFB {
     
     //defining strings according to firebase names which is inside the visitor Node.
     var dateAndTimeOfVisit: String?
@@ -30,5 +30,17 @@ class VisitorListFBObjects {
         self.profilePhoto = profilePhoto
         self.status = status
         self.uid = uid
+    }
+    
+     //creating structure for firebase to get data on it.
+    struct VisitorListFBObjects {
+        
+        static let dateAndTimeOfVisit = "dateAndTimeOfVisit"
+        static let fullName = "fullName"
+        static let inviterUID = "inviterUID"
+        static let mobileNumber = "mobileNumber"
+        static let profilePhoto = "profilePhoto"
+        static let status = "status"
+        static let uid = "uid"
     }
 }
