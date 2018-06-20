@@ -36,7 +36,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     
                     let visitorObject = visitors.value as? [String: AnyObject]
                     
-                    //let dateAndTimeOfVisit = visitorObject?[Constants.VISITOR_dateAndTimeOfVisit]
                     let dateAndTimeOfVisit = visitorObject?[VisitorListFB.VisitorListFBObjects.dateAndTimeOfVisit]
                     let fullName = visitorObject?[VisitorListFB.VisitorListFBObjects.fullName]
                     let inviterUID = visitorObject?[VisitorListFB.VisitorListFBObjects.inviterUID]
