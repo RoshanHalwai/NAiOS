@@ -58,12 +58,14 @@ class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewC
         if (MFMessageComposeViewController.canSendText()) {
             let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
             messageSheet.messageComposeDelegate = self
+            
+            //TODO : Need to Change Mobile Number.
             messageSheet.recipients = ["9725098236"]
-            messageSheet.body = "Hellow vikas"
+            messageSheet.body = ""
             self.window?.rootViewController?.present(messageSheet, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Warning", message: "The device can't send SMS", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: NAString().warning(), message: NAString().message_warning_text(), preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
         }
     }
     

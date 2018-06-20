@@ -624,6 +624,12 @@ class NAString : NSObject
     func granting_access() -> String {
         return String("now")
     }
+    func guest() -> String {
+        return String("Guest")
+    }
+    func cellID() -> String {
+        return String ("Cell")
+    }
     
     //Cab Arrival and Package Arrival Validation
     func please_fill_details() -> String {

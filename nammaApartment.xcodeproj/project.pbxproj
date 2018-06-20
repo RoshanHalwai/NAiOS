@@ -52,9 +52,14 @@
 		867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
 		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */; };
 		867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */; };
+		868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
+		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
+		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
+		86A4D4A520D57047007890D2 /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
 		86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
 		86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */; };
-		86B1A8DA20D50EAB00D90D88 /* MyVisitorListFB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1A8D920D50EAB00D90D88 /* MyVisitorListFB.swift */; };
+		86B1A8DA20D50EAB00D90D88 /* VisitorListFBObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1A8D920D50EAB00D90D88 /* VisitorListFBObjects.swift */; };
+		86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1A8DB20D5276200D90D88 /* NAFBConstants.swift */; };
 		86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E420999DE200B159A3 /* OTPViewController.swift */; };
 		86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */; };
 		86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74EB209A2E7000B159A3 /* NAFont.swift */; };
@@ -150,9 +155,14 @@
 		867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestViewController.swift; sourceTree = "<group>"; };
 		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestTableViewCell.swift; sourceTree = "<group>"; };
 		867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySweetHomeViewController.swift; sourceTree = "<group>"; };
+		868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlatDetails.swift; sourceTree = "<group>"; };
+		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
+		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
+		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
 		86A8B934209EC9FF00EA1C35 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
-		86B1A8D920D50EAB00D90D88 /* MyVisitorListFB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorListFB.swift; sourceTree = "<group>"; };
+		86B1A8D920D50EAB00D90D88 /* VisitorListFBObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorListFBObjects.swift; sourceTree = "<group>"; };
+		86B1A8DB20D5276200D90D88 /* NAFBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFBConstants.swift; sourceTree = "<group>"; };
 		86BD74E420999DE200B159A3 /* OTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewController.swift; sourceTree = "<group>"; };
 		86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFlatDetailsViewController.swift; sourceTree = "<group>"; };
 		86BD74EB209A2E7000B159A3 /* NAFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFont.swift; sourceTree = "<group>"; };
@@ -404,6 +414,26 @@
 			path = MySweetHome;
 			sourceTree = "<group>";
 		};
+		868D189020DA4A22007AD1D0 /* NAUser */ = {
+			isa = PBXGroup;
+			children = (
+				86A4D4A420D57047007890D2 /* NAUser.swift */,
+				868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */,
+				868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */,
+				868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */,
+			);
+			path = NAUser;
+			sourceTree = "<group>";
+		};
+		86A4D4A620D57675007890D2 /* FBDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				868D189020DA4A22007AD1D0 /* NAUser */,
+				86B1A8DB20D5276200D90D88 /* NAFBConstants.swift */,
+			);
+			path = FBDatabase;
+			sourceTree = "<group>";
+		};
 		86A8B933209EC9FE00EA1C35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +465,7 @@
 		86BD74E9209A2DD000B159A3 /* utilities */ = {
 			isa = PBXGroup;
 			children = (
+				86A4D4A620D57675007890D2 /* FBDatabase */,
 				86CE8E5D20C26AC10067F031 /* FirebasePlistFile */,
 				861CBFFD20B9AA98009EC0EF /* Font */,
 				86270100209707BC004B28EB /* Assets.xcassets */,
@@ -454,7 +485,7 @@
 				86BF6A4020A0325200B175A1 /* MyVistorListCollectionViewCell.swift */,
 				86BF6A4220A0326E00B175A1 /* MyVisitorListViewController.swift */,
 				86494B8C20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift */,
-				86B1A8D920D50EAB00D90D88 /* MyVisitorListFB.swift */,
+				86B1A8D920D50EAB00D90D88 /* VisitorListFBObjects.swift */,
 			);
 			path = MyVisitorList;
 			sourceTree = "<group>";
@@ -797,10 +828,12 @@
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
 				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,
+				868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */,
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
+				868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */,
 				86114E6420B7402F00656B56 /* MainPageViewController.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
@@ -810,6 +843,7 @@
 				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
+				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
@@ -834,10 +868,12 @@
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
-				86B1A8DA20D50EAB00D90D88 /* MyVisitorListFB.swift in Sources */,
+				86B1A8DA20D50EAB00D90D88 /* VisitorListFBObjects.swift in Sources */,
+				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift in Sources */,
+				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
 			);
@@ -1015,7 +1051,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4XFFCTM44W;
+				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1036,7 +1072,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4XFFCTM44W;
+				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

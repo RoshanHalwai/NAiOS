@@ -9,12 +9,13 @@
 import UIKit
 
 //To Identify cell
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = NAString().cellID()
 class DigitalGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
 {
+    
     @IBOutlet weak var collectionView: UICollectionView!
   
-    var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","sweetHome","Medical"]
+    var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","MySweetHome","Medical"]
     var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
     
     override func viewDidLoad() {
@@ -34,8 +35,8 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate()
     {
-        let vcName = UIStoryboard(name: "Main", bundle: nil)
-        let destVC = vcName.instantiateViewController(withIdentifier: "mainScreenVC")
+        let vcName = UIStoryboard(name:NAViewPresenter().main(), bundle: nil)
+        let destVC = vcName.instantiateViewController(withIdentifier:NAViewPresenter().mainScreenVCID())
         self.navigationController?.pushViewController(destVC, animated: true)
     }
     
@@ -45,7 +46,7 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! DigitalGateCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! DigitalGateCollectionViewCell
         
         cell.cellTitle.text = DGNameList[indexPath.row]
         cell.cellImage.image = UIImage(named: DGimageList[indexPath.row])
