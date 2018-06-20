@@ -8,13 +8,31 @@
 
 import Foundation
 import UIKit
-import FirebaseDatabase
 
-class NAUser: NSObject {
-        
+class NAUser {
+    
+    //created variables to get details from following classes.
     var flatDetails = [UserFlatDetails]()
     var personalDetails = [UserFlatDetails]()
     var privileges = [UserPrivileges]()
+    var uid : String?
     
+     //initiliazing variables
+    init(uid: String?,flatDetails: UserFlatDetails,personalDetails: UserFlatDetails,privileges: UserPrivileges ) {
+    
+        self.uid = uid
+        self.flatDetails = [flatDetails]
+        self.privileges = [privileges]
+        self.personalDetails = [personalDetails]
+    }
+    
+     //creating structure for firebase to get data on it.
+    struct NAUser {
+        
+        static let uid = "uid"
+        static let flatDetails = "flatDetails"
+        static let privileges = "privileges"
+        static let personalDetails = "personalDetails"
+    }
 }
 

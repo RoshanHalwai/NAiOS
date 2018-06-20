@@ -11,12 +11,14 @@ import UIKit
 
 class UserFlatDetails {
     
+    //creatig string variables to get data from Firebase.
      var apartmentName: String?
      var city: String?
      var flatNumber: String?
      var societyName: String?
      var tenantType: String?
     
+     //initiliazing variables
     init(apartmentName: String?,city: String?,flatNumber: String?,societyName: String?,tenantType: String?) {
         
         self.apartmentName = apartmentName
@@ -26,7 +28,7 @@ class UserFlatDetails {
         self.tenantType = tenantType
     }
     
-    //declaring & assigning variable
+     //creating structure for firebase to get data on it.
     struct UserFlatDetails {
     
         static let apartmentName = "apartmentName"

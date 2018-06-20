@@ -11,10 +11,13 @@ import UIKit
 
 class UserPrivileges {
     
+    //creatig string variables to get data from Firebase.
+    var apartmentName: String?
     var admin: String?
     var grantAccess: String?
     var verified: String?
     
+     //initiliazing variables
     init(admin: String?,grantAccess: String?,verified: String?) {
         
         self.admin = admin
@@ -22,7 +25,7 @@ class UserPrivileges {
         self.verified = verified
     }
     
-    //declaring & assigning variable
+   //creating structure for firebase to get data on it.
     struct UserPrivileges {
         
         static let admin = "admin"

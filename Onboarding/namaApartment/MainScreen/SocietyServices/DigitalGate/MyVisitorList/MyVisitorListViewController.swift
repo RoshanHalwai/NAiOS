@@ -15,10 +15,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     var myVisitorListReference : DatabaseReference?
     
     //Created variable for NAVisitorFile to fetch data from firebase with the help of NAVisitor's variables.
-    var myVisitorList = [VisitorListFBObjects]()
-    
-    //Created instance of 
-    var NAObject = NAUserObjects()
+    var myVisitorList = [VisitorListFB]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -40,17 +37,16 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     let visitorObject = visitors.value as? [String: AnyObject]
                     
                     //let dateAndTimeOfVisit = visitorObject?[Constants.VISITOR_dateAndTimeOfVisit]
-                    let dateAndTimeOfVisit = visitorObject?[VisitorListFBObjects.VisitorListFB.dateAndTimeOfVisit]
-                    let fullName = visitorObject?[VisitorListFBObjects.VisitorListFB.fullName]
-                    let inviterUID = visitorObject?[VisitorListFBObjects.VisitorListFB.inviterUID]
-                    let mobileNumber = visitorObject?[VisitorListFBObjects.VisitorListFB.mobileNumber]
-                    let profilePhoto = visitorObject?[VisitorListFBObjects.VisitorListFB.profilePhoto]
-                    let status = visitorObject?[VisitorListFBObjects.VisitorListFB.status]
-                    let uid = visitorObject?[VisitorListFBObjects.VisitorListFB.uid]
+                    let dateAndTimeOfVisit = visitorObject?[VisitorListFB.VisitorListFBObjects.dateAndTimeOfVisit]
+                    let fullName = visitorObject?[VisitorListFB.VisitorListFBObjects.fullName]
+                    let inviterUID = visitorObject?[VisitorListFB.VisitorListFBObjects.inviterUID]
+                    let mobileNumber = visitorObject?[VisitorListFB.VisitorListFBObjects.mobileNumber]
+                    let profilePhoto = visitorObject?[VisitorListFB.VisitorListFBObjects.profilePhoto]
+                    let status = visitorObject?[VisitorListFB.VisitorListFBObjects.status]
+                    let uid = visitorObject?[VisitorListFB.VisitorListFBObjects.uid]
 
-                   
                     //creating userAccount model & set earlier created let variables in userObject in the below parameter
-                    let user = VisitorListFBObjects(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
+                    let user = VisitorListFB(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
                     
                     //Adding visitor in visitor List
                     self.myVisitorList.append(user)
@@ -85,7 +81,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVistorListCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
-        let myList : VisitorListFBObjects
+        let myList : VisitorListFB
         myList = myVisitorList[indexPath.row]
         
         //Created local variable to store Date & Time from firebase
