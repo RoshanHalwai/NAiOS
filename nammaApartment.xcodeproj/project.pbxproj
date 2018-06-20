@@ -52,6 +52,9 @@
 		867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
 		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */; };
 		867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */; };
+		868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
+		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
+		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
 		86A4D4A520D57047007890D2 /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
 		86A4D4A820D57CB1007890D2 /* NAUserObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A720D57CB1007890D2 /* NAUserObjects.swift */; };
 		86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
@@ -153,6 +156,9 @@
 		867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestViewController.swift; sourceTree = "<group>"; };
 		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestTableViewCell.swift; sourceTree = "<group>"; };
 		867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySweetHomeViewController.swift; sourceTree = "<group>"; };
+		868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlatDetails.swift; sourceTree = "<group>"; };
+		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
+		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
 		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
 		86A4D4A720D57CB1007890D2 /* NAUserObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUserObjects.swift; sourceTree = "<group>"; };
 		86A8B934209EC9FF00EA1C35 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
@@ -410,11 +416,22 @@
 			path = MySweetHome;
 			sourceTree = "<group>";
 		};
+		868D189020DA4A22007AD1D0 /* NAUser */ = {
+			isa = PBXGroup;
+			children = (
+				86A4D4A420D57047007890D2 /* NAUser.swift */,
+				868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */,
+				868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */,
+				868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */,
+			);
+			path = NAUser;
+			sourceTree = "<group>";
+		};
 		86A4D4A620D57675007890D2 /* FBDatabase */ = {
 			isa = PBXGroup;
 			children = (
+				868D189020DA4A22007AD1D0 /* NAUser */,
 				86B1A8DB20D5276200D90D88 /* NAFBReferences.swift */,
-				86A4D4A420D57047007890D2 /* NAUser.swift */,
 				86A4D4A720D57CB1007890D2 /* NAUserObjects.swift */,
 			);
 			path = FBDatabase;
@@ -814,10 +831,12 @@
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
 				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,
+				868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */,
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
+				868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */,
 				86114E6420B7402F00656B56 /* MainPageViewController.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
@@ -827,6 +846,7 @@
 				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
+				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,

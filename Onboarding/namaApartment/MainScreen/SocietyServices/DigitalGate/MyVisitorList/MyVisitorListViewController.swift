@@ -39,14 +39,16 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     
                     let visitorObject = visitors.value as? [String: AnyObject]
                     
-                    let dateAndTimeOfVisit = visitorObject?[Constants.VISITOR_dateAndTimeOfVisit]
-                    let fullName = visitorObject?[Constants.VISITOR_fullName]
-                    let inviterUID = visitorObject?[Constants.VISITOR_inviterUID]
-                    let mobileNumber = visitorObject?[Constants.VISITOR_mobileNumber]
-                    let profilePhoto = visitorObject?[Constants.VISITOR_profilePhoto]
-                    let status = visitorObject?[Constants.VISITOR_status]
-                    let uid = visitorObject?[Constants.VISITOR_uid]
-                    
+                    //let dateAndTimeOfVisit = visitorObject?[Constants.VISITOR_dateAndTimeOfVisit]
+                    let dateAndTimeOfVisit = visitorObject?[VisitorListFBObjects.VisitorListFB.dateAndTimeOfVisit]
+                    let fullName = visitorObject?[VisitorListFBObjects.VisitorListFB.fullName]
+                    let inviterUID = visitorObject?[VisitorListFBObjects.VisitorListFB.inviterUID]
+                    let mobileNumber = visitorObject?[VisitorListFBObjects.VisitorListFB.mobileNumber]
+                    let profilePhoto = visitorObject?[VisitorListFBObjects.VisitorListFB.profilePhoto]
+                    let status = visitorObject?[VisitorListFBObjects.VisitorListFB.status]
+                    let uid = visitorObject?[VisitorListFBObjects.VisitorListFB.uid]
+
+                   
                     //creating userAccount model & set earlier created let variables in userObject in the below parameter
                     let user = VisitorListFBObjects(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
                     

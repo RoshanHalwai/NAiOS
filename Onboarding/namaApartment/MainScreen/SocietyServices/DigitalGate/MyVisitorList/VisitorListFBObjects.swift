@@ -31,4 +31,19 @@ class VisitorListFBObjects {
         self.status = status
         self.uid = uid
     }
+    
+    struct VisitorListFB {
+        
+        static let dateAndTimeOfVisit = "dateAndTimeOfVisit"
+        static let fullName = "fullName"
+        static let inviterUID = "inviterUID"
+        static let mobileNumber = "mobileNumber"
+        static let profilePhoto = "profilePhoto"
+        static let status = "status"
+        static let uid = "uid"
+    }
+    
+    func dateTime() -> String {
+        return String("dateAndTimeOfVisit")
+    }
 }
