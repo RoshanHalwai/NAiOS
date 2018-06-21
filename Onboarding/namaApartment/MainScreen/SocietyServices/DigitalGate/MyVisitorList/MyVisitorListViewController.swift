@@ -22,6 +22,9 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //to show activity indicator before loading data from firebase
+       showActivityIndicator()
+     
         //Assigning Child from where to get data in Visitor List.
         myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
         
@@ -43,7 +46,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     let profilePhoto = visitorObject?[VisitorListFB.VisitorListFBObjects.profilePhoto]
                     let status = visitorObject?[VisitorListFB.VisitorListFBObjects.status]
                     let uid = visitorObject?[VisitorListFB.VisitorListFBObjects.uid]
-
+                    
                     //creating userAccount model & set earlier created let variables in userObject in the below parameter
                     let user = VisitorListFB(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
                     
@@ -53,6 +56,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                 
                 //reload collection view.
                 self.collectionView.reloadData()
+                
             }
         })
         
