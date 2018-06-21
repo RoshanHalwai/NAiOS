@@ -156,6 +156,9 @@ class NAString : NSObject
     func please_enter_name() -> String{
         return String("Please enter name")
     }
+    func please_upload_Image() -> String {
+        return String("Please Upload Image")
+    }
     func required_mobileNo_Length() -> Int{
         return Int(10)
     }

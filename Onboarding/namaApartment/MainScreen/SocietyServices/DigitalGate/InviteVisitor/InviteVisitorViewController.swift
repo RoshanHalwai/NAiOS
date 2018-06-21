@@ -24,6 +24,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var btnInviteVisitor: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var lbl_Picture_Validation: UILabel!
     @IBOutlet weak var lbl_Name_Validation: UILabel!
     @IBOutlet weak var lbl_Mob_Validation: UILabel!
     @IBOutlet weak var img_Profile: UIImageView!
@@ -48,6 +49,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //Hiding error labels while view load.
         lbl_Name_Validation.isHidden = true
         lbl_Mob_Validation.isHidden = true
+        lbl_Picture_Validation.isHidden = true
         
         //assigned delegate method on textFields
         txtInvitorMobile.delegate = self
@@ -110,6 +112,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         lbl_Name_Validation.font = NAFont().descriptionFont()
         lbl_Mob_Validation.font = NAFont().descriptionFont()
+        lbl_Picture_Validation.font = NAFont().descriptionFont()
         
         //TextField Formatting & setting
         txtInvitorMobile.font = NAFont().textFieldFont()
@@ -249,7 +252,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     }
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
     @IBAction func btnInviteVisitor(_ sender: UIButton) {
-        inviteAlertView()
+        if img_Profile.image == #imageLiteral(resourceName: "imageIcon") {
+            lbl_Picture_Validation.isHidden = false
+            lbl_Picture_Validation.text = NAString().please_upload_Image()
+        } else {
+            inviteAlertView()
+        }
     }
     //AlertView For navigation
     func inviteAlertView() {
@@ -304,6 +312,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             img_Profile.image = image
+            lbl_Picture_Validation.isHidden = true
         }
         self.dismiss(animated: true, completion: nil)
     }
