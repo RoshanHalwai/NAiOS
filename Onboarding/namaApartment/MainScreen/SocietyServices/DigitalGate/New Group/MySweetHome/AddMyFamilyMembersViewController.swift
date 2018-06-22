@@ -50,15 +50,12 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
-        
+    
         //hiding error labels
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true
         lbl_Picture_Validation.isHidden = true
         lbl_Email_Validation.isHidden = true
-      //  lbl_Relation_Validation.isHidden = true
         
         //assigned delegate method on textFields
         txt_Name.delegate = self
@@ -97,8 +94,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.lbl_Mobile_Validation.font = NAFont().descriptionFont()
         self.lbl_Picture_Validation.font = NAFont().descriptionFont()
         self.lbl_Email_Validation.font = NAFont().descriptionFont()
-       // self.lbl_Relation_Validation.font = NAFont().descriptionFont()
-        
+    
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
         self.lbl_Name.text = NAString().name()
@@ -130,15 +126,14 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
     }
     //alert Popup when user give  grant access & try to add details
-    func grantAccessAlert()
-    {
+    func grantAccessAlert() {
         
         //showing alert controller while giving Grant Access to family members
         let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()), preferredStyle: .alert)
         
         //creating Reject alert actions
-        let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in
-        }
+        let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
+        
         //creating Accept alert actions
         let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
             

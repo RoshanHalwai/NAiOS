@@ -126,7 +126,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         btnInviteVisitor.setTitle(NAString().btnInvite().uppercased(), for: .normal)
         btnSelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
     }
-    
     //for datePicker
     func createDatePicker(dateTextField : UITextField) {
         // toolbar
@@ -143,7 +142,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         picker.datePickerMode = .dateAndTime
         picker.minimumDate = NSDate() as Date
     }
-    
+
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
