@@ -23,7 +23,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         super.viewDidLoad()
         
         //to show activity indicator before loading data from firebase
-       showActivityIndicator()
+     NAActivityIndicator.shared.showActivityIndicator(view: self)
      
         //Assigning Child from where to get data in Visitor List.
         myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
@@ -52,6 +52,9 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     
                     //Adding visitor in visitor List
                     self.myVisitorList.append(user)
+                    
+                    //Hidding Activity indicator after loading data in the list from firebase.
+                    NAActivityIndicator.shared.hideActivityIndicator()
                 }
                 
                 //reload collection view.
