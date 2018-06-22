@@ -301,24 +301,21 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 self.navigationController?.pushViewController(lv, animated: true)
             }
         }
-        
     }
     func isValidEmailAddress(emailAddressString: String) -> Bool {
         
         var returnValue = true
-        let emailRegEx = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
+        let validEmail = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
         do {
-            let regex = try NSRegularExpression(pattern: emailRegEx)
-            let nsString = emailAddressString as NSString
-            let results = regex.matches(in: emailAddressString, range: NSRange(location: 0, length: nsString.length))
+            let emailTextInput = try NSRegularExpression(pattern: validEmail)
+            let emailString = emailAddressString as NSString
+            let results = emailTextInput.matches(in: emailAddressString, range: NSRange(location: 0, length: emailString.length))
             if results.count == 0 {
                 returnValue = false
             }
-        } catch let error as NSError {
-            print("invalid regex: \(error.localizedDescription)")
+        } catch {
             returnValue = false
         }
-        
         return  returnValue
     }
     //Accept only 10 digit mobile number
