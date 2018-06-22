@@ -447,7 +447,7 @@ class NAString : NSObject
     //adding my daily services
     
     func add_my_service() -> String {
-        return String("Add My Service")
+        return String("Add My Daily Service")
     }
     func name() -> String {
         return String("Name:")
