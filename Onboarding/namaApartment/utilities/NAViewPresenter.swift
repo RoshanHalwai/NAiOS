@@ -47,6 +47,9 @@ class NAViewPresenter: NSObject {
     func myDailyServicesVC() -> MyDailyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myDailyServicesVC") as! MyDailyServicesViewController
     }
+    func myFamilyMembers() -> AddMyFamilyMembersViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "addMyFamilyMembers") as! AddMyFamilyMembersViewController
+    }
     
     func notifyDigiGateVC() -> NotifyDigiGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "notifyDigiGateVC") as! NotifyDigiGateViewController
