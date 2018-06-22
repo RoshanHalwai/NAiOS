@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class AddMyServicesViewController: NANavigationViewController,CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
     @IBOutlet weak var img_Profile: UIImageView!
     
@@ -423,6 +423,7 @@ class AddMyServicesViewController: NANavigationViewController,CNContactPickerDel
     }
 }
 extension AddMyServicesViewController{
+    
     //Accept only 10 digit mobile number
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
@@ -433,26 +434,6 @@ extension AddMyServicesViewController{
             dateTextFieldLength = newLength
             nameTextFieldLength = txt_Name.text!.count
             mobileNumberTextFieldLength = txt_MobileNo.text!.count
-            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
-        }
-        if textField == txt_Relation
-        {
-            let allowedCharacters = CharacterSet.letters
-            let characterSet = CharacterSet(charactersIn: string)
-            if (newLength == NAString().zero_length())
-            {
-                txt_Relation.redunderlined()
-            }
-            else
-            {
-                txt_Relation.underlined()
-            }
-            relationTextFieldLength = newLength
-            dateTextFieldLength = txt_Date.text!.count
-            nameTextFieldLength = txt_Name.text!.count
-            mobileNumberTextFieldLength = txt_MobileNo.text!.count
-            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
-             return allowedCharacters.isSuperset(of: characterSet)
         }
         if textField == txt_Name
         {
@@ -471,7 +452,6 @@ extension AddMyServicesViewController{
             relationTextFieldLength = txt_Relation.text!.count
             dateTextFieldLength = txt_Date.text!.count
             mobileNumberTextFieldLength = txt_MobileNo.text!.count
-            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
         }
         if textField == txt_MobileNo
         {
@@ -497,7 +477,7 @@ extension AddMyServicesViewController{
             relationTextFieldLength = txt_Relation.text!.count
             dateTextFieldLength = txt_Date.text!.count
             mobileNumberTextFieldLength = newLength
-            updateAddButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
+           
             
             //Check for Text Removal
             if string.isEmpty
@@ -509,9 +489,10 @@ extension AddMyServicesViewController{
                 return newLength <= NAString().required_mobileNo_Length()
             }
         }
+         updateAddDailyButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, relationLength: relationTextFieldLength, dateLength: dateTextFieldLength)
         return true
     }
-    func updateAddButtonVisibilty(nameLength:Int, mobileNumberLength:Int, relationLength:Int, dateLength:Int)
+    func updateAddDailyButtonVisibilty(nameLength:Int, mobileNumberLength:Int, relationLength:Int, dateLength:Int)
     {
         
         if  txt_Relation.isHidden == false
