@@ -9,7 +9,10 @@
 import UIKit
 
 class MyDailyServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
-   
+    
+    //floating button downside the list.
+    @IBOutlet weak var btn_AddMyDailyServices: UIButton!
+    
     //array to display items on collectionView
     var myDailyImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var myDailyName =  ["Vikas","GC","Sudhir"]
@@ -23,24 +26,20 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    //for floating Button
-    private var roundButton = UIButton()
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Formmating & setting Button
+        self.btn_AddMyDailyServices.setTitle(NAString().add_my_service().capitalized, for: .normal)
+        self.btn_AddMyDailyServices.backgroundColor = NAColor().buttonBgColor()
+        self.btn_AddMyDailyServices.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        self.btn_AddMyDailyServices.titleLabel?.font = NAFont().buttonFont()
         
         //created backbuttom custome to go to digi gate screen
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
-        
-        //for creating floating button
-        self.roundButton = UIButton(type: .custom)
-        self.roundButton.setTitleColor(UIColor.orange, for: .normal)
-        self.roundButton.layer.cornerRadius = roundButton.layer.frame.size.width/2
-        self.roundButton.addTarget(self, action: #selector(self.floatingButton(_:)), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(self.roundButton)
-    
+       
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().my_daily_services().capitalized)
     }
@@ -52,28 +51,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.navigationController?.pushViewController(dv, animated: true)
     }
 
-    //for setting & formatting floating button
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        roundButton.layer.cornerRadius = roundButton.layer.frame.size.width/2
-        roundButton.backgroundColor = UIColor.black
-        roundButton.clipsToBounds = true
-        roundButton.setImage(UIImage(named:"Floating3"), for: .normal)
-        roundButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-             roundButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
-            
-            roundButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-            roundButton.widthAnchor.constraint(equalToConstant: 60),
-            roundButton.heightAnchor.constraint(equalToConstant: 60)
-            ])
-    }
-    
-    //for appearing floating button on screen load
-    override func viewWillAppear(_ animated: Bool) {
-        self.roundButton.isHidden = false
-    }
-    
     //for creating action sheet to select my daily services
     @IBAction func floatingButton(_ sender: UIButton)
     {
@@ -89,9 +66,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let action8 = UIAlertAction(title: dailyService[7], style: .default, handler: dailyServiceSelected)
         
         let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
-
             (alert: UIAlertAction!) -> Void in
-            self.roundButton.isHidden = false
         })
 
         actionSheet.addAction(action1)
@@ -109,7 +84,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
 
         self.present(actionSheet, animated: true, completion: nil)
         
-        self.roundButton.isHidden = true
     }
     
     func dailyServiceSelected(alert: UIAlertAction!) {
