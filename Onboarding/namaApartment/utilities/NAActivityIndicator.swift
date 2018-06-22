@@ -9,22 +9,24 @@
 import Foundation
 import UIKit
 
-extension UIViewController   {
+class NAActivityIndicator {
     
-    func showActivityIndicator() {
-        
-        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityView.center = self.view.center
+    static let shared = NAActivityIndicator()
+    
+      let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    
+    func showActivityIndicator(view: UIViewController) {
+        activityView.center = view.view.center
         activityView.color = UIColor.black
         activityView.startAnimating()
-        self.view.addSubview(activityView)
+        view.view.addSubview(activityView)
     }
     
     func hideActivityIndicator() {
-        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         activityView.stopAnimating()
         activityView.hidesWhenStopped = true
     }
+    
 }
 
 
