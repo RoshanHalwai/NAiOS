@@ -163,7 +163,7 @@ class NAString : NSObject
         return String("Please enter Email")
     }
     func please_select_your_relation() -> String {
-        return String("Please Select Your Reltion")
+        return String("Please Select Your Relation")
     }
     func please_enter_Valid_email() -> String {
         return String("Please enter a Valid Email address")
