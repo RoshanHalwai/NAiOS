@@ -244,7 +244,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         
         //Assigning Child from where to get data in Visitor List.
-        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE_LAUNDRIES)
+        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("cooks")
         
         myDailyServicesListReference?.observe(DataEventType.value, with: { (snapshot) in
             
