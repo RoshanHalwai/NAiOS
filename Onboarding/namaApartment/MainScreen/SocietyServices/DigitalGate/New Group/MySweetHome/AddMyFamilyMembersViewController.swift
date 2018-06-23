@@ -222,6 +222,11 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         let fullName = "\(contact.givenName) \(contact.familyName)"
         self.txt_Name.text = fullName
         
+        lbl_Mobile_Validation.isHidden = true
+        lbl_Name_Validation.isHidden = true
+        txt_MobileNo.underlined()
+        txt_Name.underlined()
+        
         var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         

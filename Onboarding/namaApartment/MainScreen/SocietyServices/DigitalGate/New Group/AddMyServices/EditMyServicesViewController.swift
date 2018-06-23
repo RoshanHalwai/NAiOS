@@ -19,7 +19,6 @@ class EditMyServicesViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Name_Validation: UILabel!
     @IBOutlet weak var lbl_Mobile_Validation: UILabel!
     
-    
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
@@ -295,9 +294,7 @@ extension EditMyServicesViewController {
             } else {
                 btn_Update.isHidden = false
             }
-            
             if textField == txt_InTime {
-                
                 lbl_Description.isHidden = true
                 dateTextFieldLength = newLength
                 nameTextFieldLength = txt_Name.text!.count
