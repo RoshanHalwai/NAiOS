@@ -17,7 +17,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     //Created variable of DBReference for storing data in firebase
     var myDailyServicesListReference : DatabaseReference?
     
-    //Created variable for NAVisitorFile to fetch data from firebase with the help of NAVisitor's variables.
+    //Created variable for Daily services list FB Objects to fetch data from firebase with the help of NAVisitor's variables.
     var myDailyServicesList = [DailyServicesListFB]()
    
     //Array of Action sheet items.
@@ -132,7 +132,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         //TODO : Need to change Flat Number.
         cell.lbl_MyDailyServicesFlats.text = "5"
     
-        //Calling function to get Profile Image from Firebase.
+        //Calling global function to get Profile Image from Firebase.
         if let urlString = list.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
         }
