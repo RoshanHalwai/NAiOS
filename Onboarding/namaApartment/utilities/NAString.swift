@@ -156,6 +156,18 @@ class NAString : NSObject
     func please_enter_name() -> String{
         return String("Please enter name")
     }
+    func please_upload_Image() -> String {
+        return String("Please Upload Image")
+    }
+    func please_enter_email() -> String {
+        return String("Please enter Email")
+    }
+    func please_select_your_relation() -> String {
+        return String("Please Select Your Relation")
+    }
+    func please_enter_Valid_email() -> String {
+        return String("Please enter a Valid Email address")
+    }
     func required_mobileNo_Length() -> Int{
         return Int(10)
     }

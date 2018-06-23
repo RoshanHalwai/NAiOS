@@ -52,14 +52,9 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
 
     @IBAction func btnAddFamilyMember(_ sender: UIButton)
     {
-        let vc = NAViewPresenter().addMySerivesVC()
-        
-        //passing value to my services VC
-        let passVC = "mySweetHomeVC"
-        vc.vcValue = passVC
-      
-       vc.navTitle =  NAString().addFamilyMemberTitle().capitalized
-        self.navigationController?.pushViewController(vc, animated: true)
+        let lv = NAViewPresenter().myFamilyMembers()
+        self.navigationController?.pushViewController(lv, animated: true)
+        ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
     }
     
     //created custome back button to go back to digi gate
