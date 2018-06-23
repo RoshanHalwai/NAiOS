@@ -17,7 +17,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     //Created variable of DBReference for storing data in firebase
     var myDailyServicesListReference : DatabaseReference?
     
-    //Created variable for Daily services list FB Objects to fetch data from firebase with the help of NAVisitor's variables.
+    //Created variable for Daily services list FB Objects to fetch data from firebase.
     var myDailyServicesList = [DailyServicesListFB]()
    
     //Array of Action sheet items.
