@@ -31,6 +31,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
+        //Formmating & setting Button
+        self.btn_AddMyDailyServices.setTitle(NAString().add_my_service().capitalized, for: .normal)
+        self.btn_AddMyDailyServices.backgroundColor = NAColor().buttonBgColor()
+        self.btn_AddMyDailyServices.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        self.btn_AddMyDailyServices.titleLabel?.font = NAFont().buttonFont()
+        
         //calling function to retriev data from firebase.
         getDataFromFirebase()
         
