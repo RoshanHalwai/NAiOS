@@ -243,10 +243,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     func getDataFromFirebase() {
         
-        
-        //Assigning Child from where to get data in Visitor List.
+        //Assigning Child from where to get data in Daily Services List.
         //TODO: Right now only showing particular cook's details in the list.
-        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVIVES_TYPE_COOKS)
+        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE_COOKS)
         
         myDailyServicesListReference?.observe(DataEventType.value, with: { (snapshot) in
             
@@ -275,7 +274,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
                 }
                 //reload collection view.
                 self.collectionView.reloadData()
-                
             }
         })
     }
