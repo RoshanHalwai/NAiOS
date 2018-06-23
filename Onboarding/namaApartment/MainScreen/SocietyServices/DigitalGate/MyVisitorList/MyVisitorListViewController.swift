@@ -53,7 +53,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                 
                 //reload collection view.
                 self.collectionView.reloadData()
-                
             }
         })
         

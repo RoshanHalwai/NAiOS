@@ -21,5 +21,6 @@ struct Constants {
     static let FIREBASE_USER_PUBLIC = "public"
     static let FIREBASE_CHILD_DAILY_SERVICES_TYPE = "dailyServiceType"
     static let FIREBASE_CHILD_DAILY_SERVICES_TYPE_LAUNDRIES = "laundries"
+    static let FIREBASE_CHILD_DAILY_SERVIVES_TYPE_COOKS = "cooks"
 
 }

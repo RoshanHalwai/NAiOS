@@ -140,22 +140,23 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyDailyServicesCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
-        let myList : DailyServicesListFB
-        myList = myDailyServicesList[indexPath.row]
+        let list : DailyServicesListFB
+        list = myDailyServicesList[indexPath.row]
         
-        cell.lbl_MyDailyServiceName.text = myList.fullName
+        cell.lbl_MyDailyServiceName.text = list.fullName
         
         //TODO : Need to change Services type
         cell.lbl_MyDailyServiceType.text = "Cook"
-        cell.lbl_MyDailyServicesInTime.text = myList.timeOfVisit
-        cell.lbl_MyDailyServicesRating.text = myList.rating
+        cell.lbl_MyDailyServicesInTime.text = list.timeOfVisit
+        
+        //For converting Int with String.
+        cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
         
         //TODO : Need to change Flat Number.
         cell.lbl_MyDailyServicesFlats.text = "5"
     
-        
         //Calling function to get Profile Image from Firebase.
-        if let urlString = myList.profilePhoto {
+        if let urlString = list.profilePhoto {
             downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
         }
         
@@ -244,7 +245,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         
         //Assigning Child from where to get data in Visitor List.
-        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("cooks")
+        //TODO: Right now only showing particular cook's details in the list.
+        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVIVES_TYPE_COOKS)
         
         myDailyServicesListReference?.observe(DataEventType.value, with: { (snapshot) in
             
@@ -266,7 +268,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
                     let uid = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.uid]
                     
                     //creating dailyServices model & initiliazing here
-                    let dailyServicesData = DailyServicesListFB(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! String?, rating: rating as! String?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?)
+                    let dailyServicesData = DailyServicesListFB(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?)
                     
                     //Adding dailyservices in services List
                     self.myDailyServicesList.append(dailyServicesData)
