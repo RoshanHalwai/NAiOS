@@ -56,6 +56,7 @@
 		868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
 		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
 		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
+		86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
 		86A4D4A520D57047007890D2 /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
 		86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
 		86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */; };
@@ -161,6 +162,7 @@
 		868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlatDetails.swift; sourceTree = "<group>"; };
 		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
+		86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAActivityIndicator.swift; sourceTree = "<group>"; };
 		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
 		86A8B934209EC9FF00EA1C35 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
@@ -480,6 +482,7 @@
 				8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */,
 				86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */,
 				08EF758F20D240620031FA66 /* NAValidation.swift */,
+				86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
 				86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */,
+				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
 				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
 				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,

@@ -28,6 +28,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //to show activity indicator before loading data from firebase
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
         //calling function to retriev data from firebase.
         getDataFromFirebase()
         
@@ -239,6 +242,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
                     
                     //Adding dailyservices in services List
                     self.myDailyServicesList.append(dailyServicesData)
+                    
+                    //Hidding Activity indicator after loading data in the list from firebase.
+                    NAActivityIndicator.shared.hideActivityIndicator()
                 }
                 //reload collection view.
                 self.collectionView.reloadData()
