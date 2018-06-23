@@ -11,7 +11,7 @@ import UIKit
 
 class DailyServicesListFB {
     
-    //defining strings according to firebase names which is inside the visitor Node.
+    //defining strings according to firebase names which is inside the Daily Services Node.
     var fullName: String?
     var phoneNumber: String?
     var profilePhoto: String?

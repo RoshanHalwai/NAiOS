@@ -103,7 +103,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
   
         //Calling function to get Profile Image from Firebase.
         if let urlString = myList.profilePhoto {
-           downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
+           NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
     
         //Assigning date & time separate variables to get data in cell labels.
@@ -165,19 +165,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)
-    }
-    
-    //Created function to get Profile image from firebase in Visitor List
-    func downloadImageFromServerURL(urlString: String, imageView:UIImageView) {
-        
-        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-            if error == nil {
-                let image = UIImage(data: data!)
-                DispatchQueue.main.async(execute: { () -> Void in
-                    imageView.image = image
-                })
-            }
-        }).resume()
     }
 }
 
