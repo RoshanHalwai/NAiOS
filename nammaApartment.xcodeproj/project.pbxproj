@@ -56,6 +56,8 @@
 		868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
 		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
 		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
+		86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
+		86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */; };
 		86A4D4A520D57047007890D2 /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
 		86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
 		86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */; };
@@ -76,7 +78,7 @@
 		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
 		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
-		86FEE60720DB6D080023DC94 /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FEE60620DB6D080023DC94 /* NAActivityIndicator.swift */; };
+		86FEE60B20DBB4F00023DC94 /* DailyServicesListFBOjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FEE60A20DBB4F00023DC94 /* DailyServicesListFBOjects.swift */; };
 		86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */; };
 		86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */; };
 		86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73C209B1803008A57B3 /* SocietyTableViewCell.swift */; };
@@ -161,6 +163,8 @@
 		868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlatDetails.swift; sourceTree = "<group>"; };
 		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
+		86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAActivityIndicator.swift; sourceTree = "<group>"; };
+		86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFirebase.swift; sourceTree = "<group>"; };
 		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
 		86A8B934209EC9FF00EA1C35 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
@@ -181,7 +185,7 @@
 		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
-		86FEE60620DB6D080023DC94 /* NAActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAActivityIndicator.swift; sourceTree = "<group>"; };
+		86FEE60A20DBB4F00023DC94 /* DailyServicesListFBOjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyServicesListFBOjects.swift; sourceTree = "<group>"; };
 		86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentViewController.swift; sourceTree = "<group>"; };
 		86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentTableViewCell.swift; sourceTree = "<group>"; };
 		86FFD73C209B1803008A57B3 /* SocietyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyTableViewCell.swift; sourceTree = "<group>"; };
@@ -384,6 +388,7 @@
 			children = (
 				8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */,
 				8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */,
+				86FEE60A20DBB4F00023DC94 /* DailyServicesListFBOjects.swift */,
 				86E83E4320A9B07D00FA7CA7 /* AddMyServices */,
 				86646BBC20AB042B002A92B8 /* Emergency */,
 				867DFFA720AEA33A00A45895 /* MySweetHome */,
@@ -479,7 +484,8 @@
 				8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */,
 				86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */,
 				08EF758F20D240620031FA66 /* NAValidation.swift */,
-				86FEE60620DB6D080023DC94 /* NAActivityIndicator.swift */,
+				86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */,
+				86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -861,6 +867,7 @@
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
 				86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */,
+				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
 				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
 				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
@@ -872,13 +879,14 @@
 				86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */,
 				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
+				86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */,
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
+				86FEE60B20DBB4F00023DC94 /* DailyServicesListFBOjects.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
 				86B1A8DA20D50EAB00D90D88 /* VisitorListFBObjects.swift in Sources */,
 				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
-				86FEE60720DB6D080023DC94 /* NAActivityIndicator.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,

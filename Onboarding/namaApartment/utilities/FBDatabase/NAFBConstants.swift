@@ -17,5 +17,11 @@ struct Constants {
     static let FIREBASE_USER = "users"
     static let FIREBASE_USER_CHILD_PRIVATE = "private"
     static let FIREBASE_USER_CHILD_ALL = "all"
+    static let FIREBASE_CHILD_DAILY_SERVICES = "dailyServices"
+    static let FIREBASE_USER_PUBLIC = "public"
+    static let FIREBASE_CHILD_DAILY_SERVICES_TYPE = "dailyServiceType"
+    static let FIREBASE_CHILD_DAILY_SERVICES_TYPE_LAUNDRIES = "laundries"
+    static let FIREBASE_CHILD_DAILY_SERVICES_TYPE_COOKS = "cooks"
+    static let FIREBASE_CHILD_DAILY_SERVICES_TYPE_DRIVERS = "drivers"
 
 }

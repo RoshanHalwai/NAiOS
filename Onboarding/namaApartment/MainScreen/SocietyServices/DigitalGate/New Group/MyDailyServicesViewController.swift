@@ -7,20 +7,19 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class MyDailyServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     //floating button downside the list.
     @IBOutlet weak var btn_AddMyDailyServices: UIButton!
     
-    //array to display items on collectionView
-    var myDailyImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
-    var myDailyName =  ["Vikas","GC","Sudhir"]
-    var myDailyType = ["Cook","Maid","Driver"]
-    var myDailyIntime = ["08:40","17:45","08:40"]
-    var myDailyFlats = ["4","5","2"]
-    var myDailyRating = ["4.2","4.9","3.2"]
+    //Created variable of DBReference for storing data in firebase
+    var myDailyServicesListReference : DatabaseReference?
     
+    //Created variable for Daily services list FB Objects to fetch data from firebase.
+    var myDailyServicesList = [DailyServicesListFB]()
+   
     //Array of Action sheet items.
     var dailyService = ["Cook", "Maid", "Car/Bike Cleaning", "Child Day Care", "Daily Newspaper", "Milk Man", "Laundry", "Driver"]
     
@@ -29,11 +28,17 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //to show activity indicator before loading data from firebase
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
         //Formmating & setting Button
         self.btn_AddMyDailyServices.setTitle(NAString().add_my_service().capitalized, for: .normal)
         self.btn_AddMyDailyServices.backgroundColor = NAColor().buttonBgColor()
         self.btn_AddMyDailyServices.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_AddMyDailyServices.titleLabel?.font = NAFont().buttonFont()
+        
+        //calling function to retriev data from firebase.
+        getMyDailyServicesDataFromFirebase()
         
         //created backbuttom custome to go to digi gate screen
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
@@ -104,20 +109,33 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return myDailyName.count
+        return myDailyServicesList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MyDailyServicesCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyDailyServicesCollectionViewCell
         
-        cell.lbl_MyDailyServiceName.text = myDailyName[indexPath.row]
-        cell.lbl_MyDailyServiceType.text = myDailyType[indexPath.row]
-        cell.lbl_MyDailyServicesInTime.text = myDailyIntime[indexPath.row]
-        cell.lbl_MyDailyServicesRating.text = myDailyRating[indexPath.row]
-        cell.lbl_MyDailyServicesFlats.text =  myDailyFlats[indexPath.row]
+        //Created constant variable to store all the firebase data in it.
+        let list : DailyServicesListFB
+        list = myDailyServicesList[indexPath.row]
+        
+        cell.lbl_MyDailyServiceName.text = list.fullName
+        
+        //TODO : Need to change Services type
+        cell.lbl_MyDailyServiceType.text = "Cook"
+        cell.lbl_MyDailyServicesInTime.text = list.timeOfVisit
+        
+        //For converting Int with String.
+        cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
+        
+        //TODO : Need to change Flat Number.
+        cell.lbl_MyDailyServicesFlats.text = "5"
     
-        cell.myDailyServicesImage.image = myDailyImages[indexPath.row]
+        //Calling global function to get Profile Image from Firebase.
+        if let urlString = list.profilePhoto {
+            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
+        }
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
@@ -186,6 +204,45 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         }
         return cell
     }
+    
+    func getMyDailyServicesDataFromFirebase() {
+        
+        //Assigning Child from where to get data in Daily Services List.
+        //TODO: Right now only showing particular cook's details in the list.
+        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE_COOKS)
+        
+        myDailyServicesListReference?.observe(DataEventType.value, with: { (snapshot) in
+            
+            //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
+            if snapshot.childrenCount > 0 {
+                self.myDailyServicesList.removeAll()
+                
+                //for loop for getting all the data in tableview
+                for dailyServices in snapshot.children.allObjects as! [DataSnapshot] {
+                    let dailyServicesObject = dailyServices.value as? [String: AnyObject]
+                    
+                    let fullName = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.fullName]
+                    let phoneNumber = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.phoneNumber]
+                    let profilePhoto = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.profilePhoto]
+                    let providedThings = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.providedThings]
+                    let rating = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.rating]
+                    let timeOfVisit = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.timeOfVisit]
+                    let uid = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.uid]
+                    
+                    //creating dailyServices model & initiliazing here
+                    let dailyServicesData = DailyServicesListFB(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?)
+                    
+                    //Adding dailyservices in services List
+                    self.myDailyServicesList.append(dailyServicesData)
+                    
+                    //Hidding Activity indicator after loading data in the list from firebase.
+                    NAActivityIndicator.shared.hideActivityIndicator()
+                }
+                //reload collection view.
+                self.collectionView.reloadData()
+            }
+        })
+    }
 }
 
 extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
@@ -199,7 +256,7 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             //Remove collection view cell item with animation
-            self.myDailyName.remove(at: indx)
+            self.myDailyServicesList.remove(at: indx)
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity

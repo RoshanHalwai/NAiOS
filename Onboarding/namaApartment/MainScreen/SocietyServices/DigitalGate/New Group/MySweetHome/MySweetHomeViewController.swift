@@ -7,8 +7,10 @@
 //
 
 import UIKit
-class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+import FirebaseDatabase
 
+class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+    
     private var addMemberButton = UIButton()
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -73,7 +75,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
-    
+        
         cell.lbl_MySweetHomeName.text = MySweetHomeName[indexPath.row]
         cell.lbl_MySweetHomeRelation.text = MySweetHomeRelation[indexPath.row]
         cell.lbl_MySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
@@ -155,6 +157,7 @@ extension MySweetHomeViewController : removeCollectionProtocol{
             let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
                 //Remove collection view cell item with animation
+                
                 self.MySweetHomeName.remove(at: indx)
             
                 //animation at final state

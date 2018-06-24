@@ -23,7 +23,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         super.viewDidLoad()
         
         //to show activity indicator before loading data from firebase
-     NAActivityIndicator.shared.showActivityIndicator(view: self)
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
      
         //Assigning Child from where to get data in Visitor List.
         myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
@@ -59,7 +59,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                 
                 //reload collection view.
                 self.collectionView.reloadData()
-                
             }
         })
         
@@ -104,7 +103,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
   
         //Calling function to get Profile Image from Firebase.
         if let urlString = myList.profilePhoto {
-           downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
+           NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
     
         //Assigning date & time separate variables to get data in cell labels.
@@ -166,19 +165,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)
-    }
-    
-    //Created function to get Profile image from firebase in Visitor List
-    func downloadImageFromServerURL(urlString: String, imageView:UIImageView) {
-        
-        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-            if error == nil {
-                let image = UIImage(data: data!)
-                DispatchQueue.main.async(execute: { () -> Void in
-                    imageView.image = image
-                })
-            }
-        }).resume()
     }
 }
 
