@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class DailyServicesListFB {
-    
     //defining strings according to firebase names which is inside the Daily Services Node.
     var fullName: String?
     var phoneNumber: String?
@@ -22,7 +21,6 @@ class DailyServicesListFB {
     
      //initilaize the variables
     init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?) {
-        
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
@@ -31,10 +29,8 @@ class DailyServicesListFB {
         self.timeOfVisit = timeOfVisit
         self.uid = uid
     }
-    
       //creating structure for firebase to get data on it.
     struct DailyServicesListFBOjects {
-        
         static let fullName = "fullName"
         static let phoneNumber = "phoneNumber"
         static let profilePhoto = "profilePhoto"

@@ -38,7 +38,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.btn_AddMyDailyServices.titleLabel?.font = NAFont().buttonFont()
         
         //calling function to retriev data from firebase.
-        getDataFromFirebase()
+        getMyDailyServicesDataFromFirebase()
         
         //created backbuttom custome to go to digi gate screen
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
@@ -205,7 +205,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         return cell
     }
     
-    func getDataFromFirebase() {
+    func getMyDailyServicesDataFromFirebase() {
         
         //Assigning Child from where to get data in Daily Services List.
         //TODO: Right now only showing particular cook's details in the list.
@@ -219,7 +219,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
                 
                 //for loop for getting all the data in tableview
                 for dailyServices in snapshot.children.allObjects as! [DataSnapshot] {
-                    
                     let dailyServicesObject = dailyServices.value as? [String: AnyObject]
                     
                     let fullName = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.fullName]
