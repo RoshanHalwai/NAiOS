@@ -158,25 +158,21 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         if (txtInvitorName.text?.isEmpty)! {
             lbl_Name_Validation.isHidden = false
             txtInvitorName.redunderlined()
-            txtDate.text = ""
             btnInviteVisitor.isHidden = true
             lbl_InviteDescription.isHidden = true
             lbl_Name_Validation.text = NAString().please_enter_name()
         } else {
             lbl_Name_Validation.isHidden = true
             txtInvitorName.underlined()
-            txtDate.text = dateString
         }
         if (txtInvitorMobile.text?.isEmpty)! {
             lbl_Mob_Validation.isHidden = false
             lbl_Mob_Validation.text = NAString().please_enter_mobile_no()
             txtInvitorMobile.redunderlined()
-            txtDate.text = ""
             btnInviteVisitor.isHidden = true
             lbl_InviteDescription.isHidden = true
         } else {
             lbl_Mob_Validation.isHidden = true
-            txtDate.text = dateString
             txtInvitorMobile.underlined()
         }
         if (!(txtInvitorMobile.text?.isEmpty)!) && (txtInvitorMobile.text?.count != NAString().required_mobileNo_Length()) {
@@ -186,16 +182,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_InviteDescription.isHidden = true
             lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
         } else if (txtInvitorMobile.text?.count == NAString().required_mobileNo_Length()) {
-            txtDate.text = dateString
             txtInvitorMobile.underlined()
             lbl_Mob_Validation.isHidden = true
         }
         if (!(txtInvitorName.text?.isEmpty)!) && (txtInvitorMobile.text?.count == NAString().required_mobileNo_Length()) {
-            txtDate.text = dateString
             btnInviteVisitor.isHidden = false
             lbl_InviteDescription.isHidden = false
-        } else {
-            txtDate.text = ""
         }
     }
     @IBAction func btnSelectContact(_ sender: Any) {
@@ -243,6 +235,15 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         let fullName = "\(contact.givenName) \(contact.familyName)"
         self.txtInvitorName.text = fullName
+        
+        lbl_Name_Validation.isHidden = true
+        txtInvitorName.underlined()
+        lbl_Mob_Validation.isHidden = true
+        txtInvitorMobile.underlined()
+        if !(txtDate.text?.isEmpty)! {
+            btnInviteVisitor.isHidden = false
+            lbl_InviteDescription.isHidden = false
+        }
         
         var mobileNo = "Not Available"
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
@@ -351,7 +352,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
                 lbl_InviteDescription.isHidden = true
                 lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
             }
-            if (newLength == NAString().required_mobileNo_Length()) && !(txtDate.text?.isEmpty)! {
+            if newLength >= NAString().required_mobileNo_Length() && !(txtInvitorName.text?.isEmpty)! && !(txtDate.text?.isEmpty)! {
                 btnInviteVisitor.isHidden = false
                 lbl_InviteDescription.isHidden = false
             }
@@ -370,7 +371,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         return true
     }
 
-     func updateInviteButtonVisibility(nameLength:Int, mobileNumberLength:Int, dateLength:Int) {
+    func updateInviteButtonVisibility(nameLength:Int, mobileNumberLength:Int, dateLength:Int) {
         
         //Conditions 1.Atleast 1 character. 2.10 Chracters Must. 3.Date Should Set
         if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length() {
