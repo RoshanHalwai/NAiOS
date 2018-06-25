@@ -33,7 +33,7 @@ class MainScreenViewController: NANavigationViewController
         
         segmentSelection.selectedSegmentIndex = currentIndex
         
-        //TODO: This is navigation need to change later.
+       //For navigation purpose.
         VCNamesSociety = [NAViewPresenter().digiGateVCID()]
         VCNamesApartment = [NAViewPresenter().homeVCID()]
         
@@ -70,7 +70,6 @@ class MainScreenViewController: NANavigationViewController
         self.tableView.reloadData()
     }
 }
-
 extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
