@@ -174,7 +174,9 @@ class NAString : NSObject
     func zero_length() -> Int{
         return Int(0)
     }
-    
+    func one() -> Int{
+        return Int(1)
+    }
     
     //Society Services Activity
     

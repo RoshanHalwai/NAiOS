@@ -14,7 +14,6 @@
 		5DEFEDD02E7F8A93F05E92FA /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */; };
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
 		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
-		86114E6420B7402F00656B56 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E6320B7402F00656B56 /* MainPageViewController.swift */; };
 		861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFE20B9AA98009EC0EF /* Lato-Italic.ttf */; };
 		861CC00920B9AA99009EC0EF /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFF20B9AA98009EC0EF /* Lato-LightItalic.ttf */; };
 		861CC00A20B9AA99009EC0EF /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00020B9AA98009EC0EF /* Lato-Bold.ttf */; };
@@ -115,7 +114,6 @@
 		81945498D71730E6597591AB /* Pods-nammaApartmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.release.xcconfig"; sourceTree = "<group>"; };
 		86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyServicesViewController.swift; sourceTree = "<group>"; };
 		86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewPresenter.swift; sourceTree = "<group>"; };
-		86114E6320B7402F00656B56 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		861CBFFE20B9AA98009EC0EF /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
 		861CBFFF20B9AA98009EC0EF /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		861CC00020B9AA98009EC0EF /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
@@ -342,7 +340,6 @@
 		86548D7C209C1F5400C700DA /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				86114E6320B7402F00656B56 /* MainPageViewController.swift */,
 				86548D7D209C1F7500C700DA /* DataModel.swift */,
 				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
 				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
@@ -846,7 +843,6 @@
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
 				868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */,
-				86114E6420B7402F00656B56 /* MainPageViewController.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
@@ -1067,7 +1063,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4XFFCTM44W;
+				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1089,7 +1085,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4XFFCTM44W;
+				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
