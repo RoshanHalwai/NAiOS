@@ -34,12 +34,12 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
         txt_ReDate.font = NAFont().textFieldFont()
         
         //Button Formatting & Settings
-        btn_Cancel.backgroundColor = NAColor().buttonBgColor()
+        //btn_Cancel.backgroundColor = NAColor().buttonBgColor()
         btn_Cancel.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_Cancel.setTitle(NAString().cancel(), for: .normal)
         btn_Cancel.titleLabel?.font = NAFont().buttonFont()
         
-        btn_Reschedule.backgroundColor = NAColor().buttonBgColor()
+       // btn_Reschedule.backgroundColor = NAColor().buttonBgColor()
         btn_Reschedule.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_Reschedule.setTitle(NAString().reschedule(), for: .normal)
         btn_Reschedule.titleLabel?.font = NAFont().buttonFont()
@@ -61,7 +61,6 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
         txt_ReTime.delegate = self
         txt_ReDate.delegate = self
     }
-    
     @IBAction func datePicker(_ sender: UIDatePicker) {
         if datePicker.datePickerMode == UIDatePickerMode.date {
             let date = DateFormatter()
@@ -70,9 +69,7 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
             txt_ReDate.text = dateString
             // Minimum Date
             datePicker.minimumDate = NSDate() as Date
-        }
-        else
-        {
+        } else {
             let time = DateFormatter()
             time.dateFormat = NAString().timeFormate()
             let timeString = time.string(from: datePicker.date)
@@ -81,33 +78,28 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
             datePicker.minimumDate = NSDate() as Date
         }
     }
-    
     @IBAction func btnCancel(_ sender: UIButton) {
         let lv = NAViewPresenter().myVisitorListVC()
         self.navigationController?.pushViewController(lv, animated: true)
-        
         navigationController?.isNavigationBarHidden = false
         navigationItem.hidesBackButton = false
+        dismiss(animated: true, completion: nil)
     }
-    
     @IBAction func btnReschedule(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
         let lv = NAViewPresenter().myVisitorListVC()
         self.navigationController?.pushViewController(lv, animated: true)
-        
         navigationController?.isNavigationBarHidden = false
         navigationItem.hidesBackButton = false
     }
-    
     //date TextField Function to display date only on click
     @objc func dateFunction(textField: UITextField) {
         datePicker.datePickerMode = UIDatePickerMode.date
     }
-    
     //time TextField Function to display time only on click
     @objc func timeFunction(textField: UITextField) {
         datePicker.datePickerMode = UIDatePickerMode.time
     }
-    
     // adding image on Date TextField
     func dateTextFieldIcon() {
         txt_ReDate.rightViewMode = UITextFieldViewMode.always
@@ -116,7 +108,6 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
         imageView.image = image
         txt_ReDate.rightView = imageView
     }
-    
     // adding image on Time TextField
     func timeTextFieldIcon() {
         txt_ReTime.rightViewMode = UITextFieldViewMode.always

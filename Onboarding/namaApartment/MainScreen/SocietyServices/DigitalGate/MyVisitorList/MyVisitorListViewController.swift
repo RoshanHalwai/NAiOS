@@ -9,8 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class MyVisitorListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate
-{
+class MyVisitorListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     
@@ -21,7 +20,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //to show activity indicator before loading data from firebase
      NAActivityIndicator.shared.showActivityIndicator(view: self)
      
@@ -38,7 +36,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                 for visitors in snapshot.children.allObjects as! [DataSnapshot] {
                     
                     let visitorObject = visitors.value as? [String: AnyObject]
-                    
                     let dateAndTimeOfVisit = visitorObject?[VisitorListFB.VisitorListFBObjects.dateAndTimeOfVisit]
                     let fullName = visitorObject?[VisitorListFB.VisitorListFBObjects.fullName]
                     let inviterUID = visitorObject?[VisitorListFB.VisitorListFBObjects.inviterUID]
@@ -56,13 +53,10 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     //Hidding Activity indicator after loading data in the list from firebase.
                     NAActivityIndicator.shared.hideActivityIndicator()
                 }
-                
                 //reload collection view.
                 self.collectionView.reloadData()
-                
             }
         })
-        
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         
@@ -71,18 +65,14 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate() {
-        
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myVisitorList.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVistorListCollectionViewCell
         
@@ -106,7 +96,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         if let urlString = myList.profilePhoto {
            downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
-    
         //Assigning date & time separate variables to get data in cell labels.
         cell.lbl_MyVisitorTime.text = timeString
         cell.lbl_MyVisitorDate.text = dateString
@@ -144,20 +133,23 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         //calling Reschdule button action on particular cell
         cell.objReschduling = {
             
-            let dv = NAViewPresenter().rescheduleMyVisitorVC()
-            self.navigationController?.pushViewController(dv, animated: true)
-            
-            //passing cell date & time to Reschedule VC
-            dv.getTime = cell.lbl_MyVisitorTime.text!
-            dv.getDate = cell.lbl_MyVisitorDate.text!
-            
+                let dv = NAViewPresenter().rescheduleMyVisitorVC()
+                dv.providesPresentationContextTransitionStyle = true
+                dv.definesPresentationContext = true
+                dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
+                dv.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
+                self.present(dv, animated: true, completion: nil)
+                
+                //passing cell date & time to Reschedule VC
+                dv.getTime = cell.lbl_MyVisitorTime.text!
+                dv.getDate = cell.lbl_MyVisitorDate.text!
+    
             //hide navigation bar with backButton
             self.navigationController?.isNavigationBarHidden = true
             self.navigationItem.hidesBackButton = true
         }
         return cell
     }
-    
     //date action fucntion
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
         // format date
@@ -167,7 +159,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         txtDate.text = dateString
         self.view.endEditing(true)
     }
-    
     //Created function to get Profile image from firebase in Visitor List
     func downloadImageFromServerURL(urlString: String, imageView:UIImageView) {
         
@@ -181,40 +172,32 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         }).resume()
     }
 }
-
-extension MyVisitorListViewController : dataCollectionProtocol{
-    
+extension MyVisitorListViewController : dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
         //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
-        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
-        }
+        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             //Remove collection view cell item with animation
              self.myVisitorList.remove(at: indx)
-            
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
             
             UIView.animate(withDuration: 0.3) {
-                
                 cell.alpha = 0.0
                 let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
                 cell.layer.transform = transform
             }
-            
             Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
         }
-        
         alert.addAction(actionNO) //add No action on AlertView
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)
     }
-    
     @objc func reloadCollectionData() {
         collectionView.reloadData()
     }
