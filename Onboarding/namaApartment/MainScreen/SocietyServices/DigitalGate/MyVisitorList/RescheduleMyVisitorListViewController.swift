@@ -34,12 +34,12 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
         txt_ReDate.font = NAFont().textFieldFont()
         
         //Button Formatting & Settings
-        //btn_Cancel.backgroundColor = NAColor().buttonBgColor()
+        btn_Cancel.backgroundColor = NAColor().buttonBgColor()
         btn_Cancel.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_Cancel.setTitle(NAString().cancel(), for: .normal)
         btn_Cancel.titleLabel?.font = NAFont().buttonFont()
         
-       // btn_Reschedule.backgroundColor = NAColor().buttonBgColor()
+        btn_Reschedule.backgroundColor = NAColor().buttonBgColor()
         btn_Reschedule.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_Reschedule.setTitle(NAString().reschedule(), for: .normal)
         btn_Reschedule.titleLabel?.font = NAFont().buttonFont()
