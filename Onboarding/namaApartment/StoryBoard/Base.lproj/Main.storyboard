@@ -1126,43 +1126,6 @@
                                                         <constraint firstAttribute="height" constant="1.5" id="kV3-8k-8c9"/>
                                                     </constraints>
                                                 </view>
-                                                <stackView opaque="NO" contentMode="center" distribution="fillEqually" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="ABm-f9-q3K" userLabel="DownBtnStack">
-                                                    <rect key="frame" x="20" y="185" width="309" height="37"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lI-hs-qu2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="47.5" height="37"/>
-                                                            <state key="normal" image="Call"/>
-                                                            <connections>
-                                                                <action selector="btnCall:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="wUr-Jn-JcK"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkD-Qq-s1D">
-                                                            <rect key="frame" x="87.5" y="0.0" width="47" height="37"/>
-                                                            <state key="normal" image="Message"/>
-                                                            <connections>
-                                                                <action selector="btnMessage:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="w6c-2E-rjT"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3S-wB-HhT">
-                                                            <rect key="frame" x="174.5" y="0.0" width="47.5" height="37"/>
-                                                            <state key="normal" title="Reschedule" image="Reschedule"/>
-                                                            <connections>
-                                                                <action selector="btnReschedule:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="H3L-hg-y5Y"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-pt-PzB">
-                                                            <rect key="frame" x="262" y="0.0" width="47" height="37"/>
-                                                            <state key="normal" title="can" image="Cancel"/>
-                                                            <connections>
-                                                                <action selector="btnCancel:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="Y4I-Ws-muf"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="309" id="NuY-Ca-XYb"/>
-                                                        <constraint firstAttribute="height" constant="37" id="URB-Hr-LiK"/>
-                                                    </constraints>
-                                                </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4e-Zg-blc">
                                                     <rect key="frame" x="224" y="44" width="113" height="21"/>
                                                     <constraints>
@@ -1173,42 +1136,91 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SFF-ua-Qwr" userLabel="DownLabelStack">
-                                                    <rect key="frame" x="10" y="228" width="329" height="12"/>
+                                                    <rect key="frame" x="10" y="228" width="329" height="18"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbW-mR-ui6" userLabel="Call">
-                                                            <rect key="frame" x="0.0" y="0.0" width="78.5" height="12"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="78.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKM-Z2-Tco">
-                                                            <rect key="frame" x="83.5" y="0.0" width="78.5" height="12"/>
+                                                            <rect key="frame" x="83.5" y="0.0" width="78.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reschedule" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNZ-rz-6Lf">
-                                                            <rect key="frame" x="167" y="0.0" width="78.5" height="12"/>
+                                                            <rect key="frame" x="167" y="0.0" width="78.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohv-tL-aR3">
-                                                            <rect key="frame" x="250.5" y="0.0" width="78.5" height="12"/>
+                                                            <rect key="frame" x="250.5" y="0.0" width="78.5" height="18"/>
                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="15"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6lI-hs-qu2">
+                                                    <rect key="frame" x="35" y="184" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="32" id="QLv-6y-Gh5"/>
+                                                        <constraint firstAttribute="height" constant="32" id="YMC-Rl-jrD"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Call"/>
+                                                    <connections>
+                                                        <action selector="btnCall:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="wUr-Jn-JcK"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IkD-Qq-s1D">
+                                                    <rect key="frame" x="117" y="184" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="VVJ-0Y-xTm"/>
+                                                        <constraint firstAttribute="width" constant="32" id="yAN-5f-aUk"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Message"/>
+                                                    <connections>
+                                                        <action selector="btnMessage:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="w6c-2E-rjT"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3S-wB-HhT">
+                                                    <rect key="frame" x="199" y="184" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="QrO-N8-Tyr"/>
+                                                        <constraint firstAttribute="width" constant="32" id="skQ-rk-ydl"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Reschedule"/>
+                                                    <connections>
+                                                        <action selector="btnReschedule:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="H3L-hg-y5Y"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7JY-pt-PzB">
+                                                    <rect key="frame" x="282" y="184" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="0E5-w5-JkI"/>
+                                                        <constraint firstAttribute="width" constant="32" id="LvN-ai-ZAb"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Cancel"/>
+                                                    <connections>
+                                                        <action selector="btnCancel:" destination="Jep-bZ-kJg" eventType="touchUpInside" id="Y4I-Ws-muf"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="n4e-Zg-blc" firstAttribute="trailing" secondItem="xLT-M4-oIY" secondAttribute="trailing" constant="1" id="09O-OI-muB"/>
+                                            <constraint firstItem="SFF-ua-Qwr" firstAttribute="leading" secondItem="Jep-bZ-kJg" secondAttribute="leadingMargin" constant="2" id="1Gx-Ox-6au"/>
+                                            <constraint firstItem="6lI-hs-qu2" firstAttribute="leading" secondItem="Jep-bZ-kJg" secondAttribute="leadingMargin" constant="27" id="1qI-Z4-zW5"/>
                                             <constraint firstItem="uRt-WI-zOb" firstAttribute="leading" secondItem="n4e-Zg-blc" secondAttribute="leading" constant="1.5" id="2Vu-6r-QDh"/>
                                             <constraint firstAttribute="bottom" secondItem="y8h-8d-x2Y" secondAttribute="bottom" constant="96" id="52H-ps-Pi0"/>
                                             <constraint firstItem="1di-x2-iZW" firstAttribute="top" secondItem="y8h-8d-x2Y" secondAttribute="bottom" constant="9" id="59g-ZO-v6X"/>
+                                            <constraint firstItem="SFF-ua-Qwr" firstAttribute="top" secondItem="7JY-pt-PzB" secondAttribute="bottom" constant="12" id="5iU-QE-sbf"/>
+                                            <constraint firstItem="7JY-pt-PzB" firstAttribute="top" secondItem="1di-x2-iZW" secondAttribute="bottom" constant="15" id="672-IT-h6h"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="7JY-pt-PzB" secondAttribute="trailing" constant="27" id="6g9-mT-wJD"/>
                                             <constraint firstItem="bHm-Ck-nQQ" firstAttribute="top" secondItem="xLT-M4-oIY" secondAttribute="bottom" constant="13" id="6w8-2j-SjC"/>
                                             <constraint firstAttribute="trailing" secondItem="1di-x2-iZW" secondAttribute="trailing" id="86B-Y8-JIS"/>
                                             <constraint firstItem="n4e-Zg-blc" firstAttribute="top" secondItem="uRt-WI-zOb" secondAttribute="bottom" constant="11" id="8Ha-QO-bdi"/>
@@ -1216,18 +1228,22 @@
                                             <constraint firstItem="Q2c-Xv-xK9" firstAttribute="top" secondItem="TzA-Vi-zzS" secondAttribute="top" constant="18" id="ClS-2L-FQx"/>
                                             <constraint firstItem="Q2c-Xv-xK9" firstAttribute="trailing" secondItem="FPN-B5-XUc" secondAttribute="trailing" id="DxZ-lF-EST"/>
                                             <constraint firstItem="n4e-Zg-blc" firstAttribute="leading" secondItem="Q2c-Xv-xK9" secondAttribute="trailing" constant="33.5" id="HwO-LC-t93"/>
-                                            <constraint firstItem="SFF-ua-Qwr" firstAttribute="leading" secondItem="Jep-bZ-kJg" secondAttribute="leading" constant="10" id="IEk-FO-bVn"/>
+                                            <constraint firstItem="IkD-Qq-s1D" firstAttribute="leading" secondItem="6lI-hs-qu2" secondAttribute="trailing" constant="50" id="I9b-Xn-kje"/>
+                                            <constraint firstItem="7JY-pt-PzB" firstAttribute="leading" secondItem="q3S-wB-HhT" secondAttribute="trailing" constant="51" id="KbE-O6-KIv"/>
+                                            <constraint firstItem="q3S-wB-HhT" firstAttribute="leading" secondItem="IkD-Qq-s1D" secondAttribute="trailing" constant="50" id="Kl9-gL-GS0"/>
                                             <constraint firstItem="Q2c-Xv-xK9" firstAttribute="centerX" secondItem="Bel-Lg-iKi" secondAttribute="centerX" constant="-1" id="LCm-Hx-wTb"/>
                                             <constraint firstItem="FPN-B5-XUc" firstAttribute="leading" secondItem="TzA-Vi-zzS" secondAttribute="trailing" constant="16" id="NCi-ze-jHu"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="SFF-ua-Qwr" secondAttribute="trailing" constant="2" id="NK0-ag-d3j"/>
+                                            <constraint firstItem="SFF-ua-Qwr" firstAttribute="top" secondItem="IkD-Qq-s1D" secondAttribute="bottom" constant="12" id="Nvr-IS-ALp"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="y8h-8d-x2Y" secondAttribute="trailing" id="Oue-4k-fNw"/>
+                                            <constraint firstItem="SFF-ua-Qwr" firstAttribute="top" secondItem="q3S-wB-HhT" secondAttribute="bottom" constant="12" id="QVS-qR-mOv"/>
                                             <constraint firstItem="AXI-au-ddB" firstAttribute="leading" secondItem="FPN-B5-XUc" secondAttribute="leading" id="RTe-QX-5ux"/>
+                                            <constraint firstItem="SFF-ua-Qwr" firstAttribute="top" secondItem="6lI-hs-qu2" secondAttribute="bottom" constant="12" id="St9-Km-fO3"/>
                                             <constraint firstItem="xLT-M4-oIY" firstAttribute="trailing" secondItem="bHm-Ck-nQQ" secondAttribute="trailing" constant="6.5" id="TJ9-jY-kcL"/>
                                             <constraint firstAttribute="bottom" secondItem="1di-x2-iZW" secondAttribute="bottom" constant="86" id="UHF-Ij-9pW"/>
                                             <constraint firstItem="1di-x2-iZW" firstAttribute="leading" secondItem="Jep-bZ-kJg" secondAttribute="leading" id="UNs-Rf-IEp"/>
                                             <constraint firstItem="uRt-WI-zOb" firstAttribute="leading" secondItem="Bel-Lg-iKi" secondAttribute="trailing" constant="31" id="VsG-Ec-qzQ"/>
                                             <constraint firstItem="AXI-au-ddB" firstAttribute="baseline" secondItem="y8h-8d-x2Y" secondAttribute="baseline" id="Wvf-V8-MaC"/>
-                                            <constraint firstItem="ABm-f9-q3K" firstAttribute="top" secondItem="1di-x2-iZW" secondAttribute="bottom" constant="16" id="Yab-Kj-nvF"/>
-                                            <constraint firstItem="1di-x2-iZW" firstAttribute="centerX" secondItem="ABm-f9-q3K" secondAttribute="centerX" id="Yhc-8P-e1I"/>
                                             <constraint firstItem="Z08-9J-y5B" firstAttribute="leading" secondItem="TzA-Vi-zzS" secondAttribute="trailing" constant="14" id="Z4I-yj-mq2"/>
                                             <constraint firstItem="TzA-Vi-zzS" firstAttribute="leading" secondItem="Jep-bZ-kJg" secondAttribute="leading" constant="10" id="ZRo-kZ-bXA"/>
                                             <constraint firstAttribute="trailing" secondItem="n4e-Zg-blc" secondAttribute="trailing" constant="12.5" id="Znr-rh-r8Y"/>
@@ -1235,18 +1251,18 @@
                                             <constraint firstItem="1di-x2-iZW" firstAttribute="top" secondItem="TzA-Vi-zzS" secondAttribute="bottom" constant="24" id="bgI-Yi-iF4"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="uRt-WI-zOb" secondAttribute="trailing" constant="-3" id="c0m-J2-K4r"/>
                                             <constraint firstItem="Q2c-Xv-xK9" firstAttribute="leading" secondItem="TzA-Vi-zzS" secondAttribute="trailing" constant="16" id="elH-J1-y7s"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="SFF-ua-Qwr" secondAttribute="bottom" constant="7" id="fqj-qN-d3p"/>
+                                            <constraint firstItem="IkD-Qq-s1D" firstAttribute="top" secondItem="1di-x2-iZW" secondAttribute="bottom" constant="15" id="fXZ-Om-AXF"/>
                                             <constraint firstItem="Z08-9J-y5B" firstAttribute="centerY" secondItem="bHm-Ck-nQQ" secondAttribute="centerY" id="gjN-N9-6fA"/>
                                             <constraint firstItem="xLT-M4-oIY" firstAttribute="centerX" secondItem="bHm-Ck-nQQ" secondAttribute="centerX" constant="3.75" id="h6Z-Wv-e4V"/>
                                             <constraint firstItem="FPN-B5-XUc" firstAttribute="top" secondItem="Q2c-Xv-xK9" secondAttribute="bottom" constant="10" id="hRd-qm-4se"/>
                                             <constraint firstItem="y8h-8d-x2Y" firstAttribute="leading" secondItem="xLT-M4-oIY" secondAttribute="leading" constant="-1" id="isf-fY-BDP"/>
-                                            <constraint firstItem="SFF-ua-Qwr" firstAttribute="top" secondItem="Jep-bZ-kJg" secondAttribute="top" constant="228" id="jfD-LS-teQ"/>
                                             <constraint firstItem="Z08-9J-y5B" firstAttribute="top" secondItem="FPN-B5-XUc" secondAttribute="bottom" constant="9" id="l2m-nT-nlZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="SFF-ua-Qwr" secondAttribute="trailing" constant="10" id="lh3-ck-e8E"/>
+                                            <constraint firstItem="6lI-hs-qu2" firstAttribute="top" secondItem="1di-x2-iZW" secondAttribute="bottom" constant="15" id="lha-W2-Hod"/>
                                             <constraint firstItem="Bel-Lg-iKi" firstAttribute="top" secondItem="Jep-bZ-kJg" secondAttribute="top" constant="14" id="lqV-Tk-O2P"/>
                                             <constraint firstItem="AXI-au-ddB" firstAttribute="centerX" secondItem="1di-x2-iZW" secondAttribute="centerX" id="mbg-ry-C0v"/>
                                             <constraint firstItem="uRt-WI-zOb" firstAttribute="top" secondItem="Jep-bZ-kJg" secondAttribute="top" constant="12" id="n4f-Yj-snZ"/>
                                             <constraint firstItem="TzA-Vi-zzS" firstAttribute="top" secondItem="Jep-bZ-kJg" secondAttribute="top" constant="27" id="pC8-6S-3oB"/>
+                                            <constraint firstItem="q3S-wB-HhT" firstAttribute="top" secondItem="1di-x2-iZW" secondAttribute="bottom" constant="15" id="pkf-GT-NHV"/>
                                             <constraint firstItem="Bel-Lg-iKi" firstAttribute="leading" secondItem="TzA-Vi-zzS" secondAttribute="trailing" constant="14" id="qcw-dK-Tg0"/>
                                             <constraint firstItem="Q2c-Xv-xK9" firstAttribute="top" secondItem="Bel-Lg-iKi" secondAttribute="bottom" constant="10.5" id="sS5-7g-VY2"/>
                                             <constraint firstItem="xLT-M4-oIY" firstAttribute="leading" secondItem="FPN-B5-XUc" secondAttribute="trailing" constant="31.5" id="t9Y-xt-9f0"/>
@@ -1293,7 +1309,7 @@
         <!--Reschedule My Visitor List View Controller-->
         <scene sceneID="Lw6-bf-p2s">
             <objects>
-                <viewController storyboardIdentifier="rescheduleMyVisitorVC" modalPresentationStyle="overCurrentContext" id="pQ4-Mt-NNo" customClass="RescheduleMyVisitorListViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rescheduleMyVisitorVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="pQ4-Mt-NNo" customClass="RescheduleMyVisitorListViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qEG-tv-uUG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1322,11 +1338,11 @@
                                             <action selector="datePicker:" destination="pQ4-Mt-NNo" eventType="valueChanged" id="tvN-MM-v9t"/>
                                         </connections>
                                     </datePicker>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-Aa-RCm">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-Aa-RCm">
                                         <rect key="frame" x="0.0" y="301" width="335" height="39"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAM-dN-QXZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="39"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="168" height="39"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
@@ -1334,7 +1350,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e28-iQ-3Qx">
-                                                <rect key="frame" x="167.5" y="0.0" width="167.5" height="39"/>
+                                                <rect key="frame" x="167" y="0.0" width="168" height="39"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Reschedule"/>
                                                 <connections>
@@ -1373,7 +1389,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.82384200507614214" green="0.82384200507614214" blue="0.82384200507614214" alpha="0.4044038955479452" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.82384200507614214" green="0.82384200507614214" blue="0.82384200507614214" alpha="0.21433540239726026" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="RoA-9V-I7X" firstAttribute="bottom" secondItem="Ry4-Fb-evj" secondAttribute="bottom" constant="182" id="DEW-7r-nfF"/>
                             <constraint firstItem="Ry4-Fb-evj" firstAttribute="top" secondItem="RoA-9V-I7X" secondAttribute="top" constant="125" id="G1i-qf-0rZ"/>
