@@ -77,6 +77,12 @@ class NAViewPresenter: NSObject {
     func mainScreenVCID() -> String {
         return String("mainScreenVC")
     }
+    func digiGateVCID() -> String {
+        return String("digiGateVC")
+    }
+    func homeVCID() -> String {
+        return String("homeVC")
+    }
     
     func main() -> String {
         return String("Main")
