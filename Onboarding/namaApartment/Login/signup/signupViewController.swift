@@ -110,8 +110,7 @@ class signupViewController: NANavigationViewController {
         navigationItem.rightBarButtonItem = nil
         navigationItem.backBarButtonItem = nil
     }
-    @IBAction func signup_BtnSignup(_ sender: Any)
-    {
+    @IBAction func signup_BtnSignup(_ sender: Any) {
         let providedEmailAddress = signup_TxtEmailId.text
         let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
         
@@ -151,8 +150,7 @@ class signupViewController: NANavigationViewController {
             }
         }
     }
-    @IBAction func signup_BtnLogin(_ sender: UIButton)
-    {
+    @IBAction func signup_BtnLogin(_ sender: UIButton) {
         let lv : loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
        self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
