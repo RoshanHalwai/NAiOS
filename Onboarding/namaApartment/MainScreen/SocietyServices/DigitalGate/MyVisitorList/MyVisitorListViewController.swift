@@ -82,12 +82,17 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         
         //Created local variable to store Date & Time from firebase
         var dateTimeString : String
-        dateTimeString  = myList.dateAndTimeOfVisit!
         
-        //Created array to spilt Date & time in separate variables
-        let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
-        let dateString: String = arrayOfDateTime[0]
-        let timeString: String = arrayOfDateTime[1]
+        if(myList.dateAndTimeOfVisit != nil) {
+            dateTimeString = myList.dateAndTimeOfVisit!
+            //Created array to spilt Date & time in separate variables
+            let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
+            let dateString: String = arrayOfDateTime[0]
+            let timeString: String = arrayOfDateTime[1]
+            //Assigning date & time separate variables to get data in cell labels.
+            cell.lbl_MyVisitorTime.text = timeString
+            cell.lbl_MyVisitorDate.text = dateString
+        }
         
         cell.lbl_MyVisitorName.text = myList.fullName
         cell.lbl_MyVisitorType.text = NAString().guest()
@@ -96,9 +101,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         if let urlString = myList.profilePhoto {
            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
-        //Assigning date & time separate variables to get data in cell labels.
-        cell.lbl_MyVisitorTime.text = timeString
-        cell.lbl_MyVisitorDate.text = dateString
         
         //TODO : Need to get Name from Firebase (According To Default User)
         cell.lbl_InvitedName.text = "Vikas"
