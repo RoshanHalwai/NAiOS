@@ -17,13 +17,12 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     var myVisitorList = [VisitorListFB]()
     
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-     
+        
         //Assigning Child from where to get data in Visitor List.
         myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
         
@@ -50,15 +49,13 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     
                     //Adding visitor in visitor List
                     self.myVisitorList.append(user)
-                    
                     //Hidding Activity indicator after loading data in the list from firebase.
                     NAActivityIndicator.shared.hideActivityIndicator()
                 }
                 //reload collection view.
                 self.collectionView.reloadData()
             }
-            else
-            {
+            else {
                 //Hiding Activity Indicator & showing error image & message.
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
