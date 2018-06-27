@@ -12,7 +12,6 @@ import UIKit
 class NAString : NSObject
 {
     //Splash screen strings
-    
     func splash_NammaHeader_Title() -> String {
         return String("Namma Apartments")
     }
@@ -49,7 +48,6 @@ class NAString : NSObject
     }
     
     //OTP Screen strings
-    
     func phone_verification_activity_title() -> String {
         return String("Phone Verification")
     }
@@ -68,7 +66,6 @@ class NAString : NSObject
     }
     
     //Flat Details Screen
-    
     func My_flat_Details_title() -> String {
         return String("My Flat Details")
     }
@@ -109,7 +106,6 @@ class NAString : NSObject
     }
     
     //SignUp screen
-    
     func full_name() -> String {
         return String("FULL NAME")
     }
@@ -131,14 +127,13 @@ class NAString : NSObject
     }
     
     func i_agree_to_terms_and_conditions() -> String {
-        return String("By clicking on SignUp I agree to Terms And Conditions")
+        return String("By clicking on SignUp I agree to NammaApartments Privacy Policy and Terms&Conditions")
     }
     func i_already_have_an_account() -> String {
         return String("I already have an Account")
     }
     
     //Signin screen and Visitor screen
-    
     func create_an_account_button() -> String {
         return String("Create an Account")
     }
@@ -179,7 +174,6 @@ class NAString : NSObject
     }
     
     //Society Services Activity
-    
     func digital_gate() -> String {
         return String("Digital Gate")
     }
@@ -214,7 +208,6 @@ class NAString : NSObject
     }
     
     //Apartment Services Activity
-    
     func cook() -> String {
         return String("Cook")
     }
@@ -256,7 +249,6 @@ class NAString : NSObject
     }
     
     //Digital Gate Service Activity
-    
     func digital_gate_title() -> String {
         return String("Digi Gate")
     }
@@ -347,7 +339,6 @@ class NAString : NSObject
     }
     
     //notify Digi gate
-    
     func notifyDigiGateHeader() -> String {
         return String("Notify Digi Gate")
     }
@@ -421,7 +412,6 @@ class NAString : NSObject
     }
     
     //Handed things to my guest
-    
     func yes() -> String {
         return String("Yes")
     }
@@ -459,7 +449,6 @@ class NAString : NSObject
     }
     
     //adding my daily services
-    
     func add_my_service() -> String {
         return String("Add My Daily Service")
     }
@@ -661,6 +650,4 @@ class NAString : NSObject
     func notifyButtonAlertViewTitle() -> String {
         return String("Notification Message")
     }
-    
-    
 }
