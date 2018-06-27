@@ -145,10 +145,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                 //passing cell date & time to Reschedule VC
                 dv.getTime = cell.lbl_MyVisitorTime.text!
                 dv.getDate = cell.lbl_MyVisitorDate.text!
-    
-            //hide navigation bar with backButton
-            self.navigationController?.isNavigationBarHidden = true
-            self.navigationItem.hidesBackButton = true
         }
         return cell
     }
