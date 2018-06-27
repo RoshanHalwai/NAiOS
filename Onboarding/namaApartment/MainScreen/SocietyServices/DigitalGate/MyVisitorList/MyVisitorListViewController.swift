@@ -17,9 +17,10 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     var myVisitorList = [VisitorListFB]()
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
      
@@ -29,7 +30,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         myVisitorListReference?.observe(DataEventType.value, with: { (snapshot) in
             
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
-            if snapshot.childrenCount > 0 {
+            if snapshot.exists() {
                 self.myVisitorList.removeAll()
                 
                 //for loop for getting all the data in tableview
@@ -56,6 +57,12 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                 //reload collection view.
                 self.collectionView.reloadData()
             }
+            else
+            {
+                //Hiding Activity Indicator & showing error image & message.
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+            }
         })
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
@@ -70,9 +77,11 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myVisitorList.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVistorListCollectionViewCell
         
