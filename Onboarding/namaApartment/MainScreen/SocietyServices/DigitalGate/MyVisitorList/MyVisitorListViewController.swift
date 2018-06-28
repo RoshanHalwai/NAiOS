@@ -14,7 +14,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     var myVisitorListReference : DatabaseReference?
     
     //Created variable for NAVisitorFile to fetch data from firebase with the help of NAVisitor's variables.
-    var myVisitorList = [VisitorListFB]()
+    var myVisitorList = [NammaApartmentVisitor]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -23,30 +23,31 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
-        //Assigning Child from where to get data in Visitor List.
         myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
         
-        myVisitorListReference?.observe(DataEventType.value, with: { (snapshot) in
+            myVisitorListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
+
             
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
             if snapshot.exists() {
-                self.myVisitorList.removeAll()
+               
                 
                 //for loop for getting all the data in tableview
                 for visitors in snapshot.children.allObjects as! [DataSnapshot] {
                     
                     let visitorObject = visitors.value as? [String: AnyObject]
-                    let dateAndTimeOfVisit = visitorObject?[VisitorListFB.VisitorListFBObjects.dateAndTimeOfVisit]
-                    let fullName = visitorObject?[VisitorListFB.VisitorListFBObjects.fullName]
-                    let inviterUID = visitorObject?[VisitorListFB.VisitorListFBObjects.inviterUID]
-                    let mobileNumber = visitorObject?[VisitorListFB.VisitorListFBObjects.mobileNumber]
-                    let profilePhoto = visitorObject?[VisitorListFB.VisitorListFBObjects.profilePhoto]
-                    let status = visitorObject?[VisitorListFB.VisitorListFBObjects.status]
-                    let uid = visitorObject?[VisitorListFB.VisitorListFBObjects.uid]
+                    
+                    let dateAndTimeOfVisit = visitorObject?[VisitorListFBKeys.dateAndTimeOfVisit.key]
+                    let fullName = visitorObject?[VisitorListFBKeys.fullName.key] as? String
+                    let inviterUID = visitorObject?[VisitorListFBKeys.inviterUID.key]
+                    let mobileNumber = visitorObject?[VisitorListFBKeys.mobileNumber.key]
+                    let profilePhoto = visitorObject?[VisitorListFBKeys.profilePhoto.key]
+                    let status = visitorObject?[VisitorListFBKeys.status.key]
+                    let uid = visitorObject?[VisitorListFBKeys.uid.key]
                     
                     //creating userAccount model & set earlier created let variables in userObject in the below parameter
-                    let user = VisitorListFB(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
-                    
+                    let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName , inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
+
                     //Adding visitor in visitor List
                     self.myVisitorList.append(user)
                     //Hidding Activity indicator after loading data in the list from firebase.
@@ -83,28 +84,28 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVistorListCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
-        let myList : VisitorListFB
+        let myList : NammaApartmentVisitor
         myList = myVisitorList[indexPath.row]
         
         //Created local variable to store Date & Time from firebase
         var dateTimeString : String
         
-        if(myList.dateAndTimeOfVisit != nil) {
-            dateTimeString = myList.dateAndTimeOfVisit!
+        
+        dateTimeString = myList.getdateAndTimeOfVisit()
             //Created array to spilt Date & time in separate variables
             let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
             let dateString: String = arrayOfDateTime[0]
             let timeString: String = arrayOfDateTime[1]
-            //Assigning date & time separate variables to get data in cell labels.
+         //   Assigning date & time separate variables to get data in cell labels.
             cell.lbl_MyVisitorTime.text = timeString
             cell.lbl_MyVisitorDate.text = dateString
-        }
         
-        cell.lbl_MyVisitorName.text = myList.fullName
+        
+        cell.lbl_MyVisitorName.text = myList.getfullName()
         cell.lbl_MyVisitorType.text = NAString().guest()
   
-        //Calling function to get Profile Image from Firebase.
-        if let urlString = myList.profilePhoto {
+       //Calling function to get Profile Image from Firebase.
+        if let urlString = myList.getprofilePhoto() {
            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
         
