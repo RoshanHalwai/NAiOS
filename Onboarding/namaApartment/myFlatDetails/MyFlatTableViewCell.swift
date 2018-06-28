@@ -16,6 +16,7 @@ class MyFlatTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        list_Label.font = NAFont().descriptionFont()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
