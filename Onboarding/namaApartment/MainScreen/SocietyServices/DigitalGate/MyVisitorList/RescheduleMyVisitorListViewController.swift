@@ -81,16 +81,12 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
     @IBAction func btnCancel(_ sender: UIButton) {
         let lv = NAViewPresenter().myVisitorListVC()
         self.navigationController?.pushViewController(lv, animated: true)
-        navigationController?.isNavigationBarHidden = false
-        navigationItem.hidesBackButton = false
         dismiss(animated: true, completion: nil)
     }
     @IBAction func btnReschedule(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
         let lv = NAViewPresenter().myVisitorListVC()
         self.navigationController?.pushViewController(lv, animated: true)
-        navigationController?.isNavigationBarHidden = false
-        navigationItem.hidesBackButton = false
     }
     //date TextField Function to display date only on click
     @objc func dateFunction(textField: UITextField) {

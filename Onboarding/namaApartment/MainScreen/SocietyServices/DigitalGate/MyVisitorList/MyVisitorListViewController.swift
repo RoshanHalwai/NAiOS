@@ -22,14 +22,14 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         super.viewDidLoad()
         //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-     
+        
         //Assigning Child from where to get data in Visitor List.
         myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
         
         myVisitorListReference?.observe(DataEventType.value, with: { (snapshot) in
             
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
-            if snapshot.childrenCount > 0 {
+            if snapshot.exists() {
                 self.myVisitorList.removeAll()
                 
                 //for loop for getting all the data in tableview
@@ -49,12 +49,16 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                     
                     //Adding visitor in visitor List
                     self.myVisitorList.append(user)
-                    
                     //Hidding Activity indicator after loading data in the list from firebase.
                     NAActivityIndicator.shared.hideActivityIndicator()
                 }
                 //reload collection view.
                 self.collectionView.reloadData()
+            }
+            else {
+                //Hiding Activity Indicator & showing error image & message.
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
             }
         })
         //Setting & Formatting Navigation bar
@@ -70,9 +74,11 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myVisitorList.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVistorListCollectionViewCell
         
@@ -82,12 +88,17 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         
         //Created local variable to store Date & Time from firebase
         var dateTimeString : String
-        dateTimeString  = myList.dateAndTimeOfVisit!
         
-        //Created array to spilt Date & time in separate variables
-        let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
-        let dateString: String = arrayOfDateTime[0]
-        let timeString: String = arrayOfDateTime[1]
+        if(myList.dateAndTimeOfVisit != nil) {
+            dateTimeString = myList.dateAndTimeOfVisit!
+            //Created array to spilt Date & time in separate variables
+            let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
+            let dateString: String = arrayOfDateTime[0]
+            let timeString: String = arrayOfDateTime[1]
+            //Assigning date & time separate variables to get data in cell labels.
+            cell.lbl_MyVisitorTime.text = timeString
+            cell.lbl_MyVisitorDate.text = dateString
+        }
         
         cell.lbl_MyVisitorName.text = myList.fullName
         cell.lbl_MyVisitorType.text = NAString().guest()
@@ -96,9 +107,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         if let urlString = myList.profilePhoto {
            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
-        //Assigning date & time separate variables to get data in cell labels.
-        cell.lbl_MyVisitorTime.text = timeString
-        cell.lbl_MyVisitorDate.text = dateString
         
         //TODO : Need to get Name from Firebase (According To Default User)
         cell.lbl_InvitedName.text = "Vikas"
@@ -143,10 +151,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
                 //passing cell date & time to Reschedule VC
                 dv.getTime = cell.lbl_MyVisitorTime.text!
                 dv.getDate = cell.lbl_MyVisitorDate.text!
-    
-            //hide navigation bar with backButton
-            self.navigationController?.isNavigationBarHidden = true
-            self.navigationItem.hidesBackButton = true
         }
         return cell
     }
