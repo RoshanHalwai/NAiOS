@@ -185,29 +185,28 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-        case txtCity:
-            hideDetailsofSociety()
-            hideDetailsofAppartment()
-            hideDetailsofFlat()
-            hideDetailsofResidentandContinueButton()
-            popUpAnimating()
-        case txtSociety:
-            hideDetailsofAppartment()
-            hideDetailsofFlat()
-            hideDetailsofResidentandContinueButton()
-            popUpAnimating()
-        case txtApartment:
-            hideDetailsofFlat()
-            hideDetailsofResidentandContinueButton()
-            popUpAnimating()
-        case txtFlat:
-            hideDetailsofResidentandContinueButton()
-            popUpAnimating()
-        default:
-            break
+            case txtCity:
+                hideDetailsofSociety()
+                hideDetailsofAppartment()
+                hideDetailsofFlat()
+                hideDetailsofResidentandContinueButton()
+                popUpAnimating()
+            case txtSociety:
+                hideDetailsofAppartment()
+                hideDetailsofFlat()
+                hideDetailsofResidentandContinueButton()
+                popUpAnimating()
+            case txtApartment:
+                hideDetailsofFlat()
+                hideDetailsofResidentandContinueButton()
+                popUpAnimating()
+            case txtFlat:
+                hideDetailsofResidentandContinueButton()
+                popUpAnimating()
+            default:
+                break
         }
     }
-    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if (txtSociety.text?.isEmpty)! {
            popUpAnimating()
@@ -266,28 +265,23 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             Cell.list_Label.text = Aster[indexPath.row]
         }
         if (txtFlat.text?.isEmpty)! || !(txtFlat.text?.isEmpty)! {
+            placeHolderMethod(Name: "Search Flat")
             if txtApartment.text == BrigadeGateway[1] {
-                placeHolderMethod(Name: "Search Flat")
                 Cell.list_Label.text = Bolivia[indexPath.row]
             }
             if txtApartment.text == SalarpuriaCambridge[0] {
-                placeHolderMethod(Name: "Search Flat")
                 Cell.list_Label.text = Block1[indexPath.row]
             }
             if txtApartment.text == SalarpuriaCambridge[1] {
-                placeHolderMethod(Name: "Search Flat")
                 Cell.list_Label.text = Block2[indexPath.row]
             }
             if txtApartment.text == SalarpuriaCambridge[2] {
-                placeHolderMethod(Name: "Search Flat")
                 Cell.list_Label.text = Block3[indexPath.row]
             }
             if txtApartment.text == SalarpuriaCambridge[3] {
-                placeHolderMethod(Name: "Search Flat")
                 Cell.list_Label.text = Block4[indexPath.row]
             }
             if txtApartment.text == SalarpuriaCambridge[4] {
-                placeHolderMethod(Name: "Search Flat")
                 Cell.list_Label.text = Block5[indexPath.row]
             }
         }
@@ -355,9 +349,6 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             segment_ResidentType.isHidden = false
             hidingOpacityandListView()
         }
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
     }
     //function to end editing on the touch on the view
     override func touchesBegan(_ touches: Set<UITouch>,with event: UIEvent?) {
