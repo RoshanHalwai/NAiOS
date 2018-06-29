@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-//Created enum instead of struct for App optimization.
+//Created enum instead of struct for App optimization and for getting values.
 enum VisitorListFBKeys : String {
     case dateAndTimeOfVisit
     case fullName
