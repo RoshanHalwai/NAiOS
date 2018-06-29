@@ -9,19 +9,15 @@
 import UIKit
 
 class MyFlatTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var list_Label: UILabel!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         list_Label.font = NAFont().descriptionFont()
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

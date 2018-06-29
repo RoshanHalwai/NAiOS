@@ -22,6 +22,9 @@ class NAFont: NSObject {
     func textFieldFont() -> UIFont {
         return UIFont(name: "Lato-Regular", size: 18)!
     }
+    func placeHolderFont() -> UIFont {
+        return UIFont(name: "Lato-Italic", size: 18.0)!
+    }
     
     func buttonFont() -> UIFont {
         return UIFont(name: "Lato-Light", size: 22)!

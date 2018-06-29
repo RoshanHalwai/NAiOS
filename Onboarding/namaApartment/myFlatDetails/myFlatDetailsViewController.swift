@@ -9,20 +9,6 @@
 import UIKit
 
 class myFlatDetailsViewController: NANavigationViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var city = ["Bangalore"]
-    var Society = ["Brigade Gateway", "Salarpuria Cambridge"]
-    var BrigadeGateway = ["Aster", "Bolivia"]
-    var SalarpuriaCambridge = ["Block-1", "Block-2", "Block-3", "Block-4", "Block-5"]
-    var Aster = ["A1001", "A1002", "A1003"]
-    var Bolivia = ["B1001", "B1002", "B1003"]
-    var Block1 = ["101", "102", "103", "104", "105"]
-    var Block2 = ["201", "202", "203", "204", "205"]
-    var Block3 = ["301", "302", "303", "304", "305"]
-    var Block4 = ["401", "402", "403", "404", "405"]
-    var Block5 = ["501", "502", "503", "504", "505"]
-    
-    
     @IBOutlet weak var btnContinue: UIButton!
     @IBOutlet weak var segment_ResidentType: UISegmentedControl!
     @IBOutlet weak var txtCity: UITextField!
@@ -43,31 +29,41 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
     @IBOutlet weak var search_TextField: UITextField!
     @IBOutlet weak var list_View: UIView!
     @IBOutlet weak var opacity_View: UIView!
+    @IBOutlet weak var list_View_Height_Constraints: NSLayoutConstraint!
     
+    //TODO : Need to get data from firebase
+    var city = ["Bangalore"]
+    var Society = ["Brigade Gateway", "Salarpuria Cambridge"]
+    var BrigadeGateway = ["Aster", "Bolivia"]
+    var SalarpuriaCambridge = ["Block-1", "Block-2", "Block-3", "Block-4", "Block-5"]
+    var Aster = ["A1001", "A1002", "A1003"]
+    var Bolivia = ["B1001", "B1002", "B1003"]
+    var Block1 = ["101", "102", "103", "104", "105"]
+    var Block2 = ["201", "202", "203", "204", "205"]
+    var Block3 = ["301", "302", "303", "304", "305"]
+    var Block4 = ["401", "402", "403", "404", "405"]
+    var Block5 = ["501", "502", "503", "504", "505"]
     
+    //placeHolder instance
     var placeHolder = NSMutableAttributedString()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        list_TableView.rowHeight = UITableViewAutomaticDimension
-        list_TableView.estimatedRowHeight = UITableViewAutomaticDimension
-        
+        //corner radius of list view
         list_View.layer.cornerRadius = 5
-
         
         //Assigning Delegates to TextFields
         txtCity.delegate = self
         txtFlat.delegate = self
         txtSociety.delegate = self
         txtApartment.delegate = self
+        search_TextField.delegate = self
         
         //Assigning TableView Delegates and Datasource
         list_TableView.delegate = self
         list_TableView.dataSource = self
         
-        search_TextField.underlined()
-        
+        //removing separator lines programatically
         self.list_TableView.separatorStyle = .none
         
         //Hiding All items Except city item When View Loading
@@ -100,8 +96,7 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
         txtSociety.font = NAFont().textFieldFont()
         txtApartment.font = NAFont().textFieldFont()
         txtFlat.font = NAFont().textFieldFont()
-        
-        
+    
         lbl_City.text = NAString().city()
         lbl_Society.text = NAString().society()
         lbl_Flat.text = NAString().flat()
@@ -120,6 +115,7 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
         txtFlat.underlined()
         txtSociety.underlined()
         txtApartment.underlined()
+        search_TextField.underlined()
         
         //become First Responder
         txtCity.becomeFirstResponder()
@@ -131,29 +127,32 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
         self.navigationItem.hidesBackButton = true
         
         //set Title in Navigation Bar
-        self.navigationItem.title = "My Flat Details"
+        self.navigationItem.title = NAString().My_flat_Details_title()
         
+        //Implemented Tap Gesture to resign PopUp Screen
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         opacity_View.addGestureRecognizer(tap)
 
-
+        //Implemented to get data content size to change height based on data
+        self.list_TableView.addObserver(self, forKeyPath: NAString().tableView_Content_size(), options: NSKeyValueObservingOptions.new, context: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
        list_TableView.reloadData()
     }
-
+    //For Resizing TableView based on content
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        list_TableView.layer.removeAllAnimations()
+        list_View_Height_Constraints.constant = list_TableView.contentSize.height + 44
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBAction func btnContinue(_ sender: Any)
-    {
+    @IBAction func btnContinue(_ sender: Any) {
     }
-    
-    @IBAction func btnResidentType(_ sender: Any)
-    {
+    @IBAction func btnResidentType(_ sender: Any) {
         lbl_Description.isHidden = false
         btnContinue.isHidden = false
+        self.view.endEditing(true)
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == txtCity {
@@ -169,9 +168,11 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             txtFlat.text = ""
             lbl_ResidentType.isHidden = true
             segment_ResidentType.isHidden = true
+            segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
             lbl_Description.isHidden = true
             btnContinue.isHidden = true
             list_View.isHidden = false
+            search_TextField.text = ""
             list_TableView.reloadData()
         }
         if textField == txtSociety {
@@ -184,9 +185,11 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             txtFlat.text = ""
             lbl_ResidentType.isHidden = true
             segment_ResidentType.isHidden = true
+            segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
             lbl_Description.isHidden = true
             btnContinue.isHidden = true
             list_View.isHidden = false
+            search_TextField.text = ""
             list_TableView.reloadData()
         }
         if textField == txtApartment {
@@ -196,18 +199,22 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             txtFlat.text = ""
             lbl_ResidentType.isHidden = true
             segment_ResidentType.isHidden = true
+            segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
             lbl_Description.isHidden = true
             btnContinue.isHidden = true
             list_View.isHidden = false
+            search_TextField.text = ""
             list_TableView.reloadData()
         }
         if textField == txtFlat {
             opacity_View.isHidden = false
             lbl_ResidentType.isHidden = true
             segment_ResidentType.isHidden = true
+            segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
             lbl_Description.isHidden = true
             btnContinue.isHidden = true
             list_View.isHidden = false
+            search_TextField.text = ""
             list_TableView.reloadData()
         }
     }
@@ -215,29 +222,28 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
         if (txtSociety.text?.isEmpty)! {
             opacity_View.isHidden = false
             list_View.isHidden = false
+            search_TextField.text = ""
             list_TableView.reloadData()
         } else if (txtApartment.text?.isEmpty)! {
             opacity_View.isHidden = false
             list_View.isHidden = false
+            search_TextField.text = ""
             list_TableView.reloadData()
         } else if (txtFlat.text?.isEmpty)! {
             opacity_View.isHidden = false
             list_View.isHidden = false
+            search_TextField.text = ""
             list_TableView.reloadData()
         }
         return true
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return true
-    }
-    
+    //tap Gesture method
     @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
         list_View.isHidden = true
         opacity_View.isHidden = true
+        self.view.endEditing(true)
     }
-
-    
+    //TODO : Need to Change HardCode Things when Working On Firebase
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if txtCity.isHidden == false && txtSociety.isHidden == true {
             return city.count
@@ -264,7 +270,7 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
         }
         return 0
     }
-    
+     //TODO : Need to Change HardCode Things when Working On Firebase
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let Cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MyFlatTableViewCell
         if txtCity.isHidden == false {
@@ -275,41 +281,45 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             placeHolderMethod(Name: "Search Society")
             Cell.list_Label.text = Society[indexPath.row]
         }
-        if txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Brigade Gateway" {
-            placeHolderMethod(Name: "Search Apartment")
-            Cell.list_Label.text = BrigadeGateway[indexPath.row]
-        }
-        if txtApartment.isHidden == false && txtSociety.text == "Salarpuria Cambridge" {
-            placeHolderMethod(Name: "Search Apartment")
-            Cell.list_Label.text = SalarpuriaCambridge[indexPath.row]
-        }
         if txtApartment.text == BrigadeGateway[0] && (txtFlat.text?.isEmpty)! {
             placeHolderMethod(Name: "Search Flat")
             Cell.list_Label.text = Aster[indexPath.row]
         }
-        if txtApartment.text == BrigadeGateway[1] && (txtFlat.text?.isEmpty)! {
-            placeHolderMethod(Name: "Search Flat")
-            Cell.list_Label.text = Bolivia[indexPath.row]
+        if (txtFlat.text?.isEmpty)! || !(txtFlat.text?.isEmpty)! {
+            if txtApartment.text == BrigadeGateway[1] {
+                placeHolderMethod(Name: "Search Flat")
+                Cell.list_Label.text = Bolivia[indexPath.row]
+            }
+            if txtApartment.text == SalarpuriaCambridge[0] {
+                placeHolderMethod(Name: "Search Flat")
+                Cell.list_Label.text = Block1[indexPath.row]
+            }
+            if txtApartment.text == SalarpuriaCambridge[1] {
+                placeHolderMethod(Name: "Search Flat")
+                Cell.list_Label.text = Block2[indexPath.row]
+            }
+            if txtApartment.text == SalarpuriaCambridge[2] {
+                placeHolderMethod(Name: "Search Flat")
+                Cell.list_Label.text = Block3[indexPath.row]
+            }
+            if txtApartment.text == SalarpuriaCambridge[3] {
+                placeHolderMethod(Name: "Search Flat")
+                Cell.list_Label.text = Block4[indexPath.row]
+            }
+            if txtApartment.text == SalarpuriaCambridge[4] {
+                placeHolderMethod(Name: "Search Flat")
+                Cell.list_Label.text = Block5[indexPath.row]
+            }
         }
-        if txtApartment.text == SalarpuriaCambridge[0] && (txtFlat.text?.isEmpty)! {
-            placeHolderMethod(Name: "Search Flat")
-            Cell.list_Label.text = Block1[indexPath.row]
-        }
-        if txtApartment.text == SalarpuriaCambridge[1] && (txtFlat.text?.isEmpty)! {
-            placeHolderMethod(Name: "Search Flat")
-            Cell.list_Label.text = Block2[indexPath.row]
-        }
-        if txtApartment.text == SalarpuriaCambridge[2] && (txtFlat.text?.isEmpty)! {
-            placeHolderMethod(Name: "Search Flat")
-            Cell.list_Label.text = Block3[indexPath.row]
-        }
-        if txtApartment.text == SalarpuriaCambridge[3] && (txtFlat.text?.isEmpty)! {
-            placeHolderMethod(Name: "Search Flat")
-            Cell.list_Label.text = Block4[indexPath.row]
-        }
-        if txtApartment.text == SalarpuriaCambridge[4] && (txtFlat.text?.isEmpty)! {
-            placeHolderMethod(Name: "Search Flat")
-            Cell.list_Label.text = Block5[indexPath.row]
+        if !(txtApartment.text?.isEmpty)! || (txtApartment.text?.isEmpty)! {
+            if txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Brigade Gateway" {
+                placeHolderMethod(Name: "Search Apartment")
+                Cell.list_Label.text = BrigadeGateway[indexPath.row]
+            }
+            if txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Salarpuria Cambridge" {
+                placeHolderMethod(Name: "Search Apartment")
+                Cell.list_Label.text = SalarpuriaCambridge[indexPath.row]
+            }
         }
         return Cell
     }
@@ -329,19 +339,19 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             txtSociety.isHidden = false
             opacity_View.isHidden = true
             list_View.isHidden = true
-        } else if !(txtCity.text?.isEmpty)! && (txtSociety.text?.isEmpty)! && txtApartment.isHidden == true {
+        } else if !(txtCity.text?.isEmpty)! && (txtSociety.text?.isEmpty)! || !(txtSociety.text?.isEmpty)! && txtApartment.isHidden == true {
             self.txtSociety.text = currentItem
             lbl_Apartment.isHidden = false
             txtApartment.isHidden = false
             opacity_View.isHidden = true
             list_View.isHidden = true
-        } else if !(txtSociety.text?.isEmpty)! && (txtApartment.text?.isEmpty)! {
+        } else if (txtApartment.text?.isEmpty)! || !(txtApartment.text?.isEmpty)! && txtFlat.isHidden == true {
             self.txtApartment.text = currentItem
             lbl_Flat.isHidden = false
             txtFlat.isHidden = false
             opacity_View.isHidden = true
             list_View.isHidden = true
-        } else if !(txtApartment.text?.isEmpty)! && (txtFlat.text?.isEmpty)! {
+        } else if !(txtApartment.text?.isEmpty)! && (txtFlat.text?.isEmpty)! || !(txtFlat.text?.isEmpty)! {
             self.txtFlat.text = currentItem
             lbl_ResidentType.isHidden = false
             segment_ResidentType.isHidden = false
@@ -377,9 +387,12 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    //function to end editing on the touch on the view
+    override func touchesBegan(_ touches: Set<UITouch>,with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     func placeHolderMethod(Name : String) {
-        // Set the Font
-        placeHolder = NSMutableAttributedString(string:Name, attributes: [NSAttributedStringKey.font :UIFont(name: "Palatino-Italic", size: 15.0)!])
+        placeHolder = NSMutableAttributedString(string:Name)
         search_TextField.attributedPlaceholder = placeHolder
     }
 }

@@ -160,6 +160,9 @@ class NAString : NSObject
     func please_select_your_relation() -> String {
         return String("Please Select Your Relation")
     }
+    func tableView_Content_size() -> String {
+        return String("contentSize")
+    }
     func please_enter_Valid_email() -> String {
         return String("Please enter a Valid Email address")
     }
