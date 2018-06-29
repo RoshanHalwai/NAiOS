@@ -184,29 +184,30 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
         list_View.isHidden = true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == txtCity {
+        switch textField {
+        case txtCity:
             hideDetailsofSociety()
             hideDetailsofAppartment()
             hideDetailsofFlat()
             hideDetailsofResidentandContinueButton()
             popUpAnimating()
-        }
-        if textField == txtSociety {
+        case txtSociety:
             hideDetailsofAppartment()
             hideDetailsofFlat()
             hideDetailsofResidentandContinueButton()
             popUpAnimating()
-        }
-        if textField == txtApartment {
+        case txtApartment:
             hideDetailsofFlat()
             hideDetailsofResidentandContinueButton()
             popUpAnimating()
-        }
-        if textField == txtFlat {
+        case txtFlat:
             hideDetailsofResidentandContinueButton()
             popUpAnimating()
+        default:
+            break
         }
     }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if (txtSociety.text?.isEmpty)! {
            popUpAnimating()
@@ -219,8 +220,7 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
     }
     //tap Gesture method
     @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
-        list_View.isHidden = true
-        opacity_View.isHidden = true
+        hidingOpacityandListView()
         self.view.endEditing(true)
     }
     //TODO : Need to Change HardCoded Things when Working On Firebase
