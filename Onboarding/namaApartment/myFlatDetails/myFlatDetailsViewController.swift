@@ -17,7 +17,6 @@ class myFlatDetailsViewController: NANavigationViewController
     @IBOutlet weak var txtApartment: UITextField!
     @IBOutlet weak var txtSociety: UITextField!
     @IBOutlet weak var txtFlat: UITextField!
-    
     @IBOutlet weak var lbl_City: UILabel!
     @IBOutlet weak var lbl_Apartment: UILabel!
     @IBOutlet weak var lbl_Flat: UILabel!
