@@ -13,7 +13,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     
-    //Created variable for NAVisitorFile to fetch data from firebase with the help of NAVisitor's variables.
+    //Created variable for NammaApartmentVisitor file to fetch data from firebase.
     var myVisitorList = [NammaApartmentVisitor]()
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -27,11 +27,8 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         
             myVisitorListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
 
-            
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
             if snapshot.exists() {
-               
-                
                 //for loop for getting all the data in tableview
                 for visitors in snapshot.children.allObjects as! [DataSnapshot] {
                     

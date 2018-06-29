@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 
-//Created enum instead for App optimization.
+//Created enum instead of struct for App optimization.
 enum VisitorListFBKeys : String {
-    
     case dateAndTimeOfVisit
     case fullName
     case inviterUID
@@ -49,10 +48,7 @@ class NammaApartmentVisitor {
     private var profilePhoto: String?
     private var status: String?
     private var uid: String?
-    
-    //craeted empty constructor
-    init() {
-    }
+
     //initilaize the variables
     init(dateAndTimeOfVisit: String?,fullName: String?,inviterUID: String?,mobileNumber: String?,profilePhoto: String?,status: String?,uid: String?) {
 
