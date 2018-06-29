@@ -151,86 +151,69 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
         btnContinue.isHidden = false
         self.view.endEditing(true)
     }
+    func hideDetailsofSociety() {
+        lbl_Society.isHidden = true
+        txtSociety.isHidden = true
+        txtSociety.text = ""
+    }
+    func hideDetailsofAppartment() {
+        lbl_Apartment.isHidden = true
+        txtApartment.isHidden = true
+        txtApartment.text = ""
+    }
+    func hideDetailsofFlat() {
+        lbl_Flat.isHidden = true
+        txtFlat.isHidden = true
+        txtFlat.text = ""
+    }
+    func hideDetailsofResidentandContinueButton() {
+        lbl_ResidentType.isHidden = true
+        segment_ResidentType.isHidden = true
+        segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
+        lbl_Description.isHidden = true
+        btnContinue.isHidden = true
+    }
+    func popUpAnimating() {
+        opacity_View.isHidden = false
+        list_View.isHidden = false
+        search_TextField.text = ""
+        list_TableView.reloadData()
+    }
+    func hidingOpacityandListView() {
+        opacity_View.isHidden = true
+        list_View.isHidden = true
+    }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == txtCity {
-            opacity_View.isHidden = false
-            lbl_Society.isHidden = true
-            lbl_Apartment.isHidden = true
-            lbl_Flat.isHidden = true
-            txtSociety.isHidden = true
-            txtSociety.text = ""
-            txtApartment.isHidden = true
-            txtApartment.text = ""
-            txtFlat.isHidden = true
-            txtFlat.text = ""
-            lbl_ResidentType.isHidden = true
-            segment_ResidentType.isHidden = true
-            segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
-            lbl_Description.isHidden = true
-            btnContinue.isHidden = true
-            list_View.isHidden = false
-            search_TextField.text = ""
-            list_TableView.reloadData()
+            hideDetailsofSociety()
+            hideDetailsofAppartment()
+            hideDetailsofFlat()
+            hideDetailsofResidentandContinueButton()
+            popUpAnimating()
         }
         if textField == txtSociety {
-            opacity_View.isHidden = false
-            lbl_Apartment.isHidden = true
-            lbl_Flat.isHidden = true
-            txtApartment.isHidden = true
-            txtApartment.text = ""
-            txtFlat.isHidden = true
-            txtFlat.text = ""
-            lbl_ResidentType.isHidden = true
-            segment_ResidentType.isHidden = true
-            segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
-            lbl_Description.isHidden = true
-            btnContinue.isHidden = true
-            list_View.isHidden = false
-            search_TextField.text = ""
-            list_TableView.reloadData()
+            hideDetailsofAppartment()
+            hideDetailsofFlat()
+            hideDetailsofResidentandContinueButton()
+            popUpAnimating()
         }
         if textField == txtApartment {
-            opacity_View.isHidden = false
-            lbl_Flat.isHidden = true
-            txtFlat.isHidden = true
-            txtFlat.text = ""
-            lbl_ResidentType.isHidden = true
-            segment_ResidentType.isHidden = true
-            segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
-            lbl_Description.isHidden = true
-            btnContinue.isHidden = true
-            list_View.isHidden = false
-            search_TextField.text = ""
-            list_TableView.reloadData()
+            hideDetailsofFlat()
+            hideDetailsofResidentandContinueButton()
+            popUpAnimating()
         }
         if textField == txtFlat {
-            opacity_View.isHidden = false
-            lbl_ResidentType.isHidden = true
-            segment_ResidentType.isHidden = true
-            segment_ResidentType.selectedSegmentIndex = UISegmentedControlNoSegment
-            lbl_Description.isHidden = true
-            btnContinue.isHidden = true
-            list_View.isHidden = false
-            search_TextField.text = ""
-            list_TableView.reloadData()
+            hideDetailsofResidentandContinueButton()
+            popUpAnimating()
         }
     }
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if (txtSociety.text?.isEmpty)! {
-            opacity_View.isHidden = false
-            list_View.isHidden = false
-            search_TextField.text = ""
-            list_TableView.reloadData()
+           popUpAnimating()
         } else if (txtApartment.text?.isEmpty)! {
-            opacity_View.isHidden = false
-            list_View.isHidden = false
-            search_TextField.text = ""
-            list_TableView.reloadData()
+            popUpAnimating()
         } else if (txtFlat.text?.isEmpty)! {
-            opacity_View.isHidden = false
-            list_View.isHidden = false
-            search_TextField.text = ""
-            list_TableView.reloadData()
+           popUpAnimating()
         }
         return true
     }
@@ -334,51 +317,43 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             self.txtCity.text = currentItem
             lbl_Society.isHidden = false
             txtSociety.isHidden = false
-            opacity_View.isHidden = true
-            list_View.isHidden = true
+            hidingOpacityandListView()
         } else if !(txtCity.text?.isEmpty)! && (txtSociety.text?.isEmpty)! || !(txtSociety.text?.isEmpty)! && txtApartment.isHidden == true {
             self.txtSociety.text = currentItem
             lbl_Apartment.isHidden = false
             txtApartment.isHidden = false
-            opacity_View.isHidden = true
-            list_View.isHidden = true
+            hidingOpacityandListView()
         } else if (txtApartment.text?.isEmpty)! || !(txtApartment.text?.isEmpty)! && txtFlat.isHidden == true {
             self.txtApartment.text = currentItem
             lbl_Flat.isHidden = false
             txtFlat.isHidden = false
-            opacity_View.isHidden = true
-            list_View.isHidden = true
+            hidingOpacityandListView()
         } else if !(txtApartment.text?.isEmpty)! && (txtFlat.text?.isEmpty)! || !(txtFlat.text?.isEmpty)! {
             self.txtFlat.text = currentItem
             lbl_ResidentType.isHidden = false
             segment_ResidentType.isHidden = false
-            opacity_View.isHidden = true
-            list_View.isHidden = true
+            hidingOpacityandListView()
         }
         if !(txtCity.text?.isEmpty)! && txtSociety.isHidden == true {
             self.txtCity.text = currentItem
             lbl_Society.isHidden = false
             txtSociety.isHidden = false
-            opacity_View.isHidden = true
-            list_View.isHidden = true
+            hidingOpacityandListView()
         } else if !(txtSociety.text?.isEmpty)! && txtApartment.isHidden == true {
             self.txtSociety.text = currentItem
             lbl_Apartment.isHidden = false
             txtApartment.isHidden = false
-            opacity_View.isHidden = true
-            list_View.isHidden = true
+            hidingOpacityandListView()
         } else if !(txtApartment.text?.isEmpty)! && txtFlat.isHidden == true {
             self.txtApartment.text = currentItem
             lbl_Flat.isHidden = false
             txtFlat.isHidden = false
-            opacity_View.isHidden = true
-            list_View.isHidden = true
+            hidingOpacityandListView()
         } else if !(txtFlat.text?.isEmpty)! && lbl_ResidentType.isHidden == true {
             self.txtFlat.text = currentItem
             lbl_ResidentType.isHidden = false
             segment_ResidentType.isHidden = false
-            opacity_View.isHidden = true
-            list_View.isHidden = true
+            hidingOpacityandListView()
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
