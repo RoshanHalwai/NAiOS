@@ -73,6 +73,9 @@ class NAString : NSObject
     func city() -> String {
         return String("CITY")
     }
+    func tableView_Content_size() -> String {
+        return String("contentSize")
+    }
     
     func society() -> String {
         return String("SOCIETY")
