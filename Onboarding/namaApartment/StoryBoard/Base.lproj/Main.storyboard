@@ -3832,7 +3832,7 @@
                                         <rect key="frame" x="8" y="48" width="289" height="244"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="30" id="hGB-LZ-YJk" customClass="MyFlatTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="30" id="hGB-LZ-YJk" customClass="MyFlatTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="289" height="30"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hGB-LZ-YJk" id="AOO-jO-SKx">

@@ -272,7 +272,7 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
     }
      //TODO : Need to Change HardCode Things when Working On Firebase
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let Cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! MyFlatTableViewCell
+        let Cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID()) as! MyFlatTableViewCell
         if txtCity.isHidden == false {
             placeHolderMethod(Name: "Search City")
             Cell.list_Label.text = "Bangalore"
