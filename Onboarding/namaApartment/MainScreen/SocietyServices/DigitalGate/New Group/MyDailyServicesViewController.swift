@@ -18,10 +18,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     var myDailyServicesListReference : DatabaseReference?
     
     //Created variable for Daily services list FB Objects to fetch data from firebase.
-    var myDailyServicesList = [DailyServicesListFB]()
+    var myDailyServicesList = [NammaApartmentDailyServices]()
    
     //Array of Action sheet items.
-    var dailyService = ["Cook", "Maid", "Car/Bike Cleaning", "Child Day Care", "Daily Newspaper", "Milk Man", "Laundry", "Driver"]
+    var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -84,11 +84,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         actionSheet.addAction(action8)
 
         actionSheet.addAction(cancel)
-        
         actionSheet.view.tintColor = UIColor.black
-
         self.present(actionSheet, animated: true, completion: nil)
-        
     }
     
     func dailyServiceSelected(alert: UIAlertAction!) {
@@ -117,13 +114,13 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyDailyServicesCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
-        let list : DailyServicesListFB
+        let list : NammaApartmentDailyServices
         list = myDailyServicesList[indexPath.row]
         
         cell.lbl_MyDailyServiceName.text = list.fullName
         
         //TODO : Need to change Services type
-        cell.lbl_MyDailyServiceType.text = "Cook"
+        cell.lbl_MyDailyServiceType.text = NAString().cook()
         cell.lbl_MyDailyServicesInTime.text = list.timeOfVisit
         
         //For converting Int with String.
@@ -211,26 +208,26 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         //TODO: Right now only showing particular cook's details in the list.
         myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE_COOKS)
         
-        myDailyServicesListReference?.observe(DataEventType.value, with: { (snapshot) in
+        myDailyServicesListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
             
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
-            if snapshot.childrenCount > 0 {
-                self.myDailyServicesList.removeAll()
-                
+            if snapshot.exists() {
+               
                 //for loop for getting all the data in tableview
                 for dailyServices in snapshot.children.allObjects as! [DataSnapshot] {
+                    
                     let dailyServicesObject = dailyServices.value as? [String: AnyObject]
                     
-                    let fullName = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.fullName]
-                    let phoneNumber = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.phoneNumber]
-                    let profilePhoto = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.profilePhoto]
-                    let providedThings = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.providedThings]
-                    let rating = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.rating]
-                    let timeOfVisit = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.timeOfVisit]
-                    let uid = dailyServicesObject?[DailyServicesListFB.DailyServicesListFBOjects.uid]
+                    let fullName = dailyServicesObject?[DailyServicesListFBKeys.fullName.key]
+                    let phoneNumber = dailyServicesObject?[DailyServicesListFBKeys.phoneNumber.key]
+                    let profilePhoto = dailyServicesObject?[DailyServicesListFBKeys.profilePhoto.key]
+                    let providedThings = dailyServicesObject?[DailyServicesListFBKeys.providedThings.key]
+                    let rating = dailyServicesObject?[DailyServicesListFBKeys.rating.key]
+                    let timeOfVisit = dailyServicesObject?[DailyServicesListFBKeys.timeOfVisit.key]
+                    let uid = dailyServicesObject?[DailyServicesListFBKeys.uid.key]
                     
                     //creating dailyServices model & initiliazing here
-                    let dailyServicesData = DailyServicesListFB(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?)
+                    let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?)
                     
                     //Adding dailyservices in services List
                     self.myDailyServicesList.append(dailyServicesData)
