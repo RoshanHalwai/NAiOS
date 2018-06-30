@@ -13,6 +13,6 @@ class MyFlatDetailsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        list_Label.font = NAFont().descriptionFont()
+        list_Label.font = NAFont().textFieldFont()
     }
 }

@@ -3761,22 +3761,25 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will verify the details provided by you. We will notify you once the verification is completed." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64t-T8-3Ed">
-                                        <rect key="frame" x="20" y="402" width="335" height="34"/>
+                                        <rect key="frame" x="20" y="416" width="335" height="34"/>
                                         <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lyk-4H-STg">
-                                        <rect key="frame" x="20" y="316" width="335" height="66"/>
+                                        <rect key="frame" x="20" y="316" width="335" height="80"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RESIDENT TYPE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qug-Rv-9eD">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="28"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="35"/>
                                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="B2z-km-cia">
-                                                <rect key="frame" x="0.0" y="38" width="335" height="29"/>
+                                                <rect key="frame" x="0.0" y="45" width="335" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="fSv-cj-saX"/>
+                                                </constraints>
                                                 <segments>
                                                     <segment title="Owner"/>
                                                     <segment title="Tenant"/>
@@ -3789,10 +3792,10 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7A-B5-Bfn">
-                                        <rect key="frame" x="20" y="456" width="335" height="39"/>
+                                        <rect key="frame" x="20" y="470" width="335" height="39"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="22"/>
-                                        <state key="normal" title="CONTINUE">
+                                        <state key="normal" title="CREATE ACCOUNT">
                                             <color key="titleColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -3826,21 +3829,21 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XA4-dc-20R" userLabel="ListView">
-                                <rect key="frame" x="49" y="183" width="276" height="300"/>
+                                <rect key="frame" x="49" y="130" width="276" height="300"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LbP-fw-r2z">
                                         <rect key="frame" x="8" y="54" width="260" height="238"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="32" id="F4t-B9-DOD" customClass="MyFlatDetailsTableViewCell" customModule="nammaApartment" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="260" height="32"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="35" id="F4t-B9-DOD" customClass="MyFlatDetailsTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="260" height="35"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F4t-B9-DOD" id="GKy-ho-Ldo">
-                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="31.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="260" height="34.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtP-3A-gXb">
-                                                            <rect key="frame" x="15" y="7" width="230" height="17"/>
+                                                            <rect key="frame" x="15" y="7" width="230" height="20"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -3891,7 +3894,7 @@
                             <constraint firstItem="XA4-dc-20R" firstAttribute="centerX" secondItem="TGc-9n-x7S" secondAttribute="centerX" id="0iH-Y8-lDX"/>
                             <constraint firstItem="aQC-oo-oxN" firstAttribute="top" secondItem="TGc-9n-x7S" secondAttribute="top" id="2Ci-3t-tQ5"/>
                             <constraint firstItem="aQC-oo-oxN" firstAttribute="leading" secondItem="TGc-9n-x7S" secondAttribute="leading" id="IEY-d2-0GU"/>
-                            <constraint firstItem="XA4-dc-20R" firstAttribute="centerY" secondItem="aQC-oo-oxN" secondAttribute="centerY" id="UnS-tQ-e5i"/>
+                            <constraint firstItem="XA4-dc-20R" firstAttribute="centerY" secondItem="aQC-oo-oxN" secondAttribute="centerY" constant="-53.5" id="UnS-tQ-e5i"/>
                             <constraint firstItem="aQC-oo-oxN" firstAttribute="bottom" secondItem="TGc-9n-x7S" secondAttribute="bottom" id="YLo-2f-DgW"/>
                             <constraint firstItem="aQC-oo-oxN" firstAttribute="trailing" secondItem="TGc-9n-x7S" secondAttribute="trailing" id="bFx-L0-u76"/>
                             <constraint firstItem="TGc-9n-x7S" firstAttribute="trailing" secondItem="lHe-dy-AsT" secondAttribute="trailing" id="cX2-nO-B3q"/>

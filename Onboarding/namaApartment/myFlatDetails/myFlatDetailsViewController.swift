@@ -67,16 +67,10 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
         self.list_TableView.separatorStyle = .none
         
         //Hiding All items Except city item When View Loading
-        btnContinue.isHidden = true
-        segment_ResidentType.isHidden = true
-        txtApartment.isHidden = true
-        txtSociety.isHidden = true
-        txtFlat.isHidden = true
-        lbl_Apartment.isHidden = true
-        lbl_Flat.isHidden = true
-        lbl_Society.isHidden = true
-        lbl_ResidentType.isHidden = true
-        lbl_Description.isHidden = true
+        hideDetailsofSociety()
+        hideDetailsofAppartment()
+        hideDetailsofFlat()
+        hideDetailsofResidentandContinueButton()
         
         //TextField formatting & setting
         txtCity.font = NAFont().textFieldFont()
@@ -228,7 +222,7 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             return city.count
         } else if txtSociety.isHidden == false && txtApartment.isHidden == true {
             return Society.count
-        } else if txtCity.isHidden == false && txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Brigade Gateway" {
+        } else if txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Brigade Gateway" {
             return BrigadeGateway.count
         } else if txtFlat.isHidden == false && txtApartment.text == "Aster" {
             return Aster.count
@@ -236,119 +230,86 @@ class myFlatDetailsViewController: NANavigationViewController, UITableViewDelega
             return Bolivia.count
         } else if txtApartment.isHidden == false && txtSociety.text == "Salarpuria Cambridge" {
             return SalarpuriaCambridge.count
-        } else if txtFlat.isHidden == false && txtApartment.text == "Block-1" {
+        } else if txtFlat.isHidden == false && txtApartment.text == "Block-1" || txtApartment.text == "Block-2" || txtApartment.text == "Block-3" || txtApartment.text == "Block-4" || txtApartment.text == "Block-5"{
             return Block1.count
-        } else if txtFlat.isHidden == false && txtApartment.text == "Block-2" {
-            return Block2.count
-        } else if txtFlat.isHidden == false && txtApartment.text == "Block-3" {
-            return Block3.count
-        } else if txtFlat.isHidden == false && txtApartment.text == "Block-4" {
-            return Block4.count
-        } else if txtFlat.isHidden == false && txtApartment.text == "Block-5" {
-            return Block5.count
         }
         return 0
     }
     //TODO : Need to Change HardCoded Things when Working On Firebase
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let Cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID()) as! MyFlatDetailsTableViewCell
-        if txtCity.isHidden == false {
-            placeHolderMethod(Name: "Search City")
-            Cell.list_Label.text = "Bangalore"
-        }
-        if txtSociety.isHidden == false && txtApartment.isHidden == true {
-            placeHolderMethod(Name: "Search Society")
-            Cell.list_Label.text = Society[indexPath.row]
-        }
-        if txtApartment.text == BrigadeGateway[0] && (txtFlat.text?.isEmpty)! {
-            placeHolderMethod(Name: "Search Flat")
-            Cell.list_Label.text = Aster[indexPath.row]
-        }
-        if (txtFlat.text?.isEmpty)! || !(txtFlat.text?.isEmpty)! {
-            placeHolderMethod(Name: "Search Flat")
-            if txtApartment.text == BrigadeGateway[1] {
-                Cell.list_Label.text = Bolivia[indexPath.row]
+            if txtCity.isHidden == false {
+                placeHolderMethod(Name: "Search City")
+                Cell.list_Label.text = "Bangalore"
             }
-            if txtApartment.text == SalarpuriaCambridge[0] {
-                Cell.list_Label.text = Block1[indexPath.row]
+            if txtSociety.isHidden == false && txtApartment.isHidden == true {
+                placeHolderMethod(Name: "Search Society")
+                Cell.list_Label.text = Society[indexPath.row]
             }
-            if txtApartment.text == SalarpuriaCambridge[1] {
-                Cell.list_Label.text = Block2[indexPath.row]
+            if (txtFlat.text?.isEmpty)! || !(txtFlat.text?.isEmpty)! {
+                placeHolderMethod(Name: "Search Flat")
+                if txtApartment.text == BrigadeGateway[0] {
+                    Cell.list_Label.text = Aster[indexPath.row]
+                }
+                if txtApartment.text == BrigadeGateway[1] {
+                    Cell.list_Label.text = Bolivia[indexPath.row]
+                }
+                if txtApartment.text == SalarpuriaCambridge[0] {
+                    Cell.list_Label.text = Block1[indexPath.row]
+                }
+                if txtApartment.text == SalarpuriaCambridge[1] {
+                    Cell.list_Label.text = Block2[indexPath.row]
+                }
+                if txtApartment.text == SalarpuriaCambridge[2] {
+                    Cell.list_Label.text = Block3[indexPath.row]
+                }
+                if txtApartment.text == SalarpuriaCambridge[3] {
+                    Cell.list_Label.text = Block4[indexPath.row]
+                }
+                if txtApartment.text == SalarpuriaCambridge[4] {
+                    Cell.list_Label.text = Block5[indexPath.row]
+                }
             }
-            if txtApartment.text == SalarpuriaCambridge[2] {
-                Cell.list_Label.text = Block3[indexPath.row]
+            if !(txtApartment.text?.isEmpty)! || (txtApartment.text?.isEmpty)! {
+                if txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Brigade Gateway" {
+                    placeHolderMethod(Name: "Search Apartment")
+                    Cell.list_Label.text = BrigadeGateway[indexPath.row]
+                }
+                if txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Salarpuria Cambridge" {
+                    placeHolderMethod(Name: "Search Apartment")
+                    Cell.list_Label.text = SalarpuriaCambridge[indexPath.row]
+                }
             }
-            if txtApartment.text == SalarpuriaCambridge[3] {
-                Cell.list_Label.text = Block4[indexPath.row]
-            }
-            if txtApartment.text == SalarpuriaCambridge[4] {
-                Cell.list_Label.text = Block5[indexPath.row]
-            }
-        }
-        if !(txtApartment.text?.isEmpty)! || (txtApartment.text?.isEmpty)! {
-            if txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Brigade Gateway" {
-                placeHolderMethod(Name: "Search Apartment")
-                Cell.list_Label.text = BrigadeGateway[indexPath.row]
-            }
-            if txtApartment.isHidden == false && txtFlat.isHidden == true && txtSociety.text == "Salarpuria Cambridge" {
-                placeHolderMethod(Name: "Search Apartment")
-                Cell.list_Label.text = SalarpuriaCambridge[indexPath.row]
-            }
-        }
         return Cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //getting the index path of selected row
         let indexPath = tableView.indexPathForSelectedRow
-        
         //getting the current cell from the index path
         let currentCell = tableView.cellForRow(at: indexPath!)! as! MyFlatDetailsTableViewCell
-        
         //getting the text of that cell
         let currentItem = currentCell.list_Label.text
-        
-        if (txtCity.text?.isEmpty)! || !(txtCity.text?.isEmpty)! && txtSociety.isHidden == true {
-            self.txtCity.text = currentItem
-            lbl_Society.isHidden = false
-            txtSociety.isHidden = false
-            hidingOpacityandListView()
-        } else if !(txtCity.text?.isEmpty)! && (txtSociety.text?.isEmpty)! || !(txtSociety.text?.isEmpty)! && txtApartment.isHidden == true {
-            self.txtSociety.text = currentItem
-            lbl_Apartment.isHidden = false
-            txtApartment.isHidden = false
-            hidingOpacityandListView()
-        } else if (txtApartment.text?.isEmpty)! || !(txtApartment.text?.isEmpty)! && txtFlat.isHidden == true {
-            self.txtApartment.text = currentItem
-            lbl_Flat.isHidden = false
-            txtFlat.isHidden = false
-            hidingOpacityandListView()
-        } else if !(txtApartment.text?.isEmpty)! && (txtFlat.text?.isEmpty)! || !(txtFlat.text?.isEmpty)! {
-            self.txtFlat.text = currentItem
-            lbl_ResidentType.isHidden = false
-            segment_ResidentType.isHidden = false
-            hidingOpacityandListView()
-        }
-        if !(txtCity.text?.isEmpty)! && txtSociety.isHidden == true {
-            self.txtCity.text = currentItem
-            lbl_Society.isHidden = false
-            txtSociety.isHidden = false
-            hidingOpacityandListView()
-        } else if !(txtSociety.text?.isEmpty)! && txtApartment.isHidden == true {
-            self.txtSociety.text = currentItem
-            lbl_Apartment.isHidden = false
-            txtApartment.isHidden = false
-            hidingOpacityandListView()
-        } else if !(txtApartment.text?.isEmpty)! && txtFlat.isHidden == true {
-            self.txtApartment.text = currentItem
-            lbl_Flat.isHidden = false
-            txtFlat.isHidden = false
-            hidingOpacityandListView()
-        } else if !(txtFlat.text?.isEmpty)! && lbl_ResidentType.isHidden == true {
-            self.txtFlat.text = currentItem
-            lbl_ResidentType.isHidden = false
-            segment_ResidentType.isHidden = false
-            hidingOpacityandListView()
-        }
+            if (txtCity.text?.isEmpty)! || !(txtCity.text?.isEmpty)! && txtSociety.isHidden == true {
+                self.txtCity.text = currentItem
+                lbl_Society.isHidden = false
+                txtSociety.isHidden = false
+                hidingOpacityandListView()
+            } else if !(txtCity.text?.isEmpty)! && (txtSociety.text?.isEmpty)! || !(txtSociety.text?.isEmpty)! && txtApartment.isHidden == true {
+                self.txtSociety.text = currentItem
+                lbl_Apartment.isHidden = false
+                txtApartment.isHidden = false
+                hidingOpacityandListView()
+            } else if (txtApartment.text?.isEmpty)! || !(txtApartment.text?.isEmpty)! && txtFlat.isHidden == true {
+                self.txtApartment.text = currentItem
+                lbl_Flat.isHidden = false
+                txtFlat.isHidden = false
+                hidingOpacityandListView()
+            } else if !(txtApartment.text?.isEmpty)! && (txtFlat.text?.isEmpty)! || !(txtFlat.text?.isEmpty)! {
+                self.txtFlat.text = currentItem
+                lbl_ResidentType.isHidden = false
+                segment_ResidentType.isHidden = false
+                hidingOpacityandListView()
+            }
     }
     //function to end editing on the touch on the view
     override func touchesBegan(_ touches: Set<UITouch>,with event: UIEvent?) {
