@@ -1031,10 +1031,120 @@
             </objects>
             <point key="canvasLocation" x="1519" y="2050"/>
         </scene>
-        <!--My Visitor List View Controller-->
+        <!--My Visitors List View Controller-->
+        <scene sceneID="NL0-MK-w5y">
+            <objects>
+                <viewController storyboardIdentifier="myVisitorsListVC" id="ktd-QR-lsh" customClass="MyVisitorsListViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cql-PC-Xcq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FYM-7K-VM1">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="J6R-Ae-g9B">
+                                    <size key="itemSize" width="349" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Q07-qU-sfp" customClass="MyVisitorsListCollectionViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                        <rect key="frame" x="13" y="10" width="349" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mj5-bN-6IC">
+                                                    <rect key="frame" x="10" y="28" width="88" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="88" id="ng8-3l-Bxl"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsZ-Is-ir4">
+                                                    <rect key="frame" x="108" y="28" width="221" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="gsZ-Is-ir4" firstAttribute="top" secondItem="Q07-qU-sfp" secondAttribute="topMargin" constant="20" id="GvR-P3-r1X"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="gsZ-Is-ir4" secondAttribute="trailing" constant="12" id="MXC-9X-XWE"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="gsZ-Is-ir4" secondAttribute="bottom" constant="20" id="Pvp-2z-vLA"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="mj5-bN-6IC" secondAttribute="bottom" constant="20" id="S2c-9i-lmg"/>
+                                            <constraint firstItem="gsZ-Is-ir4" firstAttribute="leading" secondItem="mj5-bN-6IC" secondAttribute="trailing" constant="10" id="Ugz-fB-ovD"/>
+                                            <constraint firstItem="mj5-bN-6IC" firstAttribute="top" secondItem="Q07-qU-sfp" secondAttribute="topMargin" constant="20" id="sTF-db-tGP"/>
+                                            <constraint firstItem="gsZ-Is-ir4" firstAttribute="leading" secondItem="mj5-bN-6IC" secondAttribute="trailing" constant="10" id="x8M-bv-htP"/>
+                                            <constraint firstItem="mj5-bN-6IC" firstAttribute="leading" secondItem="Q07-qU-sfp" secondAttribute="leadingMargin" constant="2" id="zTh-MS-kAf"/>
+                                        </constraints>
+                                        <size key="customSize" width="349" height="100"/>
+                                        <connections>
+                                            <outlet property="lbl_Visitors" destination="gsZ-Is-ir4" id="YtC-pD-Vev"/>
+                                            <outlet property="visitors_Image" destination="mj5-bN-6IC" id="C2G-e1-c7G"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ktd-QR-lsh" id="zTn-Cc-zKf"/>
+                                    <outlet property="delegate" destination="ktd-QR-lsh" id="6tc-Jl-ViJ"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FYM-7K-VM1" firstAttribute="trailing" secondItem="Yo5-hS-6oC" secondAttribute="trailing" id="0UO-in-bvu"/>
+                            <constraint firstItem="FYM-7K-VM1" firstAttribute="leading" secondItem="Yo5-hS-6oC" secondAttribute="leading" id="Ap9-Bs-Jvb"/>
+                            <constraint firstItem="FYM-7K-VM1" firstAttribute="bottom" secondItem="Yo5-hS-6oC" secondAttribute="bottom" id="Ubq-JJ-gyT"/>
+                            <constraint firstItem="FYM-7K-VM1" firstAttribute="top" secondItem="Yo5-hS-6oC" secondAttribute="top" id="eoZ-Ys-qcE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Yo5-hS-6oC"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="FYM-7K-VM1" id="aVj-IW-SMv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K0w-la-1Jg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2513" y="2050"/>
+        </scene>
+        <!--Cab Arrival View Controller-->
+        <scene sceneID="CG2-2m-0vE">
+            <objects>
+                <viewController storyboardIdentifier="cabArrivalsVC" id="oGr-YT-684" customClass="CabArrivalViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZVP-jn-JDa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="zGT-WS-4jZ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tIc-AP-kMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3229" y="2054"/>
+        </scene>
+        <!--Package Arrival View Controller-->
+        <scene sceneID="pKQ-LF-879">
+            <objects>
+                <viewController storyboardIdentifier="packageArrivalVC" id="kQr-Uw-DGt" customClass="PackageArrivalViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kqr-oi-I2t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9sa-ZW-gV5"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZK8-mt-m8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3958" y="2052"/>
+        </scene>
+        <!--My Guest List View Controller-->
         <scene sceneID="rl8-97-QVJ">
             <objects>
-                <viewController storyboardIdentifier="myVisitorListVC" id="S2a-Fm-OSW" customClass="MyVisitorListViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="myGuestListVC" id="S2a-Fm-OSW" customClass="MyGuestListViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2iE-x5-Ees">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1049,7 +1159,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Jep-bZ-kJg" customClass="MyVistorListCollectionViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="Jep-bZ-kJg" customClass="MyGuestListCollectionViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="13" y="10" width="349" height="255"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -1487,7 +1597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ChU-Ig-4oy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2900" y="2723"/>
+            <point key="canvasLocation" x="2900" y="2722.4887556221893"/>
         </scene>
         <!--Expecting Cab Arrival View Controller-->
         <scene sceneID="Nvl-7K-l2z">

@@ -349,6 +349,12 @@ class NAString : NSObject
     func expecting_cab_arrival() -> String {
         return String("Expecting Cab Arrival")
     }
+    func cab_arrival() -> String {
+        return String("Cab Arrivals")
+    }
+    func package_arrival() -> String {
+        return String("Package Arrivals")
+    }
     
     func expecting_package_arrival() -> String {
         return String("Expecting Package Arrival")
