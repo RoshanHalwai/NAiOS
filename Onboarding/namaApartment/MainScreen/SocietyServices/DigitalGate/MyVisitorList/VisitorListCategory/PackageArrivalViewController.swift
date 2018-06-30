@@ -14,6 +14,8 @@ class PackageArrivalViewController: NANavigationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().package_arrival())
         //created custom back button for goto My Visitors List screen

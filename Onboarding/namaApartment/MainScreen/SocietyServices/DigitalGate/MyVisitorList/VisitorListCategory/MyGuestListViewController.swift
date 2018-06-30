@@ -74,11 +74,9 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         let dv = NAViewPresenter().myVisitorsListVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myVisitorList.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyGuestListCollectionViewCell
         
@@ -93,7 +91,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
             let dateString: String = arrayOfDateTime[0]
             let timeString: String = arrayOfDateTime[1]
-         //   Assigning date & time separate variables to get data in cell labels.
+            //Assigning date & time separate variables to get data in cell labels.
             cell.lbl_MyVisitorTime.text = timeString
             cell.lbl_MyVisitorDate.text = dateString
         
@@ -104,7 +102,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         if let urlString = myList.getprofilePhoto() {
            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
-        
         //TODO : Need to get Name from Firebase (According To Default User)
         cell.lbl_InvitedName.text = "Vikas"
         

@@ -14,6 +14,8 @@ class CabArrivalViewController: NANavigationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().cab_arrival())
         //created custom back button for goto My Visitors Lists screen

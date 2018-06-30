@@ -35,7 +35,7 @@ class NAFirebase {
             newLabel.text = newText
             newLabel.numberOfLines = 3
             newLabel.textAlignment = NSTextAlignment.center
-            newLabel.font = NAFont().headerFont()
+            newLabel.font = NAFont().layoutFeatureErrorFont()
             newLabel.textColor = UIColor.black
       
         //Created UIImageView Programatically

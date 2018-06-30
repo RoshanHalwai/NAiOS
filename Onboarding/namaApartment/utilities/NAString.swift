@@ -651,6 +651,12 @@ class NAString : NSObject
     func layoutFeatureErrorVisitorList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no visitors at your flat.")
     }
+    func layoutFeatureErrorCabArrivalList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no cab arrivals scheduled for your flat.")
+    }
+    func layoutFeatureErrorpackageArrivalList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
+    }
     
     //Cab Arrival and Package Arrival Validation
     func please_fill_details() -> String {
