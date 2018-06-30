@@ -151,7 +151,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-       // date.dateFormat = "MMM d, YYYY \t\t HH:mm"
         date.dateFormat = (NAString().dateFormate() + "\t\t" + NAString().timeFormate())
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
