@@ -9,6 +9,8 @@
 import UIKit
 import Contacts
 import ContactsUI
+import FirebaseDatabase
+import FirebaseAuth
 
 class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
     @IBOutlet weak var lbl_InvitorName: UILabel!
@@ -30,6 +32,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
     
+    //Created Firebase DB Reference variable.
+    var inviteVisitorReference : DatabaseReference?
    
     //created date picker programtically
     let picker = UIDatePicker()
@@ -270,12 +274,46 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             let dv = NAViewPresenter().myVisitorListVC()
             self.navigationController?.pushViewController(dv, animated: true)
+            //Calling Invite Visitor Fucntion in view did load.
+            self.storeVisitorDetailsInFirebase()
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    //Created Function for inviting visitor with the help of firebase.
+    func storeVisitorDetailsInFirebase() {
+        
+        // this is for to store data in preApprovedVisitor.
+        inviteVisitorReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+        
+        //Generatimg Unique key fro every data in child table
+        let key = inviteVisitorReference?.childByAutoId().key
+        
+        //extra
+        var status = String()
+        status = "Not Entered"
+        
+        var inviterUID = String()
+        inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+       
+        
+        //defining node with type of data in it.
+        let preApprovedVisitors = [
+            "uid" : key,
+            "dateAndTimeOfVisit" : txtDate.text! as String,
+            "mobileNumber" : txtInvitorMobile.text! as String,
+            "status" : status,
+            "fullName" : txtInvitorName.text! as String,
+            "inviterUID" : inviterUID]
+        
+        
+        //stored data in preApproved child node.
+         inviteVisitorReference?.child(key!).setValue(preApprovedVisitors)
+        
     }
-
+    
+}
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
