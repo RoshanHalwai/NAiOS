@@ -365,6 +365,12 @@ class NAString : NSObject
     func handed_things_to_my_daily_services() -> String {
         return String("Handed things to my Daily Services")
     }
+    func my_Guest() -> String {
+        return String("MY Guests")
+    }
+    func my_Daily_Services() -> String {
+        return String("My Daily Services")
+    }
     
     func package_number() -> String {
         return String("Package Vendor")
@@ -425,7 +431,7 @@ class NAString : NSObject
         return String("Given Things")
     }
     func description() -> String {
-        return String("Description")
+        return String("Description:(Optional)")
     }
     func feature_unavailable_message() -> String {
         return String("Sorry you cannot use this feature since currently you do not have any visitors at your resident.")
