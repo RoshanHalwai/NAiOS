@@ -636,6 +636,9 @@ class NAString : NSObject
     func layoutFeatureErrorVisitorList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no visitors at your flat.")
     }
+    func statusNotEntered() -> String {
+        return String ("Not Entered")
+    }
     
     //Cab Arrival and Package Arrival Validation
     func please_fill_details() -> String {
