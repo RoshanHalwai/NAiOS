@@ -205,14 +205,11 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                 
                 if success {
                     self.openContacts()
-                    print("Authorization")
                 } else {
-                    print("No Authorization")
                 }
             })
         } else if authStatus == CNAuthorizationStatus.authorized {
             self.openContacts()
-            print("Get Authorization")
         }
         //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied {
@@ -250,7 +247,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_InviteDescription.isHidden = false
         }
         
-        var mobileNo = "Not Available"
+        var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         mobileNo = mobileString! as! String
         self.txtInvitorMobile.text = mobileNo
@@ -286,6 +283,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     func storeVisitorDetailsInFirebase() {
         //Creating visitors UID
         preApprovedVisitorsMobileNoRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS_MOBILENUMBER)
+        
         let visitorUID : String?
         visitorUID = (preApprovedVisitorsMobileNoRef?.childByAutoId().key)!
         
@@ -301,33 +299,16 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         var inviterUID = String()
         inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
         
-        
-        //storing image in firebase
-        
-        func convertBase64ToImage(imageString: String) -> UIImage {
-            let imageData = Data(base64Encoded: imageString, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!
-            return UIImage(data: imageData)!
-        }
-        
-    
-        
-        
-        
-      
-        
-
-        
         //defining node with type of data in it.
         let visitorData = [
-            "uid" : visitorUID ,
-            "dateAndTimeOfVisit" : txtDate.text! as String,
-            "mobileNumber" : txtInvitorMobile.text! as String,
-            "status" : status,
-            "fullName" : txtInvitorName.text! as String,
-            "inviterUID" : inviterUID,
-           // "profilePhoto" :
+            VisitorListFBKeys.uid.key : visitorUID,
+            VisitorListFBKeys.dateAndTimeOfVisit.key : txtDate.text! as String,
+            VisitorListFBKeys.mobileNumber.key : txtInvitorMobile.text! as String,
+            VisitorListFBKeys.status.key : status,
+            VisitorListFBKeys.fullName.key : txtInvitorName.text! as String,
+            VisitorListFBKeys.inviterUID.key : inviterUID,
+            //TODO: Need to implemnet image here.
         ]
-        
         // Adding visitor data under preApproved visitors
         preApprovedVisitorsRef?.child(visitorUID!).setValue(visitorData)
     }
