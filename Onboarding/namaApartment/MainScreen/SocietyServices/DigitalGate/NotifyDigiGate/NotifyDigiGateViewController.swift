@@ -60,6 +60,7 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
             let lv = NAViewPresenter().expectingCabArrivalVC()
             lv.navTitle = NAString().expecting_cab_arrival()
             lv.vendorCabNameString = NAString().cab_number()
+            
             self.navigationController?.pushViewController(lv, animated: true)
             
         case 1:
