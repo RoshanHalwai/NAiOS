@@ -177,7 +177,7 @@ class EditMyServicesViewController: NANavigationViewController {
     @objc func donePressed() {
         // Time Formate
         let time = DateFormatter()
-        time.dateFormat = NAString().timeFormate()
+        time.dateFormat = NAString().timeFormat()
         let dateString = time.string(from: picker.date)
         txt_InTime.text = dateString
         self.view.endEditing(true)
