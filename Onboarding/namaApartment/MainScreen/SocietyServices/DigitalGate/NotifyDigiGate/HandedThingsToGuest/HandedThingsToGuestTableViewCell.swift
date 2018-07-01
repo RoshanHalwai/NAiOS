@@ -35,7 +35,6 @@ class HandedThingsToGuestTableViewCell: UITableViewCell
     //Defining cell Height
     class var expandedHeight: CGFloat { get { return 340 } }
     class var defaultHeight: CGFloat  { get { return 215 } }
-    
 }
 
 

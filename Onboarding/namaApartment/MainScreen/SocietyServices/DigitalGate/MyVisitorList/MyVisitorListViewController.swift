@@ -9,53 +9,56 @@
 import UIKit
 import FirebaseDatabase
 
-class MyVisitorListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate
-{
+class MyVisitorListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     
-    //Created variable for NAVisitorFile to fetch data from firebase with the help of NAVisitor's variables.
-    var myVisitorList = [VisitorListFB]()
+    //Created variable for NammaApartmentVisitor file to fetch data from firebase.
+    var myVisitorList = [NammaApartmentVisitor]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //to show activity indicator before loading data from firebase
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
         
-        //Assigning Child from where to get data in Visitor List.
         myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
         
-        myVisitorListReference?.observe(DataEventType.value, with: { (snapshot) in
-            
+            myVisitorListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
+
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
-            if snapshot.childrenCount > 0 {
-                self.myVisitorList.removeAll()
-                
+            if snapshot.exists() {
                 //for loop for getting all the data in tableview
                 for visitors in snapshot.children.allObjects as! [DataSnapshot] {
                     
                     let visitorObject = visitors.value as? [String: AnyObject]
                     
-                    let dateAndTimeOfVisit = visitorObject?[VisitorListFB.VisitorListFBObjects.dateAndTimeOfVisit]
-                    let fullName = visitorObject?[VisitorListFB.VisitorListFBObjects.fullName]
-                    let inviterUID = visitorObject?[VisitorListFB.VisitorListFBObjects.inviterUID]
-                    let mobileNumber = visitorObject?[VisitorListFB.VisitorListFBObjects.mobileNumber]
-                    let profilePhoto = visitorObject?[VisitorListFB.VisitorListFBObjects.profilePhoto]
-                    let status = visitorObject?[VisitorListFB.VisitorListFBObjects.status]
-                    let uid = visitorObject?[VisitorListFB.VisitorListFBObjects.uid]
-
-                    //creating userAccount model & set earlier created let variables in userObject in the below parameter
-                    let user = VisitorListFB(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName as! String?, inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
+                    let dateAndTimeOfVisit = visitorObject?[VisitorListFBKeys.dateAndTimeOfVisit.key]
+                    let fullName = visitorObject?[VisitorListFBKeys.fullName.key] as? String
+                    let inviterUID = visitorObject?[VisitorListFBKeys.inviterUID.key]
+                    let mobileNumber = visitorObject?[VisitorListFBKeys.mobileNumber.key]
+                    let profilePhoto = visitorObject?[VisitorListFBKeys.profilePhoto.key]
+                    let status = visitorObject?[VisitorListFBKeys.status.key]
+                    let uid = visitorObject?[VisitorListFBKeys.uid.key]
                     
+                    //creating userAccount model & set earlier created let variables in userObject in the below parameter
+                    let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit as! String?, fullName: fullName , inviterUID: inviterUID as! String?, mobileNumber: mobileNumber as! String?, profilePhoto: profilePhoto as! String?, status: status as! String?, uid: uid as! String?)
+
                     //Adding visitor in visitor List
                     self.myVisitorList.append(user)
+                    //Hidding Activity indicator after loading data in the list from firebase.
+                    NAActivityIndicator.shared.hideActivityIndicator()
                 }
-                
                 //reload collection view.
                 self.collectionView.reloadData()
             }
+            else {
+                //Hiding Activity Indicator & showing error image & message.
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+            }
         })
-        
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         
@@ -64,10 +67,8 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate() {
-        
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
@@ -80,29 +81,27 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVistorListCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
-        let myList : VisitorListFB
+        let myList : NammaApartmentVisitor
         myList = myVisitorList[indexPath.row]
         
         //Created local variable to store Date & Time from firebase
         var dateTimeString : String
-        dateTimeString  = myList.dateAndTimeOfVisit!
+        dateTimeString = myList.getdateAndTimeOfVisit()
+            //Created array to spilt Date & time in separate variables
+            let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
+            let dateString: String = arrayOfDateTime[0]
+            let timeString: String = arrayOfDateTime[1]
+         //   Assigning date & time separate variables to get data in cell labels.
+            cell.lbl_MyVisitorTime.text = timeString
+            cell.lbl_MyVisitorDate.text = dateString
         
-        //Created array to spilt Date & time in separate variables
-        let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
-        let dateString: String = arrayOfDateTime[0]
-        let timeString: String = arrayOfDateTime[1]
-        
-        cell.lbl_MyVisitorName.text = myList.fullName
+        cell.lbl_MyVisitorName.text = myList.getfullName()
         cell.lbl_MyVisitorType.text = NAString().guest()
   
-        //Calling function to get Profile Image from Firebase.
-        if let urlString = myList.profilePhoto {
-           downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
+       //Calling function to get Profile Image from Firebase.
+        if let urlString = myList.getprofilePhoto() {
+           NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
-    
-        //Assigning date & time separate variables to get data in cell labels.
-        cell.lbl_MyVisitorTime.text = timeString
-        cell.lbl_MyVisitorDate.text = dateString
         
         //TODO : Need to get Name from Firebase (According To Default User)
         cell.lbl_InvitedName.text = "Vikas"
@@ -137,20 +136,19 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         //calling Reschdule button action on particular cell
         cell.objReschduling = {
             
-            let dv = NAViewPresenter().rescheduleMyVisitorVC()
-            self.navigationController?.pushViewController(dv, animated: true)
-            
-            //passing cell date & time to Reschedule VC
-            dv.getTime = cell.lbl_MyVisitorTime.text!
-            dv.getDate = cell.lbl_MyVisitorDate.text!
-            
-            //hide navigation bar with backButton
-            self.navigationController?.isNavigationBarHidden = true
-            self.navigationItem.hidesBackButton = true
+                let dv = NAViewPresenter().rescheduleMyVisitorVC()
+                dv.providesPresentationContextTransitionStyle = true
+                dv.definesPresentationContext = true
+                dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
+                dv.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
+                self.present(dv, animated: true, completion: nil)
+                
+                //passing cell date & time to Reschedule VC
+                dv.getTime = cell.lbl_MyVisitorTime.text!
+                dv.getDate = cell.lbl_MyVisitorDate.text!
         }
         return cell
     }
-    
     //date action fucntion
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
         // format date
@@ -160,54 +158,33 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         txtDate.text = dateString
         self.view.endEditing(true)
     }
-    
-    //Created function to get Profile image from firebase in Visitor List
-    func downloadImageFromServerURL(urlString: String, imageView:UIImageView) {
-        
-        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-            if error == nil {
-                let image = UIImage(data: data!)
-                DispatchQueue.main.async(execute: { () -> Void in
-                    imageView.image = image
-                })
-            }
-        }).resume()
-    }
 }
-
-extension MyVisitorListViewController : dataCollectionProtocol{
-    
+extension MyVisitorListViewController : dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
         //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
-        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
-        }
+        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             //Remove collection view cell item with animation
              self.myVisitorList.remove(at: indx)
-            
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
             
             UIView.animate(withDuration: 0.3) {
-                
                 cell.alpha = 0.0
                 let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
                 cell.layer.transform = transform
             }
-            
             Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
         }
-        
         alert.addAction(actionNO) //add No action on AlertView
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)
     }
-    
     @objc func reloadCollectionData() {
         collectionView.reloadData()
     }

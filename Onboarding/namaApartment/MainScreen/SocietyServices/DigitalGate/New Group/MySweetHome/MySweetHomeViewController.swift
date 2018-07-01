@@ -7,8 +7,10 @@
 //
 
 import UIKit
-class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+import FirebaseDatabase
 
+class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+    
     private var addMemberButton = UIButton()
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -52,14 +54,9 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
 
     @IBAction func btnAddFamilyMember(_ sender: UIButton)
     {
-        let vc = NAViewPresenter().addMySerivesVC()
-        
-        //passing value to my services VC
-        let passVC = "mySweetHomeVC"
-        vc.vcValue = passVC
-      
-       vc.navTitle =  NAString().addFamilyMemberTitle().capitalized
-        self.navigationController?.pushViewController(vc, animated: true)
+        let lv = NAViewPresenter().myFamilyMembers()
+        self.navigationController?.pushViewController(lv, animated: true)
+        ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
     }
     
     //created custome back button to go back to digi gate
@@ -78,7 +75,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
-    
+        
         cell.lbl_MySweetHomeName.text = MySweetHomeName[indexPath.row]
         cell.lbl_MySweetHomeRelation.text = MySweetHomeRelation[indexPath.row]
         cell.lbl_MySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
@@ -160,6 +157,7 @@ extension MySweetHomeViewController : removeCollectionProtocol{
             let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
                 //Remove collection view cell item with animation
+                
                 self.MySweetHomeName.remove(at: indx)
             
                 //animation at final state

@@ -14,7 +14,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     var currentTag: Int?
     
     @IBOutlet weak var TableView: UITableView!
-    
     //Handed Things to my guest array for displaying card view data
     var cardImageList = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MyVisitorName = ["Vikas Nayak","Chaitanya","Vinod Kumar","Avinash"]
@@ -36,7 +35,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Disable Table view cell selection & cell border line.
         TableView.allowsSelection = false
         self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -45,30 +43,23 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
     }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (titleName == NAString().handed_things_to_my_guest().capitalized)
-        {
+        if (titleName == NAString().handed_things_to_my_guest().capitalized) {
             return cardImageList.count
-        }
-        else
-        {
+        } else {
             return cardImageHandedThigs.count
         }
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestTableViewCell
         
             //assigning delegate method to textFiled
             cell.txt_Description.delegate = self
         
-        if (titleName == NAString().handed_things_to_my_guest().capitalized)
-        {
+        if (titleName == NAString().handed_things_to_my_guest().capitalized) {
             cell.lbl_VisiterName.text = InvitorName[indexPath.row]
             cell.lbl_GuestDate.text = MyVisitorDate[indexPath.row]
             cell.lbl_GuestTime.text = MyVisitorTime[indexPath.row]
@@ -83,16 +74,14 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             cell.lbl_Date.text = NAString().date()
             cell.lbl_Time.text = NAString().time()
             cell.lbl_Invited.text = NAString().invited_by()
-        }
-        else{
+        } else {
             cell.lbl_VisiterName.text = nameHandedThings[indexPath.row]
             cell.lbl_GuestType.text = typeHandedThings[indexPath.row]
             cell.lbl_GuestDate.text = ratingHandedThings[indexPath.row]
             cell.lbl_GuestTime.text = inTimeHandedThings[indexPath.row]
             cell.lbl_GuestInvitedBy.text = flatHandedThings[indexPath.row]
-            
-            cell.cellImage
-                .image = cardImageHandedThigs[indexPath.row]
+    
+            cell.cellImage.image = cardImageHandedThigs[indexPath.row]
             
             //assigning title to cell Labels
             cell.lbl_Visiter.text = NAString().name()
@@ -101,7 +90,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             cell.lbl_Time.text = NAString().time()
             cell.lbl_Invited.text = NAString().flats()
         }
-        
         //Label Formatting & setting
         cell.lbl_Visiter.font = NAFont().textFieldFont()
         cell.lbl_Type.font = NAFont().textFieldFont()
@@ -119,13 +107,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.backgroundCardView.layer.shadowColor = UIColor.gray.cgColor
         cell.backgroundCardView.layer.shadowOffset = CGSize(width: 1, height: 1)
         cell.backgroundCardView.layer.shadowOpacity = 1
-        
-        //Lables Formatting & setting
-        cell.lbl_Visiter.font = NAFont().headerFont()
-        cell.lbl_Type.font = NAFont().headerFont()
-        cell.lbl_Date.font = NAFont().headerFont()
-        cell.lbl_Time.font = NAFont().headerFont()
-        cell.lbl_Invited.font = NAFont().headerFont()
         
         cell.lbl_VisiterName.font = NAFont().headerFont()
         cell.lbl_GuestType.font = NAFont().headerFont()
@@ -161,10 +142,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             cell.segmentSelect.selectedSegmentIndex = 1
         }
         cell.segmentSelect.addTarget(self, action: #selector(selectSegment(sender:)), for: .valueChanged)
-        
         return cell
     }
-    
     //Dynamically Change Cell Height while selecting segment Controller
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -174,10 +153,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             return HandedThingsToGuestTableViewCell.defaultHeight
         }
     }
-    
     //Dynamically Change Cell Height while selecting segment Controller
     @objc func selectSegment(sender: UISegmentedControl) {
-        
         if sender.selectedSegmentIndex == 0 {
             selectedRow = 0
         } else {

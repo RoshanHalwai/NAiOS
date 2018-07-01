@@ -10,14 +10,12 @@ import Foundation
 import UIKit
 
 //for creating 2 views in single screen(Main screen Data)
-struct apartmentServicesModel
-{
+struct apartmentServicesModel {
     let cellTitle:String?
     let cellImage:UIImage?
 }
 
-struct societyServicesModel
-{
+struct societyServicesModel {
     let cellTitle:String?
     let cellImage:UIImage?
 }

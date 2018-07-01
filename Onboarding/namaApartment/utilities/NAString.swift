@@ -12,7 +12,6 @@ import UIKit
 class NAString : NSObject
 {
     //Splash screen strings
-    
     func splash_NammaHeader_Title() -> String {
         return String("Namma Apartments")
     }
@@ -49,7 +48,6 @@ class NAString : NSObject
     }
     
     //OTP Screen strings
-    
     func phone_verification_activity_title() -> String {
         return String("Phone Verification")
     }
@@ -68,13 +66,15 @@ class NAString : NSObject
     }
     
     //Flat Details Screen
-    
     func My_flat_Details_title() -> String {
         return String("My Flat Details")
     }
     
     func city() -> String {
         return String("CITY")
+    }
+    func tableView_Content_size() -> String {
+        return String("contentSize")
     }
     
     func society() -> String {
@@ -109,7 +109,6 @@ class NAString : NSObject
     }
     
     //SignUp screen
-    
     func full_name() -> String {
         return String("FULL NAME")
     }
@@ -131,14 +130,13 @@ class NAString : NSObject
     }
     
     func i_agree_to_terms_and_conditions() -> String {
-        return String("By clicking on SignUp I agree to Terms And Conditions")
+        return String("By clicking on SignUp I agree to NammaApartments Privacy Policy and Terms&Conditions")
     }
     func i_already_have_an_account() -> String {
         return String("I already have an Account")
     }
     
     //Signin screen and Visitor screen
-    
     func create_an_account_button() -> String {
         return String("Create an Account")
     }
@@ -156,16 +154,29 @@ class NAString : NSObject
     func please_enter_name() -> String{
         return String("Please enter name")
     }
+    func please_upload_Image() -> String {
+        return String("Please Upload Image")
+    }
+    func please_enter_email() -> String {
+        return String("Please enter Email")
+    }
+    func please_select_your_relation() -> String {
+        return String("Please Select Your Relation")
+    }
+    func please_enter_Valid_email() -> String {
+        return String("Please enter a Valid Email address")
+    }
     func required_mobileNo_Length() -> Int{
         return Int(10)
     }
     func zero_length() -> Int{
         return Int(0)
     }
-    
+    func one() -> Int{
+        return Int(1)
+    }
     
     //Society Services Activity
-    
     func digital_gate() -> String {
         return String("Digital Gate")
     }
@@ -200,7 +211,6 @@ class NAString : NSObject
     }
     
     //Apartment Services Activity
-    
     func cook() -> String {
         return String("Cook")
     }
@@ -242,7 +252,6 @@ class NAString : NSObject
     }
     
     //Digital Gate Service Activity
-    
     func digital_gate_title() -> String {
         return String("Digi Gate")
     }
@@ -333,7 +342,6 @@ class NAString : NSObject
     }
     
     //notify Digi gate
-    
     func notifyDigiGateHeader() -> String {
         return String("Notify Digi Gate")
     }
@@ -407,7 +415,6 @@ class NAString : NSObject
     }
     
     //Handed things to my guest
-    
     func yes() -> String {
         return String("Yes")
     }
@@ -445,9 +452,8 @@ class NAString : NSObject
     }
     
     //adding my daily services
-    
     func add_my_service() -> String {
-        return String("Add My Service")
+        return String("Add My Daily Service")
     }
     func name() -> String {
         return String("Name:")
@@ -630,6 +636,9 @@ class NAString : NSObject
     func cellID() -> String {
         return String ("Cell")
     }
+    func layoutFeatureErrorVisitorList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no visitors at your flat.")
+    }
     
     //Cab Arrival and Package Arrival Validation
     func please_fill_details() -> String {
@@ -647,6 +656,4 @@ class NAString : NSObject
     func notifyButtonAlertViewTitle() -> String {
         return String("Notification Message")
     }
-    
-    
 }
