@@ -24,8 +24,6 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     @IBOutlet weak var txt2_cabNumber: UITextField!
     @IBOutlet weak var txt3_cabNumber: UITextField!
     @IBOutlet weak var txt4_cabNumber: UITextField!
-    
-   
     @IBOutlet weak var txt_DateTime: UITextField!
     
     @IBOutlet weak var btn_NotifyGate: UIButton!
@@ -60,9 +58,8 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Hiding Cab TextFields & Pacakge Vandor textFields According to Title
-       hidingTextFiledAccordingToTitle()
+        hidingTextFiledAccordingToTitle()
 
         //hiding error Label
         lbl_cabNumber_Validation.isHidden = true
@@ -210,27 +207,22 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
     }
-    
     //Hiding Cab TextFields & Pacakge Vandor textFields According to Title
     func hidingTextFiledAccordingToTitle() {
         if (navTitle == NAString().expecting_cab_arrival()) {
             self.txt_PackageVendor.isHidden = true
-        }
-        else
-        {
+        } else {
             cabNumber_stack.isHidden = true
         }
     }
-    
     //for datePicker
     func createDatePicker() {
-        
-        // toolbar
+        //toolbar
         picker = UIDatePicker()
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        // done button for toolbar
+        //done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_DateTime.inputAccessoryView = toolbar
@@ -245,7 +237,6 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         //set local date to Europe to show 24 hours
         picker?.locale = Locale(identifier: "en_GB")
     }
-
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
@@ -253,20 +244,15 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
-        
-        if !(txt_DateTime.text?.isEmpty)! {
-            lbl_dateField_Validation.isHidden = true
-            txt_DateTime.underlined()
-        }
+            if !(txt_DateTime.text?.isEmpty)! {
+                lbl_dateField_Validation.isHidden = true
+                txt_DateTime.underlined()
+            }
     }
-    
     @IBAction func btnSelectHours(_ sender: UIButton) {
-        
         selectedColor(tag: sender.tag)
     }
-    
     @IBAction func btnNotifyGate(_ sender: Any) {
-        
         if (txt1_cabNumber.text?.isEmpty)! {
             lbl_cabNumber_Validation.isHidden = false
             lbl_cabNumber_Validation.text = NAString().please_fill_details()
@@ -299,24 +285,17 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
             inviteAlertView()
         }
     }
-    
     //AlertView For navigation
     func inviteAlertView() {
-        
         //creating alert controller
         let alert = UIAlertController(title: NAString().notifyButtonAlertViewTitle() , message: NAString().notifyButtonAlertViewMessage(), preferredStyle: .alert)
-        
         //creating Accept alert actions
-        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-        }
-        
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    
     //creating function to highlight select button color
     func selectedColor(tag: Int) {
-        
         for button in buttons as [UIButton] {
             isValidButtonClicked = [true]
             if button.tag == tag {
@@ -331,39 +310,37 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         }
     }
 }
-
 extension ExpectingCabArrivalViewController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-        
-        if textField == txt1_cabNumber {
-            if (newLength == NAString().zero_length()) {
-                lbl_cabNumber_Validation.isHidden = false
-                lbl_cabNumber_Validation.text = NAString().please_fill_details()
-                txt1_cabNumber.redunderlined()
-                txt2_cabNumber.redunderlined()
-                txt3_cabNumber.redunderlined()
-                txt4_cabNumber.redunderlined()
-            } else {
-                lbl_cabNumber_Validation.isHidden = true
-                txt1_cabNumber.underlined()
-                txt2_cabNumber.underlined()
-                txt3_cabNumber.underlined()
-                txt4_cabNumber.underlined()
+            if textField == txt1_cabNumber {
+                if (newLength == NAString().zero_length()) {
+                    lbl_cabNumber_Validation.isHidden = false
+                    lbl_cabNumber_Validation.text = NAString().please_fill_details()
+                    txt1_cabNumber.redunderlined()
+                    txt2_cabNumber.redunderlined()
+                    txt3_cabNumber.redunderlined()
+                    txt4_cabNumber.redunderlined()
+                } else {
+                    lbl_cabNumber_Validation.isHidden = true
+                    txt1_cabNumber.underlined()
+                    txt2_cabNumber.underlined()
+                    txt3_cabNumber.underlined()
+                    txt4_cabNumber.underlined()
+                }
             }
-        }
-        if textField == txt_DateTime {
-            if (newLength == NAString().zero_length()) {
-                lbl_dateField_Validation.isHidden = false
-                txt_DateTime.redunderlined()
-                lbl_dateField_Validation.text = NAString().Please_select_date()
-            } else {
-                lbl_dateField_Validation.isHidden = true
-                txt_DateTime.underlined()
+            if textField == txt_DateTime {
+                if (newLength == NAString().zero_length()) {
+                    lbl_dateField_Validation.isHidden = false
+                    txt_DateTime.redunderlined()
+                    lbl_dateField_Validation.text = NAString().Please_select_date()
+                } else {
+                    lbl_dateField_Validation.isHidden = true
+                    txt_DateTime.underlined()
+                }
             }
-        }
         return true
     }
 }
