@@ -268,7 +268,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             
-            let dv = NAViewPresenter().myVisitorListVC()
+            let dv = NAViewPresenter().myGuestListVC()
             self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)

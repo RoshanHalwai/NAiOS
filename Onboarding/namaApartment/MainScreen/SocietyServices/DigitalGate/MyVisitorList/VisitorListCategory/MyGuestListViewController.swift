@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class MyVisitorListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
+class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     
@@ -17,6 +17,8 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     var myVisitorList = [NammaApartmentVisitor]()
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var titleName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,25 +62,23 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
             }
         })
         //Setting & Formatting Navigation bar
-        super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
-        
-        //created custom back button for goto digi gate screen
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
+        super.ConfigureNavBarTitle(title: NAString().my_Guest())
+
+        //created custom back button for goto My Visitors List
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMyVisitorsList))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    //created custome back button to go back to digi gate
-    @objc func goBackToDigiGate() {
-        let dv = NAViewPresenter().digiGateVC()
+    //created custome back button to go back to My Visitors List
+    @objc func goBackToMyVisitorsList() {
+        let dv = NAViewPresenter().myVisitorsListVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myVisitorList.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVistorListCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyGuestListCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
         let myList : NammaApartmentVisitor
@@ -91,7 +91,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
             let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
             let dateString: String = arrayOfDateTime[0]
             let timeString: String = arrayOfDateTime[1]
-         //   Assigning date & time separate variables to get data in cell labels.
+            //Assigning date & time separate variables to get data in cell labels.
             cell.lbl_MyVisitorTime.text = timeString
             cell.lbl_MyVisitorDate.text = dateString
         
@@ -102,7 +102,6 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         if let urlString = myList.getprofilePhoto() {
            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
-        
         //TODO : Need to get Name from Firebase (According To Default User)
         cell.lbl_InvitedName.text = "Vikas"
         
@@ -159,7 +158,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
         self.view.endEditing(true)
     }
 }
-extension MyVisitorListViewController : dataCollectionProtocol {
+extension MyGuestListViewController : dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
         //AlertView will Display while removing Card view

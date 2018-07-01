@@ -349,6 +349,12 @@ class NAString : NSObject
     func expecting_cab_arrival() -> String {
         return String("Expecting Cab Arrival")
     }
+    func cab_arrival() -> String {
+        return String("Cab Arrivals")
+    }
+    func package_arrival() -> String {
+        return String("Package Arrivals")
+    }
     
     func expecting_package_arrival() -> String {
         return String("Expecting Package Arrival")
@@ -364,6 +370,12 @@ class NAString : NSObject
     
     func handed_things_to_my_daily_services() -> String {
         return String("Handed things to my Daily Services")
+    }
+    func my_Guest() -> String {
+        return String("MY Guests")
+    }
+    func my_Daily_Services() -> String {
+        return String("My Daily Services")
     }
     
     func package_number() -> String {
@@ -425,7 +437,7 @@ class NAString : NSObject
         return String("Given Things")
     }
     func description() -> String {
-        return String("Description")
+        return String("Description:(Optional)")
     }
     func feature_unavailable_message() -> String {
         return String("Sorry you cannot use this feature since currently you do not have any visitors at your resident.")
@@ -638,6 +650,12 @@ class NAString : NSObject
     }
     func layoutFeatureErrorVisitorList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no visitors at your flat.")
+    }
+    func layoutFeatureErrorCabArrivalList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no cab arrivals scheduled for your flat.")
+    }
+    func layoutFeatureErrorpackageArrivalList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
     }
     
     //Cab Arrival and Package Arrival Validation
