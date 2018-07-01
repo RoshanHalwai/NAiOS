@@ -151,7 +151,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = (NAString().dateFormate() + "\t\t" + NAString().timeFormate())
+        date.dateFormat = (NAString().dateFormat() + "\t\t" + NAString().timeFormat())
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)
@@ -205,7 +205,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                 
                 if success {
                     self.openContacts()
-                } else {
                 }
             })
         } else if authStatus == CNAuthorizationStatus.authorized {
