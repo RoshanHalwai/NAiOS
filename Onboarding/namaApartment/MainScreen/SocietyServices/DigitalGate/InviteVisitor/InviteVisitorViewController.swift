@@ -272,7 +272,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             
-            let dv = NAViewPresenter().myVisitorListVC()
+            let dv = NAViewPresenter().myGuestListVC()
             self.navigationController?.pushViewController(dv, animated: true)
             //Calling Invite Visitor Fucntion in view did load.
             self.storeVisitorDetailsInFirebase()

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */; };
+		0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */; };
+		0816E56C20E782C300116FD0 /* CabArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */; };
+		0816E56E20E782DE00116FD0 /* PackageArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */; };
 		0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */; };
 		08520A5020E3BFF900433DAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08520A4F20E3BFF900433DAD /* GoogleService-Info.plist */; };
 		08EC517620E631D000A6E013 /* MyFlatDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC517520E631D000A6E013 /* MyFlatDetailsTableViewCell.swift */; };
@@ -37,7 +41,7 @@
 		8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012A209715D5004B28EB /* splashNammaApartments.swift */; };
 		8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012C209715E5004B28EB /* splashApartmentServices.swift */; };
 		8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627012E209715FD004B28EB /* splashSocietyServices.swift */; };
-		86494B8D20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86494B8C20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift */; };
+		86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */; };
 		86548D7E209C1F7500C700DA /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D7D209C1F7500C700DA /* DataModel.swift */; };
 		86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */; };
 		86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D81209C1FB500C700DA /* MainScreenViewController.swift */; };
@@ -68,8 +72,8 @@
 		86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */; };
 		86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74EB209A2E7000B159A3 /* NAFont.swift */; };
 		86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74ED209A2EB500B159A3 /* NAColor.swift */; };
-		86BF6A4120A0325200B175A1 /* MyVistorListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4020A0325200B175A1 /* MyVistorListCollectionViewCell.swift */; };
-		86BF6A4320A0326E00B175A1 /* MyVisitorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4220A0326E00B175A1 /* MyVisitorListViewController.swift */; };
+		86BF6A4120A0325200B175A1 /* MyGuestListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4020A0325200B175A1 /* MyGuestListCollectionViewCell.swift */; };
+		86BF6A4320A0326E00B175A1 /* MyGuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */; };
 		86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */; };
 		86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */; };
 		86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13B209AF45E00D75D0F /* HomeViewController.swift */; };
@@ -105,6 +109,10 @@
 
 /* Begin PBXFileReference section */
 		0625CA33236AB31696C6B05B /* Pods-nammaApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.debug.xcconfig"; sourceTree = "<group>"; };
+		0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListViewController.swift; sourceTree = "<group>"; };
+		0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListCollectionViewCell.swift; sourceTree = "<group>"; };
+		0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabArrivalViewController.swift; sourceTree = "<group>"; };
+		0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageArrivalViewController.swift; sourceTree = "<group>"; };
 		0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyFamilyMembersViewController.swift; sourceTree = "<group>"; };
 		08520A4F20E3BFF900433DAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		08EC517520E631D000A6E013 /* MyFlatDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFlatDetailsTableViewCell.swift; sourceTree = "<group>"; };
@@ -144,7 +152,7 @@
 		8627012A209715D5004B28EB /* splashNammaApartments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashNammaApartments.swift; sourceTree = "<group>"; };
 		8627012C209715E5004B28EB /* splashApartmentServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashApartmentServices.swift; sourceTree = "<group>"; };
 		8627012E209715FD004B28EB /* splashSocietyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashSocietyServices.swift; sourceTree = "<group>"; };
-		86494B8C20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescheduleMyVisitorListViewController.swift; sourceTree = "<group>"; };
+		86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescheduleMyGuestListViewController.swift; sourceTree = "<group>"; };
 		86548D7D209C1F7500C700DA /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
 		86548D81209C1FB500C700DA /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -175,8 +183,8 @@
 		86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myFlatDetailsViewController.swift; sourceTree = "<group>"; };
 		86BD74EB209A2E7000B159A3 /* NAFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFont.swift; sourceTree = "<group>"; };
 		86BD74ED209A2EB500B159A3 /* NAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAColor.swift; sourceTree = "<group>"; };
-		86BF6A4020A0325200B175A1 /* MyVistorListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVistorListCollectionViewCell.swift; sourceTree = "<group>"; };
-		86BF6A4220A0326E00B175A1 /* MyVisitorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorListViewController.swift; sourceTree = "<group>"; };
+		86BF6A4020A0325200B175A1 /* MyGuestListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestListCollectionViewCell.swift; sourceTree = "<group>"; };
+		86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestListViewController.swift; sourceTree = "<group>"; };
 		86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateViewController.swift; sourceTree = "<group>"; };
 		86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateCollectionViewCell.swift; sourceTree = "<group>"; };
 		86C1A13B209AF45E00D75D0F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +233,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0816E56A20E7672900116FD0 /* VisitorListCategory */ = {
+			isa = PBXGroup;
+			children = (
+				86BF6A4020A0325200B175A1 /* MyGuestListCollectionViewCell.swift */,
+				86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */,
+				86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */,
+				86B1A8D920D50EAB00D90D88 /* NammaApartmentVisitor.swift */,
+				0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */,
+				0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */,
+			);
+			path = VisitorListCategory;
+			sourceTree = "<group>";
+		};
 		15E253658059EF007BD00B9F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,10 +514,9 @@
 		86BF6A3F20A0322100B175A1 /* MyVisitorList */ = {
 			isa = PBXGroup;
 			children = (
-				86BF6A4020A0325200B175A1 /* MyVistorListCollectionViewCell.swift */,
-				86BF6A4220A0326E00B175A1 /* MyVisitorListViewController.swift */,
-				86494B8C20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift */,
-				86B1A8D920D50EAB00D90D88 /* NammaApartmentVisitor.swift */,
+				0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */,
+				0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */,
+				0816E56A20E7672900116FD0 /* VisitorListCategory */,
 			);
 			path = MyVisitorList;
 			sourceTree = "<group>";
@@ -844,6 +864,7 @@
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
+				0816E56C20E782C300116FD0 /* CabArrivalViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
 				868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
@@ -859,10 +880,11 @@
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
-				86BF6A4120A0325200B175A1 /* MyVistorListCollectionViewCell.swift in Sources */,
+				86BF6A4120A0325200B175A1 /* MyGuestListCollectionViewCell.swift in Sources */,
 				86646BC220AB1530002A92B8 /* RaiseAlarmViewController.swift in Sources */,
 				86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */,
 				86646BBE20AB0472002A92B8 /* EmergencyViewController.swift in Sources */,
+				0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
 				86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */,
@@ -871,12 +893,14 @@
 				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
 				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
+				0816E56E20E782DE00116FD0 /* PackageArrivalViewController.swift in Sources */,
 				8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */,
 				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
 				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
-				86BF6A4320A0326E00B175A1 /* MyVisitorListViewController.swift in Sources */,
+				86BF6A4320A0326E00B175A1 /* MyGuestListViewController.swift in Sources */,
 				86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */,
 				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
+				0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
 				08EC517620E631D000A6E013 /* MyFlatDetailsTableViewCell.swift in Sources */,
 				86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */,
@@ -888,7 +912,7 @@
 				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
-				86494B8D20C10E9300B9980C /* RescheduleMyVisitorListViewController.swift in Sources */,
+				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
