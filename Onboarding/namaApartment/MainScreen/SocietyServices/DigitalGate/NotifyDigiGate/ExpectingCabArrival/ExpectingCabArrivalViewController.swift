@@ -9,15 +9,21 @@
 import UIKit
 
 class ExpectingCabArrivalViewController: NANavigationViewController {
-    @IBOutlet weak var lbl_CabNumber: UILabel!
+    @IBOutlet weak var lbl_cabNumber: UILabel!
     @IBOutlet weak var lbl_DateTime: UILabel!
     @IBOutlet weak var lbl_ValidFor: UILabel!
+    
+    @IBOutlet weak var cabNumber_stack : UIStackView!
     
     @IBOutlet weak var lbl_cabNumber_Validation: UILabel!
     @IBOutlet weak var lbl_dateField_Validation: UILabel!
     @IBOutlet weak var lbl_expectedHours_Validation: UILabel!
     
-    @IBOutlet weak var txt_CabNumber: UITextField!
+    @IBOutlet weak var txt_PackageVendor: UITextField!
+    @IBOutlet weak var cab_txt_stateCode: UITextField!
+    @IBOutlet weak var cab_txt_RTOZone: UITextField!
+    @IBOutlet weak var cab_txt_serialNum1: UITextField!
+    @IBOutlet weak var cab_txt_serialNum2: UITextField!
     @IBOutlet weak var txt_DateTime: UITextField!
     
     @IBOutlet weak var btn_NotifyGate: UIButton!
@@ -52,7 +58,9 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //Hiding Cab TextFields & Pacakge Vandor textFields According to Title
+        hidingTextFiledAccordingToTitle()
+
         //hiding error Label
         lbl_cabNumber_Validation.isHidden = true
         lbl_dateField_Validation.isHidden = true
@@ -60,8 +68,12 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         
         //assigned delegate method on textFields
         txt_DateTime.delegate = self
-        txt_CabNumber.delegate = self
-        
+        cab_txt_stateCode.delegate = self
+        cab_txt_RTOZone.delegate = self
+        cab_txt_serialNum1.delegate = self
+        cab_txt_serialNum2.delegate = self
+        txt_PackageVendor.delegate = self
+
         //placing image calender imgage inside the Date&Time TextField
         self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
@@ -70,13 +82,17 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         txt_DateTime.rightView = imageView
         
         // become first responder
-        self.txt_CabNumber.becomeFirstResponder()
-        
+        self.cab_txt_stateCode.becomeFirstResponder()
+        self.cab_txt_RTOZone.becomeFirstResponder()
+        self.cab_txt_serialNum1.becomeFirstResponder()
+        self.cab_txt_serialNum2.becomeFirstResponder()
+        self.txt_PackageVendor.becomeFirstResponder()
+
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: navTitle!)
         
         //Assigning Strings to the label tile according to title
-        self.lbl_CabNumber.text = vendorCabNameString
+        self.lbl_cabNumber.text = vendorCabNameString
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
@@ -85,8 +101,12 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         createDatePicker()
         
         //putting black bottom line on textFields
-        txt_CabNumber.underlined()
+        cab_txt_stateCode.underlined()
+        cab_txt_RTOZone.underlined()
+        cab_txt_serialNum1.underlined()
+        cab_txt_serialNum2.underlined()
         txt_DateTime.underlined()
+        txt_PackageVendor.underlined()
         
         //Label formatting & setting
         lbl_DateTime.text = NAString().date_Time()
@@ -95,7 +115,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         //lbl_Title.font = NAFont().headerFont()
         lbl_ValidFor.font = NAFont().headerFont()
         lbl_DateTime.font = NAFont().headerFont()
-        lbl_CabNumber.font = NAFont().headerFont()
+        lbl_cabNumber.font = NAFont().headerFont()
         
         //Error Labels Font Style
         lbl_cabNumber_Validation.font = NAFont().descriptionFont()
@@ -103,7 +123,11 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         lbl_expectedHours_Validation.font = NAFont().descriptionFont()
         
         //Textfield formatting & setting
-        txt_CabNumber.font = NAFont().textFieldFont()
+        cab_txt_stateCode.font = NAFont().textFieldFont()
+        cab_txt_RTOZone.font = NAFont().textFieldFont()
+        cab_txt_serialNum1.font = NAFont().textFieldFont()
+        cab_txt_serialNum2.font = NAFont().textFieldFont()
+        txt_PackageVendor.font = NAFont().textFieldFont()
         txt_DateTime.font = NAFont().textFieldFont()
         
         //for changing button color
@@ -185,16 +209,22 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
     }
-    
+    //Hiding Cab TextFields & Pacakge Vandor textFields According to Title
+    func hidingTextFiledAccordingToTitle() {
+        if (navTitle == NAString().expecting_cab_arrival()) {
+            self.txt_PackageVendor.isHidden = true
+        } else {
+            cabNumber_stack.isHidden = true
+        }
+    }
     //for datePicker
     func createDatePicker() {
-        
-        // toolbar
+        //toolbar
         picker = UIDatePicker()
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        // done button for toolbar
+        //done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_DateTime.inputAccessoryView = toolbar
@@ -209,7 +239,6 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         //set local date to Europe to show 24 hours
         picker?.locale = Locale(identifier: "en_GB")
     }
-    
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
@@ -217,27 +246,28 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
-        
-        if !(txt_DateTime.text?.isEmpty)! {
-            lbl_dateField_Validation.isHidden = true
-            txt_DateTime.underlined()
-        }
+            if !(txt_DateTime.text?.isEmpty)! {
+                lbl_dateField_Validation.isHidden = true
+                txt_DateTime.underlined()
+            }
     }
-    
     @IBAction func btnSelectHours(_ sender: UIButton) {
-        
         selectedColor(tag: sender.tag)
     }
-    
     @IBAction func btnNotifyGate(_ sender: Any) {
-        
-        if (txt_CabNumber.text?.isEmpty)! {
+        if (cab_txt_stateCode.text?.isEmpty)! {
             lbl_cabNumber_Validation.isHidden = false
             lbl_cabNumber_Validation.text = NAString().please_fill_details()
-            txt_CabNumber.redunderlined()
+            cab_txt_stateCode.redunderlined()
+            cab_txt_RTOZone.redunderlined()
+            cab_txt_serialNum1.redunderlined()
+            cab_txt_serialNum2.redunderlined()
         } else {
             lbl_cabNumber_Validation.isHidden = true
-            txt_CabNumber.underlined()
+            cab_txt_stateCode.underlined()
+            cab_txt_RTOZone.underlined()
+            cab_txt_serialNum1.underlined()
+            cab_txt_serialNum2.underlined()
         }
         if (txt_DateTime.text?.isEmpty)! {
             lbl_dateField_Validation.isHidden = false
@@ -253,28 +283,21 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         } else if (isValidButtonClicked.index(of: true) != nil) {
             lbl_expectedHours_Validation.isHidden = true
         }
-        if !(txt_CabNumber.text?.isEmpty)! && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
+        if !(cab_txt_stateCode.text?.isEmpty)! && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
             inviteAlertView()
         }
     }
-    
     //AlertView For navigation
     func inviteAlertView() {
-        
         //creating alert controller
         let alert = UIAlertController(title: NAString().notifyButtonAlertViewTitle() , message: NAString().notifyButtonAlertViewMessage(), preferredStyle: .alert)
-        
         //creating Accept alert actions
-        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-        }
-        
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    
     //creating function to highlight select button color
     func selectedColor(tag: Int) {
-        
         for button in buttons as [UIButton] {
             isValidButtonClicked = [true]
             if button.tag == tag {
@@ -289,33 +312,37 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         }
     }
 }
-
 extension ExpectingCabArrivalViewController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-        
-        if textField == txt_CabNumber {
-            if (newLength == NAString().zero_length()) {
-                lbl_cabNumber_Validation.isHidden = false
-                lbl_cabNumber_Validation.text = NAString().please_fill_details()
-                txt_CabNumber.redunderlined()
-            } else {
-                lbl_cabNumber_Validation.isHidden = true
-                txt_CabNumber.underlined()
+            if textField == cab_txt_stateCode {
+                if (newLength == NAString().zero_length()) {
+                    lbl_cabNumber_Validation.isHidden = false
+                    lbl_cabNumber_Validation.text = NAString().please_fill_details()
+                    cab_txt_stateCode.redunderlined()
+                    cab_txt_RTOZone.redunderlined()
+                    cab_txt_serialNum1.redunderlined()
+                    cab_txt_serialNum2.redunderlined()
+                } else {
+                    lbl_cabNumber_Validation.isHidden = true
+                    cab_txt_stateCode.underlined()
+                    cab_txt_RTOZone.underlined()
+                    cab_txt_serialNum1.underlined()
+                    cab_txt_serialNum2.underlined()
+                }
             }
-        }
-        if textField == txt_DateTime {
-            if (newLength == NAString().zero_length()) {
-                lbl_dateField_Validation.isHidden = false
-                txt_DateTime.redunderlined()
-                lbl_dateField_Validation.text = NAString().Please_select_date()
-            } else {
-                lbl_dateField_Validation.isHidden = true
-                txt_DateTime.underlined()
+            if textField == txt_DateTime {
+                if (newLength == NAString().zero_length()) {
+                    lbl_dateField_Validation.isHidden = false
+                    txt_DateTime.redunderlined()
+                    lbl_dateField_Validation.text = NAString().Please_select_date()
+                } else {
+                    lbl_dateField_Validation.isHidden = true
+                    txt_DateTime.underlined()
+                }
             }
-        }
         return true
     }
 }

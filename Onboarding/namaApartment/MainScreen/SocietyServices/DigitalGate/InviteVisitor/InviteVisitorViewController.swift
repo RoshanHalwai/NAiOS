@@ -51,6 +51,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Add border color on profile imageview
+        img_Profile.layer.borderColor = UIColor.black.cgColor
+        
         //Hiding error labels while view load.
         lbl_Name_Validation.isHidden = true
         lbl_Mob_Validation.isHidden = true
@@ -113,7 +116,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         lbl_Date.font = NAFont().headerFont()
         lbl_InvitorName.text = NAString().visitorName()
         lbl_InvitorMobile.text = NAString().visitorMobile()
-        lbl_InviteDescription.text = NAString().inviteVisitorOTPDesc()
+//        lbl_InviteDescription.text = NAString().inviteVisitorOTPDesc()
         
         lbl_Name_Validation.font = NAFont().descriptionFont()
         lbl_Mob_Validation.font = NAFont().descriptionFont()
