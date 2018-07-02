@@ -9,6 +9,8 @@
 import UIKit
 import Contacts
 import ContactsUI
+import FirebaseDatabase
+import FirebaseAuth
 
 class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
     @IBOutlet weak var lbl_InvitorName: UILabel!
@@ -30,6 +32,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
     
+    //Creating Firebase DB Reference variable.
+    var preApprovedVisitorsRef : DatabaseReference?
+    var preApprovedVisitorsMobileNoRef : DatabaseReference?
    
     //created date picker programtically
     let picker = UIDatePicker()
@@ -146,7 +151,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YYYY \t HH:mm"
+        date.dateFormat = (NAString().dateFormat() + "\t\t" + NAString().timeFormat())
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)
@@ -200,14 +205,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                 
                 if success {
                     self.openContacts()
-                    print("Authorization")
-                } else {
-                    print("No Authorization")
                 }
             })
         } else if authStatus == CNAuthorizationStatus.authorized {
             self.openContacts()
-            print("Get Authorization")
         }
         //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied {
@@ -245,7 +246,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_InviteDescription.isHidden = false
         }
         
-        var mobileNo = "Not Available"
+        var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         mobileNo = mobileString! as! String
         self.txtInvitorMobile.text = mobileNo
@@ -270,12 +271,47 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             let dv = NAViewPresenter().myGuestListVC()
             self.navigationController?.pushViewController(dv, animated: true)
+            //Calling Invite Visitor Fucntion in view did load.
+            self.storeVisitorDetailsInFirebase()
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    //Created Function for inviting visitor with the help of firebase.
+    func storeVisitorDetailsInFirebase() {
+        //Creating visitors UID
+        preApprovedVisitorsMobileNoRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS_MOBILENUMBER)
+        
+        let visitorUID : String?
+        visitorUID = (preApprovedVisitorsMobileNoRef?.childByAutoId().key)!
+        
+        //Mapping Visitor's mobile number with their UID
+        preApprovedVisitorsMobileNoRef?.child(self.txtInvitorMobile.text!).setValue(visitorUID)
+         preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+       
+        //Creating variable for status & assigning status string on it.
+        var status = String()
+        status = NAString().statusNotEntered()
+        
+        //TODO: Need to replace hardcoded inviterUID with Default User's UID.
+        var inviterUID = String()
+        inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+        
+        //defining node with type of data in it.
+        let visitorData = [
+            VisitorListFBKeys.uid.key : visitorUID,
+            VisitorListFBKeys.dateAndTimeOfVisit.key : txtDate.text! as String,
+            VisitorListFBKeys.mobileNumber.key : txtInvitorMobile.text! as String,
+            VisitorListFBKeys.status.key : status,
+            VisitorListFBKeys.fullName.key : txtInvitorName.text! as String,
+            VisitorListFBKeys.inviterUID.key : inviterUID,
+            //TODO: Need to implemnet image here.
+        ]
+        // Adding visitor data under preApproved visitors
+        preApprovedVisitorsRef?.child(visitorUID!).setValue(visitorData)
     }
-
+}
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
