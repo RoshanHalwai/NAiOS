@@ -153,7 +153,7 @@ class MyVisitorListViewController: NANavigationViewController,UICollectionViewDe
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
         // format date
         let date = DateFormatter()
-        date.dateFormat = NAString().dateFormate()
+        date.dateFormat = NAString().dateFormat()
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)

@@ -64,14 +64,14 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
     @IBAction func datePicker(_ sender: UIDatePicker) {
         if datePicker.datePickerMode == UIDatePickerMode.date {
             let date = DateFormatter()
-            date.dateFormat = NAString().dateFormate()
+            date.dateFormat = NAString().dateFormat()
             let dateString = date.string(from: datePicker.date)
             txt_ReDate.text = dateString
             // Minimum Date
             datePicker.minimumDate = NSDate() as Date
         } else {
             let time = DateFormatter()
-            time.dateFormat = NAString().timeFormate()
+            time.dateFormat = NAString().timeFormat()
             let timeString = time.string(from: datePicker.date)
             txt_ReTime.text = timeString
             //Minimum Time
