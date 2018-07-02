@@ -116,7 +116,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         lbl_Date.font = NAFont().headerFont()
         lbl_InvitorName.text = NAString().visitorName()
         lbl_InvitorMobile.text = NAString().visitorMobile()
-//        lbl_InviteDescription.text = NAString().inviteVisitorOTPDesc()
+        lbl_InviteDescription.text = NAString().inviteVisitorOTPDesc()
         
         lbl_Name_Validation.font = NAFont().descriptionFont()
         lbl_Mob_Validation.font = NAFont().descriptionFont()
