@@ -175,9 +175,6 @@ class NAString : NSObject
     func one() -> Int{
         return Int(1)
     }
-    func two() -> Int {
-        return Int(2)
-    }
     
     //Society Services Activity
     func digital_gate() -> String {

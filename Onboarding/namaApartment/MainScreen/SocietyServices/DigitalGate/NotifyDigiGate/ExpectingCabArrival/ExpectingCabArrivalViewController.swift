@@ -305,7 +305,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
             lbl_expectedHours_Validation.isHidden = true
         }
         if !(cab_txt_stateCode.text?.isEmpty)! &&  !(cab_txt_RTOZone.text?.isEmpty)! && !(cab_txt_serialNum1.text?.isEmpty)! && !(cab_txt_serialNum2.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
-            lbl_cabNumber_Validation.isHidden = true
+            lbl_cabNumber.isHidden = true
             inviteAlertView()
         }
         if !(txt_PackageVendor.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
@@ -342,12 +342,27 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         }
     }
 }
+// Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
+func cabStateCodeAndSerailCodeLength(isNewLength: Int) -> Bool{
+    if (isNewLength >= 2) {
+        return true
+    }else{
+        return false
+    }
+}
+func cabSerialNumberLength(isLength: Int) -> Bool {
+    if (isLength >= 4) {
+        return true
+    }else{
+        return false
+    }
+}
 extension ExpectingCabArrivalViewController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-        if textField == cab_txt_stateCode  {
+        if textField == cab_txt_stateCode {
+            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
                 if (newLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
                     cab_txt_stateCode.redunderlined()
@@ -355,8 +370,11 @@ extension ExpectingCabArrivalViewController {
                     lbl_cabNumber_Validation.isHidden = true
                     cab_txt_stateCode.underlined()
                 }
-            }
+                return newLength <= 2
+             }
+          }
         if textField == cab_txt_RTOZone {
+            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
                 if (newLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
                     cab_txt_RTOZone.redunderlined()
@@ -365,7 +383,10 @@ extension ExpectingCabArrivalViewController {
                     cab_txt_RTOZone.underlined()
                 }
             }
+            return newLength <= 2
+        }
         if textField == cab_txt_serialNum1 {
+            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
                 if (newLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
                     cab_txt_serialNum1.redunderlined()
@@ -374,7 +395,10 @@ extension ExpectingCabArrivalViewController {
                     cab_txt_serialNum1.underlined()
                 }
             }
+            return newLength <= 2
+        }
         if textField == cab_txt_serialNum2 {
+            if cabSerialNumberLength(isLength: newLength) {
                 if (newLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
                     cab_txt_serialNum2.redunderlined()
@@ -383,6 +407,8 @@ extension ExpectingCabArrivalViewController {
                     cab_txt_serialNum2.underlined()
                 }
             }
+            return newLength <= 4
+        }
         if textField == txt_PackageVendor {
                 if (newLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
