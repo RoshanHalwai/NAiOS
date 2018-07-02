@@ -932,7 +932,6 @@
                         <outlet property="btnSelectContact" destination="xib-vh-5IS" id="EGz-c0-jBq"/>
                         <outlet property="img_Profile" destination="7rJ-pw-vGD" id="ddg-r4-bzy"/>
                         <outlet property="lbl_Date" destination="lVh-E6-7aI" id="XIt-lP-fFt"/>
-                        <outlet property="lbl_InviteDescription" destination="BNm-Pl-8W2" id="3EL-tN-alq"/>
                         <outlet property="lbl_InvitorMobile" destination="DP8-yF-ohd" id="LgB-H1-kr2"/>
                         <outlet property="lbl_InvitorName" destination="sM6-WA-2vf" id="JEc-pA-rVH"/>
                         <outlet property="lbl_Mob_Validation" destination="xKO-ga-KjI" id="zaJ-7Y-pLA"/>
@@ -1790,7 +1789,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eh9-qh-nhI">
                                                                         <rect key="frame" x="89" y="0.0" width="68.5" height="30"/>
@@ -1799,7 +1798,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="AB" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pdi-QF-kGn">
                                                                         <rect key="frame" x="177.5" y="0.0" width="69" height="30"/>
@@ -1808,7 +1807,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="alphabet"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1234" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wmk-wU-hDq">
                                                                         <rect key="frame" x="266.5" y="0.0" width="68.5" height="30"/>
@@ -1817,7 +1816,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                     </textField>
                                                                 </subviews>
                                                             </stackView>
@@ -1828,7 +1827,7 @@
                                                                 </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
