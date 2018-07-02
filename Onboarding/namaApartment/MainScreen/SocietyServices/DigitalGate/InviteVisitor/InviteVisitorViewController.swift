@@ -12,6 +12,7 @@ import ContactsUI
 import FirebaseDatabase
 import FirebaseAuth
 import Firebase
+import FirebaseStorage
 
 class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
 
@@ -52,8 +53,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         //Hiding error labels while view load.
         lbl_Name_Validation.isHidden = true
@@ -286,77 +285,72 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     //Created Function for inviting visitor with the help of firebase.
     func storeVisitorDetailsInFirebase() {
         //Creating visitors UID
-        preApprovedVisitorsMobileNoRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS_MOBILENUMBER)
-        
+        preApprovedVisitorsMobileNoRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
+            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS_MOBILENUMBER)
         let visitorUID : String?
         visitorUID = (preApprovedVisitorsMobileNoRef?.childByAutoId().key)!
         
         //Mapping Visitor's mobile number with their UID
         preApprovedVisitorsMobileNoRef?.child(self.txtInvitorMobile.text!).setValue(visitorUID)
-        preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(visitorUID!)
+        preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
+            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(visitorUID!)
 
-        
-       
-        
-        //image
-        
-        
+        //Storing visitors data along with their profile photo
         var visitorImageRef: StorageReference?
+            visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
         
-        visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+        //Compressing profile image and assigning its content type.
+        guard let image = img_Profile.image else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
         
+        let metaDataContentType = StorageMetadata()
+        metaDataContentType.contentType = "image/jpeg"
         
-        
-        func uploadImageToFirebase()
-        {
-            guard let image = img_Profile.image else { return }
-            guard let imageData = UIImageJPEGRepresentation(image, 1) else { return }
+        //
+        let uploadImageRef = visitorImageRef?.child(visitorUID!)
+        let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
             
-            let uploadImageRef = visitorImageRef?.child(visitorUID!)
-            
-            let uploadTask = uploadImageRef?.putData(imageData, metadata: nil, completion: { (metadata, error) in
-                print("upload task finished")
-                print(metadata ?? "NO Metadata")
-                print(error ?? "No Error")
+            uploadImageRef?.downloadURL(completion: { (url, urlError) in
+                
+                if urlError == nil {
+                
+                //Creating variable for status & assigning status string on it.
+                var status = String()
+                status = NAString().statusNotEntered()
+                
+                //TODO: Need to replace hardcoded inviterUID with Default User's UID.
+                var inviterUID = String()
+                inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+                
+                //defining node with type of data in it.
+                let visitorData = [
+                    VisitorListFBKeys.uid.key : visitorUID!,
+                    VisitorListFBKeys.dateAndTimeOfVisit.key : self.txtDate.text! as String,
+                    VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,
+                    VisitorListFBKeys.status.key : status,
+                    VisitorListFBKeys.fullName.key : self.txtInvitorName.text! as String,
+                    VisitorListFBKeys.inviterUID.key : inviterUID,
+                    VisitorListFBKeys.profilePhoto.key : url?.absoluteString
+                ]
+                
+                // Adding visitor data under preApproved visitors
+                    self.preApprovedVisitorsRef?.setValue(visitorData)
+                    
+                } else {
+                    print(urlError as Any)
+                }
             })
-            
-            //to get progress of uploading image
-            uploadTask?.observe(.progress, handler: { (snapshot) in
-                print(snapshot.progress ?? "No More Progress")
-            })
-            
-            
-            uploadTask?.resume()
+
+        })
+        
+        //to get progress of uploading image
+        uploadTask?.observe(.progress, handler: { (snapshot) in
+            print(snapshot.progress ?? "No More Progress")
             
             
-        }
-       
+        })
         
-        
-        
-        
-        
-        //Creating variable for status & assigning status string on it.
-        var status = String()
-        status = NAString().statusNotEntered()
-        
-        //TODO: Need to replace hardcoded inviterUID with Default User's UID.
-        var inviterUID = String()
-        inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
-        
-        //defining node with type of data in it.
-        let visitorData = [
-            VisitorListFBKeys.uid.key : visitorUID!,
-            VisitorListFBKeys.dateAndTimeOfVisit.key : txtDate.text! as String,
-            VisitorListFBKeys.mobileNumber.key : txtInvitorMobile.text! as String,
-            VisitorListFBKeys.status.key : status,
-            VisitorListFBKeys.fullName.key : txtInvitorName.text! as String,
-            VisitorListFBKeys.inviterUID.key : inviterUID,
-            //VisitorListFBKeys.profilePhoto.key : uploadImageToFirebase()
-            ]
-        
-        // Adding visitor data under preApproved visitors
-        preApprovedVisitorsRef?.child(visitorUID!).setValue(visitorData)
+        uploadTask?.resume()
     }
 }
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
