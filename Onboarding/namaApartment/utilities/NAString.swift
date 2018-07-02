@@ -32,7 +32,7 @@ class NAString : NSObject
     }
     
     func splash_SocietyServices_Description() -> String {
-        return String("A smarter way to manage your daily needs from our dedicated service team.")
+        return String("A smarter way to manage your daily needs from our dedicated NammaApartment service team.")
     }
     
     func splash_ApartementServices_Title() -> String {
@@ -318,7 +318,7 @@ class NAString : NSObject
     
     //MyVisitorList
     func myVisitorViewTitle() -> String {
-        return String("My Visitor List")
+        return String("My Guests")
     }
     
     func myVisitorVisitor() -> String {
@@ -536,7 +536,7 @@ class NAString : NSObject
     }
     
     func grant_access() -> String {
-        return String ("Granted Aceess:")
+        return String (" Access:")
     }
     
     func remove() -> String {
@@ -672,9 +672,9 @@ class NAString : NSObject
         return String("Please select Expected Arrival in Hours")
     }
     func notifyButtonAlertViewMessage() -> String {
-        return String("Notification is sent to your Security Guard.")
+        return String("Arrival Notification has been sent to your Security Guard.")
     }
     func notifyButtonAlertViewTitle() -> String {
-        return String("Notification Message")
+        return String("Security Guard Notification")
     }
 }

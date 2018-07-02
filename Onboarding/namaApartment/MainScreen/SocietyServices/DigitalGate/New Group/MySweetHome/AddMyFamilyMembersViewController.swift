@@ -50,6 +50,9 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add border color on profile image
+        img_Profile.layer.borderColor = UIColor.black.cgColor
     
         //hiding error labels
         lbl_Name_Validation.isHidden = true
