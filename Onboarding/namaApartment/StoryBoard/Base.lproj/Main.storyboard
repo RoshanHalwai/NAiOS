@@ -1796,6 +1796,10 @@
                         <outlet property="btn_8Hour" destination="KRN-YU-Dmh" id="iJi-lR-xW4"/>
                         <outlet property="btn_NotifyGate" destination="RvH-ui-HOj" id="2nZ-LX-HbH"/>
                         <outlet property="cabNumber_stack" destination="CUL-5Q-ufO" id="5Xt-4w-XdW"/>
+                        <outlet property="cab_txt_RTOZone" destination="eh9-qh-nhI" id="89B-P8-8SU"/>
+                        <outlet property="cab_txt_serialNum1" destination="pdi-QF-kGn" id="6fU-ZC-A7r"/>
+                        <outlet property="cab_txt_serialNum2" destination="Wmk-wU-hDq" id="stF-QL-8jP"/>
+                        <outlet property="cab_txt_stateCode" destination="XjS-ry-fGa" id="bHW-0s-ePq"/>
                         <outlet property="cardView" destination="h6W-uu-DFj" id="GEW-fn-DLL"/>
                         <outlet property="lbl_DateTime" destination="YYc-4j-XGm" id="26r-p9-raa"/>
                         <outlet property="lbl_ValidFor" destination="qeE-Ha-Odb" id="8PF-FN-9n8"/>
@@ -1804,10 +1808,6 @@
                         <outlet property="lbl_dateField_Validation" destination="6JD-IW-xxI" id="3YX-6i-coR"/>
                         <outlet property="lbl_expectedHours_Validation" destination="LYO-5H-3dR" id="u9J-rZ-eUg"/>
                         <outlet property="scrollView" destination="yav-T1-9so" id="pkk-nf-ycF"/>
-                        <outlet property="txt1_cabNumber" destination="XjS-ry-fGa" id="BKX-jr-5vE"/>
-                        <outlet property="txt2_cabNumber" destination="eh9-qh-nhI" id="ctD-Qy-Vr6"/>
-                        <outlet property="txt3_cabNumber" destination="pdi-QF-kGn" id="GRC-rq-Ngb"/>
-                        <outlet property="txt4_cabNumber" destination="Wmk-wU-hDq" id="orf-hl-chg"/>
                         <outlet property="txt_DateTime" destination="gk5-p1-rf8" id="3F6-vy-gL0"/>
                         <outlet property="txt_PackageVendor" destination="Vz5-1P-m8I" id="72T-Ul-t5w"/>
                     </connections>

@@ -20,10 +20,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     @IBOutlet weak var lbl_expectedHours_Validation: UILabel!
     
     @IBOutlet weak var txt_PackageVendor: UITextField!
-    @IBOutlet weak var txt1_cabNumber: UITextField!
-    @IBOutlet weak var txt2_cabNumber: UITextField!
-    @IBOutlet weak var txt3_cabNumber: UITextField!
-    @IBOutlet weak var txt4_cabNumber: UITextField!
+    @IBOutlet weak var cab_txt_stateCode: UITextField!
+    @IBOutlet weak var cab_txt_RTOZone: UITextField!
+    @IBOutlet weak var cab_txt_serialNum1: UITextField!
+    @IBOutlet weak var cab_txt_serialNum2: UITextField!
     @IBOutlet weak var txt_DateTime: UITextField!
     
     @IBOutlet weak var btn_NotifyGate: UIButton!
@@ -68,10 +68,11 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         
         //assigned delegate method on textFields
         txt_DateTime.delegate = self
-        txt1_cabNumber.delegate = self
-        txt2_cabNumber.delegate = self
-        txt3_cabNumber.delegate = self
-        txt4_cabNumber.delegate = self
+        cab_txt_stateCode.delegate = self
+        cab_txt_RTOZone.delegate = self
+        cab_txt_serialNum1.delegate = self
+        cab_txt_serialNum2.delegate = self
+        txt_PackageVendor.delegate = self
 
         //placing image calender imgage inside the Date&Time TextField
         self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
@@ -81,10 +82,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         txt_DateTime.rightView = imageView
         
         // become first responder
-        self.txt1_cabNumber.becomeFirstResponder()
-        self.txt2_cabNumber.becomeFirstResponder()
-        self.txt3_cabNumber.becomeFirstResponder()
-        self.txt4_cabNumber.becomeFirstResponder()
+        self.cab_txt_stateCode.becomeFirstResponder()
+        self.cab_txt_RTOZone.becomeFirstResponder()
+        self.cab_txt_serialNum1.becomeFirstResponder()
+        self.cab_txt_serialNum2.becomeFirstResponder()
         self.txt_PackageVendor.becomeFirstResponder()
 
         //Setting & fromatting Navigation Bar
@@ -100,10 +101,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         createDatePicker()
         
         //putting black bottom line on textFields
-        txt1_cabNumber.underlined()
-        txt2_cabNumber.underlined()
-        txt3_cabNumber.underlined()
-        txt4_cabNumber.underlined()
+        cab_txt_stateCode.underlined()
+        cab_txt_RTOZone.underlined()
+        cab_txt_serialNum1.underlined()
+        cab_txt_serialNum2.underlined()
         txt_DateTime.underlined()
         txt_PackageVendor.underlined()
         
@@ -122,10 +123,11 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         lbl_expectedHours_Validation.font = NAFont().descriptionFont()
         
         //Textfield formatting & setting
-        txt1_cabNumber.font = NAFont().textFieldFont()
-        txt2_cabNumber.font = NAFont().textFieldFont()
-        txt3_cabNumber.font = NAFont().textFieldFont()
-        txt4_cabNumber.font = NAFont().textFieldFont()
+        cab_txt_stateCode.font = NAFont().textFieldFont()
+        cab_txt_RTOZone.font = NAFont().textFieldFont()
+        cab_txt_serialNum1.font = NAFont().textFieldFont()
+        cab_txt_serialNum2.font = NAFont().textFieldFont()
+        txt_PackageVendor.font = NAFont().textFieldFont()
         txt_DateTime.font = NAFont().textFieldFont()
         
         //for changing button color
@@ -253,19 +255,19 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         selectedColor(tag: sender.tag)
     }
     @IBAction func btnNotifyGate(_ sender: Any) {
-        if (txt1_cabNumber.text?.isEmpty)! {
+        if (cab_txt_stateCode.text?.isEmpty)! {
             lbl_cabNumber_Validation.isHidden = false
             lbl_cabNumber_Validation.text = NAString().please_fill_details()
-            txt1_cabNumber.redunderlined()
-            txt2_cabNumber.redunderlined()
-            txt3_cabNumber.redunderlined()
-            txt4_cabNumber.redunderlined()
+            cab_txt_stateCode.redunderlined()
+            cab_txt_RTOZone.redunderlined()
+            cab_txt_serialNum1.redunderlined()
+            cab_txt_serialNum2.redunderlined()
         } else {
             lbl_cabNumber_Validation.isHidden = true
-            txt1_cabNumber.underlined()
-            txt2_cabNumber.underlined()
-            txt3_cabNumber.underlined()
-            txt4_cabNumber.underlined()
+            cab_txt_stateCode.underlined()
+            cab_txt_RTOZone.underlined()
+            cab_txt_serialNum1.underlined()
+            cab_txt_serialNum2.underlined()
         }
         if (txt_DateTime.text?.isEmpty)! {
             lbl_dateField_Validation.isHidden = false
@@ -281,7 +283,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         } else if (isValidButtonClicked.index(of: true) != nil) {
             lbl_expectedHours_Validation.isHidden = true
         }
-        if !(txt1_cabNumber.text?.isEmpty)! && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
+        if !(cab_txt_stateCode.text?.isEmpty)! && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
             inviteAlertView()
         }
     }
@@ -315,20 +317,20 @@ extension ExpectingCabArrivalViewController {
         
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-            if textField == txt1_cabNumber {
+            if textField == cab_txt_stateCode {
                 if (newLength == NAString().zero_length()) {
                     lbl_cabNumber_Validation.isHidden = false
                     lbl_cabNumber_Validation.text = NAString().please_fill_details()
-                    txt1_cabNumber.redunderlined()
-                    txt2_cabNumber.redunderlined()
-                    txt3_cabNumber.redunderlined()
-                    txt4_cabNumber.redunderlined()
+                    cab_txt_stateCode.redunderlined()
+                    cab_txt_RTOZone.redunderlined()
+                    cab_txt_serialNum1.redunderlined()
+                    cab_txt_serialNum2.redunderlined()
                 } else {
                     lbl_cabNumber_Validation.isHidden = true
-                    txt1_cabNumber.underlined()
-                    txt2_cabNumber.underlined()
-                    txt3_cabNumber.underlined()
-                    txt4_cabNumber.underlined()
+                    cab_txt_stateCode.underlined()
+                    cab_txt_RTOZone.underlined()
+                    cab_txt_serialNum1.underlined()
+                    cab_txt_serialNum2.underlined()
                 }
             }
             if textField == txt_DateTime {

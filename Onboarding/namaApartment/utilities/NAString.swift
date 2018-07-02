@@ -32,7 +32,7 @@ class NAString : NSObject
     }
     
     func splash_SocietyServices_Description() -> String {
-        return String("A smarter way to manage your daily needs from our dedicated nammaApartment service team.")
+        return String("A smarter way to manage your daily needs from our dedicated Nßßß∫ammaApartment service team.")
     }
     
     func splash_ApartementServices_Title() -> String {
@@ -524,7 +524,7 @@ class NAString : NSObject
     }
     
     func grant_access() -> String {
-        return String (" Aceess:")
+        return String (" Access:")
     }
     
     func remove() -> String {
