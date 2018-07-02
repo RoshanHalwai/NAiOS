@@ -932,7 +932,6 @@
                         <outlet property="btnSelectContact" destination="xib-vh-5IS" id="EGz-c0-jBq"/>
                         <outlet property="img_Profile" destination="7rJ-pw-vGD" id="ddg-r4-bzy"/>
                         <outlet property="lbl_Date" destination="lVh-E6-7aI" id="XIt-lP-fFt"/>
-                        <outlet property="lbl_InviteDescription" destination="BNm-Pl-8W2" id="3EL-tN-alq"/>
                         <outlet property="lbl_InvitorMobile" destination="DP8-yF-ohd" id="LgB-H1-kr2"/>
                         <outlet property="lbl_InvitorName" destination="sM6-WA-2vf" id="JEc-pA-rVH"/>
                         <outlet property="lbl_Mob_Validation" destination="xKO-ga-KjI" id="zaJ-7Y-pLA"/>
