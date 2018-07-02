@@ -306,7 +306,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         let metaDataContentType = StorageMetadata()
         metaDataContentType.contentType = "image/jpeg"
         
-        //
+        //Uploading Visitor image url along with Visitor UID
         let uploadImageRef = visitorImageRef?.child(visitorUID!)
         let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
             
@@ -333,23 +333,14 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     VisitorListFBKeys.profilePhoto.key : url?.absoluteString
                 ]
                 
-                // Adding visitor data under preApproved visitors
+                //Adding visitor data under preApproved visitors
                     self.preApprovedVisitorsRef?.setValue(visitorData)
-                    
+                    //Using else statement & printing error,so the other developers can know what is going on.
                 } else {
                     print(urlError as Any)
                 }
             })
-
         })
-        
-        //to get progress of uploading image
-        uploadTask?.observe(.progress, handler: { (snapshot) in
-            print(snapshot.progress ?? "No More Progress")
-            
-            
-        })
-        
         uploadTask?.resume()
     }
 }
