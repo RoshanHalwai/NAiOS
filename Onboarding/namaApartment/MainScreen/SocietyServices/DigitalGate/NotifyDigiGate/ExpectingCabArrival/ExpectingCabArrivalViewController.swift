@@ -256,18 +256,39 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     }
     @IBAction func btnNotifyGate(_ sender: Any) {
         if (cab_txt_stateCode.text?.isEmpty)! {
-            lbl_cabNumber_Validation.isHidden = false
-            lbl_cabNumber_Validation.text = NAString().please_fill_details()
+            inviteLabelCabNumberTitle()
             cab_txt_stateCode.redunderlined()
-            cab_txt_RTOZone.redunderlined()
-            cab_txt_serialNum1.redunderlined()
-            cab_txt_serialNum2.redunderlined()
         } else {
             lbl_cabNumber_Validation.isHidden = true
             cab_txt_stateCode.underlined()
+        }
+        if (cab_txt_RTOZone.text?.isEmpty)! {
+            inviteLabelCabNumberTitle()
+            cab_txt_RTOZone.redunderlined()
+        } else {
+            lbl_cabNumber_Validation.isHidden = true
             cab_txt_RTOZone.underlined()
+        }
+        if (cab_txt_serialNum1.text?.isEmpty)! {
+            inviteLabelCabNumberTitle()
+            cab_txt_serialNum1.redunderlined()
+        } else {
+            lbl_cabNumber_Validation.isHidden = true
             cab_txt_serialNum1.underlined()
+        }
+        if (cab_txt_serialNum2.text?.isEmpty)! {
+            inviteLabelCabNumberTitle()
+            cab_txt_serialNum2.redunderlined()
+        } else {
+            lbl_cabNumber_Validation.isHidden = true
             cab_txt_serialNum2.underlined()
+        }
+        if (txt_PackageVendor.text?.isEmpty)! {
+            inviteLabelCabNumberTitle()
+            txt_PackageVendor.redunderlined()
+        } else {
+            lbl_cabNumber_Validation.isHidden = true
+            txt_PackageVendor.underlined()
         }
         if (txt_DateTime.text?.isEmpty)! {
             lbl_dateField_Validation.isHidden = false
@@ -283,9 +304,18 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         } else if (isValidButtonClicked.index(of: true) != nil) {
             lbl_expectedHours_Validation.isHidden = true
         }
-        if !(cab_txt_stateCode.text?.isEmpty)! && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
+        if !(cab_txt_stateCode.text?.isEmpty)! &&  !(cab_txt_RTOZone.text?.isEmpty)! && !(cab_txt_serialNum1.text?.isEmpty)! && !(cab_txt_serialNum2.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
+            lbl_cabNumber.isHidden = true
             inviteAlertView()
         }
+        if !(txt_PackageVendor.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
+            inviteAlertView()
+        }
+    }
+    //Creating CablabelNumber validation and text
+    func inviteLabelCabNumberTitle() {
+        lbl_cabNumber_Validation.isHidden = false
+        lbl_cabNumber_Validation.text = NAString().please_fill_details()
     }
     //AlertView For navigation
     func inviteAlertView() {
@@ -312,28 +342,83 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         }
     }
 }
+// Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
+func cabStateCodeAndSerailCodeLength(isNewLength: Int) -> Bool{
+    if (isNewLength >= 2) {
+        return true
+    }else{
+        return false
+    }
+}
+func cabSerialNumberLength(isLength: Int) -> Bool {
+    if (isLength >= 4) {
+        return true
+    }else{
+        return false
+    }
+}
 extension ExpectingCabArrivalViewController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-            if textField == cab_txt_stateCode {
+        if textField == cab_txt_stateCode {
+            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
                 if (newLength == NAString().zero_length()) {
-                    lbl_cabNumber_Validation.isHidden = false
-                    lbl_cabNumber_Validation.text = NAString().please_fill_details()
+                    inviteLabelCabNumberTitle()
                     cab_txt_stateCode.redunderlined()
-                    cab_txt_RTOZone.redunderlined()
-                    cab_txt_serialNum1.redunderlined()
-                    cab_txt_serialNum2.redunderlined()
                 } else {
                     lbl_cabNumber_Validation.isHidden = true
                     cab_txt_stateCode.underlined()
+                }
+                return newLength <= 2
+             }
+          }
+        if textField == cab_txt_RTOZone {
+            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
+                if (newLength == NAString().zero_length()) {
+                    inviteLabelCabNumberTitle()
+                    cab_txt_RTOZone.redunderlined()
+                } else {
+                    lbl_cabNumber_Validation.isHidden = true
                     cab_txt_RTOZone.underlined()
+                }
+            }
+            return newLength <= 2
+        }
+        if textField == cab_txt_serialNum1 {
+            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
+                if (newLength == NAString().zero_length()) {
+                    inviteLabelCabNumberTitle()
+                    cab_txt_serialNum1.redunderlined()
+                } else {
+                    lbl_cabNumber_Validation.isHidden = true
                     cab_txt_serialNum1.underlined()
+                }
+            }
+            return newLength <= 2
+        }
+        if textField == cab_txt_serialNum2 {
+            if cabSerialNumberLength(isLength: newLength) {
+                if (newLength == NAString().zero_length()) {
+                    inviteLabelCabNumberTitle()
+                    cab_txt_serialNum2.redunderlined()
+                } else {
+                    lbl_cabNumber_Validation.isHidden = true
                     cab_txt_serialNum2.underlined()
                 }
             }
-            if textField == txt_DateTime {
+            return newLength <= 4
+        }
+        if textField == txt_PackageVendor {
+                if (newLength == NAString().zero_length()) {
+                    inviteLabelCabNumberTitle()
+                    txt_PackageVendor.redunderlined()
+            } else {
+                    lbl_cabNumber_Validation.isHidden = true
+                    txt_PackageVendor.underlined()
+            }
+        }
+        if textField == txt_DateTime {
                 if (newLength == NAString().zero_length()) {
                     lbl_dateField_Validation.isHidden = false
                     txt_DateTime.redunderlined()

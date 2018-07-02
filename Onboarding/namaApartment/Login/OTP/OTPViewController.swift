@@ -115,7 +115,7 @@ class OTPViewController: NANavigationViewController
             {
                 txtOTP2?.becomeFirstResponder()
             }
-            
+                
             else if textField == txtOTP2
             {
                 txtOTP3?.becomeFirstResponder()
