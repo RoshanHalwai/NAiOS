@@ -39,4 +39,7 @@ class NAFont: NSObject {
         return UIFont(name: "Lato-Regular", size: 26)!
     }
     
+    func layoutFeatureErrorFont() -> UIFont {
+        return UIFont(name: "Lato-Italic", size: 18)!
+    }
 }

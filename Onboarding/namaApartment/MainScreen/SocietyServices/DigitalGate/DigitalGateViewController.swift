@@ -65,7 +65,7 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
             self.navigationController?.pushViewController(lv, animated: true)
             
         case 1:
-            let lv1 = NAViewPresenter().myVisitorListVC()
+            let lv1 = NAViewPresenter().myVisitorsListVC()
             self.navigationController?.pushViewController(lv1, animated: true)
             
         case 2:
