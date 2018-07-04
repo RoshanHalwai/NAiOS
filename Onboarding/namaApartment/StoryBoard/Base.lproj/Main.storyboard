@@ -1171,10 +1171,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="InviteVisitors" translatesAutoresizingMaskIntoConstraints="NO" id="TzA-Vi-zzS">
-                                                    <rect key="frame" x="10" y="22" width="100" height="100"/>
+                                                    <rect key="frame" x="10" y="22" width="100.5" height="100"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visitor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bel-Lg-iKi">
-                                                    <rect key="frame" x="124" y="14" width="71" height="21"/>
+                                                    <rect key="frame" x="124.5" y="14" width="70.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1207,19 +1207,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inviter:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXI-au-ddB">
-                                                    <rect key="frame" x="126" y="117" width="57.5" height="22"/>
+                                                    <rect key="frame" x="126.5" y="117" width="57.5" height="22"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z08-9J-y5B">
-                                                    <rect key="frame" x="124" y="92" width="87" height="23"/>
+                                                    <rect key="frame" x="124.5" y="92" width="86.5" height="22"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPN-B5-XUc">
-                                                    <rect key="frame" x="126" y="66" width="65" height="21"/>
+                                                    <rect key="frame" x="126.5" y="66" width="64.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="PqZ-aV-Ljb"/>
                                                     </constraints>
@@ -1228,7 +1228,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2c-Xv-xK9">
-                                                    <rect key="frame" x="126" y="40" width="65" height="21"/>
+                                                    <rect key="frame" x="126.5" y="40" width="64.5" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="zn2-KL-KfW"/>
                                                     </constraints>
@@ -1903,10 +1903,6 @@
                         <outlet property="btn_8Hour" destination="KRN-YU-Dmh" id="iJi-lR-xW4"/>
                         <outlet property="btn_NotifyGate" destination="RvH-ui-HOj" id="2nZ-LX-HbH"/>
                         <outlet property="cabNumber_stack" destination="CUL-5Q-ufO" id="5Xt-4w-XdW"/>
-                        <outlet property="cab_txt_RTOZone" destination="eh9-qh-nhI" id="89B-P8-8SU"/>
-                        <outlet property="cab_txt_serialNum1" destination="pdi-QF-kGn" id="6fU-ZC-A7r"/>
-                        <outlet property="cab_txt_serialNum2" destination="Wmk-wU-hDq" id="stF-QL-8jP"/>
-                        <outlet property="cab_txt_stateCode" destination="XjS-ry-fGa" id="bHW-0s-ePq"/>
                         <outlet property="cardView" destination="h6W-uu-DFj" id="GEW-fn-DLL"/>
                         <outlet property="lbl_DateTime" destination="YYc-4j-XGm" id="26r-p9-raa"/>
                         <outlet property="lbl_ValidFor" destination="qeE-Ha-Odb" id="8PF-FN-9n8"/>
@@ -1915,6 +1911,10 @@
                         <outlet property="lbl_dateField_Validation" destination="6JD-IW-xxI" id="3YX-6i-coR"/>
                         <outlet property="lbl_expectedHours_Validation" destination="LYO-5H-3dR" id="u9J-rZ-eUg"/>
                         <outlet property="scrollView" destination="yav-T1-9so" id="pkk-nf-ycF"/>
+                        <outlet property="txt_CabRtoNumber" destination="eh9-qh-nhI" id="89B-P8-8SU"/>
+                        <outlet property="txt_CabSerialNumberOne" destination="pdi-QF-kGn" id="6fU-ZC-A7r"/>
+                        <outlet property="txt_CabSerialNumberTwo" destination="Wmk-wU-hDq" id="stF-QL-8jP"/>
+                        <outlet property="txt_CabStateCode" destination="XjS-ry-fGa" id="bhq-mb-GZP"/>
                         <outlet property="txt_DateTime" destination="gk5-p1-rf8" id="3F6-vy-gL0"/>
                         <outlet property="txt_PackageVendor" destination="Vz5-1P-m8I" id="72T-Ul-t5w"/>
                     </connections>
