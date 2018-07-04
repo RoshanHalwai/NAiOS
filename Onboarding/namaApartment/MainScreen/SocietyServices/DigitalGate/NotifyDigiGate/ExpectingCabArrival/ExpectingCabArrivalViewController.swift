@@ -73,6 +73,12 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         cab_txt_serialNum1.delegate = self
         cab_txt_serialNum2.delegate = self
         txt_PackageVendor.delegate = self
+        
+        //Assigned tag values on textFields
+        cab_txt_stateCode.tag = 1
+        cab_txt_RTOZone.tag = 2
+        cab_txt_serialNum1.tag = 3
+        cab_txt_serialNum2.tag = 4
 
         //placing image calender imgage inside the Date&Time TextField
         self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
