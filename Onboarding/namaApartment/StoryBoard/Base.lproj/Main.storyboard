@@ -1789,7 +1789,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="alphabet"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eh9-qh-nhI">
                                                                         <rect key="frame" x="89" y="0.0" width="68.5" height="30"/>
@@ -1827,7 +1827,7 @@
                                                                 </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
@@ -1921,7 +1921,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjV-yg-kah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2786" y="3392"/>
+            <point key="canvasLocation" x="2481" y="3392"/>
         </scene>
         <!--Handed Things To Guest View Controller-->
         <scene sceneID="1Tw-Ut-Rrr">
