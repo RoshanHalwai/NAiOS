@@ -1213,7 +1213,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z08-9J-y5B">
-                                                    <rect key="frame" x="124" y="92" width="87" height="23"/>
+                                                    <rect key="frame" x="124" y="92" width="87" height="22"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1789,7 +1789,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="alphabet"/>
+                                                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="alphabet"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eh9-qh-nhI">
                                                                         <rect key="frame" x="89" y="0.0" width="68.5" height="30"/>
@@ -1827,7 +1827,7 @@
                                                                 </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
@@ -1903,10 +1903,6 @@
                         <outlet property="btn_8Hour" destination="KRN-YU-Dmh" id="iJi-lR-xW4"/>
                         <outlet property="btn_NotifyGate" destination="RvH-ui-HOj" id="2nZ-LX-HbH"/>
                         <outlet property="cabNumber_stack" destination="CUL-5Q-ufO" id="5Xt-4w-XdW"/>
-                        <outlet property="cab_txt_RTOZone" destination="eh9-qh-nhI" id="89B-P8-8SU"/>
-                        <outlet property="cab_txt_serialNum1" destination="pdi-QF-kGn" id="6fU-ZC-A7r"/>
-                        <outlet property="cab_txt_serialNum2" destination="Wmk-wU-hDq" id="stF-QL-8jP"/>
-                        <outlet property="cab_txt_stateCode" destination="XjS-ry-fGa" id="bHW-0s-ePq"/>
                         <outlet property="cardView" destination="h6W-uu-DFj" id="GEW-fn-DLL"/>
                         <outlet property="lbl_DateTime" destination="YYc-4j-XGm" id="26r-p9-raa"/>
                         <outlet property="lbl_ValidFor" destination="qeE-Ha-Odb" id="8PF-FN-9n8"/>
@@ -1915,13 +1911,17 @@
                         <outlet property="lbl_dateField_Validation" destination="6JD-IW-xxI" id="3YX-6i-coR"/>
                         <outlet property="lbl_expectedHours_Validation" destination="LYO-5H-3dR" id="u9J-rZ-eUg"/>
                         <outlet property="scrollView" destination="yav-T1-9so" id="pkk-nf-ycF"/>
+                        <outlet property="txt_CabRtoNumber" destination="eh9-qh-nhI" id="89B-P8-8SU"/>
+                        <outlet property="txt_CabSerialNumberOne" destination="pdi-QF-kGn" id="6fU-ZC-A7r"/>
+                        <outlet property="txt_CabSerialNumberTwo" destination="Wmk-wU-hDq" id="stF-QL-8jP"/>
+                        <outlet property="txt_CabStateCode" destination="XjS-ry-fGa" id="bhq-mb-GZP"/>
                         <outlet property="txt_DateTime" destination="gk5-p1-rf8" id="3F6-vy-gL0"/>
                         <outlet property="txt_PackageVendor" destination="Vz5-1P-m8I" id="72T-Ul-t5w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjV-yg-kah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2786" y="3392"/>
+            <point key="canvasLocation" x="2481" y="3392"/>
         </scene>
         <!--Handed Things To Guest View Controller-->
         <scene sceneID="1Tw-Ut-Rrr">
@@ -4525,7 +4525,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r3A-Ht-0JS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="13.6" y="786.20689655172418"/>
+            <point key="canvasLocation" x="-31" y="774"/>
         </scene>
     </scenes>
     <resources>
