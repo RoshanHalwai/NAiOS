@@ -403,9 +403,9 @@ func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool 
 extension ExpectingCabArrivalViewController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
-        let newLength = text.utf16.count + string.utf16.count - range.length
+        let cab_New_TextLength = text.utf16.count + string.utf16.count - range.length
         if textField == txt_CabStateCode {
-            if (newLength == NAString().zero_length()) {
+            if (cab_New_TextLength == NAString().zero_length()) {
                 inviteLabelCabNumberTitle()
                 txt_CabStateCode.redunderlined()
             } else {
@@ -413,14 +413,14 @@ extension ExpectingCabArrivalViewController {
                 txt_CabStateCode.underlined()
             }
             if shouldChangeCustomCharacters(textField: textField, string: string) {
-                if cabStateCodeAndSerailCodeLength(isCabNumberLength: newLength) {
-                    return newLength <= 2
+                if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
+                    return cab_New_TextLength <= 2
                  }
                 return true
               }
             }
         if textField == txt_CabRtoNumber {
-            if (newLength == NAString().zero_length()) {
+            if (cab_New_TextLength == NAString().zero_length()) {
                 inviteLabelCabNumberTitle()
                 txt_CabRtoNumber.redunderlined()
             } else {
@@ -428,14 +428,14 @@ extension ExpectingCabArrivalViewController {
                 txt_CabRtoNumber.underlined()
             }
             if shouldChangeCustomCharacters(textField: textField, string: string) {
-                if cabStateCodeAndSerailCodeLength(isCabNumberLength: newLength) {
-                    return newLength <= 2
+                if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
+                    return cab_New_TextLength <= 2
                  }
                 return true
                }
              }
         if textField == txt_CabSerialNumberOne {
-            if (newLength == NAString().zero_length()) {
+            if (cab_New_TextLength == NAString().zero_length()) {
                 inviteLabelCabNumberTitle()
                 txt_CabSerialNumberOne.redunderlined()
             } else {
@@ -443,15 +443,15 @@ extension ExpectingCabArrivalViewController {
                 txt_CabSerialNumberOne.underlined()
             }
             if shouldChangeCustomCharacters(textField: textField, string: string) {
-                if cabStateCodeAndSerailCodeLength(isCabNumberLength: newLength) {
-                    return newLength <= 2
+                if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
+                    return cab_New_TextLength <= 2
                   }
                 return true
               }
           }
         if textField == txt_CabSerialNumberTwo {
-            if cabSerialNumberLength(isCabSerialNumberLength: newLength) {
-                if (newLength == NAString().zero_length()) {
+            if cabSerialNumberLength(isCabSerialNumberLength: cab_New_TextLength) {
+                if (cab_New_TextLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
                     txt_CabSerialNumberTwo.redunderlined()
                 } else {
@@ -459,10 +459,10 @@ extension ExpectingCabArrivalViewController {
                     txt_CabSerialNumberTwo.underlined()
                 }
             }
-            return newLength <= 4
+            return cab_New_TextLength <= 4
         }
         if textField == txt_PackageVendor {
-                if (newLength == NAString().zero_length()) {
+                if (cab_New_TextLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
                     txt_PackageVendor.redunderlined()
             } else {
@@ -471,7 +471,7 @@ extension ExpectingCabArrivalViewController {
             }
         }
         if textField == txt_DateTime {
-                if (newLength == NAString().zero_length()) {
+                if (cab_New_TextLength == NAString().zero_length()) {
                     lbl_dateField_Validation.isHidden = false
                     txt_DateTime.redunderlined()
                     lbl_dateField_Validation.text = NAString().Please_select_date()
