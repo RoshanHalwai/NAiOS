@@ -37,11 +37,9 @@ class splashApartmentServices
     
     @IBAction func btnLetsGetStarted(_ sender: Any)
     {
-        let lv = NAViewPresenter().myFlatDEtailsVC()
-        lv.navigationItem.title = NAString().My_flat_Details_title()
-//        let lv : loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
-//
-//        self.navigationController?.setNavigationBarHidden(false, animated: true);
+        let lv : loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
+
+        self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }
 }
