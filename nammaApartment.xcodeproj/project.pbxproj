@@ -14,8 +14,8 @@
 		0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */; };
 		0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */; };
 		0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */; };
+		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
 		08520A5020E3BFF900433DAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08520A4F20E3BFF900433DAD /* GoogleService-Info.plist */; };
-		08EC517620E631D000A6E013 /* MyFlatDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EC517520E631D000A6E013 /* MyFlatDetailsTableViewCell.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
@@ -118,8 +118,8 @@
 		0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileTableViewCell.swift; sourceTree = "<group>"; };
 		0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
 		0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyFamilyMembersViewController.swift; sourceTree = "<group>"; };
+		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		08520A4F20E3BFF900433DAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		08EC517520E631D000A6E013 /* MyFlatDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFlatDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D83E8166C92F951887F6368 /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -493,7 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */,
-				08EC517520E631D000A6E013 /* MyFlatDetailsTableViewCell.swift */,
+				083EA19920ECB55300714F85 /* SearchTableViewController.swift */,
 			);
 			path = myFlatDetails;
 			sourceTree = "<group>";
@@ -872,6 +872,7 @@
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
 				0816E56C20E782C300116FD0 /* CabArrivalViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
+				083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */,
 				868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
@@ -910,7 +911,6 @@
 				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
 				0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */,
 				8627012920971585004B28EB /* splashRootViewController.swift in Sources */,
-				08EC517620E631D000A6E013 /* MyFlatDetailsTableViewCell.swift in Sources */,
 				86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */,
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
