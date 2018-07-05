@@ -248,7 +248,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YYYY \t HH:mm"
+        date.dateFormat = (NAString().dateFormat() + "\t\t" + NAString().timeFormat())
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
