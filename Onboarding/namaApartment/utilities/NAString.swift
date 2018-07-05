@@ -107,6 +107,18 @@ class NAString : NSObject
     func continue_button() -> String {
         return String("CONTINUE")
     }
+    func your_city() -> String {
+        return String("Your City")
+    }
+    func your_society() -> String {
+        return String("Your Society")
+    }
+    func your_apartment() -> String {
+        return String("Your Apartment")
+    }
+    func your_flat() -> String {
+        return String("Your Flat")
+    }
     
     //SignUp screen
     func full_name() -> String {
