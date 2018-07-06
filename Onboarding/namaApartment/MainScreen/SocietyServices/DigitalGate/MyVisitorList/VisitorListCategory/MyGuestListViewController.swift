@@ -26,8 +26,9 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
-        myVisitorListReference = Database.database().reference().child("userData").child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child("Bangalore").child("Salarpuria Cambridge").child("Block-1").child("012")
+        //TODO : Need to Change Hardcode UID
+        myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+            .child(Constants.FIREBASE_CHILD_BANGALORE).child(Constants.FIREBASE_CHILD_SALARPURIA_CAMBRIDGE).child(Constants.FIREBASE_CHILD_BLOCKONE).child(Constants.FIREBASE_CHILD_FLATNO)
             .child(Constants.FIREBASE_CHILD_VISITORS).child("aMNacKnX44Zk006VZcSng9ilEcF3")
         
         myVisitorListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -114,7 +115,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         if let urlString = myList.getprofilePhoto() {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
-        
         //TODO : Need to get Name from Firebase (According To Default User)
         cell.lbl_InvitedName.text = "Vikas"
         
