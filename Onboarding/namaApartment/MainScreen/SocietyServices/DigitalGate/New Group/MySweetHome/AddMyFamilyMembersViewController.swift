@@ -272,7 +272,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
-        if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "imageIcon") {
+        if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "ExpectiingVisitor256") {
 
             if(grantAcess_Segment.selectedSegmentIndex == 0) {
                 //calling AlertBox on click of YES
