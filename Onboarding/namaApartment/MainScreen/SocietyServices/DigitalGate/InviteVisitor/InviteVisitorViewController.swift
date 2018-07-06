@@ -202,13 +202,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         let fullName = "\(contact.givenName) \(contact.familyName)"
         self.txtInvitorName.text = fullName
         
-        lbl_Name_Validation.isHidden = true
-        txtInvitorName.underlined()
-        lbl_Mob_Validation.isHidden = true
-        txtInvitorMobile.underlined()
-        lbl_Date_Validation.isHidden = true
-        txtDate.underlined()
-        
         var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         mobileNo = mobileString! as! String
@@ -216,27 +209,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     }
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
     @IBAction func btnInviteVisitor(_ sender: UIButton) {
-        if img_Profile.image == #imageLiteral(resourceName: "imageIcon") {
+        if img_Profile.image == #imageLiteral(resourceName: "ExpectiingVisitor256") {
             lbl_Picture_Validation.isHidden = false
             lbl_Picture_Validation.text = NAString().please_upload_Image()
-        }
-        if (txtInvitorName.text?.isEmpty)! && (txtInvitorMobile.text?.isEmpty)! && (txtDate.text?.isEmpty)! {
-            lbl_Name_Validation.isHidden = false
-            lbl_Date_Validation.isHidden = false
-            lbl_Mob_Validation.isHidden = false
-            txtInvitorName.redunderlined()
-            txtInvitorMobile.redunderlined()
-            txtDate.redunderlined()
-            lbl_Name_Validation.text = NAString().please_enter_name()
-            lbl_Mob_Validation.text = NAString().please_enter_mobile_no()
-            lbl_Date_Validation.text = NAString().Please_select_date()
-        } else {
-            lbl_Name_Validation.isHidden = true
-            lbl_Mob_Validation.isHidden = true
-            lbl_Date_Validation.isHidden = true
-            txtInvitorName.underlined()
-            txtInvitorMobile.underlined()
-            txtDate.underlined()
         }
         if (txtInvitorName.text?.isEmpty)! {
             lbl_Name_Validation.isHidden = false
@@ -250,9 +225,13 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_Mob_Validation.isHidden = false
             lbl_Mob_Validation.text = NAString().please_enter_mobile_no()
             txtInvitorMobile.redunderlined()
-        } else {
-            lbl_Mob_Validation.isHidden = true
+        } else if (!(txtInvitorMobile.text?.isEmpty)!) && (txtInvitorMobile.text?.count != NAString().required_mobileNo_Length()) {
+            lbl_Mob_Validation.isHidden = false
+            txtInvitorMobile.redunderlined()
+            lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
+        } else if (txtInvitorMobile.text?.count == NAString().required_mobileNo_Length()) {
             txtInvitorMobile.underlined()
+            lbl_Mob_Validation.isHidden = true
         }
         if (txtDate.text?.isEmpty)! {
             lbl_Date_Validation.isHidden = false
@@ -262,7 +241,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_Date_Validation.isHidden = true
             txtDate.underlined()
         }
-        if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "imageIcon") {
+        if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectiingVisitor256") {
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
             inviteAlertView()
@@ -399,25 +378,17 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             mobileNumberTextFieldLength = txtInvitorMobile.text!.count
         }
         if textField == txtInvitorName {
-            if (newLength == NAString().zero_length()) {
-                lbl_Name_Validation.isHidden = false
-                txtInvitorName.redunderlined()
-                lbl_Name_Validation.text = NAString().please_enter_name()
-            } else {
-                lbl_Name_Validation.isHidden = true
-                txtInvitorName.underlined()
-            }
+            lbl_Name_Validation.isHidden = true
+            txtInvitorName.underlined()
+            
             nameTextFieldLength = newLength
             dateTextFieldLength = txtDate.text!.count
             mobileNumberTextFieldLength = txtInvitorMobile.text!.count
         }
         if textField == txtInvitorMobile {
+            lbl_Mob_Validation.isHidden = true
+            txtInvitorMobile.underlined()
             if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
-                lbl_Mob_Validation.isHidden = true
-                txtInvitorMobile.underlined()
-            } else {
-                lbl_Mob_Validation.isHidden = false
-                txtInvitorMobile.redunderlined()
             }
             if newLength >= NAString().required_mobileNo_Length() && !(txtInvitorName.text?.isEmpty)! && !(txtDate.text?.isEmpty)! {
             }
@@ -429,8 +400,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             if string.isEmpty {
                 return true
             } else {
-                lbl_Mob_Validation.isHidden = true
-                txtInvitorMobile.underlined()
                 return newLength <= NAString().required_mobileNo_Length() // Bool
             }
         }
