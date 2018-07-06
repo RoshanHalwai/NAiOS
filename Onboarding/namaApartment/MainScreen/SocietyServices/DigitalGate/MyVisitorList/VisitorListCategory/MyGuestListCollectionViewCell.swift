@@ -12,7 +12,7 @@ import MessageUI
 protocol dataCollectionProtocol {
      func deleteData(indx: Int, cell: UICollectionViewCell)
 }
-class MyVistorListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
+class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
     
     var delegate : dataCollectionProtocol?
     var index : IndexPath?

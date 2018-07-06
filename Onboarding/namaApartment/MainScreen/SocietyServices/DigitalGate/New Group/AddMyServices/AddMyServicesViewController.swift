@@ -218,7 +218,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = NAString().timeFormate()
+        date.dateFormat = NAString().timeFormat()
         let dateString = date.string(from: picker.date)
         txt_Date.text = dateString
         self.view.endEditing(true)

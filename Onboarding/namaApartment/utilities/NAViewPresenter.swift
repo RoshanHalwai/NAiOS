@@ -39,39 +39,43 @@ class NAViewPresenter: NSObject {
     }
    
     //digi gate Vc
-    
-    func myVisitorListVC() -> MyVisitorListViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "myVisitorListVC") as! MyVisitorListViewController
+    func myVisitorsListVC() -> MyVisitorsListViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myVisitorsListVC") as! MyVisitorsListViewController
     }
-    
     func myDailyServicesVC() -> MyDailyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myDailyServicesVC") as! MyDailyServicesViewController
     }
     func myFamilyMembers() -> AddMyFamilyMembersViewController {
         return storyBoard.instantiateViewController(withIdentifier: "addMyFamilyMembers") as! AddMyFamilyMembersViewController
     }
-    
     func notifyDigiGateVC() -> NotifyDigiGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "notifyDigiGateVC") as! NotifyDigiGateViewController
     }
-    
     func mySweetHomeVC() -> MySweetHomeViewController {
         return storyBoard.instantiateViewController(withIdentifier: "mySweetHomeVC") as! MySweetHomeViewController
     }
-    
     func emergencyVC() -> EmergencyViewController {
         return storyBoard.instantiateViewController(withIdentifier: "emergencyVC") as! EmergencyViewController
     }
     
+    //my Visitors VC
+    func myGuestListVC() -> MyGuestListViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myGuestListVC") as! MyGuestListViewController
+    }
+    func cabArrivalListVC() -> CabArrivalViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "cabArrivalsVC") as! CabArrivalViewController
+    }
+    func packageArrivalListVC() -> PackageArrivalViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "packageArrivalVC") as! PackageArrivalViewController
+    }
     //edit My Daily Services VC
-    
     func editMyDailyServices() -> EditMyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "editMyServicesVc") as! EditMyServicesViewController
     }
     
     //reschedule my visitor list
-    func rescheduleMyVisitorVC() -> RescheduleMyVisitorListViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "rescheduleMyVisitorVC") as! RescheduleMyVisitorListViewController
+    func rescheduleMyVisitorVC() -> RescheduleMyGuestListViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "rescheduleMyVisitorVC") as! RescheduleMyGuestListViewController
     }
     
     func mainScreenVCID() -> String {
@@ -87,20 +91,21 @@ class NAViewPresenter: NSObject {
     func main() -> String {
         return String("Main")
     }
-    
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController
     }
-    
     //Add My Services VC
     func addMySerivesVC() -> AddMyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
     }
-    
     //signup vc
     func signupVC() -> signupViewController {
         return storyBoard.instantiateViewController(withIdentifier: "signupVC") as! signupViewController
+    }
+    //myFlatDetailsVC
+    func myFlatDEtailsVC() -> myFlatDetailsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "flatDetailsVC") as! myFlatDetailsViewController
     }
     
 }

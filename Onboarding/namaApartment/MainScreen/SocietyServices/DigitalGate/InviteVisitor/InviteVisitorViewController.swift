@@ -9,8 +9,13 @@
 import UIKit
 import Contacts
 import ContactsUI
+import FirebaseDatabase
+import FirebaseAuth
+import Firebase
+import FirebaseStorage
 
 class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
+
     @IBOutlet weak var lbl_InvitorName: UILabel!
     @IBOutlet weak var lbl_InvitorMobile: UILabel!
     @IBOutlet weak var lbl_Or: UILabel!
@@ -20,7 +25,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var txtInvitorMobile: UITextField!
     @IBOutlet weak var btnSelectContact: UIButton!
    
-    @IBOutlet weak var lbl_InviteDescription: UILabel!
     @IBOutlet weak var btnInviteVisitor: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -30,6 +34,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
     
+    //Creating Firebase DB Reference variable.
+    var preApprovedVisitorsRef : DatabaseReference?
+    var preApprovedVisitorsMobileNoRef : DatabaseReference?
    
     //created date picker programtically
     let picker = UIDatePicker()
@@ -45,6 +52,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Add border color on profile imageview
+        img_Profile.layer.borderColor = UIColor.black.cgColor
         
         //Hiding error labels while view load.
         lbl_Name_Validation.isHidden = true
@@ -80,7 +90,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         self.txtInvitorName.becomeFirstResponder()
         
         //hide invite Desc & invite button
-        self.lbl_InviteDescription.isHidden = true
         self.btnInviteVisitor.isHidden = true
 
         //calling date picker function on view didload.
@@ -108,7 +117,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         lbl_Date.font = NAFont().headerFont()
         lbl_InvitorName.text = NAString().visitorName()
         lbl_InvitorMobile.text = NAString().visitorMobile()
-        lbl_InviteDescription.text = NAString().inviteVisitorOTPDesc()
         
         lbl_Name_Validation.font = NAFont().descriptionFont()
         lbl_Mob_Validation.font = NAFont().descriptionFont()
@@ -146,20 +154,18 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YYYY \t HH:mm"
+        date.dateFormat = (NAString().dateFormat() + "\t\t" + NAString().timeFormat())
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)
         
         //after adding date this will shows
         self.btnInviteVisitor.isHidden = true
-        self.lbl_InviteDescription.isHidden = true
         
         if (txtInvitorName.text?.isEmpty)! {
             lbl_Name_Validation.isHidden = false
             txtInvitorName.redunderlined()
             btnInviteVisitor.isHidden = true
-            lbl_InviteDescription.isHidden = true
             lbl_Name_Validation.text = NAString().please_enter_name()
         } else {
             lbl_Name_Validation.isHidden = true
@@ -170,7 +176,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_Mob_Validation.text = NAString().please_enter_mobile_no()
             txtInvitorMobile.redunderlined()
             btnInviteVisitor.isHidden = true
-            lbl_InviteDescription.isHidden = true
         } else {
             lbl_Mob_Validation.isHidden = true
             txtInvitorMobile.underlined()
@@ -179,7 +184,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_Mob_Validation.isHidden = false
             txtInvitorMobile.redunderlined()
             btnInviteVisitor.isHidden = true
-            lbl_InviteDescription.isHidden = true
             lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
         } else if (txtInvitorMobile.text?.count == NAString().required_mobileNo_Length()) {
             txtInvitorMobile.underlined()
@@ -187,7 +191,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         }
         if (!(txtInvitorName.text?.isEmpty)!) && (txtInvitorMobile.text?.count == NAString().required_mobileNo_Length()) {
             btnInviteVisitor.isHidden = false
-            lbl_InviteDescription.isHidden = false
         }
     }
     @IBAction func btnSelectContact(_ sender: Any) {
@@ -200,14 +203,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                 
                 if success {
                     self.openContacts()
-                    print("Authorization")
-                } else {
-                    print("No Authorization")
                 }
             })
         } else if authStatus == CNAuthorizationStatus.authorized {
             self.openContacts()
-            print("Get Authorization")
         }
         //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied {
@@ -242,10 +241,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         txtInvitorMobile.underlined()
         if !(txtDate.text?.isEmpty)! {
             btnInviteVisitor.isHidden = false
-            lbl_InviteDescription.isHidden = false
         }
         
-        var mobileNo = "Not Available"
+        var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         mobileNo = mobileString! as! String
         self.txtInvitorMobile.text = mobileNo
@@ -256,7 +254,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_Picture_Validation.isHidden = false
             lbl_Picture_Validation.text = NAString().please_upload_Image()
         } else {
-            inviteAlertView()
+            //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
+                self.storeVisitorDetailsInFirebase()
+                inviteAlertView()
         }
     }
     //AlertView For navigation
@@ -268,14 +268,75 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             
-            let dv = NAViewPresenter().myVisitorListVC()
+            let dv = NAViewPresenter().myGuestListVC()
             self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    }
+    
+    //Created Function for inviting visitor with the help of firebase.
+    func storeVisitorDetailsInFirebase() {
+        //Creating visitors UID
+        preApprovedVisitorsMobileNoRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
+            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS_MOBILENUMBER)
+        let visitorUID : String?
+        visitorUID = (preApprovedVisitorsMobileNoRef?.childByAutoId().key)!
+        
+        //Mapping Visitor's mobile number with their UID
+        preApprovedVisitorsMobileNoRef?.child(self.txtInvitorMobile.text!).setValue(visitorUID)
+        preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
+            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(visitorUID!)
 
+        //Storing visitors data along with their profile photo
+        var visitorImageRef: StorageReference?
+            visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+        
+        //Compressing profile image and assigning its content type.
+        guard let image = img_Profile.image else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
+        
+        let metaDataContentType = StorageMetadata()
+        metaDataContentType.contentType = "image/jpeg"
+        
+        //Uploading Visitor image url along with Visitor UID
+        let uploadImageRef = visitorImageRef?.child(visitorUID!)
+        let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
+            
+            uploadImageRef?.downloadURL(completion: { (url, urlError) in
+                
+                if urlError == nil {
+                
+                //Creating variable for status & assigning status string on it.
+                var status = String()
+                status = NAString().statusNotEntered()
+                
+                //TODO: Need to replace hardcoded inviterUID with Default User's UID.
+                var inviterUID = String()
+                inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+                
+                //defining node with type of data in it.
+                let visitorData = [
+                    VisitorListFBKeys.uid.key : visitorUID!,
+                    VisitorListFBKeys.dateAndTimeOfVisit.key : self.txtDate.text! as String,
+                    VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,
+                    VisitorListFBKeys.status.key : status,
+                    VisitorListFBKeys.fullName.key : self.txtInvitorName.text! as String,
+                    VisitorListFBKeys.inviterUID.key : inviterUID,
+                    VisitorListFBKeys.profilePhoto.key : url?.absoluteString
+                ]
+                
+                //Adding visitor data under preApproved visitors
+                    self.preApprovedVisitorsRef?.setValue(visitorData)
+                    //Using else statement & printing error,so the other developers can know what is going on.
+                } else {
+                    print(urlError as Any)
+                }
+            })
+        })
+        uploadTask?.resume()
+    }
+}
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
@@ -349,12 +410,10 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
                 lbl_Mob_Validation.isHidden = false
                 txtInvitorMobile.redunderlined()
                 btnInviteVisitor.isHidden = true
-                lbl_InviteDescription.isHidden = true
                 lbl_Mob_Validation.text = NAString().please_enter_10_digit_no()
             }
             if newLength >= NAString().required_mobileNo_Length() && !(txtInvitorName.text?.isEmpty)! && !(txtDate.text?.isEmpty)! {
                 btnInviteVisitor.isHidden = false
-                lbl_InviteDescription.isHidden = false
             }
             nameTextFieldLength = txtInvitorName.text!.count
             dateTextFieldLength = txtDate.text!.count
@@ -376,10 +435,8 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         //Conditions 1.Atleast 1 character. 2.10 Chracters Must. 3.Date Should Set
         if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length() {
             btnInviteVisitor.isHidden = false
-            lbl_InviteDescription.isHidden = false
         } else if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length() {
             btnInviteVisitor.isHidden = true
-            lbl_InviteDescription.isHidden = true
         }
     }
 }

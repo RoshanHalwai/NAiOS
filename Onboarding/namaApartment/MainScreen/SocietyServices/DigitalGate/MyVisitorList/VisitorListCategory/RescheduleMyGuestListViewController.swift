@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RescheduleMyVisitorListViewController: NANavigationViewController {
+class RescheduleMyGuestListViewController: NANavigationViewController {
     
     @IBOutlet weak var txt_ReDate: UITextField!
     @IBOutlet weak var txt_ReTime: UITextField!
@@ -64,14 +64,14 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
     @IBAction func datePicker(_ sender: UIDatePicker) {
         if datePicker.datePickerMode == UIDatePickerMode.date {
             let date = DateFormatter()
-            date.dateFormat = NAString().dateFormate()
+            date.dateFormat = NAString().dateFormat()
             let dateString = date.string(from: datePicker.date)
             txt_ReDate.text = dateString
             // Minimum Date
             datePicker.minimumDate = NSDate() as Date
         } else {
             let time = DateFormatter()
-            time.dateFormat = NAString().timeFormate()
+            time.dateFormat = NAString().timeFormat()
             let timeString = time.string(from: datePicker.date)
             txt_ReTime.text = timeString
             //Minimum Time
@@ -79,13 +79,13 @@ class RescheduleMyVisitorListViewController: NANavigationViewController {
         }
     }
     @IBAction func btnCancel(_ sender: UIButton) {
-        let lv = NAViewPresenter().myVisitorListVC()
+        let lv = NAViewPresenter().myGuestListVC()
         self.navigationController?.pushViewController(lv, animated: true)
         dismiss(animated: true, completion: nil)
     }
     @IBAction func btnReschedule(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-        let lv = NAViewPresenter().myVisitorListVC()
+        let lv = NAViewPresenter().myGuestListVC()
         self.navigationController?.pushViewController(lv, animated: true)
     }
     //date TextField Function to display date only on click

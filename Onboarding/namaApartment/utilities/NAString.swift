@@ -32,7 +32,7 @@ class NAString : NSObject
     }
     
     func splash_SocietyServices_Description() -> String {
-        return String("A smarter way to manage your daily needs from our dedicated service team.")
+        return String("A smarter way to manage your daily needs from our dedicated NammaApartment service team.")
     }
     
     func splash_ApartementServices_Title() -> String {
@@ -106,6 +106,18 @@ class NAString : NSObject
     
     func continue_button() -> String {
         return String("CONTINUE")
+    }
+    func your_city() -> String {
+        return String("Your City")
+    }
+    func your_society() -> String {
+        return String("Your Society")
+    }
+    func your_apartment() -> String {
+        return String("Your Apartment")
+    }
+    func your_flat() -> String {
+        return String("Your Flat")
     }
     
     //SignUp screen
@@ -318,7 +330,7 @@ class NAString : NSObject
     
     //MyVisitorList
     func myVisitorViewTitle() -> String {
-        return String("My Visitor List")
+        return String("My Guests")
     }
     
     func myVisitorVisitor() -> String {
@@ -349,6 +361,12 @@ class NAString : NSObject
     func expecting_cab_arrival() -> String {
         return String("Expecting Cab Arrival")
     }
+    func cab_arrival() -> String {
+        return String("Cab Arrivals")
+    }
+    func package_arrival() -> String {
+        return String("Package Arrivals")
+    }
     
     func expecting_package_arrival() -> String {
         return String("Expecting Package Arrival")
@@ -364,6 +382,12 @@ class NAString : NSObject
     
     func handed_things_to_my_daily_services() -> String {
         return String("Handed things to my Daily Services")
+    }
+    func my_Guest() -> String {
+        return String("MY Guests")
+    }
+    func my_Daily_Services() -> String {
+        return String("My Daily Services")
     }
     
     func package_number() -> String {
@@ -425,7 +449,7 @@ class NAString : NSObject
         return String("Given Things")
     }
     func description() -> String {
-        return String("Description")
+        return String("Description:(Optional)")
     }
     func feature_unavailable_message() -> String {
         return String("Sorry you cannot use this feature since currently you do not have any visitors at your resident.")
@@ -524,7 +548,7 @@ class NAString : NSObject
     }
     
     func grant_access() -> String {
-        return String ("Granted Aceess:")
+        return String (" Access:")
     }
     
     func remove() -> String {
@@ -585,11 +609,11 @@ class NAString : NSObject
     }
     
     //date & time format
-    func dateFormate() -> String {
+    func dateFormat() -> String {
         return String("MMM d, YYYY")
     }
     
-    func timeFormate() -> String {
+    func timeFormat() -> String {
         return String("HH:mm")
     }
     
@@ -639,6 +663,15 @@ class NAString : NSObject
     func layoutFeatureErrorVisitorList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no visitors at your flat.")
     }
+    func layoutFeatureErrorCabArrivalList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no cab arrivals scheduled for your flat.")
+    }
+    func layoutFeatureErrorpackageArrivalList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
+    }
+    func statusNotEntered() -> String {
+        return String ("Not Entered")
+    }
     
     //Cab Arrival and Package Arrival Validation
     func please_fill_details() -> String {
@@ -651,9 +684,9 @@ class NAString : NSObject
         return String("Please select Expected Arrival in Hours")
     }
     func notifyButtonAlertViewMessage() -> String {
-        return String("Notification is sent to your Security Guard.")
+        return String("Arrival Notification has been sent to your Security Guard.")
     }
     func notifyButtonAlertViewTitle() -> String {
-        return String("Notification Message")
+        return String("Security Guard Notification")
     }
 }
