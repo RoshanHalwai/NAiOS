@@ -251,7 +251,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_Mob_Validation.isHidden = false
             lbl_Mob_Validation.text = NAString().please_enter_mobile_no()
             txtInvitorMobile.redunderlined()
-        }   else {
+        } else {
             lbl_Mob_Validation.isHidden = true
             txtInvitorMobile.underlined()
         }
