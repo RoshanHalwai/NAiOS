@@ -269,13 +269,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         let fullName = "\(contact.givenName) \(contact.familyName)"
         self.txt_Name.text = fullName
         
-        lbl_Name_Validation.isHidden = true
-        txt_Name.underlined()
-        lbl_Mobile_Validation.isHidden = true
-        txt_MobileNo.underlined()
-        lbl_Date_Validation.isHidden = true
-        txt_Date.underlined()
-        
         var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         
@@ -292,27 +285,9 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
     }
     @IBAction func btnAddDetails(_ sender: Any) {
-        if img_Profile.image == #imageLiteral(resourceName: "imageIcon") {
+        if img_Profile.image == #imageLiteral(resourceName: "ExpectiingVisitor256") {
             lbl_Picture_Validation.isHidden = false
             lbl_Picture_Validation.text = NAString().please_upload_Image()
-        }
-        if (txt_Name.text?.isEmpty)! && (txt_MobileNo.text?.isEmpty)! && (txt_Date.text?.isEmpty)! {
-            lbl_Name_Validation.isHidden = false
-            lbl_Date_Validation.isHidden = false
-            lbl_Mobile_Validation.isHidden = false
-            txt_Name.redunderlined()
-            txt_Date.redunderlined()
-            txt_MobileNo.redunderlined()
-            lbl_Name_Validation.text = NAString().please_enter_name()
-            lbl_Date_Validation.text = NAString().Please_select_date()
-            lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
-        } else {
-            lbl_Name_Validation.isHidden = true
-            lbl_Date_Validation.isHidden = true
-            lbl_Mobile_Validation.isHidden = true
-            txt_Name.underlined()
-            txt_Date.underlined()
-            txt_MobileNo.underlined()
         }
         if (txt_Date.text?.isEmpty)! {
             lbl_Date_Validation.isHidden = false
@@ -334,14 +309,18 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             lbl_Mobile_Validation.isHidden = false
             lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
             txt_MobileNo.redunderlined()
-        } else {
-            lbl_Mobile_Validation.isHidden = true
+        } else if (!(txt_MobileNo.text?.isEmpty)!) && (txt_MobileNo.text?.count != NAString().required_mobileNo_Length()) {
+            lbl_Mobile_Validation.isHidden = false
+            txt_MobileNo.redunderlined()
+            lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
+        } else if (txt_MobileNo.text?.count == NAString().required_mobileNo_Length()) {
             txt_MobileNo.underlined()
+            lbl_Mobile_Validation.isHidden = true
         }
-        if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "imageIcon") {
+        if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectiingVisitor256") {
             if (navTitle! == NAString().add_my_service().capitalized) {
                 let lv = NAViewPresenter().otpViewController()
-                
+
                 // passing data
                 let servicesString = NAString().enter_verification_code(first: "your \(holdString)", second: "their")
                 lv.newOtpString = servicesString
@@ -363,25 +342,17 @@ extension AddMyServicesViewController {
             mobileNumberTextFieldLength = txt_MobileNo.text!.count
         }
         if textField == txt_Name {
-            if (newLength == NAString().zero_length()) {
-                lbl_Name_Validation.isHidden = false
-                txt_Name.redunderlined()
-                lbl_Name_Validation.text = NAString().please_enter_name()
-            } else {
-                lbl_Name_Validation.isHidden = true
-                txt_Name.underlined()
-            }
+            lbl_Name_Validation.isHidden = true
+            txt_Name.underlined()
+            
             nameTextFieldLength = newLength
             dateTextFieldLength = txt_Date.text!.count
             mobileNumberTextFieldLength = txt_MobileNo.text!.count
         }
         if textField == txt_MobileNo {
+            txt_MobileNo.underlined()
+            lbl_Mobile_Validation.isHidden = true
             if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
-                lbl_Mobile_Validation.isHidden = true
-                txt_MobileNo.underlined()
-            } else {
-                lbl_Mobile_Validation.isHidden = false
-                txt_MobileNo.redunderlined()
             }
             if newLength >= NAString().required_mobileNo_Length() && !(txt_Name.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! {
             }
@@ -393,8 +364,6 @@ extension AddMyServicesViewController {
             if string.isEmpty {
                 return true
             } else {
-                txt_MobileNo.underlined()
-                lbl_Mobile_Validation.isHidden = true
                 return newLength <= NAString().required_mobileNo_Length() // Bool
             }
         }
