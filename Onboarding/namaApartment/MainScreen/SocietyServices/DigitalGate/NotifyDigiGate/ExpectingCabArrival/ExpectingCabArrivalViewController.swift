@@ -20,10 +20,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     @IBOutlet weak var lbl_expectedHours_Validation: UILabel!
     
     @IBOutlet weak var txt_PackageVendor: UITextField!
-    @IBOutlet weak var cab_txt_stateCode: UITextField!
-    @IBOutlet weak var cab_txt_RTOZone: UITextField!
-    @IBOutlet weak var cab_txt_serialNum1: UITextField!
-    @IBOutlet weak var cab_txt_serialNum2: UITextField!
+    @IBOutlet weak var txt_CabStateCode: UITextField!
+    @IBOutlet weak var txt_CabRtoNumber: UITextField!
+    @IBOutlet weak var txt_CabSerialNumberOne: UITextField!
+    @IBOutlet weak var txt_CabSerialNumberTwo: UITextField!
     @IBOutlet weak var txt_DateTime: UITextField!
     
     @IBOutlet weak var btn_NotifyGate: UIButton!
@@ -68,11 +68,17 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         
         //assigned delegate method on textFields
         txt_DateTime.delegate = self
-        cab_txt_stateCode.delegate = self
-        cab_txt_RTOZone.delegate = self
-        cab_txt_serialNum1.delegate = self
-        cab_txt_serialNum2.delegate = self
+        txt_CabStateCode.delegate = self
+        txt_CabRtoNumber.delegate = self
+        txt_CabSerialNumberOne.delegate = self
+        txt_CabSerialNumberTwo.delegate = self
         txt_PackageVendor.delegate = self
+        
+        //set tag values to textFields
+        txt_CabStateCode.tag = 1
+        txt_CabRtoNumber.tag = 2
+        txt_CabSerialNumberOne.tag = 3
+        txt_CabSerialNumberTwo.tag = 4
 
         //placing image calender imgage inside the Date&Time TextField
         self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
@@ -82,11 +88,9 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         txt_DateTime.rightView = imageView
         
         // become first responder
-        self.cab_txt_stateCode.becomeFirstResponder()
-        self.cab_txt_RTOZone.becomeFirstResponder()
-        self.cab_txt_serialNum1.becomeFirstResponder()
-        self.cab_txt_serialNum2.becomeFirstResponder()
-        self.txt_PackageVendor.becomeFirstResponder()
+        self.txt_CabRtoNumber.becomeFirstResponder()
+        self.txt_CabSerialNumberOne.becomeFirstResponder()
+        self.txt_CabSerialNumberTwo.becomeFirstResponder()
 
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: navTitle!)
@@ -101,10 +105,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         createDatePicker()
         
         //putting black bottom line on textFields
-        cab_txt_stateCode.underlined()
-        cab_txt_RTOZone.underlined()
-        cab_txt_serialNum1.underlined()
-        cab_txt_serialNum2.underlined()
+        txt_CabStateCode.underlined()
+        txt_CabRtoNumber.underlined()
+        txt_CabSerialNumberOne.underlined()
+        txt_CabSerialNumberTwo.underlined()
         txt_DateTime.underlined()
         txt_PackageVendor.underlined()
         
@@ -123,10 +127,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         lbl_expectedHours_Validation.font = NAFont().descriptionFont()
         
         //Textfield formatting & setting
-        cab_txt_stateCode.font = NAFont().textFieldFont()
-        cab_txt_RTOZone.font = NAFont().textFieldFont()
-        cab_txt_serialNum1.font = NAFont().textFieldFont()
-        cab_txt_serialNum2.font = NAFont().textFieldFont()
+        txt_CabStateCode.font = NAFont().textFieldFont()
+        txt_CabRtoNumber.font = NAFont().textFieldFont()
+        txt_CabSerialNumberOne.font = NAFont().textFieldFont()
+        txt_CabSerialNumberTwo.font = NAFont().textFieldFont()
         txt_PackageVendor.font = NAFont().textFieldFont()
         txt_DateTime.font = NAFont().textFieldFont()
         
@@ -209,11 +213,13 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
     }
-    //Hiding Cab TextFields & Pacakge Vandor textFields According to Title
+    //Hiding & Setting First Responder for Cab TextFields & Pacakge Vandor textFields According to Title
     func hidingTextFiledAccordingToTitle() {
         if (navTitle == NAString().expecting_cab_arrival()) {
+            self.txt_CabStateCode.becomeFirstResponder()
             self.txt_PackageVendor.isHidden = true
         } else {
+            self.txt_PackageVendor.becomeFirstResponder()
             cabNumber_stack.isHidden = true
         }
     }
@@ -242,7 +248,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = "MMM d, YYYY \t HH:mm"
+        date.dateFormat = (NAString().dateFormat() + "\t\t" + NAString().timeFormat())
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
@@ -255,33 +261,33 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         selectedColor(tag: sender.tag)
     }
     @IBAction func btnNotifyGate(_ sender: Any) {
-        if (cab_txt_stateCode.text?.isEmpty)! {
+        if (txt_CabStateCode.text?.isEmpty)! {
             inviteLabelCabNumberTitle()
-            cab_txt_stateCode.redunderlined()
+            txt_CabStateCode.redunderlined()
         } else {
             lbl_cabNumber_Validation.isHidden = true
-            cab_txt_stateCode.underlined()
+            txt_CabStateCode.underlined()
         }
-        if (cab_txt_RTOZone.text?.isEmpty)! {
+        if (txt_CabRtoNumber.text?.isEmpty)! {
             inviteLabelCabNumberTitle()
-            cab_txt_RTOZone.redunderlined()
+            txt_CabRtoNumber.redunderlined()
         } else {
             lbl_cabNumber_Validation.isHidden = true
-            cab_txt_RTOZone.underlined()
+            txt_CabRtoNumber.underlined()
         }
-        if (cab_txt_serialNum1.text?.isEmpty)! {
+        if (txt_CabSerialNumberOne.text?.isEmpty)! {
             inviteLabelCabNumberTitle()
-            cab_txt_serialNum1.redunderlined()
+            txt_CabSerialNumberOne.redunderlined()
         } else {
             lbl_cabNumber_Validation.isHidden = true
-            cab_txt_serialNum1.underlined()
+            txt_CabSerialNumberOne.underlined()
         }
-        if (cab_txt_serialNum2.text?.isEmpty)! {
+        if (txt_CabSerialNumberTwo.text?.isEmpty)! {
             inviteLabelCabNumberTitle()
-            cab_txt_serialNum2.redunderlined()
+            txt_CabSerialNumberTwo.redunderlined()
         } else {
             lbl_cabNumber_Validation.isHidden = true
-            cab_txt_serialNum2.underlined()
+            txt_CabSerialNumberTwo.underlined()
         }
         if (txt_PackageVendor.text?.isEmpty)! {
             inviteLabelCabNumberTitle()
@@ -304,8 +310,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         } else if (isValidButtonClicked.index(of: true) != nil) {
             lbl_expectedHours_Validation.isHidden = true
         }
-        if !(cab_txt_stateCode.text?.isEmpty)! &&  !(cab_txt_RTOZone.text?.isEmpty)! && !(cab_txt_serialNum1.text?.isEmpty)! && !(cab_txt_serialNum2.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
-            lbl_cabNumber.isHidden = true
+        if !(txt_CabStateCode.text?.isEmpty)! &&  !(txt_CabRtoNumber.text?.isEmpty)! && !(txt_CabSerialNumberOne.text?.isEmpty)! && !(txt_CabSerialNumberTwo.text?.isEmpty)! {
+            lbl_cabNumber_Validation.isHidden = true
+        }
+        if !(txt_CabStateCode.text?.isEmpty)! &&  !(txt_CabRtoNumber.text?.isEmpty)! && !(txt_CabSerialNumberOne.text?.isEmpty)! && !(txt_CabSerialNumberTwo.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
             inviteAlertView()
         }
         if !(txt_PackageVendor.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
@@ -343,74 +351,118 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     }
 }
 // Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
-func cabStateCodeAndSerailCodeLength(isNewLength: Int) -> Bool{
-    if (isNewLength >= 2) {
+func cabStateCodeAndSerailCodeLength(isCabNumberLength: Int) -> Bool{
+    if (isCabNumberLength >= 2) {
         return true
     }else{
         return false
     }
 }
-func cabSerialNumberLength(isLength: Int) -> Bool {
-    if (isLength >= 4) {
+func cabSerialNumberLength(isCabSerialNumberLength: Int) -> Bool {
+    if (isCabSerialNumberLength >= 4) {
         return true
     }else{
         return false
     }
+}
+// Creating move cursor from One textField to another TextField
+func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool {
+    //Check if textField has two chacraters
+    if ((textField.text?.count)! == 1  && string.count > 0) {
+        // get next TextField
+        let nextTag = textField.tag + 1
+        var nextTextField = textField.superview?.viewWithTag(nextTag)
+        if (nextTextField == nil) {
+            nextTextField = textField.superview?.viewWithTag(1)
+        }
+        textField.text = textField.text! + string
+        //write here your last textfield tag
+        if textField.tag == 4 {
+            //Dissmiss keyboard on last entry
+            textField.resignFirstResponder()
+        }
+        else {
+            //Appear keyboard
+            nextTextField?.becomeFirstResponder()
+        }
+        return false
+    } else if ((textField.text?.count)! == 1  && string.count == 0) {
+        // on deleteing value from Textfield
+        let previousTag = textField.tag - 1
+        // get previous TextField
+        var previousTextField = textField.superview?.viewWithTag(previousTag)
+        if (previousTextField == nil) {
+            previousTextField = textField.superview?.viewWithTag(1)
+        }
+        textField.text = ""
+        previousTextField?.becomeFirstResponder()
+        return false
+    }
+    return true
 }
 extension ExpectingCabArrivalViewController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
-        let newLength = text.utf16.count + string.utf16.count - range.length
-        if textField == cab_txt_stateCode {
-            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
-                if (newLength == NAString().zero_length()) {
-                    inviteLabelCabNumberTitle()
-                    cab_txt_stateCode.redunderlined()
-                } else {
-                    lbl_cabNumber_Validation.isHidden = true
-                    cab_txt_stateCode.underlined()
-                }
-                return newLength <= 2
+        let cab_New_TextLength = text.utf16.count + string.utf16.count - range.length
+        if textField == txt_CabStateCode {
+            if (cab_New_TextLength == NAString().zero_length()) {
+                inviteLabelCabNumberTitle()
+                txt_CabStateCode.redunderlined()
+            } else {
+                lbl_cabNumber_Validation.isHidden = true
+                txt_CabStateCode.underlined()
+            }
+            if shouldChangeCustomCharacters(textField: textField, string: string) {
+                if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
+                    return cab_New_TextLength <= 2
+                 }
+                return true
+              }
+            }
+        if textField == txt_CabRtoNumber {
+            if (cab_New_TextLength == NAString().zero_length()) {
+                inviteLabelCabNumberTitle()
+                txt_CabRtoNumber.redunderlined()
+            } else {
+                lbl_cabNumber_Validation.isHidden = true
+                txt_CabRtoNumber.underlined()
+            }
+            if shouldChangeCustomCharacters(textField: textField, string: string) {
+                if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
+                    return cab_New_TextLength <= 2
+                 }
+                return true
+               }
              }
+        if textField == txt_CabSerialNumberOne {
+            if (cab_New_TextLength == NAString().zero_length()) {
+                inviteLabelCabNumberTitle()
+                txt_CabSerialNumberOne.redunderlined()
+            } else {
+                lbl_cabNumber_Validation.isHidden = true
+                txt_CabSerialNumberOne.underlined()
+            }
+            if shouldChangeCustomCharacters(textField: textField, string: string) {
+                if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
+                    return cab_New_TextLength <= 2
+                  }
+                return true
+              }
           }
-        if textField == cab_txt_RTOZone {
-            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
-                if (newLength == NAString().zero_length()) {
+        if textField == txt_CabSerialNumberTwo {
+            if cabSerialNumberLength(isCabSerialNumberLength: cab_New_TextLength) {
+                if (cab_New_TextLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
-                    cab_txt_RTOZone.redunderlined()
+                    txt_CabSerialNumberTwo.redunderlined()
                 } else {
                     lbl_cabNumber_Validation.isHidden = true
-                    cab_txt_RTOZone.underlined()
+                    txt_CabSerialNumberTwo.underlined()
                 }
             }
-            return newLength <= 2
-        }
-        if textField == cab_txt_serialNum1 {
-            if cabStateCodeAndSerailCodeLength(isNewLength: newLength) {
-                if (newLength == NAString().zero_length()) {
-                    inviteLabelCabNumberTitle()
-                    cab_txt_serialNum1.redunderlined()
-                } else {
-                    lbl_cabNumber_Validation.isHidden = true
-                    cab_txt_serialNum1.underlined()
-                }
-            }
-            return newLength <= 2
-        }
-        if textField == cab_txt_serialNum2 {
-            if cabSerialNumberLength(isLength: newLength) {
-                if (newLength == NAString().zero_length()) {
-                    inviteLabelCabNumberTitle()
-                    cab_txt_serialNum2.redunderlined()
-                } else {
-                    lbl_cabNumber_Validation.isHidden = true
-                    cab_txt_serialNum2.underlined()
-                }
-            }
-            return newLength <= 4
+            return cab_New_TextLength <= 4
         }
         if textField == txt_PackageVendor {
-                if (newLength == NAString().zero_length()) {
+                if (cab_New_TextLength == NAString().zero_length()) {
                     inviteLabelCabNumberTitle()
                     txt_PackageVendor.redunderlined()
             } else {
@@ -419,7 +471,7 @@ extension ExpectingCabArrivalViewController {
             }
         }
         if textField == txt_DateTime {
-                if (newLength == NAString().zero_length()) {
+                if (cab_New_TextLength == NAString().zero_length()) {
                     lbl_dateField_Validation.isHidden = false
                     txt_DateTime.redunderlined()
                     lbl_dateField_Validation.text = NAString().Please_select_date()
@@ -428,6 +480,12 @@ extension ExpectingCabArrivalViewController {
                     txt_DateTime.underlined()
                 }
             }
+        if (navTitle == NAString().expecting_cab_arrival()) {
+            return false
+        }
         return true
     }
-}
+ }
+
+
+
