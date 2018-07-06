@@ -124,7 +124,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = list.timeOfVisit
         
         //For converting Int with String.
-       // cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
+        //cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
         
         //TODO : Need to change Flat Number.
         cell.lbl_MyDailyServicesFlats.text = "5"
