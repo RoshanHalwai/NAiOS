@@ -49,6 +49,8 @@ class signupViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Add border color on profile imageview
+        profileImage.layer.borderColor = UIColor.black.cgColor
         
         //Hide Error Labels
         lbl_FullName_Validation.isHidden = true
