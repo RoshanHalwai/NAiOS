@@ -60,6 +60,9 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Add border color on profile imageview
+        img_Profile.layer.borderColor = UIColor.black.cgColor
+        
         //hiding error labels
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true

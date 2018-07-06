@@ -52,7 +52,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Add border color on profile imageview
         img_Profile.layer.borderColor = UIColor.black.cgColor
         

@@ -96,12 +96,17 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSR-mw-6c2">
                                         <rect key="frame" x="0.0" y="28" width="375" height="639"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SxJ-xW-hMo">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ExpectiingVisitor256" translatesAutoresizingMaskIntoConstraints="NO" id="SxJ-xW-hMo">
                                                 <rect key="frame" x="125" y="10" width="126" height="126"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="126" id="aMz-I4-SEM"/>
                                                     <constraint firstAttribute="height" constant="126" id="zsS-mi-8vI"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Upload Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPj-bs-MBJ">
                                                 <rect key="frame" x="100" y="134" width="175" height="17"/>
@@ -807,7 +812,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7rJ-pw-vGD">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ExpectiingVisitor256" translatesAutoresizingMaskIntoConstraints="NO" id="7rJ-pw-vGD">
                                                 <rect key="frame" x="125" y="10" width="125" height="124"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="125" id="5Ge-qs-Ro5"/>
@@ -2855,11 +2860,16 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="imageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ojR-1c-chR">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ExpectiingVisitor256" translatesAutoresizingMaskIntoConstraints="NO" id="ojR-1c-chR">
                                                 <rect key="frame" x="124" y="28" width="127" height="126"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="126" id="FAy-7n-CLp"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Sn-ta-ngi">
                                                 <rect key="frame" x="100" y="158" width="175" height="17"/>
@@ -3196,7 +3206,7 @@
                                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="imageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="GQq-0Q-yLa">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ExpectiingVisitor256" translatesAutoresizingMaskIntoConstraints="NO" id="GQq-0Q-yLa">
                                                 <rect key="frame" x="124" y="28" width="126" height="126"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="126" id="9Df-h7-G6w"/>
@@ -4543,13 +4553,13 @@
         <image name="Call" width="64" height="64"/>
         <image name="Cancel" width="64" height="64"/>
         <image name="Edit" width="64" height="64"/>
+        <image name="ExpectiingVisitor256" width="256" height="256"/>
         <image name="InviteVisitors" width="512" height="512"/>
         <image name="Message" width="64" height="64"/>
         <image name="MyDailyServices" width="512" height="512"/>
         <image name="Reschedule" width="64" height="64"/>
         <image name="backk24" width="24" height="24"/>
         <image name="bell2" width="128" height="128"/>
-        <image name="imageIcon" width="512" height="512"/>
         <image name="kidImage" width="1600" height="1000"/>
         <image name="splashScreen" width="205" height="159"/>
     </resources>
