@@ -216,7 +216,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     }
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
     @IBAction func btnInviteVisitor(_ sender: UIButton) {
-        if img_Profile.image == #imageLiteral(resourceName: "imageIcon") {
+        if img_Profile.image == #imageLiteral(resourceName: "ExpectiingVisitor") {
             lbl_Picture_Validation.isHidden = false
             lbl_Picture_Validation.text = NAString().please_upload_Image()
         }
@@ -262,7 +262,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_Date_Validation.isHidden = true
             txtDate.underlined()
         }
-        if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "imageIcon") {
+        if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectiingVisitor") {
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
             inviteAlertView()
