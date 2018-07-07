@@ -798,7 +798,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ExpectiingVisitor256" translatesAutoresizingMaskIntoConstraints="NO" id="7rJ-pw-vGD">
-                                                <rect key="frame" x="125" y="10" width="125" height="124"/>
+                                                <rect key="frame" x="125.5" y="10" width="125" height="124"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="125" id="5Ge-qs-Ro5"/>
                                                     <constraint firstAttribute="height" constant="124" id="I5h-lw-a4T"/>
