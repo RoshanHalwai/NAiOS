@@ -285,7 +285,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
     }
     @IBAction func btnAddDetails(_ sender: Any) {
-        if img_Profile.image == #imageLiteral(resourceName: "ExpectiingVisitor") {
+        if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
             lbl_Picture_Validation.text = NAString().please_upload_Image()
         }
@@ -317,7 +317,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
-        if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectiingVisitor") {
+        if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
                 let lv = NAViewPresenter().otpViewController()
 
