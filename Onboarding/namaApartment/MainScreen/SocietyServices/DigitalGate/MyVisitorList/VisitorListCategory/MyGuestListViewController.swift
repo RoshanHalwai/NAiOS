@@ -77,14 +77,13 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         super.ConfigureNavBarTitle(title: NAString().my_Guest())
         
         //created custom back button for goto My Visitors List
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMyVisitorsList))
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigitGate))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    
-    //created custom back button to go back to My Visitors List
-    @objc func goBackToMyVisitorsList() {
-        let dv = NAViewPresenter().myVisitorsListVC()
+    //created custome back button to go back to My Visitors List
+    @objc func goBackToDigitGate() {
+        let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
