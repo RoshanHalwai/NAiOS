@@ -190,7 +190,7 @@ class NAString : NSObject
     
     //Society Services Activity
     func digital_gate() -> String {
-        return String("Digital Gate")
+        return String("Digi Gate")
     }
     
     func plumber() -> String {
