@@ -15,6 +15,7 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    //GCM is stands fro Google Cloud Messaging
     let gcmMessageIDKey = "gcm.message_id"
     
     func application(_ application: UIApplication,
@@ -45,10 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
-        
         application.registerForRemoteNotifications()
-        
-        // [END register_for_notifications]
+        // END register for notifications
         return true
     }
     
@@ -57,8 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
-        // Print full message.
         print(userInfo)
     }
     
@@ -68,10 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
-        // Print full message.
         print(userInfo)
-        
         completionHandler(UIBackgroundFetchResult.newData)
     }
     // [END receive_message]
@@ -81,13 +75,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("APNs token retrieved: \(deviceToken)")
-        
-        // Messaging.messaging().apnsToken = deviceToken
     }
 }
 
-// [START ios_10_message_handling]
-@available(iOS 10, *)
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
     // Receive displayed notifications for iOS 10 devices.
@@ -99,7 +89,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
         print(userInfo)
         
         // Change this to your preferred presentation option
@@ -114,14 +103,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
-        // Print full message.
         print(userInfo)
         
         completionHandler()
     }
 }
-// [END ios_10_message_handling]
 
 extension AppDelegate : MessagingDelegate {
     // [START refresh_token]

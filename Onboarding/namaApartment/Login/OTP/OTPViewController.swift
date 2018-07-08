@@ -22,7 +22,7 @@ class OTPViewController: NANavigationViewController
     @IBOutlet weak var txtOTP6: UITextField!
     
     //to take data from add my services
-     var newOtpString = String()
+    var newOtpString = String()
     
     //Creating varibale to get mobile number string from Login VC TextField.
     var getMobileString = String()
@@ -35,7 +35,7 @@ class OTPViewController: NANavigationViewController
         
         //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
-       
+        
         //Button formatting & setting
         btnVerify.backgroundColor = NAColor().buttonBgColor()
         btnVerify.setTitleColor(NAColor().buttonFontColor(), for: .normal)
@@ -59,7 +59,7 @@ class OTPViewController: NANavigationViewController
         //Hiding Btn Verify
         self.btnVerify.isHidden =  true
         
-       //assigned delegate method on textFields
+        //assigned delegate method on textFields
         txtOTP1.delegate = self
         txtOTP2.delegate = self
         txtOTP3.delegate = self
@@ -69,9 +69,9 @@ class OTPViewController: NANavigationViewController
         
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().phone_verification_activity_title())
-       navigationItem.rightBarButtonItem = nil
-         self.navigationItem.hidesBackButton = true
-       
+        navigationItem.rightBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
+        
         //Set Textfield bottom border line
         txtOTP1.underlined()
         txtOTP2.underlined()
@@ -106,86 +106,58 @@ class OTPViewController: NANavigationViewController
         
         //Calling function which includes Verify OTP
         verifyOTPWithFirebase()
-}
+    }
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool
-    {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return true
     }
- 
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if (!string.isEmpty)
-        {
+        if (!string.isEmpty) {
             textField.text = string
-            
-            if textField == txtOTP1
-            {
+            if textField == txtOTP1 {
                 txtOTP2?.becomeFirstResponder()
             }
-                
-            else if textField == txtOTP2
-            {
+            else if textField == txtOTP2 {
                 txtOTP3?.becomeFirstResponder()
             }
-                
-            else if textField == txtOTP3
-            {
+            else if textField == txtOTP3 {
                 txtOTP4?.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP4
-            {
+            else if textField == txtOTP4 {
                 txtOTP5?.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP5
-            {
+            else if textField == txtOTP5 {
                 txtOTP6?.becomeFirstResponder()
             }
-            
-            else
-            {
+            else {
                 txtOTP6?.becomeFirstResponder()
                 self.btnVerify.isHidden = false
             }
-            
             return false
         }
-        
-        else
-        {
-            if textField == txtOTP6
-            {
+        else {
+            if textField == txtOTP6 {
                 txtOTP6?.text = ""
                 txtOTP5.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP5
-            {
+            else if textField == txtOTP5 {
                 txtOTP5?.text = ""
                 txtOTP4.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP4
-            {
+            else if textField == txtOTP4 {
                 txtOTP4?.text = ""
                 txtOTP3.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP3
-            {
+            else if textField == txtOTP3 {
                 txtOTP3?.text = ""
                 txtOTP2.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP2
-            {
+            else if textField == txtOTP2 {
                 txtOTP2?.text = ""
                 txtOTP1.becomeFirstResponder()
             }
-            
-            else
-            {
+            else {
                 txtOTP1?.text = ""
                 textField.resignFirstResponder()
             }
