@@ -47,7 +47,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     //gettig data from previous screen string
     var AddOtpString = String()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add border color on profile image
@@ -129,7 +128,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
-        
         //showing alert controller while giving Grant Access to family members
         let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()), preferredStyle: .alert)
         
@@ -182,7 +180,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         self.dismiss(animated: true, completion: nil)
     }
-    
     @IBAction func btnSelectContact(_ sender: Any) {
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
@@ -243,7 +240,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 txt_Email.redunderlined()
             }
         }
-        if img_Profile.image == #imageLiteral(resourceName: "ExpectiingVisitor256") {
+        if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
             lbl_Picture_Validation.text = NAString().please_upload_Image()
         }
@@ -272,7 +269,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
-        if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "ExpectiingVisitor256") {
+        if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
 
             if(grantAcess_Segment.selectedSegmentIndex == 0) {
                 //calling AlertBox on click of YES
@@ -328,5 +325,4 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         return true
     }
-    
 }
