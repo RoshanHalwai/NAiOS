@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class OTPViewController: NANavigationViewController
 {
@@ -20,14 +22,20 @@ class OTPViewController: NANavigationViewController
     @IBOutlet weak var txtOTP6: UITextField!
     
     //to take data from add my services
-     var newOtpString = String()
+    var newOtpString = String()
+    
+    //Creating varibale to get mobile number string from Login VC TextField.
+    var getMobileString = String()
+    
+    //Creating Firebase DB Reference variable.
+    var userMobileNumberRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
-       
+        
         //Button formatting & setting
         btnVerify.backgroundColor = NAColor().buttonBgColor()
         btnVerify.setTitleColor(NAColor().buttonFontColor(), for: .normal)
@@ -51,7 +59,7 @@ class OTPViewController: NANavigationViewController
         //Hiding Btn Verify
         self.btnVerify.isHidden =  true
         
-       //assigned delegate method on textFields
+        //assigned delegate method on textFields
         txtOTP1.delegate = self
         txtOTP2.delegate = self
         txtOTP3.delegate = self
@@ -61,9 +69,9 @@ class OTPViewController: NANavigationViewController
         
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().phone_verification_activity_title())
-       navigationItem.rightBarButtonItem = nil
-         self.navigationItem.hidesBackButton = true
-       
+        navigationItem.rightBarButtonItem = nil
+        self.navigationItem.hidesBackButton = true
+        
         //Set Textfield bottom border line
         txtOTP1.underlined()
         txtOTP2.underlined()
@@ -75,110 +83,81 @@ class OTPViewController: NANavigationViewController
     
     @IBAction func btnVerifyOTP(_ sender: Any)
     {
-        //back to Namma Apartment Home Screen
-        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your"))
-        {
-        let lv : MainScreenViewController = self.storyboard?.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
-        
-        self.navigationController?.setNavigationBarHidden(false, animated: true);
-        self.navigationController?.pushViewController(lv, animated: true)
-        }
+        //Back to Namma Apartment Home Screen
+        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
-        //Back to My Sweet Home screen
-        else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their"))
-        {
-            let lv : MySweetHomeViewController = self.storyboard?.instantiateViewController(withIdentifier: "mySweetHomeVC") as! MySweetHomeViewController
-            self.navigationController?.pushViewController(lv, animated: true)
-        }
-            
-        //Back to My Daily Services Screen
-        else
-        {
-            let lv : MyDailyServicesViewController = self.storyboard?.instantiateViewController(withIdentifier: "myDailyServicesVC") as! MyDailyServicesViewController
-            
+            let lv = NAViewPresenter().mainScreenVC()
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         }
+            //Back to My Sweet Home screen
+        else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
+            
+            let lv = NAViewPresenter().mySweetHomeVC()
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
+            //Back to My Daily Services Screen
+        else {
+            
+            let lv = NAViewPresenter().myDailyServicesVC()
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
+        
+        //Calling function which includes Verify OTP
+        verifyOTPWithFirebase()
     }
     
-    func textFieldShouldClear(_ textField: UITextField) -> Bool
-    {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
         return true
     }
- 
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if (!string.isEmpty)
-        {
+        if (!string.isEmpty) {
             textField.text = string
-            
-            if textField == txtOTP1
-            {
+            if textField == txtOTP1 {
                 txtOTP2?.becomeFirstResponder()
             }
-                
-            else if textField == txtOTP2
-            {
+            else if textField == txtOTP2 {
                 txtOTP3?.becomeFirstResponder()
             }
-                
-            else if textField == txtOTP3
-            {
+            else if textField == txtOTP3 {
                 txtOTP4?.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP4
-            {
+            else if textField == txtOTP4 {
                 txtOTP5?.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP5
-            {
+            else if textField == txtOTP5 {
                 txtOTP6?.becomeFirstResponder()
             }
-            
-            else
-            {
+            else {
                 txtOTP6?.becomeFirstResponder()
                 self.btnVerify.isHidden = false
             }
-            
             return false
         }
-        
-        else
-        {
-            if textField == txtOTP6
-            {
+        else {
+            if textField == txtOTP6 {
                 txtOTP6?.text = ""
                 txtOTP5.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP5
-            {
+            else if textField == txtOTP5 {
                 txtOTP5?.text = ""
                 txtOTP4.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP4
-            {
+            else if textField == txtOTP4 {
                 txtOTP4?.text = ""
                 txtOTP3.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP3
-            {
+            else if textField == txtOTP3 {
                 txtOTP3?.text = ""
                 txtOTP2.becomeFirstResponder()
             }
-            
-            else if textField == txtOTP2
-            {
+            else if textField == txtOTP2 {
                 txtOTP2?.text = ""
                 txtOTP1.becomeFirstResponder()
             }
-            
-            else
-            {
+            else {
                 txtOTP1?.text = ""
                 textField.resignFirstResponder()
             }
@@ -186,3 +165,48 @@ class OTPViewController: NANavigationViewController
         }
     }
 }
+
+//Created Extension for verifying OTP.
+extension OTPViewController {
+    
+    func verifyOTPWithFirebase() {
+        
+        //Creating Firebase Verification ID & Printing It in Console.
+        let verificationID = UserDefaults.standard.string(forKey: "firebase_verification")
+        if (verificationID != nil) {
+            print(verificationID as Any)
+        }
+        //Creating OTP String Varible
+        let Otp_Strig1 = txtOTP1.text!
+        let Otp_Strig2 = txtOTP2.text!
+        let Otp_Strig3 = txtOTP3.text!
+        let Otp_Strig4 = txtOTP4.text!
+        let Otp_Strig5 = txtOTP5.text!
+        let Otp_Strig6 = txtOTP6.text!
+        
+        //Creating final string by concatinating all the 6 varification textFields.
+        let final_String = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+        
+        //Creating Credential variable to check correct OTP String.
+        let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: final_String)
+        
+        //If OTP is Valid then Login Sucess else showing Error message in Console
+        //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
+        Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
+            if let error = error {
+                print("error",error.localizedDescription)
+                return
+            }
+            //if Sucess then store Mobile number & UID in FirebaseDB
+            print("Login success")
+            
+            //Getting path for where to store Mobile Number & UID.
+            self.userMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+            
+            //TODO: Mapping UID & Mobile Number on VerifyOTP button Instead of Signup Button Just to See that Functionality is working or not.
+            // Maping Mobile Number with UID & Storing in Users/All
+            self.userMobileNumberRef?.child(self.getMobileString).setValue(Auth.auth().currentUser?.uid)
+        }
+    }
+}
+

@@ -111,4 +111,8 @@ class NAViewPresenter: NSObject {
     func loginVC() -> loginViewController {
         return storyBoard.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
     }
+    //Namma Apartments Home Screen
+    func mainScreenVC() -> MainScreenViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
+    }
 }
