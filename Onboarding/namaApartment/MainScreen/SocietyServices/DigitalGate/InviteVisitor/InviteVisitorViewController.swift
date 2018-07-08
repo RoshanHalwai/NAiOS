@@ -313,7 +313,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     VisitorListFBKeys.inviterUID.key : inviterUID,
                     VisitorListFBKeys.profilePhoto.key : url?.absoluteString
                 ]
-                
                 //Adding visitor data under preApproved visitors
                     self.preApprovedVisitorsRef?.setValue(visitorData)
                     //Using else statement & printing error,so the other developers can know what is going on.
@@ -365,7 +364,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         }
         self.dismiss(animated: true, completion: nil)
     }
-
     //Accept only 10 digit mobile number
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -406,7 +404,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         updateInviteButtonVisibility(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
         return true
     }
-
     func updateInviteButtonVisibility(nameLength:Int, mobileNumberLength:Int, dateLength:Int) {
         
         //Conditions 1.Atleast 1 character. 2.10 Chracters Must. 3.Date Should Set
