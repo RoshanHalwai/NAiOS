@@ -37,7 +37,7 @@ class splashApartmentServices
     
     @IBAction func btnLetsGetStarted(_ sender: Any)
     {
-        let lv : loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
+        let lv = NAViewPresenter().loginVC()
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }
