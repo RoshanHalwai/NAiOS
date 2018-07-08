@@ -11,6 +11,9 @@ pod 'Firebase/Database'
 pod 'Firebase'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
+pod 'Firebase/Messaging'
+pod 'FirebaseUI/Phone'
+
 
   target 'nammaApartmentTests' do
     inherit! :search_paths
