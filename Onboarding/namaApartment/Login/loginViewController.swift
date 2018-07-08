@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseCore
 
 class loginViewController: NANavigationViewController
 {
@@ -58,9 +60,7 @@ class loginViewController: NANavigationViewController
         
         //set Title to Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().login_button())
-       // navigationItem.title = ""
         navigationItem.rightBarButtonItem = nil
-        //navigationItem.backBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
     }
     @IBAction func btnSignup(_ sender: Any)
@@ -80,6 +80,9 @@ class loginViewController: NANavigationViewController
         return newLength <= NAString().required_mobileNo_Length() // Bool
     }
     @IBAction func btnSignin(_ sender: Any) {
+        
+        //Calling Generate OTP Function
+        generatingOTPFromFirebase()
         
         //Provide Validation Functionality on button click
         lbl_Validation.isHidden = true
@@ -103,6 +106,27 @@ class loginViewController: NANavigationViewController
                 lv.newOtpString = otpString
                 self.navigationController?.setNavigationBarHidden(false, animated: true);
                 self.navigationController?.pushViewController(lv, animated: true)
+            }
+        }
+    }
+}
+
+extension loginViewController {
+    
+    //Generating OTP From Firebase Authentication
+    //TODO: Printing Errors in Console so that other developers can undustand
+    func generatingOTPFromFirebase() {
+        
+        PhoneAuthProvider.provider().verifyPhoneNumber(txt_CountryCode.text! + txt_MobileNo.text!, uiDelegate: nil) { (verificationID, error) in
+            print("verificatinCode",verificationID as Any)
+            let data = Data(hexString: verificationID! )
+            print(data as Any)
+            self.prefs.set(verificationID, forKey: "firebase_verification")
+            self.prefs.synchronize()
+            
+            if let error = error {
+                print("error is",error.localizedDescription)
+                return
             }
         }
     }

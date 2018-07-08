@@ -176,6 +176,7 @@
 		868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlatDetails.swift; sourceTree = "<group>"; };
 		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
+		869306C520F22D050069305D /* nammaApartment.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = nammaApartment.entitlements; sourceTree = "<group>"; };
 		86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAActivityIndicator.swift; sourceTree = "<group>"; };
 		86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFirebase.swift; sourceTree = "<group>"; };
 		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
@@ -301,6 +302,7 @@
 		862700EA209707BB004B28EB = {
 			isa = PBXGroup;
 			children = (
+				869306C520F22D050069305D /* nammaApartment.entitlements */,
 				860FAEEF209D700000D563F5 /* Onboarding */,
 				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
 				86270105209707BC004B28EB /* Info.plist */,
@@ -333,6 +335,7 @@
 				86C1A136209AF38300D75D0F /* Homescreen */,
 				86C1A138209AF3FC00D75D0F /* StoryBoard */,
 				86BD74E9209A2DD000B159A3 /* utilities */,
+				86C1A137209AF3C000D75D0F /* AppDelegate */,
 			);
 			path = namaApartment;
 			sourceTree = "<group>";
@@ -580,7 +583,6 @@
 			children = (
 				86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */,
 				86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */,
-				86C1A137209AF3C000D75D0F /* AppDelegate */,
 			);
 			path = ApartmentServices;
 			sourceTree = "<group>";
