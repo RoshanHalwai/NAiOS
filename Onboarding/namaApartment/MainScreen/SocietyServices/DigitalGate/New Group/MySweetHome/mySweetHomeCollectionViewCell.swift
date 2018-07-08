@@ -17,7 +17,8 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
     
     var delegate : removeCollectionProtocol?
     var index : IndexPath?
-   
+    var mySweetHomeVC: MySweetHomeViewController!
+    
     @IBOutlet weak var MySweeetHomeimg: UIImageView!
     
     @IBOutlet weak var lbl_Name: UILabel!
@@ -72,7 +73,6 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
         }
     
     }
-    
     @IBAction func btnRemove(_ sender: Any) {
          delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
