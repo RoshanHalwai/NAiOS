@@ -100,9 +100,6 @@ class signupViewController: NANavigationViewController {
         //Set Textfield bottom border line
         signup_TxtFullName.underlined()
         signup_TxtEmailId.underlined()
-    
-        //Become First Responder
-        signup_TxtFullName.becomeFirstResponder()
         
         //Hiding Navigation bar Back Button
          self.navigationItem.hidesBackButton = true
@@ -157,6 +154,13 @@ class signupViewController: NANavigationViewController {
        self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == signup_TxtFullName {
+            signup_TxtEmailId.becomeFirstResponder()
+        }
+        return true
+    }
+
 }
 extension signupViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
