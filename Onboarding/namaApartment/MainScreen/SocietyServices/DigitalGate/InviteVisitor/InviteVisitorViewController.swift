@@ -378,7 +378,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         if textField == txtInvitorName {
             lbl_Name_Validation.isHidden = true
             txtInvitorName.underlined()
-            
             nameTextFieldLength = newLength
             dateTextFieldLength = txtDate.text!.count
             mobileNumberTextFieldLength = txtInvitorMobile.text!.count
