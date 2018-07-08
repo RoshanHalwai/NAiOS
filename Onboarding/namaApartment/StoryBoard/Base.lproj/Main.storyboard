@@ -3205,7 +3205,7 @@
                                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ExpectiingVisitor256" translatesAutoresizingMaskIntoConstraints="NO" id="GQq-0Q-yLa">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ExpectingVisitor" translatesAutoresizingMaskIntoConstraints="NO" id="GQq-0Q-yLa">
                                                 <rect key="frame" x="124" y="28" width="126" height="126"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="126" id="9Df-h7-G6w"/>
@@ -3217,8 +3217,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Upload Image" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QmB-HK-EGS">
-                                                <rect key="frame" x="227.5" y="340" width="127.5" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Mobile Number" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QmB-HK-EGS">
+                                                <rect key="frame" x="179" y="340" width="176" height="17"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -4523,7 +4523,6 @@
         <image name="Call" width="64" height="64"/>
         <image name="Cancel" width="64" height="64"/>
         <image name="Edit" width="64" height="64"/>
-        <image name="ExpectiingVisitor256" width="16" height="16"/>
         <image name="ExpectingVisitor" width="256" height="256"/>
         <image name="InviteVisitors" width="512" height="512"/>
         <image name="Message" width="64" height="64"/>

@@ -47,10 +47,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     //gettig data from previous screen string
     var AddOtpString = String()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Add border color on profile image
         img_Profile.layer.borderColor = UIColor.black.cgColor
     
@@ -130,7 +128,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
-        
         //showing alert controller while giving Grant Access to family members
         let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()), preferredStyle: .alert)
         
@@ -183,7 +180,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         self.dismiss(animated: true, completion: nil)
     }
-    
     @IBAction func btnSelectContact(_ sender: Any) {
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
@@ -225,11 +221,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         let fullName = "\(contact.givenName) \(contact.familyName)"
         self.txt_Name.text = fullName
         
-        lbl_Mobile_Validation.isHidden = true
-        lbl_Name_Validation.isHidden = true
-        txt_MobileNo.underlined()
-        txt_Name.underlined()
-        
         var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         
@@ -249,21 +240,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 txt_Email.redunderlined()
             }
         }
-        if (txt_Name.text?.isEmpty)! && (txt_MobileNo.text?.isEmpty)! {
-            lbl_Name_Validation.isHidden = false
-            txt_Name.redunderlined()
-            lbl_Name_Validation.text = NAString().please_enter_name()
-            lbl_Mobile_Validation.isHidden = false
-            txt_MobileNo.redunderlined()
-            lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
-            lbl_Email_Validation.isHidden = false
-            txt_Email.redunderlined()
-            lbl_Email_Validation.text = NAString().please_enter_email()
-        } else {
-            lbl_Name_Validation.isHidden = true
-            lbl_Mobile_Validation.isHidden = true
-        }
-        if img_Profile.image == #imageLiteral(resourceName: "imageIcon") {
+        if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
             lbl_Picture_Validation.text = NAString().please_upload_Image()
         }
@@ -284,11 +261,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             lbl_Mobile_Validation.isHidden = false
             lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
             txt_MobileNo.redunderlined()
-        } else {
-            lbl_Mobile_Validation.isHidden = true
-            txt_MobileNo.underlined()
-        }
-        if (!(txt_MobileNo.text?.isEmpty)!) && (txt_MobileNo.text?.count != NAString().required_mobileNo_Length()) {
+        } else if (!(txt_MobileNo.text?.isEmpty)!) && (txt_MobileNo.text?.count != NAString().required_mobileNo_Length()) {
             lbl_Mobile_Validation.isHidden = false
             txt_MobileNo.redunderlined()
             lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
@@ -296,8 +269,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
-        if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "imageIcon") {
-        
+        if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
+
             if(grantAcess_Segment.selectedSegmentIndex == 0) {
                 //calling AlertBox on click of YES
                 grantAccessAlert()
@@ -330,35 +303,18 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-    
-        if textField == txt_Email {
-            if (newLength == NAString().zero_length()) {
-                lbl_Email_Validation.isHidden = false
-                txt_Email.redunderlined()
-                lbl_Email_Validation.text = NAString().please_enter_email()
-            } else {
-                lbl_Email_Validation.isHidden = true
-                txt_Email.underlined()
-            }
-        }
         if textField == txt_Name {
-            if (newLength == NAString().zero_length()) {
-                lbl_Name_Validation.isHidden = false
-                txt_Name.redunderlined()
-                lbl_Name_Validation.text = NAString().please_enter_name()
-            } else {
-                lbl_Name_Validation.isHidden = true
-                txt_Name.underlined()
-            }
+           lbl_Name_Validation.isHidden = true
+           txt_Name.underlined()
+        }
+        if textField == txt_Email {
+            lbl_Email_Validation.isHidden = true
+            txt_Email.underlined()
         }
         if textField == txt_MobileNo {
+            lbl_Mobile_Validation.isHidden = true
+            txt_MobileNo.underlined()
             if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
-                lbl_Mobile_Validation.isHidden = true
-                txt_MobileNo.underlined()
-            } else {
-                lbl_Mobile_Validation.isHidden = false
-                txt_MobileNo.redunderlined()
-                lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
             }
             //Check for Text Removal
             if string.isEmpty {
@@ -369,5 +325,4 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         return true
     }
-    
 }
