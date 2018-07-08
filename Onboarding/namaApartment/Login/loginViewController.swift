@@ -47,9 +47,6 @@ class loginViewController: NANavigationViewController
         txt_CountryCode.font = NAFont().textFieldFont()
         txt_CountryCode.text = NAString()._91()
         
-        //become First Responder
-          self.txt_MobileNo?.becomeFirstResponder()
-        
         //Set Textfield bottom border line
         txt_MobileNo.underlined()
 

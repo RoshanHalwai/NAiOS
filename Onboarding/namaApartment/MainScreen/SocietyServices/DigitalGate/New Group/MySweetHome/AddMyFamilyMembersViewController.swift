@@ -67,9 +67,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
        //setting navigation title
         super.ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
         
-        //become first responder
-        self.txt_Name.becomeFirstResponder()
-        
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
@@ -226,6 +223,14 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         mobileNo = mobileString! as! String
         self.txt_MobileNo.text = mobileNo
+    }
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txt_Name {
+            txt_MobileNo.becomeFirstResponder()
+        } else if textField == txt_MobileNo {
+            txt_Email.becomeFirstResponder()
+        }
+        return true
     }
     @IBAction func btn_Action_addDetails(_ sender: UIButton) {
         let providedEmailAddress = txt_Email.text

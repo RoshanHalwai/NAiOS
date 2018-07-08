@@ -45,9 +45,6 @@ class OTPViewController: NANavigationViewController
         txtOTP4.font = NAFont().textFieldFont()
         txtOTP5.font = NAFont().textFieldFont()
         
-        //Become First Responder
-        self.txtOTP1?.becomeFirstResponder()
-        
         //Hiding Btn Verify
         self.btnVerify.isHidden =  true
         
