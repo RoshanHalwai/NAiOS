@@ -53,11 +53,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     
-    //Length Variables
-    var nameTextFieldLength = NAString().zero_length()
-    var mobileNumberTextFieldLength = NAString().zero_length()
-    var dateTextFieldLength = NAString().zero_length()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Add border color on profile imageview
@@ -87,9 +82,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         
         //setting navigation title
         super.ConfigureNavBarTitle(title: navTitle!)
-        
-        //become first responder
-        self.txt_Name.becomeFirstResponder()
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -329,25 +321,23 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             }
           }
         }
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txt_Name {
+            txt_MobileNo.becomeFirstResponder()
+        } else if textField == txt_MobileNo {
+            txt_Date.becomeFirstResponder()
+        }
+        return true
     }
-
+}
 extension AddMyServicesViewController {
     //Accept only 10 digit mobile number
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-        if textField == txt_Date {
-            dateTextFieldLength = newLength
-            nameTextFieldLength = txt_Name.text!.count
-            mobileNumberTextFieldLength = txt_MobileNo.text!.count
-        }
         if textField == txt_Name {
             lbl_Name_Validation.isHidden = true
             txt_Name.underlined()
-            
-            nameTextFieldLength = newLength
-            dateTextFieldLength = txt_Date.text!.count
-            mobileNumberTextFieldLength = txt_MobileNo.text!.count
         }
         if textField == txt_MobileNo {
             txt_MobileNo.underlined()
@@ -356,9 +346,6 @@ extension AddMyServicesViewController {
             }
             if newLength >= NAString().required_mobileNo_Length() && !(txt_Name.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! {
             }
-            nameTextFieldLength = txt_Name.text!.count
-            dateTextFieldLength = txt_Date.text!.count
-            mobileNumberTextFieldLength = newLength
            
             //Check for Text Removal
             if string.isEmpty {
@@ -367,13 +354,6 @@ extension AddMyServicesViewController {
                 return newLength <= NAString().required_mobileNo_Length() // Bool
             }
         }
-         updateAddDailyButtonVisibilty(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
         return true
-    }
-    func updateAddDailyButtonVisibilty(nameLength:Int, mobileNumberLength:Int, dateLength:Int) {
-        if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length() {
-        }
-        if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length() {
-        }
     }
 }

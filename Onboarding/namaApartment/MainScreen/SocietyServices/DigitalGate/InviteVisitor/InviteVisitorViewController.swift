@@ -46,11 +46,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     var dataName : String!
     var dataMobile : String!
     
-    //Length Variables
-    var nameTextFieldLength = NAString().zero_length()
-    var mobileNumberTextFieldLength = NAString().zero_length()
-    var dateTextFieldLength = NAString().zero_length()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Add border color on profile imageview
@@ -86,9 +81,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
        //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: NAString().visitorNameViewTitle())
         self.navigationItem.title = ""
-
-       //become first responder
-        self.txtInvitorName.becomeFirstResponder()
 
         //calling date picker function on view didload.
         createDatePicker(dateTextField: txtDate)
@@ -323,6 +315,14 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         })
         uploadTask?.resume()
     }
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txtInvitorName {
+            txtInvitorMobile.becomeFirstResponder()
+        } else if textField == txtInvitorMobile {
+            txtDate.becomeFirstResponder()
+        }
+        return true
+    }
 }
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     //Function to appear select image from by tapping image
@@ -370,17 +370,9 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
         
-        if textField == txtDate {
-            dateTextFieldLength = newLength
-            nameTextFieldLength = txtInvitorName.text!.count
-            mobileNumberTextFieldLength = txtInvitorMobile.text!.count
-        }
         if textField == txtInvitorName {
             lbl_Name_Validation.isHidden = true
             txtInvitorName.underlined()
-            nameTextFieldLength = newLength
-            dateTextFieldLength = txtDate.text!.count
-            mobileNumberTextFieldLength = txtInvitorMobile.text!.count
         }
         if textField == txtInvitorMobile {
             lbl_Mob_Validation.isHidden = true
@@ -389,10 +381,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             }
             if newLength >= NAString().required_mobileNo_Length() && !(txtInvitorName.text?.isEmpty)! && !(txtDate.text?.isEmpty)! {
             }
-            nameTextFieldLength = txtInvitorName.text!.count
-            dateTextFieldLength = txtDate.text!.count
-            mobileNumberTextFieldLength = newLength
-            
             //Check for Text Removal
             if string.isEmpty {
                 return true
@@ -400,16 +388,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
                 return newLength <= NAString().required_mobileNo_Length() // Bool
             }
         }
-        updateInviteButtonVisibility(nameLength: nameTextFieldLength, mobileNumberLength: mobileNumberTextFieldLength, dateLength: dateTextFieldLength)
         return true
-    }
-    func updateInviteButtonVisibility(nameLength:Int, mobileNumberLength:Int, dateLength:Int) {
-        
-        //Conditions 1.Atleast 1 character. 2.10 Chracters Must. 3.Date Should Set
-        if nameLength > NAString().zero_length() &&  NAValidation().isValidMobileNumber(isNewMobileNoLength: mobileNumberLength) && dateLength > NAString().zero_length() {
-            btnInviteVisitor.isHidden = false
-        } else if nameLength == NAString().zero_length() || mobileNumberLength == NAString().zero_length() {
-        }
     }
 }
 
