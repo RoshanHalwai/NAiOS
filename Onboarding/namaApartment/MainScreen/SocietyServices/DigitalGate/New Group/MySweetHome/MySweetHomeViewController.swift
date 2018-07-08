@@ -15,6 +15,13 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var opacityView: UIView!
+    @IBOutlet weak var popUp_View: UIView!
+    @IBOutlet weak var access_Segment: UISegmentedControl!
+    @IBOutlet weak var btn_Cancel: UIButton!
+    @IBOutlet weak var btn_ChangeAccess: UIButton!
+    @IBOutlet weak var lbl_Grant_Access: UILabel!
+    
     var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MySweetHomeName =  ["Preeti","Vikas"]
     var MySweetHomeRelation = ["Sister","Brother"]
@@ -22,6 +29,16 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Corner Radius for popUp View
+        popUp_View.layer.cornerRadius = 5
+        
+        opacityView.isHidden = true
+        popUp_View.isHidden = true
+        
+        lbl_Grant_Access.font = NAFont().headerFont()
+        btn_Cancel.titleLabel?.font = NAFont().popUpButtonFont()
+        btn_ChangeAccess.titleLabel?.font = NAFont().popUpButtonFont()
         
         //creating back buttom going back to digigate
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
@@ -40,9 +57,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         self.view.addSubview(self.addMemberButton)
     }
-    
     override func viewWillLayoutSubviews() {
-        
         //Constrains & Height setting programatically
         self.addMemberButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -51,28 +66,20 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             addMemberButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
               addMemberButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20)])
     }
-
-    @IBAction func btnAddFamilyMember(_ sender: UIButton)
-    {
+    @IBAction func btnAddFamilyMember(_ sender: UIButton) {
         let lv = NAViewPresenter().myFamilyMembers()
         self.navigationController?.pushViewController(lv, animated: true)
         ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
     }
-    
     //created custome back button to go back to digi gate
-    @objc func goBackToDigiGate()
-    {
+    @objc func goBackToDigiGate() {
         let lv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(lv, animated: true)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return MySweetHomeName.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
         
@@ -128,57 +135,51 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         //calling edit button action on particular cell
         cell.objEdit = {
-            
-            let dv = NAViewPresenter().editMyDailyServices()
-            self.navigationController?.pushViewController(dv, animated: true)
-            dv.getTitle = NAString().edit_my_family_member_details().capitalized
-            dv.getName = cell.lbl_MySweetHomeName.text!
-            
-            //EDIT MY FAMILY MEMBER VC's segment is selected according to cardView GrantAccess Text
-            dv.getSegmentValue = cell.lbl_MySweetHomeGrantAccess.text!
-            
-            // TODO : To Change Mobile number here.
-            dv.getMobile = "9725098237"
-        
+            self.opacityView.isHidden = false
+            self.popUp_View.isHidden = false
         }
     return cell
     }
+    @IBAction func Cancel_Action(_ sender: UIButton) {
+        opacityView.isHidden = true
+        popUp_View.isHidden = true
+    }
+    @IBAction func Change_Button(_ sender: UIButton) {
+        opacityView.isHidden = true
+        popUp_View.isHidden = true
+    }
+    @IBAction func aceess_Segment_Action(_ sender: UISegmentedControl) {
+    }
 }
-
-extension MySweetHomeViewController : removeCollectionProtocol{
+extension MySweetHomeViewController : removeCollectionProtocol {
     
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
         //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
-            let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
-                }
+            let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
             let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
                 //Remove collection view cell item with animation
-                
                 self.MySweetHomeName.remove(at: indx)
             
                 //animation at final state
                 cell.alpha = 1
                 cell.layer.transform = CATransform3DIdentity
             
-                UIView.animate(withDuration: 0.3)
-                {
-                cell.alpha = 0.0
-                let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
-                cell.layer.transform = transform
+                UIView.animate(withDuration: 0.3) {
+                    cell.alpha = 0.0
+                    let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
+                    cell.layer.transform = transform
                 }
-            
                 Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
                 }
-        
             alert.addAction(actionNO) //add No action on AlertView
             alert.addAction(actionYES) //add YES action on AlertView
             present(alert, animated: true, completion: nil)
     }
-        @objc func reloadCollectionData() {
+    @objc func reloadCollectionData() {
         collectionView.reloadData()
     }
 }
