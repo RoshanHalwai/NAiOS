@@ -44,6 +44,7 @@ class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewCo
     @IBAction func btnCancel(_ sender: UIButton) {
        delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
+    
     //To message your visitor directly from app
     @IBAction func btnMessage(_ sender: UIButton) {
          //TODO : Need to change mobile number here

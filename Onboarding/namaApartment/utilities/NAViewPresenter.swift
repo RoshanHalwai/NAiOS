@@ -107,5 +107,8 @@ class NAViewPresenter: NSObject {
     func myFlatDEtailsVC() -> myFlatDetailsViewController {
         return storyBoard.instantiateViewController(withIdentifier: "flatDetailsVC") as! myFlatDetailsViewController
     }
-    
+    //Login VC
+    func loginVC() -> loginViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
+    }
 }
