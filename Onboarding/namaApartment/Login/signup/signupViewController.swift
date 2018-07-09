@@ -55,7 +55,7 @@ class signupViewController: NANavigationViewController {
     
     //Firebase Database Reference
     var usersPersonalDetailsRef : DatabaseReference?
-    
+    var usersUIDRef : DatabaseReference?
     override func viewDidLoad() {
         super.viewDidLoad()
         //Add border color on profile imageview
@@ -173,10 +173,6 @@ class signupViewController: NANavigationViewController {
             signup_TxtEmailId.becomeFirstResponder()
         }
         return true
-        
-       
-        
-        
    }
 }
 extension signupViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
@@ -267,8 +263,11 @@ extension signupViewController {
         
         //TODO: Hardcoded users UID. In Future need to get from Global Class.
         var userUID : String?
-        userUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+        userUID = Auth.auth().currentUser?.uid
       
+        //storing UID under Users/Private/UID
+         usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+        
         //here also hardcoded users UID
         usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
@@ -300,8 +299,9 @@ extension signupViewController {
                         UserPersonalListFBKeys.phoneNumber.key : self.getNewMobileString
                     ]
                     
-                    //Adding visitor data under preApproved visitors
+                    //Adding users data under  Users/Private/UID & mapping UID
                     self.usersPersonalDetailsRef?.setValue(usersPersonalData)
+                    self.usersUIDRef?.child("uid").setValue(userUID)
                     
                     //Navigation to Flat Detail Screen.
                     let dest = NAViewPresenter().myFlatDEtailsVC()

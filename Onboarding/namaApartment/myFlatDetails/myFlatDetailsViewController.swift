@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!
@@ -46,12 +47,21 @@ class myFlatDetailsViewController: NANavigationViewController {
     var societyString = String()
     var apartmentString = String()
     var flatString = String()
-    
+    var selectedSegmentValue = String()
     //Firebase Database Reference
     var usersFlatDetailsRef : DatabaseReference?
+    var usersPrivilegeDetailsRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //To get Selected Segment text
+        if segment_ResidentType.selectedSegmentIndex == 0 {
+            selectedSegmentValue = NAString().owner()
+        }
+        else {
+            selectedSegmentValue = NAString().tenant()
+        }
         
         self.txtCity.text = cityString
         self.txtSociety.text = societyString
@@ -141,6 +151,9 @@ class myFlatDetailsViewController: NANavigationViewController {
         }
     }
     @IBAction func btnContinue(_ sender: Any) {
+        //calling function to store data in firebase under Users/Private/Flat & Privileges Details
+        storeUsersFlatDetailsInFirebase()
+       // storeUsersPrivilegesDetailsInFirebase()
     }
     @IBAction func btnResidentType(_ sender: Any) {
         lbl_Description.isHidden = false
@@ -219,28 +232,40 @@ class myFlatDetailsViewController: NANavigationViewController {
 extension myFlatDetailsViewController {
     
     //Save User Personal Details
-    func storeUsersPersonalDetailsInFirebase() {
+    func storeUsersFlatDetailsInFirebase() {
         
         //TODO: Hardcoded users UID. In Future need to get from Global Class.
         var userUID : String?
-        userUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+        userUID = Auth.auth().currentUser?.uid
         
-        //here also hardcoded users UID
         usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        
+        //Privileges data
+        usersPrivilegeDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
     
         let usersFlatData = [
             UserFlatListFBKeys.apartmentName.key : self.txtApartment.text! as String?,
             UserFlatListFBKeys.city.key : self.txtCity.text! as String?,
             UserFlatListFBKeys.flatNumber.key : self.txtFlat.text! as String?,
             UserFlatListFBKeys.societyName.key : self.txtSociety.text! as String?,
-            UserFlatListFBKeys.tenantType.key : "Owner"
+            UserFlatListFBKeys.tenantType.key : self.selectedSegmentValue
         ]
         
-        //Adding visitor data under preApproved visitors
+        let userPrivilegesData = [
+            UserPrivilegesListFBKeys.admin.key : "true",
+            UserPrivilegesListFBKeys.grantAccess.key : "true",
+            UserPrivilegesListFBKeys.verified.key : "false"
+        ]
+        
+        //Adding usersFlatDetails data under Users/Private/UID
         self.usersFlatDetailsRef?.setValue(usersFlatData)
-    
-    
-    
-    
+        
+        //Adding usersPrivilegesDetails data under Users/Private/UID
+        self.usersPrivilegeDetailsRef?.setValue(userPrivilegesData)
+        
+        //Navigation to
+        let dest = NAViewPresenter().digiGateVC()
+        self.navigationController?.pushViewController(dest, animated: true)
     }
 }
+
