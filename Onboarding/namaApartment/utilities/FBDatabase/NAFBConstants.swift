@@ -28,4 +28,8 @@ struct Constants {
     static let FIREBASE_CHILD_SALARPURIA_CAMBRIDGE = "Salarpuria Cambridge"
     static let FIREBASE_CHILD_BLOCKONE = "Block-1"
     static let FIREBASE_CHILD_FLATNO = "012"
+    static let FIREBASE_CHILD_FLATDETAILS = "flatDetails"
+    static let FIREBASE_CHILD_PERSONALDETAILS = "personalDetails"
+    static let FIREBASE_CHILD_PRIVILEGES = "privileges"
+
 }

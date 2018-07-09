@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
 
 //To create UnderLine for Textfield
 extension UITextField{
@@ -46,6 +49,12 @@ class signupViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Image_Validation: UILabel!
     @IBOutlet weak var lbl_FullName_Validation: UILabel!
     @IBOutlet weak var lbl_Email_Validation: UILabel!
+    
+    //To getMobileString from Previous Screen (OTP View Controller)
+    var getNewMobileString = String()
+    
+    //Firebase Database Reference
+    var personalDetailsRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,9 +143,14 @@ class signupViewController: NANavigationViewController {
             signup_TxtEmailId.underlined()
         }
         if profileImage.image != #imageLiteral(resourceName: "imageIcon") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
-            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
+            
+            //Calling Store Users Details function
+             storeUsersPersonalDetailsInFirebase()
+            
+            
+//            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+//            self.navigationController?.setNavigationBarHidden(false, animated: true);
+//            self.navigationController?.pushViewController(lv, animated: true)
         }
         if !(signup_TxtEmailId.text?.isEmpty)! && !(signup_TxtFullName.text?.isEmpty)! {
             if isEmailAddressIsValid {
@@ -159,8 +173,11 @@ class signupViewController: NANavigationViewController {
             signup_TxtEmailId.becomeFirstResponder()
         }
         return true
-    }
-
+        
+       
+        
+        
+   }
 }
 extension signupViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -241,5 +258,61 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
             }
         }
         return true
+    }
+}
+
+extension signupViewController {
+    //Save User Personal Details
+    func storeUsersPersonalDetailsInFirebase() {
+        
+        //TODO: Hardcoded users UID. In Future need to get from Global Class.
+        var userUID : String?
+        userUID = "b6IiHbEZTcNC2Zc6wbmz9XFiiSH3"
+      
+        //here also hardcoded users UID
+        personalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        
+        //Storing users data along with their profile photo
+        var usersImageRef: StorageReference?
+        usersImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        
+        //Compressing profile image and assigning its content type.
+        guard let image = profileImage.image else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
+        
+        let metaDataContentType = StorageMetadata()
+        metaDataContentType.contentType = "image/jpeg"
+        
+        //Uploading Visitor image url along with Visitor UID
+        let uploadImageRef = usersImageRef?.child(userUID!)
+        
+        let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
+            
+            uploadImageRef?.downloadURL(completion: { (url, urlError) in
+                
+                if urlError == nil {
+                   
+                    //defining node with type of data in it.
+                    let usersData = [
+                        UserListFBKeys.email.key : self.signup_TxtEmailId.text! as String,
+                        UserListFBKeys.fullName.key : self.signup_TxtFullName.text! as String,
+                        UserListFBKeys.profilePhoto.key : url?.absoluteString,
+                        UserListFBKeys.phoneNumber.key : self.getNewMobileString
+                    ]
+                    
+                    //Adding visitor data under preApproved visitors
+                    self.personalDetailsRef?.setValue(usersData)
+                    
+                    //Navigation to Flat Detail Screen.
+                    let dest = NAViewPresenter().myFlatDEtailsVC()
+                    self.navigationController?.pushViewController(dest, animated: true)
+                    
+                    //Using else statement & printing error,so the other developers can know what is going on.
+                } else {
+                    print(urlError as Any)
+                }
+            })
+        })
+        uploadTask?.resume()
     }
 }
