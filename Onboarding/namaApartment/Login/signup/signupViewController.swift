@@ -119,12 +119,10 @@ class signupViewController: NANavigationViewController {
         if (signup_TxtFullName.text?.isEmpty)! {
             lbl_FullName_Validation.isHidden = false
             lbl_FullName_Validation.text = NAString().please_enter_name()
-            signup_TxtFullName.redunderlined()
         }
         if (signup_TxtEmailId.text?.isEmpty)! {
             lbl_Email_Validation.isHidden = false
             lbl_Email_Validation.text = NAString().please_enter_email()
-            signup_TxtEmailId.redunderlined()
         }
         if !(signup_TxtEmailId.text?.isEmpty)! && !(signup_TxtFullName.text?.isEmpty)! {
             if isEmailAddressIsValid {
