@@ -17,6 +17,19 @@
 		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */; };
+		423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D520F378E400F10A23 /* FirebaseAuth.framework */; };
+		423187D820F378E400F10A23 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D720F378E400F10A23 /* FirebaseCore.framework */; };
+		423187DA20F378E400F10A23 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D920F378E400F10A23 /* FirebaseDatabase.framework */; };
+		423187DC20F378E400F10A23 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DB20F378E400F10A23 /* FirebaseMessaging.framework */; };
+		423187DE20F378E400F10A23 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DD20F378E400F10A23 /* FirebaseStorage.framework */; };
+		423187E020F378E400F10A23 /* FirebaseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DF20F378E400F10A23 /* FirebaseUI.framework */; };
+		423187E220F378E400F10A23 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E120F378E400F10A23 /* GoogleToolboxForMac.framework */; };
+		423187E420F378E400F10A23 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E320F378E400F10A23 /* GTMSessionFetcher.framework */; };
+		423187E620F378E400F10A23 /* leveldb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E520F378E400F10A23 /* leveldb.framework */; };
+		423187E820F378E400F10A23 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E720F378E400F10A23 /* nanopb.framework */; };
+		423187EA20F378E400F10A23 /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */; };
+		423187EC20F378E400F10A23 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */; };
+		423187EE20F378E400F10A23 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187ED20F378E400F10A23 /* Protobuf.framework */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
 		5DEFEDD02E7F8A93F05E92FA /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */; };
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
@@ -89,6 +102,8 @@
 		86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */; };
 		86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73C209B1803008A57B3 /* SocietyTableViewCell.swift */; };
 		86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73E209B181C008A57B3 /* SocietyViewController.swift */; };
+		8EF5AA311F67B0FF14E70633 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */; };
+		A98FFF475751632D77B37975 /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */; };
 		D2C5590A6D512400507D2364 /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C08CD1BA13FD2A24912C31 /* Pods_nammaApartment.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +135,19 @@
 		0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyFamilyMembersViewController.swift; sourceTree = "<group>"; };
 		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
+		423187D520F378E400F10A23 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187D720F378E400F10A23 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187D920F378E400F10A23 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187DB20F378E400F10A23 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187DD20F378E400F10A23 /* FirebaseStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187DF20F378E400F10A23 /* FirebaseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E120F378E400F10A23 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E320F378E400F10A23 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E520F378E400F10A23 /* leveldb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = leveldb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E720F378E400F10A23 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_nammaApartmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187ED20F378E400F10A23 /* Protobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Protobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D83E8166C92F951887F6368 /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +241,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */,
+				423187D820F378E400F10A23 /* FirebaseCore.framework in Frameworks */,
+				423187DA20F378E400F10A23 /* FirebaseDatabase.framework in Frameworks */,
+				423187DC20F378E400F10A23 /* FirebaseMessaging.framework in Frameworks */,
+				423187DE20F378E400F10A23 /* FirebaseStorage.framework in Frameworks */,
+				423187E020F378E400F10A23 /* FirebaseUI.framework in Frameworks */,
+				423187E220F378E400F10A23 /* GoogleToolboxForMac.framework in Frameworks */,
+				423187E420F378E400F10A23 /* GTMSessionFetcher.framework in Frameworks */,
+				423187E620F378E400F10A23 /* leveldb.framework in Frameworks */,
+				423187E820F378E400F10A23 /* nanopb.framework in Frameworks */,
+				423187EA20F378E400F10A23 /* Pods_nammaApartmentTests.framework in Frameworks */,
+				423187EC20F378E400F10A23 /* Pods_nammaApartmentUITests.framework in Frameworks */,
+				423187EE20F378E400F10A23 /* Protobuf.framework in Frameworks */,
 				86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */,
 				86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */,
 				D2C5590A6D512400507D2364 /* Pods_nammaApartment.framework in Frameworks */,
@@ -224,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */,
+				A98FFF475751632D77B37975 /* Pods_nammaApartmentTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DEFEDD02E7F8A93F05E92FA /* Pods_nammaApartmentUITests.framework in Frameworks */,
+				8EF5AA311F67B0FF14E70633 /* Pods_nammaApartmentUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +518,19 @@
 		86A8B933209EC9FE00EA1C35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				423187D520F378E400F10A23 /* FirebaseAuth.framework */,
+				423187D720F378E400F10A23 /* FirebaseCore.framework */,
+				423187D920F378E400F10A23 /* FirebaseDatabase.framework */,
+				423187DB20F378E400F10A23 /* FirebaseMessaging.framework */,
+				423187DD20F378E400F10A23 /* FirebaseStorage.framework */,
+				423187DF20F378E400F10A23 /* FirebaseUI.framework */,
+				423187E120F378E400F10A23 /* GoogleToolboxForMac.framework */,
+				423187E320F378E400F10A23 /* GTMSessionFetcher.framework */,
+				423187E520F378E400F10A23 /* leveldb.framework */,
+				423187E720F378E400F10A23 /* nanopb.framework */,
+				423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */,
+				423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */,
+				423187ED20F378E400F10A23 /* Protobuf.framework */,
 				86A8B934209EC9FF00EA1C35 /* Contacts.framework */,
 				86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */,
 				F5C08CD1BA13FD2A24912C31 /* Pods_nammaApartment.framework */,

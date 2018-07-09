@@ -112,8 +112,7 @@ class signupViewController: NANavigationViewController {
     @IBAction func signup_BtnSignup(_ sender: Any) {
         let providedEmailAddress = signup_TxtEmailId.text
         let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
-        
-        if profileImage.image == #imageLiteral(resourceName: "imageIcon") {
+        if profileImage.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Image_Validation.isHidden = false
             lbl_Image_Validation.text = NAString().please_upload_Image()
         }
@@ -121,32 +120,26 @@ class signupViewController: NANavigationViewController {
             lbl_FullName_Validation.isHidden = false
             lbl_FullName_Validation.text = NAString().please_enter_name()
             signup_TxtFullName.redunderlined()
-        } else {
-            lbl_FullName_Validation.isHidden = true
-            signup_TxtFullName.underlined()
         }
         if (signup_TxtEmailId.text?.isEmpty)! {
             lbl_Email_Validation.isHidden = false
             lbl_Email_Validation.text = NAString().please_enter_email()
             signup_TxtEmailId.redunderlined()
-        } else {
-            lbl_Email_Validation.isHidden = true
-            signup_TxtEmailId.underlined()
-        }
-        if profileImage.image != #imageLiteral(resourceName: "imageIcon") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
-            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
         }
         if !(signup_TxtEmailId.text?.isEmpty)! && !(signup_TxtFullName.text?.isEmpty)! {
             if isEmailAddressIsValid {
                 lbl_Email_Validation.isHidden = true
                 signup_TxtEmailId.underlined()
-            } else {
+          } else {
                 lbl_Email_Validation.isHidden = false
                 lbl_Email_Validation.text = NAString().please_enter_Valid_email()
                 signup_TxtEmailId.redunderlined()
             }
+        }
+        if profileImage.image != #imageLiteral(resourceName: "ExpectingVisitor") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
+            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
         }
     }
     @IBAction func signup_BtnLogin(_ sender: UIButton) {
@@ -160,7 +153,6 @@ class signupViewController: NANavigationViewController {
         }
         return true
     }
-
 }
 extension signupViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -216,29 +208,17 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
         return  returnValue
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        guard let text = textField.text else { return true}
-        let newLength = text.utf16.count + string.utf16.count - range.length
-        
+
+//        guard let text = textField.text else { return true}
+//        let newLength = text.utf16.count + string.utf16.count - range.length
+
         if textField == signup_TxtFullName {
-            if (newLength == NAString().zero_length()) {
-                lbl_FullName_Validation.isHidden = false
-                signup_TxtFullName.redunderlined()
-                lbl_FullName_Validation.text = NAString().please_enter_name()
-            } else {
                 lbl_FullName_Validation.isHidden = true
                 signup_TxtFullName.underlined()
-            }
         }
         if textField == signup_TxtEmailId {
-            if (newLength == NAString().zero_length()) {
-                lbl_Email_Validation.isHidden = false
-                signup_TxtEmailId.redunderlined()
-                lbl_Email_Validation.text = NAString().please_enter_email()
-            } else {
                 lbl_Email_Validation.isHidden = true
                 signup_TxtEmailId.underlined()
-            }
         }
         return true
     }
