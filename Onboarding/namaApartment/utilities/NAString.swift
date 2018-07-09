@@ -386,6 +386,9 @@ class NAString : NSObject
     func my_Guest() -> String {
         return String("MY Guests")
     }
+    func handed_things() -> String {
+        return String("Handed Things")
+    }
     func my_Daily_Services() -> String {
         return String("My Daily Services")
     }
