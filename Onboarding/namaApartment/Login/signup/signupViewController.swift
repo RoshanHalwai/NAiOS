@@ -54,7 +54,7 @@ class signupViewController: NANavigationViewController {
     var getNewMobileString = String()
     
     //Firebase Database Reference
-    var personalDetailsRef : DatabaseReference?
+    var usersPersonalDetailsRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -270,7 +270,7 @@ extension signupViewController {
         userUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
       
         //here also hardcoded users UID
-        personalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
         //Storing users data along with their profile photo
         var usersImageRef: StorageReference?
@@ -293,15 +293,15 @@ extension signupViewController {
                 if urlError == nil {
                    
                     //defining node with type of data in it.
-                    let usersData = [
-                        UserListFBKeys.email.key : self.signup_TxtEmailId.text! as String,
-                        UserListFBKeys.fullName.key : self.signup_TxtFullName.text! as String,
-                        UserListFBKeys.profilePhoto.key : url?.absoluteString,
-                        UserListFBKeys.phoneNumber.key : self.getNewMobileString
+                    let usersPersonalData = [
+                        UserPersonalListFBKeys.email.key : self.signup_TxtEmailId.text! as String,
+                        UserPersonalListFBKeys.fullName.key : self.signup_TxtFullName.text! as String,
+                        UserPersonalListFBKeys.profilePhoto.key : url?.absoluteString,
+                        UserPersonalListFBKeys.phoneNumber.key : self.getNewMobileString
                     ]
                     
                     //Adding visitor data under preApproved visitors
-                    self.personalDetailsRef?.setValue(usersData)
+                    self.usersPersonalDetailsRef?.setValue(usersPersonalData)
                     
                     //Navigation to Flat Detail Screen.
                     let dest = NAViewPresenter().myFlatDEtailsVC()

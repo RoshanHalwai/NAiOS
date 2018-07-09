@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!
@@ -45,6 +46,9 @@ class myFlatDetailsViewController: NANavigationViewController {
     var societyString = String()
     var apartmentString = String()
     var flatString = String()
+    
+    //Firebase Database Reference
+    var usersFlatDetailsRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -214,4 +218,29 @@ class myFlatDetailsViewController: NANavigationViewController {
 
 extension myFlatDetailsViewController {
     
+    //Save User Personal Details
+    func storeUsersPersonalDetailsInFirebase() {
+        
+        //TODO: Hardcoded users UID. In Future need to get from Global Class.
+        var userUID : String?
+        userUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+        
+        //here also hardcoded users UID
+        usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+    
+        let usersFlatData = [
+            UserFlatListFBKeys.apartmentName.key : self.txtApartment.text! as String?,
+            UserFlatListFBKeys.city.key : self.txtCity.text! as String?,
+            UserFlatListFBKeys.flatNumber.key : self.txtFlat.text! as String?,
+            UserFlatListFBKeys.societyName.key : self.txtSociety.text! as String?,
+            UserFlatListFBKeys.tenantType.key : "Owner"
+        ]
+        
+        //Adding visitor data under preApproved visitors
+        self.usersFlatDetailsRef?.setValue(usersFlatData)
+    
+    
+    
+    
+    }
 }
