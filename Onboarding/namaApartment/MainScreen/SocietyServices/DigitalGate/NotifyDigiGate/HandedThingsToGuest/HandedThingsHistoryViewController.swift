@@ -34,7 +34,6 @@ class HandedThingsHistoryViewController: NANavigationViewController, UICollectio
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! HandedThingsHistoryCollectionViewCell
         
@@ -61,7 +60,5 @@ class HandedThingsHistoryViewController: NANavigationViewController, UICollectio
         cell.image_View.layer.cornerRadius = cell.image_View.frame.size.width/2
         cell.image_View.clipsToBounds = true
         return cell
-        
     }
-
 }

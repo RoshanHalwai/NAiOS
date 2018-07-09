@@ -22,9 +22,4 @@ class HandedThingsHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_Inviter_Detail: UILabel!
     @IBOutlet weak var lbl_Things_Detail: UILabel!
     
-    
-    
-    
-    
-    
 }
