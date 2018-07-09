@@ -267,7 +267,7 @@ extension signupViewController {
         
         //TODO: Hardcoded users UID. In Future need to get from Global Class.
         var userUID : String?
-        userUID = "b6IiHbEZTcNC2Zc6wbmz9XFiiSH3"
+        userUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
       
         //here also hardcoded users UID
         personalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)

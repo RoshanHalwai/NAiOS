@@ -211,3 +211,7 @@ class myFlatDetailsViewController: NANavigationViewController {
         self.view.endEditing(true)
     }
 }
+
+extension myFlatDetailsViewController {
+    
+}
