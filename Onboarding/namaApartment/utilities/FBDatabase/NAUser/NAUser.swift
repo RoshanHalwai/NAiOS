@@ -27,7 +27,7 @@ class NAUser {
     }
     
      //creating structure for firebase to get data on it.
-    struct NAUser {
+    struct NAUserStruct {
         
         static let uid = "uid"
         static let flatDetails = "flatDetails"

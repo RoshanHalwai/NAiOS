@@ -111,10 +111,10 @@ class signupViewController: NANavigationViewController {
         signup_TxtEmailId.underlined()
         
         //Hiding Navigation bar Back Button
-         self.navigationItem.hidesBackButton = true
+        self.navigationItem.hidesBackButton = true
         
         //set Title to Navigation Bar
-         super.ConfigureNavBarTitle(title: NAString().signup())
+        super.ConfigureNavBarTitle(title: NAString().signup())
         navigationItem.rightBarButtonItem = nil
         navigationItem.backBarButtonItem = nil
     }
@@ -143,14 +143,8 @@ class signupViewController: NANavigationViewController {
             signup_TxtEmailId.underlined()
         }
         if profileImage.image != #imageLiteral(resourceName: "imageIcon") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
-            
             //Calling Store Users Details function
-             storeUsersPersonalDetailsInFirebase()
-            
-            
-//            let lv : OTPViewController = self.storyboard?.instantiateViewController(withIdentifier: "otpVC") as! OTPViewController
-//            self.navigationController?.setNavigationBarHidden(false, animated: true);
-//            self.navigationController?.pushViewController(lv, animated: true)
+            storeUsersPersonalDetailsInFirebase()
         }
         if !(signup_TxtEmailId.text?.isEmpty)! && !(signup_TxtFullName.text?.isEmpty)! {
             if isEmailAddressIsValid {
@@ -165,7 +159,7 @@ class signupViewController: NANavigationViewController {
     }
     @IBAction func signup_BtnLogin(_ sender: UIButton) {
         let lv : loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
-       self.navigationController?.setNavigationBarHidden(false, animated: true);
+        self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -173,7 +167,7 @@ class signupViewController: NANavigationViewController {
             signup_TxtEmailId.becomeFirstResponder()
         }
         return true
-   }
+    }
 }
 extension signupViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -264,9 +258,9 @@ extension signupViewController {
         //TODO: Hardcoded users UID. In Future need to get from Global Class.
         var userUID : String?
         userUID = Auth.auth().currentUser?.uid
-      
+        
         //storing UID under Users/Private/UID
-         usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+        usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
         
         //here also hardcoded users UID
         usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
@@ -280,7 +274,7 @@ extension signupViewController {
         guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
         
         let metaDataContentType = StorageMetadata()
-        metaDataContentType.contentType = "image/jpeg"
+        metaDataContentType.contentType = NAString().imageContentType()
         
         //Uploading Visitor image url along with Visitor UID
         let uploadImageRef = usersImageRef?.child(userUID!)
@@ -290,7 +284,7 @@ extension signupViewController {
             uploadImageRef?.downloadURL(completion: { (url, urlError) in
                 
                 if urlError == nil {
-                   
+                    
                     //defining node with type of data in it.
                     let usersPersonalData = [
                         UserPersonalListFBKeys.email.key : self.signup_TxtEmailId.text! as String,
@@ -301,7 +295,7 @@ extension signupViewController {
                     
                     //Adding users data under  Users/Private/UID & mapping UID
                     self.usersPersonalDetailsRef?.setValue(usersPersonalData)
-                    self.usersUIDRef?.child("uid").setValue(userUID)
+                    self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
                     
                     //Navigation to Flat Detail Screen.
                     let dest = NAViewPresenter().myFlatDEtailsVC()
