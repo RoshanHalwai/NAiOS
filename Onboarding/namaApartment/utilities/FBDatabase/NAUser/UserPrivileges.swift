@@ -9,10 +9,25 @@
 import Foundation
 import UIKit
 
+//Created enum instead of struct for App optimization and for getting values.
+enum UserPrivilegesListFBKeys : String {
+    case admin
+    case grantAccess
+    case verified
+
+    var key : String {
+        switch self {
+        // Use Internationalization, as appropriate.
+        case .admin: return "admin"
+        case .grantAccess: return "grantAccess"
+        case .verified: return "verified"
+        }
+    }
+}
+
 class UserPrivileges {
     
     //creatig string variables to get data from Firebase.
-    var apartmentName: String?
     var admin: String?
     var grantAccess: String?
     var verified: String?
@@ -25,12 +40,13 @@ class UserPrivileges {
         self.verified = verified
     }
     
-   //creating structure for firebase to get data on it.
-    struct UserPrivileges {
-        
-        static let admin = "admin"
-        static let grantAccess = "grantAccess"
-        static let verified = "verified"
+    func getAdmin() -> String {
+        return admin!
     }
-    
+    func getGrantAccess() -> String {
+        return grantAccess!
+    }
+    func getVerified() -> String {
+        return verified!
+    }
 }

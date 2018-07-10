@@ -692,4 +692,7 @@ class NAString : NSObject
     func notifyButtonAlertViewTitle() -> String {
         return String("Security Guard Notification")
     }
+    func imageContentType() -> String {
+        return String ("image/jpeg")
+    }
 }

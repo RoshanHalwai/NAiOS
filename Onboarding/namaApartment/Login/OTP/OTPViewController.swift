@@ -78,31 +78,29 @@ class OTPViewController: NANavigationViewController
         txtOTP6.underlined()
     }
     
-    @IBAction func btnVerifyOTP(_ sender: Any)
-    {
-        //Back to Namma Apartment Home Screen
+    @IBAction func btnVerifyOTP(_ sender: Any) {
+        //Navigating to signup vc
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
-            let lv = NAViewPresenter().mainScreenVC()
+            let lv = NAViewPresenter().signupVC()
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
+            lv.getNewMobileString = getMobileString
+            
+            //Calling verify OTP function.
+            verifyOTPWithFirebase()
         }
             //Back to My Sweet Home screen
         else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
-            
             let lv = NAViewPresenter().mySweetHomeVC()
             self.navigationController?.pushViewController(lv, animated: true)
         }
             //Back to My Daily Services Screen
         else {
-            
             let lv = NAViewPresenter().myDailyServicesVC()
             self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         }
-        
-        //Calling function which includes Verify OTP
-        verifyOTPWithFirebase()
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
@@ -200,9 +198,8 @@ extension OTPViewController {
             //Getting path for where to store Mobile Number & UID.
             self.userMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
             
-            //TODO: Mapping UID & Mobile Number on VerifyOTP button Instead of Signup Button Just to See that Functionality is working or not.
             // Maping Mobile Number with UID & Storing in Users/All
-            self.userMobileNumberRef?.child(self.getMobileString).setValue(Auth.auth().currentUser?.uid)
+            self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
         }
     }
 }
