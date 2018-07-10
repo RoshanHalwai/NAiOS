@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!
@@ -45,15 +47,28 @@ class myFlatDetailsViewController: NANavigationViewController {
     var societyString = String()
     var apartmentString = String()
     var flatString = String()
+    var selectedSegmentValue = String()
+    
+    //Firebase Database Reference
+    var usersFlatDetailsRef : DatabaseReference?
+    var usersPrivilegeDetailsRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //To get Selected Segment text
+        if segment_ResidentType.selectedSegmentIndex == 0 {
+            selectedSegmentValue = NAString().owner()
+        }
+        else {
+            selectedSegmentValue = NAString().tenant()
+        }
         
         self.txtCity.text = cityString
         self.txtSociety.text = societyString
         self.txtApartment.text = apartmentString
         self.txtFlat.text = flatString
-       
+        
         //Assigning Delegates to TextFields
         txtCity.delegate = self
         txtFlat.delegate = self
@@ -137,6 +152,8 @@ class myFlatDetailsViewController: NANavigationViewController {
         }
     }
     @IBAction func btnContinue(_ sender: Any) {
+      //Calling Function to store UserFlatDetails & Privileges
+        storeUsersFlatDetailsInFirebase()
     }
     @IBAction func btnResidentType(_ sender: Any) {
         lbl_Description.isHidden = false
@@ -167,43 +184,43 @@ class myFlatDetailsViewController: NANavigationViewController {
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-            case txtCity:
-                hideDetailsofSociety()
-                hideDetailsofAppartment()
-                hideDetailsofFlat()
-                hideDetailsofResidentandContinueButton()
-            case txtSociety:
-                hideDetailsofAppartment()
-                hideDetailsofFlat()
-                hideDetailsofResidentandContinueButton()
-            case txtApartment:
-                hideDetailsofFlat()
-                hideDetailsofResidentandContinueButton()
-            case txtFlat:
-                hideDetailsofResidentandContinueButton()
-            default:
-                break
+        case txtCity:
+            hideDetailsofSociety()
+            hideDetailsofAppartment()
+            hideDetailsofFlat()
+            hideDetailsofResidentandContinueButton()
+        case txtSociety:
+            hideDetailsofAppartment()
+            hideDetailsofFlat()
+            hideDetailsofResidentandContinueButton()
+        case txtApartment:
+            hideDetailsofFlat()
+            hideDetailsofResidentandContinueButton()
+        case txtFlat:
+            hideDetailsofResidentandContinueButton()
+        default:
+            break
         }
     }
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-            let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchVC") as! SearchTableViewController
-            let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
-            
-            if textField == txtCity {
-                searchVC.title = NAString().your_city()
-                txtCity.resignFirstResponder()
-            } else if textField == txtSociety {
-                searchVC.title = NAString().your_society()
-                txtSociety.resignFirstResponder()
-            } else if textField == txtApartment {
-                searchVC.title = NAString().your_apartment()
-                txtApartment.resignFirstResponder()
-            } else if textField == txtFlat {
-                searchVC.title = NAString().your_flat()
-                txtFlat.resignFirstResponder()
-            }
-            searchVC.myFlatDetailsVC = self
-            self.navigationController?.present(nav, animated: true, completion: nil)
+        let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchVC") as! SearchTableViewController
+        let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
+        
+        if textField == txtCity {
+            searchVC.title = NAString().your_city()
+            txtCity.resignFirstResponder()
+        } else if textField == txtSociety {
+            searchVC.title = NAString().your_society()
+            txtSociety.resignFirstResponder()
+        } else if textField == txtApartment {
+            searchVC.title = NAString().your_apartment()
+            txtApartment.resignFirstResponder()
+        } else if textField == txtFlat {
+            searchVC.title = NAString().your_flat()
+            txtFlat.resignFirstResponder()
+        }
+        searchVC.myFlatDetailsVC = self
+        self.navigationController?.present(nav, animated: true, completion: nil)
         return true
     }
     //function to end editing on the touch on the view
@@ -211,3 +228,41 @@ class myFlatDetailsViewController: NANavigationViewController {
         self.view.endEditing(true)
     }
 }
+
+extension myFlatDetailsViewController {
+    
+    //Save User Personal Details
+    func storeUsersFlatDetailsInFirebase() {
+        
+        usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        
+        //Privileges data
+        usersPrivilegeDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+        
+        let usersFlatData = [
+            UserFlatListFBKeys.apartmentName.key : self.txtApartment.text! as String?,
+            UserFlatListFBKeys.city.key : self.txtCity.text! as String?,
+            UserFlatListFBKeys.flatNumber.key : self.txtFlat.text! as String?,
+            UserFlatListFBKeys.societyName.key : self.txtSociety.text! as String?,
+            UserFlatListFBKeys.tenantType.key : self.selectedSegmentValue
+        ]
+        
+        //TODO: Hardcoded values for UserPrivileges for storing data in Firebase undr Users/Private/UID/Privileges
+        let userPrivilegesData = [
+            UserPrivilegesListFBKeys.admin.key : "true",
+            UserPrivilegesListFBKeys.grantAccess.key : "true",
+            UserPrivilegesListFBKeys.verified.key : "false"
+        ]
+        
+        //Adding usersFlatDetails data under Users/Private/UID
+        self.usersFlatDetailsRef?.setValue(usersFlatData)
+        
+        //Adding usersPrivilegesDetails data under Users/Private/UID
+        self.usersPrivilegeDetailsRef?.setValue(userPrivilegesData)
+        
+        //Navigate to Digi Gate
+        let dest = NAViewPresenter().digiGateVC()
+        self.navigationController?.pushViewController(dest, animated: true)
+    }
+}
+

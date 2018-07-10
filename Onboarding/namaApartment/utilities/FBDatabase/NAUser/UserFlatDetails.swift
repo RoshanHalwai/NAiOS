@@ -9,6 +9,26 @@
 import Foundation
 import UIKit
 
+//Created enum instead of struct for App optimization and for getting values.
+enum UserFlatListFBKeys : String {
+    case apartmentName
+    case city
+    case flatNumber
+    case societyName
+    case tenantType
+    
+    var key : String {
+        switch self {
+        // Use Internationalization, as appropriate.
+        case .apartmentName: return "apartmentName"
+        case .city: return "city"
+        case .flatNumber: return "flatNumber"
+        case .societyName: return "societyName"
+        case .tenantType: return "tenantType"
+        }
+    }
+}
+
 class UserFlatDetails {
     
     //creatig string variables to get data from Firebase.
@@ -28,14 +48,19 @@ class UserFlatDetails {
         self.tenantType = tenantType
     }
     
-     //creating structure for firebase to get data on it.
-    struct UserFlatDetails {
-    
-        static let apartmentName = "apartmentName"
-        static let city = "city"
-        static let flatNumber = "flatNumber"
-        static let societyName = "societyName"
-        static let tenantType = "tenantType"
+    func getapartmentName() -> String {
+        return apartmentName!
+    }
+    func getcity() -> String {
+        return city!
+    }
+    func getflatNumber() -> String {
+        return flatNumber!
+    }
+    func getsocietyName() -> String {
+        return societyName!
+    }
+    func gettenantType() -> String {
+        return tenantType!
     }
 }
-

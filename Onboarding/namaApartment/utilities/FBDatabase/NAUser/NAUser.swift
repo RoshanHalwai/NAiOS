@@ -8,6 +8,10 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
+
+//Global variable to store users UID
+let usersUID = Auth.auth().currentUser?.uid
 
 class NAUser {
     
@@ -27,7 +31,7 @@ class NAUser {
     }
     
      //creating structure for firebase to get data on it.
-    struct NAUser {
+    struct NAUserStruct {
         
         static let uid = "uid"
         static let flatDetails = "flatDetails"
