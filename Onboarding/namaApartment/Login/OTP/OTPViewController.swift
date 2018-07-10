@@ -87,7 +87,7 @@ class OTPViewController: NANavigationViewController
             self.navigationController?.pushViewController(lv, animated: true)
             lv.getNewMobileString = getMobileString
             
-            //Calling function which includes Verify OTP
+            //Calling verify OTP function.
             verifyOTPWithFirebase()
         }
             //Back to My Sweet Home screen
@@ -195,17 +195,11 @@ extension OTPViewController {
             //if Sucess then store Mobile number & UID in FirebaseDB
             print("Login success")
             
-            //Storing Particular UID in Varibale
-            let usersUID : String?
-            usersUID = (Auth.auth().currentUser?.uid)
-            
             //Getting path for where to store Mobile Number & UID.
             self.userMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
             
-            //TODO: Mapping UID & Mobile Number on VerifyOTP button Instead of Signup Button Just to See that Functionality is working or not.
             // Maping Mobile Number with UID & Storing in Users/All
             self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
-            
         }
     }
 }

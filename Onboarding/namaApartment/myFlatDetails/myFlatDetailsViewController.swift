@@ -152,9 +152,8 @@ class myFlatDetailsViewController: NANavigationViewController {
         }
     }
     @IBAction func btnContinue(_ sender: Any) {
-        //calling function to store data in firebase under Users/Private/Flat & Privileges Details
+      //Calling Function to store UserFlatDetails & Privileges
         storeUsersFlatDetailsInFirebase()
-        // storeUsersPrivilegesDetailsInFirebase()
     }
     @IBAction func btnResidentType(_ sender: Any) {
         lbl_Description.isHidden = false
@@ -235,14 +234,10 @@ extension myFlatDetailsViewController {
     //Save User Personal Details
     func storeUsersFlatDetailsInFirebase() {
         
-        //TODO: Hardcoded users UID. In Future need to get from Global Class.
-        var userUID : String?
-        userUID = Auth.auth().currentUser?.uid
-        
-        usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
         
         //Privileges data
-        usersPrivilegeDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+        usersPrivilegeDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
         
         let usersFlatData = [
             UserFlatListFBKeys.apartmentName.key : self.txtApartment.text! as String?,
@@ -252,7 +247,7 @@ extension myFlatDetailsViewController {
             UserFlatListFBKeys.tenantType.key : self.selectedSegmentValue
         ]
         
-        //TODO: Hardcoded For Temp Purpose
+        //TODO: Hardcoded values for UserPrivileges for storing data in Firebase undr Users/Private/UID/Privileges
         let userPrivilegesData = [
             UserPrivilegesListFBKeys.admin.key : "true",
             UserPrivilegesListFBKeys.grantAccess.key : "true",

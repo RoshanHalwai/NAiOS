@@ -5,7 +5,6 @@
 //  Created by Vikas Nayak on 01/05/18.
 //  Copyright © 2018 Vikas Nayak. All rights reserved.
 //
-
 import UIKit
 import FirebaseStorage
 import FirebaseDatabase
@@ -33,6 +32,7 @@ extension UITextField{
     }
 }
 class signupViewController: NANavigationViewController {
+     
     @IBOutlet weak var signupScrollView : UIScrollView!
     
     @IBOutlet weak var signup_TxtFullName: UITextField!
@@ -254,16 +254,12 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
 extension signupViewController {
     //Save User Personal Details
     func storeUsersPersonalDetailsInFirebase() {
-        
-        //TODO: Hardcoded users UID. In Future need to get from Global Class.
-        var userUID : String?
-        userUID = Auth.auth().currentUser?.uid
-        
+    
         //storing UID under Users/Private/UID
-        usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+        usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
         
         //here also hardcoded users UID
-        usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
         //Storing users data along with their profile photo
         var usersImageRef: StorageReference?
@@ -277,7 +273,7 @@ extension signupViewController {
         metaDataContentType.contentType = NAString().imageContentType()
         
         //Uploading Visitor image url along with Visitor UID
-        let uploadImageRef = usersImageRef?.child(userUID!)
+        let uploadImageRef = usersImageRef?.child(usersUID!)
         
         let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
             
@@ -295,7 +291,7 @@ extension signupViewController {
                     
                     //Adding users data under  Users/Private/UID & mapping UID
                     self.usersPersonalDetailsRef?.setValue(usersPersonalData)
-                    self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
+                    self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(usersUID)
                     
                     //Navigation to Flat Detail Screen.
                     let dest = NAViewPresenter().myFlatDEtailsVC()
