@@ -27,6 +27,7 @@ class OTPViewController: NANavigationViewController
     //Creating varibale to get mobile number string from Login VC TextField.
     var getMobileString = String()
     var getCountryCodeString = String()
+    var finalOTPString = String()
     
     //Creating Firebase DB Reference variable.
     var userMobileNumberRef : DatabaseReference?
@@ -37,6 +38,16 @@ class OTPViewController: NANavigationViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Concatinating All the OTP strings into Final String
+        let Otp_Strig1 = self.txtOTP1.text!
+        let Otp_Strig2 = self.txtOTP2.text!
+        let Otp_Strig3 = self.txtOTP3.text!
+        let Otp_Strig4 = self.txtOTP4.text!
+        let Otp_Strig5 = self.txtOTP5.text!
+        let Otp_Strig6 = self.txtOTP6.text!
+        
+        finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
         
         //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
@@ -190,19 +201,19 @@ extension OTPViewController {
                 if (verificationID != nil) {
                     print(verificationID as Any)
                 }
-                //Creating OTP String Varible
-                let Otp_Strig1 = self.txtOTP1.text!
-                let Otp_Strig2 = self.txtOTP2.text!
-                let Otp_Strig3 = self.txtOTP3.text!
-                let Otp_Strig4 = self.txtOTP4.text!
-                let Otp_Strig5 = self.txtOTP5.text!
-                let Otp_Strig6 = self.txtOTP6.text!
+//                //Creating OTP String Varible
+//                let Otp_Strig1 = self.txtOTP1.text!
+//                let Otp_Strig2 = self.txtOTP2.text!
+//                let Otp_Strig3 = self.txtOTP3.text!
+//                let Otp_Strig4 = self.txtOTP4.text!
+//                let Otp_Strig5 = self.txtOTP5.text!
+//                let Otp_Strig6 = self.txtOTP6.text!
                 
                 //Creating final string by concatinating all the 6 varification textFields.
-                let final_String = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+               // let final_String = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
                 
                 //Creating Credential variable to check correct OTP String.
-                let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: final_String)
+                let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: self.finalOTPString)
                 
                 //If OTP is Valid then Login Sucess else showing Error message in Console
                 //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
