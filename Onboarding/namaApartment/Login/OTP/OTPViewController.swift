@@ -33,21 +33,14 @@ class OTPViewController: NANavigationViewController
     var userMobileNumberRef : DatabaseReference?
     var isMobileValidRef : DatabaseReference?
     
-    //Created varible for UserDefault value
-    let prefs = UserDefaults.standard
+    //Store verification ID
+    var credentialID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Concatinating All the OTP strings into Final String
-        let Otp_Strig1 = self.txtOTP1.text!
-        let Otp_Strig2 = self.txtOTP2.text!
-        let Otp_Strig3 = self.txtOTP3.text!
-        let Otp_Strig4 = self.txtOTP4.text!
-        let Otp_Strig5 = self.txtOTP5.text!
-        let Otp_Strig6 = self.txtOTP6.text!
-        
-        finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+        //Calling trigger OTP function on viewDidLoad
+        triggerOTPFromFirebase()
         
         //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
@@ -95,15 +88,10 @@ class OTPViewController: NANavigationViewController
     }
     
     @IBAction func btnVerifyOTP(_ sender: Any) {
-        //Navigating to signup vc
+        
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
-            let lv = NAViewPresenter().signupVC()
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-            lv.getNewMobileString = getMobileString
-            
-            //Calling verify OTP function.
+            //Calling verify OTP function, When OTP Screen is Coming From Login VC.
             verifyOTPWithFirebase()
         }
             //Back to My Sweet Home screen
@@ -175,66 +163,63 @@ class OTPViewController: NANavigationViewController
             return false
         }
     }
+    
+    //Generating OTP From Firebase Authentication
+    func triggerOTPFromFirebase() {
+        //TODO: Printing Errors in Console so that other developers can undustand.
+        PhoneAuthProvider.provider().verifyPhoneNumber(getCountryCodeString + getMobileString, uiDelegate: nil) { (verificationID, error) in
+            if ((error) != nil) {
+                // IF verification code not sent.
+                print(error as Any)
+            } else {
+                print("verificatinCode",verificationID as Any)
+                self.credentialID = verificationID!
+            }
+        }
+    }
 }
 
-//Created extension for Verify OTP.
+//Created EXtension for Verify OTP Function.
 extension OTPViewController {
     
     func verifyOTPWithFirebase() {
         
-        //Getting Reference from Firebase for Users/All
-        isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
+        //Assigning OTP TextFields To Variables.
+        let Otp_Strig1 = self.txtOTP1.text!
+        let Otp_Strig2 = self.txtOTP2.text!
+        let Otp_Strig3 = self.txtOTP3.text!
+        let Otp_Strig4 = self.txtOTP4.text!
+        let Otp_Strig5 = self.txtOTP5.text!
+        let Otp_Strig6 = self.txtOTP6.text!
         
-        isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
-            
-            if snapshot.exists() {
-                print("You Have Entered Valid Mobile Number.")
-                
-                
-                
-                let dest = NAViewPresenter().mainScreenVC()
-                self.navigationController?.pushViewController(dest, animated: true)
-            } else {
-                print("You Have Not Entered Mobile Number.")
-                //Creating Firebase Verification ID & Printing It in Console.
-                let verificationID = UserDefaults.standard.string(forKey: "firebase_verification")
-                if (verificationID != nil) {
-                    print(verificationID as Any)
-                }
-//                //Creating OTP String Varible
-//                let Otp_Strig1 = self.txtOTP1.text!
-//                let Otp_Strig2 = self.txtOTP2.text!
-//                let Otp_Strig3 = self.txtOTP3.text!
-//                let Otp_Strig4 = self.txtOTP4.text!
-//                let Otp_Strig5 = self.txtOTP5.text!
-//                let Otp_Strig6 = self.txtOTP6.text!
-                
-                //Creating final string by concatinating all the 6 varification textFields.
-               // let final_String = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
-                
-                //Creating Credential variable to check correct OTP String.
-                let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: self.finalOTPString)
-                
-                //If OTP is Valid then Login Sucess else showing Error message in Console
-                //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
-                Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
-                    if let error = error {
-                        print("error",error.localizedDescription)
-                        return
-                    }
-                    //if Sucess then store Mobile number & UID in FirebaseDB
-                    print("Login success")
-                    
-                    //Getting path for where to store Mobile Number & UID.
-                    self.userMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
-                    
-                    // Maping Mobile Number with UID & Storing in Users/All
-                    self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
-                }
+        //Concatinating all the OTP String variables to get Final String.
+        finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+        
+        //Creating Credential variable to check correct OTP String.
+        let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
+        
+        //If OTP is Valid then Login Sucess else show Error message in Console
+        //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
+        Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
+            if let error = error {
+                print("error",error.localizedDescription)
+                return
             }
-        })
+            
+            //Once verified we check if user mobile number exists under users->all
+            self.isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
+            
+            self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
+                //If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
+                if snapshot.exists() {
+                    let dest = NAViewPresenter().mainScreenVC()
+                    self.navigationController?.pushViewController(dest, animated: true)
+                } else {
+                    //Else navigating to Sign Up screen for allowing them to create New User.
+                    let dest = NAViewPresenter().signupVC()
+                    self.navigationController?.pushViewController(dest, animated: true)
+                }
+            })
+        }
     }
 }
-
-
-

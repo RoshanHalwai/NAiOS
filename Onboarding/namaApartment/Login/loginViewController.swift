@@ -82,20 +82,20 @@ class loginViewController: NANavigationViewController
     }
     @IBAction func btnSignin(_ sender: Any) {
         
-        //Generating OTP From Firebase Authentication
-        //TODO: Printing Errors in Console so that other developers can undustand.
-        PhoneAuthProvider.provider().verifyPhoneNumber(txt_CountryCode.text! + txt_MobileNo.text!, uiDelegate: nil) { (verificationID, error) in
-            print("verificatinCode",verificationID as Any)
-            let data = Data(hexString: verificationID! )
-            print(data as Any)
-            self.prefs.set(verificationID, forKey: "firebase_verification")
-            self.prefs.synchronize()
-            
-            if let error = error {
-                print("error is:",error.localizedDescription)
-                return
-            }
-        }
+//        //Generating OTP From Firebase Authentication
+//        //TODO: Printing Errors in Console so that other developers can undustand.
+//        PhoneAuthProvider.provider().verifyPhoneNumber(txt_CountryCode.text! + txt_MobileNo.text!, uiDelegate: nil) { (verificationID, error) in
+//            print("verificatinCode",verificationID as Any)
+//            let data = Data(hexString: verificationID! )
+//            print(data as Any)
+//            self.prefs.set(verificationID, forKey: "firebase_verification")
+//            self.prefs.synchronize()
+//
+//            if let error = error {
+//                print("error is:",error.localizedDescription)
+//                return
+//            }
+//        }
         
         lbl_Validation.isHidden = true
         

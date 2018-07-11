@@ -56,6 +56,7 @@ class signupViewController: NANavigationViewController {
     //Firebase Database Reference
     var usersPersonalDetailsRef : DatabaseReference?
     var usersUIDRef : DatabaseReference?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Add border color on profile imageview
