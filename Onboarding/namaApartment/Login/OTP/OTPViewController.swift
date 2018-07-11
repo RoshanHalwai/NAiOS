@@ -10,8 +10,8 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class OTPViewController: NANavigationViewController
-{
+class OTPViewController: NANavigationViewController {
+    
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
     @IBOutlet weak var txtOTP1: UITextField!
@@ -102,7 +102,6 @@ class OTPViewController: NANavigationViewController
             //Back to My Daily Services Screen
         else {
             let lv = NAViewPresenter().myDailyServicesVC()
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
             self.navigationController?.pushViewController(lv, animated: true)
         }
     }

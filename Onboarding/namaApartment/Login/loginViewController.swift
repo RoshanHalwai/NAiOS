@@ -17,11 +17,8 @@ class loginViewController: NANavigationViewController
     @IBOutlet weak var txt_CountryCode: UITextField!
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
-    @IBOutlet weak var btnSignup: UIButton!
     @IBOutlet weak var lbl_Validation: UILabel!
-    //Created varible for UserDefault value
-    let prefs = UserDefaults.standard
-    
+
     //Firebase database Reference Variable
     var usersMobileNoRef: DatabaseReference?
     
@@ -32,14 +29,10 @@ class loginViewController: NANavigationViewController
         txt_MobileNo.delegate = self
         txt_CountryCode.delegate = self
         
-        //hide Signup button
-        self.btnSignup.isHidden = true
-        
         //hide validation label
         lbl_Validation.isHidden = true
         
         //Button formatting & setting
-        btnSignup.titleLabel?.font = NAFont().buttonFont()
         btnLogin.titleLabel?.font = NAFont().buttonFont()
         btnLogin.backgroundColor = NAColor().buttonBgColor()
         btnLogin.setTitleColor(NAColor().buttonFontColor(), for: .normal)
@@ -66,10 +59,7 @@ class loginViewController: NANavigationViewController
         navigationItem.rightBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
     }
-    @IBAction func btnSignup(_ sender: Any)
-    {
-       
-    }
+    
     //Accept only 10 digit mobile number in MobileNumber TextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
@@ -81,22 +71,7 @@ class loginViewController: NANavigationViewController
         return newLength <= NAString().required_mobileNo_Length() // Bool
     }
     @IBAction func btnSignin(_ sender: Any) {
-        
-//        //Generating OTP From Firebase Authentication
-//        //TODO: Printing Errors in Console so that other developers can undustand.
-//        PhoneAuthProvider.provider().verifyPhoneNumber(txt_CountryCode.text! + txt_MobileNo.text!, uiDelegate: nil) { (verificationID, error) in
-//            print("verificatinCode",verificationID as Any)
-//            let data = Data(hexString: verificationID! )
-//            print(data as Any)
-//            self.prefs.set(verificationID, forKey: "firebase_verification")
-//            self.prefs.synchronize()
-//
-//            if let error = error {
-//                print("error is:",error.localizedDescription)
-//                return
-//            }
-//        }
-        
+ 
         lbl_Validation.isHidden = true
         
         if (self.txt_MobileNo.text?.isEmpty)!

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xpH-eD-j9k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ulh-Ow-wMS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -319,16 +319,6 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMe-AL-DNr">
-                                <rect key="frame" x="20" y="314" width="335" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="fqp-0c-B4V"/>
-                                </constraints>
-                                <state key="normal" title="Create an Account"/>
-                                <connections>
-                                    <action selector="btnSignup:" destination="KCb-mF-yj2" eventType="touchUpInside" id="2u1-JN-UwW"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKK-8K-MyL">
                                 <rect key="frame" x="20" y="237" width="335" height="15"/>
                                 <constraints>
@@ -342,16 +332,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="eEo-Un-MP8" firstAttribute="leading" secondItem="vfC-Xl-nyG" secondAttribute="leading" constant="20" id="05s-C5-9aq"/>
-                            <constraint firstItem="iMe-AL-DNr" firstAttribute="leading" secondItem="vfC-Xl-nyG" secondAttribute="leading" constant="20" id="8XV-tY-3bc"/>
                             <constraint firstItem="vfC-Xl-nyG" firstAttribute="trailing" secondItem="bBO-6A-9ZX" secondAttribute="trailing" constant="20" id="DOP-Fh-mTU"/>
                             <constraint firstItem="vfC-Xl-nyG" firstAttribute="trailing" secondItem="a82-Lh-vPe" secondAttribute="trailing" constant="20" id="GhY-p8-ssL"/>
                             <constraint firstItem="jKK-8K-MyL" firstAttribute="leading" secondItem="eEo-Un-MP8" secondAttribute="leading" id="H2z-AI-JfQ"/>
-                            <constraint firstItem="iMe-AL-DNr" firstAttribute="centerY" secondItem="26k-Kc-der" secondAttribute="centerY" id="KPB-N5-kns"/>
                             <constraint firstItem="jKK-8K-MyL" firstAttribute="trailing" secondItem="r53-Fl-MeY" secondAttribute="trailing" id="R8J-C3-rJt"/>
-                            <constraint firstItem="r53-Fl-MeY" firstAttribute="trailing" secondItem="iMe-AL-DNr" secondAttribute="trailing" id="SUV-cC-Qzl"/>
                             <constraint firstItem="r53-Fl-MeY" firstAttribute="leading" secondItem="eEo-Un-MP8" secondAttribute="trailing" constant="5" id="TSd-JT-dRt"/>
                             <constraint firstItem="r53-Fl-MeY" firstAttribute="trailing" secondItem="bBO-6A-9ZX" secondAttribute="trailing" id="Xyk-nK-gMs"/>
-                            <constraint firstItem="vfC-Xl-nyG" firstAttribute="trailing" secondItem="iMe-AL-DNr" secondAttribute="trailing" constant="20" id="brT-Nx-v5B"/>
                             <constraint firstItem="r53-Fl-MeY" firstAttribute="top" secondItem="eEo-Un-MP8" secondAttribute="top" id="geu-9O-ATb"/>
                             <constraint firstItem="jKK-8K-MyL" firstAttribute="top" secondItem="r53-Fl-MeY" secondAttribute="bottom" constant="5" id="hmD-NS-Kqh"/>
                             <constraint firstItem="a82-Lh-vPe" firstAttribute="leading" secondItem="vfC-Xl-nyG" secondAttribute="leading" constant="20" id="iSb-Ll-ahE"/>
@@ -364,7 +350,6 @@
                     </view>
                     <connections>
                         <outlet property="btnLogin" destination="Qdd-A9-Hot" id="6IO-rg-9FZ"/>
-                        <outlet property="btnSignup" destination="iMe-AL-DNr" id="U8a-Sn-oV8"/>
                         <outlet property="lbl_MobileNo" destination="bBO-6A-9ZX" id="4FJ-lm-qti"/>
                         <outlet property="lbl_Validation" destination="jKK-8K-MyL" id="VtA-L6-UO4"/>
                         <outlet property="txt_CountryCode" destination="eEo-Un-MP8" id="Aee-wX-wlY"/>
