@@ -17,6 +17,7 @@
 		081B49E720F32740006D502A /* HandedThingsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsHistoryViewController.swift */; };
 		081B49E920F32D03006D502A /* HandedThingsHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsHistoryCollectionViewCell.swift */; };
 		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
+		08A0210520F523FC00130185 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A0210420F523FC00130185 /* Reachability.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */; };
 		423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D520F378E400F10A23 /* FirebaseAuth.framework */; };
@@ -138,6 +139,7 @@
 		081B49E620F32740006D502A /* HandedThingsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsHistoryViewController.swift; sourceTree = "<group>"; };
 		081B49E820F32D03006D502A /* HandedThingsHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		08A0210420F523FC00130185 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
 		423187D520F378E400F10A23 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187D720F378E400F10A23 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -550,6 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				86BD74E420999DE200B159A3 /* OTPViewController.swift */,
+				08A0210420F523FC00130185 /* Reachability.swift */,
 			);
 			path = OTP;
 			sourceTree = "<group>";
@@ -995,6 +998,7 @@
 				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
 				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
 				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
+				08A0210520F523FC00130185 /* Reachability.swift in Sources */,
 				081B49E720F32740006D502A /* HandedThingsHistoryViewController.swift in Sources */,
 				0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
