@@ -451,11 +451,23 @@
                                                     <action selector="btnVerifyOTP:" destination="0ri-9o-W9l" eventType="touchUpInside" id="8TL-Ud-aca"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYv-10-2zw">
+                                                <rect key="frame" x="101" y="258" width="254" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="254" id="4QK-Wi-LlG"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="UYv-10-2zw" firstAttribute="top" secondItem="SYT-Hb-viB" secondAttribute="bottom" constant="4" id="40N-3p-I5y"/>
                                             <constraint firstAttribute="trailing" secondItem="cNT-Uz-RBG" secondAttribute="trailing" constant="20" id="44n-VY-QHE"/>
                                             <constraint firstItem="SYT-Hb-viB" firstAttribute="top" secondItem="cNT-Uz-RBG" secondAttribute="bottom" constant="30" id="HBx-PZ-oOv"/>
+                                            <constraint firstItem="9vu-lC-2Mp" firstAttribute="top" secondItem="UYv-10-2zw" secondAttribute="bottom" constant="9" id="I0z-uW-HvM"/>
+                                            <constraint firstAttribute="trailing" secondItem="UYv-10-2zw" secondAttribute="trailing" constant="20" id="I73-aL-jzD"/>
                                             <constraint firstAttribute="trailing" secondItem="SYT-Hb-viB" secondAttribute="trailing" constant="20" id="JAE-n2-Ymx"/>
                                             <constraint firstItem="9vu-lC-2Mp" firstAttribute="top" secondItem="SYT-Hb-viB" secondAttribute="bottom" constant="30" id="KwT-OA-b4k"/>
                                             <constraint firstItem="cNT-Uz-RBG" firstAttribute="top" secondItem="mF3-0T-uFq" secondAttribute="top" constant="120" id="P1j-ZC-MCH"/>
@@ -488,6 +500,7 @@
                     <connections>
                         <outlet property="btnVerify" destination="9vu-lC-2Mp" id="2g1-T0-8EE"/>
                         <outlet property="lbl_OTPDescription" destination="cNT-Uz-RBG" id="3Rd-Wo-A8M"/>
+                        <outlet property="lbl_OTP_Validation" destination="UYv-10-2zw" id="2am-V3-tDo"/>
                         <outlet property="txtOTP1" destination="Pwo-yh-TDk" id="LmB-zs-gij"/>
                         <outlet property="txtOTP2" destination="lX6-TS-Cng" id="mMR-FX-mSP"/>
                         <outlet property="txtOTP3" destination="hMa-py-GhW" id="E4K-oO-SZP"/>
@@ -498,7 +511,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTH-PJ-bfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2225" y="714"/>
+            <point key="canvasLocation" x="2224.8000000000002" y="713.79310344827593"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="Vsk-Nw-3iJ">

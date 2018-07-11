@@ -20,6 +20,7 @@ class OTPViewController: NANavigationViewController
     @IBOutlet weak var txtOTP4: UITextField!
     @IBOutlet weak var txtOTP5: UITextField!
     @IBOutlet weak var txtOTP6: UITextField!
+    @IBOutlet weak var lbl_OTP_Validation: UILabel!
     
     //to take data from add my services
     var newOtpString = String()
@@ -33,6 +34,9 @@ class OTPViewController: NANavigationViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //hiding validation label
+        lbl_OTP_Validation.isHidden = true
+        
         //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
         
@@ -44,6 +48,7 @@ class OTPViewController: NANavigationViewController
         
         //Label formatting & setting
         lbl_OTPDescription.font = NAFont().headerFont()
+        lbl_OTP_Validation.font = NAFont().descriptionFont()
         
         //Textfield formatting & setting
         txtOTP1.font = NAFont().textFieldFont()
@@ -77,20 +82,13 @@ class OTPViewController: NANavigationViewController
         txtOTP5.underlined()
         txtOTP6.underlined()
     }
-    
     @IBAction func btnVerifyOTP(_ sender: Any) {
         //Navigating to signup vc
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
-            
-            let lv = NAViewPresenter().signupVC()
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-            lv.getNewMobileString = getMobileString
-            
             //Calling verify OTP function.
             verifyOTPWithFirebase()
         }
-            //Back to My Sweet Home screen
+        //Back to My Sweet Home screen
         else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
             let lv = NAViewPresenter().mySweetHomeVC()
             self.navigationController?.pushViewController(lv, animated: true)
@@ -108,6 +106,10 @@ class OTPViewController: NANavigationViewController
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if (textField.text?.isEmpty)! || !(textField.text?.isEmpty)! {
+            lbl_OTP_Validation.isHidden = true
+        }
         if (!string.isEmpty) {
             textField.text = string
             if textField == txtOTP1 {
@@ -159,8 +161,13 @@ class OTPViewController: NANavigationViewController
             return false
         }
     }
+    func Alert (Message: String) {
+        let alert = UIAlertController(title: "Alert", message: Message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }
-
 //Created Extension for verifying OTP.
 extension OTPViewController {
     
@@ -188,9 +195,15 @@ extension OTPViewController {
         //If OTP is Valid then Login Sucess else showing Error message in Console
         //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
         Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
-            if let error = error {
-                print("error",error.localizedDescription)
-                return
+            if Reachability.Connection() {
+                if let error = error {
+                    print("error",error.localizedDescription)
+                    self.lbl_OTP_Validation.isHidden = false
+                    self.lbl_OTP_Validation.text = NAString().incorrect_otp()
+                    return
+                }
+            } else {
+                self.Alert(Message: NAString().connectivity_Validation())
             }
             //if Sucess then store Mobile number & UID in FirebaseDB
             print("Login success")
@@ -200,6 +213,11 @@ extension OTPViewController {
             
             // Maping Mobile Number with UID & Storing in Users/All
             self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
+            
+            let lv = NAViewPresenter().signupVC()
+            self.navigationController?.setNavigationBarHidden(false, animated: true);
+            self.navigationController?.pushViewController(lv, animated: true)
+            lv.getNewMobileString = self.getMobileString
         }
     }
 }
