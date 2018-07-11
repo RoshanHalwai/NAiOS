@@ -178,7 +178,6 @@ class OTPViewController: NANavigationViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
-}
 
     //Generating OTP From Firebase Authentication
     func triggerOTPFromFirebase() {
@@ -193,6 +192,7 @@ class OTPViewController: NANavigationViewController {
             }
         }
     }
+}
 
 //Created Extension for Verify OTP Function.
 extension OTPViewController {
@@ -232,10 +232,6 @@ extension OTPViewController {
             
             // Maping Mobile Number with UID & Storing in Users/All
             self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
-            
-            let lv = NAViewPresenter().signupVC()
-            self.navigationController?.pushViewController(lv, animated: true)
-            lv.getNewMobileString = self.getMobileString
 
             self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
                 //If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
@@ -245,6 +241,7 @@ extension OTPViewController {
                 } else {
                     //Else navigating to Sign Up screen for allowing them to create New User.
                     let dest = NAViewPresenter().signupVC()
+                    dest.getNewMobileString = self.getMobileString
                     self.navigationController?.pushViewController(dest, animated: true)
                 }
             })
