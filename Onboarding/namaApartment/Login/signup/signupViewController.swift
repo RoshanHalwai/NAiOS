@@ -52,7 +52,7 @@ class signupViewController: NANavigationViewController {
     
     //To getMobileString from Previous Screen (OTP View Controller)
     var getNewMobileString = String()
-    
+
     //Firebase Database Reference
     var usersPersonalDetailsRef : DatabaseReference?
     var usersUIDRef : DatabaseReference?

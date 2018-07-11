@@ -26,9 +26,14 @@ class OTPViewController: NANavigationViewController
     
     //Creating varibale to get mobile number string from Login VC TextField.
     var getMobileString = String()
+    var getCountryCodeString = String()
     
     //Creating Firebase DB Reference variable.
     var userMobileNumberRef : DatabaseReference?
+    var isMobileValidRef : DatabaseReference?
+    
+    //Created varible for UserDefault value
+    let prefs = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,46 +166,64 @@ class OTPViewController: NANavigationViewController
     }
 }
 
-//Created Extension for verifying OTP.
+//Created extension for Verify OTP.
 extension OTPViewController {
     
     func verifyOTPWithFirebase() {
         
-        //Creating Firebase Verification ID & Printing It in Console.
-        let verificationID = UserDefaults.standard.string(forKey: "firebase_verification")
-        if (verificationID != nil) {
-            print(verificationID as Any)
-        }
-        //Creating OTP String Varible
-        let Otp_Strig1 = txtOTP1.text!
-        let Otp_Strig2 = txtOTP2.text!
-        let Otp_Strig3 = txtOTP3.text!
-        let Otp_Strig4 = txtOTP4.text!
-        let Otp_Strig5 = txtOTP5.text!
-        let Otp_Strig6 = txtOTP6.text!
+        //Getting Reference from Firebase for Users/All
+        isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
         
-        //Creating final string by concatinating all the 6 varification textFields.
-        let final_String = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
-        
-        //Creating Credential variable to check correct OTP String.
-        let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: final_String)
-        
-        //If OTP is Valid then Login Sucess else showing Error message in Console
-        //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
-        Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
-            if let error = error {
-                print("error",error.localizedDescription)
-                return
+        isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
+            
+            if snapshot.exists() {
+                print("You Have Entered Valid Mobile Number.")
+                
+                
+                
+                let dest = NAViewPresenter().mainScreenVC()
+                self.navigationController?.pushViewController(dest, animated: true)
+            } else {
+                print("You Have Not Entered Mobile Number.")
+                //Creating Firebase Verification ID & Printing It in Console.
+                let verificationID = UserDefaults.standard.string(forKey: "firebase_verification")
+                if (verificationID != nil) {
+                    print(verificationID as Any)
+                }
+                //Creating OTP String Varible
+                let Otp_Strig1 = self.txtOTP1.text!
+                let Otp_Strig2 = self.txtOTP2.text!
+                let Otp_Strig3 = self.txtOTP3.text!
+                let Otp_Strig4 = self.txtOTP4.text!
+                let Otp_Strig5 = self.txtOTP5.text!
+                let Otp_Strig6 = self.txtOTP6.text!
+                
+                //Creating final string by concatinating all the 6 varification textFields.
+                let final_String = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+                
+                //Creating Credential variable to check correct OTP String.
+                let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: verificationID!, verificationCode: final_String)
+                
+                //If OTP is Valid then Login Sucess else showing Error message in Console
+                //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
+                Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
+                    if let error = error {
+                        print("error",error.localizedDescription)
+                        return
+                    }
+                    //if Sucess then store Mobile number & UID in FirebaseDB
+                    print("Login success")
+                    
+                    //Getting path for where to store Mobile Number & UID.
+                    self.userMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+                    
+                    // Maping Mobile Number with UID & Storing in Users/All
+                    self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
+                }
             }
-            //if Sucess then store Mobile number & UID in FirebaseDB
-            print("Login success")
-            
-            //Getting path for where to store Mobile Number & UID.
-            self.userMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
-            
-            // Maping Mobile Number with UID & Storing in Users/All
-            self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
-        }
+        })
     }
 }
+
+
 

@@ -22,18 +22,11 @@ class loginViewController: NANavigationViewController
     //Created varible for UserDefault value
     let prefs = UserDefaults.standard
     
-    var validation_Array = [String]()
-    
-    
     //Firebase database Reference Variable
     var usersMobileNoRef: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
-        
-        
         
         //assigned delegate method on textFields
         txt_MobileNo.delegate = self
@@ -75,9 +68,7 @@ class loginViewController: NANavigationViewController
     }
     @IBAction func btnSignup(_ sender: Any)
     {
-        let lv = NAViewPresenter().signupVC()
-        self.navigationController?.pushViewController(lv, animated: true)
-        self.navigationController?.setNavigationBarHidden(false, animated: true);
+       
     }
     //Accept only 10 digit mobile number in MobileNumber TextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -91,44 +82,20 @@ class loginViewController: NANavigationViewController
     }
     @IBAction func btnSignin(_ sender: Any) {
         
-        usersMobileNoRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(txt_MobileNo.text!)
-       
-        usersMobileNoRef?.observeSingleEvent(of: .value, with: { snapshot in
-         
-        if snapshot.exists() {
-            print("Mobile no. is Valid")
-            let dest = NAViewPresenter().mainScreenVC()
-            self.navigationController?.pushViewController(dest, animated: true)
+        //Generating OTP From Firebase Authentication
+        //TODO: Printing Errors in Console so that other developers can undustand.
+        PhoneAuthProvider.provider().verifyPhoneNumber(txt_CountryCode.text! + txt_MobileNo.text!, uiDelegate: nil) { (verificationID, error) in
+            print("verificatinCode",verificationID as Any)
+            let data = Data(hexString: verificationID! )
+            print(data as Any)
+            self.prefs.set(verificationID, forKey: "firebase_verification")
+            self.prefs.synchronize()
             
+            if let error = error {
+                print("error is:",error.localizedDescription)
+                return
+            }
         }
-        else {
-            print("Mobile no. is not registered")
-            
-            let lv = NAViewPresenter().otpViewController()
-            let otpString = NAString().enter_verification_code(first: "your", second: "your")
-            lv.newOtpString = otpString
-            
-            //  Passing mobile number string to OTP VC (For mapping No with UID)
-            lv.getMobileString = self.txt_MobileNo.text!
-            self.navigationController?.setNavigationBarHidden(false, animated: true);
-            self.navigationController?.pushViewController(lv, animated: true)
-            
-            // Generating OTP From Firebase Authentication
-            //TODO: Printing Errors in Console so that other developers can undustand.
-            PhoneAuthProvider.provider().verifyPhoneNumber(self.txt_CountryCode.text! + self.txt_MobileNo.text!, uiDelegate: nil) { (verificationID, error) in
-                print("verificatinCode",verificationID as Any)
-                let data = Data(hexString: verificationID! )
-                print(data as Any)
-                self.prefs.set(verificationID, forKey: "firebase_verification")
-                self.prefs.synchronize()
-                
-                if let error = error {
-                    print("error is",error.localizedDescription)
-                    return
-                }
-            }
-            }
-        })
         
         lbl_Validation.isHidden = true
         
@@ -145,14 +112,14 @@ class loginViewController: NANavigationViewController
             txt_MobileNo.redunderlined()
         }
         else if ((txt_MobileNo.text?.count)! == NAString().required_mobileNo_Length()) {
-          //  let lv = NAViewPresenter().otpViewController()
-           // let otpString = NAString().enter_verification_code(first: "your", second: "your")
-          //  lv.newOtpString = otpString
+            let lv = NAViewPresenter().otpViewController()
+            let otpString = NAString().enter_verification_code(first: "your", second: "your")
+            lv.newOtpString = otpString
             
             //Passing mobile number string to OTP VC (For mapping No with UID)
-           // lv.getMobileString = txt_MobileNo.text!
-            //self.navigationController?.setNavigationBarHidden(false, animated: true);
-            //self.navigationController?.pushViewController(lv, animated: true)
+            lv.getMobileString = txt_MobileNo.text!
+            lv.getCountryCodeString = txt_CountryCode.text!
+            self.navigationController?.pushViewController(lv, animated: true)
         }
     }
 }
@@ -175,4 +142,3 @@ extension Data {
         self = data
     }
 }
-
