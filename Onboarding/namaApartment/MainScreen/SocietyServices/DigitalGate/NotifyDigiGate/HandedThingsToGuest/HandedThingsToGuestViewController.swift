@@ -39,10 +39,25 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         TableView.allowsSelection = false
         self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
+        configureHistoryButton()
+        
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
     }
+    //created custome back button to go back to digi gate
+    @objc func gotoHandedThingsHistoryVC() {
+        let dv = NAViewPresenter().handedThingsHistoryVC()
+        dv.titleName = NAString().handed_things().capitalized
+        self.present(dv, animated: true, completion: nil)
+    }
+    func configureHistoryButton() {
+     let historyButton = UIButton(type: .system)
+     historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
+     historyButton.frame = CGRect(x: 270, y: 0, width: 30, height: 30)
+     historyButton.addTarget(self, action: #selector(gotoHandedThingsHistoryVC), for: .touchUpInside)
+     navigationItem.rightBarButtonItem = UIBarButtonItem(customView: historyButton)
+     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

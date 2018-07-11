@@ -386,6 +386,9 @@ class NAString : NSObject
     func my_Guest() -> String {
         return String("MY Guests")
     }
+    func handed_things() -> String {
+        return String("Handed Things")
+    }
     func my_Daily_Services() -> String {
         return String("My Daily Services")
     }
@@ -688,5 +691,8 @@ class NAString : NSObject
     }
     func notifyButtonAlertViewTitle() -> String {
         return String("Security Guard Notification")
+    }
+    func imageContentType() -> String {
+        return String ("image/jpeg")
     }
 }

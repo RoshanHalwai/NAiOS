@@ -91,6 +91,9 @@ class NAViewPresenter: NSObject {
     func main() -> String {
         return String("Main")
     }
+    func handedThingsHistoryVCID() -> String {
+        return String("historyVC")
+    }
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController
@@ -114,5 +117,9 @@ class NAViewPresenter: NSObject {
     //Namma Apartments Home Screen
     func mainScreenVC() -> MainScreenViewController {
         return storyBoard.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
+    }
+    //History VC
+    func handedThingsHistoryVC() -> HandedThingsHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "historyVC") as! HandedThingsHistoryViewController
     }
 }

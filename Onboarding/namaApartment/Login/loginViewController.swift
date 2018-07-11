@@ -113,6 +113,7 @@ class loginViewController: NANavigationViewController
             let lv = NAViewPresenter().otpViewController()
             let otpString = NAString().enter_verification_code(first: "your", second: "your")
             lv.newOtpString = otpString
+            
             //Passing mobile number string to OTP VC (For mapping No with UID)
             lv.getMobileString = txt_MobileNo.text!
             self.navigationController?.setNavigationBarHidden(false, animated: true);
