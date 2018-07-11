@@ -10,8 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseCore
 
-class loginViewController: NANavigationViewController
-{
+class loginViewController: NANavigationViewController {
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
     @IBOutlet weak var lbl_MobileNo: UILabel!
@@ -62,8 +61,7 @@ class loginViewController: NANavigationViewController
         navigationItem.rightBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
     }
-    @IBAction func btnSignup(_ sender: Any)
-    {
+    @IBAction func btnSignup(_ sender: Any) {
         let lv = NAViewPresenter().signupVC()
         self.navigationController?.pushViewController(lv, animated: true)
         self.navigationController?.setNavigationBarHidden(false, animated: true);
@@ -94,22 +92,17 @@ class loginViewController: NANavigationViewController
                 return
             }
         }
-        
         lbl_Validation.isHidden = true
         
-        if (self.txt_MobileNo.text?.isEmpty)!
-        {
+        if (self.txt_MobileNo.text?.isEmpty)! {
             lbl_Validation.isHidden = false
             lbl_Validation.text = NAString().please_enter_mobile_no()
             txt_MobileNo.redunderlined()
-        }
-        else if ((txt_MobileNo.text?.count)! < NAString().required_mobileNo_Length())
-        {
+        } else if ((txt_MobileNo.text?.count)! < NAString().required_mobileNo_Length()) {
             lbl_Validation.isHidden = false
             lbl_Validation.text =  NAString().please_enter_10_digit_no()
             txt_MobileNo.redunderlined()
-        }
-        else if ((txt_MobileNo.text?.count)! == NAString().required_mobileNo_Length()) {
+        } else if ((txt_MobileNo.text?.count)! == NAString().required_mobileNo_Length()) {
             let lv = NAViewPresenter().otpViewController()
             let otpString = NAString().enter_verification_code(first: "your", second: "your")
             lv.newOtpString = otpString
@@ -120,7 +113,6 @@ class loginViewController: NANavigationViewController
         }
     }
 }
-
 //Created Extention to get HexaString For Verification Code
 extension Data {
     init?(hexString: String) {
