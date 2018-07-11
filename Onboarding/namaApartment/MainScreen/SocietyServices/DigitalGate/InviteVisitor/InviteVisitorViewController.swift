@@ -235,7 +235,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         }
         if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
-            self.storeVisitorDetailsInFirebase()
+//            self.storeVisitorDetailsInFirebase()
             inviteAlertView()
         }
     }

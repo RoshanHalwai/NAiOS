@@ -275,7 +275,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             lbl_Mobile_Validation.isHidden = true
         }
         if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
-
             if(grantAcess_Segment.selectedSegmentIndex == 0) {
                 //calling AlertBox on click of YES
                 grantAccessAlert()
