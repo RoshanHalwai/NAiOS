@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseInstanceID
+import FirebaseMessaging
 
 class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!
@@ -326,8 +327,9 @@ extension myFlatDetailsViewController {
                     self.usersMobileNoRef?.child((val?.phoneNumber)!).setValue(usersUID)
                     
                     //Generating & Mapping TokenID under Users/Private/UID
-                    let tokenID = InstanceID.instanceID().token()
+                    let tokenID = Messaging.messaging().fcmToken
                     self.usersUIDRef?.child(NAUser.NAUserStruct.tokenId).setValue(tokenID)
+                    
                     
                     //Navigate to Namma Apartment Home Screen After Storing all users data.
                     let dest = NAViewPresenter().mainScreenVC()
