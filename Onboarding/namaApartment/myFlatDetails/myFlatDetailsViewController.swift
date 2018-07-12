@@ -330,7 +330,6 @@ extension myFlatDetailsViewController {
                     let tokenID = Messaging.messaging().fcmToken
                     self.usersUIDRef?.child(NAUser.NAUserStruct.tokenId).setValue(tokenID)
                     
-                    
                     //Navigate to Namma Apartment Home Screen After Storing all users data.
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
