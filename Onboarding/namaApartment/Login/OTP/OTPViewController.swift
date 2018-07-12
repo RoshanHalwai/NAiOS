@@ -181,7 +181,7 @@ class OTPViewController: NANavigationViewController {
 
     //Generating OTP From Firebase Authentication
     func triggerOTPFromFirebase() {
-        //TODO: Printing Errors in Console so that other developers can undustand.
+        //TODO: Printing Errors in Console so that other developers can understand.
         PhoneAuthProvider.provider().verifyPhoneNumber(getCountryCodeString + getMobileString, uiDelegate: nil) { (verificationID, error) in
             if ((error) != nil) {
                 // IF verification code not sent.
