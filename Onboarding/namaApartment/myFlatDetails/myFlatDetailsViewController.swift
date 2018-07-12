@@ -62,6 +62,7 @@ class myFlatDetailsViewController: NANavigationViewController {
     var usersUIDRef : DatabaseReference?
     var UsersDataRef : DatabaseReference?
     var usersMobileNoRef : DatabaseReference?
+    var userFlatMemberRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -268,9 +269,9 @@ extension myFlatDetailsViewController {
         //Storing Data into User Privileges
         //TODO: Hardcoded values for UserPrivileges for storing data in Firebase undr Users/Private/UID/Privileges
         let userPrivilegesData = [
-            UserPrivilegesListFBKeys.admin.key : "true",
-            UserPrivilegesListFBKeys.grantAccess.key : "true",
-            UserPrivilegesListFBKeys.verified.key : "false"
+            UserPrivilegesListFBKeys.admin.key : NAString().gettrue(),
+            UserPrivilegesListFBKeys.grantAccess.key : NAString().gettrue(),
+            UserPrivilegesListFBKeys.verified.key : NAString().getfalse()
         ]
         
         //Maping UsersUID with admin
@@ -329,6 +330,11 @@ extension myFlatDetailsViewController {
                     //Generating & Mapping TokenID under Users/Private/UID
                     let tokenID = Messaging.messaging().fcmToken
                     self.usersUIDRef?.child(NAUser.NAUserStruct.tokenId).setValue(tokenID)
+                    
+                    //Storing Flat Member UID
+                    self.userFlatMemberRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+                    
+                    self.userFlatMemberRef?.child(usersUID!).setValue(NAString().gettrue())
                     
                     //Navigate to Namma Apartment Home Screen After Storing all users data.
                     let dest = NAViewPresenter().mainScreenVC()
