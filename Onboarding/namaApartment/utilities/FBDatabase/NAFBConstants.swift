@@ -32,5 +32,6 @@ struct Constants {
     static let FIREBASE_CHILD_PERSONALDETAILS = "personalDetails"
     static let FIREBASE_CHILD_PRIVILEGES = "privileges"
     static let FIREBASE_CHILD_ADMIN = "admin"
+    static let FIREBASE_CHILD_FLATMEMBERS = "flatMembers"
 
 }
