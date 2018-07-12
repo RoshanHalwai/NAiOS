@@ -15,7 +15,7 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     
     @IBOutlet weak var collectionView: UICollectionView!
   
-    var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","MysweetHome","Medical"]
+    var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","MySweetHome","Medical"]
     var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
     
     override func viewDidLoad() {
