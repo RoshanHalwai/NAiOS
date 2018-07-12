@@ -64,3 +64,68 @@ class UserFlatDetails {
         return tenantType!
     }
 }
+
+class FlatDetails {
+    
+    private var _apartmentName: String?
+    private var _city: String?
+    private var _flatNumber: String?
+    private var _societyName: String?
+    private var _tenantType: String?
+    
+    var apartmentName : String! {
+        get {
+            return _apartmentName
+        } set {
+            if newValue != nil && newValue != ""{
+                self._apartmentName = newValue
+            }
+        }
+    }
+    var city : String! {
+        get {
+            return _city
+        } set {
+            if newValue != nil && newValue != ""{
+                self._city = newValue
+            }
+        }
+    }
+    
+    var flatNumber : String! {
+        get {
+            return _flatNumber
+        } set {
+            if newValue != nil && newValue != ""{
+                self._flatNumber = newValue
+            }
+        }
+    }
+    
+    var societyName : String! {
+        get {
+            return _societyName
+        } set {
+            if newValue != nil && newValue != ""{
+                self._societyName = newValue
+            }
+        }
+    }
+    
+    var tenantType : String! {
+        get {
+            return _tenantType
+        } set {
+            if newValue != nil && newValue != ""{
+                self._tenantType = newValue
+            }
+        }
+    }
+    
+ init(apartmentName: String?,city: String?,flatNumber: String?,societyName: String?,tenantType: String?) {
+        self.apartmentName = apartmentName
+        self.flatNumber = flatNumber
+        self.societyName = societyName
+        self.tenantType = tenantType
+    }
+}
