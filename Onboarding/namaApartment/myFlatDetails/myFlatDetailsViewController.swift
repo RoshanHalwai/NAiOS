@@ -13,12 +13,12 @@ import FirebaseStorage
 import FirebaseInstanceID
 import FirebaseMessaging
 
-//Calling Class & Adding in Singleton class
+//Calling class & adding in singleton class to get values
 class SingletonFlatDetails {
     static let shared = SingletonFlatDetails()
     var flatDetails = [FlatDetails]()
 }
-//Creating Array variable to access item of the class.
+//Creating Array variable to access item of FlatDetails class.
 var flatDetails = [FlatDetails]()
 
 
@@ -330,6 +330,7 @@ extension myFlatDetailsViewController {
                     
                     //Storing UID under Users/Private/UID
                     self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
+                    
                     self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(usersUID)
                     
                     //Mapping Mobile Number with UID
@@ -365,9 +366,9 @@ extension myFlatDetailsViewController {
 //sending data
 extension myFlatDetailsViewController {
     
-    //Storing users Flat Details Under
     func storingFlatDetails() {
         
+        //Storing user Flat Details in FlatDetails Class
         flatDetails.append(FlatDetails.init(apartmentName: txtApartment.text!, city: txtCity.text!, flatNumber: txtFlat.text!, societyName: txtSociety.text, tenantType: selectedSegmentValue))
         
         SingletonFlatDetails.shared.flatDetails = flatDetails

@@ -10,6 +10,8 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+let usersUID = Auth.auth().currentUser?.uid
+
 class OTPViewController: NANavigationViewController {
     
     @IBOutlet weak var btnVerify: UIButton!

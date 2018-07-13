@@ -14,10 +14,6 @@ import FirebaseAuth
 import Firebase
 import FirebaseStorage
 
-//var flatDetails_data = [FlatDetails]()
-
-
-
 class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
 
     @IBOutlet weak var lbl_InvitorName: UILabel!
@@ -53,19 +49,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-       
-        
-        //Storing Visitor UID under UsersData -> UsersFlat
-//        let value = SingletonFlatDetails.shared.flatDetails
-//        let val = value.first
-//
-//        print(val?.apartmentName as Any)
-//        print(val?.city as Any)
-//        print(val?.flatNumber as Any)
-//        print(val?.societyName as Any)
-//        print(val?.tenantType as Any)
-//
+  
         //Add border color on profile imageview
         img_Profile.layer.borderColor = UIColor.black.cgColor
         
