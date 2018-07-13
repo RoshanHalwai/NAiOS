@@ -302,10 +302,17 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showAlertWithTitle()
+        //getting the index path of selected row
+        let indexPath = tableView.indexPathForSelectedRow
+        //getting the current cell from the index path
+        let currentCell = tableView.cellForRow(at: indexPath!)! as! EditMyProfileTableViewCell
+        //getting the text of that cell
+        let currentItem = currentCell.lbl_Family_Members_List.text
+        
+        showAlertWithTitle(Message : currentItem!)
     }
-    func showAlertWithTitle() {
-        let alertController = UIAlertController(title: "Alert Message", message: "Once you Click on Ok Button You will loose your Admin Access", preferredStyle: .alert)
+    func showAlertWithTitle(Message: String) {
+        let alertController = UIAlertController(title: "Alert Message", message: NAString().change_admin_alert_message(name: Message), preferredStyle: .alert)
         let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
             self.list_View.isHidden = true
             self.opacity_View.isHidden = true

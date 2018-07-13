@@ -150,6 +150,10 @@ class NAString : NSObject
     func i_already_have_an_account() -> String {
         return String("I already have an Account")
     }
+    //Edit my profile Screen
+    func change_admin_alert_message(name: String) -> String {
+        return String("Are you sure you want to make \(name) as Admin? Note, your admin privileges will be transferred to \(name)")
+    }
     
     //Signin screen and Visitor screen
     func create_an_account_button() -> String {
