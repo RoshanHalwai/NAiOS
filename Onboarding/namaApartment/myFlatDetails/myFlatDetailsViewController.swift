@@ -13,6 +13,15 @@ import FirebaseStorage
 import FirebaseInstanceID
 import FirebaseMessaging
 
+//Calling Class & Adding in Singleton class
+class SingletonFlatDetails {
+    static let shared = SingletonFlatDetails()
+    var flatDetails = [FlatDetails]()
+}
+//Creating Array variable to access item of the class.
+var flatDetails = [FlatDetails]()
+
+
 class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!
     @IBOutlet weak var segment_ResidentType: UISegmentedControl!
@@ -336,6 +345,9 @@ extension myFlatDetailsViewController {
                     
                     self.userFlatMemberRef?.child(usersUID!).setValue(NAString().gettrue())
                     
+                    //Calling Function to store flatDetails in custome class (User Flat Details) like pojo class
+                    self.storingFlatDetails()
+                    
                     //Navigate to Namma Apartment Home Screen After Storing all users data.
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
@@ -347,5 +359,17 @@ extension myFlatDetailsViewController {
             })
         })
         uploadTask?.resume()
+    }
+}
+
+//sending data
+extension myFlatDetailsViewController {
+    
+    //Storing users Flat Details Under
+    func storingFlatDetails() {
+        
+        flatDetails.append(FlatDetails.init(apartmentName: txtApartment.text!, city: txtCity.text!, flatNumber: txtFlat.text!, societyName: txtSociety.text, tenantType: selectedSegmentValue))
+        
+        SingletonFlatDetails.shared.flatDetails = flatDetails
     }
 }

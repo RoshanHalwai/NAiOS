@@ -14,6 +14,10 @@ import FirebaseAuth
 import Firebase
 import FirebaseStorage
 
+//var flatDetails_data = [FlatDetails]()
+
+
+
 class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
 
     @IBOutlet weak var lbl_InvitorName: UILabel!
@@ -38,6 +42,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     //Creating Firebase DB Reference variable.
     var preApprovedVisitorsRef : DatabaseReference?
     var preApprovedVisitorsMobileNoRef : DatabaseReference?
+    var usersDataRef : DatabaseReference?
    
     //created date picker programtically
     let picker = UIDatePicker()
@@ -48,6 +53,19 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+     
+       
+        
+        //Storing Visitor UID under UsersData -> UsersFlat
+//        let value = SingletonFlatDetails.shared.flatDetails
+//        let val = value.first
+//
+//        print(val?.apartmentName as Any)
+//        print(val?.city as Any)
+//        print(val?.flatNumber as Any)
+//        print(val?.societyName as Any)
+//        print(val?.tenantType as Any)
+//
         //Add border color on profile imageview
         img_Profile.layer.borderColor = UIColor.black.cgColor
         
@@ -235,7 +253,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         }
         if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
-//            self.storeVisitorDetailsInFirebase()
+           self.storeVisitorDetailsInFirebase()
             inviteAlertView()
         }
     }
@@ -291,10 +309,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                 var status = String()
                 status = NAString().statusNotEntered()
                 
-                //TODO: Need to replace hardcoded inviterUID with Default User's UID.
-                var inviterUID = String()
-                inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
-                
                 //defining node with type of data in it.
                 let visitorData = [
                     VisitorListFBKeys.uid.key : visitorUID!,
@@ -302,11 +316,20 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,
                     VisitorListFBKeys.status.key : status,
                     VisitorListFBKeys.fullName.key : self.txtInvitorName.text! as String,
-                    VisitorListFBKeys.inviterUID.key : inviterUID,
+                    VisitorListFBKeys.inviterUID.key : usersUID,
                     VisitorListFBKeys.profilePhoto.key : url?.absoluteString
                 ]
                 //Adding visitor data under preApproved visitors
                     self.preApprovedVisitorsRef?.setValue(visitorData)
+                    
+                    //Storing Visitor UID under UsersData -> UsersFlat
+                    let value =  Singleton_FlatDetails.shared.flatDetails_Items
+                    let val = value.first
+                   
+                    self.usersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(usersUID!)
+                    
+                    self.usersDataRef?.child(visitorUID!).setValue(NAString().gettrue())
+                    
                     //Using else statement & printing error,so the other developers can know what is going on.
                 } else {
                     print(urlError as Any)

@@ -11,6 +11,27 @@ import FirebaseAuth
 import FirebaseCore
 import FirebaseDatabase
 
+//Created Class & Class Variable to pass the data
+class Singleton_FlatDetails {
+    static let shared = Singleton_FlatDetails()
+    var flatDetails_Items = [FlatDetails]()
+}
+
+class Singleton_PersonalDetails {
+    static let shared = Singleton_PersonalDetails()
+    var personalDetails_Items = [PersonalDetails]()
+}
+
+class Singleton_privileges{
+    static let shared = Singleton_privileges()
+    var privileges_Items = [UserPrivileges]()
+}
+
+//Creating Variable to store FireUser Data in Class.
+var flatDetailsFB = [FlatDetails]()
+var personalDetails = [PersonalDetails]()
+var userprivileges = [UserPrivileges]()
+
 class loginViewController: NANavigationViewController {
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
@@ -20,6 +41,8 @@ class loginViewController: NANavigationViewController {
 
     //Firebase database Reference Variable
     var usersMobileNoRef: DatabaseReference?
+    var isMobileValidRef : DatabaseReference?
+    var userPrivateRef: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,12 +109,59 @@ class loginViewController: NANavigationViewController {
             let otpString = NAString().enter_verification_code(first: "your", second: "your")
             lv.newOtpString = otpString
             
-            //Passing mobile number string to OTP VC (For mapping No with UID)
+         //   Passing mobile number string to OTP VC (For mapping No with UID)
             lv.getMobileString = txt_MobileNo.text!
             lv.getCountryCodeString = txt_CountryCode.text!
             self.navigationController?.pushViewController(lv, animated: true)
         }
+     
+        //Searching Mobile Nunber in Users-> All
+        isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(txt_MobileNo.text!)
+        
+        //Searching UID in Users-> Private
+        userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
+        
+        self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
+            //If Data Exists in Firebase then navigate to Namma Apartment Home Screen.
+            if snapshot.exists() {
+                
+              self.userPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
+                
+                let userData = snapshot.value as? NSDictionary
+                
+                let flatdetails_data = userData!["flatDetails"] as? [String :Any]
+               
+                //For retriving data
+                flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data!["apartmentName"] as? String, city: (flatdetails_data!["city"] as! String), flatNumber: flatdetails_data!["flatNumber"] as? String, societyName: flatdetails_data!["societyName"] as? String, tenantType: flatdetails_data!["tenantType"] as? String))
+                print("valeues of data ",flatDetailsFB)
+                
+                
+                //for storing data in custom class
+                Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
+                
+                //For retriving data
+                  let userPersonal_data = userData!["personalDetails"] as? [String :Any]
+                personalDetails.append(PersonalDetails.init(email: userPersonal_data!["email"] as? String, fullName:userPersonal_data!["fullName"] as? String , phoneNumber:userPersonal_data!["phoneNumber"] as? String ))
+                
+                //for storing data in custom class
+                Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
+                
+                ///privilage data show
+                
+                let privilage_data = userData!["privileges"] as? [String : Any]
+                
+                userprivileges.append(UserPrivileges.init(admin: privilage_data!["admin"]as? String, grantAccess: privilage_data!["grantAccess"] as? String, verified: privilage_data!["verified"] as? String ))
+                
+                Singleton_privileges.shared.privileges_Items = userprivileges
+                
+                })
+                
+            } else {
+        
+            }
+        })
     }
+    
 }
 //Created Extention to get HexaString For Verification Code
 extension Data {
@@ -111,3 +181,4 @@ extension Data {
         self = data
     }
 }
+
