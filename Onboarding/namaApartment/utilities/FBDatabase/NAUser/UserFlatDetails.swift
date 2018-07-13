@@ -124,6 +124,7 @@ class FlatDetails {
     
  init(apartmentName: String?,city: String?,flatNumber: String?,societyName: String?,tenantType: String?) {
         self.apartmentName = apartmentName
+        self.city = city
         self.flatNumber = flatNumber
         self.societyName = societyName
         self.tenantType = tenantType

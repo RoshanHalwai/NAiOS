@@ -13,6 +13,15 @@ import FirebaseStorage
 import FirebaseInstanceID
 import FirebaseMessaging
 
+//Calling class & adding in singleton class to get values
+class SingletonFlatDetails {
+    static let shared = SingletonFlatDetails()
+    var flatDetails = [FlatDetails]()
+}
+//Creating Array variable to access item of FlatDetails class.
+var flatDetails = [FlatDetails]()
+
+
 class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!
     @IBOutlet weak var segment_ResidentType: UISegmentedControl!
@@ -321,6 +330,7 @@ extension myFlatDetailsViewController {
                     
                     //Storing UID under Users/Private/UID
                     self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
+                    
                     self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(usersUID)
                     
                     //Mapping Mobile Number with UID
@@ -336,6 +346,9 @@ extension myFlatDetailsViewController {
                     
                     self.userFlatMemberRef?.child(usersUID!).setValue(NAString().gettrue())
                     
+                    //Calling Function to store flatDetails in custome class (User Flat Details) like pojo class
+                    self.storingFlatDetails()
+                    
                     //Navigate to Namma Apartment Home Screen After Storing all users data.
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
@@ -347,5 +360,17 @@ extension myFlatDetailsViewController {
             })
         })
         uploadTask?.resume()
+    }
+}
+
+//sending data
+extension myFlatDetailsViewController {
+    
+    func storingFlatDetails() {
+        
+        //Storing user Flat Details in FlatDetails Class
+        flatDetails.append(FlatDetails.init(apartmentName: txtApartment.text!, city: txtCity.text!, flatNumber: txtFlat.text!, societyName: txtSociety.text, tenantType: selectedSegmentValue))
+        
+        SingletonFlatDetails.shared.flatDetails = flatDetails
     }
 }
