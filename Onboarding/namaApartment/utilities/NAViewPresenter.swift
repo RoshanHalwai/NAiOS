@@ -32,6 +32,10 @@ class NAViewPresenter: NSObject {
     func handedThingsToMyGuestVC() -> HandedThingsToGuestViewController {
         return storyBoard.instantiateViewController(withIdentifier: "handedThingsToGuestVC") as! HandedThingsToGuestViewController
     }
+    //Handed Things to my Daily services
+    func handedThingsToMyDailyServiceVC() -> HandedThingsToDailyServicesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "handedThingsToServiceVC") as! HandedThingsToDailyServicesViewController
+    }
     
     //Emeregency VC
     func raiseAlarmVC() -> RaiseAlarmViewController {
@@ -118,8 +122,12 @@ class NAViewPresenter: NSObject {
     func mainScreenVC() -> MainScreenViewController {
         return storyBoard.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
     }
-    //History VC
-    func handedThingsHistoryVC() -> HandedThingsGuestHistoryViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "historyVC") as! HandedThingsGuestHistoryViewController
+    //Guest History VC
+    func handedThingsGuestHistoryVC() -> HandedThingsGuestHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "GuestHistoryVC") as! HandedThingsGuestHistoryViewController
+    }
+    //My Daily Service History VC
+    func handedThingsServiceHistoryVC() -> HandedThingsDailyServicesHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "DailyServiceHistoryVC") as! HandedThingsDailyServicesHistoryViewController
     }
 }

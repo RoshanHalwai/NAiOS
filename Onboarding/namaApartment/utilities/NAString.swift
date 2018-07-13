@@ -389,8 +389,8 @@ class NAString : NSObject
     func my_Guest() -> String {
         return String("MY Guests")
     }
-    func handed_things() -> String {
-        return String("Handed Things")
+    func history() -> String {
+        return String("History")
     }
     func my_Daily_Services() -> String {
         return String("My Daily Services")
@@ -466,6 +466,12 @@ class NAString : NSObject
     func _title_activity_daily_services() -> String {
         return String("DailyServices")
     }
+    func notify_btnClick_Alert_title() -> String {
+        return String("Handed Things Message")
+    }
+    func notify_btnClick_Alert_message() -> String {
+        return String("Handed Things Notification has been sent to your Security Guard.")
+    }
     
     //My daily services
     func car_bike_cleaner() -> String {
@@ -523,8 +529,8 @@ class NAString : NSObject
         return String("Flats:")
     }
     
-    func invited_by() -> String {
-        return String("Invited By:")
+    func inviter() -> String {
+        return String("Inviter:")
     }
     func call() -> String {
         return String("Call")

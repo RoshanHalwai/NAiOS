@@ -9,6 +9,7 @@
 import UIKit
 
 class HandedThingsGuestHistoryViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     //set title from previous page
@@ -20,13 +21,14 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
-        //created custom back button for goto digi gate screen
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToHandedThingsVC))
+        
+        //created custom back button
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToHandedThingsGuestVC))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    //created custome back button to go back to digi gate
-    @objc func goBackToHandedThingsVC() {
+    //to navigate back to handed things My guest VC
+    @objc func goBackToHandedThingsGuestVC() {
         let dv = NAViewPresenter().handedThingsToMyGuestVC()
         dv.titleName = NAString().my_Guest().capitalized
         self.navigationController?.pushViewController(dv, animated: true)

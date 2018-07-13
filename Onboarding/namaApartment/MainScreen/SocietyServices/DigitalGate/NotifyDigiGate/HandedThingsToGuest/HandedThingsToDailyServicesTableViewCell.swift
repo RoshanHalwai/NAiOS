@@ -1,32 +1,32 @@
 //
-//  HandedThingsToGuestCollectionViewCell.swift
+//  HandedThingsToDailyServicesTableViewCell.swift
 //  nammaApartment
 //
-//  Created by Vikas Nayak on 10/05/18.
+//  Created by Sundir Talari on 13/07/18.
 //  Copyright © 2018 Vikas Nayak. All rights reserved.
 //
 
 import UIKit
 
-class HandedThingsToGuestTableViewCell: UITableViewCell
-{
-    //created object to use History button action in cell class
+class HandedThingsToDailyServicesTableViewCell: UITableViewCell {
+    
+    //created object to use history button action in cell class
     var objHistoryVC : (() -> Void)? = nil
     
-    @IBOutlet weak var lbl_Visiter: UILabel!
+    @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_Type: UILabel!
-    @IBOutlet weak var lbl_Date: UILabel!
-    @IBOutlet weak var lbl_Time: UILabel!
-    @IBOutlet weak var lbl_Invited: UILabel!
+    @IBOutlet weak var lbl_Rating: UILabel!
+    @IBOutlet weak var lbl_InTime: UILabel!
+    @IBOutlet weak var lbl_Flats: UILabel!
     
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var backgroundCardView: UIView!
     
-    @IBOutlet weak var lbl_VisiterName: UILabel!
-    @IBOutlet weak var lbl_GuestType: UILabel!
-    @IBOutlet weak var lbl_GuestDate: UILabel!
-    @IBOutlet weak var lbl_GuestTime: UILabel!
-    @IBOutlet weak var lbl_GuestInvitedBy: UILabel!
+    @IBOutlet weak var lbl_ServiceName: UILabel!
+    @IBOutlet weak var lbl_ServiceType: UILabel!
+    @IBOutlet weak var lbl_ServiceRating: UILabel!
+    @IBOutlet weak var lbl_ServiceInTime: UILabel!
+    @IBOutlet weak var lbl_ServiceFlats: UILabel!
     @IBOutlet weak var lbl_ThingsGiven: UILabel!
     
     @IBOutlet weak var lbl_Description: UILabel!
@@ -45,5 +45,3 @@ class HandedThingsToGuestTableViewCell: UITableViewCell
         }
     }
 }
-
-
