@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HandedThingsHistoryCollectionViewCell: UICollectionViewCell {
+class HandedThingsGuestHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image_View: UIImageView!
     @IBOutlet weak var lbl_Visitor_Type: UILabel!
     @IBOutlet weak var lbl_Date_Type: UILabel!

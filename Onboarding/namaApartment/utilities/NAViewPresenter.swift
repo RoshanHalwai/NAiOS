@@ -119,7 +119,7 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
     }
     //History VC
-    func handedThingsHistoryVC() -> HandedThingsHistoryViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "historyVC") as! HandedThingsHistoryViewController
+    func handedThingsHistoryVC() -> HandedThingsGuestHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "historyVC") as! HandedThingsGuestHistoryViewController
     }
 }

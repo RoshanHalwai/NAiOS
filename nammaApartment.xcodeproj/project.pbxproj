@@ -14,8 +14,10 @@
 		0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */; };
 		0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */; };
 		0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */; };
-		081B49E720F32740006D502A /* HandedThingsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsHistoryViewController.swift */; };
-		081B49E920F32D03006D502A /* HandedThingsHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsHistoryCollectionViewCell.swift */; };
+		081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */; };
+		081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */; };
+		083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */; };
+		083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */; };
 		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
 		08A0210520F523FC00130185 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A0210420F523FC00130185 /* Reachability.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
@@ -136,8 +138,10 @@
 		0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileTableViewCell.swift; sourceTree = "<group>"; };
 		0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
 		0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyFamilyMembersViewController.swift; sourceTree = "<group>"; };
-		081B49E620F32740006D502A /* HandedThingsHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsHistoryViewController.swift; sourceTree = "<group>"; };
-		081B49E820F32D03006D502A /* HandedThingsHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryViewController.swift; sourceTree = "<group>"; };
+		081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryViewController.swift; sourceTree = "<group>"; };
+		083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		08A0210420F523FC00130185 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
@@ -480,8 +484,10 @@
 			children = (
 				867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */,
 				867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */,
-				081B49E620F32740006D502A /* HandedThingsHistoryViewController.swift */,
-				081B49E820F32D03006D502A /* HandedThingsHistoryCollectionViewCell.swift */,
+				081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */,
+				081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */,
+				083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */,
+				083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */,
 			);
 			path = HandedThingsToGuest;
 			sourceTree = "<group>";
@@ -976,7 +982,7 @@
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
-				081B49E920F32D03006D502A /* HandedThingsHistoryCollectionViewCell.swift in Sources */,
+				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
 				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,
@@ -996,10 +1002,11 @@
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
 				86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */,
 				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
+				083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
 				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
 				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
 				08A0210520F523FC00130185 /* Reachability.swift in Sources */,
-				081B49E720F32740006D502A /* HandedThingsHistoryViewController.swift in Sources */,
+				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
 				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
@@ -1016,6 +1023,7 @@
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
 				86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */,
+				083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
 				86B1A8DA20D50EAB00D90D88 /* NammaApartmentVisitor.swift in Sources */,
 				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
