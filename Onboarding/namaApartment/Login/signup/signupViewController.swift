@@ -220,6 +220,7 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
+
         if textField == signup_TxtFullName {
                 lbl_FullName_Validation.isHidden = true
                 signup_TxtFullName.underlined()
@@ -231,6 +232,7 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
         return true
     }
 }
+
 extension signupViewController {
     //Save User Personal Details
     func storeUsersPersonalDetailsInFirebase() {
