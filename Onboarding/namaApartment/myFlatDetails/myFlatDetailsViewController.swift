@@ -21,7 +21,6 @@ class SingletonFlatDetails {
 //Creating Array variable to access item of FlatDetails class.
 var flatDetails = [FlatDetails]()
 
-
 class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!
     @IBOutlet weak var segment_ResidentType: UISegmentedControl!
@@ -367,7 +366,6 @@ extension myFlatDetailsViewController {
 extension myFlatDetailsViewController {
     
     func storingFlatDetails() {
-        
         //Storing user Flat Details in FlatDetails Class
         flatDetails.append(FlatDetails.init(apartmentName: txtApartment.text!, city: txtCity.text!, flatNumber: txtFlat.text!, societyName: txtSociety.text, tenantType: selectedSegmentValue))
         

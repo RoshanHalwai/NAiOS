@@ -704,16 +704,4 @@ class NAString : NSObject
     func getfalse() -> String {
         return String ("false")
     }
-    func apartmentName() -> String {
-        return String ("apartmentName")
-    }
-    func flatNumber() -> String {
-        return String ("flatNumber")
-    }
-    func societyName() -> String {
-        return String ("societyName")
-    }
-    func tenantType() -> String {
-        return String ("tenantType")
-    }
 }

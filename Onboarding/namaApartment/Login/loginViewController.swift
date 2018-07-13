@@ -27,7 +27,7 @@ class Singleton_privileges{
     var privileges_Items = [UserPrivileges]()
 }
 
-//Creating Variable to store FireUser Data in Class.
+//Creating Variable to store FirebaseUser Data in Class.
 var flatDetailsFB = [FlatDetails]()
 var personalDetails = [PersonalDetails]()
 var userprivileges = [UserPrivileges]()
@@ -42,7 +42,7 @@ class loginViewController: NANavigationViewController {
     //Firebase database Reference Variable
     var usersMobileNoRef: DatabaseReference?
     var isMobileValidRef : DatabaseReference?
-    var userPrivateRef: DatabaseReference?
+    var usersPrivateRef: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,14 +119,14 @@ class loginViewController: NANavigationViewController {
         isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(txt_MobileNo.text!)
         
          //Checking Users UID in Firebase under Users ->Private
-        userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
+        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
         
         self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
             
             //If usersUID is Exists then retrievd all the data of user.
             if snapshot.exists() {
                 
-                self.userPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
+                self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
                     
                     let userData = snapshot.value as? NSDictionary
                     
@@ -177,4 +177,3 @@ extension Data {
         self = data
     }
 }
-
