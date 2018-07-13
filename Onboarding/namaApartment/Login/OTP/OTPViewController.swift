@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 //Global variable to store users UID
-let usersUID = Auth.auth().currentUser?.uid
+var usersUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
     
