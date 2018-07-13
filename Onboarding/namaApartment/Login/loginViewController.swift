@@ -115,14 +115,15 @@ class loginViewController: NANavigationViewController {
             self.navigationController?.pushViewController(lv, animated: true)
         }
         
-        //Searching Mobile Nunber in Users-> All
+        //Checking Users Mobile Number in Firebase under Users ->All
         isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(txt_MobileNo.text!)
         
-        //Searching UID in Users-> Private
+         //Checking Users UID in Firebase under Users ->Private
         userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
         
         self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
-
+            
+            //If usersUID is Exists then retrievd all the data of user.
             if snapshot.exists() {
                 
                 self.userPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
@@ -132,21 +133,21 @@ class loginViewController: NANavigationViewController {
                     //Retriving & Adding data in Flat Details
                     let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
                     
-                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data!["apartmentName"] as? String, city: (flatdetails_data!["city"] as! String), flatNumber: flatdetails_data!["flatNumber"] as? String, societyName: flatdetails_data!["societyName"] as? String, tenantType: flatdetails_data!["tenantType"] as? String))
+                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
                     
                     Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
                     
                      //Retriving & Adding data in Personal Details
                     let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
                     
-                    personalDetails.append(PersonalDetails.init(email: userPersonal_data!["email"] as? String, fullName:userPersonal_data!["fullName"] as? String , phoneNumber:userPersonal_data!["phoneNumber"] as? String ))
+                    personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
                     
                     Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
                     
                     //Retriving & Adding data in Privileges
                     let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
                     
-                    userprivileges.append(UserPrivileges.init(admin: privilage_data!["admin"]as? String, grantAccess: privilage_data!["grantAccess"] as? String, verified: privilage_data!["verified"] as? String ))
+                    userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
                     
                     Singleton_privileges.shared.privileges_Items = userprivileges
                 })
@@ -157,7 +158,6 @@ class loginViewController: NANavigationViewController {
             }
         })
     }
-    
 }
 //Created Extention to get HexaString For Verification Code
 extension Data {

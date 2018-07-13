@@ -716,5 +716,4 @@ class NAString : NSObject
     func tenantType() -> String {
         return String ("tenantType")
     }
-    
 }
