@@ -62,7 +62,10 @@ class NAString : NSObject
     }
     
     func incorrect_otp() -> String {
-        return String("You have entered an incorrect OTP")
+        return String("Wrong OTP has been entered")
+    }
+    func connectivity_Validation() -> String {
+        return String("Please check your Network Connection")
     }
     
     //Flat Details Screen
@@ -694,5 +697,11 @@ class NAString : NSObject
     }
     func imageContentType() -> String {
         return String ("image/jpeg")
+    }
+    func gettrue() -> String {
+        return String ("true")
+    }
+    func getfalse() -> String {
+        return String ("false")
     }
 }

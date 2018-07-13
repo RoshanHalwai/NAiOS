@@ -31,6 +31,15 @@ extension UITextField{
         self.layer.masksToBounds = true
     }
 }
+
+//Calling Class & Adding in Singleton class
+class Singleton {
+    static let shared = Singleton()
+    var UserDetails = [PersonalDetails]()
+}
+//Creating Array variable to access item of the class.
+var UserDetails = [PersonalDetails]()
+
 class signupViewController: NANavigationViewController {
      
     @IBOutlet weak var signupScrollView : UIScrollView!
@@ -52,10 +61,11 @@ class signupViewController: NANavigationViewController {
     
     //To getMobileString from Previous Screen (OTP View Controller)
     var getNewMobileString = String()
-    
+
     //Firebase Database Reference
     var usersPersonalDetailsRef : DatabaseReference?
     var usersUIDRef : DatabaseReference?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Add border color on profile imageview
@@ -150,7 +160,17 @@ class signupViewController: NANavigationViewController {
         }
         if profileImage.image != #imageLiteral(resourceName: "ExpectingVisitor") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
             //Calling Store Users Details function
-            storeUsersPersonalDetailsInFirebase()
+           // storeUsersPersonalDetailsInFirebase()
+            
+            //Storing data in pojo Class
+            UserDetails.append(PersonalDetails.init(email:self.signup_TxtEmailId.text , fullName:self.signup_TxtFullName.text, phoneNumber:getNewMobileString))
+            Singleton.shared.UserDetails = UserDetails
+        
+            //navigation to next Vc
+            let dest = NAViewPresenter().myFlatDEtailsVC()
+            dest.newProfileImage = self.profileImage.image
+            self.navigationController?.pushViewController(dest, animated: true)
+            
         }
     }
     @IBAction func signup_BtnLogin(_ sender: UIButton) {
@@ -232,7 +252,6 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
         return true
     }
 }
-
 extension signupViewController {
     //Save User Personal Details
     func storeUsersPersonalDetailsInFirebase() {
