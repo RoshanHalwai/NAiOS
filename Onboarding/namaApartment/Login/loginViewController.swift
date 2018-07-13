@@ -38,7 +38,7 @@ class loginViewController: NANavigationViewController {
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var lbl_Validation: UILabel!
-
+    
     //Firebase database Reference Variable
     var usersMobileNoRef: DatabaseReference?
     var isMobileValidRef : DatabaseReference?
@@ -81,7 +81,7 @@ class loginViewController: NANavigationViewController {
         navigationItem.rightBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
     }
-
+    
     //Accept only 10 digit mobile number in MobileNumber TextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
@@ -93,7 +93,7 @@ class loginViewController: NANavigationViewController {
         return newLength <= NAString().required_mobileNo_Length() // Bool
     }
     @IBAction func btnSignin(_ sender: Any) {
-
+        
         lbl_Validation.isHidden = true
         
         if (self.txt_MobileNo.text?.isEmpty)! {
@@ -109,12 +109,12 @@ class loginViewController: NANavigationViewController {
             let otpString = NAString().enter_verification_code(first: "your", second: "your")
             lv.newOtpString = otpString
             
-         //   Passing mobile number string to OTP VC (For mapping No with UID)
+            //Passing mobile number string to OTP VC (For mapping No with UID)
             lv.getMobileString = txt_MobileNo.text!
             lv.getCountryCodeString = txt_CountryCode.text!
             self.navigationController?.pushViewController(lv, animated: true)
         }
-     
+        
         //Searching Mobile Nunber in Users-> All
         isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(txt_MobileNo.text!)
         
@@ -122,42 +122,38 @@ class loginViewController: NANavigationViewController {
         userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
         
         self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
-            //If Data Exists in Firebase then navigate to Namma Apartment Home Screen.
+
             if snapshot.exists() {
                 
-              self.userPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
-                
-                let userData = snapshot.value as? NSDictionary
-                
-                let flatdetails_data = userData!["flatDetails"] as? [String :Any]
-               
-                //For retriving data
-                flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data!["apartmentName"] as? String, city: (flatdetails_data!["city"] as! String), flatNumber: flatdetails_data!["flatNumber"] as? String, societyName: flatdetails_data!["societyName"] as? String, tenantType: flatdetails_data!["tenantType"] as? String))
-                print("valeues of data ",flatDetailsFB)
-                
-                
-                //for storing data in custom class
-                Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
-                
-                //For retriving data
-                  let userPersonal_data = userData!["personalDetails"] as? [String :Any]
-                personalDetails.append(PersonalDetails.init(email: userPersonal_data!["email"] as? String, fullName:userPersonal_data!["fullName"] as? String , phoneNumber:userPersonal_data!["phoneNumber"] as? String ))
-                
-                //for storing data in custom class
-                Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
-                
-                ///privilage data show
-                
-                let privilage_data = userData!["privileges"] as? [String : Any]
-                
-                userprivileges.append(UserPrivileges.init(admin: privilage_data!["admin"]as? String, grantAccess: privilage_data!["grantAccess"] as? String, verified: privilage_data!["verified"] as? String ))
-                
-                Singleton_privileges.shared.privileges_Items = userprivileges
-                
+                self.userPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
+                    
+                    let userData = snapshot.value as? NSDictionary
+                    
+                    //Retriving & Adding data in Flat Details
+                    let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
+                    
+                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data!["apartmentName"] as? String, city: (flatdetails_data!["city"] as! String), flatNumber: flatdetails_data!["flatNumber"] as? String, societyName: flatdetails_data!["societyName"] as? String, tenantType: flatdetails_data!["tenantType"] as? String))
+                    
+                    Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
+                    
+                     //Retriving & Adding data in Personal Details
+                    let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
+                    
+                    personalDetails.append(PersonalDetails.init(email: userPersonal_data!["email"] as? String, fullName:userPersonal_data!["fullName"] as? String , phoneNumber:userPersonal_data!["phoneNumber"] as? String ))
+                    
+                    Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
+                    
+                    //Retriving & Adding data in Privileges
+                    let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
+                    
+                    userprivileges.append(UserPrivileges.init(admin: privilage_data!["admin"]as? String, grantAccess: privilage_data!["grantAccess"] as? String, verified: privilage_data!["verified"] as? String ))
+                    
+                    Singleton_privileges.shared.privileges_Items = userprivileges
                 })
                 
             } else {
-        
+                //TODO : Printing error in Console, so that other developer can identify the flow.
+                print("You Are New User")
             }
         })
     }
