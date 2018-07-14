@@ -36,6 +36,11 @@ class OTPViewController: NANavigationViewController {
     //Creating Firebase DB Reference variable.
     var userMobileNumberRef : DatabaseReference?
     var isMobileValidRef : DatabaseReference?
+    var usersPrivateRef: DatabaseReference?
+    
+    var userFlatRef : DatabaseReference?
+    var userPersonalRef : DatabaseReference?
+    var userPrivilegesRef : DatabaseReference?
     
     //Store verification ID
     var credentialID = String()
@@ -239,6 +244,12 @@ extension OTPViewController {
             self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
                 //If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
                 if snapshot.exists() {
+                    
+                    //calling retreiving function
+                    self.retrieveUserData()
+                    
+                    
+                    self.retrieveUserData()
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
                 } else {
@@ -249,5 +260,32 @@ extension OTPViewController {
                 }
             })
         }
+    }
+}
+
+extension OTPViewController {
+    
+    //Retrieving User's Data from firebase
+    func retrieveUserData() {
+        
+        //Checking Users UID in Firebase under Users ->Private
+        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+        
+        //Checking userData inside Users/Private
+        
+        self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
+            
+            //If usersUID is Exists then retrievd all the data of user.
+            if snapshot.exists() {
+                
+                self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
+                    
+                    let userData = snapshot.value as? NSDictionary
+                    print("UserData:",userData as Any)
+                    
+                
+                })
+            }
+        })
     }
 }

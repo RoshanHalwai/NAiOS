@@ -115,48 +115,48 @@ class loginViewController: NANavigationViewController {
             self.navigationController?.pushViewController(lv, animated: true)
         }
         
-        //Checking Users Mobile Number in Firebase under Users ->All
-        isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(txt_MobileNo.text!)
-        
-         //Checking Users UID in Firebase under Users ->Private
-        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
-        
-        self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
-            
-            //If usersUID is Exists then retrievd all the data of user.
-            if snapshot.exists() {
-                
-                self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
-                    
-                    let userData = snapshot.value as? NSDictionary
-                    
-                    //Retriving & Adding data in Flat Details
-                    let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
-                    
-                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
-                    
-                    Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
-                    
-                     //Retriving & Adding data in Personal Details
-                    let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
-                    
-                    personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
-                    
-                    Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
-                    
-                    //Retriving & Adding data in Privileges
-                    let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
-                    
-                    userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
-                    
-                    Singleton_privileges.shared.privileges_Items = userprivileges
-                })
-                
-            } else {
-                //TODO : Printing error in Console, so that other developer can identify the flow.
-                print("You Are New User")
-            }
-        })
+//        //Checking Users Mobile Number in Firebase under Users ->All
+//        isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(txt_MobileNo.text!)
+//
+//         //Checking Users UID in Firebase under Users ->Private
+//        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+//
+//        self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
+//
+//            //If usersUID is Exists then retrievd all the data of user.
+//            if snapshot.exists() {
+//
+//                self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
+//
+//                    let userData = snapshot.value as? NSDictionary
+//
+//                    //Retriving & Adding data in Flat Details
+//                    let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
+//
+//                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
+//
+//                    Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
+//
+//                     //Retriving & Adding data in Personal Details
+//                    let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
+//
+//                    personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
+//
+//                    Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
+//
+//                    //Retriving & Adding data in Privileges
+//                    let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
+//
+//                    userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
+//
+//                    Singleton_privileges.shared.privileges_Items = userprivileges
+//                })
+//
+//            } else {
+//                //TODO : Printing error in Console, so that other developer can identify the flow.
+//                print("You Are New User")
+//            }
+//        })
     }
 }
 //Created Extention to get HexaString For Verification Code
