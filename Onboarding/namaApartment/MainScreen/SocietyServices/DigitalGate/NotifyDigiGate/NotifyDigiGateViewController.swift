@@ -20,7 +20,16 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         super.ConfigureNavBarTitle(title: NAString().notifyDigiGateHeader())
         self.navigationItem.title = ""
         navigationItem.rightBarButtonItem = nil
-
+        
+        //created custom back button for navigating back to Digi gate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    //to navigate back to Digi gate
+    @objc func goBackToDigitGate() {
+        let dv = NAViewPresenter().digiGateVC()
+        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
