@@ -11,7 +11,7 @@ import UIKit
 class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
 {
     var ImageList = [#imageLiteral(resourceName: "ExpectingCabs256"),#imageLiteral(resourceName: "ExpectingPackage256"),#imageLiteral(resourceName: "ExpectingVisitor"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
-    var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed Things To My Guest","Handed Things To My Daily Services"]
+    var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Guest","Handed Things To My Guest","Handed Things To My Daily Services"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,12 +85,12 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         case 3:
             let lv3 = NAViewPresenter().handedThingsToMyGuestVC()
             self.navigationController?.pushViewController(lv3, animated: true)
-            lv3.titleName = NAString().my_Guest().capitalized
+            lv3.titleName = NAString().handed_Things().capitalized
             
         case 4:
             let lv4 = NAViewPresenter().handedThingsToMyDailyServiceVC()
             self.navigationController?.pushViewController(lv4, animated: true)
-            lv4.titleName = NAString().my_Daily_Services().capitalized
+            lv4.titleName = NAString().handed_Things().capitalized
             
         default:
             break

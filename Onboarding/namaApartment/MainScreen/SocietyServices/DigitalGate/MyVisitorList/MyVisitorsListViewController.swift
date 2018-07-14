@@ -57,7 +57,7 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         case 0:
             let lv = NAViewPresenter().myGuestListVC()
             self.navigationController?.pushViewController(lv, animated: true)
-            lv.titleName = NAString().my_Guest().capitalized
+            lv.titleName = NAString().myVisitorViewTitle().capitalized
         case 1:
             let lv1 = NAViewPresenter().cabArrivalListVC()
             lv1.navTitle = NAString().cab_arrival()

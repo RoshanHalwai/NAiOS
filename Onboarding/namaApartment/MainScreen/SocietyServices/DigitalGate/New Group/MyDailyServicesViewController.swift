@@ -116,10 +116,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     func dailyServiceSelected(alert: UIAlertAction!) {
         let lv = NAViewPresenter().addMySerivesVC()
         
-        //temp variable
-        let tempVar = alert.title!
-        lv.holdString = tempVar
-        
         //passing value to my services VC
         let passVC = "myDailyServicesVC"
         lv.vcValue = passVC
