@@ -35,6 +35,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
     
+    //Display PopUpView Variable
+    var popupView: PopupView!
+    var opacityView = UIView()
+    var timer = Timer()
+    var count = 5
+    
     //Creating Firebase DB Reference variable.
     var preApprovedVisitorsRef : DatabaseReference?
     var preApprovedVisitorsMobileNoRef : DatabaseReference?
@@ -236,27 +242,49 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             txtDate.underlined()
         }
         if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
+            
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
             inviteAlertView()
+
+            //Create OpacityView Frames
+            opacityView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+            opacityView.backgroundColor = UIColor.black
+            opacityView.alpha = 0.5
+            self.view.addSubview(opacityView)
+            //Create loadView Frames
+            self.popupView = PopupView(frame: CGRect(x: 50, y: 200, width: 300, height: 200))
+            popupView.layer.cornerRadius = 5
+            popupView.layer.masksToBounds = true
+            self.view.addSubview(popupView)
+            timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
+        }
+    }
+    //Create Timer Function
+    @objc func stopTimer() {
+        self.opacityView.isHidden = true
+        if (count >= 0){
+            if(count == 0)
+            {
+                self.inviteAlertView()
+            }
+            count -= 1
         }
     }
     //AlertView For navigation
     func inviteAlertView() {
-        
         //creating alert controller
         let alert = UIAlertController(title: NAString().inviteButtonAlertViewTitle() , message: NAString().inviteButtonAlertViewMessage(), preferredStyle: .alert)
-        
+
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-            
+
             let dv = NAViewPresenter().myGuestListVC()
-            self.navigationController?.pushViewController(dv, animated: true)
+           self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
-    
     //Created Function for inviting visitor with the help of firebase.
     func storeVisitorDetailsInFirebase() {
         //Creating visitors UID
@@ -300,7 +328,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                         VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,
                         VisitorListFBKeys.status.key : status,
                         VisitorListFBKeys.fullName.key : self.txtInvitorName.text! as String,
-                        VisitorListFBKeys.inviterUID.key : usersUID,
+                        VisitorListFBKeys.inviterUID.key : userUID,
                         VisitorListFBKeys.profilePhoto.key : url?.absoluteString
                     ]
                     //Adding visitor data under preApproved visitors
@@ -310,7 +338,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     let value =  Singleton_FlatDetails.shared.flatDetails_Items
                     let val = value.first
                     
-                    self.usersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(usersUID!)
+                    self.usersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID!)
                     
                     self.usersDataRef?.child(visitorUID!).setValue(NAString().gettrue())
                     

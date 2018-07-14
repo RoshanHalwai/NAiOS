@@ -119,7 +119,7 @@ class loginViewController: NANavigationViewController {
         isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(txt_MobileNo.text!)
         
          //Checking Users UID in Firebase under Users ->Private
-        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
+        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
         
         self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
             

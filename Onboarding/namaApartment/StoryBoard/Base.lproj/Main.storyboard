@@ -927,6 +927,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5Pj-qc-T0S"/>
                     </view>
+                    <navigationItem key="navigationItem" id="YhP-Ux-YLY"/>
                     <connections>
                         <outlet property="btnInviteVisitor" destination="7h5-hS-1hl" id="qxb-PT-NSX"/>
                         <outlet property="btnSelectContact" destination="xib-vh-5IS" id="EGz-c0-jBq"/>
@@ -948,7 +949,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PhC-Mb-QJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343" y="2740"/>
+            <point key="canvasLocation" x="1280.8" y="2739.5802098950526"/>
         </scene>
         <!--Digital Gate View Controller-->
         <scene sceneID="Vy8-yr-XbW">
@@ -1172,10 +1173,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="InviteVisitors" translatesAutoresizingMaskIntoConstraints="NO" id="TzA-Vi-zzS">
-                                                    <rect key="frame" x="10" y="22" width="101" height="100"/>
+                                                    <rect key="frame" x="10" y="22" width="100" height="100"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visitor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bel-Lg-iKi">
-                                                    <rect key="frame" x="125" y="14" width="70" height="21"/>
+                                                    <rect key="frame" x="124" y="14" width="71" height="21"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1208,19 +1209,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inviter:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXI-au-ddB">
-                                                    <rect key="frame" x="127" y="117" width="57.5" height="22"/>
+                                                    <rect key="frame" x="126" y="117" width="57.5" height="22"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z08-9J-y5B">
-                                                    <rect key="frame" x="125" y="92" width="86" height="22"/>
+                                                    <rect key="frame" x="124" y="92" width="87" height="22"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPN-B5-XUc">
-                                                    <rect key="frame" x="127" y="66" width="64" height="21"/>
+                                                    <rect key="frame" x="126" y="66" width="65" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="PqZ-aV-Ljb"/>
                                                     </constraints>
@@ -1229,7 +1230,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2c-Xv-xK9">
-                                                    <rect key="frame" x="127" y="40" width="64" height="21"/>
+                                                    <rect key="frame" x="126" y="40" width="65" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="zn2-KL-KfW"/>
                                                     </constraints>
@@ -1420,7 +1421,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0IS-0Q-vxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1517.5999999999999" y="2722.4887556221893"/>
+            <point key="canvasLocation" x="2456.8000000000002" y="2722.4887556221893"/>
         </scene>
         <!--Reschedule My Visitor List View Controller-->
         <scene sceneID="Lw6-bf-p2s">
@@ -1524,7 +1525,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EkG-59-5Id" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2168.8000000000002" y="2721.5892053973016"/>
+            <point key="canvasLocation" x="3108" y="2721.5892053973016"/>
         </scene>
         <!--Notify Digi Gate View Controller-->
         <scene sceneID="5ng-nd-fxE">
@@ -1600,7 +1601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ChU-Ig-4oy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2900" y="2722.4887556221893"/>
+            <point key="canvasLocation" x="3839.1999999999998" y="2722.4887556221893"/>
         </scene>
         <!--Expecting Cab Arrival View Controller-->
         <scene sceneID="Nvl-7K-l2z">
@@ -1922,7 +1923,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjV-yg-kah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2481" y="3392"/>
+            <point key="canvasLocation" x="3420" y="3391.7541229385311"/>
         </scene>
         <!--Handed Things History View Controller-->
         <scene sceneID="3Ve-M0-va5">
@@ -2108,7 +2109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iqY-dF-hsk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3116" y="3393.5532233883059"/>
+            <point key="canvasLocation" x="4055.1999999999998" y="3393.5532233883059"/>
         </scene>
         <!--Handed Things To Guest View Controller-->
         <scene sceneID="1Tw-Ut-Rrr">
@@ -2370,7 +2371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tg4-wU-7lZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3753" y="3394"/>
+            <point key="canvasLocation" x="4692" y="3393.5532233883059"/>
         </scene>
         <!--My Sweet Home View Controller-->
         <scene sceneID="IrM-s8-dxQ">
@@ -2707,7 +2708,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLf-Q4-xve" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4360.8000000000002" y="2722.4887556221893"/>
+            <point key="canvasLocation" x="5300" y="2722.4887556221893"/>
         </scene>
         <!--My Daily Services View Controller-->
         <scene sceneID="cJB-ZE-B3O">
@@ -3046,7 +3047,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZm-4K-8O7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5717.6000000000004" y="3393.5532233883059"/>
+            <point key="canvasLocation" x="6656.8000000000002" y="3393.5532233883059"/>
         </scene>
         <!--Emergency View Controller-->
         <scene sceneID="LR5-br-Dwq">
@@ -3122,7 +3123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJ1-p2-y3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3690.4000000000001" y="2723.3883058470765"/>
+            <point key="canvasLocation" x="4629.6000000000004" y="2723.3883058470765"/>
         </scene>
         <!--Raise Alarm View Controller-->
         <scene sceneID="k66-DN-ebw">
@@ -3173,7 +3174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ss6-la-mUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4362" y="3394"/>
+            <point key="canvasLocation" x="5300" y="3393.5532233883059"/>
         </scene>
         <!--Add My Services View Controller-->
         <scene sceneID="qXd-0t-agQ">
@@ -3451,7 +3452,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anV-uu-yVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5040.8000000000002" y="3416.4917541229388"/>
+            <point key="canvasLocation" x="5980" y="3416.4917541229388"/>
         </scene>
         <!--Add My Family Members View Controller-->
         <scene sceneID="dVo-Um-1wH">
@@ -3808,7 +3809,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sng-VC-M8m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6344.8000000000002" y="3541.5292353823093"/>
+            <point key="canvasLocation" x="7284" y="3541.5292353823093"/>
         </scene>
         <!--Society View Controller-->
         <scene sceneID="2E5-1B-mq3">

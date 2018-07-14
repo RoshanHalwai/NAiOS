@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 //Global variable to store users UID
-var usersUID = Auth.auth().currentUser?.uid
+var userUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
     
@@ -234,7 +234,7 @@ extension OTPViewController {
             self.isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
             
             // Maping Mobile Number with UID & Storing in Users/All
-            self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
+            self.userMobileNumberRef?.child(self.getMobileString).setValue(userUID)
 
             self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
                 //If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
