@@ -246,10 +246,8 @@ extension OTPViewController {
                 if snapshot.exists() {
                     
                     //calling retreiving function
-                    self.retrieveUserData()
+                  // self.retrieveUserData()
                     
-                    
-                    self.retrieveUserData()
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
                 } else {
@@ -283,7 +281,36 @@ extension OTPViewController {
                     let userData = snapshot.value as? NSDictionary
                     print("UserData:",userData as Any)
                     
-                
+                    //Retrieving & Adding data in Flat Detail Class
+                    let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
+                    
+                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
+                    
+                    Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
+                    
+                    //Retrieving & Adding Data in Personal Detail Class
+                    let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
+                    
+                    personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
+                    
+                    Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
+                    
+                    //Retriving & Adding data in Privileges
+                    let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
+                    
+                    userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
+                    
+                    Singleton_privileges.shared.privileges_Items = userprivileges
+                    
+                    //Storing Visitor UID under UsersData -> UsersFlat
+                    let value =  Singleton_FlatDetails.shared.flatDetails_Items
+                    let val = value.first
+                    print(val?.apartmentName as Any)
+                    print(val?.city as Any)
+                    print(val?.societyName as Any)
+                    print(val?.flatNumber as Any)
+                    print(val?.tenantType as Any)
+                    
                 })
             }
         })

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class MainScreenViewController: NANavigationViewController
 {
@@ -25,8 +27,21 @@ class MainScreenViewController: NANavigationViewController
     var VCNamesSociety = [String]()
     var VCNamesApartment = [String]()
     
+    //Firebase Database References
+    var usersPrivateRef: DatabaseReference?
+    var userFlatRef : DatabaseReference?
+    var userPersonalRef : DatabaseReference?
+    var userPrivilegesRef : DatabaseReference?
+    var isMobileValidRef : DatabaseReference?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("MY UID IS :", userUID as Any)
+       print("View will Appear")
+//        //calling retreiving function
+        self.retrieveUserData()
+        
         //Formatting & Setting Segmented Controller.
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
@@ -69,6 +84,12 @@ class MainScreenViewController: NANavigationViewController
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.tableView.reloadData()
     }
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(true)
+//        print("View will Appear")
+//        //calling retreiving function
+//        self.retrieveUserData()
+    }
 }
 extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     
@@ -109,11 +130,67 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             //For Navigation Purpose.
+          
           let destVC = currentIndex == 0 ? VCNamesSociety[0]: VCNamesApartment[0]
           let viewController = storyboard?.instantiateViewController(withIdentifier: destVC)
           self.navigationController?.pushViewController(viewController!, animated: true)
         }
     }
+
+extension MainScreenViewController {
+    
+    //Retrieving User's Data from firebase
+    func retrieveUserData() {
+        
+        //Checking Users UID in Firebase under Users ->Private
+          usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+        
+        //Checking userData inside Users/Private
+        
+          self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
+            
+            //If usersUID is Exists then retrievd all the data of user.
+            if snapshot.exists() {
+                
+                    let userData = snapshot.value as? NSDictionary
+                    print("UserData:",userData as Any)
+                    
+                    //Retrieving & Adding data in Flat Detail Class
+                    let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
+                    
+                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
+                    
+                    Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
+                    
+                    //Retrieving & Adding Data in Personal Detail Class
+                    let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
+                    
+                    personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
+                    
+                    Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
+                    
+                    //Retriving & Adding data in Privileges
+                    let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
+                    
+                    userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
+                
+                Singleton_privileges.shared.privileges_Items = userprivileges
+                
+                //Storing Visitor UID under UsersData -> UsersFlat
+                let value =  Singleton_FlatDetails.shared.flatDetails_Items
+                let val = value.first
+                print(val?.apartmentName as Any)
+                print(val?.city as Any)
+                print(val?.societyName as Any)
+                print(val?.flatNumber as Any)
+                print(val?.tenantType as Any)
+                
+            }
+          })
+    }
+}
+
+
 
 
 

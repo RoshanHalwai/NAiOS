@@ -334,13 +334,13 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     //Adding visitor data under preApproved visitors
                     self.preApprovedVisitorsRef?.setValue(visitorData)
                     
-//                    //Storing Visitor UID under UsersData -> UsersFlat
-//                    let value =  Singleton_FlatDetails.shared.flatDetails_Items
-//                    let val = value.first
-//
-//                    self.usersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID!)
-//
-//                    self.usersDataRef?.child(visitorUID!).setValue(NAString().gettrue())
+                    //Storing Visitor UID under UsersData -> UsersFlat
+                    let value =  Singleton_FlatDetails.shared.flatDetails_Items
+                    let val = value.first
+
+                    self.usersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID!)
+
+                    self.usersDataRef?.child(visitorUID!).setValue(NAString().gettrue())
                     
                     //Using else statement & printing error,so the other developers can know what is going on.
                 } else {
