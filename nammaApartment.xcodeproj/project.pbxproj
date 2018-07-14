@@ -39,6 +39,7 @@
 		423187EA20F378E400F10A23 /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */; };
 		423187EC20F378E400F10A23 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */; };
 		423187EE20F378E400F10A23 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187ED20F378E400F10A23 /* Protobuf.framework */; };
+		42329D1A20F9BF80000AA9AF /* OpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42329D1920F9BF80000AA9AF /* OpacityView.swift */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
 		5DEFEDD02E7F8A93F05E92FA /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */; };
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
@@ -166,6 +167,7 @@
 		423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_nammaApartmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187ED20F378E400F10A23 /* Protobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Protobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42329D1920F9BF80000AA9AF /* OpacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityView.swift; sourceTree = "<group>"; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D83E8166C92F951887F6368 /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -598,6 +600,7 @@
 				86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */,
 				08EF758F20D240620031FA66 /* NAValidation.swift */,
 				86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */,
+				42329D1920F9BF80000AA9AF /* OpacityView.swift */,
 				86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */,
 			);
 			path = utilities;
@@ -1003,6 +1006,7 @@
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
 				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
+				42329D1A20F9BF80000AA9AF /* OpacityView.swift in Sources */,
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,

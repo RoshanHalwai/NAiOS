@@ -41,9 +41,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     
-    //Display PopUpView Variable
-    var popupView: PopupView!
-    var opacityView = UIView()
     var timer = Timer()
     var count = 5
     
@@ -285,23 +282,27 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
-                //Create OpacityView Frames
-                opacityView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-                opacityView.backgroundColor = UIColor.black
-                opacityView.alpha = 0.7
-                self.view.addSubview(opacityView)
-                //Create loadView Frames
-                self.popupView = PopupView(frame: CGRect(x: 50, y: 200, width: 300, height: 200))
-                popupView.layer.cornerRadius = 5
-                popupView.layer.masksToBounds = true
-                self.view.addSubview(popupView)
+                OpacityView.shared.showingOpacityView(view: self)
+                OpacityView.shared.showingPopupView(view: self)
                 timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
             }
         }
     }
+    //Create Timer Function
+    @objc func stopTimer() {
+            OpacityView.shared.hidingOpacityView()
+            OpacityView.shared.hidingPopupView()
+            if (count >= 0){
+                if(count == 0)
+                {
+                    self.addAlertViewAction()
+                }
+                count -= 1
+            }
+        }
     //Create AlertView Action
     func addAlertViewAction() {
-        let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
+        let alertController = UIAlertController(title:NAString().addFamilyMemberTitle(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
         // Create OK button
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().otpViewController()
@@ -311,17 +312,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion:nil)
-    }
-    //Create Timer Function
-    @objc func stopTimer() {
-        self.opacityView.isHidden = true
-        if (count >= 0){
-            if(count == 0)
-            {
-                self.addAlertViewAction()
-            }
-            count -= 1
-        }
     }
     func isValidEmailAddress(emailAddressString: String) -> Bool {
         

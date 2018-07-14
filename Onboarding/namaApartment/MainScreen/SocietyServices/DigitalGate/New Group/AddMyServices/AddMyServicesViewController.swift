@@ -35,9 +35,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     @IBOutlet weak var stackView_InTime: UIStackView!
     
-    //Display PopUpView Variable
-    var popupView: PopupView!
-    var opacityView = UIView()
     var timer = Timer()
     var count = 5
     
@@ -317,19 +314,23 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
-                //Create OpacityView Frames
-                opacityView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-                opacityView.backgroundColor = UIColor.black
-                opacityView.alpha = 0.7
-                self.view.addSubview(opacityView)
-                //Create loadView Frames
-                self.popupView = PopupView(frame: CGRect(x: 50, y: 200, width: 300, height: 200))
-                popupView.layer.cornerRadius = 5
-                popupView.layer.masksToBounds = true
-                self.view.addSubview(popupView)
-                timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
+                OpacityView.shared.showingOpacityView(view: self)
+                OpacityView.shared.showingPopupView(view: self)
+                timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
             }
-          }
+        }
+    }
+    //Create Timer Function
+    @objc func stopTimer() {
+            OpacityView.shared.hidingOpacityView()
+            OpacityView.shared.hidingPopupView()
+            if (count >= 0){
+                if(count == 0)
+                {
+                    self.addAlertViewAction()
+                }
+                count -= 1
+            }
         }
     //Create AlertView Action
     func addAlertViewAction() {
@@ -343,17 +344,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion:nil)
-    }
-    //Create Timer Function
-    @objc func stopTimer() {
-        self.opacityView.isHidden = true
-        if (count >= 0){
-            if(count == 0)
-            {
-                self.addAlertViewAction()
-            }
-            count -= 1
-        }
     }
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == txt_Name {

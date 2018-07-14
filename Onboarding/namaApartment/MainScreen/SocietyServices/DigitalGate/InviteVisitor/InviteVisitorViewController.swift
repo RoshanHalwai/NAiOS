@@ -35,12 +35,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
     
-    //Display PopUpView Variable
-    var popupView: PopupView!
-    var opacityView = UIView()
     var timer = Timer()
     var count = 5
-    
+        
     //Creating Firebase DB Reference variable.
     var preApprovedVisitorsRef : DatabaseReference?
     var preApprovedVisitorsMobileNoRef : DatabaseReference?
@@ -241,22 +238,15 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
 //            self.storeVisitorDetailsInFirebase()
-            //Create OpacityView Frames
-            opacityView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-            opacityView.backgroundColor = UIColor.black
-            opacityView.alpha = 0.5
-            self.view.addSubview(opacityView)
-            //Create loadView Frames
-            self.popupView = PopupView(frame: CGRect(x: 50, y: 200, width: 300, height: 200))
-            popupView.layer.cornerRadius = 5
-            popupView.layer.masksToBounds = true
-            self.view.addSubview(popupView)
-            timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
+            OpacityView.shared.showingOpacityView(view: self)
+            OpacityView.shared.showingPopupView(view: self)
+            timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
         }
     }
     //Create Timer Function
     @objc func stopTimer() {
-        self.opacityView.isHidden = true
+        OpacityView.shared.hidingOpacityView()
+        OpacityView.shared.hidingPopupView()
         if (count >= 0){
             if(count == 0)
             {
