@@ -44,9 +44,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     //gettig data from previous screen string
     var AddOtpString = String()
     
-    //created variable to hold mydailybservices temp variable
-    var holdString = String()
-    
     //to check from which view value is comming
     var vcValue = String()
     
@@ -152,7 +149,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
         //creating Accept alert actions
         let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
-            
             let lv = NAViewPresenter().otpViewController()
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
             lv.newOtpString = familyString
@@ -274,9 +270,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     func screenComingFrom() {
         if self.navTitle == NAString().add_my_service() {
             self.lbl_Date.text = NAString().time()
-            let cookString = NAString().inviteVisitorOTPDesc()
-            let replaced = cookString.replacingOccurrences(of: "visitor", with: holdString)
-            self.lbl_OTPDescription.text = replaced
+            self.lbl_OTPDescription.text = NAString().inviteVisitorOTPDesc()
         }
     }
     @IBAction func btnAddDetails(_ sender: Any) {
