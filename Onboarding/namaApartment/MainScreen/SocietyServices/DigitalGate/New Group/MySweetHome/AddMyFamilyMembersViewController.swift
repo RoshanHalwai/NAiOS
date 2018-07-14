@@ -282,7 +282,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
-                OpacityView.shared.showingOpacityView(view: self)
+                btn_addDetails.tag = 103
+                OpacityView.shared.addButtonTagValue = btn_addDetails.tag
                 OpacityView.shared.showingPopupView(view: self)
                 timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
             }
@@ -290,7 +291,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     //Create Timer Function
     @objc func stopTimer() {
-            OpacityView.shared.hidingOpacityView()
             OpacityView.shared.hidingPopupView()
             if (count >= 0){
                 if(count == 0)

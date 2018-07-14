@@ -14,45 +14,33 @@ class OpacityView {
     static let shared = OpacityView()
     
     var popupView: PopupView!
-    var opacityView = UIView()
     var navTitle: String?
-    
-    func showingOpacityView(view: UIViewController) {
-        opacityView.frame = CGRect(x: 0, y: 0, width: view.view.frame.size.width, height: view.view.frame.size.height)
-        opacityView.backgroundColor = UIColor.black
-        opacityView.alpha = 0.7
-        view.view.addSubview(opacityView)
-    }
+    var addButtonTagValue : Int = 0
     
     func showingPopupView(view: UIViewController) {
-        popupView = PopupView(frame: CGRect(x: 0, y:0, width: 300, height: 150))
-        popupView.center.x = opacityView.bounds.width/2
-        popupView.center.y = opacityView.bounds.height/2
+        popupView = PopupView(frame: CGRect(x: 0, y:0, width: 300, height: 120))
+        popupView.center.x = view.view.bounds.width/2
+        popupView.center.y = view.view.bounds.height/2
         popupView.lbl_Message.text = NAString().addButtonloadViewMessage()
+        self.popupViewTitle()
         popupView.layer.cornerRadius = 10
         popupView.layer.masksToBounds = true
         view.view.addSubview(popupView)
-        self.popupViewTitle()
     }
     
     func popupViewTitle() {
         popupView.lbl_Title.font = NAFont().headerFont()
         popupView.lbl_Message.font = NAFont().popupViewFont()
-        if (navTitle == NAString().invite_visitors()) {
+        if addButtonTagValue == 101 {
             popupView.lbl_Title.text = NAString().inviteButtonloadViewTitle()
-        } else if (navTitle == NAString().addFamilyMemberTitle()) {
-            popupView.lbl_Title.text = NAString().btn_mySweet_home()
-        } else {
+        } else if addButtonTagValue == 102 {
             popupView.lbl_Title.text = NAString().addButtonDailyServicesloadViewTitle()
+        } else {
+            popupView.lbl_Title.text = NAString().addFamilyMemberTitle()
         }
     }
     
     func hidingPopupView() {
         popupView.isHidden = true
     }
-    
-    func hidingOpacityView() {
-        opacityView.isHidden = true
-    }
-    
 }
