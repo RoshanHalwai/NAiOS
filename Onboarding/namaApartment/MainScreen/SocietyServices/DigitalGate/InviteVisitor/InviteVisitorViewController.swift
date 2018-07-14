@@ -15,7 +15,7 @@ import Firebase
 import FirebaseStorage
 
 class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
-
+    
     @IBOutlet weak var lbl_InvitorName: UILabel!
     @IBOutlet weak var lbl_InvitorMobile: UILabel!
     @IBOutlet weak var lbl_Or: UILabel!
@@ -24,7 +24,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet weak var txtInvitorMobile: UITextField!
     @IBOutlet weak var btnSelectContact: UIButton!
-   
+    
     @IBOutlet weak var btnInviteVisitor: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -37,11 +37,11 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     var timer = Timer()
     var count = 5
-        
+    
     //Creating Firebase DB Reference variable.
     var preApprovedVisitorsRef : DatabaseReference?
     var preApprovedVisitorsMobileNoRef : DatabaseReference?
-   
+    
     //created date picker programtically
     let picker = UIDatePicker()
     
@@ -59,7 +59,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         lbl_Mob_Validation.isHidden = true
         lbl_Picture_Validation.isHidden = true
         lbl_Date_Validation.isHidden = true
-
+        
         //assigned delegate method on textFields
         txtInvitorMobile.delegate = self
         txtInvitorName.delegate = self
@@ -81,28 +81,28 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
         
-       //Formatting & setting navigation bar
+        //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: NAString().visitorNameViewTitle())
         self.navigationItem.title = ""
-
+        
         //calling date picker function on view didload.
         createDatePicker(dateTextField: txtDate)
         
         //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
-
+        
         //assign values to upper strings
         txtInvitorName.text = dataName
         txtInvitorMobile.text = dataMobile
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0)
-
+        
         //For Textfield under black line
         txtDate.underlined()
         txtInvitorName.underlined()
         txtInvitorMobile.underlined()
-
+        
         //Label formatting & setting
         lbl_InvitorName.font = NAFont().headerFont()
         lbl_InvitorMobile.font = NAFont().headerFont()
@@ -115,7 +115,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         lbl_Mob_Validation.font = NAFont().descriptionFont()
         lbl_Picture_Validation.font = NAFont().descriptionFont()
         lbl_Date_Validation.font = NAFont().descriptionFont()
-
+        
         //TextField Formatting & setting
         txtInvitorMobile.font = NAFont().textFieldFont()
         txtInvitorName.font = NAFont().textFieldFont()
@@ -169,7 +169,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         } else if authStatus == CNAuthorizationStatus.authorized {
             self.openContacts()
         }
-        //Open App Setting if user cannot able to access Contacts
+            //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied {
             //creating alert controller
             let alert = UIAlertController(title:NAString().setting_Permission_AlertBox() , message: nil, preferredStyle: .alert)
@@ -259,12 +259,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     func inviteAlertView() {
         //creating alert controller
         let alert = UIAlertController(title: NAString().inviteButtonAlertViewTitle() , message: NAString().inviteButtonAlertViewMessage(), preferredStyle: .alert)
-
+        
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-
+            
             let dv = NAViewPresenter().myGuestListVC()
-           self.navigationController?.pushViewController(dv, animated: true)
+            self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -281,10 +281,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         preApprovedVisitorsMobileNoRef?.child(self.txtInvitorMobile.text!).setValue(visitorUID)
         preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
             .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(visitorUID!)
-
+        
         //Storing visitors data along with their profile photo
         var visitorImageRef: StorageReference?
-            visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+        visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
         
         //Compressing profile image and assigning its content type.
         guard let image = img_Profile.image else { return }
@@ -300,26 +300,26 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             uploadImageRef?.downloadURL(completion: { (url, urlError) in
                 
                 if urlError == nil {
-                
-                //Creating variable for status & assigning status string on it.
-                var status = String()
-                status = NAString().statusNotEntered()
-                
-                //TODO: Need to replace hardcoded inviterUID with Default User's UID.
-                var inviterUID = String()
-                inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
-                
-                //defining node with type of data in it.
-                let visitorData = [
-                    VisitorListFBKeys.uid.key : visitorUID!,
-                    VisitorListFBKeys.dateAndTimeOfVisit.key : self.txtDate.text! as String,
-                    VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,
-                    VisitorListFBKeys.status.key : status,
-                    VisitorListFBKeys.fullName.key : self.txtInvitorName.text! as String,
-                    VisitorListFBKeys.inviterUID.key : inviterUID,
-                    VisitorListFBKeys.profilePhoto.key : url?.absoluteString
-                ]
-                //Adding visitor data under preApproved visitors
+                    
+                    //Creating variable for status & assigning status string on it.
+                    var status = String()
+                    status = NAString().statusNotEntered()
+                    
+                    //TODO: Need to replace hardcoded inviterUID with Default User's UID.
+                    var inviterUID = String()
+                    inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+                    
+                    //defining node with type of data in it.
+                    let visitorData = [
+                        VisitorListFBKeys.uid.key : visitorUID!,
+                        VisitorListFBKeys.dateAndTimeOfVisit.key : self.txtDate.text! as String,
+                        VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,
+                        VisitorListFBKeys.status.key : status,
+                        VisitorListFBKeys.fullName.key : self.txtInvitorName.text! as String,
+                        VisitorListFBKeys.inviterUID.key : inviterUID,
+                        VisitorListFBKeys.profilePhoto.key : url?.absoluteString
+                    ]
+                    //Adding visitor data under preApproved visitors
                     self.preApprovedVisitorsRef?.setValue(visitorData)
                     //Using else statement & printing error,so the other developers can know what is going on.
                 } else {
