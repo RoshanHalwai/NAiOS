@@ -59,11 +59,11 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
             self.navigationController?.pushViewController(lv, animated: true)
             lv.titleName = NAString().my_Guest().capitalized
         case 1:
-            let lv1 = NAViewPresenter().cabArrivalListVC()
+            let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
             lv1.navTitle = NAString().cab_arrival()
             self.navigationController?.pushViewController(lv1, animated: true)
         case 2:
-            let lv2 = NAViewPresenter().packageArrivalListVC()
+            let lv2 = NAViewPresenter().cabAndPackageArrivalListVC()
             lv2.navTitle = NAString().package_arrival()
             self.navigationController?.pushViewController(lv2, animated: true)
         default:

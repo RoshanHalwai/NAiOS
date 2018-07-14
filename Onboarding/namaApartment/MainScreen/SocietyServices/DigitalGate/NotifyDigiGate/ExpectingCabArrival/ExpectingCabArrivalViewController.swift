@@ -330,7 +330,17 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         //creating alert controller
         let alert = UIAlertController(title: NAString().notifyButtonAlertViewTitle() , message: NAString().notifyButtonAlertViewMessage(), preferredStyle: .alert)
         //creating Accept alert actions
-        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in }
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+            if self.lbl_cabNumber.text == NAString().cab_number() {
+                let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
+                lv1.navTitle = NAString().cab_arrival()
+                self.navigationController?.pushViewController(lv1, animated: true)
+            } else if self.lbl_cabNumber.text == NAString().package_vendor_name() {
+                let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
+                lv1.navTitle = NAString().package_arrival()
+                self.navigationController?.pushViewController(lv1, animated: true)
+            }
+        }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }

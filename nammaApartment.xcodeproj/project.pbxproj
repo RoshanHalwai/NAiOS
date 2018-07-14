@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */; };
 		0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */; };
-		0816E56C20E782C300116FD0 /* CabArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */; };
-		0816E56E20E782DE00116FD0 /* PackageArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */; };
 		0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */; };
 		0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */; };
 		0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */; };
@@ -22,6 +20,8 @@
 		083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */; };
 		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
 		08A0210520F523FC00130185 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A0210420F523FC00130185 /* Reachability.swift */; };
+		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
+		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */; };
 		422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
@@ -137,8 +137,6 @@
 		0625CA33236AB31696C6B05B /* Pods-nammaApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.debug.xcconfig"; sourceTree = "<group>"; };
 		0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListViewController.swift; sourceTree = "<group>"; };
 		0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListCollectionViewCell.swift; sourceTree = "<group>"; };
-		0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabArrivalViewController.swift; sourceTree = "<group>"; };
-		0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageArrivalViewController.swift; sourceTree = "<group>"; };
 		0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileTableViewCell.swift; sourceTree = "<group>"; };
 		0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
 		0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyFamilyMembersViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +148,8 @@
 		083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesTableViewCell.swift; sourceTree = "<group>"; };
 		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		08A0210420F523FC00130185 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListViewController.swift; sourceTree = "<group>"; };
+		08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListCollectionViewCell.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
 		422FF98620F8A9C8004089C2 /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		422FF98820F8A9DA004089C2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
@@ -306,8 +306,8 @@
 				86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */,
 				86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */,
 				86B1A8D920D50EAB00D90D88 /* NammaApartmentVisitor.swift */,
-				0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */,
-				0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */,
+				08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */,
+				08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */,
 			);
 			path = VisitorListCategory;
 			sourceTree = "<group>";
@@ -987,7 +987,6 @@
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
-				0816E56C20E782C300116FD0 /* CabArrivalViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
 				083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */,
 				868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */,
@@ -1012,6 +1011,8 @@
 				86646BBE20AB0472002A92B8 /* EmergencyViewController.swift in Sources */,
 				0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */,
 				0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */,
+				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
+				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
@@ -1025,7 +1026,6 @@
 				0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
 				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
-				0816E56E20E782DE00116FD0 /* PackageArrivalViewController.swift in Sources */,
 				8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */,
 				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
 				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
