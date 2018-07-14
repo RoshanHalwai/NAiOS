@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
-{
-    var ImageList = [#imageLiteral(resourceName: "ExpectingCabs256"),#imageLiteral(resourceName: "ExpectingPackage256"),#imageLiteral(resourceName: "ExpectingVisitor"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
+class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+    
+    var ImageList = [#imageLiteral(resourceName: "ExpectingCabs"),#imageLiteral(resourceName: "ExpectingPackage"),#imageLiteral(resourceName: "ExpectingVisitor"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
     var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed Things To My Guest","Handed Things To My Daily Services"]
     
     override func viewDidLoad() {
@@ -31,16 +31,12 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ImageList.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NotifyDigiGateCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NotifyDigiGateCollectionViewCell
         cell.cellImage.image = ImageList[indexPath.row]
         cell.cellLabel.text = ExpectingList[indexPath.row]
         
@@ -58,12 +54,9 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         
         //assign font & size to the labels in cell
         cell.cellLabel.font = NAFont().headerFont()
-        
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             let lv = NAViewPresenter().expectingCabArrivalVC()
@@ -94,6 +87,5 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         default:
             break
         }
-
-}
+    }
 }

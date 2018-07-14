@@ -1117,36 +1117,6 @@
             </objects>
             <point key="canvasLocation" x="2513" y="2050"/>
         </scene>
-        <!--Cab Arrival View Controller-->
-        <scene sceneID="CG2-2m-0vE">
-            <objects>
-                <viewController storyboardIdentifier="cabArrivalsVC" id="oGr-YT-684" customClass="CabArrivalViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZVP-jn-JDa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="zGT-WS-4jZ"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tIc-AP-kMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3201" y="2051"/>
-        </scene>
-        <!--Package Arrival View Controller-->
-        <scene sceneID="pKQ-LF-879">
-            <objects>
-                <viewController storyboardIdentifier="packageArrivalVC" id="kQr-Uw-DGt" customClass="PackageArrivalViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kqr-oi-I2t">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="9sa-ZW-gV5"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZK8-mt-m8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3914" y="2051"/>
-        </scene>
         <!--My Guest List View Controller-->
         <scene sceneID="rl8-97-QVJ">
             <objects>

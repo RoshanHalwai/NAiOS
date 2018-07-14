@@ -42,8 +42,10 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     func changeLblTitle() {
         if navTitle == NAString().cab_arrival() {
             vendorCabNameString = NAString().cab_no()
+            vendorCabImage = #imageLiteral(resourceName: "ExpectingCabs")
         } else if navTitle == NAString().package_arrival() {
             vendorCabNameString = NAString().vendor()
+            vendorCabImage = #imageLiteral(resourceName: "ExpectingPackage")
         }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -81,8 +83,11 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         cell.image_View.layer.cornerRadius = cell.image_View.frame.size.width/2
         cell.image_View.clipsToBounds = true
         
-        //Assigning Strings to the label tile according to title
+        //Assigning Strings to the label tile according to Navigation Title
         cell.lbl_CabNo_Type.text = vendorCabNameString
+        
+        //Assigning Images to the Image View according to Navigation Title
+        cell.image_View.image = vendorCabImage
         return cell
     }
 }

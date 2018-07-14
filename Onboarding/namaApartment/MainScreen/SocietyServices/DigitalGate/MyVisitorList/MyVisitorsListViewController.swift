@@ -11,7 +11,7 @@ import UIKit
 class MyVisitorsListViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var imageList = [#imageLiteral(resourceName: "ExpectingVisitor"), #imageLiteral(resourceName: "ExpectingCabs256"), #imageLiteral(resourceName: "ExpectingPackage256")]
+    var imageList = [#imageLiteral(resourceName: "ExpectingVisitor"), #imageLiteral(resourceName: "ExpectingCabs"), #imageLiteral(resourceName: "ExpectingPackage")]
     var visitorsType = ["Guests", "Cab Arrivals", "Package Arrivals"]
 
     override func viewDidLoad() {

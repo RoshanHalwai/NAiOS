@@ -8,8 +8,7 @@
 
 import UIKit
 
-class NotifyDigiGateCollectionViewCell: UICollectionViewCell
-{
+class NotifyDigiGateCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var cellImage: UIImageView!
 }
