@@ -334,6 +334,10 @@ class NAString : NSObject
         return String("Invitation Message")
     }
     
+    func inviteButtonloadViewTitle() -> String {
+        return String("Inviting Your Visitor")
+    }
+    
     
     //MyVisitorList
     func myVisitorViewTitle() -> String {
@@ -507,9 +511,21 @@ class NAString : NSObject
     func add() -> String {
         return String("Add")
     }
+    
+    func addButtonDailyServicesloadViewTitle() -> String {
+        return String("Adding Your Daily Service")
+    }
         
     func dailyServicesOTPDescription() -> String {
         return String("We need to verify your account. Please enter the 6 digit verification code from the text message")
+    }
+    
+    func addButtonAlertViewMessage() -> String {
+        return String("You have successfully added your visitor")
+    }
+    
+    func addButtonloadViewMessage() -> String{
+        return String("Please wait a moment")
     }
     
     //visitor list
