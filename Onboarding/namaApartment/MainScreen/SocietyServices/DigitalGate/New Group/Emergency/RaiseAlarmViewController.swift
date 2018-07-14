@@ -24,18 +24,8 @@ class RaiseAlarmViewController: NANavigationViewController {
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: titleName)
     }
-
-    @IBAction func btnRaiseAlarm(_ sender: UIButton)
-    {
-        let alert = UIAlertController(title: NAString().emergency_alert_Title(), message: NAString().emergency_Alert_Message(), preferredStyle: .alert)
-        let backView = alert.view.subviews.last?.subviews.last
-        backView?.layer.cornerRadius = 10.0
-        backView?.backgroundColor = UIColor.white
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in }))
-        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { (action) in
-            self.lbl_Description.isHidden = false
-        }))
-        
-        self.present(alert, animated: true)
+    @IBAction func btnRaiseAlarm(_ sender: UIButton) {
+        NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().emergency_alert_Title(), Message: NAString().emergency_Alert_Message(), CancelStyle: .default, OkStyle: .destructive, OK: {(action) in
+            self.lbl_Description.isHidden = false }, Cancel: {(action) in})
     }
 }
