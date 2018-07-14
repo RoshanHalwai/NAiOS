@@ -1,14 +1,14 @@
 //
-//  HandedThingsToGuestViewController.swift
+//  HandedThingsToDailyServicesViewController.swift
 //  nammaApartment
 //
-//  Created by Vikas Nayak on 10/05/18.
+//  Created by Sundir Talari on 13/07/18.
 //  Copyright © 2018 Vikas Nayak. All rights reserved.
 //
 
 import UIKit
 
-class HandedThingsToGuestViewController: NANavigationViewController,UITableViewDataSource,UITableViewDelegate {
+class HandedThingsToDailyServicesViewController: NANavigationViewController, UITableViewDataSource, UITableViewDelegate {
     
     //variable taken to remove cell from list
     var selectedRow : Int?
@@ -18,9 +18,10 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     
     //set title from previous page
     var titleName =  String()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Disable Table view cell selection & cell border line.
         TableView.allowsSelection = false
         self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -29,7 +30,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
         historyButton.frame = CGRect(x: 0, y: 0, width: 34, height: 30)
-        historyButton.addTarget(self, action: #selector(gotoHandedThingsGuestHistoryVC), for: .touchUpInside)
+        historyButton.addTarget(self, action: #selector(gotoHandedThingsServiceHistoryVC), for: .touchUpInside)
         let history = UIBarButtonItem(customView: historyButton)
         //Creating info icon on Navigation bar
         let infoButton = UIButton(type: .system)
@@ -48,45 +49,38 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    //To navigate back to Notify Digi Gate
+    //to Navigate Back to Notify digi Gate
     @objc func goBackToNotifyDigiGate() {
         let dv = NAViewPresenter().notifyDigiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
-    //To Navigate to Guest History VC
-    @objc func gotoHandedThingsGuestHistoryVC() {
-        let dv = NAViewPresenter().handedThingsGuestHistoryVC()
-        dv.titleName = NAString().history().capitalized
+    //to Navigate to Daily Services History VC
+    @objc func gotoHandedThingsServiceHistoryVC() {
+        let dv = NAViewPresenter().handedThingsServiceHistoryVC()
+        dv.titleName = NAString().history()
         self.navigationController?.pushViewController(dv, animated: true)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToDailyServicesTableViewCell
         
         //assigning delegate method to textFiled
         cell.txt_Description.delegate = self
-        
-        //assigning title to cell Labels
-        cell.lbl_Visiter.text = NAString().visitor()
-        cell.lbl_Type.text = NAString().type()
-        cell.lbl_Date.text = NAString().date()
-        cell.lbl_Time.text = NAString().time()
-        cell.lbl_Invited.text = NAString().inviter()
-        
+    
         //Label Formatting & setting
-        cell.lbl_Visiter.font = NAFont().textFieldFont()
+        cell.lbl_Name.font = NAFont().textFieldFont()
         cell.lbl_Type.font = NAFont().textFieldFont()
-        cell.lbl_Date.font = NAFont().textFieldFont()
-        cell.lbl_Time.font = NAFont().textFieldFont()
-        cell.lbl_Invited.font = NAFont().textFieldFont()
+        cell.lbl_Rating.font = NAFont().textFieldFont()
+        cell.lbl_InTime.font = NAFont().textFieldFont()
+        cell.lbl_Flats.font = NAFont().textFieldFont()
         
-        cell.lbl_VisiterName.font = NAFont().headerFont()
-        cell.lbl_GuestType.font = NAFont().headerFont()
-        cell.lbl_GuestDate.font = NAFont().headerFont()
-        cell.lbl_GuestTime.font = NAFont().headerFont()
-        cell.lbl_GuestInvitedBy.font = NAFont().headerFont()
+        cell.lbl_ServiceName.font = NAFont().headerFont()
+        cell.lbl_ServiceType.font = NAFont().headerFont()
+        cell.lbl_ServiceRating.font = NAFont().headerFont()
+        cell.lbl_ServiceInTime.font = NAFont().headerFont()
+        cell.lbl_ServiceFlats.font = NAFont().headerFont()
         
         cell.lbl_ThingsGiven.font = NAFont().headerFont()
         cell.lbl_Description.font = NAFont().headerFont()
@@ -119,7 +113,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.cellImage.clipsToBounds = true
         
         /*Dynamically Change Cell Height while selecting segment Controller
-         by default which index is selected on view load*/
+        by default which index is selected on view load*/
         cell.segmentSelect.tag = indexPath.row
         cell.segmentSelect.selectedSegmentIndex = 0
         
@@ -128,13 +122,13 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         }
         cell.segmentSelect.addTarget(self, action: #selector(selectSegment(sender:)), for: .valueChanged)
         
-        //calling HistoryVC button action on particular cell
+        //calling History button action on particular cell
         cell.objHistoryVC = {
             let alert = UIAlertController(title: NAString().notify_btnClick_Alert_title(), message: NAString().notify_btnClick_Alert_message(), preferredStyle: UIAlertControllerStyle.alert)
             let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                let lv = NAViewPresenter().handedThingsGuestHistoryVC()
+                let lv = NAViewPresenter().handedThingsServiceHistoryVC()
                 self.navigationController?.pushViewController(lv, animated: true)
-                lv.titleName = NAString().history().capitalized
+                lv.titleName = NAString().history()
             }
             alert.addAction(okAction)
             self.present(alert, animated: true, completion: nil)
@@ -144,9 +138,9 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     //Dynamically Change Cell Height while selecting segment Controller
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedRow == 1  && selectedRow != nil && currentTag != nil && currentTag == indexPath.row {
-            return HandedThingsToGuestTableViewCell.expandedHeight
+            return HandedThingsToDailyServicesTableViewCell.expandedHeight
         } else {
-            return HandedThingsToGuestTableViewCell.defaultHeight
+            return HandedThingsToDailyServicesTableViewCell.defaultHeight
         }
     }
     //Dynamically Change Cell Height while selecting segment Controller

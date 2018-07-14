@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class NAViewPresenter: NSObject {
-
+    
     var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     
     //OTP VC
@@ -32,12 +32,16 @@ class NAViewPresenter: NSObject {
     func handedThingsToMyGuestVC() -> HandedThingsToGuestViewController {
         return storyBoard.instantiateViewController(withIdentifier: "handedThingsToGuestVC") as! HandedThingsToGuestViewController
     }
+    //Handed Things to my Daily services
+    func handedThingsToMyDailyServiceVC() -> HandedThingsToDailyServicesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "handedThingsToServiceVC") as! HandedThingsToDailyServicesViewController
+    }
     
     //Emeregency VC
     func raiseAlarmVC() -> RaiseAlarmViewController {
         return storyBoard.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
     }
-   
+    
     //digi gate Vc
     func myVisitorsListVC() -> MyVisitorsListViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myVisitorsListVC") as! MyVisitorsListViewController
@@ -118,8 +122,12 @@ class NAViewPresenter: NSObject {
     func mainScreenVC() -> MainScreenViewController {
         return storyBoard.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
     }
-    //History VC
-    func handedThingsHistoryVC() -> HandedThingsHistoryViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "historyVC") as! HandedThingsHistoryViewController
+    //Guest History VC
+    func handedThingsGuestHistoryVC() -> HandedThingsGuestHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "GuestHistoryVC") as! HandedThingsGuestHistoryViewController
+    }
+    //My Daily Service History VC
+    func handedThingsServiceHistoryVC() -> HandedThingsDailyServicesHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "DailyServiceHistoryVC") as! HandedThingsDailyServicesHistoryViewController
     }
 }
