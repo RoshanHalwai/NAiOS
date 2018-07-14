@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NAActivityIndicator   {
+class NAActivityIndicator  {
     
     static let shared = NAActivityIndicator()
     

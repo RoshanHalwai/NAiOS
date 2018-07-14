@@ -237,15 +237,15 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         }
         if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
-//            self.storeVisitorDetailsInFirebase()
-            OpacityView.shared.showingOpacityView(view: self)
+            self.storeVisitorDetailsInFirebase()
+            btnInviteVisitor.tag = 101
+            OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
             OpacityView.shared.showingPopupView(view: self)
-            timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
         }
     }
     //Create Timer Function
     @objc func stopTimer() {
-        OpacityView.shared.hidingOpacityView()
         OpacityView.shared.hidingPopupView()
         if (count >= 0){
             if(count == 0)
