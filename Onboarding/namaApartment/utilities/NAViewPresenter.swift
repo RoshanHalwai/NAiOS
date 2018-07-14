@@ -66,11 +66,9 @@ class NAViewPresenter: NSObject {
     func myGuestListVC() -> MyGuestListViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myGuestListVC") as! MyGuestListViewController
     }
-    func cabArrivalListVC() -> CabArrivalViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "cabArrivalsVC") as! CabArrivalViewController
-    }
-    func packageArrivalListVC() -> PackageArrivalViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "packageArrivalVC") as! PackageArrivalViewController
+    //Cab and Package Arrival Card List VC
+    func cabAndPackageArrivalListVC() -> CabAndPackageArrivalCardListViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "Cab&PackageCardListVC") as! CabAndPackageArrivalCardListViewController
     }
     //edit My Daily Services VC
     func editMyDailyServices() -> EditMyServicesViewController {

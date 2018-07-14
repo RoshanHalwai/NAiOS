@@ -9,6 +9,7 @@
 import UIKit
 
 class ExpectingCabArrivalViewController: NANavigationViewController {
+    
     @IBOutlet weak var lbl_cabNumber: UILabel!
     @IBOutlet weak var lbl_DateTime: UILabel!
     @IBOutlet weak var lbl_ValidFor: UILabel!
@@ -60,7 +61,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         super.viewDidLoad()
         //Hiding Cab TextFields & Pacakge Vandor textFields According to Title
         hidingTextFiledAccordingToTitle()
-
+        
         //hiding error Label
         lbl_cabNumber_Validation.isHidden = true
         lbl_dateField_Validation.isHidden = true
@@ -79,7 +80,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         txt_CabRtoNumber.tag = 2
         txt_CabSerialNumberOne.tag = 3
         txt_CabSerialNumberTwo.tag = 4
-
+        
         //placing image calender imgage inside the Date&Time TextField
         self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
@@ -91,7 +92,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         self.txt_CabRtoNumber.becomeFirstResponder()
         self.txt_CabSerialNumberOne.becomeFirstResponder()
         self.txt_CabSerialNumberTwo.becomeFirstResponder()
-
+        
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: navTitle!)
         
@@ -252,10 +253,10 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
-            if !(txt_DateTime.text?.isEmpty)! {
-                lbl_dateField_Validation.isHidden = true
-                txt_DateTime.underlined()
-            }
+        if !(txt_DateTime.text?.isEmpty)! {
+            lbl_dateField_Validation.isHidden = true
+            txt_DateTime.underlined()
+        }
     }
     @IBAction func btnSelectHours(_ sender: UIButton) {
         selectedColor(tag: sender.tag)
@@ -330,7 +331,17 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         //creating alert controller
         let alert = UIAlertController(title: NAString().notifyButtonAlertViewTitle() , message: NAString().notifyButtonAlertViewMessage(), preferredStyle: .alert)
         //creating Accept alert actions
-        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in }
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+            if self.lbl_cabNumber.text == NAString().cab_number() {
+                let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
+                lv1.navTitle = NAString().cab_arrival()
+                self.navigationController?.pushViewController(lv1, animated: true)
+            } else if self.lbl_cabNumber.text == NAString().package_vendor_name() {
+                let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
+                lv1.navTitle = NAString().package_arrival()
+                self.navigationController?.pushViewController(lv1, animated: true)
+            }
+        }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
@@ -349,58 +360,59 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
             button.tintColor = color
         }
     }
-}
-// Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
-func cabStateCodeAndSerailCodeLength(isCabNumberLength: Int) -> Bool{
-    if (isCabNumberLength >= 2) {
+    // Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
+    func cabStateCodeAndSerailCodeLength(isCabNumberLength: Int) -> Bool{
+        if (isCabNumberLength >= 2) {
+            return true
+        }else{
+            return false
+        }
+    }
+    func cabSerialNumberLength(isCabSerialNumberLength: Int) -> Bool {
+        if (isCabSerialNumberLength >= 4) {
+            return true
+        }else{
+            return false
+        }
+    }
+    // Creating move cursor from One textField to another TextField
+    func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool {
+        //Check if textField has two chacraters
+        if ((textField.text?.count)! == 1  && string.count > 0) {
+            // get next TextField
+            let nextTag = textField.tag + 1
+            var nextTextField = textField.superview?.viewWithTag(nextTag)
+            if (nextTextField == nil) {
+                nextTextField = textField.superview?.viewWithTag(1)
+            }
+            textField.text = textField.text! + string
+            //write here your last textfield tag
+            if textField.tag == 4 {
+                //Dissmiss keyboard on last entry
+                textField.resignFirstResponder()
+            }
+            else {
+                //Appear keyboard
+                nextTextField?.becomeFirstResponder()
+            }
+            return false
+        } else if ((textField.text?.count)! == 1  && string.count == 0) {
+            // on deleteing value from Textfield
+            let previousTag = textField.tag - 1
+            // get previous TextField
+            var previousTextField = textField.superview?.viewWithTag(previousTag)
+            if (previousTextField == nil) {
+                previousTextField = textField.superview?.viewWithTag(1)
+            }
+            textField.text = ""
+            previousTextField?.becomeFirstResponder()
+            return false
+        }
         return true
-    }else{
-        return false
     }
-}
-func cabSerialNumberLength(isCabSerialNumberLength: Int) -> Bool {
-    if (isCabSerialNumberLength >= 4) {
-        return true
-    }else{
-        return false
-    }
-}
-// Creating move cursor from One textField to another TextField
-func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool {
-    //Check if textField has two chacraters
-    if ((textField.text?.count)! == 1  && string.count > 0) {
-        // get next TextField
-        let nextTag = textField.tag + 1
-        var nextTextField = textField.superview?.viewWithTag(nextTag)
-        if (nextTextField == nil) {
-            nextTextField = textField.superview?.viewWithTag(1)
-        }
-        textField.text = textField.text! + string
-        //write here your last textfield tag
-        if textField.tag == 4 {
-            //Dissmiss keyboard on last entry
-            textField.resignFirstResponder()
-        }
-        else {
-            //Appear keyboard
-            nextTextField?.becomeFirstResponder()
-        }
-        return false
-    } else if ((textField.text?.count)! == 1  && string.count == 0) {
-        // on deleteing value from Textfield
-        let previousTag = textField.tag - 1
-        // get previous TextField
-        var previousTextField = textField.superview?.viewWithTag(previousTag)
-        if (previousTextField == nil) {
-            previousTextField = textField.superview?.viewWithTag(1)
-        }
-        textField.text = ""
-        previousTextField?.becomeFirstResponder()
-        return false
-    }
-    return true
 }
 extension ExpectingCabArrivalViewController {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let cab_New_TextLength = text.utf16.count + string.utf16.count - range.length
@@ -415,10 +427,10 @@ extension ExpectingCabArrivalViewController {
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
                     return cab_New_TextLength <= 2
-                 }
+                }
                 return true
-              }
             }
+        }
         if textField == txt_CabRtoNumber {
             if (cab_New_TextLength == NAString().zero_length()) {
                 inviteLabelCabNumberTitle()
@@ -430,10 +442,10 @@ extension ExpectingCabArrivalViewController {
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
                     return cab_New_TextLength <= 2
-                 }
+                }
                 return true
-               }
-             }
+            }
+        }
         if textField == txt_CabSerialNumberOne {
             if (cab_New_TextLength == NAString().zero_length()) {
                 inviteLabelCabNumberTitle()
@@ -445,10 +457,10 @@ extension ExpectingCabArrivalViewController {
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
                     return cab_New_TextLength <= 2
-                  }
+                }
                 return true
-              }
-          }
+            }
+        }
         if textField == txt_CabSerialNumberTwo {
             if cabSerialNumberLength(isCabSerialNumberLength: cab_New_TextLength) {
                 if (cab_New_TextLength == NAString().zero_length()) {
@@ -462,30 +474,30 @@ extension ExpectingCabArrivalViewController {
             return cab_New_TextLength <= 4
         }
         if textField == txt_PackageVendor {
-                if (cab_New_TextLength == NAString().zero_length()) {
-                    inviteLabelCabNumberTitle()
-                    txt_PackageVendor.redunderlined()
+            if (cab_New_TextLength == NAString().zero_length()) {
+                inviteLabelCabNumberTitle()
+                txt_PackageVendor.redunderlined()
             } else {
-                    lbl_cabNumber_Validation.isHidden = true
-                    txt_PackageVendor.underlined()
+                lbl_cabNumber_Validation.isHidden = true
+                txt_PackageVendor.underlined()
             }
         }
         if textField == txt_DateTime {
-                if (cab_New_TextLength == NAString().zero_length()) {
-                    lbl_dateField_Validation.isHidden = false
-                    txt_DateTime.redunderlined()
-                    lbl_dateField_Validation.text = NAString().Please_select_date()
-                } else {
-                    lbl_dateField_Validation.isHidden = true
-                    txt_DateTime.underlined()
-                }
+            if (cab_New_TextLength == NAString().zero_length()) {
+                lbl_dateField_Validation.isHidden = false
+                txt_DateTime.redunderlined()
+                lbl_dateField_Validation.text = NAString().Please_select_date()
+            } else {
+                lbl_dateField_Validation.isHidden = true
+                txt_DateTime.underlined()
             }
+        }
         if (navTitle == NAString().expecting_cab_arrival()) {
             return false
         }
         return true
     }
- }
+}
 
 
 
