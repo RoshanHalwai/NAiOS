@@ -33,5 +33,13 @@ struct Constants {
     static let FIREBASE_CHILD_PRIVILEGES = "privileges"
     static let FIREBASE_CHILD_ADMIN = "admin"
     static let FIREBASE_CHILD_FLATMEMBERS = "flatMembers"
-
+    
+   
+ 
+    static let FIREBASE_AREA = "Chennai"
+    static let FIREBASE_COL = "Air Force Colony"
+    static let FIREBASE_BLOCK = "D-Block"
+    static let FIREBASE_FLAT  = "D-101"
+    static let FLAT_Visitor = "visitors"
+    
 }

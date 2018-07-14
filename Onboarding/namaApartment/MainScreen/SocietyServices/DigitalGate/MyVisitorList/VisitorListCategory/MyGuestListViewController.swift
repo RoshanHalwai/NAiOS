@@ -13,6 +13,8 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     var visitorData : DatabaseReference?
+    var userDataRef : DatabaseReference?
+    
     
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
     var myVisitorList = [NammaApartmentVisitor]()
@@ -23,19 +25,29 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
         //TODO : Need to Change Hardcode UID
-        myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child(Constants.FIREBASE_CHILD_BANGALORE).child(Constants.FIREBASE_CHILD_SALARPURIA_CAMBRIDGE).child(Constants.FIREBASE_CHILD_BLOCKONE).child(Constants.FIREBASE_CHILD_FLATNO)
-            .child(Constants.FIREBASE_CHILD_VISITORS).child("aMNacKnX44Zk006VZcSng9ilEcF3")
+//        myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+//            .child(Constants.FIREBASE_CHILD_BANGALORE).child(Constants.FIREBASE_CHILD_SALARPURIA_CAMBRIDGE).child(Constants.FIREBASE_CHILD_BLOCKONE).child(Constants.FIREBASE_CHILD_FLATNO)
+//            .child(Constants.FIREBASE_CHILD_VISITORS).child("aMNacKnX44Zk006VZcSng9ilEcF3")
+//
         
-        myVisitorListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
+    userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_AREA).child(Constants.FIREBASE_COL).child(Constants.FIREBASE_BLOCK).child(Constants.FIREBASE_FLAT).child(Constants.FLAT_Visitor).child("J4YMgAZM8HbdtD9KrEr3MVTRDBA3")
+        
+        
+        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+            print("values of snapshot",snapshot)
             
+            if let userDict = snapshot.value as? [String:Any] {
+                //Do not cast print it directly may be score is Int not string
+                print(userDict)
+            }
+
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
             if snapshot.exists() {
-                let visitorsUIDS = snapshot.value as? NSDictionary
+              
+               let visitorsUIDS = snapshot.value as? NSDictionary
                 
                 //for loop for getting all the data in tableview
                 for visitorUID in (visitorsUIDS?.allKeys)! {
