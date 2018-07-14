@@ -8,8 +8,8 @@
 
 import UIKit
 
-class HandedThingsToGuestTableViewCell: UITableViewCell
-{
+class HandedThingsToGuestTableViewCell: UITableViewCell {
+    
     //created object to use History button action in cell class
     var objHistoryVC : (() -> Void)? = nil
     

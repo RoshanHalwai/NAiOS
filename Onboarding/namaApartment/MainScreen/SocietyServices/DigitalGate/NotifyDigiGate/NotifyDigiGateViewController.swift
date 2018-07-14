@@ -95,6 +95,6 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         default:
             break
         }
-
-}
+        
+    }
 }

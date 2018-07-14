@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class NAViewPresenter: NSObject {
-
+    
     var storyBoard = UIStoryboard(name: "Main", bundle: nil)
     
     //OTP VC
@@ -41,7 +41,7 @@ class NAViewPresenter: NSObject {
     func raiseAlarmVC() -> RaiseAlarmViewController {
         return storyBoard.instantiateViewController(withIdentifier: "raiseEmergencyVC") as! RaiseAlarmViewController
     }
-   
+    
     //digi gate Vc
     func myVisitorsListVC() -> MyVisitorsListViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myVisitorsListVC") as! MyVisitorsListViewController

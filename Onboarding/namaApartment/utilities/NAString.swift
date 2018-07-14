@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-class NAString : NSObject
-{
+class NAString : NSObject {
     //Splash screen strings
     func splash_NammaHeader_Title() -> String {
         return String("Namma Apartments")
@@ -56,7 +55,7 @@ class NAString : NSObject
         return String("We need to verify \(first) account. Please enter the 6 digit verification code sent to \(second) mobile number.")
     }
     
-
+    
     func verify_otp_button() -> String {
         return String("VERIFY OTP")
     }
@@ -368,7 +367,7 @@ class NAString : NSObject
     func notifyDigiGateHeader() -> String {
         return String("Notify Digi Gate")
     }
-   
+    
     func expecting_cab_arrival() -> String {
         return String("Expecting Cab Arrival")
     }
@@ -515,7 +514,7 @@ class NAString : NSObject
     func addButtonDailyServicesloadViewTitle() -> String {
         return String("Adding Your Daily Service")
     }
-        
+    
     func dailyServicesOTPDescription() -> String {
         return String("We need to verify your account. Please enter the 6 digit verification code from the text message")
     }
@@ -590,7 +589,7 @@ class NAString : NSObject
     func otp_message_family_member() -> String {
         return String ("We will send an OTP to your family member for Authentication.")
     }
-   
+    
     //fire Alarm
     func tap_on_bell_icon_to_create_alert() -> String {
         return String ("Tap on bell icon to create alert")

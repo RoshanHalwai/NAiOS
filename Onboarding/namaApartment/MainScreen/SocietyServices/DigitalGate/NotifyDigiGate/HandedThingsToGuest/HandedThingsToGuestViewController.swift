@@ -18,7 +18,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     
     //set title from previous page
     var titleName =  String()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Disable Table view cell selection & cell border line.
@@ -67,14 +67,14 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         
         //assigning delegate method to textFiled
         cell.txt_Description.delegate = self
-            
+        
         //assigning title to cell Labels
         cell.lbl_Visiter.text = NAString().visitor()
         cell.lbl_Type.text = NAString().type()
         cell.lbl_Date.text = NAString().date()
         cell.lbl_Time.text = NAString().time()
         cell.lbl_Invited.text = NAString().inviter()
-    
+        
         //Label Formatting & setting
         cell.lbl_Visiter.font = NAFont().textFieldFont()
         cell.lbl_Type.font = NAFont().textFieldFont()
@@ -119,7 +119,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.cellImage.clipsToBounds = true
         
         /*Dynamically Change Cell Height while selecting segment Controller
-        by default which index is selected on view load*/
+         by default which index is selected on view load*/
         cell.segmentSelect.tag = indexPath.row
         cell.segmentSelect.selectedSegmentIndex = 0
         
