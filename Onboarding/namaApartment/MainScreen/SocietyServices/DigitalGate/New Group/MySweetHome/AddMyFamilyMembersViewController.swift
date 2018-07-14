@@ -26,7 +26,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     @IBOutlet weak var lbl_Mobile_Validation: UILabel!
     @IBOutlet weak var lbl_Picture_Validation: UILabel!
     @IBOutlet weak var lbl_Email_Validation: UILabel!
-
+    
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
@@ -54,7 +54,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         super.viewDidLoad()
         // Add border color on profile image
         img_Profile.layer.borderColor = UIColor.black.cgColor
-    
+        
         //hiding error labels
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true
@@ -67,7 +67,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         txt_MobileNo.delegate = self
         txt_Email.delegate = self
         
-       //setting navigation title
+        //setting navigation title
         super.ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
         
         //tapGasture for upload new image
@@ -95,7 +95,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.lbl_Mobile_Validation.font = NAFont().descriptionFont()
         self.lbl_Picture_Validation.font = NAFont().descriptionFont()
         self.lbl_Email_Validation.font = NAFont().descriptionFont()
-    
+        
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
         self.lbl_Name.text = NAString().name()
@@ -282,7 +282,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
-                OpacityView.shared.showingOpacityView(view: self)
+                btn_addDetails.tag = 103
+                OpacityView.shared.addButtonTagValue = btn_addDetails.tag
                 OpacityView.shared.showingPopupView(view: self)
                 timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
             }
@@ -290,16 +291,15 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     //Create Timer Function
     @objc func stopTimer() {
-            OpacityView.shared.hidingOpacityView()
-            OpacityView.shared.hidingPopupView()
-            if (count >= 0){
-                if(count == 0)
-                {
-                    self.addAlertViewAction()
-                }
-                count -= 1
+        OpacityView.shared.hidingPopupView()
+        if (count >= 0){
+            if(count == 0)
+            {
+                self.addAlertViewAction()
             }
+            count -= 1
         }
+    }
     //Create AlertView Action
     func addAlertViewAction() {
         let alertController = UIAlertController(title:NAString().addFamilyMemberTitle(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
@@ -334,8 +334,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
         if textField == txt_Name {
-           lbl_Name_Validation.isHidden = true
-           txt_Name.underlined()
+            lbl_Name_Validation.isHidden = true
+            txt_Name.underlined()
         }
         if textField == txt_Email {
             lbl_Email_Validation.isHidden = true
