@@ -10,9 +10,6 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
-//Global variable to store users UID
-let usersUID = Auth.auth().currentUser?.uid
-
 class NAUser {
     
     //created variables to get details from following classes.

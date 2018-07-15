@@ -731,10 +731,10 @@ class NAString : NSObject {
     func imageContentType() -> String {
         return String ("image/jpeg")
     }
-    func gettrue() -> String {
-        return String ("true")
+    func gettrue() -> Bool {
+        return Bool (true)
     }
-    func getfalse() -> String {
-        return String ("false")
+    func getfalse() -> Bool {
+        return Bool (false)
     }
 }

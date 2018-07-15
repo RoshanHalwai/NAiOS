@@ -13,6 +13,14 @@ import FirebaseStorage
 import FirebaseInstanceID
 import FirebaseMessaging
 
+//Calling class & adding in singleton class to get values
+class SingletonFlatDetails {
+    static let shared = SingletonFlatDetails()
+    var flatDetails = [FlatDetails]()
+}
+//Creating Array variable to access item of FlatDetails class.
+var flatDetails = [FlatDetails]()
+
 class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!
     @IBOutlet weak var segment_ResidentType: UISegmentedControl!
@@ -36,7 +44,7 @@ class myFlatDetailsViewController: NANavigationViewController {
     var BrigadeGateway = ["Aster", "Bolivia", "Chamber", "DSR"]
     var SalarpuriaCambridge = ["Block-1", "Block-2", "Block-3", "Block-4", "Block-5"]
     var Aster = ["A-1001", "A-1002", "A-1003"]
-    var Bolivia = ["B1001", "B1002", "B1003"]
+    var Bolivia = ["B-1001", "B-1002", "B-1003"]
     var Block1 = ["101", "102", "103", "104", "105"]
     var Block2 = ["201", "202", "203", "204", "205"]
     var Block3 = ["301", "302", "303", "304", "305"]
@@ -51,7 +59,11 @@ class myFlatDetailsViewController: NANavigationViewController {
     var apartmentString = String()
     var flatString = String()
     var selectedSegmentValue = String()
+    
     var newProfileImage: UIImage!
+    var newMobileNumber = String()
+    var newEmail = String()
+    var newFullName = String()
     
     //Firebase Database Reference
     var usersFlatDetailsRef : DatabaseReference?
@@ -61,7 +73,7 @@ class myFlatDetailsViewController: NANavigationViewController {
     var usersPersonalDetailsRef : DatabaseReference?
     var usersUIDRef : DatabaseReference?
     var UsersDataRef : DatabaseReference?
-    var usersMobileNoRef : DatabaseReference?
+    var usersMobileNumberRef : DatabaseReference?
     var userFlatMemberRef : DatabaseReference?
     
     override func viewDidLoad() {
@@ -246,13 +258,13 @@ extension myFlatDetailsViewController {
     func storeUsersDetailsInFirebase() {
         
         //Flat Details Firebase DB Reference
-        usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
         
         //Privileges Details Firebase DB Reference
-        usersPrivilegeDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+        usersPrivilegeDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
         
         //Personal Details Firebase DB Reference
-        usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
         //Storing Data Under UsersData
         UsersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(txtCity.text!).child(txtSociety.text!).child(txtApartment.text!).child(txtFlat.text!)
@@ -270,12 +282,12 @@ extension myFlatDetailsViewController {
         //TODO: Hardcoded values for UserPrivileges for storing data in Firebase undr Users/Private/UID/Privileges
         let userPrivilegesData = [
             UserPrivilegesListFBKeys.admin.key : NAString().gettrue(),
-            UserPrivilegesListFBKeys.grantAccess.key : NAString().gettrue(),
+            UserPrivilegesListFBKeys.grantedAccess.key : NAString().gettrue(),
             UserPrivilegesListFBKeys.verified.key : NAString().getfalse()
         ]
         
         //Maping UsersUID with admin
-        UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(usersUID!)
+        UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(userUID!)
         
         //Adding usersFlatDetails data under Users/Private/UID
         self.usersFlatDetailsRef?.setValue(usersFlatData)
@@ -296,7 +308,7 @@ extension myFlatDetailsViewController {
         metaDataContentType.contentType = NAString().imageContentType()
         
         //Uploading Visitor image url along with Visitor UID
-        let uploadImageRef = usersImageRef?.child(usersUID!)
+        let uploadImageRef = usersImageRef?.child(userUID!)
         
         let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
             
@@ -304,28 +316,25 @@ extension myFlatDetailsViewController {
                 
                 if urlError == nil {
                     
-                    //Using singleton Class Reference to get data from UserDetails.
-                    let values = Singleton.shared.UserDetails
-                    let val = values.first
-                    
-                    //defining node with type of data in it.
                     let usersPersonalData = [
-                        UserPersonalListFBKeys.email.key : val?.email,
-                        UserPersonalListFBKeys.fullName.key : val?.fullName,
+                        UserPersonalListFBKeys.email.key : self.newEmail,
+                        UserPersonalListFBKeys.fullName.key : self.newFullName,
                         UserPersonalListFBKeys.profilePhoto.key : url?.absoluteString,
-                        UserPersonalListFBKeys.phoneNumber.key : val?.phoneNumber
+                        UserPersonalListFBKeys.phoneNumber.key : self.newMobileNumber
                     ]
                     
                     //Adding users data under  Users/Private/UID & mapping UID
                     self.usersPersonalDetailsRef?.setValue(usersPersonalData)
                     
                     //Storing UID under Users/Private/UID
-                    self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(usersUID!)
-                    self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(usersUID)
+                    self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+                    
+                    self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
                     
                     //Mapping Mobile Number with UID
-                    self.usersMobileNoRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
-                    self.usersMobileNoRef?.child((val?.phoneNumber)!).setValue(usersUID)
+                    
+                    self.usersMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+                    self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID!)
                     
                     //Generating & Mapping TokenID under Users/Private/UID
                     let tokenID = Messaging.messaging().fcmToken
@@ -334,7 +343,7 @@ extension myFlatDetailsViewController {
                     //Storing Flat Member UID
                     self.userFlatMemberRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
                     
-                    self.userFlatMemberRef?.child(usersUID!).setValue(NAString().gettrue())
+                    self.userFlatMemberRef?.child(userUID!).setValue(NAString().gettrue())
                     
                     //Navigate to Namma Apartment Home Screen After Storing all users data.
                     let dest = NAViewPresenter().mainScreenVC()
@@ -349,3 +358,4 @@ extension myFlatDetailsViewController {
         uploadTask?.resume()
     }
 }
+

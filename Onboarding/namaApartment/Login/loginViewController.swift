@@ -7,9 +7,27 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseCore
-import FirebaseDatabase
+
+//Created Class & Class Variable to pass the data
+class Singleton_FlatDetails {
+    static let shared = Singleton_FlatDetails()
+    var flatDetails_Items = [FlatDetails]()
+}
+
+class Singleton_PersonalDetails {
+    static let shared = Singleton_PersonalDetails()
+    var personalDetails_Items = [PersonalDetails]()
+}
+
+class Singleton_privileges{
+    static let shared = Singleton_privileges()
+    var privileges_Items = [UserPrivileges]()
+}
+
+//Creating Variable to store FirebaseUser Data in Class.
+var flatDetailsFB = [FlatDetails]()
+var personalDetails = [PersonalDetails]()
+var userprivileges = [UserPrivileges]()
 
 class loginViewController: NANavigationViewController {
     @IBOutlet weak var txt_MobileNo: UITextField!
@@ -17,9 +35,6 @@ class loginViewController: NANavigationViewController {
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var lbl_Validation: UILabel!
-
-    //Firebase database Reference Variable
-    var usersMobileNoRef: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +73,7 @@ class loginViewController: NANavigationViewController {
         navigationItem.rightBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
     }
-
+    
     //Accept only 10 digit mobile number in MobileNumber TextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
@@ -70,7 +85,7 @@ class loginViewController: NANavigationViewController {
         return newLength <= NAString().required_mobileNo_Length() // Bool
     }
     @IBAction func btnSignin(_ sender: Any) {
-
+        
         lbl_Validation.isHidden = true
         
         if (self.txt_MobileNo.text?.isEmpty)! {
@@ -91,6 +106,7 @@ class loginViewController: NANavigationViewController {
             lv.getCountryCodeString = txt_CountryCode.text!
             self.navigationController?.pushViewController(lv, animated: true)
         }
+        
     }
 }
 //Created Extention to get HexaString For Verification Code

@@ -10,6 +10,9 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
+//Global variable to store users UID
+var userUID = Auth.auth().currentUser?.uid
+
 class OTPViewController: NANavigationViewController {
     
     @IBOutlet weak var btnVerify: UIButton!
@@ -32,7 +35,7 @@ class OTPViewController: NANavigationViewController {
     
     //Creating Firebase DB Reference variable.
     var userMobileNumberRef : DatabaseReference?
-    var isMobileValidRef : DatabaseReference?
+    var mobileNumberValidRef : DatabaseReference?
     
     //Store verification ID
     var credentialID = String()
@@ -42,10 +45,9 @@ class OTPViewController: NANavigationViewController {
         
         //hiding validation label
         lbl_OTP_Validation.isHidden = true
-
+        
         //Calling trigger OTP function on viewDidLoad
         triggerOTPFromFirebase()
-
         
         //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
@@ -99,7 +101,7 @@ class OTPViewController: NANavigationViewController {
             //Calling verify OTP function, When OTP Screen is Coming From Login VC.
             verifyOTPWithFirebase()
         }
-        //Back to My Sweet Home screen
+            //Back to My Sweet Home screen
         else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
             let lv = NAViewPresenter().mySweetHomeVC()
             self.navigationController?.pushViewController(lv, animated: true)
@@ -171,14 +173,14 @@ class OTPViewController: NANavigationViewController {
             return false
         }
     }
-
+    
     func Alert (Message: String) {
         let alert = UIAlertController(title: "Alert", message: Message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     //Generating OTP From Firebase Authentication
     func triggerOTPFromFirebase() {
         //TODO: Printing Errors in Console so that other developers can understand.
@@ -228,14 +230,15 @@ extension OTPViewController {
             }
             
             //Once verified we check if user mobile number exists under users->all
-            self.isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
+            self.mobileNumberValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
             
             // Maping Mobile Number with UID & Storing in Users/All
-            self.userMobileNumberRef?.child(self.getMobileString).setValue(usersUID)
-
-            self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
+            self.userMobileNumberRef?.child(self.getMobileString).setValue(userUID)
+            
+            self.mobileNumberValidRef?.observeSingleEvent(of: .value, with: { snapshot in
                 //If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
                 if snapshot.exists() {
+                    
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
                 } else {
