@@ -125,6 +125,15 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
         
+        //created custom back button
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMySweetHome))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    //created custom back button to go back to My Sweet Home
+    @objc func goBackToMySweetHome() {
+        let dv = NAViewPresenter().mySweetHomeVC()
+        self.navigationController?.pushViewController(dv, animated: true)
     }
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
