@@ -737,4 +737,7 @@ class NAString : NSObject {
     func getfalse() -> Bool {
         return Bool (false)
     }
+    func notEntered() -> String {
+        return String ("Not Entered")
+    }
 }
