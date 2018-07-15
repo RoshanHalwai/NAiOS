@@ -66,7 +66,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             }
         })
         //Setting & Formatting Navigation bar
-        super.ConfigureNavBarTitle(title: NAString().my_Guest())
+        super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         
         //created custom back button for goto My Visitors List
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigitGate))

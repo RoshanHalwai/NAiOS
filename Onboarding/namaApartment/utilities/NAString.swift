@@ -319,7 +319,7 @@ class NAString : NSObject {
     }
     
     func inviteVisitorOTPDesc() -> String {
-        return String("We will send an OTP to your visitor allowing them to enter into your society.")
+        return String("We will send an OTP to your daily service for authentication.")
     }
     func btnInvite() -> String {
         return String("INVITE")
@@ -393,8 +393,8 @@ class NAString : NSObject {
     func handed_things_to_my_daily_services() -> String {
         return String("Handed things to my Daily Services")
     }
-    func my_Guest() -> String {
-        return String("MY Guests")
+    func handed_Things() -> String {
+        return String("Handed Things")
     }
     func history() -> String {
         return String("History")
@@ -592,27 +592,29 @@ class NAString : NSObject {
         return String ("Remove")
     }
     
-    func otp_message_family_member() -> String {
-        return String ("We will send an OTP to your family member for Authentication.")
+    func otp_message_family_member(name : String) -> String {
+        return String ("We will send an OTP to your \(name) for Authentication.")
     }
     
-    //fire Alarm
+    //Emergency Screen
     func tap_on_bell_icon_to_create_alert() -> String {
         return String ("Tap on bell icon to create alert")
     }
-    
+    func emergency_alert_Title() -> String {
+        return String("Emergency Alert")
+    }
+    func emergency_Alert_Message() -> String {
+        return String("Emergency notification will be sent to the Guard. Press OK to confirm")
+    }
     func emergency_alarm_raised() -> String {
         return String ("Emergency alarm raised")
     }
-    
     func medical_emergency_Title() -> String {
         return String ("Medical Emergency")
     }
-    
     func raise_Fire_Alarm_Title() -> String {
         return String ("Raise Fire Alarm")
     }
-    
     func raise_Theft_Alarm_Title() -> String {
         return String ("Raise Theft Alarm")
     }

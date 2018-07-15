@@ -68,7 +68,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         txt_Email.delegate = self
         
         //setting navigation title
-        super.ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
+        super.ConfigureNavBarTitle(title: NAString().btn_mySweet_home())
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -95,12 +95,11 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.lbl_Mobile_Validation.font = NAFont().descriptionFont()
         self.lbl_Picture_Validation.font = NAFont().descriptionFont()
         self.lbl_Email_Validation.font = NAFont().descriptionFont()
-        
+        self.lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
-        self.lbl_OTPDescription.text = NAString().otp_message_family_member()
         
         //textField formatting & setting
         self.txt_MobileNo.font = NAFont().textFieldFont()
@@ -125,6 +124,14 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
         
+    }
+    //Create RelationSegment Action
+    @IBAction func relationSegmentAction() {
+        if Relation_Segment.selectedSegmentIndex == 0 {
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
+        } else {
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "friends")
+        }
     }
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
