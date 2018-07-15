@@ -31,9 +31,9 @@ class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     //TODO : Need to get data from firebase
-    var cities = ["Bengaluru", "Hyderabad", "Mumbai", "Delhi", "Bombay"]
-    var societies = ["Brigade Gateway", "Salarpuria Cambridge"]
-    var BrigadeGateway = ["Aster", "Bolivia"]
+    var cities = ["Bengaluru", "Chennai"]
+    var societies = ["Brigade Gateway"]
+    var BrigadeGateway = ["Aster", "Bolivia", "Chamber", "DSR"]
     var SalarpuriaCambridge = ["Block-1", "Block-2", "Block-3", "Block-4", "Block-5"]
     var Aster = ["A-1001", "A-1002", "A-1003"]
     var Bolivia = ["B1001", "B1002", "B1003"]
