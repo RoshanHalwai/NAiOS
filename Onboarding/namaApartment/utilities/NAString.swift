@@ -596,23 +596,25 @@ class NAString : NSObject {
         return String ("We will send an OTP to your \(name) for Authentication.")
     }
     
-    //fire Alarm
+    //Emergency Screen
     func tap_on_bell_icon_to_create_alert() -> String {
         return String ("Tap on bell icon to create alert")
     }
-    
+    func emergency_alert_Title() -> String {
+        return String("Emergency Alert")
+    }
+    func emergency_Alert_Message() -> String {
+        return String("Emergency notification will be sent to the Guard. Press OK to confirm")
+    }
     func emergency_alarm_raised() -> String {
         return String ("Emergency alarm raised")
     }
-    
     func medical_emergency_Title() -> String {
         return String ("Medical Emergency")
     }
-    
     func raise_Fire_Alarm_Title() -> String {
         return String ("Raise Fire Alarm")
     }
-    
     func raise_Theft_Alarm_Title() -> String {
         return String ("Raise Theft Alarm")
     }

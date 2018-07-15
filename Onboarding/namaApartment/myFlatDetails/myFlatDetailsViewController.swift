@@ -35,7 +35,7 @@ class myFlatDetailsViewController: NANavigationViewController {
     var societies = ["Brigade Gateway", "Salarpuria Cambridge"]
     var BrigadeGateway = ["Aster", "Bolivia"]
     var SalarpuriaCambridge = ["Block-1", "Block-2", "Block-3", "Block-4", "Block-5"]
-    var Aster = ["A1001", "A1002", "A1003"]
+    var Aster = ["A-1001", "A-1002", "A-1003"]
     var Bolivia = ["B1001", "B1002", "B1003"]
     var Block1 = ["101", "102", "103", "104", "105"]
     var Block2 = ["201", "202", "203", "204", "205"]
