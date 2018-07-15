@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseCore
-import FirebaseDatabase
 
 //Created Class & Class Variable to pass the data
 class Singleton_FlatDetails {
@@ -38,11 +35,6 @@ class loginViewController: NANavigationViewController {
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var lbl_Validation: UILabel!
-    
-    //Firebase database Reference Variable
-    var usersMobileNoRef: DatabaseReference?
-    var isMobileValidRef : DatabaseReference?
-    var usersPrivateRef: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()

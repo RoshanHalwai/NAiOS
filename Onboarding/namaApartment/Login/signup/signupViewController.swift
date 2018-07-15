@@ -54,10 +54,6 @@ class signupViewController: NANavigationViewController {
     //To getMobileString from Previous Screen (OTP View Controller)
     var getNewMobileString = String()
     
-    //Firebase Database Reference
-    var usersPersonalDetailsRef : DatabaseReference?
-    var usersUIDRef : DatabaseReference?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Add border color on profile imageview

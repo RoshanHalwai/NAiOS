@@ -35,12 +35,7 @@ class OTPViewController: NANavigationViewController {
     
     //Creating Firebase DB Reference variable.
     var userMobileNumberRef : DatabaseReference?
-    var isMobileValidRef : DatabaseReference?
-    var usersPrivateRef: DatabaseReference?
-    
-    var userFlatRef : DatabaseReference?
-    var userPersonalRef : DatabaseReference?
-    var userPrivilegesRef : DatabaseReference?
+    var mobileNumberValidRef : DatabaseReference?
     
     //Store verification ID
     var credentialID = String()
@@ -53,7 +48,6 @@ class OTPViewController: NANavigationViewController {
         
         //Calling trigger OTP function on viewDidLoad
         triggerOTPFromFirebase()
-        
         
         //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
@@ -236,12 +230,12 @@ extension OTPViewController {
             }
             
             //Once verified we check if user mobile number exists under users->all
-            self.isMobileValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
+            self.mobileNumberValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
             
             // Maping Mobile Number with UID & Storing in Users/All
             self.userMobileNumberRef?.child(self.getMobileString).setValue(userUID)
             
-            self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
+            self.mobileNumberValidRef?.observeSingleEvent(of: .value, with: { snapshot in
                 //If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
                 if snapshot.exists() {
                     

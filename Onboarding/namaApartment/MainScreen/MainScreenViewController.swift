@@ -10,8 +10,8 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class MainScreenViewController: NANavigationViewController
-{
+class MainScreenViewController: NANavigationViewController {
+    
     @IBOutlet weak var segmentSelection: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
    
@@ -29,10 +29,6 @@ class MainScreenViewController: NANavigationViewController
     
     //Firebase Database References
     var usersPrivateRef: DatabaseReference?
-    var userFlatRef : DatabaseReference?
-    var userPersonalRef : DatabaseReference?
-    var userPrivilegesRef : DatabaseReference?
-    var isMobileValidRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,7 +162,7 @@ extension MainScreenViewController {
                     
                     userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
                 
-                Singleton_privileges.shared.privileges_Items = userprivileges
+                    Singleton_privileges.shared.privileges_Items = userprivileges
             }
           })
     }

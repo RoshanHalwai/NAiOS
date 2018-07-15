@@ -73,7 +73,7 @@ class myFlatDetailsViewController: NANavigationViewController {
     var usersPersonalDetailsRef : DatabaseReference?
     var usersUIDRef : DatabaseReference?
     var UsersDataRef : DatabaseReference?
-    var usersMobileNoRef : DatabaseReference?
+    var usersMobileNumberRef : DatabaseReference?
     var userFlatMemberRef : DatabaseReference?
     
     override func viewDidLoad() {
@@ -333,8 +333,8 @@ extension myFlatDetailsViewController {
                     
                     //Mapping Mobile Number with UID
                     
-                    self.usersMobileNoRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
-                    self.usersMobileNoRef?.child(self.newMobileNumber).setValue(userUID!)
+                    self.usersMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+                    self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID!)
                     
                     //Generating & Mapping TokenID under Users/Private/UID
                     let tokenID = Messaging.messaging().fcmToken
