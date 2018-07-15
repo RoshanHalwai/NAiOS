@@ -403,7 +403,7 @@ class NAString : NSObject {
         return String("My Daily Services")
     }
     
-    func package_number() -> String {
+    func package_vendor_name() -> String {
         return String("Package Vendor")
     }
     
@@ -413,6 +413,12 @@ class NAString : NSObject {
     
     func cab_number() -> String {
         return String("Cab Number")
+    }
+    func cab_no() -> String {
+        return String("Cab No:")
+    }
+    func vendor() -> String {
+        return String("Vendor:")
     }
     
     func valid_for() -> String {

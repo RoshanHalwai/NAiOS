@@ -11,7 +11,7 @@ import UIKit
 class MyVisitorsListViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var imageList = [#imageLiteral(resourceName: "ExpectingVisitor"), #imageLiteral(resourceName: "ExpectingCabs256"), #imageLiteral(resourceName: "ExpectingPackage256")]
+    var imageList = [#imageLiteral(resourceName: "ExpectingVisitor"), #imageLiteral(resourceName: "ExpectingCabs"), #imageLiteral(resourceName: "ExpectingPackage")]
     var visitorsType = ["Guests", "Cab Arrivals", "Package Arrivals"]
 
     override func viewDidLoad() {
@@ -59,11 +59,11 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
             self.navigationController?.pushViewController(lv, animated: true)
             lv.titleName = NAString().myVisitorViewTitle().capitalized
         case 1:
-            let lv1 = NAViewPresenter().cabArrivalListVC()
+            let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
             lv1.navTitle = NAString().cab_arrival()
             self.navigationController?.pushViewController(lv1, animated: true)
         case 2:
-            let lv2 = NAViewPresenter().packageArrivalListVC()
+            let lv2 = NAViewPresenter().cabAndPackageArrivalListVC()
             lv2.navTitle = NAString().package_arrival()
             self.navigationController?.pushViewController(lv2, animated: true)
         default:
