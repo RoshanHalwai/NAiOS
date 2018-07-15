@@ -557,6 +557,8 @@ extension ExpectingCabArrivalViewController {
             ArrivalListFBKeys.inviterUID.key : userUID,
             ArrivalListFBKeys.reference.key : finalCabString,
             ArrivalListFBKeys.status.key :NAString().notEntered(),
+            
+            //TODO: Hardcoded valid For Button Value.
             ArrivalListFBKeys.validFor.key : "1 hr"
         ]
         //Adding data in Firebase from dictionary
@@ -585,10 +587,10 @@ extension ExpectingCabArrivalViewController {
         userDataPackageRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID!)
         
         
-        //Mapping CabUID with true under UsersData -> Flat
+        //Mapping PackageUID with true under UsersData -> Flat
         userDataPackageRef?.child((userPersonalValues?.phoneNumber)!).setValue(packageUID)
         
-        //Mapping Package Vandor With  Cab UID
+        //Mapping User Mobile Number With Package UID
         packagePrivateRef?.child((userPersonalValues?.phoneNumber)!).setValue(packageUID)
         
         let expectingPackageData = [
@@ -596,6 +598,8 @@ extension ExpectingCabArrivalViewController {
             ArrivalListFBKeys.inviterUID.key : userUID,
             ArrivalListFBKeys.reference.key : txt_PackageVendor.text! as String,
             ArrivalListFBKeys.status.key :NAString().notEntered(),
+            
+            //TODO: Hardcoded valid For Button Value.
             ArrivalListFBKeys.validFor.key : "1 hr"
         ]
         //Adding data in Firebase from dictionary
