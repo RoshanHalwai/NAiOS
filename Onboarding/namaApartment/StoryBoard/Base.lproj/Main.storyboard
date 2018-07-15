@@ -4288,6 +4288,9 @@
                                                     <segment title="Friends"/>
                                                 </segments>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="relationSegmentAction" destination="a0M-ze-8gm" eventType="valueChanged" id="XwJ-cm-FKH"/>
+                                                </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0V8-z6-gcz">
                                                 <rect key="frame" x="20" y="570.5" width="335" height="20.5"/>

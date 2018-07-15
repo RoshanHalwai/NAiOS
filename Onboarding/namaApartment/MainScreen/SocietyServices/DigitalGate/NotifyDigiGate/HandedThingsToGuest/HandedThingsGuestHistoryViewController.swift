@@ -30,7 +30,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
     //to navigate back to handed things My guest VC
     @objc func goBackToHandedThingsGuestVC() {
         let dv = NAViewPresenter().handedThingsToMyGuestVC()
-        dv.titleName = NAString().my_Guest().capitalized
+        dv.titleName = NAString().myVisitorViewTitle().capitalized
         self.navigationController?.pushViewController(dv, animated: true)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

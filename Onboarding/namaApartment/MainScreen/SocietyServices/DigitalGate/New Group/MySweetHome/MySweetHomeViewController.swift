@@ -47,7 +47,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         self.navigationItem.hidesBackButton = true
         
         super.ConfigureNavBarTitle(title: NAString().my_sweet_home().capitalized)
-       
+        
         self.addMemberButton = UIButton(type: .custom)
         self.addMemberButton.titleLabel?.font = NAFont().buttonFont()
         self.addMemberButton.setTitleColor(NAColor().buttonFontColor(), for: .normal)
@@ -64,12 +64,12 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             addMemberButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
             addMemberButton.heightAnchor.constraint(equalToConstant: 39),
             addMemberButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-              addMemberButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20)])
+            addMemberButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20)])
     }
     @IBAction func btnAddFamilyMember(_ sender: UIButton) {
         let lv = NAViewPresenter().myFamilyMembers()
         self.navigationController?.pushViewController(lv, animated: true)
-        ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
+        ConfigureNavBarTitle(title: NAString().btn_mySweet_home())
     }
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate() {
@@ -80,7 +80,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         return MySweetHomeName.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
         
         cell.lbl_MySweetHomeName.text = MySweetHomeName[indexPath.row]
@@ -99,7 +99,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-    
+        
         //setting the image in round shape
         cell.MySweeetHomeimg.layer.cornerRadius = cell.MySweeetHomeimg.frame.size.width/2
         cell.MySweeetHomeimg.clipsToBounds = true
@@ -138,7 +138,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             self.opacityView.isHidden = false
             self.popUp_View.isHidden = false
         }
-    return cell
+        return cell
     }
     @IBAction func Cancel_Action(_ sender: UIButton) {
         opacityView.isHidden = true
@@ -158,33 +158,33 @@ extension MySweetHomeViewController : removeCollectionProtocol {
         //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
-            let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
-            let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
+        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
+        let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
-                //Remove collection view cell item with animation
-                self.MySweetHomeName.remove(at: indx)
+            //Remove collection view cell item with animation
+            self.MySweetHomeName.remove(at: indx)
             
-                //animation at final state
-                cell.alpha = 1
-                cell.layer.transform = CATransform3DIdentity
+            //animation at final state
+            cell.alpha = 1
+            cell.layer.transform = CATransform3DIdentity
             
-                UIView.animate(withDuration: 0.3) {
-                    cell.alpha = 0.0
-                    let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
-                    cell.layer.transform = transform
-                }
-                Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
-                }
-            alert.addAction(actionNO) //add No action on AlertView
-            alert.addAction(actionYES) //add YES action on AlertView
-            present(alert, animated: true, completion: nil)
+            UIView.animate(withDuration: 0.3) {
+                cell.alpha = 0.0
+                let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
+                cell.layer.transform = transform
+            }
+            Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
+        }
+        alert.addAction(actionNO) //add No action on AlertView
+        alert.addAction(actionYES) //add YES action on AlertView
+        present(alert, animated: true, completion: nil)
     }
     @objc func reloadCollectionData() {
         collectionView.reloadData()
     }
 }
-    
-    
-    
+
+
+
 
 

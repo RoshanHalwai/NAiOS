@@ -77,12 +77,12 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         case 3:
             let lv3 = NAViewPresenter().handedThingsToMyGuestVC()
             self.navigationController?.pushViewController(lv3, animated: true)
-            lv3.titleName = NAString().my_Guest().capitalized
+            lv3.titleName = NAString().handed_Things().capitalized
             
         case 4:
             let lv4 = NAViewPresenter().handedThingsToMyDailyServiceVC()
             self.navigationController?.pushViewController(lv4, animated: true)
-            lv4.titleName = NAString().my_Daily_Services().capitalized
+            lv4.titleName = NAString().handed_Things().capitalized
             
         default:
             break

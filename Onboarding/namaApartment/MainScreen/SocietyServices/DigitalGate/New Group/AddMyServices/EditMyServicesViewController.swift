@@ -149,7 +149,7 @@ class EditMyServicesViewController: NANavigationViewController {
         if getTitle == NAString().edit_my_family_member_details().capitalized {
             self.stack_InTime.isHidden = true
             self.stack_GrantAccess.isHidden = false
-            self.lbl_Description.text = NAString().otp_message_family_member()
+            self.lbl_Description.text = NAString().otp_message_family_member(name: "")
         } else {
             self.stack_InTime.isHidden = false
             self.stack_GrantAccess.isHidden = true
