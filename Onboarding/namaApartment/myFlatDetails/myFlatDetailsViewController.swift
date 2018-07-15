@@ -59,7 +59,11 @@ class myFlatDetailsViewController: NANavigationViewController {
     var apartmentString = String()
     var flatString = String()
     var selectedSegmentValue = String()
+    
     var newProfileImage: UIImage!
+    var newMobileNumber = String()
+    var newEmail = String()
+    var newFullName = String()
     
     //Firebase Database Reference
     var usersFlatDetailsRef : DatabaseReference?
@@ -278,7 +282,7 @@ extension myFlatDetailsViewController {
         //TODO: Hardcoded values for UserPrivileges for storing data in Firebase undr Users/Private/UID/Privileges
         let userPrivilegesData = [
             UserPrivilegesListFBKeys.admin.key : NAString().gettrue(),
-            UserPrivilegesListFBKeys.grantAccess.key : NAString().gettrue(),
+            UserPrivilegesListFBKeys.grantedAccess.key : NAString().gettrue(),
             UserPrivilegesListFBKeys.verified.key : NAString().getfalse()
         ]
         
@@ -312,16 +316,11 @@ extension myFlatDetailsViewController {
                 
                 if urlError == nil {
                     
-                    //Using singleton Class Reference to get data from UserDetails.
-                    let values = Singleton.shared.UserDetails
-                    let val = values.first
-                    
-                    //defining node with type of data in it.
                     let usersPersonalData = [
-                        UserPersonalListFBKeys.email.key : val?.email,
-                        UserPersonalListFBKeys.fullName.key : val?.fullName,
+                        UserPersonalListFBKeys.email.key : self.newEmail,
+                        UserPersonalListFBKeys.fullName.key : self.newFullName,
                         UserPersonalListFBKeys.profilePhoto.key : url?.absoluteString,
-                        UserPersonalListFBKeys.phoneNumber.key : val?.phoneNumber
+                        UserPersonalListFBKeys.phoneNumber.key : self.newMobileNumber
                     ]
                     
                     //Adding users data under  Users/Private/UID & mapping UID
@@ -333,8 +332,9 @@ extension myFlatDetailsViewController {
                     self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
                     
                     //Mapping Mobile Number with UID
+                    
                     self.usersMobileNoRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
-                    self.usersMobileNoRef?.child((val?.phoneNumber)!).setValue(userUID)
+                    self.usersMobileNoRef?.child(self.newMobileNumber).setValue(userUID!)
                     
                     //Generating & Mapping TokenID under Users/Private/UID
                     let tokenID = Messaging.messaging().fcmToken
@@ -344,9 +344,6 @@ extension myFlatDetailsViewController {
                     self.userFlatMemberRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
                     
                     self.userFlatMemberRef?.child(userUID!).setValue(NAString().gettrue())
-                    
-                    //Calling Function to store flatDetails in custome class (User Flat Details) like pojo class
-                    self.storingFlatDetails()
                     
                     //Navigate to Namma Apartment Home Screen After Storing all users data.
                     let dest = NAViewPresenter().mainScreenVC()
@@ -362,13 +359,3 @@ extension myFlatDetailsViewController {
     }
 }
 
-//sending data
-extension myFlatDetailsViewController {
-    
-    func storingFlatDetails() {
-        //Storing user Flat Details in FlatDetails Class
-        flatDetails.append(FlatDetails.init(apartmentName: txtApartment.text!, city: txtCity.text!, flatNumber: txtFlat.text!, societyName: txtSociety.text, tenantType: selectedSegmentValue))
-        
-        SingletonFlatDetails.shared.flatDetails = flatDetails
-    }
-}

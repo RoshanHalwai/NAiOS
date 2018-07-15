@@ -12,14 +12,14 @@ import UIKit
 //Created enum instead of struct for App optimization and for getting values.
 enum UserPrivilegesListFBKeys : String {
     case admin
-    case grantAccess
+    case grantedAccess
     case verified
 
     var key : String {
         switch self {
         // Use Internationalization, as appropriate.
         case .admin: return "admin"
-        case .grantAccess: return "grantAccess"
+        case .grantedAccess: return "grantedAccess"
         case .verified: return "verified"
         }
     }

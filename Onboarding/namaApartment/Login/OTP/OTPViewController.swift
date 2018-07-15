@@ -50,10 +50,10 @@ class OTPViewController: NANavigationViewController {
         
         //hiding validation label
         lbl_OTP_Validation.isHidden = true
-
+        
         //Calling trigger OTP function on viewDidLoad
         triggerOTPFromFirebase()
-
+        
         
         //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
@@ -107,7 +107,7 @@ class OTPViewController: NANavigationViewController {
             //Calling verify OTP function, When OTP Screen is Coming From Login VC.
             verifyOTPWithFirebase()
         }
-        //Back to My Sweet Home screen
+            //Back to My Sweet Home screen
         else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
             let lv = NAViewPresenter().mySweetHomeVC()
             self.navigationController?.pushViewController(lv, animated: true)
@@ -179,14 +179,14 @@ class OTPViewController: NANavigationViewController {
             return false
         }
     }
-
+    
     func Alert (Message: String) {
         let alert = UIAlertController(title: "Alert", message: Message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
     }
-
+    
     //Generating OTP From Firebase Authentication
     func triggerOTPFromFirebase() {
         //TODO: Printing Errors in Console so that other developers can understand.
@@ -240,13 +240,10 @@ extension OTPViewController {
             
             // Maping Mobile Number with UID & Storing in Users/All
             self.userMobileNumberRef?.child(self.getMobileString).setValue(userUID)
-
+            
             self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
                 //If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
                 if snapshot.exists() {
-                    
-                    //calling retreiving function
-                  // self.retrieveUserData()
                     
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
@@ -258,61 +255,5 @@ extension OTPViewController {
                 }
             })
         }
-    }
-}
-
-extension OTPViewController {
-    
-    //Retrieving User's Data from firebase
-    func retrieveUserData() {
-        
-        //Checking Users UID in Firebase under Users ->Private
-        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
-        
-        //Checking userData inside Users/Private
-        
-        self.isMobileValidRef?.observeSingleEvent(of: .value, with: { snapshot in
-            
-            //If usersUID is Exists then retrievd all the data of user.
-            if snapshot.exists() {
-                
-                self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
-                    
-                    let userData = snapshot.value as? NSDictionary
-                    print("UserData:",userData as Any)
-                    
-                    //Retrieving & Adding data in Flat Detail Class
-                    let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
-                    
-                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
-                    
-                    Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
-                    
-                    //Retrieving & Adding Data in Personal Detail Class
-                    let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
-                    
-                    personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
-                    
-                    Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
-                    
-                    //Retriving & Adding data in Privileges
-                    let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
-                    
-                    userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
-                    
-                    Singleton_privileges.shared.privileges_Items = userprivileges
-                    
-                    //Storing Visitor UID under UsersData -> UsersFlat
-                    let value =  Singleton_FlatDetails.shared.flatDetails_Items
-                    let val = value.first
-                    print(val?.apartmentName as Any)
-                    print(val?.city as Any)
-                    print(val?.societyName as Any)
-                    print(val?.flatNumber as Any)
-                    print(val?.tenantType as Any)
-                    
-                })
-            }
-        })
     }
 }

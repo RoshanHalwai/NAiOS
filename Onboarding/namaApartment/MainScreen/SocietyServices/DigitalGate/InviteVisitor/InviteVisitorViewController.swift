@@ -246,7 +246,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
             inviteAlertView()
-
+            
             //Create OpacityView Frames
             opacityView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
             opacityView.backgroundColor = UIColor.black
@@ -275,12 +275,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     func inviteAlertView() {
         //creating alert controller
         let alert = UIAlertController(title: NAString().inviteButtonAlertViewTitle() , message: NAString().inviteButtonAlertViewMessage(), preferredStyle: .alert)
-
+        
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-
+            
             let dv = NAViewPresenter().myGuestListVC()
-           self.navigationController?.pushViewController(dv, animated: true)
+            self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -337,9 +337,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     //Storing Visitor UID under UsersData -> UsersFlat
                     let value =  Singleton_FlatDetails.shared.flatDetails_Items
                     let val = value.first
-
+                    
                     self.usersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID!)
-
+                    
                     self.usersDataRef?.child(visitorUID!).setValue(NAString().gettrue())
                     
                     //Using else statement & printing error,so the other developers can know what is going on.
