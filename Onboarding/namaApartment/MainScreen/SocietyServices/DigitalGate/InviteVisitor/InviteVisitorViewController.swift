@@ -310,10 +310,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     var status = String()
                     status = NAString().statusNotEntered()
                     
-                    //TODO: Need to replace hardcoded inviterUID with Default User's UID.
-                    var inviterUID = String()
-                    inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
-                    
                     //defining node with type of data in it.
                     let visitorData = [
                         VisitorListFBKeys.uid.key : visitorUID!,
@@ -322,7 +318,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                         VisitorListFBKeys.status.key : status,
                         VisitorListFBKeys.fullName.key : self.txtInvitorName.text! as String,
                         VisitorListFBKeys.inviterUID.key : userUID,
-                        VisitorListFBKeys.inviterUID.key : inviterUID,
                         VisitorListFBKeys.profilePhoto.key : url?.absoluteString
                     ]
                     //Adding visitor data under preApproved visitors

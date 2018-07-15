@@ -32,16 +32,8 @@ extension UITextField{
     }
 }
 
-//Calling Class & Adding in Singleton class
-class Singleton {
-    static let shared = Singleton()
-    var UserDetails = [PersonalDetails]()
-}
-//Creating Array variable to access item of the class.
-var UserDetails = [PersonalDetails]()
-
 class signupViewController: NANavigationViewController {
-     
+    
     @IBOutlet weak var signupScrollView : UIScrollView!
     
     @IBOutlet weak var signup_TxtFullName: UITextField!
@@ -61,7 +53,7 @@ class signupViewController: NANavigationViewController {
     
     //To getMobileString from Previous Screen (OTP View Controller)
     var getNewMobileString = String()
-
+    
     //Firebase Database Reference
     var usersPersonalDetailsRef : DatabaseReference?
     var usersUIDRef : DatabaseReference?
@@ -159,16 +151,13 @@ class signupViewController: NANavigationViewController {
             }
         }
         if profileImage.image != #imageLiteral(resourceName: "ExpectingVisitor") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
-            //Calling Store Users Details function
-           // storeUsersPersonalDetailsInFirebase()
             
-            //Storing data in pojo Class
-            UserDetails.append(PersonalDetails.init(email:self.signup_TxtEmailId.text , fullName:self.signup_TxtFullName.text, phoneNumber:getNewMobileString))
-            Singleton.shared.UserDetails = UserDetails
-        
-            //navigation to next Vc
+            //Navigation to MyFlatDetail Screen With Personal Details Data.
             let dest = NAViewPresenter().myFlatDEtailsVC()
             dest.newProfileImage = self.profileImage.image
+            dest.newMobileNumber = self.getNewMobileString
+            dest.newEmail = self.signup_TxtEmailId.text!
+            dest.newFullName = self.signup_TxtFullName.text!
             self.navigationController?.pushViewController(dest, animated: true)
             
         }
@@ -239,72 +228,17 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
         return  returnValue
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-
+        
+        
         if textField == signup_TxtFullName {
-                lbl_FullName_Validation.isHidden = true
-                signup_TxtFullName.underlined()
+            lbl_FullName_Validation.isHidden = true
+            signup_TxtFullName.underlined()
         }
         if textField == signup_TxtEmailId {
-                lbl_Email_Validation.isHidden = true
-                signup_TxtEmailId.underlined()
+            lbl_Email_Validation.isHidden = true
+            signup_TxtEmailId.underlined()
         }
         return true
     }
 }
 
-extension signupViewController {
-    //Save User Personal Details
-    func storeUsersPersonalDetailsInFirebase() {
-    
-        //storing UID under Users/Private/UID
-        usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
-        
-        //here also hardcoded users UID
-        usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
-        
-        //Storing users data along with their profile photo
-        var usersImageRef: StorageReference?
-        usersImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-        
-        //Compressing profile image and assigning its content type.
-        guard let image = profileImage.image else { return }
-        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
-        
-        let metaDataContentType = StorageMetadata()
-        metaDataContentType.contentType = NAString().imageContentType()
-        
-        //Uploading Visitor image url along with Visitor UID
-        let uploadImageRef = usersImageRef?.child(userUID!)
-        
-        let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
-            
-            uploadImageRef?.downloadURL(completion: { (url, urlError) in
-                
-                if urlError == nil {
-                    
-                    //defining node with type of data in it.
-                    let usersPersonalData = [
-                        UserPersonalListFBKeys.email.key : self.signup_TxtEmailId.text! as String,
-                        UserPersonalListFBKeys.fullName.key : self.signup_TxtFullName.text! as String,
-                        UserPersonalListFBKeys.profilePhoto.key : url?.absoluteString,
-                        UserPersonalListFBKeys.phoneNumber.key : self.getNewMobileString
-                    ]
-                    
-                    //Adding users data under  Users/Private/UID & mapping UID
-                    self.usersPersonalDetailsRef?.setValue(usersPersonalData)
-                    self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
-                    
-                    //Navigation to Flat Detail Screen.
-                    let dest = NAViewPresenter().myFlatDEtailsVC()
-                    self.navigationController?.pushViewController(dest, animated: true)
-                    
-                    //Using else statement & printing error,so the other developers can know what is going on.
-                } else {
-                    print(urlError as Any)
-                }
-            })
-        })
-        uploadTask?.resume()
-    }
-}
