@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-class NAString : NSObject
-{
+class NAString : NSObject {
     //Splash screen strings
     func splash_NammaHeader_Title() -> String {
         return String("Namma Apartments")
@@ -56,7 +55,7 @@ class NAString : NSObject
         return String("We need to verify \(first) account. Please enter the 6 digit verification code sent to \(second) mobile number.")
     }
     
-
+    
     func verify_otp_button() -> String {
         return String("VERIFY OTP")
     }
@@ -149,6 +148,10 @@ class NAString : NSObject
     }
     func i_already_have_an_account() -> String {
         return String("I already have an Account")
+    }
+    //Edit my profile Screen
+    func change_admin_alert_message(name: String) -> String {
+        return String("Are you sure you want to make \(name) as Admin? Note, your admin privileges will be transferred to \(name)")
     }
     
     //Signin screen and Visitor screen
@@ -316,7 +319,7 @@ class NAString : NSObject
     }
     
     func inviteVisitorOTPDesc() -> String {
-        return String("We will send an OTP to your visitor allowing them to enter into your society.")
+        return String("We will send an OTP to your daily service for authentication.")
     }
     func btnInvite() -> String {
         return String("INVITE")
@@ -364,7 +367,7 @@ class NAString : NSObject
     func notifyDigiGateHeader() -> String {
         return String("Notify Digi Gate")
     }
-   
+    
     func expecting_cab_arrival() -> String {
         return String("Expecting Cab Arrival")
     }
@@ -390,17 +393,17 @@ class NAString : NSObject
     func handed_things_to_my_daily_services() -> String {
         return String("Handed things to my Daily Services")
     }
-    func my_Guest() -> String {
-        return String("MY Guests")
-    }
-    func handed_things() -> String {
+    func handed_Things() -> String {
         return String("Handed Things")
+    }
+    func history() -> String {
+        return String("History")
     }
     func my_Daily_Services() -> String {
         return String("My Daily Services")
     }
     
-    func package_number() -> String {
+    func package_vendor_name() -> String {
         return String("Package Vendor")
     }
     
@@ -410,6 +413,12 @@ class NAString : NSObject
     
     func cab_number() -> String {
         return String("Cab Number")
+    }
+    func cab_no() -> String {
+        return String("Cab No:")
+    }
+    func vendor() -> String {
+        return String("Vendor:")
     }
     
     func valid_for() -> String {
@@ -470,6 +479,12 @@ class NAString : NSObject
     func _title_activity_daily_services() -> String {
         return String("DailyServices")
     }
+    func notify_btnClick_Alert_title() -> String {
+        return String("Handed Things Message")
+    }
+    func notify_btnClick_Alert_message() -> String {
+        return String("Handed Things Notification has been sent to your Security Guard.")
+    }
     
     //My daily services
     func car_bike_cleaner() -> String {
@@ -505,7 +520,7 @@ class NAString : NSObject
     func addButtonDailyServicesloadViewTitle() -> String {
         return String("Adding Your Daily Service")
     }
-        
+    
     func dailyServicesOTPDescription() -> String {
         return String("We need to verify your account. Please enter the 6 digit verification code from the text message")
     }
@@ -539,8 +554,8 @@ class NAString : NSObject
         return String("Flats:")
     }
     
-    func invited_by() -> String {
-        return String("Invited By:")
+    func inviter() -> String {
+        return String("Inviter:")
     }
     func call() -> String {
         return String("Call")
@@ -577,27 +592,29 @@ class NAString : NSObject
         return String ("Remove")
     }
     
-    func otp_message_family_member() -> String {
-        return String ("We will send an OTP to your family member for Authentication.")
+    func otp_message_family_member(name : String) -> String {
+        return String ("We will send an OTP to your \(name) for Authentication.")
     }
-   
-    //fire Alarm
+    
+    //Emergency Screen
     func tap_on_bell_icon_to_create_alert() -> String {
         return String ("Tap on bell icon to create alert")
     }
-    
+    func emergency_alert_Title() -> String {
+        return String("Emergency Alert")
+    }
+    func emergency_Alert_Message() -> String {
+        return String("Emergency notification will be sent to the Guard. Press OK to confirm")
+    }
     func emergency_alarm_raised() -> String {
         return String ("Emergency alarm raised")
     }
-    
     func medical_emergency_Title() -> String {
         return String ("Medical Emergency")
     }
-    
     func raise_Fire_Alarm_Title() -> String {
         return String ("Raise Fire Alarm")
     }
-    
     func raise_Theft_Alarm_Title() -> String {
         return String ("Raise Theft Alarm")
     }

@@ -43,4 +43,9 @@ struct Constants {
     static let FIREBASE_CHILD_PHONENUMBER = "phoneNumber"
     static let FIREBASE_CHILD_GRANTACCESS = "grantAccess"
     static let FIREBASE_CHILD_VERIFIED = "verified"
+    static let FIREBASE_AREA = "Chennai"
+    static let FIREBASE_COL = "Air Force Colony"
+    static let FIREBASE_BLOCK = "D-Block"
+    static let FIREBASE_FLAT = "D-101"
+    static let FLAT_Visitor = "visitors"
 }

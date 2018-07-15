@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
-{
-    var ImageList = [#imageLiteral(resourceName: "ExpectingCabs256"),#imageLiteral(resourceName: "ExpectingPackage256"),#imageLiteral(resourceName: "ExpectingVisitor"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
+class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+    
+    var ImageList = [#imageLiteral(resourceName: "ExpectingCabs"),#imageLiteral(resourceName: "ExpectingPackage"),#imageLiteral(resourceName: "ExpectingVisitor"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
     var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed Things To My Guest","Handed Things To My Daily Services"]
     
     override func viewDidLoad() {
@@ -20,18 +20,23 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         super.ConfigureNavBarTitle(title: NAString().notifyDigiGateHeader())
         self.navigationItem.title = ""
         navigationItem.rightBarButtonItem = nil
-
+        
+        //created custom back button for navigating back to Digi gate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    //to navigate back to Digi gate
+    @objc func goBackToDigitGate() {
+        let dv = NAViewPresenter().digiGateVC()
+        self.navigationController?.pushViewController(dv, animated: true)
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ImageList.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NotifyDigiGateCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! NotifyDigiGateCollectionViewCell
         cell.cellImage.image = ImageList[indexPath.row]
         cell.cellLabel.text = ExpectingList[indexPath.row]
         
@@ -49,24 +54,20 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         
         //assign font & size to the labels in cell
         cell.cellLabel.font = NAFont().headerFont()
-        
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             let lv = NAViewPresenter().expectingCabArrivalVC()
             lv.navTitle = NAString().expecting_cab_arrival()
             lv.vendorCabNameString = NAString().cab_number()
-            
             self.navigationController?.pushViewController(lv, animated: true)
             
         case 1:
             let lv1 = NAViewPresenter().expectingCabArrivalVC()
             lv1.navTitle = NAString().expecting_package_arrival()
-            lv1.vendorCabNameString = NAString().package_number()
+            lv1.vendorCabNameString = NAString().package_vendor_name()
             self.navigationController?.pushViewController(lv1, animated: true)
             
         case 2:
@@ -76,16 +77,15 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         case 3:
             let lv3 = NAViewPresenter().handedThingsToMyGuestVC()
             self.navigationController?.pushViewController(lv3, animated: true)
-            lv3.titleName = NAString().my_Guest().capitalized
+            lv3.titleName = NAString().handed_Things().capitalized
             
         case 4:
-            let lv4 = NAViewPresenter().handedThingsToMyGuestVC()
+            let lv4 = NAViewPresenter().handedThingsToMyDailyServiceVC()
             self.navigationController?.pushViewController(lv4, animated: true)
-            lv4.titleName = NAString().my_Daily_Services().capitalized
+            lv4.titleName = NAString().handed_Things().capitalized
             
         default:
             break
         }
-
-}
+    }
 }

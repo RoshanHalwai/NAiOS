@@ -13,38 +13,30 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     var visitorData : DatabaseReference?
-    
+    var userDataRef : DatabaseReference?
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
     var myVisitorList = [NammaApartmentVisitor]()
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     var titleName = String()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
+        .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        .child(Constants.FIREBASE_AREA)
+        .child(Constants.FIREBASE_COL)
+        .child(Constants.FIREBASE_BLOCK)
+        .child(Constants.FIREBASE_FLAT)
+        .child(Constants.FLAT_Visitor).child("J4YMgAZM8HbdtD9KrEr3MVTRDBA3")
         
-        //TODO : Need to Change Hardcode UID
-        myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child(Constants.FIREBASE_CHILD_BANGALORE).child(Constants.FIREBASE_CHILD_SALARPURIA_CAMBRIDGE).child(Constants.FIREBASE_CHILD_BLOCKONE).child(Constants.FIREBASE_CHILD_FLATNO)
-            .child(Constants.FIREBASE_CHILD_VISITORS).child("aMNacKnX44Zk006VZcSng9ilEcF3")
-        
-        myVisitorListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
-            
-            //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
+        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
-                let visitorsUIDS = snapshot.value as? NSDictionary
-                
-                //for loop for getting all the data in tableview
-                for visitorUID in (visitorsUIDS?.allKeys)! {
+               let visitorsUID = snapshot.value as? NSDictionary
+                for visitorUID in (visitorsUID?.allKeys)! {
                     self.visitorData =  Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
                         .child(visitorUID as! String)
-                    
                     self.visitorData?.observeSingleEvent(of: .value, with: {(snapshot) in
-                        let visitorData = snapshot.value as? [String: AnyObject]
-                        
+                       let visitorData = snapshot.value as? [String: AnyObject]
                         let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
                         let fullName = visitorData?[VisitorListFBKeys.fullName.key] as? String
                         let inviterUID = visitorData?[VisitorListFBKeys.inviterUID.key] as? String
@@ -55,7 +47,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                         
                         //creating userAccount model & set earlier created let variables in userObject in the below parameter
                         let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
-                        
+            
                         //Adding visitor in visitor List
                         self.myVisitorList.append(user)
                         
@@ -74,7 +66,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             }
         })
         //Setting & Formatting Navigation bar
-        super.ConfigureNavBarTitle(title: NAString().my_Guest())
+        super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         
         //created custom back button for goto My Visitors List
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigitGate))
@@ -95,7 +87,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Created constant variable to store all the firebase data in it.
         let myList : NammaApartmentVisitor
         myList = myVisitorList[indexPath.row]
-        
+     
         //Created local variable to store Date & Time from firebase
         var dateTimeString : String
         dateTimeString = myList.getdateAndTimeOfVisit()
@@ -106,7 +98,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Assigning date & time separate variables to get data in cell labels.
         cell.lbl_MyVisitorTime.text = timeString
         cell.lbl_MyVisitorDate.text = dateString
-        
         cell.lbl_MyVisitorName.text = myList.getfullName()
         cell.lbl_MyVisitorType.text = NAString().guest()
         
@@ -115,7 +106,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
         //TODO : Need to get Name from Firebase (According To Default User)
-        cell.lbl_InvitedName.text = "Vikas"
+        cell.lbl_InvitedName.text = "NAGARAJU"
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0

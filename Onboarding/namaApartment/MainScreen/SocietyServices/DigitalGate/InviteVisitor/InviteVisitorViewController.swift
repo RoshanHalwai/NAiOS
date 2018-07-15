@@ -35,9 +35,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
     
-    //Display PopUpView Variable
-    var popupView: PopupView!
-    var opacityView = UIView()
     var timer = Timer()
     var count = 5
     
@@ -245,24 +242,16 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
-            inviteAlertView()
 
-            //Create OpacityView Frames
-            opacityView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-            opacityView.backgroundColor = UIColor.black
-            opacityView.alpha = 0.5
-            self.view.addSubview(opacityView)
-            //Create loadView Frames
-            self.popupView = PopupView(frame: CGRect(x: 50, y: 200, width: 300, height: 200))
-            popupView.layer.cornerRadius = 5
-            popupView.layer.masksToBounds = true
-            self.view.addSubview(popupView)
+            btnInviteVisitor.tag = 101
+            OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
+            OpacityView.shared.showingPopupView(view: self)
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
         }
     }
     //Create Timer Function
     @objc func stopTimer() {
-        self.opacityView.isHidden = true
+        OpacityView.shared.hidingPopupView()
         if (count >= 0){
             if(count == 0)
             {
@@ -275,12 +264,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     func inviteAlertView() {
         //creating alert controller
         let alert = UIAlertController(title: NAString().inviteButtonAlertViewTitle() , message: NAString().inviteButtonAlertViewMessage(), preferredStyle: .alert)
-
+        
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-
+            
             let dv = NAViewPresenter().myGuestListVC()
-           self.navigationController?.pushViewController(dv, animated: true)
+            self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -321,6 +310,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     var status = String()
                     status = NAString().statusNotEntered()
                     
+                    //TODO: Need to replace hardcoded inviterUID with Default User's UID.
+                    var inviterUID = String()
+                    inviterUID = "aMNacKnX44Zk006VZcSng9ilEcF3"
+                    
                     //defining node with type of data in it.
                     let visitorData = [
                         VisitorListFBKeys.uid.key : visitorUID!,
@@ -329,6 +322,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                         VisitorListFBKeys.status.key : status,
                         VisitorListFBKeys.fullName.key : self.txtInvitorName.text! as String,
                         VisitorListFBKeys.inviterUID.key : userUID,
+                        VisitorListFBKeys.inviterUID.key : inviterUID,
                         VisitorListFBKeys.profilePhoto.key : url?.absoluteString
                     ]
                     //Adding visitor data under preApproved visitors

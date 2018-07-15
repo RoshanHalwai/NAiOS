@@ -26,7 +26,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     @IBOutlet weak var lbl_Mobile_Validation: UILabel!
     @IBOutlet weak var lbl_Picture_Validation: UILabel!
     @IBOutlet weak var lbl_Email_Validation: UILabel!
-
+    
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
@@ -41,9 +41,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     
-    //Display PopUpView Variable
-    var popupView: PopupView!
-    var opacityView = UIView()
     var timer = Timer()
     var count = 5
     
@@ -57,7 +54,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         super.viewDidLoad()
         // Add border color on profile image
         img_Profile.layer.borderColor = UIColor.black.cgColor
-    
+        
         //hiding error labels
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true
@@ -70,8 +67,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         txt_MobileNo.delegate = self
         txt_Email.delegate = self
         
-       //setting navigation title
-        super.ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
+        //setting navigation title
+        super.ConfigureNavBarTitle(title: NAString().btn_mySweet_home())
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -98,12 +95,11 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.lbl_Mobile_Validation.font = NAFont().descriptionFont()
         self.lbl_Picture_Validation.font = NAFont().descriptionFont()
         self.lbl_Email_Validation.font = NAFont().descriptionFont()
-    
+        self.lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
-        self.lbl_OTPDescription.text = NAString().otp_message_family_member()
         
         //textField formatting & setting
         self.txt_MobileNo.font = NAFont().textFieldFont()
@@ -128,6 +124,23 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
         
+        //created custom back button
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMySweetHome))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    //created custom back button to go back to My Sweet Home
+    @objc func goBackToMySweetHome() {
+        let dv = NAViewPresenter().mySweetHomeVC()
+        self.navigationController?.pushViewController(dv, animated: true)
+    }
+    //Create RelationSegment Action
+    @IBAction func relationSegmentAction() {
+        if Relation_Segment.selectedSegmentIndex == 0 {
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
+        } else {
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "friends")
+        }
     }
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
@@ -285,23 +298,27 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
-                //Create OpacityView Frames
-                opacityView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-                opacityView.backgroundColor = UIColor.black
-                opacityView.alpha = 0.7
-                self.view.addSubview(opacityView)
-                //Create loadView Frames
-                self.popupView = PopupView(frame: CGRect(x: 50, y: 200, width: 300, height: 200))
-                popupView.layer.cornerRadius = 5
-                popupView.layer.masksToBounds = true
-                self.view.addSubview(popupView)
+                btn_addDetails.tag = 103
+                OpacityView.shared.addButtonTagValue = btn_addDetails.tag
+                OpacityView.shared.showingPopupView(view: self)
                 timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
             }
         }
     }
+    //Create Timer Function
+    @objc func stopTimer() {
+        OpacityView.shared.hidingPopupView()
+        if (count >= 0){
+            if(count == 0)
+            {
+                self.addAlertViewAction()
+            }
+            count -= 1
+        }
+    }
     //Create AlertView Action
     func addAlertViewAction() {
-        let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
+        let alertController = UIAlertController(title:NAString().addFamilyMemberTitle(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
         // Create OK button
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().otpViewController()
@@ -311,17 +328,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion:nil)
-    }
-    //Create Timer Function
-    @objc func stopTimer() {
-        self.opacityView.isHidden = true
-        if (count >= 0){
-            if(count == 0)
-            {
-                self.addAlertViewAction()
-            }
-            count -= 1
-        }
     }
     func isValidEmailAddress(emailAddressString: String) -> Bool {
         
@@ -344,8 +350,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
         if textField == txt_Name {
-           lbl_Name_Validation.isHidden = true
-           txt_Name.underlined()
+            lbl_Name_Validation.isHidden = true
+            txt_Name.underlined()
         }
         if textField == txt_Email {
             lbl_Email_Validation.isHidden = true
