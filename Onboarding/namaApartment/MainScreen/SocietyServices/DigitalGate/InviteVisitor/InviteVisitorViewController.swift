@@ -41,7 +41,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     //Creating Firebase DB Reference variable.
     var preApprovedVisitorsRef : DatabaseReference?
     var preApprovedVisitorsMobileNoRef : DatabaseReference?
-    var usersDataRef : DatabaseReference?
+    var userDataRef : DatabaseReference?
     
     //created date picker programtically
     let picker = UIDatePicker()
@@ -327,9 +327,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     let value =  Singleton_FlatDetails.shared.flatDetails_Items
                     let val = value.first
                     
-                    self.usersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID!)
+                    self.userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID!)
                     
-                    self.usersDataRef?.child(visitorUID!).setValue(NAString().gettrue())
+                    self.userDataRef?.child(visitorUID!).setValue(NAString().gettrue())
                     
                     //Using else statement & printing error,so the other developers can know what is going on.
                 } else {

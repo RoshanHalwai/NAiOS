@@ -37,9 +37,7 @@ class MainScreenViewController: NANavigationViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("MY UID IS :", userUID as Any)
-       print("View will Appear")
-//        //calling retreiving function
+        //Calling retreiving User Data function on load.
         self.retrieveUserData()
         
         //Formatting & Setting Segmented Controller.
@@ -83,12 +81,6 @@ class MainScreenViewController: NANavigationViewController
     //For switching the tableview data in between society & apartment services.
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.tableView.reloadData()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-       super.viewWillAppear(true)
-//        print("View will Appear")
-//        //calling retreiving function
-//        self.retrieveUserData()
     }
 }
 extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
@@ -175,16 +167,6 @@ extension MainScreenViewController {
                     userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
                 
                 Singleton_privileges.shared.privileges_Items = userprivileges
-                
-                //Storing Visitor UID under UsersData -> UsersFlat
-                let value =  Singleton_FlatDetails.shared.flatDetails_Items
-                let val = value.first
-                print(val?.apartmentName as Any)
-                print(val?.city as Any)
-                print(val?.societyName as Any)
-                print(val?.flatNumber as Any)
-                print(val?.tenantType as Any)
-                
             }
           })
     }
