@@ -319,7 +319,7 @@ class NAString : NSObject {
     }
     
     func inviteVisitorOTPDesc() -> String {
-        return String("We will send an OTP to your visitor allowing them to enter into your society.")
+        return String("We will send an OTP to your daily service for authentication.")
     }
     func btnInvite() -> String {
         return String("INVITE")
@@ -393,8 +393,8 @@ class NAString : NSObject {
     func handed_things_to_my_daily_services() -> String {
         return String("Handed things to my Daily Services")
     }
-    func my_Guest() -> String {
-        return String("MY Guests")
+    func handed_Things() -> String {
+        return String("Handed Things")
     }
     func history() -> String {
         return String("History")
@@ -592,8 +592,8 @@ class NAString : NSObject {
         return String ("Remove")
     }
     
-    func otp_message_family_member() -> String {
-        return String ("We will send an OTP to your family member for Authentication.")
+    func otp_message_family_member(name : String) -> String {
+        return String ("We will send an OTP to your \(name) for Authentication.")
     }
     
     //fire Alarm
