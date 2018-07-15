@@ -87,6 +87,7 @@
 		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
 		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
 		869306C720F23AF70069305D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869306C620F23AF60069305D /* GoogleService-Info.plist */; };
+		869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */; };
 		86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
 		86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */; };
 		86A4D4A520D57047007890D2 /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
@@ -227,6 +228,7 @@
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
 		869306C520F22D050069305D /* nammaApartment.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = nammaApartment.entitlements; sourceTree = "<group>"; };
 		869306C620F23AF60069305D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentArrival.swift; sourceTree = "<group>"; };
 		86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAActivityIndicator.swift; sourceTree = "<group>"; };
 		86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFirebase.swift; sourceTree = "<group>"; };
 		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
@@ -695,6 +697,7 @@
 			isa = PBXGroup;
 			children = (
 				86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */,
+				869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */,
 			);
 			path = ExpectingCabArrival;
 			sourceTree = "<group>";
@@ -1002,6 +1005,7 @@
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
 				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
+				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
 				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,

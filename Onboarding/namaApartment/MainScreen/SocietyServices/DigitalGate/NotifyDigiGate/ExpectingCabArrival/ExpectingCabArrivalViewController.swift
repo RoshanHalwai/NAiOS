@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ExpectingCabArrivalViewController: NANavigationViewController {
     
@@ -57,8 +58,16 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     //created date picker programtically
     var picker: UIDatePicker?
     
+    //Database References
+    var userDataRef : DatabaseReference?
+    var cabsPrivateRef : DatabaseReference?
+    var cabsPublicRef : DatabaseReference?
+    
+    var finalCabString = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Hiding Cab TextFields & Pacakge Vandor textFields According to Title
         hidingTextFiledAccordingToTitle()
         
@@ -249,7 +258,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = (NAString().dateFormat() + "\t\t" + NAString().timeFormat())
+        date.dateFormat = (NAString().dateFormat() + "\t\t " + NAString().timeFormat())
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
@@ -315,6 +324,9 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
             lbl_cabNumber_Validation.isHidden = true
         }
         if !(txt_CabStateCode.text?.isEmpty)! &&  !(txt_CabRtoNumber.text?.isEmpty)! && !(txt_CabSerialNumberOne.text?.isEmpty)! && !(txt_CabSerialNumberTwo.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
+            
+            //Calling Expecting Cab Function
+            expectingCabArrival()
             inviteAlertView()
         }
         if !(txt_PackageVendor.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
@@ -499,5 +511,56 @@ extension ExpectingCabArrivalViewController {
     }
 }
 
+extension ExpectingCabArrivalViewController {
+    
+    //Creating Function for expecting Package Arrival
+    func expectingCabArrival() {
+        
+        //Concatination of Cab textFields
+        let cabStateCode  = self.txt_CabStateCode.text!
+        let cabRTOCode  = self.txt_CabRtoNumber.text!
+        let cabSerialOne  = self.txt_CabSerialNumberOne.text!
+        let cabSerialTwo = self.txt_CabSerialNumberTwo.text!
+        let hyphen = "-"
+        self.finalCabString = cabStateCode + hyphen + cabRTOCode + hyphen + cabSerialOne + hyphen + cabSerialTwo
+        
+        //getting usersData Form Singaltone class
+        let value = Singleton_FlatDetails.shared.flatDetails_Items
+        let val = value.first
+      
+         cabsPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_PUBLIC)
+        
+        let cabUID : String?
+        cabUID = (cabsPublicRef?.childByAutoId().key)!
+        print("My UID IS:",cabUID as Any)
+        
+        cabsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+       userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID!)
+       
+        
+        //Mapping CabUID with true under UsersData -> Flat
+        userDataRef?.child(cabUID!).setValue(NAString().gettrue())
+        
+        //Mapping Cab Number With  Cab UID
+        cabsPrivateRef?.child(finalCabString).setValue(cabUID)
+        
+        let expectingCabData = [
+            ArrivalListFBKeys.dateAndTimeOfArrival.key : txt_DateTime.text! as String?,
+            ArrivalListFBKeys.inviterUID.key : userUID,
+            ArrivalListFBKeys.reference.key : finalCabString,
+            ArrivalListFBKeys.status.key :NAString().notEntered(),
+            ArrivalListFBKeys.validFor.key : "1 hr"
+        ]
+        self.cabsPublicRef?.child(cabUID!).setValue(expectingCabData)
+    }
+    
+    //Creating Function for Expecting Cab Arrival
+    func expectingPackageArrival() {
+        
+        
+        
+    }
+}
 
 
