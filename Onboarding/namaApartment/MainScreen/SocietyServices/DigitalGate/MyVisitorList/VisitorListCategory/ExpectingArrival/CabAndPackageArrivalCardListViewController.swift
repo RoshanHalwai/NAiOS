@@ -24,8 +24,8 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     var cabsPublicRef : DatabaseReference?
     var packagePublicRef : DatabaseReference?
     
-    var myExpectedCabList = [NAExpectingCabArrival]()
-    var myExpectedPackageList = [NAExpectingPackageArrival]()
+    var myExpectedCabList = [NAExpectingArrival]()
+    var myExpectedPackageList = [NAExpectingArrival]()
     
     /*  Created custom back button for navigating back to My Visitor List VC.
         Formatting & setting navigation bar. */
@@ -79,7 +79,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         let userPersonalValues = personalValue.first
         
         if navTitle == NAString().cab_arrival() {
-            let myCabList : NAExpectingCabArrival
+            let myCabList : NAExpectingArrival
             myCabList = myExpectedCabList[indexPath.row]
             
             var dateTimeString : String
@@ -95,7 +95,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
             cell.lbl_Inviter_Detail.text = userPersonalValues?.fullName
             
         } else {
-            let myPackageList : NAExpectingPackageArrival
+            let myPackageList : NAExpectingArrival
             myPackageList = myExpectedPackageList[indexPath.row]
             
             var dateTimeString : String
@@ -171,10 +171,10 @@ extension CabAndPackageArrivalCardListViewController {
                     self.cabsPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let cabData = snapshot.value as?[String: AnyObject]
-                        let dateAndTimeOfArrival = cabData?[ExpectingCabArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
-                        let reference = cabData?[ExpectingCabArrivalListFBKeys.reference.key] as? String?
-                        let status = cabData?[ExpectingCabArrivalListFBKeys.status.key] as? String?
-                        let cabDetails = NAExpectingCabArrival(dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
+                        let dateAndTimeOfArrival = cabData?[ExpectingArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
+                        let reference = cabData?[ExpectingArrivalListFBKeys.reference.key] as? String?
+                        let status = cabData?[ExpectingArrivalListFBKeys.status.key] as? String?
+                        let cabDetails = NAExpectingArrival(dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
                         self.myExpectedCabList.append(cabDetails)
                         NAActivityIndicator.shared.hideActivityIndicator()
                         self.collection_View.reloadData()
@@ -203,10 +203,10 @@ extension CabAndPackageArrivalCardListViewController {
                     self.packagePublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let packageData = snapshot.value as?[String: AnyObject]
-                        let dateAndTimeOfArrival = packageData?[ExpectingPackageArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
-                        let reference = packageData?[ExpectingPackageArrivalListFBKeys.reference.key] as? String?
-                        let status = packageData?[ExpectingPackageArrivalListFBKeys.status.key] as? String?
-                        let packageDetails = NAExpectingPackageArrival(dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
+                        let dateAndTimeOfArrival = packageData?[ExpectingArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
+                        let reference = packageData?[ExpectingArrivalListFBKeys.reference.key] as? String?
+                        let status = packageData?[ExpectingArrivalListFBKeys.status.key] as? String?
+                        let packageDetails = NAExpectingArrival(dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
                         self.myExpectedPackageList.append(packageDetails)
                         
                         NAActivityIndicator.shared.hideActivityIndicator()

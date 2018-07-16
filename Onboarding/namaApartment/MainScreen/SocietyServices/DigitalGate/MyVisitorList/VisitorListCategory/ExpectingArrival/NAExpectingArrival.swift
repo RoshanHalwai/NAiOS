@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ExpectingArrivalRetrieval.swift
 //  nammaApartment
 //
 //  Created by Vikas Nayak on 16/07/18.
@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
-/* Created enum instead of struct for App optimization and for getting values.
- Use Internationalization, as appropriate. */
-enum ExpectingPackageArrivalListFBKeys : String {
+ /* Created enum instead of struct for App optimization and for getting values.
+    Use Internationalization, as appropriate. */
+enum ExpectingArrivalListFBKeys : String {
     case dateAndTimeOfArrival
     case reference
     case status
@@ -24,7 +24,7 @@ enum ExpectingPackageArrivalListFBKeys : String {
     }
 }
 
-class NAExpectingPackageArrival {
+class NAExpectingArrival {
     
     var dateAndTimeOfArrival : String?
     var reference : String?
@@ -46,5 +46,4 @@ class NAExpectingPackageArrival {
         return status!
     }
 }
-
 
