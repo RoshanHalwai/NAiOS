@@ -207,7 +207,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
         mobileNo = mobileString! as! String
-        self.txtInvitorMobile.text = mobileNo
+        let mobileNumber = mobileNo.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+        print(mobileNumber)
+        self.txtInvitorMobile.text = mobileNumber
     }
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
     @IBAction func btnInviteVisitor(_ sender: UIButton) {
