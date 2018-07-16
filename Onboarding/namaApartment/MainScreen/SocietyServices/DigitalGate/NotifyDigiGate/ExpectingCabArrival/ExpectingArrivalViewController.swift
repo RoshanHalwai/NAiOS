@@ -227,6 +227,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
     }
+    
     //Hiding & Setting First Responder for Cab TextFields & Pacakge Vandor textFields According to Title
     func hidingTextFiledAccordingToTitle() {
         if (navTitle == NAString().expecting_cab_arrival()) {
@@ -237,6 +238,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
             cabNumber_stack.isHidden = true
         }
     }
+    
     //for datePicker
     func createDatePicker() {
         //toolbar
@@ -259,6 +261,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         //set local date to Europe to show 24 hours
         picker?.locale = Locale(identifier: "en_GB")
     }
+    
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
@@ -271,9 +274,11 @@ class ExpectingArrivalViewController: NANavigationViewController {
             txt_DateTime.underlined()
         }
     }
+    
     @IBAction func btnSelectHours(_ sender: UIButton) {
         selectedColor(tag: sender.tag)
     }
+    
     @IBAction func btnNotifyGate(_ sender: Any) {
         if (txt_CabStateCode.text?.isEmpty)! {
             inviteLabelCabNumberTitle()
@@ -338,11 +343,13 @@ class ExpectingArrivalViewController: NANavigationViewController {
             expectingPackageArrival()
         }
     }
+    
     //Creating CablabelNumber validation and text
     func inviteLabelCabNumberTitle() {
         lbl_cabNumber_Validation.isHidden = false
         lbl_cabNumber_Validation.text = NAString().please_fill_details()
     }
+    
     //AlertView For navigation
     func inviteAlertView() {
         //creating alert controller
@@ -362,6 +369,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+    
     //creating function to highlight select button color
     func selectedColor(tag: Int) {
         for button in buttons as [UIButton] {
@@ -377,6 +385,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
             button.tintColor = color
         }
     }
+    
     // Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
     func cabStateCodeAndSerailCodeLength(isCabNumberLength: Int) -> Bool{
         if (isCabNumberLength >= 2) {
@@ -385,6 +394,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
             return false
         }
     }
+    
     func cabSerialNumberLength(isCabSerialNumberLength: Int) -> Bool {
         if (isCabSerialNumberLength >= 4) {
             return true
@@ -392,6 +402,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
             return false
         }
     }
+    
     // Creating move cursor from One textField to another TextField
     func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool {
         //Check if textField has two chacraters
@@ -428,6 +439,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         return true
     }
 }
+
 extension ExpectingArrivalViewController {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

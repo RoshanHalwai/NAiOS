@@ -65,26 +65,32 @@ class NammaApartmentVisitor {
     func getfullName() -> String {
         return fullName!
     }
+    
     //Get DateAndTime
     func getdateAndTimeOfVisit() -> String {
         return dateAndTimeOfVisit!
     }
+    
     //Get Photo
     func getprofilePhoto() -> String? {
         return profilePhoto!
     }
+    
     //Get inviterUID
     func getinviterUID() -> String {
         return inviterUID!
     }
+    
     //Get mobileNumber
     func getmobileNumber() -> String {
         return mobileNumber!
     }
+    
     //Get status
     func getstatus() -> String {
         return status!
     }
+    
     //Get uid
     func getuid() -> String {
         return uid!

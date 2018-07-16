@@ -21,6 +21,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Disable Table view cell selection & cell border line.
         TableView.allowsSelection = false
         self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -48,20 +49,24 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //To navigate back to Notify Digi Gate
     @objc func goBackToNotifyDigiGate() {
         let dv = NAViewPresenter().notifyDigiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     //To Navigate to Guest History VC
     @objc func gotoHandedThingsGuestHistoryVC() {
         let dv = NAViewPresenter().handedThingsGuestHistoryVC()
         dv.titleName = NAString().history().capitalized
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestTableViewCell
         
@@ -141,6 +146,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         }
         return cell
     }
+    
     //Dynamically Change Cell Height while selecting segment Controller
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedRow == 1  && selectedRow != nil && currentTag != nil && currentTag == indexPath.row {
@@ -149,6 +155,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             return HandedThingsToGuestTableViewCell.defaultHeight
         }
     }
+    
     //Dynamically Change Cell Height while selecting segment Controller
     @objc func selectSegment(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {

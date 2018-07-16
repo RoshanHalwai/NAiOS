@@ -73,6 +73,7 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
         }
     
     }
+    
     @IBAction func btnRemove(_ sender: Any) {
          delegate?.deleteData(indx: (index?.row)!, cell: self)
     }

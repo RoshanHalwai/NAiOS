@@ -9,6 +9,7 @@
 import UIKit
 
 class EditMyProfileTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var lbl_Family_Members_List: UILabel!
     
     override func awakeFromNib() {

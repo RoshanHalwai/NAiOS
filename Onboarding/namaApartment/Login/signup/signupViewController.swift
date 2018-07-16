@@ -21,6 +21,7 @@ extension UITextField{
         self.layer.addSublayer(border)
         self.layer.masksToBounds = true
     }
+    
     func redunderlined(){
         let border = CALayer()
         let width = CGFloat(1.0)
@@ -56,6 +57,10 @@ class signupViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Create Name textfield first letter capital
+        signup_TxtFullName.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         //Add border color on profile imageview
         profileImage.layer.borderColor = UIColor.black.cgColor
         
@@ -116,6 +121,12 @@ class signupViewController: NANavigationViewController {
         navigationItem.rightBarButtonItem = nil
         navigationItem.backBarButtonItem = nil
     }
+    
+    //Create name textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
+    }
+    
     @IBAction func signup_BtnSignup(_ sender: Any) {
         let providedEmailAddress = signup_TxtEmailId.text
         let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
@@ -158,6 +169,7 @@ class signupViewController: NANavigationViewController {
             
         }
     }
+    
     @IBAction func signup_BtnLogin(_ sender: UIButton) {
         let lv : loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
         self.navigationController?.setNavigationBarHidden(false, animated: true);
@@ -200,6 +212,7 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profileImage.image = image
@@ -207,6 +220,7 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
     func isValidEmailAddress(emailAddressString: String) -> Bool {
         
         var returnValue = true
@@ -223,8 +237,8 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
         }
         return  returnValue
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         
         if textField == signup_TxtFullName {
             lbl_FullName_Validation.isHidden = true

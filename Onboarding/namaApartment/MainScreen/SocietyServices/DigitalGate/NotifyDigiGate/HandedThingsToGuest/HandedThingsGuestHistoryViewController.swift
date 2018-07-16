@@ -27,15 +27,18 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //to navigate back to handed things My guest VC
     @objc func goBackToHandedThingsGuestVC() {
         let dv = NAViewPresenter().handedThingsToMyGuestVC()
         dv.titleName = NAString().myVisitorViewTitle().capitalized
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! HandedThingsGuestHistoryCollectionViewCell
         

@@ -58,30 +58,34 @@ class NammaApartmentDailyServices {
     func getfullName() -> String {
         return fullName!
     }
+    
     //Get phoneNumber
     func getphoneNumber() -> String {
         return phoneNumber!
     }
+    
     //Get profilePhoto
     func getprofilePhoto() -> String? {
         return profilePhoto!
     }
+    
     //Get providedThings
     func getprovidedThings() -> Bool {
         return providedThings!
     }
+    
     //Get mobileNumber
     func getrating() -> Int {
         return rating!
     }
+    
     //Get timeOfVisit
     func gettimeOfVisit() -> String {
         return timeOfVisit!
     }
+    
     //Get uid
     func getuid() -> String {
         return uid!
     }
-    
-    
 }
