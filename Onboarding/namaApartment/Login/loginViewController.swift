@@ -84,8 +84,8 @@ class loginViewController: NANavigationViewController {
         
         return newLength <= NAString().required_mobileNo_Length() // Bool
     }
+    
     @IBAction func btnSignin(_ sender: Any) {
-        
         lbl_Validation.isHidden = true
         
         if (self.txt_MobileNo.text?.isEmpty)! {
@@ -109,6 +109,7 @@ class loginViewController: NANavigationViewController {
         
     }
 }
+
 //Created Extention to get HexaString For Verification Code
 extension Data {
     init?(hexString: String) {

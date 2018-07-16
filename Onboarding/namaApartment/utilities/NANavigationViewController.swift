@@ -29,6 +29,7 @@ class NANavigationViewController: UIViewController,UITextFieldDelegate {
         infoButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }
+    
     func configureBackBarButton() {
         let backButton = UIButton(type: .system)
         backButton.setImage(#imageLiteral(resourceName: "backk24"), for: .normal)

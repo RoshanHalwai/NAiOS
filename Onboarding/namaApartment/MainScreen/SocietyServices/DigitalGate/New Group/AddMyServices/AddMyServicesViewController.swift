@@ -55,6 +55,10 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Create Name textfield first letter capital
+        txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         //Add border color on profile imageview
         img_Profile.layer.borderColor = UIColor.black.cgColor
         
@@ -139,6 +143,12 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
     }
+    
+    //Create name textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
+    }
+    
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
         
@@ -158,6 +168,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         alert.addAction(acceptAction)
         present(alert, animated: true, completion: nil)
     }
+    
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
@@ -185,6 +196,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             img_Profile.image = image
@@ -192,6 +204,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
     //for datePicker
     func createDatePicker() {
         // toolbar
@@ -207,6 +220,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         // format picker for date
         picker.datePickerMode = .time
     }
+    
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
@@ -218,6 +232,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         lbl_Date_Validation.isHidden = true
         txt_Date.underlined()
     }
+    
     @IBAction func btnSelectContact(_ sender: Any) {
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
@@ -246,15 +261,18 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             present(alert, animated: true, completion: nil)
         }
     }
+    
     //to call default address book app
     func openContacts() {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
         self.present(contactPicker, animated: true, completion: nil)
     }
+    
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
     //user select any contact particular part
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         let fullName = "\(contact.givenName) \(contact.familyName)"
@@ -266,6 +284,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         mobileNo = mobileString! as! String
         self.txt_MobileNo.text = mobileNo
     }
+    
     //identify from which page screen is coming
     func screenComingFrom() {
         if self.navTitle == NAString().add_my_service() {
@@ -273,6 +292,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             self.lbl_OTPDescription.text = NAString().inviteVisitorOTPDesc()
         }
     }
+    
     @IBAction func btnAddDetails(_ sender: Any) {
         if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
@@ -315,6 +335,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             }
         }
     }
+    
     //Create Timer Function
     @objc func stopTimer() {
         OpacityView.shared.hidingPopupView()
@@ -326,6 +347,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             count -= 1
         }
     }
+    
     //Create AlertView Action
     func addAlertViewAction() {
         let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
@@ -339,6 +361,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion:nil)
     }
+    
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == txt_Name {
             txt_MobileNo.becomeFirstResponder()
@@ -348,6 +371,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         return true
     }
 }
+
 extension AddMyServicesViewController {
     //Accept only 10 digit mobile number
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

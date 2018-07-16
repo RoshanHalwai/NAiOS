@@ -74,11 +74,13 @@ class MainScreenViewController: NANavigationViewController {
             apartmentServicesModel(cellTitle: NAString().groceries(), cellImage: #imageLiteral(resourceName: "groceries"))
         ]
     }
+    
     //For switching the tableview data in between society & apartment services.
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.tableView.reloadData()
     }
 }
+
 extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

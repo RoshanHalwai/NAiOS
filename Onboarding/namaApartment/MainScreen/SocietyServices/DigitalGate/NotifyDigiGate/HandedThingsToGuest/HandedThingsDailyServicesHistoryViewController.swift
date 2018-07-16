@@ -25,15 +25,18 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //to navigate back to handed things to My daily services VC
     @objc func goBackToHandedThingsDailyServiceVC() {
         let dv = NAViewPresenter().handedThingsToMyDailyServiceVC()
         dv.titleName = NAString().my_Daily_Services().capitalized
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! HandedThingsDailyServicesHistoryCollectionViewCell
         

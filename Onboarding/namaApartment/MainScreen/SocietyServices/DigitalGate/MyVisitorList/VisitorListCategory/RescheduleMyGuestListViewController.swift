@@ -61,6 +61,7 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         txt_ReTime.delegate = self
         txt_ReDate.delegate = self
     }
+    
     @IBAction func datePicker(_ sender: UIDatePicker) {
         if datePicker.datePickerMode == UIDatePickerMode.date {
             let date = DateFormatter()
@@ -78,24 +79,29 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
             datePicker.minimumDate = NSDate() as Date
         }
     }
+    
     @IBAction func btnCancel(_ sender: UIButton) {
         let lv = NAViewPresenter().myGuestListVC()
         self.navigationController?.pushViewController(lv, animated: true)
         dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func btnReschedule(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
         let lv = NAViewPresenter().myGuestListVC()
         self.navigationController?.pushViewController(lv, animated: true)
     }
+    
     //date TextField Function to display date only on click
     @objc func dateFunction(textField: UITextField) {
         datePicker.datePickerMode = UIDatePickerMode.date
     }
+    
     //time TextField Function to display time only on click
     @objc func timeFunction(textField: UITextField) {
         datePicker.datePickerMode = UIDatePickerMode.time
     }
+    
     // adding image on Date TextField
     func dateTextFieldIcon() {
         txt_ReDate.rightViewMode = UITextFieldViewMode.always
@@ -104,6 +110,7 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         imageView.image = image
         txt_ReDate.rightView = imageView
     }
+    
     // adding image on Time TextField
     func timeTextFieldIcon() {
         txt_ReTime.rightViewMode = UITextFieldViewMode.always

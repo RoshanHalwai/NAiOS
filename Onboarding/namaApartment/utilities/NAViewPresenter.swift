@@ -32,6 +32,7 @@ class NAViewPresenter: NSObject {
     func handedThingsToMyGuestVC() -> HandedThingsToGuestViewController {
         return storyBoard.instantiateViewController(withIdentifier: "handedThingsToGuestVC") as! HandedThingsToGuestViewController
     }
+    
     //Handed Things to my Daily services
     func handedThingsToMyDailyServiceVC() -> HandedThingsToDailyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "handedThingsToServiceVC") as! HandedThingsToDailyServicesViewController
@@ -46,18 +47,23 @@ class NAViewPresenter: NSObject {
     func myVisitorsListVC() -> MyVisitorsListViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myVisitorsListVC") as! MyVisitorsListViewController
     }
+    
     func myDailyServicesVC() -> MyDailyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myDailyServicesVC") as! MyDailyServicesViewController
     }
+    
     func myFamilyMembers() -> AddMyFamilyMembersViewController {
         return storyBoard.instantiateViewController(withIdentifier: "addMyFamilyMembers") as! AddMyFamilyMembersViewController
     }
+    
     func notifyDigiGateVC() -> NotifyDigiGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "notifyDigiGateVC") as! NotifyDigiGateViewController
     }
+    
     func mySweetHomeVC() -> MySweetHomeViewController {
         return storyBoard.instantiateViewController(withIdentifier: "mySweetHomeVC") as! MySweetHomeViewController
     }
+    
     func emergencyVC() -> EmergencyViewController {
         return storyBoard.instantiateViewController(withIdentifier: "emergencyVC") as! EmergencyViewController
     }
@@ -66,10 +72,12 @@ class NAViewPresenter: NSObject {
     func myGuestListVC() -> MyGuestListViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myGuestListVC") as! MyGuestListViewController
     }
+    
     //Cab and Package Arrival Card List VC
     func cabAndPackageArrivalListVC() -> CabAndPackageArrivalCardListViewController {
         return storyBoard.instantiateViewController(withIdentifier: "Cab&PackageCardListVC") as! CabAndPackageArrivalCardListViewController
     }
+    
     //edit My Daily Services VC
     func editMyDailyServices() -> EditMyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "editMyServicesVc") as! EditMyServicesViewController
@@ -83,9 +91,11 @@ class NAViewPresenter: NSObject {
     func mainScreenVCID() -> String {
         return String("mainScreenVC")
     }
+    
     func digiGateVCID() -> String {
         return String("digiGateVC")
     }
+    
     func homeVCID() -> String {
         return String("homeVC")
     }
@@ -93,37 +103,46 @@ class NAViewPresenter: NSObject {
     func main() -> String {
         return String("Main")
     }
+    
     func handedThingsHistoryVCID() -> String {
         return String("historyVC")
     }
+    
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController
     }
+    
     //Add My Services VC
     func addMySerivesVC() -> AddMyServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "addMyDailyServicesVC") as! AddMyServicesViewController
     }
+    
     //signup vc
     func signupVC() -> signupViewController {
         return storyBoard.instantiateViewController(withIdentifier: "signupVC") as! signupViewController
     }
+    
     //myFlatDetailsVC
     func myFlatDEtailsVC() -> myFlatDetailsViewController {
         return storyBoard.instantiateViewController(withIdentifier: "flatDetailsVC") as! myFlatDetailsViewController
     }
+    
     //Login VC
     func loginVC() -> loginViewController {
         return storyBoard.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
     }
+    
     //Namma Apartments Home Screen
     func mainScreenVC() -> MainScreenViewController {
         return storyBoard.instantiateViewController(withIdentifier: "mainScreenVC") as! MainScreenViewController
     }
+    
     //Guest History VC
     func handedThingsGuestHistoryVC() -> HandedThingsGuestHistoryViewController {
         return storyBoard.instantiateViewController(withIdentifier: "GuestHistoryVC") as! HandedThingsGuestHistoryViewController
     }
+    
     //My Daily Service History VC
     func handedThingsServiceHistoryVC() -> HandedThingsDailyServicesHistoryViewController {
         return storyBoard.instantiateViewController(withIdentifier: "DailyServiceHistoryVC") as! HandedThingsDailyServicesHistoryViewController
