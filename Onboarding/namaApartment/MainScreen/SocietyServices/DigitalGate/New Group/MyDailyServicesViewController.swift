@@ -36,7 +36,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         txt_PickTime.underlined()
         
         //calling DatePicker Funtion
@@ -45,7 +44,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         opacity_View.isHidden = true
         popUp_View.isHidden = true
         popUp_View.layer.cornerRadius = 5
-        
         
         // adding image on date TextField
         txt_PickTime.rightViewMode = UITextFieldViewMode.always

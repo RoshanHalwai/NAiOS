@@ -56,6 +56,9 @@ class signupViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Create Name textfield first letter capital
+        signup_TxtFullName.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         //Add border color on profile imageview
         profileImage.layer.borderColor = UIColor.black.cgColor
         
@@ -115,6 +118,10 @@ class signupViewController: NANavigationViewController {
         super.ConfigureNavBarTitle(title: NAString().signup())
         navigationItem.rightBarButtonItem = nil
         navigationItem.backBarButtonItem = nil
+    }
+    //Create name textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
     }
     @IBAction func signup_BtnSignup(_ sender: Any) {
         let providedEmailAddress = signup_TxtEmailId.text
@@ -224,7 +231,6 @@ extension signupViewController : UIImagePickerControllerDelegate,UINavigationCon
         return  returnValue
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
         
         if textField == signup_TxtFullName {
             lbl_FullName_Validation.isHidden = true

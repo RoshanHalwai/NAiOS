@@ -11,8 +11,6 @@ import FirebaseDatabase
 
 class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
     
-    private var addMemberButton = UIButton()
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var opacityView: UIView!
@@ -21,7 +19,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var btn_Cancel: UIButton!
     @IBOutlet weak var btn_ChangeAccess: UIButton!
     @IBOutlet weak var lbl_Grant_Access: UILabel!
-    
+    @IBOutlet weak var btn_AddmyFamilyMember: UIButton!
+
     var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MySweetHomeName =  ["Preeti","Vikas"]
     var MySweetHomeRelation = ["Sister","Brother"]
@@ -29,7 +28,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Corner Radius for popUp View
         popUp_View.layer.cornerRadius = 5
         
@@ -43,28 +41,16 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         //creating back buttom going back to digigate
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
         self.navigationItem.leftBarButtonItem = backButton
-        
         self.navigationItem.hidesBackButton = true
         
+        //Formmating & setting Button
+        self.btn_AddmyFamilyMember.setTitle(NAString().btn_mySweet_home().capitalized, for: .normal)
+        self.btn_AddmyFamilyMember.backgroundColor = NAColor().buttonBgColor()
+        self.btn_AddmyFamilyMember.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        self.btn_AddmyFamilyMember.titleLabel?.font = NAFont().buttonFont()
+        
+       //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().my_sweet_home().capitalized)
-        
-        self.addMemberButton = UIButton(type: .custom)
-        self.addMemberButton.titleLabel?.font = NAFont().buttonFont()
-        self.addMemberButton.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        self.addMemberButton.backgroundColor = UIColor.black
-        self.addMemberButton.setTitle(NAString().btn_mySweet_home(), for: .normal)
-        self.addMemberButton.addTarget(self, action: #selector(self.btnAddFamilyMember(_:)), for: UIControlEvents.touchUpInside)
-        
-        self.view.addSubview(self.addMemberButton)
-    }
-    override func viewWillLayoutSubviews() {
-        //Constrains & Height setting programatically
-        self.addMemberButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            addMemberButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -20),
-            addMemberButton.heightAnchor.constraint(equalToConstant: 39),
-            addMemberButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-            addMemberButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20)])
     }
     @IBAction func btnAddFamilyMember(_ sender: UIButton) {
         let lv = NAViewPresenter().myFamilyMembers()

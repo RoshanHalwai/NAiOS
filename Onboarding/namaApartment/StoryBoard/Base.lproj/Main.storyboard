@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xpH-eD-j9k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a0M-ze-8gm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -3297,6 +3297,16 @@
                                     <constraint firstAttribute="height" constant="128" id="vcf-Hv-nSl"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4Q-Pb-mPR">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="LDw-V7-AzM"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="btnAddFamilyMember:" destination="bdB-r2-sYz" eventType="touchUpInside" id="fpi-cV-EWS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -3304,9 +3314,12 @@
                             <constraint firstItem="fTU-OO-Gc7" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" constant="24" id="8jX-ep-U8K"/>
                             <constraint firstItem="VZr-ya-GF6" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="AGA-NU-yYr"/>
                             <constraint firstItem="VZr-ya-GF6" firstAttribute="top" secondItem="3cz-UB-DR6" secondAttribute="top" constant="13" id="E61-wZ-4nF"/>
+                            <constraint firstItem="b4Q-Pb-mPR" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="EpL-n0-3Mr"/>
                             <constraint firstItem="fTU-OO-Gc7" firstAttribute="centerY" secondItem="I4Y-qU-z9x" secondAttribute="centerY" id="J5s-ot-5kj"/>
                             <constraint firstItem="3cz-UB-DR6" firstAttribute="bottom" secondItem="VZr-ya-GF6" secondAttribute="bottom" id="KPD-Ne-zid"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="trailing" secondItem="3cz-UB-DR6" secondAttribute="trailing" id="LI1-5Y-cUG"/>
+                            <constraint firstItem="b4Q-Pb-mPR" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" id="Mg0-RV-SJT"/>
+                            <constraint firstItem="b4Q-Pb-mPR" firstAttribute="trailing" secondItem="3cz-UB-DR6" secondAttribute="trailing" id="OfM-qB-Z3T"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="top" secondItem="I4Y-qU-z9x" secondAttribute="top" id="X9g-h6-NHb"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" id="elI-O7-ZLB"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="s18-rY-vnW"/>
@@ -3316,6 +3329,7 @@
                     </view>
                     <connections>
                         <outlet property="access_Segment" destination="oLs-Ss-sqJ" id="cc8-Oc-ZjP"/>
+                        <outlet property="btn_AddmyFamilyMember" destination="b4Q-Pb-mPR" id="0U7-VJ-uO3"/>
                         <outlet property="btn_Cancel" destination="uKl-sS-Q3y" id="f4J-sX-iBy"/>
                         <outlet property="btn_ChangeAccess" destination="GQ5-fy-aKr" id="g6v-id-kMq"/>
                         <outlet property="collectionView" destination="VZr-ya-GF6" id="Eid-7H-ZN8"/>

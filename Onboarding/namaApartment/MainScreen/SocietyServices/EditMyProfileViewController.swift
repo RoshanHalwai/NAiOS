@@ -43,6 +43,8 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Create Name textfield first letter capital
+        txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
         txt_Name.underlined()
         txt_Mobile.underlined()
@@ -122,6 +124,10 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         
         //Implemented to get data content size to change height based on data
         self.table_View.addObserver(self, forKeyPath: NAString().tableView_Content_size(), options: NSKeyValueObservingOptions.new, context: nil)
+    }
+    //Create name textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
     }
     //For Resizing TableView based on content
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

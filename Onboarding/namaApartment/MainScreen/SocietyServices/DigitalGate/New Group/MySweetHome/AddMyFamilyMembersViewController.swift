@@ -52,6 +52,9 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Create Name textfield first letter capital
+        txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         // Add border color on profile image
         img_Profile.layer.borderColor = UIColor.black.cgColor
         
@@ -128,6 +131,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMySweetHome))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+    }
+    //Create name textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
     }
     //created custom back button to go back to My Sweet Home
     @objc func goBackToMySweetHome() {

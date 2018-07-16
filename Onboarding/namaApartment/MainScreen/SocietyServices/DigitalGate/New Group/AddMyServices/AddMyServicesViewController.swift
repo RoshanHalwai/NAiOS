@@ -55,6 +55,9 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Create Name textfield first letter capital
+        txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         //Add border color on profile imageview
         img_Profile.layer.borderColor = UIColor.black.cgColor
         
@@ -138,6 +141,10 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         //creating image round
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
+    }
+    //Create name textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
     }
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
