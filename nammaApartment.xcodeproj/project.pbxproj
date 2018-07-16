@@ -83,6 +83,8 @@
 		867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
 		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */; };
 		867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */; };
+		867FF1BA20FC737B00A6A4C9 /* NAExpectingCabArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867FF1B920FC737B00A6A4C9 /* NAExpectingCabArrival.swift */; };
+		867FF1BC20FCA46700A6A4C9 /* NAExpectingPackageArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867FF1BB20FCA46700A6A4C9 /* NAExpectingPackageArrival.swift */; };
 		868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
 		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
 		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
@@ -223,6 +225,8 @@
 		867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestViewController.swift; sourceTree = "<group>"; };
 		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestTableViewCell.swift; sourceTree = "<group>"; };
 		867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySweetHomeViewController.swift; sourceTree = "<group>"; };
+		867FF1B920FC737B00A6A4C9 /* NAExpectingCabArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAExpectingCabArrival.swift; sourceTree = "<group>"; };
+		867FF1BB20FCA46700A6A4C9 /* NAExpectingPackageArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAExpectingPackageArrival.swift; sourceTree = "<group>"; };
 		868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlatDetails.swift; sourceTree = "<group>"; };
 		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
@@ -308,12 +312,11 @@
 		0816E56A20E7672900116FD0 /* VisitorListCategory */ = {
 			isa = PBXGroup;
 			children = (
+				867FF1B820FC70AD00A6A4C9 /* ExpectingArrival */,
 				86BF6A4020A0325200B175A1 /* MyGuestListCollectionViewCell.swift */,
 				86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */,
 				86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */,
 				86B1A8D920D50EAB00D90D88 /* NammaApartmentVisitor.swift */,
-				08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */,
-				08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */,
 			);
 			path = VisitorListCategory;
 			sourceTree = "<group>";
@@ -523,6 +526,17 @@
 				0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */,
 			);
 			path = MySweetHome;
+			sourceTree = "<group>";
+		};
+		867FF1B820FC70AD00A6A4C9 /* ExpectingArrival */ = {
+			isa = PBXGroup;
+			children = (
+				08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */,
+				08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */,
+				867FF1B920FC737B00A6A4C9 /* NAExpectingCabArrival.swift */,
+				867FF1BB20FCA46700A6A4C9 /* NAExpectingPackageArrival.swift */,
+			);
+			path = ExpectingArrival;
 			sourceTree = "<group>";
 		};
 		868D189020DA4A22007AD1D0 /* NAUser */ = {
@@ -990,6 +1004,7 @@
 			files = (
 				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
+				867FF1BA20FC737B00A6A4C9 /* NAExpectingCabArrival.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
 				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,
 				868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */,
@@ -1012,6 +1027,7 @@
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
 				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
+				867FF1BC20FCA46700A6A4C9 /* NAExpectingPackageArrival.swift in Sources */,
 				42329D1A20F9BF80000AA9AF /* OpacityView.swift in Sources */,
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
