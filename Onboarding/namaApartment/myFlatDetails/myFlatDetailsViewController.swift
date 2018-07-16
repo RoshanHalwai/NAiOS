@@ -151,6 +151,7 @@ class myFlatDetailsViewController: NANavigationViewController {
         //set Title in Navigation Bar
         self.navigationItem.title = NAString().My_flat_Details_title()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.txtCity.text = cityString
         self.txtSociety.text = societyString
@@ -174,30 +175,36 @@ class myFlatDetailsViewController: NANavigationViewController {
             segment_ResidentType.isHidden = false
         }
     }
+    
     @IBAction func btnContinue(_ sender: Any) {
         //Calling Function to store UserFlatDetails & Privileges
         storeUsersDetailsInFirebase()
     }
+    
     @IBAction func btnResidentType(_ sender: Any) {
         lbl_Description.isHidden = false
         btnContinue.isHidden = false
         self.view.endEditing(true)
     }
+    
     func hideDetailsofSociety() {
         lbl_Society.isHidden = true
         txtSociety.isHidden = true
         txtSociety.text = ""
     }
+    
     func hideDetailsofAppartment() {
         lbl_Apartment.isHidden = true
         txtApartment.isHidden = true
         txtApartment.text = ""
     }
+    
     func hideDetailsofFlat() {
         lbl_Flat.isHidden = true
         txtFlat.isHidden = true
         txtFlat.text = ""
     }
+    
     func hideDetailsofResidentandContinueButton() {
         lbl_ResidentType.isHidden = true
         segment_ResidentType.isHidden = true
@@ -205,6 +212,7 @@ class myFlatDetailsViewController: NANavigationViewController {
         lbl_Description.isHidden = true
         btnContinue.isHidden = true
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case txtCity:
@@ -225,6 +233,7 @@ class myFlatDetailsViewController: NANavigationViewController {
             break
         }
     }
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchVC") as! SearchTableViewController
         let nav : UINavigationController = UINavigationController(rootViewController: searchVC)

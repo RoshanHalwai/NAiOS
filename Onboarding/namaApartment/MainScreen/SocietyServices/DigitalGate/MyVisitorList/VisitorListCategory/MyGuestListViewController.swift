@@ -10,16 +10,20 @@ import UIKit
 import FirebaseDatabase
 
 class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
+    
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     var visitorData : DatabaseReference?
     var userDataRef : DatabaseReference?
+    
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
     var myVisitorList = [NammaApartmentVisitor]()
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
         .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
@@ -73,14 +77,17 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //created custome back button to go back to My Visitors List
     @objc func goBackToDigitGate() {
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myVisitorList.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyGuestListCollectionViewCell
         
@@ -151,6 +158,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         }
         return cell
     }
+    
     //date action fucntion
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
         // format date
@@ -161,6 +169,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         self.view.endEditing(true)
     }
 }
+
 extension MyGuestListViewController : dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
@@ -187,6 +196,7 @@ extension MyGuestListViewController : dataCollectionProtocol {
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)
     }
+    
     @objc func reloadCollectionData() {
         collectionView.reloadData()
     }

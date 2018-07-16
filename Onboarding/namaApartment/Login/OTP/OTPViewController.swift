@@ -94,6 +94,7 @@ class OTPViewController: NANavigationViewController {
         txtOTP5.underlined()
         txtOTP6.underlined()
     }
+    
     @IBAction func btnVerifyOTP(_ sender: Any) {
         
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {

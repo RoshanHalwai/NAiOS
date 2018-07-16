@@ -33,11 +33,13 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //to navigate back to My Visitor List VC
     @objc func goBackToMyVisitorListVC() {
         let dv = NAViewPresenter().myVisitorsListVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     //Changing label titles in based on Navigation title
     func changeLblTitle() {
         if navTitle == NAString().cab_arrival() {
@@ -48,9 +50,11 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
             vendorCabImage = #imageLiteral(resourceName: "ExpectingPackage")
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! CabAndPackageArrivalCardListCollectionViewCell
         

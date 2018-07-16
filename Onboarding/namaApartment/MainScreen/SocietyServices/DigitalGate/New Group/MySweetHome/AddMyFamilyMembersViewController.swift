@@ -52,6 +52,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Create Name textfield first letter capital
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
@@ -132,15 +133,18 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //Create name textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
+    
     //created custom back button to go back to My Sweet Home
     @objc func goBackToMySweetHome() {
         let dv = NAViewPresenter().mySweetHomeVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     //Create RelationSegment Action
     @IBAction func relationSegmentAction() {
         if Relation_Segment.selectedSegmentIndex == 0 {
@@ -149,6 +153,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             lbl_OTPDescription.text = NAString().otp_message_family_member(name: "friends")
         }
     }
+    
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
         //showing alert controller while giving Grant Access to family members
@@ -169,6 +174,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         alert.addAction(acceptAction)
         present(alert, animated: true, completion: nil)
     }
+    
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
@@ -196,6 +202,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             img_Profile.image = image
@@ -203,6 +210,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func btnSelectContact(_ sender: Any) {
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
@@ -230,15 +238,18 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             present(alert, animated: true, completion: nil)
         }
     }
+    
     //to call default address book app
     func openContacts() {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
         self.present(contactPicker, animated: true, completion: nil)
     }
+    
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
     //user select any contact particular part
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         let fullName = "\(contact.givenName) \(contact.familyName)"
@@ -250,6 +261,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         mobileNo = mobileString! as! String
         self.txt_MobileNo.text = mobileNo
     }
+    
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == txt_Name {
             txt_MobileNo.becomeFirstResponder()
@@ -258,6 +270,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         return true
     }
+    
     @IBAction func btn_Action_addDetails(_ sender: UIButton) {
         let providedEmailAddress = txt_Email.text
         let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
@@ -312,6 +325,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             }
         }
     }
+    
     //Create Timer Function
     @objc func stopTimer() {
         OpacityView.shared.hidingPopupView()
@@ -323,6 +337,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             count -= 1
         }
     }
+    
     //Create AlertView Action
     func addAlertViewAction() {
         let alertController = UIAlertController(title:NAString().addFamilyMemberTitle(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
@@ -336,6 +351,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         alertController.addAction(OKAction)
         self.present(alertController, animated: true, completion:nil)
     }
+    
     func isValidEmailAddress(emailAddressString: String) -> Bool {
         
         var returnValue = true
@@ -352,6 +368,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         return  returnValue
     }
+    
     //Accept only 10 digit mobile number
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}

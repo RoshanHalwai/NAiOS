@@ -36,6 +36,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         txt_PickTime.underlined()
         
         //calling DatePicker Funtion
@@ -77,11 +78,13 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().my_daily_services().capitalized)
     }
+    
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate() {
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     //for creating action sheet to select my daily services
     @IBAction func floatingButton(_ sender: UIButton) {
         let actionSheet = UIAlertController(title:NAString().my_daily_services(), message: nil, preferredStyle: .actionSheet)
@@ -111,6 +114,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     func dailyServiceSelected(alert: UIAlertAction!) {
         let lv = NAViewPresenter().addMySerivesVC()
         
@@ -122,9 +126,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myDailyServicesList.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyDailyServicesCollectionViewCell
         
@@ -199,6 +205,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         }
         return cell
     }
+    
     //for datePicker
     func createDatePicker() {
         //toolbar
@@ -214,6 +221,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         //format picker for date
         picker.datePickerMode = .time
     }
+    
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
@@ -222,14 +230,17 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         txt_PickTime.text = dateString
         self.view.endEditing(true)
     }
+    
     @IBAction func btn_Cancel_Action(_ sender: UIButton) {
         opacity_View.isHidden = true
         popUp_View.isHidden = true
     }
+    
     @IBAction func btn_Reschedule_Action(_ sender: UIButton) {
         opacity_View.isHidden = true
         popUp_View.isHidden = true
     }
+    
     func getMyDailyServicesDataFromFirebase() {
         //Assigning Child from where to get data in Daily Services List.
         //TODO: Right now only showing particular cook's details in the list.
@@ -268,6 +279,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         })
     }
 }
+
 extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
@@ -294,6 +306,7 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)
     }
+    
     @objc func reloadCollectionData() {
         collectionView.reloadData()
     }

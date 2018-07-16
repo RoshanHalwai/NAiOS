@@ -52,6 +52,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Create Name textfield first letter capital
         txtInvitorName.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
@@ -132,10 +133,12 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         btnInviteVisitor.setTitle(NAString().btnInvite().uppercased(), for: .normal)
         btnSelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
     }
+    
     //Create name textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
+    
     //for datePicker
     func createDatePicker(dateTextField : UITextField) {
         // toolbar
@@ -152,6 +155,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         picker.datePickerMode = .dateAndTime
         picker.minimumDate = NSDate() as Date
     }
+    
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
@@ -162,6 +166,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         lbl_Date_Validation.isHidden = true
         txtDate.underlined()
     }
+    
     @IBAction func btnSelectContact(_ sender: Any) {
         let entityType = CNEntityType.contacts
         let authStatus = CNContactStore.authorizationStatus(for: entityType)
@@ -189,6 +194,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             present(alert, animated: true, completion: nil)
         }
     }
+    
     //to call default address book app
     func openContacts() {
         let contactPicker = CNContactPickerViewController.init()
@@ -196,9 +202,11 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //uses did select method here
         self.present(contactPicker, animated: true, completion: nil)
     }
+    
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
     //user select any contact particular part
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         let fullName = "\(contact.givenName) \(contact.familyName)"
@@ -209,6 +217,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         mobileNo = mobileString! as! String
         self.txtInvitorMobile.text = mobileNo
     }
+    
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
     @IBAction func btnInviteVisitor(_ sender: UIButton) {
         if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
@@ -254,6 +263,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
         }
     }
+    
     //Create Timer Function
     @objc func stopTimer() {
         OpacityView.shared.hidingPopupView()
@@ -265,6 +275,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             count -= 1
         }
     }
+    
     //AlertView For navigation
     func inviteAlertView() {
         //creating alert controller
@@ -279,6 +290,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
+    
     //Created Function for inviting visitor with the help of firebase.
     func storeVisitorDetailsInFirebase() {
         //Creating visitors UID
@@ -344,6 +356,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         })
         uploadTask?.resume()
     }
+    
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == txtInvitorName {
             txtInvitorMobile.becomeFirstResponder()
@@ -353,6 +366,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         return true
     }
 }
+
 extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
@@ -386,6 +400,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             img_Profile.image = image
@@ -393,6 +408,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
     //Accept only 10 digit mobile number
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         

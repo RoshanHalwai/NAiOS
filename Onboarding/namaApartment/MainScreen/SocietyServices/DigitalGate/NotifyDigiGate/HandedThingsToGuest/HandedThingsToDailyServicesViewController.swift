@@ -49,20 +49,24 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //to Navigate Back to Notify digi Gate
     @objc func goBackToNotifyDigiGate() {
         let dv = NAViewPresenter().notifyDigiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     //to Navigate to Daily Services History VC
     @objc func gotoHandedThingsServiceHistoryVC() {
         let dv = NAViewPresenter().handedThingsServiceHistoryVC()
         dv.titleName = NAString().history()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToDailyServicesTableViewCell
         
@@ -135,6 +139,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         }
         return cell
     }
+    
     //Dynamically Change Cell Height while selecting segment Controller
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedRow == 1  && selectedRow != nil && currentTag != nil && currentTag == indexPath.row {
@@ -143,6 +148,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
             return HandedThingsToDailyServicesTableViewCell.defaultHeight
         }
     }
+    
     //Dynamically Change Cell Height while selecting segment Controller
     @objc func selectSegment(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {

@@ -28,6 +28,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Corner Radius for popUp View
         popUp_View.layer.cornerRadius = 5
         
@@ -52,19 +53,23 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
        //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().my_sweet_home().capitalized)
     }
+    
     @IBAction func btnAddFamilyMember(_ sender: UIButton) {
         let lv = NAViewPresenter().myFamilyMembers()
         self.navigationController?.pushViewController(lv, animated: true)
         ConfigureNavBarTitle(title: NAString().btn_mySweet_home())
     }
+    
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate() {
         let lv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(lv, animated: true)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return MySweetHomeName.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
@@ -126,17 +131,21 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         }
         return cell
     }
+    
     @IBAction func Cancel_Action(_ sender: UIButton) {
         opacityView.isHidden = true
         popUp_View.isHidden = true
     }
+    
     @IBAction func Change_Button(_ sender: UIButton) {
         opacityView.isHidden = true
         popUp_View.isHidden = true
     }
+    
     @IBAction func aceess_Segment_Action(_ sender: UISegmentedControl) {
     }
 }
+
 extension MySweetHomeViewController : removeCollectionProtocol {
     
     func deleteData(indx: Int, cell: UICollectionViewCell) {
@@ -165,6 +174,7 @@ extension MySweetHomeViewController : removeCollectionProtocol {
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)
     }
+    
     @objc func reloadCollectionData() {
         collectionView.reloadData()
     }

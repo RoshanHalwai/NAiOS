@@ -43,6 +43,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Create Name textfield first letter capital
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
@@ -125,21 +126,25 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         //Implemented to get data content size to change height based on data
         self.table_View.addObserver(self, forKeyPath: NAString().tableView_Content_size(), options: NSKeyValueObservingOptions.new, context: nil)
     }
+    
     //Create name textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
+    
     //For Resizing TableView based on content
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         table_View.layer.removeAllAnimations()
         list_View_Height_Constraint.constant = table_View.contentSize.height + 33
     }
+    
     //tap Gesture method
     @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
         list_View.isHidden = true
         opacity_View.isHidden = true
         self.view.endEditing(true)
     }
+    
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -168,6 +173,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profile_Image.image = image
@@ -175,13 +181,16 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func change_Admin_Action_Btn(_ sender: UIButton) {
         opacity_View.isHidden = false
         list_View.isHidden = false
         table_View.reloadData()
     }
+    
     @IBAction func update_Action_Btn(_ sender: UIButton) {
     }
+    
     //Email Validation Function
     func isValidEmailAddress(emailAddressString: String) -> Bool {
         
@@ -199,6 +208,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         }
         return  returnValue
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if myName != txt_Name.text && myMobile.count == NAString().required_mobileNo_Length() && txt_EmailId.text == myEmail {
             update_btn.isHidden = false
@@ -211,6 +221,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
             update_btn.isHidden = true
         }
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
@@ -299,14 +310,17 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         }
         return true
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return familyMembersList.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! EditMyProfileTableViewCell
         cell.lbl_Family_Members_List.text = familyMembersList[indexPath.row]
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //getting the index path of selected row
         let indexPath = tableView.indexPathForSelectedRow
@@ -317,6 +331,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         
         showAlertWithTitle(Message : currentItem!)
     }
+    
     func showAlertWithTitle(Message: String) {
         let alertController = UIAlertController(title: "Alert Message", message: NAString().change_admin_alert_message(name: Message), preferredStyle: .alert)
         let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
