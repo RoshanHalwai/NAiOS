@@ -9,13 +9,13 @@
 import UIKit
 import FirebaseDatabase
 
+var myVisitorList = [NammaApartmentVisitor]()
 class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     var visitorData : DatabaseReference?
     var userDataRef : DatabaseReference?
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
-    var myVisitorList = [NammaApartmentVisitor]()
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
     override func viewDidLoad() {
@@ -23,12 +23,11 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
         .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-        .child(Constants.FIREBASE_AREA)
-        .child(Constants.FIREBASE_COL)
-        .child(Constants.FIREBASE_BLOCK)
-        .child(Constants.FIREBASE_FLAT)
-        .child(Constants.FLAT_Visitor).child("J4YMgAZM8HbdtD9KrEr3MVTRDBA3")
-        
+        .child(Constants.FIREBASE_CHILD_BANGALORE)
+        .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
+        .child(Constants.FIREBASE_CHILD_ASTER)
+        .child(Constants.FIREBASE_CHILD_FLATNO)
+            .child(Constants.FLAT_Visitor).child(userUID!)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                let visitorsUID = snapshot.value as? NSDictionary
@@ -47,13 +46,9 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                         
                         //creating userAccount model & set earlier created let variables in userObject in the below parameter
                         let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
-            
                         //Adding visitor in visitor List
-                        self.myVisitorList.append(user)
-                        
-                        //Hidding Activity indicator after loading data in the list from firebase.
+                        myVisitorList.append(user)
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        
                         //reload collection view.
                         self.collectionView.reloadData()
                     })
@@ -171,7 +166,7 @@ extension MyGuestListViewController : dataCollectionProtocol {
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             //Remove collection view cell item with animation
-            self.myVisitorList.remove(at: indx)
+            myVisitorList.remove(at: indx)
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class HandedThingsToGuestTableViewCell: UITableViewCell {
     
@@ -42,6 +43,11 @@ class HandedThingsToGuestTableViewCell: UITableViewCell {
     @IBAction func btn_NotifyGate_Action(_ sender: UIButton) {
         if let btnAction = self.objHistoryVC {
             btnAction()
+            Database.database().reference()
+                .child(Constants.FIREBASE_CHILD_VISITORS)
+                .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+                .child("-LHY6LjWGck8nf1D8Bvy").child(Constants.FIREBASE_HANDEDTHINGS).setValue(txt_Description.text!)
+         
         }
     }
 }
