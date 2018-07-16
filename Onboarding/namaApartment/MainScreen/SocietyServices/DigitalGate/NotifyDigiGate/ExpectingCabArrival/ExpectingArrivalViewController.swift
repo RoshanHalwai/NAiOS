@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
-class ExpectingCabArrivalViewController: NANavigationViewController {
+class ExpectingArrivalViewController: NANavigationViewController {
     
     @IBOutlet weak var lbl_cabNumber: UILabel!
     @IBOutlet weak var lbl_DateTime: UILabel!
@@ -331,13 +331,11 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
             
             //Calling Expecting Cab Function
             expectingCabArrival()
-            inviteAlertView()
         }
         if !(txt_PackageVendor.text?.isEmpty)!  && !(txt_DateTime.text?.isEmpty)! &&  (isValidButtonClicked.index(of: true) != nil) {
             
             //Calling Expecting Package Function
             expectingPackageArrival()
-            inviteAlertView()
         }
     }
     //Creating CablabelNumber validation and text
@@ -430,7 +428,7 @@ class ExpectingCabArrivalViewController: NANavigationViewController {
         return true
     }
 }
-extension ExpectingCabArrivalViewController {
+extension ExpectingArrivalViewController {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
@@ -518,7 +516,7 @@ extension ExpectingCabArrivalViewController {
     }
 }
 
-extension ExpectingCabArrivalViewController {
+extension ExpectingArrivalViewController {
     
     //Creating Function for expecting Package Arrival
     func expectingCabArrival() {
@@ -563,6 +561,8 @@ extension ExpectingCabArrivalViewController {
         ]
         //Adding data in Firebase from dictionary
         self.cabsPublicRef?.child(cabUID!).setValue(expectingCabData)
+        //Calling Alert Function After Storing Data in Firebase
+        inviteAlertView()
     }
     
     //Creating Function for Expecting Package Arrival
@@ -588,7 +588,7 @@ extension ExpectingCabArrivalViewController {
         
         
         //Mapping PackageUID with true under UsersData -> Flat
-        userDataPackageRef?.child((userPersonalValues?.phoneNumber)!).setValue(packageUID)
+        userDataPackageRef?.child(packageUID!).setValue(NAString().gettrue())
         
         //Mapping User Mobile Number With Package UID
         packagePrivateRef?.child((userPersonalValues?.phoneNumber)!).setValue(packageUID)
@@ -604,7 +604,8 @@ extension ExpectingCabArrivalViewController {
         ]
         //Adding data in Firebase from dictionary
         self.packagePublicRef?.child(packageUID!).setValue(expectingPackageData)
-        
+        //Calling Alert View Function After Storing Data in Firebase
+        inviteAlertView()
     }
 }
 

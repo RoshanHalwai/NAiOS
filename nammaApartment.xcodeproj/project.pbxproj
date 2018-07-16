@@ -105,7 +105,7 @@
 		86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */; };
 		86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13B209AF45E00D75D0F /* HomeViewController.swift */; };
 		86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */; };
-		86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */; };
+		86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */; };
 		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
 		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
@@ -246,7 +246,7 @@
 		86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateCollectionViewCell.swift; sourceTree = "<group>"; };
 		86C1A13B209AF45E00D75D0F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingCabArrivalViewController.swift; sourceTree = "<group>"; };
+		86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingArrivalViewController.swift; sourceTree = "<group>"; };
 		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
@@ -696,7 +696,7 @@
 		86D19EF820A2B20200FB7DC8 /* ExpectingCabArrival */ = {
 			isa = PBXGroup;
 			children = (
-				86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */,
+				86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */,
 				869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */,
 			);
 			path = ExpectingCabArrival;
@@ -1059,7 +1059,7 @@
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
-				86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */,
+				86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
