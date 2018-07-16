@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-//Created enum instead of struct for App optimization and for getting values.
+ /* Created enum instead of struct for App optimization and for getting values.
+    Use Internationalization, as appropriate. */
 enum ExpectingCabArrivalListFBKeys : String {
     case dateAndTimeOfArrival
     case reference
@@ -16,7 +17,6 @@ enum ExpectingCabArrivalListFBKeys : String {
     
     var key : String {
         switch self {
-        // Use Internationalization, as appropriate.
         case .dateAndTimeOfArrival: return "dateAndTimeOfArrival"
         case .reference: return "reference"
         case .status: return "status"
@@ -35,7 +35,6 @@ class NAExpectingCabArrival {
         self.reference = reference
         self.status = status
     }
-    
     
     func getdateAndTimeOfArrival() -> String {
         return dateAndTimeOfArrival!

@@ -27,9 +27,8 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     var myExpectedCabList = [NAExpectingCabArrival]()
     var myExpectedPackageList = [NAExpectingPackageArrival]()
     
-    /* -> Created custom back button for navigating back to My Visitor List VC.
-       -> Formatting & setting navigation bar.
-       -> */
+    /*  Created custom back button for navigating back to My Visitor List VC.
+        Formatting & setting navigation bar. */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +43,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         self.navigationItem.hidesBackButton = true
     }
     
-    //to navigate back to My Visitor List VC
+    //For navigating back to My Visitor List VC
     @objc func goBackToMyVisitorListVC() {
         let dv = NAViewPresenter().myVisitorsListVC()
         self.navigationController?.pushViewController(dv, animated: true)
@@ -65,14 +64,13 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if navTitle == NAString().cab_arrival() {
             return myExpectedCabList.count
-        }
-        else {
+        } else {
             return myExpectedPackageList.count
         }
     }
     
-    /* -> Loading Expected Package & Cab Data.
-       ->  Getting users Flat Details Form Singaltone class. */
+    /*  Loading Expected Package & Cab Data.
+        Getting users Flat Details Form Singaltone class. */
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! CabAndPackageArrivalCardListCollectionViewCell
@@ -138,7 +136,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         cell.lbl_Status_Detail.font = NAFont().headerFont()
         cell.lbl_Inviter_Detail.font = NAFont().headerFont()
         
-        //setting image round
+       /*Setting round image*/
         cell.image_View.layer.cornerRadius = cell.image_View.frame.size.width/2
         cell.image_View.clipsToBounds = true
         
@@ -151,11 +149,11 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     }
 }
 
+/* Creating Function to get Expecting Cab Arrival Data from Firebase.
+ Getting users Flat Details Form Singleton class.
+ Hiding Activity Indicator & showing error image & message. */
+
 extension CabAndPackageArrivalCardListViewController {
-    
-    /* -> Creating Function to get Expecting Cab Arrival Data from Firebase.
-     ->  Getting users Flat Details Form Singaltone class
-     -> Hiding Activity Indicator & showing error image & message. */
     
     func expectingCabArrival() {
         
@@ -166,7 +164,6 @@ extension CabAndPackageArrivalCardListViewController {
         
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
-                
                 let cabsUID = snapshot.value as? NSDictionary
                 for cabsUID in (cabsUID?.allKeys)! {
                     self.cabsPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_PUBLIC).child(cabsUID as! String)
@@ -177,7 +174,6 @@ extension CabAndPackageArrivalCardListViewController {
                         let dateAndTimeOfArrival = cabData?[ExpectingCabArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
                         let reference = cabData?[ExpectingCabArrivalListFBKeys.reference.key] as? String?
                         let status = cabData?[ExpectingCabArrivalListFBKeys.status.key] as? String?
-                        
                         let cabDetails = NAExpectingCabArrival(dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
                         self.myExpectedCabList.append(cabDetails)
                         NAActivityIndicator.shared.hideActivityIndicator()
@@ -191,10 +187,6 @@ extension CabAndPackageArrivalCardListViewController {
         })
     }
     
-      /* -> Creating Function to get Expecting Package Arrival Data from Firebase.
-         ->  Getting users Flat Details Form Singaltone class
-         -> Hiding Activity Indicator & showing error image & message. */
-    
     func expectingPackageArrival()  {
         
         let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
@@ -204,7 +196,6 @@ extension CabAndPackageArrivalCardListViewController {
         
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
-                
                 let packageUID = snapshot.value as? NSDictionary
                 for vendorUID in (packageUID?.allKeys)! {
                     self.packagePublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_PUBLIC).child(vendorUID as! String)
@@ -215,7 +206,6 @@ extension CabAndPackageArrivalCardListViewController {
                         let dateAndTimeOfArrival = packageData?[ExpectingPackageArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
                         let reference = packageData?[ExpectingPackageArrivalListFBKeys.reference.key] as? String?
                         let status = packageData?[ExpectingPackageArrivalListFBKeys.status.key] as? String?
-                        
                         let packageDetails = NAExpectingPackageArrival(dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
                         self.myExpectedPackageList.append(packageDetails)
                         
@@ -224,7 +214,6 @@ extension CabAndPackageArrivalCardListViewController {
                     })
                 }
             } else {
-               
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
             }
