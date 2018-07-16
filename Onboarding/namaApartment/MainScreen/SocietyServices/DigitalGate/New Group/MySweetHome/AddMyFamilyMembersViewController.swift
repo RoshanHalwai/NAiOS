@@ -257,9 +257,14 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
-        
         mobileNo = mobileString! as! String
-        self.txt_MobileNo.text = mobileNo
+        var mobileNumber = mobileNo.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+        
+        if mobileNumber.count > NAString().required_mobileNo_Length() {
+            let range1 = mobileNumber.characters.index(mobileNumber.startIndex, offsetBy: 2)..<mobileNumber.endIndex
+            mobileNumber = String(mobileNumber[range1])
+        }
+        self.txt_MobileNo.text = mobileNumber
     }
     
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
