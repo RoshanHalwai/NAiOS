@@ -55,10 +55,8 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                         //Adding visitor in visitor List
                         self.myVisitorList.append(user)
                         
-                        //Hidding Activity indicator after loading data in the list from firebase.
                         NAActivityIndicator.shared.hideActivityIndicator()
                         
-                        //reload collection view.
                         self.collectionView.reloadData()
                     })
                 }
