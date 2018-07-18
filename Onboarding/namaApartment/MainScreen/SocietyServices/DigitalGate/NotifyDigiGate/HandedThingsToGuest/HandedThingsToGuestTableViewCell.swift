@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+var UserDataRef : DatabaseReference?
 
 class HandedThingsToGuestTableViewCell: UITableViewCell {
     
@@ -43,11 +44,28 @@ class HandedThingsToGuestTableViewCell: UITableViewCell {
     @IBAction func btn_NotifyGate_Action(_ sender: UIButton) {
         if let btnAction = self.objHistoryVC {
             btnAction()
-            Database.database().reference()
-                .child(Constants.FIREBASE_CHILD_VISITORS)
-                .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
-                .child("-LHY6LjWGck8nf1D8Bvy").child(Constants.FIREBASE_HANDEDTHINGS).setValue(txt_Description.text!)
-         
+            // TODO: need to change UID in Future
+            UserDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+                .child(Constants.FIREBASE_CHILD_BANGALORE)
+                .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
+                .child(Constants.FIREBASE_CHILD_ASTER)
+                .child(Constants.FIREBASE_CHILD_FLATNO)
+                .child(Constants.FLAT_Visitor).child(userUID!)
+            UserDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+                if snapshot.exists(){
+                    for DatavalueesCell in ((snapshot.value as AnyObject).allKeys)!{
+                        let SnapShotValues_Cell = snapshot.value as? NSDictionary
+                        for UserID_Cell  in (SnapShotValues_Cell?.allKeys)! {
+                            let userIDS_Cell = UserID_Cell as! String
+                          // TODO: need to change UID in Future
+                            Database.database().reference()
+                                .child(Constants.FIREBASE_CHILD_VISITORS)
+                                .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+                                .child(userIDS_Cell).child(Constants.FIREBASE_HANDEDTHINGS).setValue(self.txt_Description.text!)
+                        }
+                    }
+                }
+            })
         }
     }
 }

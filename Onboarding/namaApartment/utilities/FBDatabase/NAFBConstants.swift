@@ -30,7 +30,6 @@ struct Constants {
     static let FIREBASE_CHILD_BLOCKONE = "Block-1"
     static let FIREBASE_CHILD_ASTER = "Aster"
     static let FIREBASE_HANDEDTHINGS = "handedThings"
-    
     static let FIREBASE_CHILD_FLATNO = "A-1001"
     static let FIREBASE_CHILD_FLATDETAILS = "flatDetails"
     static let FIREBASE_CHILD_PERSONALDETAILS = "personalDetails"

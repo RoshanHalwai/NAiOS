@@ -1,7 +1,7 @@
 
 
 
-enum VisitorListFBKeys1 : String {
+enum VisitorListFBKeys_History : String {
     case dateAndTimeOfVisit
     case fullName
     case inviterUID
@@ -33,13 +33,7 @@ enum VisitorListFBKeys1 : String {
         }
     }
 }
-
-
-
-
-
-
-class NammaApartmentVisitor1 {
+class NammaApartmentVisitor_History {
     
     //defining strings according to firebase names which is inside the visitor Node.
     private var dateAndTimeOfVisit: String?
@@ -50,8 +44,7 @@ class NammaApartmentVisitor1 {
     private var status: String?
     private var uid: String?
     private var Things: String?
-    
-    
+   
     //initilaize the variables
     init(dateAndTimeOfVisit: String?,fullName: String?,inviterUID: String?,mobileNumber: String?,profilePhoto: String?,status: String?,uid: String?,Things:String) {
         

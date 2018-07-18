@@ -12,8 +12,13 @@ import FirebaseDatabase
 class HandedThingsGuestHistoryViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var HandedThingsList = [NammaApartmentVisitor1]()
+    var HandedThingsList = [NammaApartmentVisitor_History]()
     var HandedHistory : DatabaseReference?
+    var Vistitor_UID = [String]()
+    var Vistitor_Main_UIDs = [String]()
+    var HandedDataRef : DatabaseReference?
+    var UserDataRef : DatabaseReference?
+    var Visitor_Ref : DatabaseReference?
     //set title from previous page
     var titleName =  String()
     override func viewDidLoad() {
@@ -21,42 +26,64 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
-        HandedHistory = Database.database().reference()
-            .child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child("-LHY6LjWGck8nf1D8Bvy")
-        HandedHistory?.observeSingleEvent(of: .value, with: {(snapshot) in
-            if snapshot.exists() {
-                self.HandedThingsList.removeAll()
-                let visitorData = snapshot.value as? [String: AnyObject]
-                let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys1.dateAndTimeOfVisit.key] as? String
-                let fullName = visitorData?[VisitorListFBKeys1.fullName.key] as? String
-                let inviterUID = visitorData?[VisitorListFBKeys1.inviterUID.key] as? String
-                let mobileNumber = visitorData?[VisitorListFBKeys1.mobileNumber.key] as? String
-                let profilePhoto = visitorData?[VisitorListFBKeys1.profilePhoto.key] as? String
-                let status = visitorData?[VisitorListFBKeys1.status.key] as? String
-                let uid = visitorData?[VisitorListFBKeys1.uid.key] as? String
-                let Things = visitorData?[VisitorListFBKeys1.handedThings.key] as? String
-                //    creating userAccount model & set earlier created let variables in userObject in the below parameter
-                let user = NammaApartmentVisitor1(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status:
-                    status, uid: uid, Things: Things!)
-                self.relaod()
-                self.HandedThingsList.append(user)
+        // TODO: need to change UID in Future
+        UserDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+            .child(Constants.FIREBASE_CHILD_BANGALORE)
+            .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
+            .child(Constants.FIREBASE_CHILD_ASTER)
+            .child(Constants.FIREBASE_CHILD_FLATNO)
+            .child(Constants.FLAT_Visitor).child(userUID!)
+        UserDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+            if snapshot.exists(){
+                for Datavaluees in ((snapshot.value as AnyObject).allKeys)!{
+                    let SnapShotValues = snapshot.value as? NSDictionary
+                    for UserID  in (SnapShotValues?.allKeys)! {
+                        let userIDS = UserID as! String
+                         // TODO: need to change UID in Future
+                        self.Visitor_Ref =  Database.database().reference()
+                            .child(Constants.FIREBASE_CHILD_VISITORS)
+                            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+                            .child(userIDS)
+                        self.Visitor_Ref?.observeSingleEvent(of: .value, with: {(snapshot) in
+                            if snapshot.exists() {
+                                self.HandedThingsList.removeAll()
+                                let visitorData = snapshot.value as? [String: AnyObject]
+                                let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys_History.dateAndTimeOfVisit.key] as? String
+                                let fullName = visitorData?[VisitorListFBKeys_History.fullName.key] as? String
+                                let inviterUID = visitorData?[VisitorListFBKeys_History.inviterUID.key] as? String
+                                let mobileNumber = visitorData?[VisitorListFBKeys_History.mobileNumber.key] as? String
+                                let profilePhoto = visitorData?[VisitorListFBKeys_History.profilePhoto.key] as? String
+                                let status = visitorData?[VisitorListFBKeys_History.status.key] as? String
+                                let uid = visitorData?[VisitorListFBKeys_History.uid.key] as? String
+                                let Things = visitorData?[VisitorListFBKeys_History.handedThings.key] as? String
+                                //    creating userAccount model & set earlier created let variables in userObject in the below parameter
+                                let user = NammaApartmentVisitor_History(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status:
+                                    status, uid: uid, Things: Things!)
+                                self.CollectionReload()
+                                self.HandedThingsList.append(user)
+                                self.CollectionReload()
+                            }
+                        })
+                    }
+                }
                 
             }
         })
+        
         //created custom back button
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToHandedThingsGuestVC))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
- 
-    func relaod()
+    
+    //CollectionView Reload with Background Thread
+    func CollectionReload()
     {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
-
+    
     //to navigate back to handed things My guest VC
     @objc func goBackToHandedThingsGuestVC() {
         let dv = NAViewPresenter().handedThingsToMyGuestVC()
@@ -77,7 +104,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         let VisitedBy = UserDetails_Data?.fullName
         cell.lbl_Visitor_Detail.text = SavedValues.getfullName()
         let dateTimeString = SavedValues.getdateAndTimeOfVisit()
-            //Created array to spilt Date & time in separate variables
+        //Created array to spilt Date & time in separate variables
         let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
         let dateString: String = arrayOfDateTime[0]
         let timeString: String = arrayOfDateTime[1]
@@ -103,7 +130,6 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         cell.lbl_InTime_Type.font = NAFont().textFieldFont()
         cell.lbl_Inviter_Type.font = NAFont().textFieldFont()
         cell.lbl_Things_Type.font = NAFont().textFieldFont()
-        
         cell.lbl_Visitor_Detail.font = NAFont().headerFont()
         cell.lbl_Date_Detail.font = NAFont().headerFont()
         cell.lbl_InTime_Detail.font = NAFont().headerFont()
@@ -116,5 +142,5 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         return cell
     }
     
-  
+    
 }
