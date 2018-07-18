@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 
+var myVisitorList = [NammaApartmentVisitor]()
 class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
     
     //Created variable of DBReference for storing data in firebase
@@ -17,7 +18,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     var userDataRef : DatabaseReference?
     
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
-    var myVisitorList = [NammaApartmentVisitor]()
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
     
@@ -25,22 +25,23 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         super.viewDidLoad()
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
+        // TODO: need to change UID in Future
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
-        .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-        .child(Constants.FIREBASE_AREA)
-        .child(Constants.FIREBASE_COL)
-        .child(Constants.FIREBASE_BLOCK)
-        .child(Constants.FIREBASE_FLAT)
-        .child(Constants.FLAT_Visitor).child("J4YMgAZM8HbdtD9KrEr3MVTRDBA3")
-        
+            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+            .child(Constants.FIREBASE_CHILD_BANGALORE)
+            .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
+            .child(Constants.FIREBASE_CHILD_ASTER)
+            .child(Constants.FIREBASE_CHILD_FLATNO)
+            .child(Constants.FLAT_Visitor).child(userUID!)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
-               let visitorsUID = snapshot.value as? NSDictionary
+                let visitorsUID = snapshot.value as? NSDictionary
                 for visitorUID in (visitorsUID?.allKeys)! {
+                    // TODO: need to change UID in Future
                     self.visitorData =  Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
                         .child(visitorUID as! String)
                     self.visitorData?.observeSingleEvent(of: .value, with: {(snapshot) in
-                       let visitorData = snapshot.value as? [String: AnyObject]
+                        let visitorData = snapshot.value as? [String: AnyObject]
                         let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
                         let fullName = visitorData?[VisitorListFBKeys.fullName.key] as? String
                         let inviterUID = visitorData?[VisitorListFBKeys.inviterUID.key] as? String
@@ -51,12 +52,12 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                         
                         //creating userAccount model & set earlier created let variables in userObject in the below parameter
                         let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
-            
                         //Adding visitor in visitor List
-                        self.myVisitorList.append(user)
-                        
+                        myVisitorList.append(user)
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        
+                        //reload collection view.
+                        myVisitorList.append(user)
+                        NAActivityIndicator.shared.hideActivityIndicator()
                         self.collectionView.reloadData()
                     })
                 }
@@ -92,7 +93,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Created constant variable to store all the firebase data in it.
         let myList : NammaApartmentVisitor
         myList = myVisitorList[indexPath.row]
-     
+        
         //Created local variable to store Date & Time from firebase
         var dateTimeString : String
         dateTimeString = myList.getdateAndTimeOfVisit()
@@ -173,12 +174,11 @@ extension MyGuestListViewController : dataCollectionProtocol {
         
         //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
-        
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             //Remove collection view cell item with animation
-            self.myVisitorList.remove(at: indx)
+            myVisitorList.remove(at: indx)
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity

@@ -1,16 +1,7 @@
-//
-//  MyVisitorListFB.swift
-//  nammaApartment
-//
-//  Created by Vikas Nayak on 16/06/18.
-//  Copyright © 2018 Vikas Nayak. All rights reserved.
-//
 
-import Foundation
-import UIKit
 
-//Created enum instead of struct for App optimization and for getting values.
-enum VisitorListFBKeys : String {
+
+enum VisitorListFBKeys_History : String {
     case dateAndTimeOfVisit
     case fullName
     case inviterUID
@@ -18,6 +9,8 @@ enum VisitorListFBKeys : String {
     case profilePhoto
     case status
     case uid
+    case handedThings
+    
     var key : String {
         switch self {
         // Use Internationalization, as appropriate.
@@ -33,11 +26,15 @@ enum VisitorListFBKeys : String {
             return "status"
         case .uid:
             return "uid"
+        case .handedThings:
+            return "handedThings"
+            
+            
         }
     }
 }
-
-class NammaApartmentVisitor {
+class NammaApartmentVisitor_History {
+    
     //defining strings according to firebase names which is inside the visitor Node.
     private var dateAndTimeOfVisit: String?
     private var fullName: String?
@@ -46,8 +43,11 @@ class NammaApartmentVisitor {
     private var profilePhoto: String?
     private var status: String?
     private var uid: String?
+    private var Things: String?
+   
     //initilaize the variables
-    init(dateAndTimeOfVisit: String?,fullName: String?,inviterUID: String?,mobileNumber: String?,profilePhoto: String?,status: String?,uid: String?) {
+    init(dateAndTimeOfVisit: String?,fullName: String?,inviterUID: String?,mobileNumber: String?,profilePhoto: String?,status: String?,uid: String?,Things:String) {
+        
         self.dateAndTimeOfVisit = dateAndTimeOfVisit!
         self.fullName = fullName!
         self.inviterUID = inviterUID
@@ -55,8 +55,9 @@ class NammaApartmentVisitor {
         self.profilePhoto = profilePhoto
         self.status = status
         self.uid = uid
+        self.Things = Things
     }
-   
+    
     //Get FullName
     func getfullName() -> String {
         return fullName!
@@ -69,24 +70,23 @@ class NammaApartmentVisitor {
     func getprofilePhoto() -> String? {
         return profilePhoto!
     }
-    
     //Get inviterUID
     func getinviterUID() -> String {
         return inviterUID!
     }
-    
     //Get mobileNumber
     func getmobileNumber() -> String {
         return mobileNumber!
     }
-    
     //Get status
     func getstatus() -> String {
         return status!
     }
-    
     //Get uid
     func getuid() -> String {
         return uid!
+    }
+    func getThings() -> String {
+        return Things!
     }
 }
