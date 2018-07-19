@@ -48,8 +48,15 @@ class MainScreenViewController: NANavigationViewController {
         
        //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().splash_NammaHeader_Title())
-        navigationItem.rightBarButtonItem = nil
+        //TODO: Need this commented line after implementing Navigation Drawer.
+       // navigationItem.rightBarButtonItem = nil
         super.navigationItem.hidesBackButton = true
+        
+        let logoutButton = UIButton(type: .system)
+        logoutButton.setImage(#imageLiteral(resourceName: "signout"), for: .normal)
+        logoutButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
      
     //assigning values in struct
         societyData = [
@@ -73,6 +80,16 @@ class MainScreenViewController: NANavigationViewController {
             apartmentServicesModel(cellTitle: NAString().driver(),cellImage:  #imageLiteral(resourceName: "Newdriver")),
             apartmentServicesModel(cellTitle: NAString().groceries(), cellImage: #imageLiteral(resourceName: "groceries"))
         ]
+    }
+    
+    //To Logout the current user
+    @objc func logout() {
+        try! Auth.auth().signOut()
+        if self.storyboard != nil {
+            let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
+            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
+            self.present(NavLogin, animated: true)
+        }
     }
     
     //For switching the tableview data in between society & apartment services.
