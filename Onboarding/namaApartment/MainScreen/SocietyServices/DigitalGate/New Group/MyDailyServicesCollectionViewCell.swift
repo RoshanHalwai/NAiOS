@@ -42,7 +42,7 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     @IBOutlet weak var lbl_Call: UILabel!
     
     //created object to call button action in cell class
-     var yourobj : (() -> Void)? = nil
+    var yourobj : (() -> Void)? = nil
     
     //calling object on Cancel button action
     @IBAction func btnCancel(_ sender: UIButton)
@@ -70,7 +70,6 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     @IBAction func btnMessage(_ sender: UIButton)
     {
         if (MFMessageComposeViewController.canSendText()) {
-            
             let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
             messageSheet.messageComposeDelegate = self
             
@@ -86,6 +85,7 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
             alert.addAction(UIAlertAction(title:NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
         }
     }
+    
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         
         controller.dismiss(animated: true, completion: nil)

@@ -47,6 +47,7 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         switch indexPath.row {

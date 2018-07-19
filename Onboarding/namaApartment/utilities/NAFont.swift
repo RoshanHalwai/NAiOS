@@ -19,6 +19,10 @@ class NAFont: NSObject {
         return UIFont(name: "Lato-Bold", size: 14)!
     }
     
+    func popupViewFont() -> UIFont {
+        return UIFont(name: "Lato-Regular", size: 14)!
+    }
+    
     func textFieldFont() -> UIFont {
         return UIFont(name: "Lato-Regular", size: 18)!
     }
@@ -41,5 +45,8 @@ class NAFont: NSObject {
     
     func layoutFeatureErrorFont() -> UIFont {
         return UIFont(name: "Lato-Italic", size: 18)!
+    }
+    func popUpButtonFont() -> UIFont {
+        return UIFont(name: "Lato-Regular", size: 18)!
     }
 }

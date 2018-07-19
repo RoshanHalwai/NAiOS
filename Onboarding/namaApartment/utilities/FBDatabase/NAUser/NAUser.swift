@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 class NAUser {
     
@@ -18,7 +19,7 @@ class NAUser {
     var uid : String?
     
      //initiliazing variables
-    init(uid: String?,flatDetails: UserFlatDetails,personalDetails: UserFlatDetails,privileges: UserPrivileges ) {
+    init(uid: String?,flatDetails: UserFlatDetails,personalDetails: UserFlatDetails,privileges: UserPrivileges) {
     
         self.uid = uid
         self.flatDetails = [flatDetails]
@@ -27,9 +28,10 @@ class NAUser {
     }
     
      //creating structure for firebase to get data on it.
-    struct NAUser {
+    struct NAUserStruct {
         
         static let uid = "uid"
+        static let tokenId = "tokenId"
         static let flatDetails = "flatDetails"
         static let privileges = "privileges"
         static let personalDetails = "personalDetails"

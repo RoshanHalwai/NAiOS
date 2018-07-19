@@ -34,16 +34,19 @@ class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewCo
         //TODO : Need to change mobile number here
          UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
     }
+    
     //calling object on Reschedule button action
     @IBAction func btnReschedule(_ sender: UIButton) {
         if let btnAction = self.objReschduling {
             btnAction()
         }
     }
+    
     //calling object on Cancel button action
     @IBAction func btnCancel(_ sender: UIButton) {
        delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
+    
     //To message your visitor directly from app
     @IBAction func btnMessage(_ sender: UIButton) {
          //TODO : Need to change mobile number here
@@ -60,6 +63,7 @@ class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewCo
             alert.addAction(UIAlertAction(title: NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
         }
     }
+    
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
     }

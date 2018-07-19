@@ -26,7 +26,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     @IBOutlet weak var lbl_Mobile_Validation: UILabel!
     @IBOutlet weak var lbl_Picture_Validation: UILabel!
     @IBOutlet weak var lbl_Email_Validation: UILabel!
-
+    
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_CountryCode: UITextField!
@@ -41,19 +41,24 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var timer = Timer()
+    var count = 5
+    
     //to set navigation title
     var navTitle: String?
     
     //gettig data from previous screen string
     var AddOtpString = String()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Create Name textfield first letter capital
+        txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         // Add border color on profile image
         img_Profile.layer.borderColor = UIColor.black.cgColor
-    
+        
         //hiding error labels
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true
@@ -66,11 +71,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         txt_MobileNo.delegate = self
         txt_Email.delegate = self
         
-       //setting navigation title
-        super.ConfigureNavBarTitle(title: NAString().addFamilyMemberTitle())
-        
-        //become first responder
-        self.txt_Name.becomeFirstResponder()
+        //setting navigation title
+        super.ConfigureNavBarTitle(title: NAString().btn_mySweet_home())
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -97,12 +99,11 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.lbl_Mobile_Validation.font = NAFont().descriptionFont()
         self.lbl_Picture_Validation.font = NAFont().descriptionFont()
         self.lbl_Email_Validation.font = NAFont().descriptionFont()
-    
+        self.lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
-        self.lbl_OTPDescription.text = NAString().otp_message_family_member()
         
         //textField formatting & setting
         self.txt_MobileNo.font = NAFont().textFieldFont()
@@ -127,10 +128,34 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
         
+        //created custom back button
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMySweetHome))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
+    
+    //Create name textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
+    }
+    
+    //created custom back button to go back to My Sweet Home
+    @objc func goBackToMySweetHome() {
+        let dv = NAViewPresenter().mySweetHomeVC()
+        self.navigationController?.pushViewController(dv, animated: true)
+    }
+    
+    //Create RelationSegment Action
+    @IBAction func relationSegmentAction() {
+        if Relation_Segment.selectedSegmentIndex == 0 {
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
+        } else {
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "friends")
+        }
+    }
+    
     //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
-        
         //showing alert controller while giving Grant Access to family members
         let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()), preferredStyle: .alert)
         
@@ -149,6 +174,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         alert.addAction(acceptAction)
         present(alert, animated: true, completion: nil)
     }
+    
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
@@ -176,6 +202,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             img_Profile.image = image
@@ -211,31 +238,44 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             present(alert, animated: true, completion: nil)
         }
     }
+    
     //to call default address book app
     func openContacts() {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
         self.present(contactPicker, animated: true, completion: nil)
     }
+    
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         picker.dismiss(animated: true, completion: nil)
     }
+    
     //user select any contact particular part
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         let fullName = "\(contact.givenName) \(contact.familyName)"
         self.txt_Name.text = fullName
         
-        lbl_Mobile_Validation.isHidden = true
-        lbl_Name_Validation.isHidden = true
-        txt_MobileNo.underlined()
-        txt_Name.underlined()
-        
         var mobileNo = NAString().mobile_number_not_available()
         let mobileString = ((((contact.phoneNumbers[0] as AnyObject).value(forKey: "labelValuePair") as AnyObject).value(forKey: "value") as AnyObject).value(forKey: "stringValue"))
-        
         mobileNo = mobileString! as! String
-        self.txt_MobileNo.text = mobileNo
+        var mobileNumber = mobileNo.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
+        
+        if mobileNumber.count > NAString().required_mobileNo_Length() {
+            let range1 = mobileNumber.characters.index(mobileNumber.startIndex, offsetBy: 2)..<mobileNumber.endIndex
+            mobileNumber = String(mobileNumber[range1])
+        }
+        self.txt_MobileNo.text = mobileNumber
     }
+    
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txt_Name {
+            txt_MobileNo.becomeFirstResponder()
+        } else if textField == txt_MobileNo {
+            txt_Email.becomeFirstResponder()
+        }
+        return true
+    }
+    
     @IBAction func btn_Action_addDetails(_ sender: UIButton) {
         let providedEmailAddress = txt_Email.text
         let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
@@ -249,21 +289,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 txt_Email.redunderlined()
             }
         }
-        if (txt_Name.text?.isEmpty)! && (txt_MobileNo.text?.isEmpty)! {
-            lbl_Name_Validation.isHidden = false
-            txt_Name.redunderlined()
-            lbl_Name_Validation.text = NAString().please_enter_name()
-            lbl_Mobile_Validation.isHidden = false
-            txt_MobileNo.redunderlined()
-            lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
-            lbl_Email_Validation.isHidden = false
-            txt_Email.redunderlined()
-            lbl_Email_Validation.text = NAString().please_enter_email()
-        } else {
-            lbl_Name_Validation.isHidden = true
-            lbl_Mobile_Validation.isHidden = true
-        }
-        if img_Profile.image == #imageLiteral(resourceName: "imageIcon") {
+        if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
             lbl_Picture_Validation.text = NAString().please_upload_Image()
         }
@@ -284,11 +310,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             lbl_Mobile_Validation.isHidden = false
             lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
             txt_MobileNo.redunderlined()
-        } else {
-            lbl_Mobile_Validation.isHidden = true
-            txt_MobileNo.underlined()
-        }
-        if (!(txt_MobileNo.text?.isEmpty)!) && (txt_MobileNo.text?.count != NAString().required_mobileNo_Length()) {
+        } else if (!(txt_MobileNo.text?.isEmpty)!) && (txt_MobileNo.text?.count != NAString().required_mobileNo_Length()) {
             lbl_Mobile_Validation.isHidden = false
             txt_MobileNo.redunderlined()
             lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
@@ -296,20 +318,45 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
-        if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "imageIcon") {
-        
+        if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if(grantAcess_Segment.selectedSegmentIndex == 0) {
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
-                //if NO is selected then directly it will go to OTP Page.
-                let lv = NAViewPresenter().otpViewController()
-                let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
-                lv.newOtpString = familyString
-                self.navigationController?.pushViewController(lv, animated: true)
+                btn_addDetails.tag = 103
+                OpacityView.shared.addButtonTagValue = btn_addDetails.tag
+                OpacityView.shared.showingPopupView(view: self)
+                timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
             }
         }
     }
+    
+    //Create Timer Function
+    @objc func stopTimer() {
+        OpacityView.shared.hidingPopupView()
+        if (count >= 0){
+            if(count == 0)
+            {
+                self.addAlertViewAction()
+            }
+            count -= 1
+        }
+    }
+    
+    //Create AlertView Action
+    func addAlertViewAction() {
+        let alertController = UIAlertController(title:NAString().addFamilyMemberTitle(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
+        // Create OK button
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            let lv = NAViewPresenter().otpViewController()
+            let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
+            lv.newOtpString = familyString
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
     func isValidEmailAddress(emailAddressString: String) -> Bool {
         
         var returnValue = true
@@ -326,39 +373,23 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         return  returnValue
     }
+    
     //Accept only 10 digit mobile number
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
-    
-        if textField == txt_Email {
-            if (newLength == NAString().zero_length()) {
-                lbl_Email_Validation.isHidden = false
-                txt_Email.redunderlined()
-                lbl_Email_Validation.text = NAString().please_enter_email()
-            } else {
-                lbl_Email_Validation.isHidden = true
-                txt_Email.underlined()
-            }
-        }
         if textField == txt_Name {
-            if (newLength == NAString().zero_length()) {
-                lbl_Name_Validation.isHidden = false
-                txt_Name.redunderlined()
-                lbl_Name_Validation.text = NAString().please_enter_name()
-            } else {
-                lbl_Name_Validation.isHidden = true
-                txt_Name.underlined()
-            }
+            lbl_Name_Validation.isHidden = true
+            txt_Name.underlined()
+        }
+        if textField == txt_Email {
+            lbl_Email_Validation.isHidden = true
+            txt_Email.underlined()
         }
         if textField == txt_MobileNo {
+            lbl_Mobile_Validation.isHidden = true
+            txt_MobileNo.underlined()
             if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
-                lbl_Mobile_Validation.isHidden = true
-                txt_MobileNo.underlined()
-            } else {
-                lbl_Mobile_Validation.isHidden = false
-                txt_MobileNo.redunderlined()
-                lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
             }
             //Check for Text Removal
             if string.isEmpty {
@@ -369,5 +400,4 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
         return true
     }
-    
 }

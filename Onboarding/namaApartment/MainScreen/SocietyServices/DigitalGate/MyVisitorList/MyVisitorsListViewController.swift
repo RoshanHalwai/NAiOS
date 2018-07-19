@@ -11,11 +11,12 @@ import UIKit
 class MyVisitorsListViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var imageList = [#imageLiteral(resourceName: "ExpectiingVisitor256"), #imageLiteral(resourceName: "ExpectingCabs256"), #imageLiteral(resourceName: "ExpectingPackage256")]
+    var imageList = [#imageLiteral(resourceName: "ExpectingVisitor"), #imageLiteral(resourceName: "ExpectingCabs"), #imageLiteral(resourceName: "ExpectingPackage")]
     var visitorsType = ["Guests", "Cab Arrivals", "Package Arrivals"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -25,14 +26,17 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //created custome back button to go back to digi gate
     @objc func goBackToDigiGate() {
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageList.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MyVisitorsListCollectionViewCell
         cell.visitors_Image.image = imageList[indexPath.row]
@@ -52,18 +56,19 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             let lv = NAViewPresenter().myGuestListVC()
             self.navigationController?.pushViewController(lv, animated: true)
-            lv.titleName = NAString().my_Guest().capitalized
+            lv.titleName = NAString().myVisitorViewTitle().capitalized
         case 1:
-            let lv1 = NAViewPresenter().cabArrivalListVC()
+            let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
             lv1.navTitle = NAString().cab_arrival()
             self.navigationController?.pushViewController(lv1, animated: true)
         case 2:
-            let lv2 = NAViewPresenter().packageArrivalListVC()
+            let lv2 = NAViewPresenter().cabAndPackageArrivalListVC()
             lv2.navTitle = NAString().package_arrival()
             self.navigationController?.pushViewController(lv2, animated: true)
         default:

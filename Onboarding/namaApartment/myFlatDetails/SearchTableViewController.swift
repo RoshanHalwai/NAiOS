@@ -63,10 +63,12 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             }
         }
     }
+    
     //created custome back button to go back to My Visitors List
     @objc func goBackToMyFlatDetails() {
         self.navigationController?.dismiss(animated: true)
     }
+    
     func updateSearchResults(for searchController: UISearchController) {
         filteredArray = gettingArray.filter({ (array:String) -> Bool in
             if array.contains(searchController.searchBar.text!) {
@@ -77,6 +79,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         })
         tableViewResultController.tableView.reloadData()
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tableViewResultController.tableView {
             return filteredArray.count
@@ -84,6 +87,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             return gettingArray.count
         }
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         if tableView == tableViewResultController.tableView {
@@ -93,6 +97,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         }
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //getting the index path of selected row
         let indexPath = tableView.indexPathForSelectedRow

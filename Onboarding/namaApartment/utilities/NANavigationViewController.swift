@@ -15,6 +15,7 @@ class NANavigationViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         configureBackBarButton()
         configureInfoButton()
+        //configureHistoryButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

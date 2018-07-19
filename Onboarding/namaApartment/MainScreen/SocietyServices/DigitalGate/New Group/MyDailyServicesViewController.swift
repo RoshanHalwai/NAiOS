@@ -13,6 +13,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     //floating button downside the list.
     @IBOutlet weak var btn_AddMyDailyServices: UIButton!
+    @IBOutlet weak var opacity_View: UIView!
+    @IBOutlet weak var popUp_View: UIView!
+    @IBOutlet weak var lbl_PickTime: UILabel!
+    @IBOutlet weak var txt_PickTime: UITextField!
+    @IBOutlet weak var btn_Cancel: UIButton!
+    @IBOutlet weak var btn_Reschedule: UIButton!
     
     //Created variable of DBReference for storing data in firebase
     var myDailyServicesListReference : DatabaseReference?
@@ -23,10 +29,34 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     //Array of Action sheet items.
     var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
     
+    //created date picker programtically
+    let picker = UIDatePicker()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        txt_PickTime.underlined()
+        
+        //calling DatePicker Funtion
+        createDatePicker()
+        
+        opacity_View.isHidden = true
+        popUp_View.isHidden = true
+        popUp_View.layer.cornerRadius = 5
+        
+        // adding image on date TextField
+        txt_PickTime.rightViewMode = UITextFieldViewMode.always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
+        let image = UIImage(named: "newClock")
+        imageView.image = image
+        txt_PickTime.rightView = imageView
+        
+        lbl_PickTime.font = NAFont().headerFont()
+        txt_PickTime.font = NAFont().textFieldFont()
+        btn_Cancel.titleLabel?.font = NAFont().popUpButtonFont()
+        btn_Reschedule.titleLabel?.font = NAFont().popUpButtonFont()
         
         //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
@@ -50,15 +80,13 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     }
     
     //created custome back button to go back to digi gate
-    @objc func goBackToDigiGate()
-    {
+    @objc func goBackToDigiGate() {
         let dv = NAViewPresenter().digiGateVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
-
+    
     //for creating action sheet to select my daily services
-    @IBAction func floatingButton(_ sender: UIButton)
-    {
+    @IBAction func floatingButton(_ sender: UIButton) {
         let actionSheet = UIAlertController(title:NAString().my_daily_services(), message: nil, preferredStyle: .actionSheet)
         
         let action1 = UIAlertAction(title: dailyService[0], style: .default, handler: dailyServiceSelected)
@@ -73,7 +101,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
-
         actionSheet.addAction(action1)
         actionSheet.addAction(action2)
         actionSheet.addAction(action3)
@@ -91,10 +118,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     func dailyServiceSelected(alert: UIAlertAction!) {
         let lv = NAViewPresenter().addMySerivesVC()
         
-        //temp variable
-        let tempVar = alert.title!
-        lv.holdString = tempVar
-        
         //passing value to my services VC
         let passVC = "myDailyServicesVC"
         lv.vcValue = passVC
@@ -104,13 +127,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.navigationController?.pushViewController(lv, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myDailyServicesList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyDailyServicesCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
@@ -124,7 +145,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = list.timeOfVisit
         
         //For converting Int with String.
-       // cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
+        //cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
         
         //TODO : Need to change Flat Number.
         cell.lbl_MyDailyServicesFlats.text = "5"
@@ -133,7 +154,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         if let urlString = list.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
         }
-        
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0
@@ -180,30 +200,48 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         //calling button action on particular cell
         cell.yourobj = {
-            let lv = NAViewPresenter().editMyDailyServices()
-            lv.getTitle = NAString().edit_my_daily_service_details().capitalized
-            
-            //TODO : Need to replace hardcoded Mobile No. string
-            lv.getMobile = "9725098236"
-            lv.getName = cell.lbl_MyDailyServiceName.text!
-            lv.getTime = cell.lbl_MyDailyServicesInTime.text!
-
-            //displaying particular string according to services
-            
-            let servicesString = NAString().inviteVisitorOTPDesc()
-            let replaced = servicesString.replacingOccurrences(of: "visitor", with: cell.lbl_MyDailyServiceType.text!)
-            lv.getDescription = replaced
-            
-            //new string which is comin from Edit My Services VC to store Particular Type of services.
-            lv.servicesString = cell.lbl_MyDailyServiceType.text!
-            
-            self.navigationController?.pushViewController(lv, animated: true)
+            self.opacity_View.isHidden = false
+            self.popUp_View.isHidden = false
         }
         return cell
     }
     
-    func getMyDailyServicesDataFromFirebase() {
+    //for datePicker
+    func createDatePicker() {
+        //toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
         
+        //done button for toolbar
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([done], animated: false)
+        txt_PickTime.inputAccessoryView = toolbar
+        txt_PickTime.inputView = picker
+        
+        //format picker for date
+        picker.datePickerMode = .time
+    }
+    
+    @objc func donePressed() {
+        // format date
+        let date = DateFormatter()
+        date.dateFormat = NAString().timeFormat()
+        let dateString = date.string(from: picker.date)
+        txt_PickTime.text = dateString
+        self.view.endEditing(true)
+    }
+    
+    @IBAction func btn_Cancel_Action(_ sender: UIButton) {
+        opacity_View.isHidden = true
+        popUp_View.isHidden = true
+    }
+    
+    @IBAction func btn_Reschedule_Action(_ sender: UIButton) {
+        opacity_View.isHidden = true
+        popUp_View.isHidden = true
+    }
+    
+    func getMyDailyServicesDataFromFirebase() {
         //Assigning Child from where to get data in Daily Services List.
         //TODO: Right now only showing particular cook's details in the list.
         myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE_COOKS)
@@ -248,8 +286,7 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
         //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
-        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in
-            }
+        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             //Remove collection view cell item with animation
@@ -258,21 +295,19 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
         
-            UIView.animate(withDuration: 0.3)
-            {
-            cell.alpha = 0.0
-            let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
-            cell.layer.transform = transform
+            UIView.animate(withDuration: 0.3) {
+                cell.alpha = 0.0
+                let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
+                cell.layer.transform = transform
             }
-        
             Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
             }
-    
         alert.addAction(actionNO) //add No action on AlertView
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)
     }
-        @objc func reloadCollectionData() {
+    
+    @objc func reloadCollectionData() {
         collectionView.reloadData()
     }
 }

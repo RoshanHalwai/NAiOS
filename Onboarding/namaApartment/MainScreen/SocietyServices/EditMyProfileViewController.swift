@@ -40,9 +40,12 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
     var myMobile: String = "8465945303"
     var myEmail: String = "talarisundir@gmail.com"
     var familyMembersList = ["Vikas Nayak", "Roshan", "Shivam", "Reshma", "Sri Latha", "Avinash", "Ashish Jha"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Create Name textfield first letter capital
+        txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
         txt_Name.underlined()
         txt_Mobile.underlined()
@@ -60,10 +63,10 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         //tableView Delegates
         table_View.delegate = self
         table_View.dataSource = self
-    
+        
         //corner Radius For list View
         list_View.layer.cornerRadius = 10
-    
+        
         //removing separator lines programatically
         self.table_View.separatorStyle = .none
         
@@ -123,17 +126,25 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         //Implemented to get data content size to change height based on data
         self.table_View.addObserver(self, forKeyPath: NAString().tableView_Content_size(), options: NSKeyValueObservingOptions.new, context: nil)
     }
+    
+    //Create name textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
+    }
+    
     //For Resizing TableView based on content
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         table_View.layer.removeAllAnimations()
         list_View_Height_Constraint.constant = table_View.contentSize.height + 33
     }
+    
     //tap Gesture method
     @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
         list_View.isHidden = true
         opacity_View.isHidden = true
         self.view.endEditing(true)
     }
+    
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -162,6 +173,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profile_Image.image = image
@@ -169,13 +181,16 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         }
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func change_Admin_Action_Btn(_ sender: UIButton) {
         opacity_View.isHidden = false
         list_View.isHidden = false
         table_View.reloadData()
     }
+    
     @IBAction func update_Action_Btn(_ sender: UIButton) {
     }
+    
     //Email Validation Function
     func isValidEmailAddress(emailAddressString: String) -> Bool {
         
@@ -193,6 +208,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         }
         return  returnValue
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if myName != txt_Name.text && myMobile.count == NAString().required_mobileNo_Length() && txt_EmailId.text == myEmail {
             update_btn.isHidden = false
@@ -205,6 +221,7 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
             update_btn.isHidden = true
         }
     }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
@@ -212,100 +229,111 @@ class EditMyProfileViewController: UIViewController, UITextFieldDelegate, UIImag
         if let text = textField.text,
             let textRange = Range(range, in: text) {
             let updatedText = text.replacingCharacters(in: textRange, with: string)
-           
-                if textField == txt_Name {
-                    if myName == updatedText {
+            
+            if textField == txt_Name {
+                if myName == updatedText {
+                    update_btn.isHidden = true
+                } else {
+                    update_btn.isHidden = false
+                }
+                if (newLength == NAString().zero_length()) {
+                    lbl_Name_Validation.isHidden = false
+                    txt_Name.redunderlined()
+                    lbl_Name_Validation.text = NAString().please_enter_name()
+                    update_btn.isHidden = true
+                } else if myName != updatedText {
+                    lbl_Name_Validation.isHidden = true
+                    txt_Name.underlined()
+                    update_btn.isHidden = false
+                }
+            }
+            if textField == txt_EmailId {
+                let providedEmailAddress = txt_EmailId.text
+                let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
+                if myEmail == updatedText && isEmailAddressIsValid {
+                    update_btn.isHidden = true
+                    lbl_Email_Validation.isHidden = true
+                    txt_EmailId.underlined()
+                } else {
+                    update_btn.isHidden = false
+                }
+                if (newLength == NAString().zero_length()) {
+                    lbl_Email_Validation.isHidden = false
+                    txt_EmailId.redunderlined()
+                    lbl_Email_Validation.text = NAString().please_enter_email()
+                    update_btn.isHidden = true
+                } else if myEmail != updatedText && isEmailAddressIsValid {
+                    lbl_Email_Validation.isHidden = true
+                    txt_EmailId.underlined()
+                    update_btn.isHidden = false
+                } else if !(isEmailAddressIsValid) {
+                    lbl_Email_Validation.isHidden = false
+                    txt_EmailId.redunderlined()
+                    lbl_Email_Validation.text = NAString().please_enter_Valid_email()
+                    update_btn.isHidden = true
+                }
+            }
+            if textField == txt_Mobile {
+                if newLength <= NAString().required_mobileNo_Length() {
+                    if myMobile == updatedText && NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
                         update_btn.isHidden = true
                     } else {
                         update_btn.isHidden = false
                     }
-                    if (newLength == NAString().zero_length()) {
-                        lbl_Name_Validation.isHidden = false
-                        txt_Name.redunderlined()
-                        lbl_Name_Validation.text = NAString().please_enter_name()
-                        update_btn.isHidden = true
-                    } else if myName != updatedText {
-                        lbl_Name_Validation.isHidden = true
-                        txt_Name.underlined()
-                        update_btn.isHidden = false
-                    }
-                }
-                if textField == txt_EmailId {
-                    let providedEmailAddress = txt_EmailId.text
-                    let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
-                    if myEmail == updatedText && isEmailAddressIsValid {
-                        update_btn.isHidden = true
-                        lbl_Email_Validation.isHidden = true
-                        txt_EmailId.underlined()
+                    if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
+                        lbl_Mobile_Validation.isHidden = true
+                        txt_Mobile.underlined()
+                        lbl_Otp_Description.isHidden = false
                     } else {
-                        update_btn.isHidden = false
+                        lbl_Mobile_Validation.isHidden = false
+                        txt_Mobile.redunderlined()
+                        update_btn.isHidden = true
+                        lbl_Otp_Description.isHidden = true
+                        lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
                     }
-                    if (newLength == NAString().zero_length()) {
-                        lbl_Email_Validation.isHidden = false
-                        txt_EmailId.redunderlined()
-                        lbl_Email_Validation.text = NAString().please_enter_email()
-                        update_btn.isHidden = true
-                    } else if myEmail != updatedText && isEmailAddressIsValid {
-                        lbl_Email_Validation.isHidden = true
-                        txt_EmailId.underlined()
-                        update_btn.isHidden = false
-                    } else if !(isEmailAddressIsValid) {
-                        lbl_Email_Validation.isHidden = false
-                        txt_EmailId.redunderlined()
-                        lbl_Email_Validation.text = NAString().please_enter_Valid_email()
-                        update_btn.isHidden = true
+                    if newLength == NAString().zero_length() {
+                        lbl_Mobile_Validation.isHidden = false
+                        txt_Mobile.redunderlined()
+                        lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
+                    }
+                    if myMobile == updatedText {
+                        lbl_Otp_Description.isHidden = true
                     }
                 }
-                if textField == txt_Mobile {
-                    if newLength <= NAString().required_mobileNo_Length() {
-                        if myMobile == updatedText && NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
-                            update_btn.isHidden = true
-                        } else {
-                            update_btn.isHidden = false
-                        }
-                        if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
-                            lbl_Mobile_Validation.isHidden = true
-                            txt_Mobile.underlined()
-                            lbl_Otp_Description.isHidden = false
-                        } else {
-                            lbl_Mobile_Validation.isHidden = false
-                            txt_Mobile.redunderlined()
-                            update_btn.isHidden = true
-                            lbl_Otp_Description.isHidden = true
-                            lbl_Mobile_Validation.text = NAString().please_enter_10_digit_no()
-                        }
-                        if newLength == NAString().zero_length() {
-                            lbl_Mobile_Validation.isHidden = false
-                            txt_Mobile.redunderlined()
-                            lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
-                        }
-                        if myMobile == updatedText {
-                            lbl_Otp_Description.isHidden = true
-                        }
-                    }
-                    //Check for Text Removal
-                    if string.isEmpty {
-                        return true
-                    } else {
-                        return newLength <= NAString().required_mobileNo_Length()
-                    }
+                //Check for Text Removal
+                if string.isEmpty {
+                    return true
+                } else {
+                    return newLength <= NAString().required_mobileNo_Length()
                 }
+            }
         }
         return true
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return familyMembersList.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! EditMyProfileTableViewCell
         cell.lbl_Family_Members_List.text = familyMembersList[indexPath.row]
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showAlertWithTitle()
+        //getting the index path of selected row
+        let indexPath = tableView.indexPathForSelectedRow
+        //getting the current cell from the index path
+        let currentCell = tableView.cellForRow(at: indexPath!)! as! EditMyProfileTableViewCell
+        //getting the text of that cell
+        let currentItem = currentCell.lbl_Family_Members_List.text
+        
+        showAlertWithTitle(Message : currentItem!)
     }
-    func showAlertWithTitle() {
-        let alertController = UIAlertController(title: "Alert Message", message: "Once you Click on Ok Button You will loose your Admin Access", preferredStyle: .alert)
+    
+    func showAlertWithTitle(Message: String) {
+        let alertController = UIAlertController(title: "Alert Message", message: NAString().change_admin_alert_message(name: Message), preferredStyle: .alert)
         let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
             self.list_View.isHidden = true
             self.opacity_View.isHidden = true
