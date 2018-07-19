@@ -21,16 +21,6 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         collectionView.dataSource = self
         
         super.ConfigureNavBarTitle(title: NAString().my_visitors_list())
-        //created custom back button for goto digi gate screen
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    //created custome back button to go back to digi gate
-    @objc func goBackToDigiGate() {
-        let dv = NAViewPresenter().digiGateVC()
-        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

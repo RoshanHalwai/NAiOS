@@ -20,17 +20,6 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
-        //created custom back button
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToHandedThingsDailyServiceVC))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    //to navigate back to handed things to My daily services VC
-    @objc func goBackToHandedThingsDailyServiceVC() {
-        let dv = NAViewPresenter().handedThingsToMyDailyServiceVC()
-        dv.titleName = NAString().my_Daily_Services().capitalized
-        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

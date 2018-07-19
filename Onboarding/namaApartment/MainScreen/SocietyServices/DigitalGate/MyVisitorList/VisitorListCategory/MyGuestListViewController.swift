@@ -21,6 +21,9 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
     
+    //A boolean variable to indicate if previous screen was Expecting Arrival.
+    var fromInvitingVisitorsVC = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,16 +74,19 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         
-        //created custom back button for goto My Visitors List
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        //created custom back button for goto My DigiGate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    
-    //created custome back button to go back to My Visitors List
+    //Navigating Back to digi gate according to Screen coming from
     @objc func goBackToDigitGate() {
-        let dv = NAViewPresenter().digiGateVC()
-        self.navigationController?.pushViewController(dv, animated: true)
+        if fromInvitingVisitorsVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-3]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -69,11 +69,6 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
                 
             }
         })
-        
-        //created custom back button
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToHandedThingsGuestVC))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
     }
     
     //CollectionView Reload with Background Thread
@@ -82,13 +77,6 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-    }
-    
-    //to navigate back to handed things My guest VC
-    @objc func goBackToHandedThingsGuestVC() {
-        let dv = NAViewPresenter().handedThingsToMyGuestVC()
-        dv.titleName = NAString().myVisitorViewTitle().capitalized
-        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

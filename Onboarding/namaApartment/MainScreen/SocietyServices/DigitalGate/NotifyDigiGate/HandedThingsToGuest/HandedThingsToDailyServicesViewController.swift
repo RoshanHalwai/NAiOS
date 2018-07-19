@@ -41,17 +41,6 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
-        
-        //created custom back button for goto My Visitors List
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToNotifyDigiGate))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    //to Navigate Back to Notify digi Gate
-    @objc func goBackToNotifyDigiGate() {
-        let dv = NAViewPresenter().notifyDigiGateVC()
-        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     //to Navigate to Daily Services History VC

@@ -15,6 +15,9 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     
     var navTitle = String()
     
+    //A boolean variable to indicate if previous screen was Expecting Arrival.
+    var fromExpectingArrivalVC = false
+    
     //Assigning Strings according to title
     var vendorCabNameString: String?
     var vendorCabImage: UIImage?
@@ -27,7 +30,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     var myExpectedCabList = [NAExpectingArrival]()
     var myExpectedPackageList = [NAExpectingArrival]()
     
-    /*  Created custom back button for navigating back to My Visitor List VC.
+    /*  Created custom back button for navigating back to My DigiGate VC Based on Screen Coming From.
         Formatting & setting navigation bar. */
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,15 +41,19 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         super.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.title = ""
         
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMyVisitorListVC))
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigiGate))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
     
-    //For navigating back to My Visitor List VC
-    @objc func goBackToMyVisitorListVC() {
-        let dv = NAViewPresenter().myVisitorsListVC()
-        self.navigationController?.pushViewController(dv, animated: true)
+    //For navigating back to My Digi Gate VC
+    @objc func goBackToDigiGate() {
+        if fromExpectingArrivalVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-4]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     //Changing label titles in based on Navigation title

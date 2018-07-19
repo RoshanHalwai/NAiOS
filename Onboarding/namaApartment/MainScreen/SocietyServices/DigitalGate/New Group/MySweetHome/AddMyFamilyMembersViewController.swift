@@ -71,8 +71,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         txt_MobileNo.delegate = self
         txt_Email.delegate = self
         
-        //setting navigation title
-        super.ConfigureNavBarTitle(title: NAString().btn_mySweet_home())
+        super.ConfigureNavBarTitle(title: navTitle!)
+        self.navigationItem.title = ""
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -124,25 +124,14 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.btn_SelectContact.titleLabel?.font = NAFont().buttonFont()
         self.btn_addDetails.titleLabel?.font = NAFont().buttonFont()
         
-        //creating image round
+        //creating round Image usig Corner radius
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
-        
-        //created custom back button
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMySweetHome))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
     }
     
     //Create name textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
-    }
-    
-    //created custom back button to go back to My Sweet Home
-    @objc func goBackToMySweetHome() {
-        let dv = NAViewPresenter().mySweetHomeVC()
-        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     //Create RelationSegment Action

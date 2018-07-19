@@ -89,17 +89,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
-        
-        //created custom back button for goto My Visitors List
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToNotifyDigiGate))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    //To navigate back to Notify Digi Gate
-    @objc func goBackToNotifyDigiGate() {
-        let dv = NAViewPresenter().notifyDigiGateVC()
-        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     //To Navigate to Guest History VC

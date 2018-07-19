@@ -69,20 +69,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         //calling function to retriev data from firebase.
         getMyDailyServicesDataFromFirebase()
-        
-        //created backbuttom custome to go to digi gate screen
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
        
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().my_daily_services().capitalized)
-    }
-    
-    //created custome back button to go back to digi gate
-    @objc func goBackToDigiGate() {
-        let dv = NAViewPresenter().digiGateVC()
-        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     //for creating action sheet to select my daily services
