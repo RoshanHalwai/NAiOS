@@ -182,7 +182,7 @@ extension CabAndPackageArrivalCardListViewController {
                 }
             } else {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
             }
         })
     }
@@ -215,7 +215,7 @@ extension CabAndPackageArrivalCardListViewController {
                 }
             } else {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
             }
         })
     }
