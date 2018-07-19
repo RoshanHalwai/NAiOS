@@ -113,7 +113,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         self.lbl_cabNumber.text = vendorCabNameString
         
         //scrollView
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0)
         
         //calling datePicker On ViewLoad
         createDatePicker()
@@ -359,12 +359,10 @@ class ExpectingArrivalViewController: NANavigationViewController {
             if self.lbl_cabNumber.text == NAString().cab_number() {
                 let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
                 lv1.navTitle = NAString().cab_arrival()
-                lv1.fromExpectingArrivalVC = true
                 self.navigationController?.pushViewController(lv1, animated: true)
             } else if self.lbl_cabNumber.text == NAString().package_vendor_name() {
                 let lv1 = NAViewPresenter().cabAndPackageArrivalListVC()
                 lv1.navTitle = NAString().package_arrival()
-                lv1.fromExpectingArrivalVC = true
                 self.navigationController?.pushViewController(lv1, animated: true)
             }
         }
