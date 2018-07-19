@@ -83,7 +83,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         
-        //creating round Image usig Corner radius
+        //creating round Image using Corner radius
         cell.MySweeetHomeimg.layer.cornerRadius = cell.MySweeetHomeimg.frame.size.width/2
         cell.MySweeetHomeimg.clipsToBounds = true
         
