@@ -18,10 +18,8 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     
     //set title from previous page
     var titleName =  String()
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //Disable Table view cell selection & cell border line.
         TableView.allowsSelection = false
         self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
@@ -72,7 +70,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         
         //assigning delegate method to textFiled
         cell.txt_Description.delegate = self
-    
+        
         //Label Formatting & setting
         cell.lbl_Name.font = NAFont().textFieldFont()
         cell.lbl_Type.font = NAFont().textFieldFont()
@@ -117,7 +115,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         cell.cellImage.clipsToBounds = true
         
         /*Dynamically Change Cell Height while selecting segment Controller
-        by default which index is selected on view load*/
+         by default which index is selected on view load*/
         cell.segmentSelect.tag = indexPath.row
         cell.segmentSelect.selectedSegmentIndex = 0
         
