@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 //Created Class & Class Variable to pass the data
 class Singleton_FlatDetails {
@@ -106,7 +107,6 @@ class loginViewController: NANavigationViewController {
             lv.getCountryCodeString = txt_CountryCode.text!
             self.navigationController?.pushViewController(lv, animated: true)
         }
-        
     }
 }
 

@@ -53,9 +53,17 @@ class MainScreenViewController: NANavigationViewController {
         VCNamesApartment = [NAViewPresenter().homeVCID()]
         
         super.ConfigureNavBarTitle(title: NAString().splash_NammaHeader_Title())
-        navigationItem.rightBarButtonItem = nil
+        //TODO: Need this commented line after implementing Navigation Drawer.
+       // navigationItem.rightBarButtonItem = nil
         super.navigationItem.hidesBackButton = true
         
+        let logoutButton = UIButton(type: .system)
+        logoutButton.setImage(#imageLiteral(resourceName: "signout"), for: .normal)
+        logoutButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
+     
+    //assigning values in struct
         societyData = [
             societyServicesModel(cellTitle: NAString().digital_gate(),cellImage:  #imageLiteral(resourceName: "Digital_Gate_2")),
             societyServicesModel(cellTitle: NAString().plumber(),cellImage:  #imageLiteral(resourceName: "plumbing (2)")),
@@ -79,8 +87,18 @@ class MainScreenViewController: NANavigationViewController {
         ]
     }
     
+    //To Logout the current user
+    @objc func logout() {
+        try! Auth.auth().signOut()
+        if self.storyboard != nil {
+            let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
+            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
+            self.present(NavLogin, animated: true)
+        }
+    }
+    
     /* * For switching the tableview data in between society & apartment services.
-       * Modifying SegmentControl text according to segment selection. */
+     * Modifying SegmentControl text according to segment selection. */
     
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.segmentControlSelection()
