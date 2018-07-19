@@ -90,10 +90,10 @@ class MainScreenViewController: NANavigationViewController {
     func segmentControlSelection() {
         self.segmentSelection?.tintColor = UIColor.black
         self.segmentSelection?.backgroundColor = UIColor.black
-        let attributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
-        self.segmentSelection?.setTitleTextAttributes(attributes, for: .selected)
-        let attributes1 = [NSAttributedStringKey.foregroundColor: UIColor.gray]
-        self.segmentSelection?.setTitleTextAttributes(attributes1, for: .normal)
+        let selectedAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.segmentSelection?.setTitleTextAttributes(selectedAttributes, for: .selected)
+        let normalAttributes = [NSAttributedStringKey.foregroundColor: UIColor.gray]
+        self.segmentSelection?.setTitleTextAttributes(normalAttributes, for: .normal)
     }
 }
 
