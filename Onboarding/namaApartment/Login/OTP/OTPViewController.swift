@@ -252,3 +252,27 @@ extension OTPViewController {
         }
     }
 }
+
+extension OTPViewController {
+    
+    func verifyDailyServices()  {
+        
+        //Assigning OTP TextFields To Variables.
+        let Otp_Strig1 = self.txtOTP1.text!
+        let Otp_Strig2 = self.txtOTP2.text!
+        let Otp_Strig3 = self.txtOTP3.text!
+        let Otp_Strig4 = self.txtOTP4.text!
+        let Otp_Strig5 = self.txtOTP5.text!
+        let Otp_Strig6 = self.txtOTP6.text!
+        
+        //Concatinating all the OTP String variables to get Final String.
+        finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+        
+        //Creating Credential variable to check correct OTP String.
+        let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
+        
+        print("Credentials",Credentials as Any)
+        
+        
+    }
+}

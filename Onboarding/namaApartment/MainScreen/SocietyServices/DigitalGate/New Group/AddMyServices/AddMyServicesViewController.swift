@@ -9,6 +9,9 @@
 import UIKit
 import Contacts
 import ContactsUI
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
@@ -52,6 +55,11 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    //Database References
+    var userData : DatabaseReference?
+    var dailyServicesPublicRef: DatabaseReference?
+    var dailyServicesPrivateRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -336,12 +344,12 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
                 btn_AddDetails.tag = 102
                 OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
                 OpacityView.shared.showingPopupView(view: self)
-                timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
             }
         }
     }
     
-    //Create Timer Function
+   // Create Timer Function
     @objc func stopTimer() {
         OpacityView.shared.hidingPopupView()
         if (count >= 0){
@@ -360,6 +368,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().otpViewController()
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
+            lv.getCountryCodeString = self.txt_CountryCode.text!
+            lv.getMobileString = self.txt_MobileNo.text!
             lv.newOtpString = familyString
             self.navigationController?.pushViewController(lv, animated: true)
         }
