@@ -360,7 +360,7 @@ class NAString : NSObject {
     
     //MyVisitorList
     func myVisitorViewTitle() -> String {
-        return String("My Guests")
+        return String("Guests")
     }
     
     func myVisitorVisitor() -> String {

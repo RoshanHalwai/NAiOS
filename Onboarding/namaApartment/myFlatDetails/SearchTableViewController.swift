@@ -50,6 +50,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
                 gettingArray = myFlatDetailsVC.Aster
             } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[1] {
                 gettingArray = myFlatDetailsVC.Bolivia
+            } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[2] {
+                gettingArray = myFlatDetailsVC.Chamber
+            } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[3] {
+                gettingArray = myFlatDetailsVC.DSR
             } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[0] {
                 gettingArray = myFlatDetailsVC.Block1
             }  else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[1] {
