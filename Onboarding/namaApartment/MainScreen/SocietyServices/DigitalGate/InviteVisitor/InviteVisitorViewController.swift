@@ -101,7 +101,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         txtInvitorMobile.text = dataMobile
         
         //scrollView
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 170, 0)
         
         //For Textfield under black line
         txtDate.underlined()
