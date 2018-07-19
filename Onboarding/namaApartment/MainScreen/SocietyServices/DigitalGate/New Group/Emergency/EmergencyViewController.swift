@@ -20,9 +20,8 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         super.ConfigureNavBarTitle(title: NAString().emergency())
         self.navigationItem.rightBarButtonItem = nil
     }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return ImageList.count
     }
     

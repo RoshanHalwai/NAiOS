@@ -26,6 +26,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     var MySweetHomeRelation = ["Sister","Brother"]
     var MySweetHomeGrantAccess = ["Yes","No"]
     
+    var navTitle = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,11 +41,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         btn_Cancel.titleLabel?.font = NAFont().popUpButtonFont()
         btn_ChangeAccess.titleLabel?.font = NAFont().popUpButtonFont()
         
-        //creating back buttom going back to digigate
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
-        
         //Formmating & setting Button
         self.btn_AddmyFamilyMember.setTitle(NAString().btn_mySweet_home().capitalized, for: .normal)
         self.btn_AddmyFamilyMember.backgroundColor = NAColor().buttonBgColor()
@@ -51,18 +48,13 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         self.btn_AddmyFamilyMember.titleLabel?.font = NAFont().buttonFont()
         
        //Formatting & setting Navigation bar
-        super.ConfigureNavBarTitle(title: NAString().my_sweet_home().capitalized)
+        super.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.title = ""
     }
     
     @IBAction func btnAddFamilyMember(_ sender: UIButton) {
         let lv = NAViewPresenter().myFamilyMembers()
-        self.navigationController?.pushViewController(lv, animated: true)
-        ConfigureNavBarTitle(title: NAString().btn_mySweet_home())
-    }
-    
-    //created custome back button to go back to digi gate
-    @objc func goBackToDigiGate() {
-        let lv = NAViewPresenter().digiGateVC()
+        lv.navTitle = NAString().addFamilyMemberTitle()
         self.navigationController?.pushViewController(lv, animated: true)
     }
     
@@ -91,7 +83,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         
-        //setting the image in round shape
+        //creating round Image using Corner radius
         cell.MySweeetHomeimg.layer.cornerRadius = cell.MySweeetHomeimg.frame.size.width/2
         cell.MySweeetHomeimg.clipsToBounds = true
         

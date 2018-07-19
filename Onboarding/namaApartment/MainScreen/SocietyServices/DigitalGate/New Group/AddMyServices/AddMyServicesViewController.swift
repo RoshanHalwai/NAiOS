@@ -85,7 +85,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         txt_Date.rightView = imageView
         
         //setting navigation title
-//        super.ConfigureNavBarTitle(title: navTitle!)
+        super.ConfigureNavBarTitle(title: navTitle!)
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -139,7 +139,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         self.btn_SelectContact.titleLabel?.font = NAFont().buttonFont()
         self.btn_AddDetails.titleLabel?.font = NAFont().buttonFont()
         
-        //creating image round
+        //creating round Image usig Corner radius
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
     }
