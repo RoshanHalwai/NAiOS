@@ -36,6 +36,14 @@ class MainScreenViewController: NANavigationViewController {
     
     var usersPrivateRef: DatabaseReference?
     
+    /* * Created Menu Button on NavigationBar.
+     * Calling retreiving User Data function on load.
+     * Formatting & Setting Segmented Controller.
+     * Calling Segment function
+     * For navigation purpose.
+     * Setting & fromatting Navigation Bar.
+     * assigning values in struct. */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,14 +54,6 @@ class MainScreenViewController: NANavigationViewController {
         menuButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         menuButton.addTarget(self, action: #selector(sideMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
-        
-        //Calling retreiving User Data function on load.
-        /* * Calling retreiving User Data function on load.
-         * Formatting & Setting Segmented Controller.
-         * Calling Segment function
-         * For navigation purpose.
-         * Setting & fromatting Navigation Bar.
-         * assigning values in struct. */
     
         self.retrieveUserData()
         
@@ -69,7 +69,7 @@ class MainScreenViewController: NANavigationViewController {
         super.ConfigureNavBarTitle(title: NAString().splash_NammaHeader_Title())
 
         //TODO: Need this commented line after implementing Navigation Drawer.
-       // navigationItem.rightBarButtonItem = nil
+        //navigationItem.rightBarButtonItem = nil
         super.navigationItem.hidesBackButton = true
         
         let logoutButton = UIButton(type: .system)
@@ -120,8 +120,8 @@ class MainScreenViewController: NANavigationViewController {
         self.tableView.reloadData()
     }
 
+    //For showing Side menu
     @objc func sideMenuVC() {
-        
         if self.sideMenuOpen {
             self.sideMenuOpen = false
             opacity_View.isHidden = true
