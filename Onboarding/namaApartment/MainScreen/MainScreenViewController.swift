@@ -14,8 +14,13 @@ class MainScreenViewController: NANavigationViewController {
     
     @IBOutlet weak var segmentSelection: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-   
+    @IBOutlet weak var sideMenuConstrain : NSLayoutConstraint!
+    
+    @IBOutlet weak var opacity_View: UIView!
+    
     fileprivate var isSocietyServices = true
+    
+     var sideMenuOpen = false
     
     var currentIndex = 0
     
@@ -33,6 +38,14 @@ class MainScreenViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        opacity_View.isHidden = true
+        
+        let menuButton = UIButton(type: .system)
+        menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
+        menuButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        menuButton.addTarget(self, action: #selector(sideMenuVC), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
+        
         //Calling retreiving User Data function on load.
         self.retrieveUserData()
         
@@ -48,8 +61,7 @@ class MainScreenViewController: NANavigationViewController {
         
        //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().splash_NammaHeader_Title())
-        navigationItem.rightBarButtonItem = nil
-        super.navigationItem.hidesBackButton = true
+        //navigationItem.rightBarButtonItem = nil
      
     //assigning values in struct
         societyData = [
@@ -79,6 +91,20 @@ class MainScreenViewController: NANavigationViewController {
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.tableView.reloadData()
     }
+    //To Navigate to Guest History VC
+    @objc func sideMenuVC() {
+        
+        if self.sideMenuOpen {
+            self.sideMenuOpen = false
+            opacity_View.isHidden = true
+            self.sideMenuConstrain.constant = -260
+        } else {
+            self.sideMenuOpen = true
+            opacity_View.isHidden = false
+            self.sideMenuConstrain.constant = 0 
+        }
+    }
+    
 }
 
 extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
