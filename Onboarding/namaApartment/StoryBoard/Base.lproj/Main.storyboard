@@ -5444,10 +5444,8 @@
                         <viewLayoutGuide key="safeArea" id="hUI-uq-nOm"/>
                     </view>
                     <connections>
-                        <outlet property="nammaLabel" destination="Mxd-Pz-GeL" id="UyA-fJ-uYC"/>
-                        <outlet property="oneStopLabel" destination="5wi-YF-iex" id="GuZ-ei-LEb"/>
-                        <outlet property="sideMenuView" destination="aYJ-Rh-DTW" id="bHq-tl-kHn"/>
                         <outlet property="tableView" destination="NF8-U7-Py3" id="QFt-GF-Y6U"/>
+                        <outlet property="top_View" destination="aYJ-Rh-DTW" id="Hn1-Mv-z3I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbs-Ma-2wB" userLabel="First Responder" sceneMemberID="firstResponder"/>

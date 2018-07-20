@@ -213,6 +213,26 @@ class NAString : NSObject {
         return Int(1)
     }
     
+    //Home Screen
+    func my_profile() -> String {
+        return String("MyProfile")
+    }
+    func my_family_members() -> String {
+        return String("My Family Members")
+    }
+    func notice_board() -> String {
+        return String("Notice Board")
+    }
+    func help() -> String {
+        return String("Help")
+    }
+    func rate_us() -> String {
+        return String("Rate Us")
+    }
+    func logout() -> String {
+        return String("Logout")
+    }
+    
     //Society Services Activity
     func digital_gate() -> String {
         return String("Digi Gate")

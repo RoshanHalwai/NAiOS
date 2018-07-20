@@ -10,12 +10,9 @@ import UIKit
 
 class SideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var sideMenuView: UIView!
-    @IBOutlet weak var nammaLabel: UILabel!
-    @IBOutlet weak var oneStopLabel: UILabel!
-    
+    @IBOutlet weak var top_View: UIView!
     @IBOutlet weak var tableView: UITableView!
-    var sideMenuArray = ["MyProfile", "My Family Members", "Notice Board", "Settings", "Help", "Rate Us", "Logout"]
+    var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
