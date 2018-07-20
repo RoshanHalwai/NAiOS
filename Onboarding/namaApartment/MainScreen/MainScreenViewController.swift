@@ -14,8 +14,13 @@ class MainScreenViewController: NANavigationViewController {
     
     @IBOutlet weak var segmentSelection: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var sideMenuConstrain : NSLayoutConstraint!
+    
+    @IBOutlet weak var opacity_View: UIView!
     
     fileprivate var isSocietyServices = true
+    
+     var sideMenuOpen = false
     
     var currentIndex = 0
     
@@ -31,16 +36,22 @@ class MainScreenViewController: NANavigationViewController {
     
     var usersPrivateRef: DatabaseReference?
     
+    /* - Created Menu Button on NavigationBar and Calling function for retreiving User Data on view load.
+       - Formatting & Setting Segmented Controller and Calling Segment function.
+       - Performing Navigation according to given Id, Setting & fromatting Navigation Bar.
+       - assigning values in struct. */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* * Calling retreiving User Data function on load.
-         * Formatting & Setting Segmented Controller.
-         * Calling Segment function
-         * For navigation purpose.
-         * Setting & fromatting Navigation Bar.
-         * assigning values in struct. */
+        opacity_View.isHidden = true
         
+        let menuButton = UIButton(type: .system)
+        menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
+        menuButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        menuButton.addTarget(self, action: #selector(sideMenuVC), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
+    
         self.retrieveUserData()
         
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
@@ -53,8 +64,9 @@ class MainScreenViewController: NANavigationViewController {
         VCNamesApartment = [NAViewPresenter().homeVCID()]
         
         super.ConfigureNavBarTitle(title: NAString().splash_NammaHeader_Title())
+
         //TODO: Need this commented line after implementing Navigation Drawer.
-       // navigationItem.rightBarButtonItem = nil
+        //navigationItem.rightBarButtonItem = nil
         super.navigationItem.hidesBackButton = true
         
         let logoutButton = UIButton(type: .system)
@@ -62,8 +74,7 @@ class MainScreenViewController: NANavigationViewController {
         logoutButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
         logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
-     
-    //assigning values in struct
+
         societyData = [
             societyServicesModel(cellTitle: NAString().digital_gate(),cellImage:  #imageLiteral(resourceName: "Digital_Gate_2")),
             societyServicesModel(cellTitle: NAString().plumber(),cellImage:  #imageLiteral(resourceName: "plumbing (2)")),
@@ -103,6 +114,19 @@ class MainScreenViewController: NANavigationViewController {
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.segmentControlSelection()
         self.tableView.reloadData()
+    }
+
+    //For showing Side menu
+    @objc func sideMenuVC() {
+        if self.sideMenuOpen {
+            self.sideMenuOpen = false
+            opacity_View.isHidden = true
+            self.sideMenuConstrain.constant = -260
+        } else {
+            self.sideMenuOpen = true
+            opacity_View.isHidden = false
+            self.sideMenuConstrain.constant = 0 
+        }
     }
     
     func segmentControlSelection() {
