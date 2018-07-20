@@ -24,15 +24,16 @@ class MainScreenViewController: NANavigationViewController {
     
     var currentIndex = 0
     
-    //Declaring the varibles for structure.
+    /* * Declaring the varibles for structure.
+     * for navigation purpose.
+     * Firebase Database References. */
+    
     var apartmentData:[apartmentServicesModel] = []
     var societyData:[societyServicesModel] = []
     
-    //for navigation purpose
     var VCNamesSociety = [String]()
     var VCNamesApartment = [String]()
     
-    //Firebase Database References
     var usersPrivateRef: DatabaseReference?
     
     override func viewDidLoad() {
@@ -42,26 +43,40 @@ class MainScreenViewController: NANavigationViewController {
         
         let menuButton = UIButton(type: .system)
         menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
-        menuButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        menuButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         menuButton.addTarget(self, action: #selector(sideMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
         
         //Calling retreiving User Data function on load.
+        /* * Calling retreiving User Data function on load.
+         * Formatting & Setting Segmented Controller.
+         * Calling Segment function
+         * For navigation purpose.
+         * Setting & fromatting Navigation Bar.
+         * assigning values in struct. */
+    
         self.retrieveUserData()
         
-        //Formatting & Setting Segmented Controller.
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
         
+        self.segmentControlSelection()
         segmentSelection.selectedSegmentIndex = currentIndex
         
-       //For navigation purpose.
         VCNamesSociety = [NAViewPresenter().digiGateVCID()]
         VCNamesApartment = [NAViewPresenter().homeVCID()]
         
-       //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().splash_NammaHeader_Title())
-        //navigationItem.rightBarButtonItem = nil
+
+        //TODO: Need this commented line after implementing Navigation Drawer.
+       // navigationItem.rightBarButtonItem = nil
+        super.navigationItem.hidesBackButton = true
+        
+        let logoutButton = UIButton(type: .system)
+        logoutButton.setImage(#imageLiteral(resourceName: "signout"), for: .normal)
+        logoutButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
      
     //assigning values in struct
         societyData = [
@@ -87,11 +102,24 @@ class MainScreenViewController: NANavigationViewController {
         ]
     }
     
-    //For switching the tableview data in between society & apartment services.
+    //To Logout the current user
+    @objc func logout() {
+        try! Auth.auth().signOut()
+        if self.storyboard != nil {
+            let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
+            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
+            self.present(NavLogin, animated: true)
+        }
+    }
+    
+    /* * For switching the tableview data in between society & apartment services.
+     * Modifying SegmentControl text according to segment selection. */
+    
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
+        self.segmentControlSelection()
         self.tableView.reloadData()
     }
-    //To Navigate to Guest History VC
+
     @objc func sideMenuVC() {
         
         if self.sideMenuOpen {
@@ -105,53 +133,61 @@ class MainScreenViewController: NANavigationViewController {
         }
     }
     
+    func segmentControlSelection() {
+        self.segmentSelection?.tintColor = UIColor.black
+        self.segmentSelection?.backgroundColor = UIColor.black
+        let selectedAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.segmentSelection?.setTitleTextAttributes(selectedAttributes, for: .selected)
+        let normalAttributes = [NSAttributedStringKey.foregroundColor: UIColor.gray]
+        self.segmentSelection?.setTitleTextAttributes(normalAttributes, for: .normal)
+    }
 }
 
 extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            //Modifying tableview data according to segment selection.
-            var value = 0
-            switch segmentSelection.selectedSegmentIndex {
-            case 0:
-                value = societyData.count
-                break
-            case 1:
-                value = apartmentData.count
-                break
-            default:
-                break
-            }
-         return value
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //Modifying tableview data according to segment selection.
+        var value = 0
+        switch segmentSelection.selectedSegmentIndex {
+        case 0:
+            value = societyData.count
+            break
+        case 1:
+            value = apartmentData.count
+            break
+        default:
+            break
         }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! MainScreenTableViewCell
-            //Selection Process.
-            switch segmentSelection.selectedSegmentIndex {
-            case 0:
-                cell.cellTitle.text = societyData[indexPath.row].cellTitle
-                cell.cellImage.image = societyData[indexPath.row].cellImage
-                break
-            case 1:
-               cell.cellTitle.text = apartmentData[indexPath.row].cellTitle
-               cell.cellImage.image = apartmentData[indexPath.row].cellImage
-                break
-            default:
-                break
-            }
-            
-            return cell
-        }
-        
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            //For Navigation Purpose.
-          
-          let destVC = currentIndex == 0 ? VCNamesSociety[0]: VCNamesApartment[0]
-          let viewController = storyboard?.instantiateViewController(withIdentifier: destVC)
-          self.navigationController?.pushViewController(viewController!, animated: true)
-        }
+        return value
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! MainScreenTableViewCell
+        //Selection Process.
+        switch segmentSelection.selectedSegmentIndex {
+        case 0:
+            cell.cellTitle.text = societyData[indexPath.row].cellTitle
+            cell.cellImage.image = societyData[indexPath.row].cellImage
+            break
+        case 1:
+            cell.cellTitle.text = apartmentData[indexPath.row].cellTitle
+            cell.cellImage.image = apartmentData[indexPath.row].cellImage
+            break
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //For Navigation Purpose.
+        
+        let destVC = currentIndex == 0 ? VCNamesSociety[0]: VCNamesApartment[0]
+        let viewController = storyboard?.instantiateViewController(withIdentifier: destVC)
+        self.navigationController?.pushViewController(viewController!, animated: true)
+    }
+}
 
 extension MainScreenViewController {
     
@@ -159,40 +195,40 @@ extension MainScreenViewController {
     func retrieveUserData() {
         
         //Checking Users UID in Firebase under Users ->Private
-          usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
         
         //Checking userData inside Users/Private
         
-          self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
+        self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
             
             //If usersUID is Exists then retrievd all the data of user.
             if snapshot.exists() {
                 
-                    let userData = snapshot.value as? NSDictionary
-                    print("UserData:",userData as Any)
-                    
-                    //Retrieving & Adding data in Flat Detail Class
-                    let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
-                    
-                    flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
-                    
-                    Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
-                    
-                    //Retrieving & Adding Data in Personal Detail Class
-                    let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
-                    
-                    personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
-                    
-                    Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
-                    
-                    //Retriving & Adding data in Privileges
-                    let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
-                    
-                    userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
+                let userData = snapshot.value as? NSDictionary
+                print("UserData:",userData as Any)
                 
-                    Singleton_privileges.shared.privileges_Items = userprivileges
+                //Retrieving & Adding data in Flat Detail Class
+                let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
+                
+                flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
+                
+                Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
+                
+                //Retrieving & Adding Data in Personal Detail Class
+                let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
+                
+                personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
+                
+                Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
+                
+                //Retriving & Adding data in Privileges
+                let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
+                
+                userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
+                
+                Singleton_privileges.shared.privileges_Items = userprivileges
             }
-          })
+        })
     }
 }
 

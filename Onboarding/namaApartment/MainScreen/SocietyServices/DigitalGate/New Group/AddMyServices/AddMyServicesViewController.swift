@@ -93,7 +93,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         self.img_Profile.addGestureRecognizer(tapGesture)
         
         //scrollView
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 210, 0)
         
         //Calling datePicker
         createDatePicker()

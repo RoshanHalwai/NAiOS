@@ -107,6 +107,12 @@ class NAViewPresenter: NSObject {
     func handedThingsHistoryVCID() -> String {
         return String("historyVC")
     }
+    func loginNavigation() -> String {
+        return String("NavLogin")
+    }
+    func mainNavigation() -> String {
+        return String("NavMain")
+    }
     
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {

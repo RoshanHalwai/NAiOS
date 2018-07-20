@@ -124,7 +124,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.btn_SelectContact.titleLabel?.font = NAFont().buttonFont()
         self.btn_addDetails.titleLabel?.font = NAFont().buttonFont()
         
-        //creating round Image usig Corner radius
+        //creating round Image using Corner radius
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
     }

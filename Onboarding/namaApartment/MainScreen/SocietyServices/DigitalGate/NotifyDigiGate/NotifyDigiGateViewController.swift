@@ -11,7 +11,7 @@ import UIKit
 class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     var ImageList = [#imageLiteral(resourceName: "ExpectingCabs"),#imageLiteral(resourceName: "ExpectingPackage"),#imageLiteral(resourceName: "ExpectingVisitor"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
-    var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Visitor","Handed Things To My Guest","Handed Things To My Daily Services"]
+    var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Guest","Handed Things To My Guest","Handed Things To My Daily Services"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

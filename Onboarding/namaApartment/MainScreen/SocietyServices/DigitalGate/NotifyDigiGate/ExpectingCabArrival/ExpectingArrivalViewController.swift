@@ -113,7 +113,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         self.lbl_cabNumber.text = vendorCabNameString
         
         //scrollView
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0)
         
         //calling datePicker On ViewLoad
         createDatePicker()
