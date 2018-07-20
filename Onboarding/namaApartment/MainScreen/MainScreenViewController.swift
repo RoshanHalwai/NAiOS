@@ -36,13 +36,10 @@ class MainScreenViewController: NANavigationViewController {
     
     var usersPrivateRef: DatabaseReference?
     
-    /* * Created Menu Button on NavigationBar.
-     * Calling retreiving User Data function on load.
-     * Formatting & Setting Segmented Controller.
-     * Calling Segment function
-     * For navigation purpose.
-     * Setting & fromatting Navigation Bar.
-     * assigning values in struct. */
+    /* - Created Menu Button on NavigationBar and Calling function for retreiving User Data on view load.
+       - Formatting & Setting Segmented Controller and Calling Segment function.
+       - Performing Navigation according to given Id, Setting & fromatting Navigation Bar.
+       - assigning values in struct. */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +74,7 @@ class MainScreenViewController: NANavigationViewController {
         logoutButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
         logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
-     
-    //assigning values in struct
+
         societyData = [
             societyServicesModel(cellTitle: NAString().digital_gate(),cellImage:  #imageLiteral(resourceName: "Digital_Gate_2")),
             societyServicesModel(cellTitle: NAString().plumber(),cellImage:  #imageLiteral(resourceName: "plumbing (2)")),
