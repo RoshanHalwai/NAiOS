@@ -57,9 +57,10 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     @IBOutlet weak var scrollView: UIScrollView!
     
     //Database References
-    var userData : DatabaseReference?
+    var userDataRef : DatabaseReference?
     var dailyServicesPublicRef: DatabaseReference?
     var dailyServicesPrivateRef : DatabaseReference?
+    var dailyServicesImageRef : StorageReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -367,10 +368,10 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         // Create OK button
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().otpViewController()
-            let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
+            let dailyServicesString = NAString().enter_verification_code(first: "your cook", second: "their")
             lv.getCountryCodeString = self.txt_CountryCode.text!
             lv.getMobileString = self.txt_MobileNo.text!
-            lv.newOtpString = familyString
+            lv.newOtpString = dailyServicesString
             self.navigationController?.pushViewController(lv, animated: true)
         }
         alertController.addAction(OKAction)
@@ -412,5 +413,67 @@ extension AddMyServicesViewController {
             }
         }
         return true
+    }
+}
+
+extension AddMyServicesViewController {
+    
+    func storingDailyServicesInFirebase()  {
+        
+        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let userFlatDetailValues = flatValues.first
+        
+        //Mapping dailyservice UID with true in UserData -> DailyServices
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child("drivers")
+        
+        userDataRef?.child(dailyServicesUID!).setValue(NAString().gettrue())
+        
+        //Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
+        dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        
+        dailyServicesPrivateRef?.child("8866993029").setValue(dailyServicesUID!)
+        
+        
+        //Storing Daily services details in DailyServices -> All -> Public
+        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("drivers").child(dailyServicesUID!).child(userUID!)
+        
+        //mapping
+        dailyServicesPublicRef?.child("status").setValue(NAString().notEntered())
+        
+        //Storing Profile Image in Storage Folder
+        Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child("drivers")
+        
+        //Compressing profile image and assigning its content type.
+        guard let image = img_Profile.image else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
+        
+        let metaDataContentType = StorageMetadata()
+        metaDataContentType.contentType = "image/jpeg"
+        
+        //Uploading Daily Services image url along with DailyServices UID
+        let uploadImageRef = dailyServicesImageRef?.child(dailyServicesUID!)
+        let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
+            
+            uploadImageRef?.downloadURL(completion: { (url, urlError) in
+                
+                if urlError == nil {
+                    //TODO: Hardcoded NumberOfFlat & Rating, Need to change in future.
+                    let dailyServicesData = [
+                        NADailyServicesListFBKeys.fullName.key : self.txt_Name.text! as String,
+                        NADailyServicesListFBKeys.numberOfFlats.key : "0",
+                        NADailyServicesListFBKeys.profilePhoto.key : url?.absoluteString,
+                        NADailyServicesListFBKeys.phoneNumber.key : "8866993029",
+                        NADailyServicesListFBKeys.rating.key : "3",
+                        NADailyServicesListFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
+                        NADailyServicesListFBKeys.uid.key : dailyServicesUID!
+                    ]
+                    //Adding Daily Services data under Daily Services -> UID
+                    self.dailyServicesPublicRef?.setValue(dailyServicesData)
+                } else {
+                    print("Error is:",urlError as Any)
+                }
+            })
+        })
+        uploadTask?.resume()
     }
 }

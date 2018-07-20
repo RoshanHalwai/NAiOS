@@ -12,6 +12,7 @@ import FirebaseAuth
 
 //Global variable to store users UID
 var userUID = Auth.auth().currentUser?.uid
+let dailyServicesUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
     
@@ -103,14 +104,55 @@ class OTPViewController: NANavigationViewController {
             verifyOTPWithFirebase()
         }
             //Back to My Sweet Home screen
-        else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
+         if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
             let lv = NAViewPresenter().mySweetHomeVC()
             self.navigationController?.pushViewController(lv, animated: true)
         }
             //Back to My Daily Services Screen
-        else {
-            let lv = NAViewPresenter().myDailyServicesVC()
-            self.navigationController?.pushViewController(lv, animated: true)
+        if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your cook", second: "their"))  {
+            
+            //Assigning OTP TextFields To Variables.
+            let Otp_Strig1 = self.txtOTP1.text!
+            let Otp_Strig2 = self.txtOTP2.text!
+            let Otp_Strig3 = self.txtOTP3.text!
+            let Otp_Strig4 = self.txtOTP4.text!
+            let Otp_Strig5 = self.txtOTP5.text!
+            let Otp_Strig6 = self.txtOTP6.text!
+            
+            //Concatinating all the OTP String variables to get Final String.
+            finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+            
+            //Creating Credential variable to check correct OTP String.
+            let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
+            // Sign in using the verificationID and the code sent to the user
+            // ...
+            print("Credential is:",Credentials as Any )
+            
+            //If OTP is Valid then Login Sucess else show Error message in Console
+            //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
+            Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
+                    if let error = error {
+                        print("error",error.localizedDescription)
+                        self.lbl_OTP_Validation.isHidden = false
+                        self.lbl_OTP_Validation.text = NAString().incorrect_otp()
+                        print("Failure OTP is Invalid")
+                        return
+                    }
+                    else {
+                          print("Success OTP is valid")
+                        
+                        let dailyServicesUID = Auth.auth().currentUser?.uid
+                        print("Daily Services UID",dailyServicesUID as Any)
+                        Constants.userUIDPer = userUID!
+                        print("Old Permanent UID is:",Constants.userUIDPer)
+                        
+                        let dailyServicesVC = AddMyServicesViewController()
+                        dailyServicesVC.storingDailyServicesInFirebase()
+                        
+                        let lv = NAViewPresenter().myDailyServicesVC()
+                        self.navigationController?.pushViewController(lv, animated: true)
+                }
+            }
         }
     }
     
@@ -253,26 +295,4 @@ extension OTPViewController {
     }
 }
 
-extension OTPViewController {
-    
-    func verifyDailyServices()  {
-        
-        //Assigning OTP TextFields To Variables.
-        let Otp_Strig1 = self.txtOTP1.text!
-        let Otp_Strig2 = self.txtOTP2.text!
-        let Otp_Strig3 = self.txtOTP3.text!
-        let Otp_Strig4 = self.txtOTP4.text!
-        let Otp_Strig5 = self.txtOTP5.text!
-        let Otp_Strig6 = self.txtOTP6.text!
-        
-        //Concatinating all the OTP String variables to get Final String.
-        finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
-        
-        //Creating Credential variable to check correct OTP String.
-        let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
-        
-        print("Credentials",Credentials as Any)
-        
-        
-    }
-}
+
