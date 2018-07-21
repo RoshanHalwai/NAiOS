@@ -231,7 +231,7 @@ class NAString : NSObject {
     func logout() -> String {
         return String("Logout")
     }
-    //SideMenu
+    //Navigation Menu
     func frequently_asked_questions() -> String {
         return String("Frequently Asked Questions")
     }
@@ -279,6 +279,9 @@ class NAString : NSObject {
     }
     func app_Version() -> String {
         return String("App Version 1.0")
+    }
+    func count_two() -> Int {
+        return Int(2)
     }
     
     //Society Services Activity

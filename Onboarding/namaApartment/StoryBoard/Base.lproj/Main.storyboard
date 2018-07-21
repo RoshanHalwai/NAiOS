@@ -5681,10 +5681,10 @@
             </objects>
             <point key="canvasLocation" x="128.80000000000001" y="2202.5487256371816"/>
         </scene>
-        <!--Side Menu View Controller-->
+        <!--Navigation Menu View Controller-->
         <scene sceneID="3sM-LJ-rd1">
             <objects>
-                <viewController id="CnX-22-JfN" customClass="SideMenuViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="navigationMenuVC" id="CnX-22-JfN" customClass="NavigationMenuViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ewL-Fh-bG2">
                         <rect key="frame" x="0.0" y="0.0" width="260" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5723,7 +5723,7 @@
                                 <rect key="frame" x="0.0" y="173" width="260" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="SideMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">

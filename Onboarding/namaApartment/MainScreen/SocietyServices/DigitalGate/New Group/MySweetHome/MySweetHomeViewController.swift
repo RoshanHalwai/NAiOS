@@ -61,7 +61,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     //Navigating Back to digi gate according to Screen coming from
     @objc func goBackToHomeScreenVC() {
         if fromHomeScreenVC {
-            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-2]
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_two()]
             self.navigationController?.popToViewController(vcToPop!, animated: true)
         } else {
             self.navigationController?.popViewController(animated: true)

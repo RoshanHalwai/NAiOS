@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SideMenuTableViewCell: UITableViewCell {
+class NavigationMenuTableViewCell: UITableViewCell {
     
     @IBOutlet weak var labelView: UILabel!
     @IBOutlet weak var image_View: UIImageView!

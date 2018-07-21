@@ -19,8 +19,8 @@
 		083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */; };
 		083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */; };
 		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
-		084D963D2100C92900BE9D3D /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963C2100C92900BE9D3D /* SideMenuViewController.swift */; };
-		084D963F2100CAD100BE9D3D /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963E2100CAD100BE9D3D /* SideMenuTableViewCell.swift */; };
+		084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */; };
+		084D963F2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */; };
 		085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646712101FA0C00C5FBF6 /* HelpViewController.swift */; };
 		085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */; };
 		085646762101FA6D00C5FBF6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646752101FA6D00C5FBF6 /* SettingsViewController.swift */; };
@@ -162,8 +162,8 @@
 		083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesViewController.swift; sourceTree = "<group>"; };
 		083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesTableViewCell.swift; sourceTree = "<group>"; };
 		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
-		084D963C2100C92900BE9D3D /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
-		084D963E2100CAD100BE9D3D /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuViewController.swift; sourceTree = "<group>"; };
+		084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuTableViewCell.swift; sourceTree = "<group>"; };
 		085646712101FA0C00C5FBF6 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCollectionViewCell.swift; sourceTree = "<group>"; };
 		085646752101FA6D00C5FBF6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -341,17 +341,17 @@
 			path = VisitorListCategory;
 			sourceTree = "<group>";
 		};
-		0856466F2101F98C00C5FBF6 /* SideMenu */ = {
+		0856466F2101F98C00C5FBF6 /* NavigationMenu */ = {
 			isa = PBXGroup;
 			children = (
-				084D963C2100C92900BE9D3D /* SideMenuViewController.swift */,
-				084D963E2100CAD100BE9D3D /* SideMenuTableViewCell.swift */,
-				085646702101F9CC00C5FBF6 /* SideMenuCategory */,
+				084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */,
+				084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */,
+				085646702101F9CC00C5FBF6 /* NavigationMenuCategory */,
 			);
-			path = SideMenu;
+			path = NavigationMenu;
 			sourceTree = "<group>";
 		};
-		085646702101F9CC00C5FBF6 /* SideMenuCategory */ = {
+		085646702101F9CC00C5FBF6 /* NavigationMenuCategory */ = {
 			isa = PBXGroup;
 			children = (
 				085646712101FA0C00C5FBF6 /* HelpViewController.swift */,
@@ -362,7 +362,7 @@
 				0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */,
 				0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */,
 			);
-			path = SideMenuCategory;
+			path = NavigationMenuCategory;
 			sourceTree = "<group>";
 		};
 		15E253658059EF007BD00B9F /* Pods */ = {
@@ -489,7 +489,7 @@
 				86548D7D209C1F7500C700DA /* DataModel.swift */,
 				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
 				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
-				0856466F2101F98C00C5FBF6 /* SideMenu */,
+				0856466F2101F98C00C5FBF6 /* NavigationMenu */,
 				860FAEF2209D763700D563F5 /* SocietyServices */,
 				86D19EF520A1C7BD00FB7DC8 /* ApartmentServices */,
 			);
@@ -1087,7 +1087,7 @@
 				0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */,
 				0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */,
 				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
-				084D963D2100C92900BE9D3D /* SideMenuViewController.swift in Sources */,
+				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
 				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
 				0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
@@ -1106,7 +1106,7 @@
 				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
 				8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */,
 				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
-				084D963F2100CAD100BE9D3D /* SideMenuTableViewCell.swift in Sources */,
+				084D963F2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift in Sources */,
 				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
 				085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */,
 				86BF6A4320A0326E00B175A1 /* MyGuestListViewController.swift in Sources */,

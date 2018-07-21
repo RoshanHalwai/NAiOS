@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class SideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var nammaLabel: UILabel!
@@ -30,7 +30,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SideMenuTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NavigationMenuTableViewCell
         cell.image_View.image = UIImage(named: sideMenuArray[indexPath.row])
         cell.labelView.text = sideMenuArray[indexPath.row]
         return cell
@@ -39,7 +39,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     //Getting Data on Selecting Particular data of cell from the Index path.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!)! as! SideMenuTableViewCell
+        let currentCell = tableView.cellForRow(at: indexPath!)! as! NavigationMenuTableViewCell
         let currentItem = currentCell.labelView.text
         if currentItem == NAString().my_family_members() {
             let dv3 = NAViewPresenter().mySweetHomeVC()
