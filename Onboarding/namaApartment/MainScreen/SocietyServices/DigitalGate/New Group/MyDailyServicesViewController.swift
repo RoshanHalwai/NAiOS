@@ -83,7 +83,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     //For navigating back to My Digi Gate VC
     @objc func goBackToDigiGate() {
-        let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-5]
+        let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().addMyDailyServiceCount()]
         print(vcToPop as Any)
         self.navigationController?.popToViewController(vcToPop!, animated: true)
     }

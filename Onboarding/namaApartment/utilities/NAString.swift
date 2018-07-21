@@ -864,4 +864,8 @@ class NAString : NSObject {
     func popupViewCornerRadius() -> Int {
         return Int (10)
     }
+    
+    func addMyDailyServiceCount() -> Int {
+        return Int (5)
+    }
 }
