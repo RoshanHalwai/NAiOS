@@ -37,8 +37,10 @@ class OpacityView {
             popupView.lbl_Title.text = NAString().inviteButtonloadViewTitle()
         } else if addButtonTagValue == 102 {
             popupView.lbl_Title.text = NAString().addButtonDailyServicesloadViewTitle()
-        } else {
+        } else if addButtonTagValue == 103 {
             popupView.lbl_Title.text = NAString().addFamilyMemberTitle()
+        } else {
+            
         }
     }
     

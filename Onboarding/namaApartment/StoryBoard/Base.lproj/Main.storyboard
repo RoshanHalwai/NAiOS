@@ -3636,8 +3636,8 @@
                                     <action selector="floatingButton:" destination="jIV-Qy-R5V" eventType="touchUpInside" id="J4a-ja-Gec"/>
                                 </connections>
                             </button>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-ow-Pmy" userLabel="opacityView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <view alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-ow-Pmy" userLabel="opacityView">
+                                <rect key="frame" x="1" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPe-YS-YBT">
                                         <rect key="frame" x="33" y="226" width="308" height="134"/>

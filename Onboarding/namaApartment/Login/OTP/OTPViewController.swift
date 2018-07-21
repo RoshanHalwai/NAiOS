@@ -102,14 +102,15 @@ class OTPViewController: NANavigationViewController {
             //Calling verify OTP function, When OTP Screen is Coming From Login VC.
             verifyOTPWithFirebase()
         }
-            //Back to My Sweet Home screen
-        else if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
+        //Back to My Sweet Home screen
+        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
             let lv = NAViewPresenter().mySweetHomeVC()
             self.navigationController?.pushViewController(lv, animated: true)
         }
-            //Back to My Daily Services Screen
-        else {
+        //Back to My Daily Services Screen
+        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your cook", second: "their")){
             let lv = NAViewPresenter().myDailyServicesVC()
+            lv.fromAddMyDailyServicesVC = true
             self.navigationController?.pushViewController(lv, animated: true)
         }
     }
