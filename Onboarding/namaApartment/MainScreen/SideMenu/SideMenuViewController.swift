@@ -41,8 +41,12 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!)! as! SideMenuTableViewCell
         let currentItem = currentCell.labelView.text
-        
-        if currentItem == NAString().help() {
+        if currentItem == NAString().my_family_members() {
+            let dv3 = NAViewPresenter().mySweetHomeVC()
+            dv3.navTitle = NAString().my_sweet_home()
+            dv3.fromHomeScreenVC = true
+            self.navigationController?.pushViewController(dv3, animated: true)
+        } else if currentItem == NAString().help() {
             let dv = NAViewPresenter().helpVC()
             dv.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv, animated: true)
