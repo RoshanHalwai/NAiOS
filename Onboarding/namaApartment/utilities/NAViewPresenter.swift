@@ -153,4 +153,20 @@ class NAViewPresenter: NSObject {
     func handedThingsServiceHistoryVC() -> HandedThingsDailyServicesHistoryViewController {
         return storyBoard.instantiateViewController(withIdentifier: "DailyServiceHistoryVC") as! HandedThingsDailyServicesHistoryViewController
     }
+    //side Menu Help Screen
+    func helpVC() -> HelpViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "helpVC") as! HelpViewController
+    }
+    //side Menu Settings Screen
+    func settingsVC() -> SettingsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "settingsVC") as! SettingsViewController
+    }
+    //side Menu Notifications settings Screen
+    func notificationSettingsVC() -> NotificationSettingsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "notificationSettingsVC") as! NotificationSettingsViewController
+    }
+    //side Menu General settings Screen
+    func generalSettingsVC() -> GeneralSettingsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "generalSettingsVC") as! GeneralSettingsViewController
+    }
 }
