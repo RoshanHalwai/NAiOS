@@ -89,6 +89,14 @@ class MainScreenViewController: NANavigationViewController {
             apartmentServicesModel(cellTitle: NAString().driver(),cellImage:  #imageLiteral(resourceName: "Newdriver")),
             apartmentServicesModel(cellTitle: NAString().groceries(), cellImage: #imageLiteral(resourceName: "groceries"))
         ]
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
     }
     
     /* - For switching the tableview data in between society & apartment services.
@@ -136,6 +144,19 @@ class MainScreenViewController: NANavigationViewController {
         let normalAttributes = [NSAttributedStringKey.foregroundColor: UIColor.gray]
         self.segmentSelection?.setTitleTextAttributes(normalAttributes, for: .normal)
     }
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                showNavigationMenu()
+            case UISwipeGestureRecognizerDirection.left:
+                closeNavigationMenu()
+            default:
+                break
+            }
+        }
+    }
+
 }
 
 extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {

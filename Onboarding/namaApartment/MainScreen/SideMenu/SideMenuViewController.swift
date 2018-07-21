@@ -17,6 +17,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
+    let mainSreenVC = MainScreenViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +42,12 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!)! as! SideMenuTableViewCell
         let currentItem = currentCell.labelView.text
-        
-        if currentItem == NAString().help() {
+        if currentItem == NAString().my_family_members() {
+            let dv3 = NAViewPresenter().mySweetHomeVC()
+            dv3.navTitle = NAString().my_sweet_home()
+            dv3.fromHomeScreenVC = true
+            self.navigationController?.pushViewController(dv3, animated: true)
+        } else if currentItem == NAString().help() {
             let dv = NAViewPresenter().helpVC()
             dv.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv, animated: true)
@@ -53,6 +58,7 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         } else if currentItem == NAString().logout() {
             self.logoutAction()
         }
+        //self.mainSreenVC.closeNavigationMenu()
         tableView.deselectRow(at: indexPath!, animated: true)
     }
     //To Logout the current user
