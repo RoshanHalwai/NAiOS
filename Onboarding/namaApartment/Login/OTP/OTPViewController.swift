@@ -29,6 +29,8 @@ class OTPViewController: NANavigationViewController {
     //to take data from add my services
     var newOtpString = String()
     
+    let UserDetails = UserDefaults.standard
+    
     //Creating varibale to get mobile number string from Login VC TextField.
     var getMobileString = String()
     var getCountryCodeString = String()
@@ -144,13 +146,10 @@ class OTPViewController: NANavigationViewController {
                         let dailyServicesUID = Auth.auth().currentUser?.uid
                         print("Daily Services UID",dailyServicesUID as Any)
                         Constants.userUIDPer = userUID!
-                        print("Old Permanent UID is:",Constants.userUIDPer)
+                        print("User UID is:",Constants.userUIDPer)
                         
-                        let dailyServicesVC = AddMyServicesViewController()
-                        dailyServicesVC.storingDailyServicesInFirebase()
-                        
-                        let lv = NAViewPresenter().myDailyServicesVC()
-                        self.navigationController?.pushViewController(lv, animated: true)
+                        //Calling function from Add My Daily Services VC
+                        self.navigationController?.popViewController(animated: true)
                 }
             }
         }
@@ -294,5 +293,3 @@ extension OTPViewController {
         }
     }
 }
-
-

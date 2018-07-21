@@ -91,7 +91,6 @@ class MainScreenViewController: NANavigationViewController {
     @objc func logout() {
         try! Auth.auth().signOut()
         if self.storyboard != nil {
-            Constants.userUIDPer = ""
             print("Now string is Empty",Constants.userUIDPer)
             let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
             let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())

@@ -17,6 +17,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
 {
     @IBOutlet weak var img_Profile: UIImageView!
     
+    var ActivityResult:Bool?
+    
     @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var lbl_OR: UILabel!
@@ -64,6 +66,28 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+       
+        
+        //Activity indicatorevaules
+//        if(ActivityResult == true)
+//        {
+//             print("Activity result is True")
+//            storingDailyServicesInFirebase()
+//        }
+//        else
+//        {
+//            print("Activity result is False")
+//        }
+        
+//        if UserDefaults.standard.bool(forKey: "ActivityResult"){
+//            print("Activity result is True")
+//            storingDailyServicesInFirebase()
+//
+//        }else{
+//            print("Activity result is False ")
+//        }
+        
         
         //Create Name textfield first letter capital
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
@@ -372,6 +396,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             lv.getCountryCodeString = self.txt_CountryCode.text!
             lv.getMobileString = self.txt_MobileNo.text!
             lv.newOtpString = dailyServicesString
+            
             self.navigationController?.pushViewController(lv, animated: true)
         }
         alertController.addAction(OKAction)
@@ -431,20 +456,20 @@ extension AddMyServicesViewController {
         //Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
         dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
         
-        dailyServicesPrivateRef?.child("8866993029").setValue(dailyServicesUID!)
-        
+        dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServicesUID!)
         
         //Storing Daily services details in DailyServices -> All -> Public
         dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("drivers").child(dailyServicesUID!).child(userUID!)
         
-        //mapping
-        dailyServicesPublicRef?.child("status").setValue(NAString().notEntered())
         
         //Storing Profile Image in Storage Folder
-        Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child("drivers")
+        dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child("drivers")
+        
+        
+        print("My Image is :", img_Profile.image as Any)
         
         //Compressing profile image and assigning its content type.
-        guard let image = img_Profile.image else { return }
+        guard let image = self.img_Profile.image else { return }
         guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
         
         let metaDataContentType = StorageMetadata()
@@ -461,14 +486,16 @@ extension AddMyServicesViewController {
                     let dailyServicesData = [
                         NADailyServicesListFBKeys.fullName.key : self.txt_Name.text! as String,
                         NADailyServicesListFBKeys.numberOfFlats.key : "0",
-                        NADailyServicesListFBKeys.profilePhoto.key : url?.absoluteString,
-                        NADailyServicesListFBKeys.phoneNumber.key : "8866993029",
+                        NADailyServicesListFBKeys.phoneNumber.key : self.txt_MobileNo.text!,
                         NADailyServicesListFBKeys.rating.key : "3",
                         NADailyServicesListFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
-                        NADailyServicesListFBKeys.uid.key : dailyServicesUID!
+                        NADailyServicesListFBKeys.uid.key : dailyServicesUID!,
+                        NADailyServicesListFBKeys.profilePhoto.key : url?.absoluteString,
                     ]
                     //Adding Daily Services data under Daily Services -> UID
                     self.dailyServicesPublicRef?.setValue(dailyServicesData)
+                    //mapping
+                    self.dailyServicesPublicRef?.child("status").setValue(NAString().notEntered())
                 } else {
                     print("Error is:",urlError as Any)
                 }
