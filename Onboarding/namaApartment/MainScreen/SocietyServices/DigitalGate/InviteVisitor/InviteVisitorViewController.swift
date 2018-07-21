@@ -263,7 +263,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
 
-            btnInviteVisitor.tag = 101
+            btnInviteVisitor.tag = NAString().inviteButtonTagValue()
             OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
             OpacityView.shared.showingPopupView(view: self)
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
