@@ -12,11 +12,7 @@ class HelpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
-
         // Do any additional setup after loading the view.
-=======
->>>>>>> NavigationDrawer
     }
 
 }
