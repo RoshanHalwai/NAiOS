@@ -26,7 +26,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     var MySweetHomeRelation = ["Sister","Brother"]
     var MySweetHomeGrantAccess = ["Yes","No"]
     
-    //A boolean variable to indicate if previous screen was Expecting Arrival.
+    //A boolean variable to indicate if previous screen was Home Screen.
     var fromHomeScreenVC = false
     
     var navTitle = String()
@@ -58,7 +58,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    //Navigating Back to digi gate according to Screen coming from
+    //Navigating Back to Home Screen according to Screen coming from
     @objc func goBackToHomeScreenVC() {
         if fromHomeScreenVC {
             let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_two()]
