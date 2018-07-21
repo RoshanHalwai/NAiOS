@@ -106,27 +106,24 @@ class MainScreenViewController: NANavigationViewController {
             showNavigationMenu()
         }
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.NavigationMenuOpen {
-           showNavigationMenu()
+           closeNavigationMenu()
         }
     }
-    
-    func showNavigationMenu() {
+    func closeNavigationMenu() {
         self.NavigationMenuOpen = false
         opacity_View.isHidden = true
         UIView.animate(withDuration: 0.5) {
-            self.sideMenuConstrain.constant = 0
+            self.sideMenuConstrain.constant = -260
             self.view.layoutIfNeeded()
         }
     }
-    
-    func closeNavigationMenu() {
+    func showNavigationMenu() {
         self.NavigationMenuOpen = true
-        opacity_View.isHidden = true
+        opacity_View.isHidden = false
         UIView.animate(withDuration: 0.5) {
-            self.sideMenuConstrain.constant = -260
+            self.sideMenuConstrain.constant = 0
             self.view.layoutIfNeeded()
         }
     }
