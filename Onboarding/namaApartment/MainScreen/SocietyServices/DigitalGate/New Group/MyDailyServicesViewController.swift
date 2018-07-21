@@ -25,12 +25,15 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     //Created variable for Daily services list FB Objects to fetch data from firebase.
     var myDailyServicesList = [NammaApartmentDailyServices]()
-   
+    
     //Array of Action sheet items.
     var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
     
     //created date picker programtically
     let picker = UIDatePicker()
+    
+    //A boolean variable to indicate if previous screen was Add My Daily Services Screen.
+    var fromAddMyDailyServicesVC = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -69,9 +72,19 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         //calling function to retriev data from firebase.
         getMyDailyServicesDataFromFirebase()
-       
+        
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().my_daily_services().capitalized)
+        
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigiGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    //For navigating back to My Digi Gate VC
+    @objc func goBackToDigiGate() {
+        let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().addMyDailyServiceCount()]
+        self.navigationController?.popToViewController(vcToPop!, animated: true)
     }
     
     //for creating action sheet to select my daily services
@@ -98,7 +111,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         actionSheet.addAction(action6)
         actionSheet.addAction(action7)
         actionSheet.addAction(action8)
-
+        
         actionSheet.addAction(cancel)
         actionSheet.view.tintColor = UIColor.black
         self.present(actionSheet, animated: true, completion: nil)
@@ -138,7 +151,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         //TODO : Need to change Flat Number.
         cell.lbl_MyDailyServicesFlats.text = "5"
-    
+        
         //Calling global function to get Profile Image from Firebase.
         if let urlString = list.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
@@ -239,7 +252,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             
             //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
             if snapshot.exists() {
-               
+                
                 //for loop for getting all the data in tableview
                 for dailyServices in snapshot.children.allObjects as! [DataSnapshot] {
                     
@@ -283,14 +296,14 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
-        
+            
             UIView.animate(withDuration: 0.3) {
                 cell.alpha = 0.0
                 let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
                 cell.layer.transform = transform
             }
             Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
-            }
+        }
         alert.addAction(actionNO) //add No action on AlertView
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)

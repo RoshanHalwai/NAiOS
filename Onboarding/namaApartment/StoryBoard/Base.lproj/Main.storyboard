@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bdB-r2-sYz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xpH-eD-j9k">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -709,7 +709,7 @@
                         <outlet property="opacity_View" destination="zL0-uq-wIs" id="47g-iW-B9R"/>
                         <outlet property="segmentSelection" destination="smv-mZ-sRz" id="FLg-Un-ZIX"/>
                         <outlet property="sideMenuConstrain" destination="g5D-vv-BZQ" id="L1h-rh-pnm"/>
-                        <outlet property="tableView" destination="9jL-U7-0z1" id="m0H-G2-xvb"/>
+                        <outlet property="tableView" destination="9jL-U7-0z1" id="iru-x7-NBY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hTY-Kn-5Xn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3636,8 +3636,8 @@
                                     <action selector="floatingButton:" destination="jIV-Qy-R5V" eventType="touchUpInside" id="J4a-ja-Gec"/>
                                 </connections>
                             </button>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-ow-Pmy" userLabel="opacityView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <view alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-ow-Pmy" userLabel="opacityView">
+                                <rect key="frame" x="1" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPe-YS-YBT">
                                         <rect key="frame" x="33" y="226" width="308" height="134"/>
@@ -5481,10 +5481,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hUI-uq-nOm"/>
                     </view>
-                    <connections>
-                        <outlet property="tableView" destination="NF8-U7-Py3" id="QFt-GF-Y6U"/>
-                        <outlet property="top_View" destination="aYJ-Rh-DTW" id="Hn1-Mv-z3I"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbs-Ma-2wB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
