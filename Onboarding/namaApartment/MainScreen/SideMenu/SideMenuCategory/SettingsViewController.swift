@@ -23,8 +23,8 @@ class SettingsViewController: NANavigationViewController, UICollectionViewDelega
         collection_View.delegate = self
         collection_View.dataSource = self
         collection_View.reloadData()
-
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return settingsArray.count
     }
@@ -36,6 +36,7 @@ class SettingsViewController: NANavigationViewController, UICollectionViewDelega
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:

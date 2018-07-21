@@ -12,9 +12,4 @@ class SideMenuTableViewCell: UITableViewCell {
     
     @IBOutlet weak var labelView: UILabel!
     @IBOutlet weak var image_View: UIImageView!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
 }

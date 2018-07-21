@@ -92,41 +92,43 @@ class MainScreenViewController: NANavigationViewController {
         ]
     }
     
-    /* * For switching the tableview data in between society & apartment services.
-     * Modifying SegmentControl text according to segment selection. */
-    
+    /* - For switching the tableview data in between society & apartment services.
+       - Modifying SegmentControl text according to segment selection. */
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.segmentControlSelection()
         self.tableView.reloadData()
     }
 
-    //For showing Side menu
+    //For showing and closing Side menu
     @objc func sideMenuVC() {
         if self.sideMenuOpen {
-            self.sideMenuOpen = false
-            opacity_View.isHidden = true
-            UIView.animate(withDuration: 0.5) {
-                self.sideMenuConstrain.constant = -260
-                self.view.layoutIfNeeded()
-            }
+            closeSideMenu()
         } else {
-            self.sideMenuOpen = true
-            UIView.animate(withDuration: 0.5) {
-                self.sideMenuConstrain.constant = 0
-                self.opacity_View.isHidden = false
-                self.view.layoutIfNeeded()
-            }
+            showSideMenu()
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.sideMenuOpen {
-            self.sideMenuOpen = false
-            opacity_View.isHidden = true
-            UIView.animate(withDuration: 0.5) {
-                self.sideMenuConstrain.constant = -260
-                self.view.layoutIfNeeded()
-            }
+           showSideMenu()
+        }
+    }
+    
+    func showSideMenu() {
+        self.sideMenuOpen = false
+        opacity_View.isHidden = true
+        UIView.animate(withDuration: 0.5) {
+            self.sideMenuConstrain.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func closeSideMenu() {
+        self.sideMenuOpen = true
+        opacity_View.isHidden = true
+        UIView.animate(withDuration: 0.5) {
+            self.sideMenuConstrain.constant = -260
+            self.view.layoutIfNeeded()
         }
     }
     

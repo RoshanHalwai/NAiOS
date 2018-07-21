@@ -11,18 +11,16 @@ import UIKit
 class GeneralSettingsViewController: NANavigationViewController {
     
     @IBOutlet weak var choose_Language_Label: UILabel!
-    
     @IBOutlet weak var location_Services_Label: UILabel!
-    
     @IBOutlet weak var report_A_Bug_Label: UILabel!
-    
     @IBOutlet weak var app_Version_Label: UILabel!
-    
     @IBOutlet weak var report_Bug_TextField: UITextField!
-    
     @IBOutlet weak var location_Services_Switch: UISwitch!
     
     var navTitle = String()
+    
+    /* - Assigning Font and line for text field.
+       - Assigning text and Font to Labels. */
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +28,6 @@ class GeneralSettingsViewController: NANavigationViewController {
         super.ConfigureNavBarTitle(title: navTitle)
         
         report_Bug_TextField.underlined()
-        
         report_Bug_TextField.font = NAFont().textFieldFont()
         
         choose_Language_Label.text = NAString().choose_Language()

@@ -18,8 +18,8 @@ class NotificationSettingsViewController: NANavigationViewController, UITableVie
         super.viewDidLoad()
         table_View.separatorStyle = .none
         super.ConfigureNavBarTitle(title: navTitle)
-
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notificationsArray.count
     }
@@ -30,5 +30,4 @@ class NotificationSettingsViewController: NANavigationViewController, UITableVie
         cell.labelView.font = NAFont().headerFont()
         return cell
     }
-
 }

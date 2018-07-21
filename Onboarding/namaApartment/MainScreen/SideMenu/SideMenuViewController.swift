@@ -17,34 +17,32 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
-    var mainScreenVC: MainScreenViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-       
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sideMenuArray.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SideMenuTableViewCell
         cell.image_View.image = UIImage(named: sideMenuArray[indexPath.row])
         cell.labelView.text = sideMenuArray[indexPath.row]
         return cell
     }
+    
+    //Getting Data on Selecting Particular data of cell from the Index path.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //getting the index path of selected row
         let indexPath = tableView.indexPathForSelectedRow
-        //getting the current cell from the index path
         let currentCell = tableView.cellForRow(at: indexPath!)! as! SideMenuTableViewCell
-        //getting the text of that cell
         let currentItem = currentCell.labelView.text
         
         if currentItem == NAString().help() {
-            
             let dv = NAViewPresenter().helpVC()
             dv.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv, animated: true)
