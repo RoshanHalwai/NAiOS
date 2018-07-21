@@ -442,7 +442,6 @@
 		86548D7C209C1F5400C700DA /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				86548D7D209C1F7500C700DA /* DataModel.swift */,
 				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
 				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
 				860FAEF2209D763700D563F5 /* SocietyServices */,
@@ -586,6 +585,7 @@
 		86BD74E320999DBF00B159A3 /* OTP */ = {
 			isa = PBXGroup;
 			children = (
+				86548D7D209C1F7500C700DA /* DataModel.swift */,
 				86BD74E420999DE200B159A3 /* OTPViewController.swift */,
 				08A0210420F523FC00130185 /* Reachability.swift */,
 			);

@@ -85,7 +85,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         txt_Date.rightView = imageView
         
         //setting navigation title
-        super.ConfigureNavBarTitle(title: navTitle!)
+       super.ConfigureNavBarTitle(title: navTitle!)
         
         //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
@@ -359,7 +359,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         // Create OK button
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().otpViewController()
-            let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
+            let familyString = NAString().enter_verification_code(first: "your cook", second: "their")
             lv.newOtpString = familyString
             self.navigationController?.pushViewController(lv, animated: true)
         }
