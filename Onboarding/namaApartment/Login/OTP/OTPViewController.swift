@@ -108,7 +108,7 @@ class OTPViewController: NANavigationViewController {
             self.navigationController?.pushViewController(lv, animated: true)
         }
         //Back to My Daily Services Screen
-        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your cook", second: "their")){
+        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your cook", second: "their")) {
             let lv = NAViewPresenter().myDailyServicesVC()
             lv.fromAddMyDailyServicesVC = true
             self.navigationController?.pushViewController(lv, animated: true)
