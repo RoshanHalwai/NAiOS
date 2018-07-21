@@ -32,7 +32,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         tableViewResultController.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         //created custom back button for goto My Visitors Lists screen
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMyFlatDetails))
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToMyFlatDetails))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
         

@@ -1,0 +1,69 @@
+//
+//  SideMenuViewController.swift
+//  nammaApartment
+//
+//  Created by Sundir Talari on 19/07/18.
+//  Copyright © 2018 Vikas Nayak. All rights reserved.
+//
+
+import UIKit
+import FirebaseAuth
+
+class SideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var sideMenuView: UIView!
+    @IBOutlet weak var nammaLabel: UILabel!
+    @IBOutlet weak var oneStopLabel: UILabel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
+    var mainScreenVC: MainScreenViewController!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+       
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sideMenuArray.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SideMenuTableViewCell
+        cell.image_View.image = UIImage(named: sideMenuArray[indexPath.row])
+        cell.labelView.text = sideMenuArray[indexPath.row]
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //getting the index path of selected row
+        let indexPath = tableView.indexPathForSelectedRow
+        //getting the current cell from the index path
+        let currentCell = tableView.cellForRow(at: indexPath!)! as! SideMenuTableViewCell
+        //getting the text of that cell
+        let currentItem = currentCell.labelView.text
+        
+        if currentItem == NAString().help() {
+            
+            let dv = NAViewPresenter().helpVC()
+            dv.navTitle = NAString().help()
+            self.navigationController?.pushViewController(dv, animated: true)
+        } else if currentItem == NAString().settings() {
+            let dv1 = NAViewPresenter().settingsVC()
+            dv1.navTitle = NAString().settings()
+            self.navigationController?.pushViewController(dv1, animated: true)
+        } else if currentItem == NAString().logout() {
+            self.logoutAction()
+        }
+        tableView.deselectRow(at: indexPath!, animated: true)
+    }
+    //To Logout the current user
+    @objc func logoutAction() {
+        try! Auth.auth().signOut()
+        if self.storyboard != nil {
+            let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
+            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
+            self.present(NavLogin, animated: true)
+        }
+    }
+}

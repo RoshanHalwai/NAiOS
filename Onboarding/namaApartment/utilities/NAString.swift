@@ -212,6 +212,76 @@ class NAString : NSObject {
     func one() -> Int{
         return Int(1)
     }
+    //Home Screen
+    func my_profile() -> String {
+        return String("MyProfile")
+    }
+    func my_family_members() -> String {
+        return String("My Family Members")
+    }
+    func notice_board() -> String {
+        return String("Notice Board")
+    }
+    func help() -> String {
+        return String("Help")
+    }
+    func rate_us() -> String {
+        return String("Rate Us")
+    }
+    func logout() -> String {
+        return String("Logout")
+    }
+
+    
+    //SideMenu
+    func frequently_asked_questions() -> String {
+        return String("Frequently Asked Questions")
+    }
+    func using_namma_apartments_app() -> String {
+        return String("Using Namma Apartments App")
+    }
+    func contact_us() -> String {
+        return String("Contact Us")
+    }
+    func terms_and_conditions() -> String {
+        return String("Terms and Conditions")
+    }
+    func privacy_policy() -> String {
+        return String("Privacy Policy")
+    }
+    func general_settings() -> String {
+        return String("General Settings")
+    }
+    func notification_settings() -> String {
+        return String("Notification Settings")
+    }
+    func new_Message_Notification() -> String {
+        return String("New Message Notifications")
+    }
+    func email_Notification() -> String {
+        return String("Email Notifications")
+    }
+    func vibrate() -> String {
+        return String("Vibrate")
+    }
+    func enable_inApp_Sound_Notification() -> String {
+        return String("Enable in-app sound Notifications")
+    }
+    func product_Updates() -> String {
+        return String("Product Updates")
+    }
+    func choose_Language() -> String {
+        return String("Choose Language")
+    }
+    func location_services() -> String {
+        return String("Location Services")
+    }
+    func report_bug() -> String {
+        return String("Report A Bug")
+    }
+    func app_Version() -> String {
+        return String("App Version 1.0")
+    }
     
     //Society Services Activity
     func digital_gate() -> String {
