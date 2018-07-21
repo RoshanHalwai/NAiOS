@@ -98,7 +98,7 @@ class MainScreenViewController: NANavigationViewController {
         self.tableView.reloadData()
     }
 
-    //For showing and closing Side menu
+    //For showing and closing Navigation menu
     @objc func NavigationMenuVC() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
