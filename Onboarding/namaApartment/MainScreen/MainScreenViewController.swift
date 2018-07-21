@@ -20,7 +20,7 @@ class MainScreenViewController: NANavigationViewController {
     
     fileprivate var isSocietyServices = true
     
-    var sideMenuOpen = false
+    var NavigationMenuOpen = false
     
     var currentIndex = 0
     
@@ -49,7 +49,7 @@ class MainScreenViewController: NANavigationViewController {
         let menuButton = UIButton(type: .system)
         menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
         menuButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        menuButton.addTarget(self, action: #selector(sideMenuVC), for: .touchUpInside)
+        menuButton.addTarget(self, action: #selector(NavigationMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
     
         self.retrieveUserData()
@@ -99,22 +99,22 @@ class MainScreenViewController: NANavigationViewController {
     }
 
     //For showing and closing Side menu
-    @objc func sideMenuVC() {
-        if self.sideMenuOpen {
-            closeSideMenu()
+    @objc func NavigationMenuVC() {
+        if self.NavigationMenuOpen {
+            closeNavigationMenu()
         } else {
-            showSideMenu()
+            showNavigationMenu()
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if self.sideMenuOpen {
-           showSideMenu()
+        if self.NavigationMenuOpen {
+           showNavigationMenu()
         }
     }
     
-    func showSideMenu() {
-        self.sideMenuOpen = false
+    func showNavigationMenu() {
+        self.NavigationMenuOpen = false
         opacity_View.isHidden = true
         UIView.animate(withDuration: 0.5) {
             self.sideMenuConstrain.constant = 0
@@ -122,8 +122,8 @@ class MainScreenViewController: NANavigationViewController {
         }
     }
     
-    func closeSideMenu() {
-        self.sideMenuOpen = true
+    func closeNavigationMenu() {
+        self.NavigationMenuOpen = true
         opacity_View.isHidden = true
         UIView.animate(withDuration: 0.5) {
             self.sideMenuConstrain.constant = -260
