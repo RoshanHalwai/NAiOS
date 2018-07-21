@@ -20,8 +20,7 @@ class MainScreenViewController: NANavigationViewController {
     
     fileprivate var isSocietyServices = true
     
-     var sideMenuOpen = false
-    var sideMenuScreen: SideMenuViewController!
+    var sideMenuOpen = false
     
     var currentIndex = 0
     
