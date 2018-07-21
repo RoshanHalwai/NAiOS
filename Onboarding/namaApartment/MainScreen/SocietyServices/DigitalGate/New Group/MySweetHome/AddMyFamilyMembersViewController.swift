@@ -312,7 +312,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
-                btn_addDetails.tag = 103
+                btn_addDetails.tag = NAString().addMyFamilyMemberButtonTagValue()
                 OpacityView.shared.addButtonTagValue = btn_addDetails.tag
                 OpacityView.shared.showingPopupView(view: self)
                 timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)

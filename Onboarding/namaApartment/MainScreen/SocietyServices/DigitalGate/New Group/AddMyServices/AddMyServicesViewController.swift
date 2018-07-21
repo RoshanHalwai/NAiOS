@@ -333,7 +333,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
-                btn_AddDetails.tag = 102
+                btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
                 OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
                 OpacityView.shared.showingPopupView(view: self)
                 timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
