@@ -15,7 +15,7 @@ class OpacityView {
     
     var popupView: PopupView!
     var navTitle: String?
-    var addButtonTagValue : Int = 0
+    var addButtonTagValue : Int = NAString().zero_length()
     
     //Create showing popup view
     func showingPopupView(view: UIViewController) {
@@ -24,7 +24,7 @@ class OpacityView {
         popupView.center.y = view.view.bounds.height/2
         popupView.lbl_Message.text = NAString().addButtonloadViewMessage()
         self.popupViewTitle()
-        popupView.layer.cornerRadius = 10
+        popupView.layer.cornerRadius = CGFloat(NAString().popupViewCornerRadius())
         popupView.layer.masksToBounds = true
         view.view.addSubview(popupView)
     }
@@ -33,12 +33,12 @@ class OpacityView {
     func popupViewTitle() {
         popupView.lbl_Title.font = NAFont().headerFont()
         popupView.lbl_Message.font = NAFont().popupViewFont()
-        if addButtonTagValue == 101 {
+        if addButtonTagValue == NAString().inviteButtonTagValue() {
             popupView.lbl_Title.text = NAString().inviteButtonloadViewTitle()
-        } else if addButtonTagValue == 102 {
-            popupView.lbl_Title.text = NAString().addButtonDailyServicesloadViewTitle()
-        } else {
+        } else if addButtonTagValue == NAString().addMyFamilyMemberButtonTagValue() {
             popupView.lbl_Title.text = NAString().addFamilyMemberTitle()
+        } else if addButtonTagValue == NAString().addMyDailyServicesButtonTagValue() {
+            popupView.lbl_Title.text = NAString().addButtonDailyServicesloadViewTitle()
         }
     }
     

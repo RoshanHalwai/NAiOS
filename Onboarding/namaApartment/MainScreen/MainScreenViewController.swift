@@ -57,9 +57,9 @@ class MainScreenViewController: NANavigationViewController {
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
         
-        self.segmentControlSelection()
         segmentSelection.selectedSegmentIndex = currentIndex
-        
+        self.segmentControlSelection()
+
         VCNamesSociety = [NAViewPresenter().digiGateVCID()]
         VCNamesApartment = [NAViewPresenter().homeVCID()]
         

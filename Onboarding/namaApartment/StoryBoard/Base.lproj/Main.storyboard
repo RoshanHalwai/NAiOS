@@ -710,7 +710,7 @@
                         <outlet property="opacity_View" destination="zL0-uq-wIs" id="47g-iW-B9R"/>
                         <outlet property="segmentSelection" destination="smv-mZ-sRz" id="FLg-Un-ZIX"/>
                         <outlet property="sideMenuConstrain" destination="g5D-vv-BZQ" id="L1h-rh-pnm"/>
-                        <outlet property="tableView" destination="9jL-U7-0z1" id="m0H-G2-xvb"/>
+                        <outlet property="tableView" destination="9jL-U7-0z1" id="iru-x7-NBY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hTY-Kn-5Xn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3637,8 +3637,8 @@
                                     <action selector="floatingButton:" destination="jIV-Qy-R5V" eventType="touchUpInside" id="J4a-ja-Gec"/>
                                 </connections>
                             </button>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-ow-Pmy" userLabel="opacityView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <view alpha="0.5" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Fg-ow-Pmy" userLabel="opacityView">
+                                <rect key="frame" x="1" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPe-YS-YBT">
                                         <rect key="frame" x="33" y="226" width="308" height="134"/>
