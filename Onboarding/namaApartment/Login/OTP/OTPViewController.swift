@@ -16,6 +16,7 @@ let dailyServicesUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
     
+    var delegate:DataPass!
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
     @IBOutlet weak var txtOTP1: UITextField!
@@ -148,6 +149,7 @@ class OTPViewController: NANavigationViewController {
                         Constants.userUIDPer = userUID!
                         print("User UID is:",Constants.userUIDPer)
                         
+                        self.delegate.dataPassing()
                         //Calling function from Add My Daily Services VC
                         self.navigationController?.popViewController(animated: true)
                 }

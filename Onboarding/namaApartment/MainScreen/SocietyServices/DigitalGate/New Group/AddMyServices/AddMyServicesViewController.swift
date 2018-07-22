@@ -13,11 +13,15 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+protocol DataPass {
+    func dataPassing()
+}
+
+class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass
 {
     @IBOutlet weak var img_Profile: UIImageView!
     
-    var ActivityResult:Bool?
+   // var ActivityResult:Bool?
     
     @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_MobileNo: UILabel!
@@ -63,6 +67,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     var dailyServicesPublicRef: DatabaseReference?
     var dailyServicesPrivateRef : DatabaseReference?
     var dailyServicesImageRef : StorageReference?
+    var dailyServicesTypeRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -397,6 +402,10 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             lv.getMobileString = self.txt_MobileNo.text!
             lv.newOtpString = dailyServicesString
             
+            
+            
+            lv.delegate = self
+            
             self.navigationController?.pushViewController(lv, animated: true)
         }
         alertController.addAction(OKAction)
@@ -443,6 +452,10 @@ extension AddMyServicesViewController {
 
 extension AddMyServicesViewController {
     
+    func dataPassing() {
+        storingDailyServicesInFirebase()
+    }
+    
     func storingDailyServicesInFirebase()  {
         
         let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
@@ -457,6 +470,11 @@ extension AddMyServicesViewController {
         dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
         
         dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServicesUID!)
+        
+        //Mapping data in  DailyServices Type Node
+        dailyServicesTypeRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE)
+        
+        dailyServicesTypeRef?.child(dailyServicesUID!).setValue("drivers")
         
         //Storing Daily services details in DailyServices -> All -> Public
         dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("drivers").child(dailyServicesUID!).child(userUID!)
