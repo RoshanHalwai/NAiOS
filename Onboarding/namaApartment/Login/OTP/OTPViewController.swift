@@ -10,7 +10,14 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-//Global variable to store users UID
+/* - AlertvieDelegate Protocol is passing the data to mainviewcontroller.
+   - activityIndicator_function : used to display the popup & alertvie with resepect time.
+   - Global variable to store users UID. */
+
+protocol AlertViewDelegate {
+    func activityIndicator_function(withData : Any)
+}
+
 var userUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
@@ -25,44 +32,47 @@ class OTPViewController: NANavigationViewController {
     @IBOutlet weak var txtOTP6: UITextField!
     @IBOutlet weak var lbl_OTP_Validation: UILabel!
     
-    //to take data from add my services
+  /* - To take data from add my services.
+     - Creating varibale to get mobile number string from Login VC TextField and Firebase DB Reference variable.
+     - Store verification ID.
+     - Create Alert View Delegate Object. */
+    
     var newOtpString = String()
     
-    //Creating varibale to get mobile number string from Login VC TextField.
     var getMobileString = String()
     var getCountryCodeString = String()
     var finalOTPString = String()
     
-    //Creating Firebase DB Reference variable.
     var userMobileNumberRef : DatabaseReference?
     var mobileNumberValidRef : DatabaseReference?
     
-    //Store verification ID
     var credentialID = String()
+    
+    var delegate : AlertViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //hiding validation label
+      /* - Hiding validation label and tn Verify.
+         - Calling trigger OTP function on viewDidLoad.
+         - Creating string to take OTP Description from Add my daily services according to service which user will select.
+         - Button,Label,Textfield,Navigation Bar formatting & setting.
+         - Assigned delegate method on textFields and Set Textfield bottom border line. */
+        
         lbl_OTP_Validation.isHidden = true
         
-        //Calling trigger OTP function on viewDidLoad
         triggerOTPFromFirebase()
         
-        //creating string to take OTP Description from Add my daily services according to service which user will select.
         self.lbl_OTPDescription.text = newOtpString
         
-        //Button formatting & setting
         btnVerify.backgroundColor = NAColor().buttonBgColor()
         btnVerify.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btnVerify.setTitle(NAString().verify_otp_button(), for: .normal)
         btnVerify.titleLabel?.font = NAFont().buttonFont()
         
-        //Label formatting & setting
         lbl_OTPDescription.font = NAFont().headerFont()
         lbl_OTP_Validation.font = NAFont().descriptionFont()
         
-        //Textfield formatting & setting
         txtOTP1.font = NAFont().textFieldFont()
         txtOTP2.font = NAFont().textFieldFont()
         txtOTP3.font = NAFont().textFieldFont()
@@ -70,10 +80,8 @@ class OTPViewController: NANavigationViewController {
         txtOTP4.font = NAFont().textFieldFont()
         txtOTP5.font = NAFont().textFieldFont()
         
-        //Hiding Btn Verify
         self.btnVerify.isHidden =  true
         
-        //assigned delegate method on textFields
         txtOTP1.delegate = self
         txtOTP2.delegate = self
         txtOTP3.delegate = self
@@ -81,12 +89,10 @@ class OTPViewController: NANavigationViewController {
         txtOTP5.delegate = self
         txtOTP6.delegate = self
         
-        //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().phone_verification_activity_title())
         navigationItem.rightBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
         
-        //Set Textfield bottom border line
         txtOTP1.underlined()
         txtOTP2.underlined()
         txtOTP3.underlined()
@@ -99,19 +105,22 @@ class OTPViewController: NANavigationViewController {
         
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
-            //Calling verify OTP function, When OTP Screen is Coming From Login VC.
+          /* - Calling verify OTP function, When OTP Screen is Coming From Login VC.
+             - Back to My Sweet Home screen and My Daily Services Screen. */
+            
             verifyOTPWithFirebase()
         }
-        //Back to My Sweet Home screen
+        
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
-            let lv = NAViewPresenter().mySweetHomeVC()
-            self.navigationController?.pushViewController(lv, animated: true)
+            
+            self.navigationController?.popViewController(animated: true)
+            delegate?.activityIndicator_function(withData: (Any).self)
         }
-        //Back to My Daily Services Screen
+        
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your cook", second: "their")) {
-            let lv = NAViewPresenter().myDailyServicesVC()
-            lv.fromAddMyDailyServicesVC = true
-            self.navigationController?.pushViewController(lv, animated: true)
+            
+            self.navigationController?.popViewController(animated: true)
+            delegate?.activityIndicator_function(withData: (Any).self)
         }
     }
     
@@ -183,12 +192,14 @@ class OTPViewController: NANavigationViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    //Generating OTP From Firebase Authentication
+  /* - Generating OTP From Firebase Authentication.
+     - IF verification code not sent. */
+    
     func triggerOTPFromFirebase() {
         //TODO: Printing Errors in Console so that other developers can understand.
         PhoneAuthProvider.provider().verifyPhoneNumber(getCountryCodeString + getMobileString, uiDelegate: nil) { (verificationID, error) in
             if ((error) != nil) {
-                // IF verification code not sent.
+                
                 print(error as Any)
             } else {
                 print("verificatinCode",verificationID as Any)
@@ -198,12 +209,18 @@ class OTPViewController: NANavigationViewController {
     }
 }
 
-//Created Extension for Verify OTP Function.
+/* - Created Extension for Verify OTP Function and Credential variable to check correct OTP String.
+   - Assigning OTP TextFields To Variables.
+   - Concatinating all the OTP String variables to get Final String.
+   - Once verified we check if user mobile number exists under users->all.
+   - Maping Mobile Number with UID & Storing in Users/All.
+   - If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
+   - Else navigating to Sign Up screen for allowing them to create New User. */
+
 extension OTPViewController {
     
     func verifyOTPWithFirebase() {
         
-        //Assigning OTP TextFields To Variables.
         let Otp_Strig1 = self.txtOTP1.text!
         let Otp_Strig2 = self.txtOTP2.text!
         let Otp_Strig3 = self.txtOTP3.text!
@@ -211,10 +228,8 @@ extension OTPViewController {
         let Otp_Strig5 = self.txtOTP5.text!
         let Otp_Strig6 = self.txtOTP6.text!
         
-        //Concatinating all the OTP String variables to get Final String.
         finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
         
-        //Creating Credential variable to check correct OTP String.
         let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
         
         //If OTP is Valid then Login Sucess else show Error message in Console
@@ -231,20 +246,18 @@ extension OTPViewController {
                 self.Alert(Message: NAString().connectivity_Validation())
             }
             
-            //Once verified we check if user mobile number exists under users->all
             self.mobileNumberValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
             
-            // Maping Mobile Number with UID & Storing in Users/All
             self.userMobileNumberRef?.child(self.getMobileString).setValue(userUID)
             
             self.mobileNumberValidRef?.observeSingleEvent(of: .value, with: { snapshot in
-                //If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
+                
                 if snapshot.exists() {
                     
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
                 } else {
-                    //Else navigating to Sign Up screen for allowing them to create New User.
+                    
                     let dest = NAViewPresenter().signupVC()
                     dest.getNewMobileString = self.getMobileString
                     self.navigationController?.pushViewController(dest, animated: true)
