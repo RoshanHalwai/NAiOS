@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AlertViewDelegate
 {
     @IBOutlet weak var img_Profile: UIImageView!
     
@@ -38,75 +38,80 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     var timer = Timer()
     var count = 5
     
-    //to set navigation title
+    /* * To set navigation title.
+     * Gettig data from previous screen string.
+     * To check from which view value is comming.
+     * Created date picker programtically.
+     * Scrollview. */
+    
     var navTitle: String?
     
-    //gettig data from previous screen string
     var AddOtpString = String()
     
-    //to check from which view value is comming
     var vcValue = String()
     
-    //created date picker programtically
     let picker = UIDatePicker()
     
-    //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Create Name textfield first letter capital
+        /* * Create Name textfield first letter capital.
+         * Add border color on profile imageview.
+         * Hiding error labels.
+         * Assigned delegate method on textFields.
+         * Identify screen coming from which screen.
+         * Adding image on date TextField.
+         * Setting navigation title.
+         * TapGasture for upload new image.
+         * ScrollView.
+         * Calling datePicker.
+         * Set local date to Europe to show 24 hours.
+         * Black underline for textfileds.
+         * Label formatting & setting.
+         * TextField formatting & setting.
+         * Button formatting & setting..
+         * Creating round Image usig Corner radius. */
+        
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        //Add border color on profile imageview
         img_Profile.layer.borderColor = UIColor.black.cgColor
         
-        //hiding error labels
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true
         lbl_Picture_Validation.isHidden = true
         lbl_Date_Validation.isHidden = true
         
-        //assigned delegate method on textFields
         txt_Name.delegate = self
         txt_CountryCode.delegate = self
         txt_MobileNo.delegate = self
         txt_Date.delegate = self
         
-        //identify screen coming from which screen
         screenComingFrom()
         
-        // adding image on date TextField
         txt_Date.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         let image = UIImage(named: "newClock")
         imageView.image = image
         txt_Date.rightView = imageView
         
-        //setting navigation title
-       super.ConfigureNavBarTitle(title: navTitle!)
+        super.ConfigureNavBarTitle(title: navTitle!)
         
-        //tapGasture for upload new image
         img_Profile.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         self.img_Profile.addGestureRecognizer(tapGesture)
         
-        //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 210, 0)
         
-        //Calling datePicker
         createDatePicker()
         
-        //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
         
-        //black underline for textfileds
         txt_Date.underlined()
         txt_Name.underlined()
         txt_MobileNo.underlined()
         
-        //label formatting & setting
         self.lbl_OR.font = NAFont().headerFont()
         self.lbl_MobileNo.font = NAFont().headerFont()
         self.lbl_Name.font = NAFont().headerFont()
@@ -120,14 +125,12 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
         
-        //textField formatting & setting
         self.txt_Date.font = NAFont().textFieldFont()
         self.txt_MobileNo.font = NAFont().textFieldFont()
         self.txt_Name.font = NAFont().textFieldFont()
         self.txt_CountryCode.font = NAFont().headerFont()
         self.txt_CountryCode.text = NAString()._91()
         
-        //button formatting & setting
         self.btn_SelectContact.backgroundColor = NAColor().buttonBgColor()
         self.btn_SelectContact.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_SelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
@@ -139,25 +142,32 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         self.btn_SelectContact.titleLabel?.font = NAFont().buttonFont()
         self.btn_AddDetails.titleLabel?.font = NAFont().buttonFont()
         
-        //creating round Image usig Corner radius
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
     }
     
-    //Create name textfield first letter capital function
+    /* * Create name textfield first letter capital function.
+     * Alert Popup when user give  grant access & try to add details.
+     * Showing alert controller while giving Grant Access to family members.
+     * Creating Reject alert actions.
+     * Creating Accept alert actions.
+     * Function to appear select image from by tapping image.
+     * For datePicker.
+     * Toolbar.
+     * Done button for toolbar.
+     * Format picker for date.
+     * Format date. */
+    
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
     
-    //alert Popup when user give  grant access & try to add details
     func grantAccessAlert() {
         
-        //showing alert controller while giving Grant Access to family members
         let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()), preferredStyle: .alert)
         
-        //creating Reject alert actions
         let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
-        //creating Accept alert actions
+        
         let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
             let lv = NAViewPresenter().otpViewController()
             let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
@@ -169,7 +179,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         present(alert, animated: true, completion: nil)
     }
     
-    //Function to appear select image from by tapping image
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let actionCamera = UIAlertAction(title:NAString().camera(), style: .default, handler: {
@@ -205,24 +214,21 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         self.dismiss(animated: true, completion: nil)
     }
     
-    //for datePicker
     func createDatePicker() {
-        // toolbar
+        
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_Date.inputAccessoryView = toolbar
         txt_Date.inputView = picker
         
-        // format picker for date
         picker.datePickerMode = .time
     }
     
     @objc func donePressed() {
-        // format date
+        
         let date = DateFormatter()
         date.dateFormat = NAString().timeFormat()
         let dateString = date.string(from: picker.date)
@@ -232,6 +238,17 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         lbl_Date_Validation.isHidden = true
         txt_Date.underlined()
     }
+    
+    /* * Open App Setting if user cannot able to access Contacts.
+     * Creating alert controller.
+     * To call default address book app.
+     * User select any contact particular part.
+     * Identify from which page screen is coming.
+     * Retrive Data from AlertView Delegate.
+     * Create Timer Function.
+     * Create AlertView Action.
+     * Create OK button.
+     */
     
     @IBAction func btnSelectContact(_ sender: Any) {
         let entityType = CNEntityType.contacts
@@ -247,9 +264,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             self.openContacts()
         }
             
-            //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied {
-            //creating alert controller
+            
             let alert = UIAlertController(title: NAString().setting_Permission_AlertBox() , message: nil, preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: NAString().cancel(), style: .cancel) { (action) in }
@@ -262,7 +278,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
     }
     
-    //to call default address book app
     func openContacts() {
         let contactPicker = CNContactPickerViewController.init()
         contactPicker.delegate = self
@@ -273,7 +288,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         picker.dismiss(animated: true, completion: nil)
     }
     
-    //user select any contact particular part
     func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         let fullName = "\(contact.givenName) \(contact.familyName)"
         self.txt_Name.text = fullName
@@ -290,13 +304,42 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         self.txt_MobileNo.text = mobileNumber
     }
     
-    //identify from which page screen is coming
     func screenComingFrom() {
         if self.navTitle == NAString().add_my_service() {
             self.lbl_Date.text = NAString().time()
             self.lbl_OTPDescription.text = NAString().inviteVisitorOTPDesc()
         }
     }
+    
+    func activityIndicator_function(withData: Any) {
+        btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
+        OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
+        OpacityView.shared.showingPopupView(view: self)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func stopTimer() {
+        OpacityView.shared.hidingPopupView()
+        if (count >= 0){
+            if(count == 0)
+            {
+                self.addAlertViewAction()
+            }
+            count -= 1
+        }
+    }
+    
+    func addAlertViewAction() {
+        let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            let lv = NAViewPresenter().myDailyServicesVC()
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
     
     @IBAction func btnAddDetails(_ sender: Any) {
         if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
@@ -333,38 +376,13 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
-                btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
-                OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
-                OpacityView.shared.showingPopupView(view: self)
-                timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
+                let lv = NAViewPresenter().otpViewController()
+                let familyString = NAString().enter_verification_code(first: "your cook", second: "their")
+                lv.newOtpString = familyString
+                lv.delegate = self
+                self.navigationController?.pushViewController(lv, animated: true)
             }
         }
-    }
-    
-    //Create Timer Function
-    @objc func stopTimer() {
-        OpacityView.shared.hidingPopupView()
-        if (count >= 0){
-            if(count == 0)
-            {
-                self.addAlertViewAction()
-            }
-            count -= 1
-        }
-    }
-    
-    //Create AlertView Action
-    func addAlertViewAction() {
-        let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
-        // Create OK button
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-            let lv = NAViewPresenter().otpViewController()
-            let familyString = NAString().enter_verification_code(first: "your cook", second: "their")
-            lv.newOtpString = familyString
-            self.navigationController?.pushViewController(lv, animated: true)
-        }
-        alertController.addAction(OKAction)
-        self.present(alertController, animated: true, completion:nil)
     }
     
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -377,8 +395,11 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     }
 }
 
+/* * Accept only 10 digit mobile number.
+ * Check for Text Removal. */
+
 extension AddMyServicesViewController {
-    //Accept only 10 digit mobile number
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
@@ -394,7 +415,6 @@ extension AddMyServicesViewController {
             if newLength >= NAString().required_mobileNo_Length() && !(txt_Name.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! {
             }
             
-            //Check for Text Removal
             if string.isEmpty {
                 return true
             } else {

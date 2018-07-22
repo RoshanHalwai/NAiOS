@@ -11,7 +11,13 @@ import FirebaseDatabase
 
 class MyDailyServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
-    //floating button downside the list.
+    /* * Floating button downside the list.
+     * Created variable of DBReference for storing data in firebase.
+     * Created variable for Daily services list FB Objects to fetch data from firebase.
+     * Array of Action sheet items.
+     * Created date picker programtically.
+     * A boolean variable to indicate if previous screen was Add My Daily Services Screen. */
+    
     @IBOutlet weak var btn_AddMyDailyServices: UIButton!
     @IBOutlet weak var opacity_View: UIView!
     @IBOutlet weak var popUp_View: UIView!
@@ -20,19 +26,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     @IBOutlet weak var btn_Cancel: UIButton!
     @IBOutlet weak var btn_Reschedule: UIButton!
     
-    //Created variable of DBReference for storing data in firebase
     var myDailyServicesListReference : DatabaseReference?
     
-    //Created variable for Daily services list FB Objects to fetch data from firebase.
     var myDailyServicesList = [NammaApartmentDailyServices]()
     
-    //Array of Action sheet items.
     var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
     
-    //created date picker programtically
     let picker = UIDatePicker()
     
-    //A boolean variable to indicate if previous screen was Add My Daily Services Screen.
     var fromAddMyDailyServicesVC = false
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -40,16 +41,21 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /* * Calling DatePicker Funtion.
+         * Adding image on date TextField.
+         * To show activity indicator before loading data from firebase.
+         * Formmating & setting Button.
+         * Calling function to retriev data from firebase.
+         * Formatting & setting Navigation bar. */
+        
         txt_PickTime.underlined()
         
-        //calling DatePicker Funtion
         createDatePicker()
         
         opacity_View.isHidden = true
         popUp_View.isHidden = true
         popUp_View.layer.cornerRadius = 5
         
-        // adding image on date TextField
         txt_PickTime.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
         let image = UIImage(named: "newClock")
@@ -61,19 +67,15 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         btn_Cancel.titleLabel?.font = NAFont().popUpButtonFont()
         btn_Reschedule.titleLabel?.font = NAFont().popUpButtonFont()
         
-        //to show activity indicator before loading data from firebase
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
-        //Formmating & setting Button
         self.btn_AddMyDailyServices.setTitle(NAString().add_my_service().capitalized, for: .normal)
         self.btn_AddMyDailyServices.backgroundColor = NAColor().buttonBgColor()
         self.btn_AddMyDailyServices.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_AddMyDailyServices.titleLabel?.font = NAFont().buttonFont()
         
-        //calling function to retriev data from firebase.
         getMyDailyServicesDataFromFirebase()
         
-        //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().my_daily_services().capitalized)
         
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigiGate))
@@ -81,13 +83,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.navigationItem.hidesBackButton = true
     }
     
-    //For navigating back to My Digi Gate VC
+    /* * For navigating back to My Digi Gate VC.
+     * For creating action sheet to select my daily services. */
+    
     @objc func goBackToDigiGate() {
         let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().addMyDailyServiceCount()]
         self.navigationController?.popToViewController(vcToPop!, animated: true)
     }
     
-    //for creating action sheet to select my daily services
     @IBAction func floatingButton(_ sender: UIButton) {
         let actionSheet = UIAlertController(title:NAString().my_daily_services(), message: nil, preferredStyle: .actionSheet)
         
@@ -136,7 +139,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyDailyServicesCollectionViewCell
         
-        //Created constant variable to store all the firebase data in it.
+        /* * Created constant variable to store all the firebase data in it.
+         * Calling global function to get Profile Image from Firebase.
+         * This creates the shadows and modifies the cards a little bit.
+         * To display image in round shape.
+         * Labels Formatting & setting.
+         * Delete particular cell from list.
+         * Calling button action on particular cell. */
+        
         let list : NammaApartmentDailyServices
         list = myDailyServicesList[indexPath.row]
         
@@ -146,17 +156,13 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServiceType.text = NAString().cook()
         cell.lbl_MyDailyServicesInTime.text = list.timeOfVisit
         
-        //For converting Int with String.
-        //cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
-        
         //TODO : Need to change Flat Number.
         cell.lbl_MyDailyServicesFlats.text = "5"
         
-        //Calling global function to get Profile Image from Firebase.
         if let urlString = list.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
         }
-        //This creates the shadows and modifies the cards a little bit
+        
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.borderColor = UIColor.clear.cgColor
@@ -168,11 +174,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         
-        //to display image in round shape
         cell.myDailyServicesImage.layer.cornerRadius = cell.myDailyServicesImage.frame.size.width/2
         cell.myDailyServicesImage.clipsToBounds = true
         
-        //Labels Formatting & setting
         cell.lbl_MyDailyServiceName.font = NAFont().headerFont()
         cell.lbl_MyDailyServiceType.font = NAFont().headerFont()
         cell.lbl_MyDailyServicesInTime.font = NAFont().headerFont()
@@ -196,11 +200,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_myDailyTime.text = NAString().time()
         cell.lbl_myDailyRating.text = NAString().rating()
         
-        //delete particular cell from list
         cell.index = indexPath
         cell.delegate = self
         
-        //calling button action on particular cell
         cell.yourobj = {
             self.opacity_View.isHidden = false
             self.popUp_View.isHidden = false
@@ -208,19 +210,21 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         return cell
     }
     
-    //for datePicker
+    /* * For datePicker.
+     * Toolbar.
+     * Done button for toolbar.
+     * Format picker for date. */
+    
     func createDatePicker() {
-        //toolbar
+        
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        //done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
         txt_PickTime.inputAccessoryView = toolbar
         txt_PickTime.inputView = picker
         
-        //format picker for date
         picker.datePickerMode = .time
     }
     
@@ -250,10 +254,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         myDailyServicesListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
             
-            //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
+            /* * Checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
+             * For loop for getting all the data in tableview.
+             * Creating dailyServices model & initiliazing here.
+             * Adding dailyservices in services List.
+             * Reload collection view. */
+            
             if snapshot.exists() {
                 
-                //for loop for getting all the data in tableview
                 for dailyServices in snapshot.children.allObjects as! [DataSnapshot] {
                     
                     let dailyServicesObject = dailyServices.value as? [String: AnyObject]
@@ -266,16 +274,13 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
                     let timeOfVisit = dailyServicesObject?[DailyServicesListFBKeys.timeOfVisit.key]
                     let uid = dailyServicesObject?[DailyServicesListFBKeys.uid.key]
                     
-                    //creating dailyServices model & initiliazing here
                     let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?)
                     
-                    //Adding dailyservices in services List
                     self.myDailyServicesList.append(dailyServicesData)
                     
-                    //Hidding Activity indicator after loading data in the list from firebase.
                     NAActivityIndicator.shared.hideActivityIndicator()
                 }
-                //reload collection view.
+                
                 self.collectionView.reloadData()
             }
         })
@@ -285,15 +290,17 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
 extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
-        //AlertView will Display while removing Card view
+        /* * AlertView will Display while removing Card view.
+         * Remove collection view cell item with animation.
+         * Animation at final state. */
+        
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
-            //Remove collection view cell item with animation
             self.myDailyServicesList.remove(at: indx)
-            //animation at final state
+            
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
             

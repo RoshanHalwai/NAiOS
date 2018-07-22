@@ -20,7 +20,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var btn_ChangeAccess: UIButton!
     @IBOutlet weak var lbl_Grant_Access: UILabel!
     @IBOutlet weak var btn_AddmyFamilyMember: UIButton!
-
+    
     var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MySweetHomeName =  ["Preeti","Vikas"]
     var MySweetHomeRelation = ["Sister","Brother"]
@@ -28,10 +28,18 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     var navTitle = String()
     
+    /* * A boolean variable to indicate if previous screen was My Sweet Home Screen. */
+    var fromMySweetHomeScreenVC = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Corner Radius for popUp View
+        /* * Corner Radius for popUp View.
+         * Formmating & setting Button.
+         * Formatting & setting Navigation bar.
+         * Create My Sweet Home Back Button.
+         * For navigating back to My Digi Gate VC. */
+        
         popUp_View.layer.cornerRadius = 5
         
         opacityView.isHidden = true
@@ -41,15 +49,22 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         btn_Cancel.titleLabel?.font = NAFont().popUpButtonFont()
         btn_ChangeAccess.titleLabel?.font = NAFont().popUpButtonFont()
         
-        //Formmating & setting Button
         self.btn_AddmyFamilyMember.setTitle(NAString().btn_mySweet_home().capitalized, for: .normal)
         self.btn_AddmyFamilyMember.backgroundColor = NAColor().buttonBgColor()
         self.btn_AddmyFamilyMember.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_AddmyFamilyMember.titleLabel?.font = NAFont().buttonFont()
         
-       //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.title = ""
+        
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigiGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    @objc func goBackToDigiGate() {
+        let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().addMyDailyServiceCount()]
+        self.navigationController?.popToViewController(vcToPop!, animated: true)
     }
     
     @IBAction func btnAddFamilyMember(_ sender: UIButton) {
@@ -71,7 +86,13 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_MySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
         cell.MySweeetHomeimg.image = mysweethomeImages[indexPath.row]
         
-        //This creates the shadows and modifies the cards a little bit
+        /* * This creates the shadows and modifies the cards a little bit.
+         * Creating round Image using Corner radius.
+         * Setting fonts for labels.
+         * Setting strings to labels.
+         * Delete particular cell from list.
+         * Calling edit button action on particular cell. */
+        
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.borderColor = UIColor.clear.cgColor
@@ -83,11 +104,9 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
         
-        //creating round Image using Corner radius
         cell.MySweeetHomeimg.layer.cornerRadius = cell.MySweeetHomeimg.frame.size.width/2
         cell.MySweeetHomeimg.clipsToBounds = true
         
-        //setting fonts for labels
         cell.lbl_MySweetHomeName.font = NAFont().headerFont()
         cell.lbl_MySweetHomeRelation.font = NAFont().headerFont()
         cell.lbl_MySweetHomeGrantAccess.font = NAFont().headerFont()
@@ -103,7 +122,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_Relation.font = NAFont().textFieldFont()
         cell.lbl_GrantAccess.font = NAFont().textFieldFont()
         
-        //setting strings to labels
         cell.lbl_Name.text = NAString().name()
         cell.lbl_Relation.text = NAString().relation()
         cell.lbl_GrantAccess.text = NAString().grant_access()
@@ -112,11 +130,9 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_Edit.text = NAString().edit()
         cell.lbl_Remove.text = NAString().remove()
         
-        //delete particular cell from list
         cell.index = indexPath
         cell.delegate = self
         
-        //calling edit button action on particular cell
         cell.objEdit = {
             self.opacityView.isHidden = false
             self.popUp_View.isHidden = false
@@ -142,16 +158,17 @@ extension MySweetHomeViewController : removeCollectionProtocol {
     
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
-        //AlertView will Display while removing Card view
+        /* * AlertView will Display while removing Card view.
+         * Remove collection view cell item with animation.
+         * Animation at final state. */
+        
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
-            //Remove collection view cell item with animation
             self.MySweetHomeName.remove(at: indx)
             
-            //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
             
