@@ -20,6 +20,7 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.alwaysBounceVertical = false
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self

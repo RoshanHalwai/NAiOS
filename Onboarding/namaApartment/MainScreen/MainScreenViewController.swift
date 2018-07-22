@@ -45,6 +45,7 @@ class MainScreenViewController: NANavigationViewController {
         super.viewDidLoad()
         
         opacity_View.isHidden = true
+        tableView.alwaysBounceVertical = false
         
         let menuButton = UIButton(type: .system)
         menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
@@ -103,6 +104,7 @@ class MainScreenViewController: NANavigationViewController {
        - Modifying SegmentControl text according to segment selection. */
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.segmentControlSelection()
+        self.tableView.alwaysBounceVertical = false
         self.tableView.reloadData()
     }
 
@@ -122,7 +124,7 @@ class MainScreenViewController: NANavigationViewController {
     func closeNavigationMenu() {
         self.NavigationMenuOpen = false
         opacity_View.isHidden = true
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.sideMenuConstrain.constant = -260
             self.view.layoutIfNeeded()
         }
@@ -130,7 +132,7 @@ class MainScreenViewController: NANavigationViewController {
     func showNavigationMenu() {
         self.NavigationMenuOpen = true
         opacity_View.isHidden = false
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.sideMenuConstrain.constant = 0
             self.view.layoutIfNeeded()
         }
@@ -156,7 +158,6 @@ class MainScreenViewController: NANavigationViewController {
             }
         }
     }
-
 }
 
 extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {

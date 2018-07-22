@@ -30,4 +30,7 @@ class NotificationSettingsViewController: NANavigationViewController, UITableVie
         cell.labelView.font = NAFont().headerFont()
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        table_View.deselectRow(at: indexPath, animated: true)
+    }
 }
