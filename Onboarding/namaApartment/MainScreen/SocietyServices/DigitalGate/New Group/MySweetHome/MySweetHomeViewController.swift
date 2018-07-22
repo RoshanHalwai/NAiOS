@@ -28,17 +28,16 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     var navTitle = String()
     
-    /* * A boolean variable to indicate if previous screen was My Sweet Home Screen. */
+    // A boolean variable to indicate if previous screen was My Sweet Home Screen.
     var fromMySweetHomeScreenVC = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* * Corner Radius for popUp View.
-         * Formmating & setting Button.
-         * Formatting & setting Navigation bar.
-         * Create My Sweet Home Back Button.
-         * For navigating back to My Digi Gate VC. */
+      /* - Corner Radius for popUp View.
+         - Formmating & setting in Buttons and Navigation bar.
+         - Create My Sweet Home Back Button.
+         - For navigating back to My Digi Gate VC. */
         
         popUp_View.layer.cornerRadius = 5
         
@@ -86,12 +85,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_MySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
         cell.MySweeetHomeimg.image = mysweethomeImages[indexPath.row]
         
-        /* * This creates the shadows and modifies the cards a little bit.
-         * Creating round Image using Corner radius.
-         * Setting fonts for labels.
-         * Setting strings to labels.
-         * Delete particular cell from list.
-         * Calling edit button action on particular cell. */
+      /* - This creates the shadows and modifies the cards a little bit.
+         - Creating round Image using Corner radius.
+         - Setting fonts & strings for labels.
+         - Calling edit button action & Delete particular cell from list. */
         
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0
@@ -158,9 +155,8 @@ extension MySweetHomeViewController : removeCollectionProtocol {
     
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
-        /* * AlertView will Display while removing Card view.
-         * Remove collection view cell item with animation.
-         * Animation at final state. */
+      /* - AlertView will Display while removing Card view.
+         - Remove collection view cell item with animation & Animation at final state. */
         
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         

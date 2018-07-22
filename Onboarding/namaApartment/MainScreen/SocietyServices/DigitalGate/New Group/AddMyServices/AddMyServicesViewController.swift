@@ -38,11 +38,11 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     var timer = Timer()
     var count = 5
     
-    /* * To set navigation title.
-     * Gettig data from previous screen string.
-     * To check from which view value is comming.
-     * Created date picker programtically.
-     * Scrollview. */
+  /* - To set navigation title.
+     - Gettig data from previous screen string.
+     - To check from which view value is comming.
+     - Created date picker programtically.
+     - Scrollview. */
     
     var navTitle: String?
     
@@ -57,22 +57,14 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* * Create Name textfield first letter capital.
-         * Add border color on profile imageview.
-         * Hiding error labels.
-         * Assigned delegate method on textFields.
-         * Identify screen coming from which screen.
-         * Adding image on date TextField.
-         * Setting navigation title.
-         * TapGasture for upload new image.
-         * ScrollView.
-         * Calling datePicker.
-         * Set local date to Europe to show 24 hours.
-         * Black underline for textfileds.
-         * Label formatting & setting.
-         * TextField formatting & setting.
-         * Button formatting & setting..
-         * Creating round Image usig Corner radius. */
+      /* - Create Name textfield first letter capital.
+         - Add border color and round Image on profile imageview.
+         - Assigned delegate method on textFields and Hiding error labels.
+         - Identify screen coming from which screen and Setting navigation title.
+         - Adding image on date TextField and Black underline for textfileds.
+         - TapGasture for upload new image and Calling datePicker.
+         - Set local date to Europe to show 24 hours.
+         - TextField,Button,Label formatting & setting. */
         
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
@@ -146,17 +138,12 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         img_Profile.clipsToBounds = true
     }
     
-    /* * Create name textfield first letter capital function.
-     * Alert Popup when user give  grant access & try to add details.
-     * Showing alert controller while giving Grant Access to family members.
-     * Creating Reject alert actions.
-     * Creating Accept alert actions.
-     * Function to appear select image from by tapping image.
-     * For datePicker.
-     * Toolbar.
-     * Done button for toolbar.
-     * Format picker for date.
-     * Format date. */
+  /* - Create name textfield first letter capital function.
+     - Alert Popup when user give  grant access & try to add details.
+     - Showing alert controller while giving Grant Access to family members.
+     - Creating Reject & alert actions.
+     - Function to appear select image from by tapping image.
+     - DatePicker Done button for toolbar and Format picker for date. */
     
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
@@ -239,16 +226,11 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         txt_Date.underlined()
     }
     
-    /* * Open App Setting if user cannot able to access Contacts.
-     * Creating alert controller.
-     * To call default address book app.
-     * User select any contact particular part.
-     * Identify from which page screen is coming.
-     * Retrive Data from AlertView Delegate.
-     * Create Timer Function.
-     * Create AlertView Action.
-     * Create OK button.
-     */
+  /* - Open App Setting if user cannot able to access Contacts.
+     - To call default address book app & User select any contact particular part.
+     - Identify from which page screen is coming.
+     - Create alert controller,Timer Function,AlertView Action and OK button.
+     - Retrive Data from AlertView Delegate. */
     
     @IBAction func btnSelectContact(_ sender: Any) {
         let entityType = CNEntityType.contacts
@@ -395,8 +377,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     }
 }
 
-/* * Accept only 10 digit mobile number.
- * Check for Text Removal. */
+// Accept only 10 digit mobile number & Check for Text Removal. 
 
 extension AddMyServicesViewController {
     

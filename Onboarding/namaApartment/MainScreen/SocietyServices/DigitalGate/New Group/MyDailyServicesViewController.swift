@@ -11,12 +11,10 @@ import FirebaseDatabase
 
 class MyDailyServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
-    /* * Floating button downside the list.
-     * Created variable of DBReference for storing data in firebase.
-     * Created variable for Daily services list FB Objects to fetch data from firebase.
-     * Array of Action sheet items.
-     * Created date picker programtically.
-     * A boolean variable to indicate if previous screen was Add My Daily Services Screen. */
+  /* - Floating button downside the list & Array of Action sheet items.
+     - Created variable of DBReference for storing data & Daily services list FB Objects to fetch data from firebase.
+     - Created date picker programtically.
+     - A boolean variable to indicate if previous screen was Add My Daily Services Screen. */
     
     @IBOutlet weak var btn_AddMyDailyServices: UIButton!
     @IBOutlet weak var opacity_View: UIView!
@@ -41,12 +39,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* * Calling DatePicker Funtion.
-         * Adding image on date TextField.
-         * To show activity indicator before loading data from firebase.
-         * Formmating & setting Button.
-         * Calling function to retriev data from firebase.
-         * Formatting & setting Navigation bar. */
+      /* - Calling DatePicker Funtion and function to retriev data from firebase.
+         - Adding image on date TextField.
+         - To show activity indicator before loading data from firebase.
+         - Button,Navigation bar Formmating & setting. */
         
         txt_PickTime.underlined()
         
@@ -83,8 +79,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.navigationItem.hidesBackButton = true
     }
     
-    /* * For navigating back to My Digi Gate VC.
-     * For creating action sheet to select my daily services. */
+  /* - For navigating back to My Digi Gate VC.
+     - For creating action sheet to select my daily services. */
     
     @objc func goBackToDigiGate() {
         let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().addMyDailyServiceCount()]
@@ -139,13 +135,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyDailyServicesCollectionViewCell
         
-        /* * Created constant variable to store all the firebase data in it.
-         * Calling global function to get Profile Image from Firebase.
-         * This creates the shadows and modifies the cards a little bit.
-         * To display image in round shape.
-         * Labels Formatting & setting.
-         * Delete particular cell from list.
-         * Calling button action on particular cell. */
+      /* - Created constant variable to store all the firebase data in it.
+         - Calling global function to get Profile Image from Firebase.
+         - This creates the shadows and modifies the cards a little bit.
+         - To display image in round shape & Labels Formatting & setting.
+         - Calling button action & Delete particular cell from list. */
         
         let list : NammaApartmentDailyServices
         list = myDailyServicesList[indexPath.row]
@@ -210,10 +204,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         return cell
     }
     
-    /* * For datePicker.
-     * Toolbar.
-     * Done button for toolbar.
-     * Format picker for date. */
+  /* - For datePicker & Format picker for date
+     - Done button for toolbar. */
     
     func createDatePicker() {
         
@@ -254,11 +246,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         myDailyServicesListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
             
-            /* * Checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
-             * For loop for getting all the data in tableview.
-             * Creating dailyServices model & initiliazing here.
-             * Adding dailyservices in services List.
-             * Reload collection view. */
+          /* - Checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView and For loop for getting all the data in tableview.
+             - Creating dailyServices model & initiliazing here and Adding dailyservices in services List.
+             - Reload collection view. */
             
             if snapshot.exists() {
                 
@@ -290,9 +280,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
 extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
-        /* * AlertView will Display while removing Card view.
-         * Remove collection view cell item with animation.
-         * Animation at final state. */
+      /* - AlertView will Display while removing Card view.
+         - Remove collection view cell item with animation at final state. */
         
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         

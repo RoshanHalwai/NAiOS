@@ -10,9 +10,9 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-/* * AlertvieDelegate Protocol is passing the data to mainviewcontroller.
- * activityIndicator_function : used to display the popup & alertvie with resepect time.
- * Global variable to store users UID. */
+/* - AlertvieDelegate Protocol is passing the data to mainviewcontroller.
+   - activityIndicator_function : used to display the popup & alertvie with resepect time.
+   - Global variable to store users UID. */
 
 protocol AlertViewDelegate {
     func activityIndicator_function(withData : Any)
@@ -32,11 +32,10 @@ class OTPViewController: NANavigationViewController {
     @IBOutlet weak var txtOTP6: UITextField!
     @IBOutlet weak var lbl_OTP_Validation: UILabel!
     
-    /* * To take data from add my services.
-     * Creating varibale to get mobile number string from Login VC TextField.
-     * Creating Firebase DB Reference variable.
-     * Store verification ID.
-     * Create Alert View Delegate Object. */
+  /* - To take data from add my services.
+     - Creating varibale to get mobile number string from Login VC TextField and Firebase DB Reference variable.
+     - Store verification ID.
+     - Create Alert View Delegate Object. */
     
     var newOtpString = String()
     
@@ -54,16 +53,11 @@ class OTPViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* * Hiding validation label.
-         * Calling trigger OTP function on viewDidLoad.
-         * Creating string to take OTP Description from Add my daily services according to service which user will select.
-         * Button formatting & setting.
-         * Label formatting & setting.
-         * Textfield formatting & setting.
-         * Hiding Btn Verify.
-         * Assigned delegate method on textFields.
-         * Setting & fromatting Navigation Bar.
-         * Set Textfield bottom border line. */
+      /* - Hiding validation label and tn Verify.
+         - Calling trigger OTP function on viewDidLoad.
+         - Creating string to take OTP Description from Add my daily services according to service which user will select.
+         - Button,Label,Textfield,Navigation Bar formatting & setting.
+         - Assigned delegate method on textFields and Set Textfield bottom border line. */
         
         lbl_OTP_Validation.isHidden = true
         
@@ -111,8 +105,8 @@ class OTPViewController: NANavigationViewController {
         
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
-            /* * Calling verify OTP function, When OTP Screen is Coming From Login VC.
-             * Back to My Sweet Home screen and My Daily Services Screen. */
+          /* - Calling verify OTP function, When OTP Screen is Coming From Login VC.
+             - Back to My Sweet Home screen and My Daily Services Screen. */
             
             verifyOTPWithFirebase()
         }
@@ -198,8 +192,8 @@ class OTPViewController: NANavigationViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    /* * Generating OTP From Firebase Authentication.
-     * IF verification code not sent. */
+  /* - Generating OTP From Firebase Authentication.
+     - IF verification code not sent. */
     
     func triggerOTPFromFirebase() {
         //TODO: Printing Errors in Console so that other developers can understand.
@@ -215,14 +209,13 @@ class OTPViewController: NANavigationViewController {
     }
 }
 
-/* * Created Extension for Verify OTP Function.
- * Assigning OTP TextFields To Variables.
- * Concatinating all the OTP String variables to get Final String.
- * Creating Credential variable to check correct OTP String.
- * Once verified we check if user mobile number exists under users->all.
- * Maping Mobile Number with UID & Storing in Users/All.
- * If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
- * Else navigating to Sign Up screen for allowing them to create New User. */
+/* - Created Extension for Verify OTP Function and Credential variable to check correct OTP String.
+   - Assigning OTP TextFields To Variables.
+   - Concatinating all the OTP String variables to get Final String.
+   - Once verified we check if user mobile number exists under users->all.
+   - Maping Mobile Number with UID & Storing in Users/All.
+   - If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
+   - Else navigating to Sign Up screen for allowing them to create New User. */
 
 extension OTPViewController {
     
