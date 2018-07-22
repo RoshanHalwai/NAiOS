@@ -32,9 +32,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     @IBOutlet weak var scroll_View: UIScrollView!
     
-    var myName: String = "Sundir Kumar"
-    var myEmail: String = "talarisundir@gmail.com"
-    var familyMembersList = ["Vikas Nayak", "Roshan", "Shivam", "Reshma", "Sri Latha", "Avinash", "Ashish Jha"]
     var navTitle = String()
     
     /* - Creating Text Field Action for Name for first letter to be Capital.
@@ -163,26 +160,11 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return familyMembersList.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! EditMyProfileTableViewCell
-        cell.lbl_Family_Members_List.text = familyMembersList[indexPath.row]
         return cell
-    }
-    
-    func showAlertWithTitle(Message: String) {
-        let alertController = UIAlertController(title: "Alert Message", message: NAString().change_admin_alert_message(name: Message), preferredStyle: .alert)
-        let action1 = UIAlertAction(title: "Ok", style: .default) { (action:UIAlertAction) in
-            self.list_View.isHidden = true
-            self.opacity_View.isHidden = true
-        }
-        let action2 = UIAlertAction(title: "Cancel", style: .destructive) { (action:UIAlertAction) in
-            print("You've pressed cancel");
-        }
-        alertController.addAction(action1)
-        alertController.addAction(action2)
-        self.present(alertController, animated: true, completion: nil)
     }
 }
