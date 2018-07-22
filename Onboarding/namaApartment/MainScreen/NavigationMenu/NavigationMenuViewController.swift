@@ -42,7 +42,11 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!)! as! NavigationMenuTableViewCell
         let currentItem = currentCell.labelView.text
-        if currentItem == NAString().my_family_members() {
+        if currentItem == NAString().my_profile() {
+            let dv4 = NAViewPresenter().myProfileVC()
+            dv4.navTitle = NAString().my_profile()
+            self.navigationController?.pushViewController(dv4, animated: true)
+        } else if currentItem == NAString().my_family_members() {
             let dv3 = NAViewPresenter().mySweetHomeVC()
             dv3.navTitle = NAString().my_sweet_home()
             dv3.fromHomeScreenVC = true
