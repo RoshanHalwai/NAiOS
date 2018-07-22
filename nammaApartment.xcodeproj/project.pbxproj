@@ -19,8 +19,16 @@
 		083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */; };
 		083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */; };
 		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
-		084D963D2100C92900BE9D3D /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963C2100C92900BE9D3D /* SideMenuViewController.swift */; };
-		084D963F2100CAD100BE9D3D /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963E2100CAD100BE9D3D /* SideMenuTableViewCell.swift */; };
+		084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */; };
+		084D963F2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */; };
+		085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646712101FA0C00C5FBF6 /* HelpViewController.swift */; };
+		085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */; };
+		085646762101FA6D00C5FBF6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646752101FA6D00C5FBF6 /* SettingsViewController.swift */; };
+		085646782101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646772101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift */; };
+		0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */; };
+		0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */; };
+		0856467E210215E800C5FBF6 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */; };
+		085646802102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */; };
 		08A0210520F523FC00130185 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A0210420F523FC00130185 /* Reachability.swift */; };
 		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
@@ -154,8 +162,16 @@
 		083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesViewController.swift; sourceTree = "<group>"; };
 		083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesTableViewCell.swift; sourceTree = "<group>"; };
 		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
-		084D963C2100C92900BE9D3D /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
-		084D963E2100CAD100BE9D3D /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuViewController.swift; sourceTree = "<group>"; };
+		084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuTableViewCell.swift; sourceTree = "<group>"; };
+		085646712101FA0C00C5FBF6 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCollectionViewCell.swift; sourceTree = "<group>"; };
+		085646752101FA6D00C5FBF6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		085646772101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAShodowEffect.swift; sourceTree = "<group>"; };
+		0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
+		0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
+		0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		08A0210420F523FC00130185 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListViewController.swift; sourceTree = "<group>"; };
 		08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -325,6 +341,30 @@
 			path = VisitorListCategory;
 			sourceTree = "<group>";
 		};
+		0856466F2101F98C00C5FBF6 /* NavigationMenu */ = {
+			isa = PBXGroup;
+			children = (
+				084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */,
+				084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */,
+				085646702101F9CC00C5FBF6 /* NavigationMenuCategory */,
+			);
+			path = NavigationMenu;
+			sourceTree = "<group>";
+		};
+		085646702101F9CC00C5FBF6 /* NavigationMenuCategory */ = {
+			isa = PBXGroup;
+			children = (
+				085646712101FA0C00C5FBF6 /* HelpViewController.swift */,
+				085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */,
+				085646752101FA6D00C5FBF6 /* SettingsViewController.swift */,
+				085646772101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift */,
+				0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */,
+				0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */,
+				0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */,
+			);
+			path = NavigationMenuCategory;
+			sourceTree = "<group>";
+		};
 		15E253658059EF007BD00B9F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,9 +487,8 @@
 			isa = PBXGroup;
 			children = (
 				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
-				084D963C2100C92900BE9D3D /* SideMenuViewController.swift */,
-				084D963E2100CAD100BE9D3D /* SideMenuTableViewCell.swift */,
 				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
+				0856466F2101F98C00C5FBF6 /* NavigationMenu */,
 				860FAEF2209D763700D563F5 /* SocietyServices */,
 				86D19EF520A1C7BD00FB7DC8 /* ApartmentServices */,
 			);
@@ -627,6 +666,7 @@
 				42329D1920F9BF80000AA9AF /* OpacityView.swift */,
 				86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */,
 				08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */,
+				0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -1016,6 +1056,7 @@
 				868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */,
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
+				085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
 				083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */,
@@ -1025,11 +1066,13 @@
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
+				085646802102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift in Sources */,
 				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
 				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
 				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,
+				085646762101FA6D00C5FBF6 /* SettingsViewController.swift in Sources */,
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
 				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
@@ -1044,8 +1087,9 @@
 				0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */,
 				0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */,
 				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
-				084D963D2100C92900BE9D3D /* SideMenuViewController.swift in Sources */,
+				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
 				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
+				0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
@@ -1057,12 +1101,14 @@
 				08A0210520F523FC00130185 /* Reachability.swift in Sources */,
 				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */,
+				0856467E210215E800C5FBF6 /* GeneralSettingsViewController.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
 				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
 				8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */,
 				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
-				084D963F2100CAD100BE9D3D /* SideMenuTableViewCell.swift in Sources */,
+				084D963F2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift in Sources */,
 				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
+				085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */,
 				86BF6A4320A0326E00B175A1 /* MyGuestListViewController.swift in Sources */,
 				08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */,
 				86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */,
@@ -1083,6 +1129,8 @@
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
+				085646782101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift in Sources */,
+				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
 			);
@@ -1263,7 +1311,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PUZKL58568;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1286,7 +1334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PUZKL58568;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

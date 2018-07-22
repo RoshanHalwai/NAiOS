@@ -26,6 +26,9 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     var MySweetHomeRelation = ["Sister","Brother"]
     var MySweetHomeGrantAccess = ["Yes","No"]
     
+    //A boolean variable to indicate if previous screen was Home Screen.
+    var fromHomeScreenVC = false
+    
     var navTitle = String()
     
     override func viewDidLoad() {
@@ -47,9 +50,22 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         self.btn_AddmyFamilyMember.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_AddmyFamilyMember.titleLabel?.font = NAFont().buttonFont()
         
-       //Formatting & setting Navigation bar
+        //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.title = ""
+        //created custom back button for goto Home Screen
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    //Navigating Back to Home Screen according to Screen coming from
+    @objc func goBackToHomeScreenVC() {
+        if fromHomeScreenVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_two()]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func btnAddFamilyMember(_ sender: UIButton) {
