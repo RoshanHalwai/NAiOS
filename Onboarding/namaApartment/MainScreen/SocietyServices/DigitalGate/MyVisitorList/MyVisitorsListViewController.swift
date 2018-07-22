@@ -33,17 +33,7 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         cell.lbl_Visitors.text = visitorsType[indexPath.row]
         cell.lbl_Visitors.font = NAFont().splashdescriptionFont()
         
-        //creating Shadow effect to Cards
-        cell.contentView.layer.cornerRadius = 8.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = false
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        cell.layer.shadowRadius = 4.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        NAShadowEffect().shadowEffect(Cell: cell)
         return cell
     }
     

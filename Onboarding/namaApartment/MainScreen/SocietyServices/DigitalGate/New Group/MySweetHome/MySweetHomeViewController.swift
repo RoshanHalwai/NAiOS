@@ -26,10 +26,11 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     var MySweetHomeRelation = ["Sister","Brother"]
     var MySweetHomeGrantAccess = ["Yes","No"]
     
-    var navTitle = String()
-    
-    // A boolean variable to indicate if previous screen was My Sweet Home Screen.
+    //A boolean variable to indicate if previous screen was Home Screen and My Sweet Home Screen.
+    var fromHomeScreenVC = false
     var fromMySweetHomeScreenVC = false
+    
+    var navTitle = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,14 +57,22 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         super.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.title = ""
         
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigiGate))
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
     
-    @objc func goBackToDigiGate() {
-        let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().addMyDailyServiceCount()]
-        self.navigationController?.popToViewController(vcToPop!, animated: true)
+    //Navigating Back to Home Screen according to Screen coming from
+    @objc func goBackToHomeScreenVC() {
+        if fromHomeScreenVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_two()]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else if fromMySweetHomeScreenVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().addMyDailyServiceCount()]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func btnAddFamilyMember(_ sender: UIButton) {
