@@ -17,7 +17,6 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var tableView: UITableView!
     var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
-    var rateUsView: RateUsView!
     var mainScreen: MainScreenViewController!
     
     override func viewDidLoad() {
@@ -48,23 +47,29 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
             let dv4 = NAViewPresenter().myProfileVC()
             dv4.navTitle = NAString().my_profile()
             self.navigationController?.pushViewController(dv4, animated: true)
+            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().my_family_members() {
             let dv3 = NAViewPresenter().mySweetHomeVC()
             dv3.navTitle = NAString().my_sweet_home()
             dv3.fromHomeScreenVC = true
             self.navigationController?.pushViewController(dv3, animated: true)
+            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().help() {
             let dv = NAViewPresenter().helpVC()
             dv.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv, animated: true)
+            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().settings() {
             let dv1 = NAViewPresenter().settingsVC()
             dv1.navTitle = NAString().settings()
             self.navigationController?.pushViewController(dv1, animated: true)
+            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().logout() {
             self.logoutAction()
+            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().rate_us() {
-           showingRateUsView(view: mainScreen)
+            mainScreen.showingRateUsView()
+            mainScreen.opacity_View.isHidden = false
         }
         mainScreen.closeNavigationMenu()
         tableView.deselectRow(at: indexPath!, animated: true)
@@ -77,13 +82,5 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
             let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
             self.present(NavLogin, animated: true)
         }
-    }
-    func showingRateUsView(view: UIViewController) {
-        rateUsView = RateUsView(frame: CGRect(x: 0, y: 0, width: 230, height: 304))
-        rateUsView.center.x = view.view.bounds.width/2
-        rateUsView.center.y = view.view.bounds.height/2
-        rateUsView.layer.cornerRadius = 10
-        rateUsView.layer.masksToBounds = true
-        view.view.addSubview(rateUsView)
     }
 }

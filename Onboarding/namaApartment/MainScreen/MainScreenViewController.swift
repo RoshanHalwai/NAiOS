@@ -20,12 +20,11 @@ class MainScreenViewController: NANavigationViewController {
     var navigationMenuVC: NavigationMenuViewController!
     
     fileprivate var isSocietyServices = true
+    var rateUsView: RateUsView!
     
     var NavigationMenuOpen = false
     
-    var currentIndex = 0
-    
-    var index:Int!
+     var currentIndex = 0 
     
     /* * Declaring the varibles for structure.
      * for navigation purpose.
@@ -122,18 +121,22 @@ class MainScreenViewController: NANavigationViewController {
     @objc func NavigationMenuVC() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
+             opacity_View.isHidden = true
         } else {
             showNavigationMenu()
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var touch: UITouch? = touches.first
         if self.NavigationMenuOpen {
-           closeNavigationMenu()
+            closeNavigationMenu()
+             opacity_View.isHidden = true
+        } else if rateUsView.isHidden == false {
+            hidingRateUsView()
         }
     }
     func closeNavigationMenu() {
         self.NavigationMenuOpen = false
-        opacity_View.isHidden = true
         UIView.animate(withDuration: 0.3) {
             self.sideMenuConstrain.constant = -260
             self.view.layoutIfNeeded()
@@ -146,6 +149,20 @@ class MainScreenViewController: NANavigationViewController {
             self.sideMenuConstrain.constant = 0
             self.view.layoutIfNeeded()
         }
+    }
+    
+    func showingRateUsView() {
+        rateUsView = RateUsView(frame: CGRect(x: 0, y: 0, width: 230, height: 304))
+        rateUsView.center.x = self.view.bounds.width/2
+        rateUsView.center.y = self.view.bounds.height/2
+        rateUsView.layer.cornerRadius = 10
+        rateUsView.layer.masksToBounds = true
+        self.view.addSubview(rateUsView)
+    }
+    
+    func hidingRateUsView() {
+            opacity_View.isHidden = true
+            rateUsView.isHidden = true
     }
     
     func segmentControlSelection() {
