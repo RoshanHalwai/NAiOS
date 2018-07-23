@@ -169,4 +169,8 @@ class NAViewPresenter: NSObject {
     func generalSettingsVC() -> GeneralSettingsViewController {
         return storyBoard.instantiateViewController(withIdentifier: "generalSettingsVC") as! GeneralSettingsViewController
     }
+    //My Profile Screen
+    func myProfileVC() -> EditMyProfileViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myProfileVC") as! EditMyProfileViewController
+    }
 }
