@@ -287,7 +287,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     func addAlertViewAction() {
-        let alertController = UIAlertController(title:NAString().addFamilyMemberTitle(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
+        let alertController = UIAlertController(title:NAString().addFamilyMember_AlertView_Title(), message:NAString().addFamilyMember_AlertView_Message(), preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().mySweetHomeVC()

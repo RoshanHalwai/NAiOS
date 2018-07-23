@@ -312,7 +312,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     }
     
     func addAlertViewAction() {
-        let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
+        let alertController = UIAlertController(title:NAString().addMyDailyService_AlertView_Title(), message:NAString().addMyDailyService_AlertView_Message(), preferredStyle: .alert)
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().myDailyServicesVC()

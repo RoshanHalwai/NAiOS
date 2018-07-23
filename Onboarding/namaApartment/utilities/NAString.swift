@@ -610,6 +610,10 @@ class NAString : NSObject {
     }
     
     //adding my daily services
+    func addMyDailyService_AlertView_Title() -> String {
+        return String("Daily Service Message")
+    }
+    
     func add_my_service() -> String {
         return String("Add My Daily Service")
     }
@@ -644,6 +648,10 @@ class NAString : NSObject {
     
     func addButtonloadViewMessage() -> String{
         return String("Please wait a moment")
+    }
+    
+    func addMyDailyService_AlertView_Message() -> String{
+        return String("You have successfully added your Daily Service.")
     }
     
     //visitor list
@@ -702,6 +710,14 @@ class NAString : NSObject {
     
     func addFamilyMemberTitle() -> String {
         return String ("Add Family Members Details")
+    }
+    
+    func addFamilyMember_AlertView_Title() -> String {
+        return String ("Family Member Message")
+    }
+    
+    func addFamilyMember_AlertView_Message() -> String{
+        return String("You have successfully added your Family Member.")
     }
     
     func relation() -> String {
