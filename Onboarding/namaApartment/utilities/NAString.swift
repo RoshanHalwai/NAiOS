@@ -933,6 +933,6 @@ class NAString : NSObject {
     }
     
     func addMyDailyServiceCount() -> Int {
-        return Int (5)
+        return Int (4)
     }
 }
