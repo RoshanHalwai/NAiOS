@@ -68,7 +68,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_two()]
             self.navigationController?.popToViewController(vcToPop!, animated: true)
         } else if fromMySweetHomeScreenVC {
-            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().addMyDailyServiceCount()]
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_four()]
             self.navigationController?.popToViewController(vcToPop!, animated: true)
         } else {
             self.navigationController?.popViewController(animated: true)
