@@ -217,20 +217,98 @@ class NAString : NSObject {
     func my_profile() -> String {
         return String("MyProfile")
     }
+    
     func my_family_members() -> String {
         return String("My Family Members")
     }
+    
     func notice_board() -> String {
         return String("Notice Board")
     }
+    
     func help() -> String {
         return String("Help")
     }
+    
     func rate_us() -> String {
         return String("Rate Us")
     }
+    
     func logout() -> String {
         return String("Logout")
+    }
+    
+    //Navigation Menu
+    func frequently_asked_questions() -> String {
+        return String("Frequently Asked Questions")
+    }
+    
+    func using_namma_apartments_app() -> String {
+        return String("Using Namma Apartments App")
+    }
+    
+    func contact_us() -> String {
+        return String("Contact Us")
+    }
+    
+    func terms_and_conditions() -> String {
+        return String("Terms and Conditions")
+    }
+    
+    func privacy_policy() -> String {
+        return String("Privacy Policy")
+    }
+    
+    func general_settings() -> String {
+        return String("General Settings")
+    }
+    
+    func notification_settings() -> String {
+        return String("Notification Settings")
+    }
+    
+    func new_Message_Notification() -> String {
+        return String("New Message Notifications")
+    }
+    
+    func email_Notification() -> String {
+        return String("Email Notifications")
+    }
+    
+    func vibrate() -> String {
+        return String("Vibrate")
+    }
+    
+    func enable_inApp_Sound_Notification() -> String {
+        return String("Enable in-app sound Notifications")
+    }
+    
+    func product_Updates() -> String {
+        return String("Product Updates")
+    }
+    
+    func choose_Language() -> String {
+        return String("Choose Language")
+    }
+    
+    func location_services() -> String {
+        return String("Location Services")
+    }
+    
+    func report_bug() -> String {
+        return String("Report A Bug")
+    }
+    
+    func app_Version() -> String {
+        return String("App Version 1.0")
+    }
+    
+    //Particular ViewController Count
+    func count_two() -> Int {
+        return Int(2)
+    }
+    func count_four() -> Int {
+        return Int(4)
     }
     
     //Society Services Activity
@@ -559,6 +637,10 @@ class NAString : NSObject {
     }
     
     //adding my daily services
+    func addMyDailyService_AlertView_Title() -> String {
+        return String("Daily Service Message")
+    }
+    
     func add_my_service() -> String {
         return String("Add My Daily Service")
     }
@@ -593,6 +675,10 @@ class NAString : NSObject {
     
     func addButtonloadViewMessage() -> String{
         return String("Please wait a moment")
+    }
+    
+    func addMyDailyService_AlertView_Message() -> String{
+        return String("You have successfully added your Daily Service.")
     }
     
     //visitor list
@@ -651,6 +737,14 @@ class NAString : NSObject {
     
     func addFamilyMemberTitle() -> String {
         return String ("Add Family Members Details")
+    }
+    
+    func addFamilyMember_AlertView_Title() -> String {
+        return String ("Family Member Message")
+    }
+    
+    func addFamilyMember_AlertView_Message() -> String{
+        return String("You have successfully added your Family Member.")
     }
     
     func relation() -> String {
@@ -845,5 +939,23 @@ class NAString : NSObject {
     
     func notEntered() -> String {
         return String ("Not Entered")
+    }
+    
+    //Create Button Tag Values
+    func inviteButtonTagValue() -> Int {
+        return Int (101)
+    }
+    
+    func addMyFamilyMemberButtonTagValue() -> Int {
+        return Int (102)
+    }
+    
+    func addMyDailyServicesButtonTagValue() -> Int {
+        return Int (103)
+    }
+    
+    //Create Popup View Corner Radius
+    func popupViewCornerRadius() -> Int {
+        return Int (10)
     }
 }

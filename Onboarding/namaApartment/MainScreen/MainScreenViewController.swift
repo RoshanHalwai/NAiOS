@@ -20,7 +20,7 @@ class MainScreenViewController: NANavigationViewController {
     
     fileprivate var isSocietyServices = true
     
-     var sideMenuOpen = false
+    var NavigationMenuOpen = false
     
     var currentIndex = 0
     
@@ -45,11 +45,12 @@ class MainScreenViewController: NANavigationViewController {
         super.viewDidLoad()
         
         opacity_View.isHidden = true
+        tableView.alwaysBounceVertical = false
         
         let menuButton = UIButton(type: .system)
         menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
         menuButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
-        menuButton.addTarget(self, action: #selector(sideMenuVC), for: .touchUpInside)
+        menuButton.addTarget(self, action: #selector(NavigationMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
     
         self.retrieveUserData()
@@ -57,24 +58,17 @@ class MainScreenViewController: NANavigationViewController {
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
         
-        self.segmentControlSelection()
         segmentSelection.selectedSegmentIndex = currentIndex
-        
+        self.segmentControlSelection()
+
         VCNamesSociety = [NAViewPresenter().digiGateVCID()]
         VCNamesApartment = [NAViewPresenter().homeVCID()]
         
         super.ConfigureNavBarTitle(title: NAString().splash_NammaHeader_Title())
-
-        //TODO: Need this commented line after implementing Navigation Drawer.
-        //navigationItem.rightBarButtonItem = nil
-        super.navigationItem.hidesBackButton = true
         
-        let logoutButton = UIButton(type: .system)
-        logoutButton.setImage(#imageLiteral(resourceName: "signout"), for: .normal)
-        logoutButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        logoutButton.addTarget(self, action: #selector(logout), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
-
+        navigationItem.rightBarButtonItem = nil
+        super.navigationItem.hidesBackButton = true
+     
         societyData = [
             societyServicesModel(cellTitle: NAString().digital_gate(),cellImage:  #imageLiteral(resourceName: "Digital_Gate_2")),
             societyServicesModel(cellTitle: NAString().plumber(),cellImage:  #imageLiteral(resourceName: "plumbing (2)")),
@@ -96,36 +90,51 @@ class MainScreenViewController: NANavigationViewController {
             apartmentServicesModel(cellTitle: NAString().driver(),cellImage:  #imageLiteral(resourceName: "Newdriver")),
             apartmentServicesModel(cellTitle: NAString().groceries(), cellImage: #imageLiteral(resourceName: "groceries"))
         ]
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
     }
     
-    //To Logout the current user
-    @objc func logout() {
-        try! Auth.auth().signOut()
-        if self.storyboard != nil {
-            let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
-            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-            self.present(NavLogin, animated: true)
-        }
-    }
-    
-    /* * For switching the tableview data in between society & apartment services.
-     * Modifying SegmentControl text according to segment selection. */
-    
+    /* - For switching the tableview data in between society & apartment services.
+       - Modifying SegmentControl text according to segment selection. */
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.segmentControlSelection()
+        self.tableView.alwaysBounceVertical = false
         self.tableView.reloadData()
     }
 
-    //For showing Side menu
-    @objc func sideMenuVC() {
-        if self.sideMenuOpen {
-            self.sideMenuOpen = false
-            opacity_View.isHidden = true
-            self.sideMenuConstrain.constant = -260
+    //For showing and closing Navigation menu
+    @objc func NavigationMenuVC() {
+        if self.NavigationMenuOpen {
+            closeNavigationMenu()
         } else {
-            self.sideMenuOpen = true
-            opacity_View.isHidden = false
-            self.sideMenuConstrain.constant = 0 
+            showNavigationMenu()
+        }
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if self.NavigationMenuOpen {
+           closeNavigationMenu()
+        }
+    }
+    func closeNavigationMenu() {
+        self.NavigationMenuOpen = false
+        opacity_View.isHidden = true
+        UIView.animate(withDuration: 0.3) {
+            self.sideMenuConstrain.constant = -260
+            self.view.layoutIfNeeded()
+        }
+    }
+    func showNavigationMenu() {
+        self.NavigationMenuOpen = true
+        opacity_View.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            self.sideMenuConstrain.constant = 0
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -136,6 +145,18 @@ class MainScreenViewController: NANavigationViewController {
         self.segmentSelection?.setTitleTextAttributes(selectedAttributes, for: .selected)
         let normalAttributes = [NSAttributedStringKey.foregroundColor: UIColor.gray]
         self.segmentSelection?.setTitleTextAttributes(normalAttributes, for: .normal)
+    }
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                showNavigationMenu()
+            case UISwipeGestureRecognizerDirection.left:
+                closeNavigationMenu()
+            default:
+                break
+            }
+        }
     }
 }
 

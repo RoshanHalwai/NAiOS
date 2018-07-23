@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Firebase Messaging delegate
         Messaging.messaging().delegate = self
         
+        
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -61,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()
-        // END register for notifications
+        //END register for notifications
         return true
     }
     

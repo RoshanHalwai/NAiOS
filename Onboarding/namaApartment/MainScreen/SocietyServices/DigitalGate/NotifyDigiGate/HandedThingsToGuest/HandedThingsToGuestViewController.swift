@@ -30,6 +30,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
         //fetch the data from the firebase
         // TODO: need to change UID in Future
+        
+        
         UserDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
             .child(Constants.FIREBASE_CHILD_BANGALORE)
             .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
