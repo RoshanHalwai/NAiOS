@@ -50,6 +50,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     var dataName : String!
     var dataMobile : String!
     
+    var apartmentArray = NSMutableArray()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -268,15 +270,19 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             OpacityView.shared.showingPopupView(view: self)
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
         }
+        //getting users Flat Details Form Singaltone class
+        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let userFlatDetailValues = flatValues.first
+        
         //TODO Get The UID From the Firebase
             userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
                 .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-                .child(Constants.FIREBASE_CHILD_BANGALORE)
-                .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
-                .child(Constants.FIREBASE_CHILD_ASTER)
-                .child(Constants.FIREBASE_CHILD_FLATNO)
-                .child(Constants.FLAT_Visitor).child(userUID!)
-        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+                .child((userFlatDetailValues?.city)!)
+                .child((userFlatDetailValues?.societyName)!)
+                .child((userFlatDetailValues?.apartmentName)!)
+                .child((userFlatDetailValues?.flatNumber)!)
+                .child((userFlatDetailValues?.tenantType)!).child(userUID!)
+            userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 for a in ((snapshot.value as AnyObject).allKeys)!{
                     print(a)

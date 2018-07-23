@@ -27,17 +27,33 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //getting users Flat Details Form Singaltone class
+        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let userFlatDetailValues = flatValues.first
+        print("userflat Details ",userFlatDetailValues?.city! as Any)
+        
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        // TODO: need to change UID in Future
+        // TODO: need to change UID in Future        
+//        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
+//            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+//            .child((userFlatDetailValues?.city)!)
+//            .child((userFlatDetailValues?.societyName)!)
+//            .child((userFlatDetailValues?.apartmentName)!)
+//            .child((userFlatDetailValues?.flatNumber)!)
+//            .child(userUID!)
+        
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
             .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child(Constants.FIREBASE_CHILD_BANGALORE)
-            .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
-            .child(Constants.FIREBASE_CHILD_ASTER)
-            .child(Constants.FIREBASE_CHILD_FLATNO)
-            .child(Constants.FLAT_Visitor).child(userUID!)
+            .child("Bengaluru")
+            .child("Brigade Gateway")
+            .child("Chamber")
+            .child("C-1003")
+            .child("eg2qTmi7bbcZC6DtH9uxzvYOoaM2")
+        
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+             print("snapshort",snapshot)
             if snapshot.exists() {
+              
                 let visitorsUID = snapshot.value as? NSDictionary
                 for visitorUID in (visitorsUID?.allKeys)! {
                     // TODO: need to change UID in Future
