@@ -230,7 +230,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     func getMyDailyServicesDataFromFirebase() {
         //Assigning Child from where to get data in Daily Services List.
         //TODO: Right now only showing particular cook's details in the list.
-        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE_COOKS)
+        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_DSTYPE_COOKS)
         
         myDailyServicesListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
             

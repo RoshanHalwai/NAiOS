@@ -72,33 +72,33 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         //Switch case to get selected value from ActionSheet
         switch dailyServiceType {
         case NAString().cook():
-            dailyServiceKey = "cooks"
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_COOKS
             break
         case NAString().maid():
-            dailyServiceKey = "maids"
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_MAIDS
             break
         case NAString().car_bike_cleaning():
-            dailyServiceKey = "carBikeCleaners"
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_CARBIKE_CLEANER
         case NAString().child_day_care():
-            dailyServiceKey = "childDayCares"
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_CHILDDAY_CARE
             break
         case NAString().daily_newspaper():
-            dailyServiceKey = "dailyNewspapers"
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_DAILY_NEWSPAPER
             break
         case NAString().milk_man():
-            dailyServiceKey = "milkmen"
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_MILKMEN
             break
         case NAString().laundry():
-            dailyServiceKey = "laundries"
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_LAUNDRIES
             break
         case NAString().driver():
-            dailyServiceKey = "drivers"
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_DRIVERS
             break
         default:
             break
         }
         
-      //Create Name textfield first letter capital
+        //Create Name textfield first letter capital
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
         //Add border color on profile imageview
@@ -383,7 +383,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
     }
     
-   // Create Timer Function
+    // Create Timer Function
     @objc func stopTimer() {
         OpacityView.shared.hidingPopupView()
         if (count >= 0){
@@ -399,12 +399,13 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     func addAlertViewAction() {
         let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
         // Create OK button
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+        let OKAction = UIAlertAction(title: NAString().ok(), style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().otpViewController()
-            let dailyServicesString = NAString().enter_verification_code(first: "your cook", second: "their")
+            let dailyServicesString = NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their")
             lv.getCountryCodeString = self.txt_CountryCode.text!
             lv.getMobileString = self.txt_MobileNo.text!
             lv.newOtpString = dailyServicesString
+            lv.dailyServiceType = self.dailyServiceType
             //Assigning Delegate
             lv.delegate = self
             
@@ -452,17 +453,17 @@ extension AddMyServicesViewController {
     }
 }
 
-/* Created Extension to write code seperatly in the file,So other can know easily
-   Using delegate method after coming from otp data is saving in Firebase
-   Mapping dailyservice UID with true in UserData -> DailyServices
-   Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
-   Mapping dailyservice UID with its DSType
-   Storing Daily services details in DailyServices -> All -> Public
-   Mapping status with type  Not Entered inside DS UID
-   Storing Profile Image in Storage Folder
-   Compressing profile image and assigning its content type.
-   Uploading Daily Services image url along with DailyServices UID
-   Adding Daily Services data under Daily Services -> UID
+/*  Created Extension to write code seperatly in the file,So other can know easily
+    Using delegate method after coming from otp data is saving in Firebase
+    Mapping dailyservice UID with true in UserData -> DailyServices
+    Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
+    Mapping dailyservice UID with its DSType
+    Storing Daily services details in DailyServices -> All -> Public
+    Mapping status with type  Not Entered inside DS UID
+    Storing Profile Image in Storage Folder
+    Compressing profile image and assigning its content type.
+    Uploading Daily Services image url along with DailyServices UID
+    Adding Daily Services data under Daily Services -> UID
  */
 
 extension AddMyServicesViewController {
@@ -472,11 +473,9 @@ extension AddMyServicesViewController {
     }
     
     func storingDailyServicesInFirebase()  {
-        
         let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-       
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceKey)
         
         userDataRef?.child(dailyServicesUID!).setValue(NAString().gettrue())
@@ -491,8 +490,8 @@ extension AddMyServicesViewController {
         
         dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!).child(userUID!)
         
-       dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!)
-       
+        dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!)
+        
         self.dailyServicesStatusRef?.child(NAString().status()).setValue(NAString().notEntered())
         
         dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(dailyServiceKey)
@@ -501,11 +500,11 @@ extension AddMyServicesViewController {
         guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
         
         let metaDataContentType = StorageMetadata()
-        metaDataContentType.contentType = "image/jpeg"
+        metaDataContentType.contentType = NAString().imageContentType()
         
         let uploadImageRef = dailyServicesImageRef?.child(dailyServicesUID!)
         let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
-        
+            
             uploadImageRef?.downloadURL(completion: { (url, urlError) in
                 
                 if urlError == nil {
@@ -513,13 +512,12 @@ extension AddMyServicesViewController {
                     let dailyServicesData = [
                         NADailyServicesStringFBKeys.fullName.key : self.txt_Name.text! as String,
                         NADailyServicesStringFBKeys.phoneNumber.key : self.txt_MobileNo.text!,
-                        NADailyServicesStringFBKeys.rating.key : "3",
-                        //Constants.rating : 3,
+                        NADailyServicesStringFBKeys.rating.key : 3,
                         NADailyServicesStringFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
                         NADailyServicesStringFBKeys.uid.key : dailyServicesUID!,
-                        NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString
-                        ]
-                   
+                        NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString ?? ""
+                        ] as [String : Any]
+                    
                     self.dailyServicesPublicRef?.setValue(dailyServicesData)
                 } else {
                     //TODO: Using else condtion for printing error if anything is wrong while storing data

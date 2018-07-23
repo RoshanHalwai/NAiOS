@@ -27,10 +27,9 @@ class OTPViewController: NANavigationViewController {
     @IBOutlet weak var txtOTP6: UITextField!
     @IBOutlet weak var lbl_OTP_Validation: UILabel!
     
-    //to take data from add my services
+    //To take data from add my services
     var newOtpString = String()
-    
-    let UserDetails = UserDefaults.standard
+    var dailyServiceType = String()
     
     //Creating varibale to get mobile number string from Login VC TextField.
     var getMobileString = String()
@@ -112,7 +111,7 @@ class OTPViewController: NANavigationViewController {
             self.navigationController?.pushViewController(lv, animated: true)
         }
             //Back to My Daily Services Screen
-        if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your cook", second: "their"))  {
+        if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {
             
             //Assigning OTP TextFields To Variables.
             let Otp_Strig1 = self.txtOTP1.text!
@@ -127,10 +126,7 @@ class OTPViewController: NANavigationViewController {
             
             //Creating Credential variable to check correct OTP String.
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
-            // Sign in using the verificationID and the code sent to the user
-            // ...
-            print("Credential is:",Credentials as Any )
-            
+           
             //If OTP is Valid then Login Sucess else show Error message in Console
             //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
             Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
@@ -138,19 +134,11 @@ class OTPViewController: NANavigationViewController {
                         print("error",error.localizedDescription)
                         self.lbl_OTP_Validation.isHidden = false
                         self.lbl_OTP_Validation.text = NAString().incorrect_otp()
-                        print("Failure OTP is Invalid")
                         return
-                    }
-                    else {
-                          print("Success OTP is valid")
-                        
-                        let dailyServicesUID = Auth.auth().currentUser?.uid
-                        print("Daily Services UID",dailyServicesUID as Any)
+                    } else {
                         Constants.userUIDPer = userUID!
-                        print("User UID is:",Constants.userUIDPer)
-                        
+                        //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
                         self.delegate.dataPassing()
-                        //Calling function from Add My Daily Services VC
                         self.navigationController?.popViewController(animated: true)
                 }
             }
