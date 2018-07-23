@@ -135,7 +135,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
          - Calling global function to get Profile Image from Firebase.
          - This creates the shadows and modifies the cards a little bit.
          - To display image in round shape & Labels Formatting & setting.
-         - Calling button action & Delete particular cell from list. */
+         - Calling button action & Delete particular cell from list.
+         - TODO: Hardcoded values which need to fix in next pull request. */
         
         let list : NammaApartmentDailyServices
         list = myDailyServicesList[indexPath.row]
@@ -147,7 +148,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = "12:30"
         
         //For converting Int with String.
-       // cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
         cell.lbl_MyDailyServicesRating.text = "3"
         
         //TODO : Need to change Flat Number.
