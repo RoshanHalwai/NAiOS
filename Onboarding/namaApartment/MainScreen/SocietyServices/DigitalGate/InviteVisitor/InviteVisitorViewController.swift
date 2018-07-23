@@ -361,7 +361,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                         VisitorListFBKeys.inviterUID.key : userUID,
                         VisitorListFBKeys.profilePhoto.key : url?.absoluteString
                     ]
-                    print(visitorData)
                     //Adding visitor data under preApproved visitors
                     self.preApprovedVisitorsRef?.setValue(visitorData)
                     
