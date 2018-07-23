@@ -19,9 +19,11 @@ protocol AlertViewDelegate {
 }
 
 var userUID = Auth.auth().currentUser?.uid
+let dailyServicesUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
     
+    var delegateData : DataPass!
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
     @IBOutlet weak var txtOTP1: UITextField!
@@ -37,7 +39,9 @@ class OTPViewController: NANavigationViewController {
      - Store verification ID.
      - Create Alert View Delegate Object. */
     
+    //To take data from add my services
     var newOtpString = String()
+    var dailyServiceType = String()
     
     var getMobileString = String()
     var getCountryCodeString = String()
@@ -110,17 +114,44 @@ class OTPViewController: NANavigationViewController {
             
             verifyOTPWithFirebase()
         }
-        
-        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
-            
-            self.navigationController?.popViewController(animated: true)
-            delegate?.activityIndicator_function(withData: (Any).self)
+
+            //Back to My Sweet Home screen
+         if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
+            let lv = NAViewPresenter().mySweetHomeVC()
+            self.navigationController?.pushViewController(lv, animated: true)
         }
-        
-        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your cook", second: "their")) {
+            //Back to My Daily Services Screen
+        if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {
             
-            self.navigationController?.popViewController(animated: true)
-            delegate?.activityIndicator_function(withData: (Any).self)
+            //Assigning OTP TextFields To Variables.
+            let Otp_Strig1 = self.txtOTP1.text!
+            let Otp_Strig2 = self.txtOTP2.text!
+            let Otp_Strig3 = self.txtOTP3.text!
+            let Otp_Strig4 = self.txtOTP4.text!
+            let Otp_Strig5 = self.txtOTP5.text!
+            let Otp_Strig6 = self.txtOTP6.text!
+            
+            //Concatinating all the OTP String variables to get Final String.
+            finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+            
+            //Creating Credential variable to check correct OTP String.
+            let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
+           
+            //If OTP is Valid then Login Sucess else show Error message in Console
+            //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
+            Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
+                    if let error = error {
+                        print("error",error.localizedDescription)
+                        self.lbl_OTP_Validation.isHidden = false
+                        self.lbl_OTP_Validation.text = NAString().incorrect_otp()
+                        return
+                    } else {
+                        Constants.userUIDPer = userUID!
+                        //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
+                        self.delegateData.dataPassing()
+                        self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
     

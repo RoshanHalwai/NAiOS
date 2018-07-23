@@ -118,11 +118,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     func dailyServiceSelected(alert: UIAlertAction!) {
         let lv = NAViewPresenter().addMySerivesVC()
-        
-        //passing value to my services VC
-        let passVC = "myDailyServicesVC"
-        lv.vcValue = passVC
-        
+        lv.dailyServiceType = alert.title!
         lv.navTitle =  NAString().add_my_service().capitalized
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)
@@ -144,11 +140,15 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let list : NammaApartmentDailyServices
         list = myDailyServicesList[indexPath.row]
         
-        cell.lbl_MyDailyServiceName.text = list.fullName
+        cell.lbl_MyDailyServiceName.text = "Vikas"
         
         //TODO : Need to change Services type
         cell.lbl_MyDailyServiceType.text = NAString().cook()
-        cell.lbl_MyDailyServicesInTime.text = list.timeOfVisit
+        cell.lbl_MyDailyServicesInTime.text = "12:30"
+        
+        //For converting Int with String.
+       // cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
+        cell.lbl_MyDailyServicesRating.text = "3"
         
         //TODO : Need to change Flat Number.
         cell.lbl_MyDailyServicesFlats.text = "5"
@@ -242,7 +242,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     func getMyDailyServicesDataFromFirebase() {
         //Assigning Child from where to get data in Daily Services List.
         //TODO: Right now only showing particular cook's details in the list.
-        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE_COOKS)
+        myDailyServicesListReference = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_DSTYPE_COOKS)
         
         myDailyServicesListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
             
