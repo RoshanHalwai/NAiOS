@@ -53,7 +53,7 @@ struct Constants {
     static let FLAT_Visitor = "visitors"
     static let FIREBASE_CHILD_CABS = "cabs"
     static let FIREBASE_CHILD_DELIVERIES = "deliveries"
-    
+    static var rating = Int()
     static var userUIDPer = String()
     
 }

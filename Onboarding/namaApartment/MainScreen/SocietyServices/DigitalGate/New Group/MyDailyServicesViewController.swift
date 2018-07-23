@@ -106,11 +106,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     func dailyServiceSelected(alert: UIAlertAction!) {
         let lv = NAViewPresenter().addMySerivesVC()
-        
-        //passing value to my services VC
-        let passVC = "myDailyServicesVC"
-        lv.vcValue = passVC
-        
+        lv.dailyServiceType = alert.title!
         lv.navTitle =  NAString().add_my_service().capitalized
         self.navigationController?.setNavigationBarHidden(false, animated: true);
         self.navigationController?.pushViewController(lv, animated: true)

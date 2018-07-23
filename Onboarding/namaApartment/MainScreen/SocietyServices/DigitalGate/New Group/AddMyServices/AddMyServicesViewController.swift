@@ -13,15 +13,13 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
+//Created Delegate method for storing data, After verifying DS Mobile Number
 protocol DataPass {
     func dataPassing()
 }
 
-class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass
-{
+class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass {
     @IBOutlet weak var img_Profile: UIImageView!
-    
-   // var ActivityResult:Bool?
     
     @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_MobileNo: UILabel!
@@ -52,13 +50,11 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     //gettig data from previous screen string
     var AddOtpString = String()
-    
-    //to check from which view value is comming
-    var vcValue = String()
-    
     //created date picker programtically
     let picker = UIDatePicker()
     
+    var dailyServiceType = String()
+    var dailyServiceKey = String()
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -72,30 +68,37 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-       
         
-        //Activity indicatorevaules
-//        if(ActivityResult == true)
-//        {
-//             print("Activity result is True")
-//            storingDailyServicesInFirebase()
-//        }
-//        else
-//        {
-//            print("Activity result is False")
-//        }
+        //Switch case to get selected value from ActionSheet
+        switch dailyServiceType {
+        case NAString().cook():
+            dailyServiceKey = "cooks"
+            break
+        case NAString().maid():
+            dailyServiceKey = "maids"
+            break
+        case NAString().car_bike_cleaning():
+            dailyServiceKey = "carBikeCleaners"
+        case NAString().child_day_care():
+            dailyServiceKey = "childDayCares"
+            break
+        case NAString().daily_newspaper():
+            dailyServiceKey = "dailyNewspapers"
+            break
+        case NAString().milk_man():
+            dailyServiceKey = "milkmen"
+            break
+        case NAString().laundry():
+            dailyServiceKey = "laundries"
+            break
+        case NAString().driver():
+            dailyServiceKey = "drivers"
+            break
+        default:
+            break
+        }
         
-//        if UserDefaults.standard.bool(forKey: "ActivityResult"){
-//            print("Activity result is True")
-//            storingDailyServicesInFirebase()
-//
-//        }else{
-//            print("Activity result is False ")
-//        }
-        
-        
-        //Create Name textfield first letter capital
+      //Create Name textfield first letter capital
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
         //Add border color on profile imageview
@@ -402,9 +405,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             lv.getCountryCodeString = self.txt_CountryCode.text!
             lv.getMobileString = self.txt_MobileNo.text!
             lv.newOtpString = dailyServicesString
-            
-            
-            
+            //Assigning Delegate
             lv.delegate = self
             
             self.navigationController?.pushViewController(lv, animated: true)
@@ -476,7 +477,7 @@ extension AddMyServicesViewController {
         let userFlatDetailValues = flatValues.first
         
        
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child("drivers")
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceKey)
         
         userDataRef?.child(dailyServicesUID!).setValue(NAString().gettrue())
         
@@ -484,36 +485,27 @@ extension AddMyServicesViewController {
         
         dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServicesUID!)
         
-        
         dailyServicesTypeRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE)
         
-        dailyServicesTypeRef?.child(dailyServicesUID!).setValue("drivers")
+        dailyServicesTypeRef?.child(dailyServicesUID!).setValue(dailyServiceKey)
         
-       
-        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("drivers").child(dailyServicesUID!).child(userUID!)
+        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!).child(userUID!)
         
-       dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("drivers").child(dailyServicesUID!)
-
+       dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!)
        
         self.dailyServicesStatusRef?.child(NAString().status()).setValue(NAString().notEntered())
         
-       
-        dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child("drivers")
+        dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(dailyServiceKey)
         
-        
-        print("My Image is :", img_Profile.image as Any)
-        
-       
         guard let image = self.img_Profile.image else { return }
         guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
         
         let metaDataContentType = StorageMetadata()
         metaDataContentType.contentType = "image/jpeg"
         
-       
         let uploadImageRef = dailyServicesImageRef?.child(dailyServicesUID!)
         let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
-            
+        
             uploadImageRef?.downloadURL(completion: { (url, urlError) in
                 
                 if urlError == nil {
@@ -522,14 +514,15 @@ extension AddMyServicesViewController {
                         NADailyServicesStringFBKeys.fullName.key : self.txt_Name.text! as String,
                         NADailyServicesStringFBKeys.phoneNumber.key : self.txt_MobileNo.text!,
                         NADailyServicesStringFBKeys.rating.key : "3",
+                        //Constants.rating : 3,
                         NADailyServicesStringFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
                         NADailyServicesStringFBKeys.uid.key : dailyServicesUID!,
-                        NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString,
+                        NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString
                         ]
                    
                     self.dailyServicesPublicRef?.setValue(dailyServicesData)
-                    
                 } else {
+                    //TODO: Using else condtion for printing error if anything is wrong while storing data
                     print("Error is:",urlError as Any)
                 }
             })
