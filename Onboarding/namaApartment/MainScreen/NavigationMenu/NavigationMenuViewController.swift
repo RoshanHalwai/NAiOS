@@ -17,6 +17,8 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var tableView: UITableView!
     var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
+    var rateUsView: RateUsView!
+    var mainScreen: MainScreenViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +63,10 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
             self.navigationController?.pushViewController(dv1, animated: true)
         } else if currentItem == NAString().logout() {
             self.logoutAction()
+        } else if currentItem == NAString().rate_us() {
+           showingRateUsView(view: mainScreen)
         }
+        mainScreen.closeNavigationMenu()
         tableView.deselectRow(at: indexPath!, animated: true)
     }
     //To Logout the current user
@@ -72,5 +77,13 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
             let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
             self.present(NavLogin, animated: true)
         }
+    }
+    func showingRateUsView(view: UIViewController) {
+        rateUsView = RateUsView(frame: CGRect(x: 0, y: 0, width: 230, height: 304))
+        rateUsView.center.x = view.view.bounds.width/2
+        rateUsView.center.y = view.view.bounds.height/2
+        rateUsView.layer.cornerRadius = 10
+        rateUsView.layer.masksToBounds = true
+        view.view.addSubview(rateUsView)
     }
 }

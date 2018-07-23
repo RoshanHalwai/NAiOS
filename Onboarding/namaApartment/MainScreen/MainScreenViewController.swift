@@ -17,12 +17,15 @@ class MainScreenViewController: NANavigationViewController {
     @IBOutlet weak var sideMenuConstrain : NSLayoutConstraint!
     
     @IBOutlet weak var opacity_View: UIView!
+    var navigationMenuVC: NavigationMenuViewController!
     
     fileprivate var isSocietyServices = true
     
     var NavigationMenuOpen = false
     
     var currentIndex = 0
+    
+    var index:Int!
     
     /* * Declaring the varibles for structure.
      * for navigation purpose.
@@ -46,6 +49,7 @@ class MainScreenViewController: NANavigationViewController {
         
         opacity_View.isHidden = true
         tableView.alwaysBounceVertical = false
+        navigationMenuVC.mainScreen = self
         
         let menuButton = UIButton(type: .system)
         menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
@@ -98,6 +102,12 @@ class MainScreenViewController: NANavigationViewController {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let embeddedVC = segue.destination as? NavigationMenuViewController {
+            navigationMenuVC = embeddedVC
+        }
     }
     
     /* - For switching the tableview data in between society & apartment services.
