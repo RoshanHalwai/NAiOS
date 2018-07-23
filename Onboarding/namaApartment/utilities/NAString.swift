@@ -826,4 +826,7 @@ class NAString : NSObject {
     func notEntered() -> String {
         return String ("Not Entered")
     }
+    func status() -> String {
+        return String ("status")
+    }
 }

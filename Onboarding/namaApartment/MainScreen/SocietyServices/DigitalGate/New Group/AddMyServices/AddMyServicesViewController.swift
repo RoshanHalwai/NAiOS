@@ -68,6 +68,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     var dailyServicesPrivateRef : DatabaseReference?
     var dailyServicesImageRef : StorageReference?
     var dailyServicesTypeRef : DatabaseReference?
+    var dailyServicesStatusRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -450,6 +451,19 @@ extension AddMyServicesViewController {
     }
 }
 
+/* Created Extension to write code seperatly in the file,So other can know easily
+   Using delegate method after coming from otp data is saving in Firebase
+   Mapping dailyservice UID with true in UserData -> DailyServices
+   Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
+   Mapping dailyservice UID with its DSType
+   Storing Daily services details in DailyServices -> All -> Public
+   Mapping status with type  Not Entered inside DS UID
+   Storing Profile Image in Storage Folder
+   Compressing profile image and assigning its content type.
+   Uploading Daily Services image url along with DailyServices UID
+   Adding Daily Services data under Daily Services -> UID
+ */
+
 extension AddMyServicesViewController {
     
     func dataPassing() {
@@ -461,59 +475,60 @@ extension AddMyServicesViewController {
         let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        //Mapping dailyservice UID with true in UserData -> DailyServices
+       
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child("drivers")
         
         userDataRef?.child(dailyServicesUID!).setValue(NAString().gettrue())
         
-        //Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
         dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
         
         dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServicesUID!)
         
-        //Mapping data in  DailyServices Type Node
+        
         dailyServicesTypeRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE)
         
         dailyServicesTypeRef?.child(dailyServicesUID!).setValue("drivers")
         
-        //Storing Daily services details in DailyServices -> All -> Public
+       
         dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("drivers").child(dailyServicesUID!).child(userUID!)
         
+       dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child("drivers").child(dailyServicesUID!)
+
+       
+        self.dailyServicesStatusRef?.child(NAString().status()).setValue(NAString().notEntered())
         
-        //Storing Profile Image in Storage Folder
+       
         dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child("drivers")
         
         
         print("My Image is :", img_Profile.image as Any)
         
-        //Compressing profile image and assigning its content type.
+       
         guard let image = self.img_Profile.image else { return }
         guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
         
         let metaDataContentType = StorageMetadata()
         metaDataContentType.contentType = "image/jpeg"
         
-        //Uploading Daily Services image url along with DailyServices UID
+       
         let uploadImageRef = dailyServicesImageRef?.child(dailyServicesUID!)
         let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
             
             uploadImageRef?.downloadURL(completion: { (url, urlError) in
                 
                 if urlError == nil {
-                    //TODO: Hardcoded NumberOfFlat & Rating, Need to change in future.
+                    //TODO: Hardcoded rating, Need to change in future.
                     let dailyServicesData = [
-                        NADailyServicesListFBKeys.fullName.key : self.txt_Name.text! as String,
-                        NADailyServicesListFBKeys.numberOfFlats.key : "0",
-                        NADailyServicesListFBKeys.phoneNumber.key : self.txt_MobileNo.text!,
-                        NADailyServicesListFBKeys.rating.key : "3",
-                        NADailyServicesListFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
-                        NADailyServicesListFBKeys.uid.key : dailyServicesUID!,
-                        NADailyServicesListFBKeys.profilePhoto.key : url?.absoluteString,
-                    ]
-                    //Adding Daily Services data under Daily Services -> UID
+                        NADailyServicesStringFBKeys.fullName.key : self.txt_Name.text! as String,
+                        NADailyServicesStringFBKeys.phoneNumber.key : self.txt_MobileNo.text!,
+                        NADailyServicesStringFBKeys.rating.key : "3",
+                        NADailyServicesStringFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
+                        NADailyServicesStringFBKeys.uid.key : dailyServicesUID!,
+                        NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString,
+                        ]
+                   
                     self.dailyServicesPublicRef?.setValue(dailyServicesData)
-                    //mapping
-                    self.dailyServicesPublicRef?.child("status").setValue(NAString().notEntered())
+                    
                 } else {
                     print("Error is:",urlError as Any)
                 }

@@ -9,11 +9,10 @@
 import Foundation
 import UIKit
 //Created enum instead of struct for App optimization and for getting values.
-enum NADailyServicesListFBKeys: String {
+enum NADailyServicesStringFBKeys: String {
     case fullName
     case phoneNumber
     case profilePhoto
-    case numberOfFlats
     case rating
     case timeOfVisit
     case uid
@@ -24,7 +23,6 @@ enum NADailyServicesListFBKeys: String {
         case .fullName: return "fullName"
         case .phoneNumber: return "phoneNumber"
         case .profilePhoto: return "profilePhoto"
-        case .numberOfFlats: return "numberOfFlats"
         case .rating: return "rating"
         case .timeOfVisit:return "timeOfVisit"
         case .uid: return "uid"
