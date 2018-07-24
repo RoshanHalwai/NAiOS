@@ -945,17 +945,21 @@ class NAString : NSObject {
     func inviteButtonTagValue() -> Int {
         return Int (101)
     }
-    
+
     func addMyFamilyMemberButtonTagValue() -> Int {
         return Int (102)
     }
-    
+
     func addMyDailyServicesButtonTagValue() -> Int {
         return Int (103)
     }
-    
+
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)
+    }
+    
+    func status() -> String {
+        return String ("status")
     }
 }

@@ -9,9 +9,17 @@
 import UIKit
 import Contacts
 import ContactsUI
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
-class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AlertViewDelegate
-{
+//Created Delegate method for storing data, After verifying DS Mobile Number
+protocol DataPass {
+    func dataPassing()
+}
+
+class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass {
+
     @IBOutlet weak var img_Profile: UIImageView!
     
     @IBOutlet weak var lbl_Name: UILabel!
@@ -45,14 +53,23 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
      - Scrollview. */
     
     var navTitle: String?
-    
     var AddOtpString = String()
-    
-    var vcValue = String()
-    
+
+    //created date picker programtically
     let picker = UIDatePicker()
     
+    var dailyServiceType = String()
+    var dailyServiceKey = String()
+    //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    //Database References
+    var userDataRef : DatabaseReference?
+    var dailyServicesPublicRef: DatabaseReference?
+    var dailyServicesPrivateRef : DatabaseReference?
+    var dailyServicesImageRef : StorageReference?
+    var dailyServicesTypeRef : DatabaseReference?
+    var dailyServicesStatusRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +83,36 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
          - Set local date to Europe to show 24 hours.
          - TextField,Button,Label formatting & setting. */
         
+        //Switch case to get selected value from ActionSheet
+        switch dailyServiceType {
+        case NAString().cook():
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_COOKS
+            break
+        case NAString().maid():
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_MAIDS
+            break
+        case NAString().car_bike_cleaning():
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_CARBIKE_CLEANER
+        case NAString().child_day_care():
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_CHILDDAY_CARE
+            break
+        case NAString().daily_newspaper():
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_DAILY_NEWSPAPER
+            break
+        case NAString().milk_man():
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_MILKMEN
+            break
+        case NAString().laundry():
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_LAUNDRIES
+            break
+        case NAString().driver():
+            dailyServiceKey = Constants.FIREBASE_DSTYPE_DRIVERS
+            break
+        default:
+            break
+        }
+        
+        //Create Name textfield first letter capital
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
         img_Profile.layer.borderColor = UIColor.black.cgColor
@@ -148,24 +195,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
-    
-    func grantAccessAlert() {
         
-        let alert = UIAlertController(title:nil , message: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().granting_access()), preferredStyle: .alert)
-        
-        let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
-        
-        let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
-            let lv = NAViewPresenter().otpViewController()
-            let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
-            lv.newOtpString = familyString
-            self.navigationController?.pushViewController(lv, animated: true)
-        }
-        alert.addAction(rejectAction)
-        alert.addAction(acceptAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let actionCamera = UIAlertAction(title:NAString().camera(), style: .default, handler: {
@@ -292,37 +322,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             self.lbl_OTPDescription.text = NAString().inviteVisitorOTPDesc()
         }
     }
-    
-    func activityIndicator_function(withData: Any) {
-        btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
-        OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
-        OpacityView.shared.showingPopupView(view: self)
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
-    }
-    
-    @objc func stopTimer() {
-        OpacityView.shared.hidingPopupView()
-        if (count >= 0){
-            if(count == 0)
-            {
-                self.addAlertViewAction()
-            }
-            count -= 1
-        }
-    }
-    
-    func addAlertViewAction() {
-        let alertController = UIAlertController(title:NAString().addMyDailyService_AlertView_Title(), message:NAString().addMyDailyService_AlertView_Message(), preferredStyle: .alert)
-        
-        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-            let lv = NAViewPresenter().myDailyServicesVC()
-            self.navigationController?.pushViewController(lv, animated: true)
-        }
-        alertController.addAction(OKAction)
-        self.present(alertController, animated: true, completion:nil)
-    }
-    
-    
+ 
     @IBAction func btnAddDetails(_ sender: Any) {
         if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
@@ -358,13 +358,41 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
-                let lv = NAViewPresenter().otpViewController()
-                let familyString = NAString().enter_verification_code(first: "your cook", second: "their")
-                lv.newOtpString = familyString
-                lv.delegate = self
-                self.navigationController?.pushViewController(lv, animated: true)
+
+                AlertViewAction()
+
             }
         }
+    }
+    
+    // Create Timer Function
+    @objc func stopTimer() {
+        OpacityView.shared.hidingPopupView()
+        if (count >= 0){
+            if(count == 0) {
+                self.AlertViewAction()
+            }
+        }
+    }
+    
+    //Create AlertView Action
+    func AlertViewAction() {
+        let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
+        // Create OK button
+        let OKAction = UIAlertAction(title: NAString().ok(), style: .default) { (action:UIAlertAction!) in
+            let lv = NAViewPresenter().otpViewController()
+            let dailyServicesString = NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their")
+            lv.getCountryCodeString = self.txt_CountryCode.text!
+            lv.getMobileString = self.txt_MobileNo.text!
+            lv.newOtpString = dailyServicesString
+            lv.dailyServiceType = self.dailyServiceType
+            //Assigning Delegate
+            lv.delegateData = self
+            
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
     }
     
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -403,5 +431,81 @@ extension AddMyServicesViewController {
             }
         }
         return true
+    }
+}
+
+/*  Created Extension to write code seperatly in the file,So other can know easily
+    Using delegate method after coming from otp data is saving in Firebase
+    Mapping dailyservice UID with true in UserData -> DailyServices
+    Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
+    Mapping dailyservice UID with its DSType
+    Storing Daily services details in DailyServices -> All -> Public
+    Mapping status with type  Not Entered inside DS UID
+    Storing Profile Image in Storage Folder
+    Compressing profile image and assigning its content type.
+    Uploading Daily Services image url along with DailyServices UID
+    Adding Daily Services data under Daily Services -> UID
+ */
+
+extension AddMyServicesViewController {
+    
+    func dataPassing() {
+        storingDailyServicesInFirebase()
+    }
+    
+    func storingDailyServicesInFirebase()  {
+        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let userFlatDetailValues = flatValues.first
+        
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceKey)
+        
+        userDataRef?.child(dailyServicesUID!).setValue(NAString().gettrue())
+        
+        dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        
+        dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServicesUID!)
+        
+        dailyServicesTypeRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE)
+        
+        dailyServicesTypeRef?.child(dailyServicesUID!).setValue(dailyServiceKey)
+        
+        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!).child(userUID!)
+        
+        dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!)
+        
+        self.dailyServicesStatusRef?.child(NAString().status()).setValue(NAString().notEntered())
+        
+        dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(dailyServiceKey)
+        
+        guard let image = self.img_Profile.image else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
+        
+        let metaDataContentType = StorageMetadata()
+        metaDataContentType.contentType = NAString().imageContentType()
+        
+        let uploadImageRef = dailyServicesImageRef?.child(dailyServicesUID!)
+        let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
+            
+            uploadImageRef?.downloadURL(completion: { (url, urlError) in
+                
+                if urlError == nil {
+                    //TODO: Hardcoded rating, Need to change in future.
+                    let dailyServicesData = [
+                        NADailyServicesStringFBKeys.fullName.key : self.txt_Name.text! as String,
+                        NADailyServicesStringFBKeys.phoneNumber.key : self.txt_MobileNo.text!,
+                        NADailyServicesStringFBKeys.rating.key : 3,
+                        NADailyServicesStringFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
+                        NADailyServicesStringFBKeys.uid.key : dailyServicesUID!,
+                        NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString ?? ""
+                        ] as [String : Any]
+                    
+                    self.dailyServicesPublicRef?.setValue(dailyServicesData)
+                } else {
+                    //TODO: Using else condtion for printing error if anything is wrong while storing data
+                    print("Error is:",urlError as Any)
+                }
+            })
+        })
+        uploadTask?.resume()
     }
 }
