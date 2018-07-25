@@ -71,9 +71,9 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
             mainScreen.showingRateUsView()
             mainScreen.opacity_View.isHidden = false
         } else if currentItem == NAString().notice_board() {
-            let dv5 = NAViewPresenter().noticeBoardVC()
-            dv5.navTitle = NAString().notice_board()
-            self.navigationController?.pushViewController(dv5, animated: true)
+            let noticeBoardVC = NAViewPresenter().noticeBoardVC()
+            noticeBoardVC.navTitle = NAString().notice_board()
+            self.navigationController?.pushViewController(noticeBoardVC, animated: true)
             mainScreen.opacity_View.isHidden = true
         }
         mainScreen.closeNavigationMenu()
