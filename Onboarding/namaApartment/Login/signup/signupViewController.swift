@@ -164,10 +164,8 @@ class signupViewController: NANavigationViewController {
             dest.newEmail = self.signup_TxtEmailId.text!
             dest.newFullName = self.signup_TxtFullName.text!
             self.navigationController?.pushViewController(dest, animated: true)
-            
         }
     }
-    
 }
 extension signupViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     

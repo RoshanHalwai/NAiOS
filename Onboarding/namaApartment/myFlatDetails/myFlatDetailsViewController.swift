@@ -146,12 +146,20 @@ class myFlatDetailsViewController: NANavigationViewController {
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
-        
-        //Hiding Navigation bar Back Button
+       
+        //Created custom back button for going back to Signup VC
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToSignupVC))
+        self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = nil
         
         //set Title in Navigation Bar
-        self.navigationItem.title = NAString().My_flat_Details_title()
+        super.ConfigureNavBarTitle(title: NAString().My_flat_Details_title())
+    }
+    
+    //Action for Navigating Back to SignupVC 
+    @objc func goBackToSignupVC() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
