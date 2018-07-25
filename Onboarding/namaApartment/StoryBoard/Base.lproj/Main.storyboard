@@ -5652,8 +5652,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OyH-tk-lCN">
-                                <rect key="frame" x="16" y="96" width="203" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OyH-tk-lCN">
+                                <rect key="frame" x="16" y="96" width="343" height="35"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <state key="normal" title="English">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5665,7 +5665,7 @@
                             <constraint firstItem="H5y-fT-vXY" firstAttribute="trailing" secondItem="6Mm-k7-BZF" secondAttribute="trailing" constant="16" id="38d-G2-5vW"/>
                             <constraint firstItem="GPY-qE-i5H" firstAttribute="top" secondItem="OyH-tk-lCN" secondAttribute="bottom" constant="35" id="4lM-mV-tdt"/>
                             <constraint firstItem="LbP-xx-kQO" firstAttribute="leading" secondItem="H5y-fT-vXY" secondAttribute="leading" constant="16" id="8dI-cU-jCM"/>
-                            <constraint firstItem="H5y-fT-vXY" firstAttribute="trailing" secondItem="OyH-tk-lCN" secondAttribute="trailing" constant="156" id="JtZ-1H-7zu"/>
+                            <constraint firstItem="H5y-fT-vXY" firstAttribute="trailing" secondItem="OyH-tk-lCN" secondAttribute="trailing" constant="16" id="JtZ-1H-7zu"/>
                             <constraint firstItem="0Qo-Ku-Zip" firstAttribute="leading" secondItem="H5y-fT-vXY" secondAttribute="leading" constant="16" id="MyK-6O-c6b"/>
                             <constraint firstItem="LW8-Mf-3NZ" firstAttribute="leading" secondItem="GPY-qE-i5H" secondAttribute="trailing" constant="8" id="PwP-IV-jUb"/>
                             <constraint firstItem="0Qo-Ku-Zip" firstAttribute="top" secondItem="H5y-fT-vXY" secondAttribute="top" constant="20" id="TUP-Tf-U6N"/>
@@ -5807,7 +5807,7 @@
                                 <rect key="frame" x="0.0" y="173" width="260" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -5815,7 +5815,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
