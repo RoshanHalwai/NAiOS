@@ -150,6 +150,7 @@ class OTPViewController: NANavigationViewController {
                         //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
                         self.delegateData.dataPassing()
                         self.navigationController?.popViewController(animated: true)
+                        self.delegate?.activityIndicator_function(withData: (Any).self)
                 }
             }
         }
