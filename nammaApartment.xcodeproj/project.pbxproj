@@ -93,6 +93,7 @@
 		8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */; };
 		8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */; };
 		8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */; };
+		8679B78021022C0C0020B004 /* NADailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8679B77F21022C0C0020B004 /* NADailyServices.swift */; };
 		867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
 		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */; };
 		867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */; };
@@ -247,6 +248,7 @@
 		8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyServicesViewController.swift; sourceTree = "<group>"; };
 		8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANavigationViewController.swift; sourceTree = "<group>"; };
 		8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		8679B77F21022C0C0020B004 /* NADailyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NADailyServices.swift; sourceTree = "<group>"; };
 		867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestViewController.swift; sourceTree = "<group>"; };
 		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestTableViewCell.swift; sourceTree = "<group>"; };
 		867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySweetHomeViewController.swift; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 			children = (
 				86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */,
 				86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */,
+				8679B77F21022C0C0020B004 /* NADailyServices.swift */,
 			);
 			path = AddMyServices;
 			sourceTree = "<group>";
@@ -1059,6 +1062,7 @@
 			files = (
 				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
+				8679B78021022C0C0020B004 /* NADailyServices.swift in Sources */,
 				867FF1BA20FC737B00A6A4C9 /* NAExpectingArrival.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
 				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,

@@ -109,6 +109,21 @@ class MainScreenViewController: NANavigationViewController {
     
     /* - For switching the tableview data in between society & apartment services.
        - Modifying SegmentControl text according to segment selection. */
+
+    //To Logout the current user
+    @objc func logout() {
+        try! Auth.auth().signOut()
+        if self.storyboard != nil {
+            print("Now string is Empty",Constants.userUIDPer)
+            let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
+            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
+            self.present(NavLogin, animated: true)
+        }
+    }
+    
+    /* * For switching the tableview data in between society & apartment services.
+     * Modifying SegmentControl text according to segment selection. */
+    
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.segmentControlSelection()
         self.tableView.alwaysBounceVertical = false
