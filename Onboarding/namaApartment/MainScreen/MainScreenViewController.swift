@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import HCSStarRatingView
 
 class MainScreenViewController: NANavigationViewController {
     
@@ -17,17 +18,16 @@ class MainScreenViewController: NANavigationViewController {
     @IBOutlet weak var sideMenuConstrain : NSLayoutConstraint!
     
     @IBOutlet weak var opacity_View: UIView!
+    var navigationMenuVC: NavigationMenuViewController!
     
     fileprivate var isSocietyServices = true
+    var rateUsView: RateUsView!
     
     var NavigationMenuOpen = false
     
-    var currentIndex = 0
+     var currentIndex = 0 
     
-    /* * Declaring the varibles for structure.
-     * for navigation purpose.
-     * Firebase Database References. */
-    
+    //Declaring the varibles for structure.
     var apartmentData:[apartmentServicesModel] = []
     var societyData:[societyServicesModel] = []
     
@@ -46,6 +46,7 @@ class MainScreenViewController: NANavigationViewController {
         
         opacity_View.isHidden = true
         tableView.alwaysBounceVertical = false
+        navigationMenuVC.mainScreen = self
         
         let menuButton = UIButton(type: .system)
         menuButton.setImage(#imageLiteral(resourceName: "Menu"), for: .normal)
@@ -103,6 +104,12 @@ class MainScreenViewController: NANavigationViewController {
         self.view.addGestureRecognizer(swipeLeft)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let embeddedVC = segue.destination as? NavigationMenuViewController {
+            navigationMenuVC = embeddedVC
+        }
+    }
+    
     /* - For switching the tableview data in between society & apartment services.
        - Modifying SegmentControl text according to segment selection. */
 
@@ -130,20 +137,24 @@ class MainScreenViewController: NANavigationViewController {
     @objc func NavigationMenuVC() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
+             opacity_View.isHidden = true
         } else {
             showNavigationMenu()
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch: UITouch? = touches.first
         if self.NavigationMenuOpen {
             closeNavigationMenu()
+            opacity_View.isHidden = true
+        } else if touch?.view != rateUsView {
+            hidingRateUsView()
         }
     }
     
     func closeNavigationMenu() {
         self.NavigationMenuOpen = false
-        opacity_View.isHidden = true
         UIView.animate(withDuration: 0.3) {
             self.sideMenuConstrain.constant = -260
             self.view.layoutIfNeeded()
@@ -157,6 +168,41 @@ class MainScreenViewController: NANavigationViewController {
             self.sideMenuConstrain.constant = 0
             self.view.layoutIfNeeded()
         }
+    }
+    
+    //Function to show Rate Us View.
+    func showingRateUsView() {
+        rateUsView = RateUsView(frame: CGRect(x: 0, y: 0, width: 230, height: 304))
+        rateUsView.center.x = self.view.bounds.width/2
+        rateUsView.center.y = self.view.bounds.height/2
+        rateUsView.btn_Rate_Now.titleLabel?.font = NAFont().buttonFont()
+        rateUsView.btn_Remind_me_Later.titleLabel?.font = NAFont().buttonFont()
+        rateUsView.btn_Rate_Now.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        rateUsView.btn_Remind_me_Later.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        rateUsView.btn_Rate_Now.backgroundColor = NAColor().buttonBgColor()
+        rateUsView.btn_Rate_Now.backgroundColor = NAColor().buttonBgColor()
+        rateUsView.layer.cornerRadius = 10
+        rateUsView.layer.masksToBounds = true
+        
+        //Customized Code for Star rating
+        let starRatingView: HCSStarRatingView = HCSStarRatingView()
+        starRatingView.maximumValue = 5
+        starRatingView.minimumValue = 0
+        starRatingView.value = 1
+        starRatingView.tintColor = UIColor.yellow
+        starRatingView.allowsHalfStars = false
+        starRatingView.emptyStarImage = UIImage(named: "EmptyStar")?.withRenderingMode(.alwaysTemplate)
+        starRatingView.filledStarImage = UIImage(named: "FullStar")?.withRenderingMode(.alwaysTemplate)
+        starRatingView.center = self.view.center
+        rateUsView.view.addSubview(starRatingView)
+        starRatingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(rateUsView)
+    }
+    
+    func hidingRateUsView() {
+            opacity_View.isHidden = true
+            rateUsView.isHidden = true
     }
     
     func segmentControlSelection() {
@@ -274,8 +320,3 @@ extension MainScreenViewController {
         })
     }
 }
-
-
-
-
-
