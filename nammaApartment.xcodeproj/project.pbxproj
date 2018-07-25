@@ -29,6 +29,8 @@
 		0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */; };
 		0856467E210215E800C5FBF6 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */; };
 		085646802102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */; };
+		086081F92104A90900B5990C /* RateUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 086081F82104A90900B5990C /* RateUsView.xib */; };
+		086081FB2104B19000B5990C /* RateUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086081FA2104B19000B5990C /* RateUsView.swift */; };
 		08A0210520F523FC00130185 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A0210420F523FC00130185 /* Reachability.swift */; };
 		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
@@ -173,6 +175,8 @@
 		0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
 		0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
 		0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		086081F82104A90900B5990C /* RateUsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateUsView.xib; sourceTree = "<group>"; };
+		086081FA2104B19000B5990C /* RateUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUsView.swift; sourceTree = "<group>"; };
 		08A0210420F523FC00130185 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListViewController.swift; sourceTree = "<group>"; };
 		08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -363,6 +367,8 @@
 				0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */,
 				0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */,
 				0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */,
+				086081FA2104B19000B5990C /* RateUsView.swift */,
+				086081F82104A90900B5990C /* RateUsView.xib */,
 			);
 			path = NavigationMenuCategory;
 			sourceTree = "<group>";
@@ -923,6 +929,7 @@
 				861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */,
 				422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */,
 				862700FC209707BB004B28EB /* Main.storyboard in Resources */,
+				086081F92104A90900B5990C /* RateUsView.xib in Resources */,
 				869306C720F23AF70069305D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1027,6 +1034,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -1035,6 +1043,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -1094,6 +1103,7 @@
 				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
 				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
 				0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */,
+				086081FB2104B19000B5990C /* RateUsView.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
 				422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
@@ -1316,10 +1326,7 @@
 				DEVELOPMENT_TEAM = PUZKL58568;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1339,10 +1346,7 @@
 				DEVELOPMENT_TEAM = PUZKL58568;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1360,11 +1364,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1382,11 +1382,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1403,11 +1399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1424,11 +1416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
