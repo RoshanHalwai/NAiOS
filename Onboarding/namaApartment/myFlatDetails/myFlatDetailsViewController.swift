@@ -37,21 +37,7 @@ class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Description: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    //TODO : Need to get data from firebase
-    var cities = ["Bengaluru", "Chennai"]
-    var societies = ["Brigade Gateway"]
-    var BrigadeGateway = ["Aster", "Bolivia", "Chamber", "DSR"]
-    var SalarpuriaCambridge = ["Block-1", "Block-2", "Block-3", "Block-4", "Block-5"]
-    var Aster = ["A-1001", "A-1002", "A-1003"]
-    var Bolivia = ["B-1001", "B-1002", "B-1003"]
-    var Chamber = ["C-1001", "C-1002", "C-1003"]
-    var DSR = ["D-1001", "D-1002", "D-1003"]
-    var Block1 = ["101", "102", "103", "104", "105"]
-    var Block2 = ["201", "202", "203", "204", "205"]
-    var Block3 = ["301", "302", "303", "304", "305"]
-    var Block4 = ["401", "402", "403", "404", "405"]
-    var Block5 = ["501", "502", "503", "504", "505"]
+    var cities = [String]()
     
     //placeHolder instance
     var placeHolder = NSMutableAttributedString()
@@ -80,6 +66,12 @@ class myFlatDetailsViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //To hide keyboard on textFiled click
+        txtFlat.inputView = UIView()
+        txtApartment.inputView = UIView()
+        txtSociety.inputView = UIView()
+        txtCity.inputView = UIView()
         
         //To get Selected Segment text
         if segment_ResidentType.selectedSegmentIndex == 0 {
@@ -146,7 +138,7 @@ class myFlatDetailsViewController: NANavigationViewController {
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
-       
+        
         //Created custom back button for going back to Signup VC
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToSignupVC))
         self.navigationItem.leftBarButtonItem = backButton
@@ -252,19 +244,23 @@ class myFlatDetailsViewController: NANavigationViewController {
             searchVC.title = NAString().your_city()
             txtCity.resignFirstResponder()
         } else if textField == txtSociety {
+            searchVC.textFieldText = self.txtCity.text!
             searchVC.title = NAString().your_society()
             txtSociety.resignFirstResponder()
         } else if textField == txtApartment {
             searchVC.title = NAString().your_apartment()
+            searchVC.textFieldText = self.txtSociety.text!
             txtApartment.resignFirstResponder()
         } else if textField == txtFlat {
             searchVC.title = NAString().your_flat()
+            searchVC.textFieldText = self.txtApartment.text!
             txtFlat.resignFirstResponder()
         }
         searchVC.myFlatDetailsVC = self
         self.navigationController?.present(nav, animated: true, completion: nil)
         return true
     }
+    
     //function to end editing on the touch on the view
     override func touchesBegan(_ touches: Set<UITouch>,with event: UIEvent?) {
         self.view.endEditing(true)

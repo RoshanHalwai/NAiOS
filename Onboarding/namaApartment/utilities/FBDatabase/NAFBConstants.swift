@@ -24,7 +24,7 @@ struct Constants {
     static let FIREBASE_DSTYPE_MAIDS = "maids"
     static let FIREBASE_DSTYPE_COOKS = "cooks"
     static let FIREBASE_DSTYPE_DRIVERS = "drivers"
-     static let FIREBASE_DSTYPE_MILKMEN = "milkmen"
+    static let FIREBASE_DSTYPE_MILKMEN = "milkmen"
     static let FIREBASE_DSTYPE_CARBIKE_CLEANER = "carBikeCleaners"
     static let FIREBASE_DSTYPE_CHILDDAY_CARE = "childDayCares"
     static let FIREBASE_DSTYPE_DAILY_NEWSPAPER = "dailyNewspapers"
@@ -59,5 +59,8 @@ struct Constants {
     static let FIREBASE_CHILD_CABS = "cabs"
     static let FIREBASE_CHILD_DELIVERIES = "deliveries"
     static var userUIDPer = String()
-    
+    static let FIREBASE_CHILD_CITIES = "cities"
+    static let FIREBASE_CHILD_SOCIETIES = "societies"
+    static let FIREBASE_CHILD_APARTMENTS = "apartments"
+    static let FIREBASE_CHILD_FLATS = "flats"
 }
