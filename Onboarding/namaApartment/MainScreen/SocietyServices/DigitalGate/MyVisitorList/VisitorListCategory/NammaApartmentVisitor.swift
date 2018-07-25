@@ -18,7 +18,6 @@ enum VisitorListFBKeys : String {
     case profilePhoto
     case status
     case uid
-    
     var key : String {
         switch self {
         // Use Internationalization, as appropriate.
@@ -39,7 +38,6 @@ enum VisitorListFBKeys : String {
 }
 
 class NammaApartmentVisitor {
-    
     //defining strings according to firebase names which is inside the visitor Node.
     private var dateAndTimeOfVisit: String?
     private var fullName: String?
@@ -48,10 +46,8 @@ class NammaApartmentVisitor {
     private var profilePhoto: String?
     private var status: String?
     private var uid: String?
-
     //initilaize the variables
     init(dateAndTimeOfVisit: String?,fullName: String?,inviterUID: String?,mobileNumber: String?,profilePhoto: String?,status: String?,uid: String?) {
-
         self.dateAndTimeOfVisit = dateAndTimeOfVisit!
         self.fullName = fullName!
         self.inviterUID = inviterUID
@@ -60,7 +56,7 @@ class NammaApartmentVisitor {
         self.status = status
         self.uid = uid
     }
-    
+   
     //Get FullName
     func getfullName() -> String {
         return fullName!
@@ -73,18 +69,22 @@ class NammaApartmentVisitor {
     func getprofilePhoto() -> String? {
         return profilePhoto!
     }
+    
     //Get inviterUID
     func getinviterUID() -> String {
         return inviterUID!
     }
+    
     //Get mobileNumber
     func getmobileNumber() -> String {
         return mobileNumber!
     }
+    
     //Get status
     func getstatus() -> String {
         return status!
     }
+    
     //Get uid
     func getuid() -> String {
         return uid!

@@ -32,7 +32,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         tableViewResultController.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         //created custom back button for goto My Visitors Lists screen
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToMyFlatDetails))
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToMyFlatDetails))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
         
@@ -50,6 +50,10 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
                 gettingArray = myFlatDetailsVC.Aster
             } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[1] {
                 gettingArray = myFlatDetailsVC.Bolivia
+            } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[2] {
+                gettingArray = myFlatDetailsVC.Chamber
+            } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[3] {
+                gettingArray = myFlatDetailsVC.DSR
             } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[0] {
                 gettingArray = myFlatDetailsVC.Block1
             }  else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[1] {
@@ -63,10 +67,12 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             }
         }
     }
+    
     //created custome back button to go back to My Visitors List
     @objc func goBackToMyFlatDetails() {
         self.navigationController?.dismiss(animated: true)
     }
+    
     func updateSearchResults(for searchController: UISearchController) {
         filteredArray = gettingArray.filter({ (array:String) -> Bool in
             if array.contains(searchController.searchBar.text!) {
@@ -77,6 +83,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         })
         tableViewResultController.tableView.reloadData()
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == tableViewResultController.tableView {
             return filteredArray.count
@@ -84,6 +91,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             return gettingArray.count
         }
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         if tableView == tableViewResultController.tableView {
@@ -93,6 +101,7 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         }
         return cell
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //getting the index path of selected row
         let indexPath = tableView.indexPathForSelectedRow

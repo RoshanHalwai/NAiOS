@@ -15,6 +15,7 @@ class NANavigationViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         configureBackBarButton()
         configureInfoButton()
+        //configureHistoryButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -31,7 +32,7 @@ class NANavigationViewController: UIViewController,UITextFieldDelegate {
     
     func configureBackBarButton() {
         let backButton = UIButton(type: .system)
-        backButton.setImage(#imageLiteral(resourceName: "backk24"), for: .normal)
+        backButton.setImage(#imageLiteral(resourceName: "backBarButton"), for: .normal)
         backButton.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
         navigationItem.backBarButtonItem = UIBarButtonItem(customView: backButton)
     }

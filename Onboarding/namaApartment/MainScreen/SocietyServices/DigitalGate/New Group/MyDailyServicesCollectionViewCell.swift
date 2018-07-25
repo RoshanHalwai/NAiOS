@@ -85,6 +85,7 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
             alert.addAction(UIAlertAction(title:NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
         }
     }
+    
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         
         controller.dismiss(animated: true, completion: nil)

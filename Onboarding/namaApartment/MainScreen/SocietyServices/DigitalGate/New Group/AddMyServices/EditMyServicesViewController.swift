@@ -149,7 +149,7 @@ class EditMyServicesViewController: NANavigationViewController {
         if getTitle == NAString().edit_my_family_member_details().capitalized {
             self.stack_InTime.isHidden = true
             self.stack_GrantAccess.isHidden = false
-            self.lbl_Description.text = NAString().otp_message_family_member()
+            self.lbl_Description.text = NAString().otp_message_family_member(name: "")
         } else {
             self.stack_InTime.isHidden = false
             self.stack_GrantAccess.isHidden = true
@@ -241,6 +241,7 @@ class EditMyServicesViewController: NANavigationViewController {
             self.navigationController?.pushViewController(dv, animated: true)
         }
     }
+    
     //Displaying Update Button on change of both the index values of segmentController
     @IBAction func btnSegmentController(_ sender: Any) {
         if segment.selectedSegmentIndex == 0 {
@@ -250,6 +251,7 @@ class EditMyServicesViewController: NANavigationViewController {
             self.btn_Update.isHidden = false
         }
     }
+    
     //Creted alertview to Modify EDIT MY FAMILY MEMBER VC while YES is already selected at the time of modifying
     func isNoSegmentSelected() {
             let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().not_granting_access()) , message:nil, preferredStyle: .alert)

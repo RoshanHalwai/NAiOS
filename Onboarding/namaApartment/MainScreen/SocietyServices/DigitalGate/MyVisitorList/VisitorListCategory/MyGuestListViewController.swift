@@ -9,42 +9,42 @@
 import UIKit
 import FirebaseDatabase
 
+var myVisitorList = [NammaApartmentVisitor]()
 class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
+    
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
     var visitorData : DatabaseReference?
+    var userDataRef : DatabaseReference?
     
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
-    var myVisitorList = [NammaApartmentVisitor]()
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     var titleName = String()
+    
+    //A boolean variable to indicate if previous screen was Expecting Arrival.
+    var fromInvitingVisitorsVC = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //to show activity indicator before loading data from firebase
+        
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
-        //TODO : Need to Change Hardcode UID
-        myVisitorListReference = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child(Constants.FIREBASE_CHILD_BANGALORE).child(Constants.FIREBASE_CHILD_SALARPURIA_CAMBRIDGE).child(Constants.FIREBASE_CHILD_BLOCKONE).child(Constants.FIREBASE_CHILD_FLATNO)
-            .child(Constants.FIREBASE_CHILD_VISITORS).child("aMNacKnX44Zk006VZcSng9ilEcF3")
-        
-        myVisitorListReference?.observeSingleEvent(of: .value, with: {(snapshot) in
-            
-            //checking that  child node have data or not inside firebase. If Have then fatch all the data in tableView
+        // TODO: need to change UID in Future
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
+            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+            .child(Constants.FIREBASE_CHILD_BANGALORE)
+            .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
+            .child(Constants.FIREBASE_CHILD_ASTER)
+            .child(Constants.FIREBASE_CHILD_FLATNO)
+            .child(Constants.FLAT_Visitor).child(userUID!)
+        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
-                let visitorsUIDS = snapshot.value as? NSDictionary
-                
-                //for loop for getting all the data in tableview
-                for visitorUID in (visitorsUIDS?.allKeys)! {
+                let visitorsUID = snapshot.value as? NSDictionary
+                for visitorUID in (visitorsUID?.allKeys)! {
+                    // TODO: need to change UID in Future
                     self.visitorData =  Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
                         .child(visitorUID as! String)
-                    
                     self.visitorData?.observeSingleEvent(of: .value, with: {(snapshot) in
                         let visitorData = snapshot.value as? [String: AnyObject]
-                        
                         let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
                         let fullName = visitorData?[VisitorListFBKeys.fullName.key] as? String
                         let inviterUID = visitorData?[VisitorListFBKeys.inviterUID.key] as? String
@@ -55,14 +55,12 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                         
                         //creating userAccount model & set earlier created let variables in userObject in the below parameter
                         let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
-                        
                         //Adding visitor in visitor List
-                        self.myVisitorList.append(user)
-                        
-                        //Hidding Activity indicator after loading data in the list from firebase.
+                        myVisitorList.append(user)
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        
                         //reload collection view.
+                        myVisitorList.append(user)
+                        NAActivityIndicator.shared.hideActivityIndicator()
                         self.collectionView.reloadData()
                     })
                 }
@@ -74,21 +72,27 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             }
         })
         //Setting & Formatting Navigation bar
-        super.ConfigureNavBarTitle(title: NAString().my_Guest())
+        super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         
-        //created custom back button for goto My Visitors List
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        //created custom back button for goto My DigiGate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
-    //created custome back button to go back to My Visitors List
+    //Navigating Back to digi gate according to Screen coming from
     @objc func goBackToDigitGate() {
-        let dv = NAViewPresenter().digiGateVC()
-        self.navigationController?.pushViewController(dv, animated: true)
+        if fromInvitingVisitorsVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-3]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myVisitorList.count
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyGuestListCollectionViewCell
         
@@ -106,7 +110,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Assigning date & time separate variables to get data in cell labels.
         cell.lbl_MyVisitorTime.text = timeString
         cell.lbl_MyVisitorDate.text = dateString
-        
         cell.lbl_MyVisitorName.text = myList.getfullName()
         cell.lbl_MyVisitorType.text = NAString().guest()
         
@@ -115,19 +118,9 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
         //TODO : Need to get Name from Firebase (According To Default User)
-        cell.lbl_InvitedName.text = "Vikas"
+        cell.lbl_InvitedName.text = "NAGARAJU"
         
-        //This creates the shadows and modifies the cards a little bit
-        cell.contentView.layer.cornerRadius = 4.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = false
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        cell.layer.shadowRadius = 4.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        NAShadowEffect().shadowEffect(Cell: cell)
         
         //assigning font & style to cell labels
         cell.lbl_InvitedName.font = NAFont().headerFont()
@@ -160,6 +153,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         }
         return cell
     }
+    
     //date action fucntion
     @objc func donePressed(txtDate: UITextField, picker: UIDatePicker) {
         // format date
@@ -170,17 +164,17 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         self.view.endEditing(true)
     }
 }
+
 extension MyGuestListViewController : dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
         //AlertView will Display while removing Card view
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
-        
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             //Remove collection view cell item with animation
-            self.myVisitorList.remove(at: indx)
+            myVisitorList.remove(at: indx)
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
@@ -196,6 +190,7 @@ extension MyGuestListViewController : dataCollectionProtocol {
         alert.addAction(actionYES) //add YES action on AlertView
         present(alert, animated: true, completion: nil)
     }
+    
     @objc func reloadCollectionData() {
         collectionView.reloadData()
     }

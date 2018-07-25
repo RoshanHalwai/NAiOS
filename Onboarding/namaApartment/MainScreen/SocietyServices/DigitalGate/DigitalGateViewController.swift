@@ -15,33 +15,18 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     
     @IBOutlet weak var collectionView: UICollectionView!
   
-    var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","MysweetHome","Medical"]
+    var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","MySweetHome","Medical"]
     var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //created backbuttom custom to go to digi gate screen
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backk24"), style: .plain, target: self, action: #selector(goBackToDigiGate))
-        self.navigationItem.leftBarButtonItem = backButton
-        
-        self.navigationItem.hidesBackButton = true
         
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().digital_gate_title())
         self.navigationItem.title = ""
     }
     
-    //created custome back button to go back to digi gate
-    @objc func goBackToDigiGate()
-    {
-        let vcName = UIStoryboard(name:NAViewPresenter().main(), bundle: nil)
-        let destVC = vcName.instantiateViewController(withIdentifier:NAViewPresenter().mainScreenVCID())
-        self.navigationController?.pushViewController(destVC, animated: true)
-    }
-    
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-     {
+     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return DGimageList.count
     }
     
@@ -79,6 +64,7 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
             
         case 4:
             let lv4 = NAViewPresenter().mySweetHomeVC()
+            lv4.navTitle = NAString().my_sweet_home()
             self.navigationController?.pushViewController(lv4, animated: true)
           
             

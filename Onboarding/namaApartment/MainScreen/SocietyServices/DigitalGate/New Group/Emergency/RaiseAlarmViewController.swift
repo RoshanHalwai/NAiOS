@@ -24,9 +24,9 @@ class RaiseAlarmViewController: NANavigationViewController {
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: titleName)
     }
-
-    @IBAction func btnRaiseAlarm(_ sender: UIButton)
-    {
-        self.lbl_Description.isHidden = false
+    
+    @IBAction func btnRaiseAlarm(_ sender: UIButton) {
+        NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().emergency_alert_Title(), Message: NAString().emergency_Alert_Message(), CancelStyle: .default, OkStyle: .destructive, OK: {(action) in
+            self.lbl_Description.isHidden = false }, Cancel: {(action) in})
     }
 }

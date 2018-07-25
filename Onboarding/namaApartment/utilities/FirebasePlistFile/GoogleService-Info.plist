@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>703896080530-rvec26kakspvjha14e0al4j515ig46tg.apps.googleusercontent.com</string>
+	<string>703896080530-d8lmkpdohf5e1ogutir7iu1gabi5trtn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.703896080530-rvec26kakspvjha14e0al4j515ig46tg</string>
+	<string>com.googleusercontent.apps.703896080530-d8lmkpdohf5e1ogutir7iu1gabi5trtn</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAEM6CUqV8swQnTOAqLGMpKZ4ENzqLJF1Q</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.vikasnayak.nammaapartments</string>
+	<string>com.kirtanlab.nammaapartments</string>
 	<key>PROJECT_ID</key>
 	<string>nammaapartments-development</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:703896080530:ios:bd9dad82e735fff7</string>
+	<string>1:703896080530:ios:61a460236dc64533</string>
 	<key>DATABASE_URL</key>
 	<string>https://nammaapartments-development.firebaseio.com</string>
 </dict>

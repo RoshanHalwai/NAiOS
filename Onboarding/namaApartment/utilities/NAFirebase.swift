@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class NAFirebase {
+    
     //Created Global function to get Profile image from firebase in Visitor List
         func downloadImageFromServerURL(urlString: String, imageView:UIImageView) {
             

@@ -9,16 +9,52 @@
 /* Begin PBXBuildFile section */
 		0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */; };
 		0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */; };
-		0816E56C20E782C300116FD0 /* CabArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */; };
-		0816E56E20E782DE00116FD0 /* PackageArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */; };
 		0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */; };
 		0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */; };
 		0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */; };
+		081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */; };
+		081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */; };
+		083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */; };
+		083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */; };
+		083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */; };
+		083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */; };
 		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
-		08520A5020E3BFF900433DAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 08520A4F20E3BFF900433DAD /* GoogleService-Info.plist */; };
+		084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */; };
+		084D963F2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */; };
+		085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646712101FA0C00C5FBF6 /* HelpViewController.swift */; };
+		085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */; };
+		085646762101FA6D00C5FBF6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646752101FA6D00C5FBF6 /* SettingsViewController.swift */; };
+		085646782101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646772101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift */; };
+		0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */; };
+		0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */; };
+		0856467E210215E800C5FBF6 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */; };
+		085646802102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */; };
+		086081F92104A90900B5990C /* RateUsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 086081F82104A90900B5990C /* RateUsView.xib */; };
+		086081FB2104B19000B5990C /* RateUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086081FA2104B19000B5990C /* RateUsView.swift */; };
+		08A0210520F523FC00130185 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A0210420F523FC00130185 /* Reachability.swift */; };
+		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
+		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
+		08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */; };
+		422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
+		422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FF98820F8A9DA004089C2 /* PopupView.swift */; };
+		423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D520F378E400F10A23 /* FirebaseAuth.framework */; };
+		423187D820F378E400F10A23 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D720F378E400F10A23 /* FirebaseCore.framework */; };
+		423187DA20F378E400F10A23 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D920F378E400F10A23 /* FirebaseDatabase.framework */; };
+		423187DC20F378E400F10A23 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DB20F378E400F10A23 /* FirebaseMessaging.framework */; };
+		423187DE20F378E400F10A23 /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DD20F378E400F10A23 /* FirebaseStorage.framework */; };
+		423187E020F378E400F10A23 /* FirebaseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DF20F378E400F10A23 /* FirebaseUI.framework */; };
+		423187E220F378E400F10A23 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E120F378E400F10A23 /* GoogleToolboxForMac.framework */; };
+		423187E420F378E400F10A23 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E320F378E400F10A23 /* GTMSessionFetcher.framework */; };
+		423187E620F378E400F10A23 /* leveldb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E520F378E400F10A23 /* leveldb.framework */; };
+		423187E820F378E400F10A23 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E720F378E400F10A23 /* nanopb.framework */; };
+		423187EA20F378E400F10A23 /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */; };
+		423187EC20F378E400F10A23 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */; };
+		423187EE20F378E400F10A23 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187ED20F378E400F10A23 /* Protobuf.framework */; };
+		42329D1A20F9BF80000AA9AF /* OpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42329D1920F9BF80000AA9AF /* OpacityView.swift */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
+		5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DF2620FCC280002C13BB /* HandedHistory.swift */; };
 		5DEFEDD02E7F8A93F05E92FA /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */; };
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
 		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
@@ -57,12 +93,16 @@
 		8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */; };
 		8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */; };
 		8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */; };
+		8679B78021022C0C0020B004 /* NADailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8679B77F21022C0C0020B004 /* NADailyServices.swift */; };
 		867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
 		867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */; };
 		867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */; };
+		867FF1BA20FC737B00A6A4C9 /* NAExpectingArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867FF1B920FC737B00A6A4C9 /* NAExpectingArrival.swift */; };
 		868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
 		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
 		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
+		869306C720F23AF70069305D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869306C620F23AF60069305D /* GoogleService-Info.plist */; };
+		869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */; };
 		86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
 		86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */; };
 		86A4D4A520D57047007890D2 /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
@@ -80,7 +120,7 @@
 		86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */; };
 		86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13B209AF45E00D75D0F /* HomeViewController.swift */; };
 		86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */; };
-		86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */; };
+		86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */; };
 		86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F32098443D00C67C70 /* signupViewController.swift */; };
 		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
@@ -89,6 +129,8 @@
 		86FFD73B209B0AF7008A57B3 /* ApartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */; };
 		86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73C209B1803008A57B3 /* SocietyTableViewCell.swift */; };
 		86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFD73E209B181C008A57B3 /* SocietyViewController.swift */; };
+		8EF5AA311F67B0FF14E70633 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */; };
+		A98FFF475751632D77B37975 /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */; };
 		D2C5590A6D512400507D2364 /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C08CD1BA13FD2A24912C31 /* Pods_nammaApartment.framework */; };
 /* End PBXBuildFile section */
 
@@ -113,16 +155,52 @@
 		0625CA33236AB31696C6B05B /* Pods-nammaApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.debug.xcconfig"; sourceTree = "<group>"; };
 		0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListViewController.swift; sourceTree = "<group>"; };
 		0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListCollectionViewCell.swift; sourceTree = "<group>"; };
-		0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabArrivalViewController.swift; sourceTree = "<group>"; };
-		0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageArrivalViewController.swift; sourceTree = "<group>"; };
 		0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileTableViewCell.swift; sourceTree = "<group>"; };
 		0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileViewController.swift; sourceTree = "<group>"; };
 		0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyFamilyMembersViewController.swift; sourceTree = "<group>"; };
+		081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryViewController.swift; sourceTree = "<group>"; };
+		081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryViewController.swift; sourceTree = "<group>"; };
+		083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesViewController.swift; sourceTree = "<group>"; };
+		083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesTableViewCell.swift; sourceTree = "<group>"; };
 		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
-		08520A4F20E3BFF900433DAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuViewController.swift; sourceTree = "<group>"; };
+		084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuTableViewCell.swift; sourceTree = "<group>"; };
+		085646712101FA0C00C5FBF6 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCollectionViewCell.swift; sourceTree = "<group>"; };
+		085646752101FA6D00C5FBF6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		085646772101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAShodowEffect.swift; sourceTree = "<group>"; };
+		0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
+		0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsViewController.swift; sourceTree = "<group>"; };
+		0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		086081F82104A90900B5990C /* RateUsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateUsView.xib; sourceTree = "<group>"; };
+		086081FA2104B19000B5990C /* RateUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUsView.swift; sourceTree = "<group>"; };
+		08A0210420F523FC00130185 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListViewController.swift; sourceTree = "<group>"; };
+		08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListCollectionViewCell.swift; sourceTree = "<group>"; };
+		08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAConfirmationAlert.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
+		422FF98620F8A9C8004089C2 /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
+		422FF98820F8A9DA004089C2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		423187D520F378E400F10A23 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187D720F378E400F10A23 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187D920F378E400F10A23 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187DB20F378E400F10A23 /* FirebaseMessaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187DD20F378E400F10A23 /* FirebaseStorage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseStorage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187DF20F378E400F10A23 /* FirebaseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E120F378E400F10A23 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E320F378E400F10A23 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E520F378E400F10A23 /* leveldb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = leveldb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E720F378E400F10A23 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_nammaApartmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		423187ED20F378E400F10A23 /* Protobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Protobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42329D1920F9BF80000AA9AF /* OpacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityView.swift; sourceTree = "<group>"; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D83E8166C92F951887F6368 /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DD9DF2620FCC280002C13BB /* HandedHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedHistory.swift; sourceTree = "<group>"; };
 		5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77FD42EBD4E83001D5D996CF /* Pods-nammaApartment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.release.xcconfig"; sourceTree = "<group>"; };
 		78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,12 +248,17 @@
 		8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyServicesViewController.swift; sourceTree = "<group>"; };
 		8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANavigationViewController.swift; sourceTree = "<group>"; };
 		8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDailyServicesCollectionViewCell.swift; sourceTree = "<group>"; };
+		8679B77F21022C0C0020B004 /* NADailyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NADailyServices.swift; sourceTree = "<group>"; };
 		867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestViewController.swift; sourceTree = "<group>"; };
 		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestTableViewCell.swift; sourceTree = "<group>"; };
 		867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySweetHomeViewController.swift; sourceTree = "<group>"; };
+		867FF1B920FC737B00A6A4C9 /* NAExpectingArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAExpectingArrival.swift; sourceTree = "<group>"; };
 		868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlatDetails.swift; sourceTree = "<group>"; };
 		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
+		869306C520F22D050069305D /* nammaApartment.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = nammaApartment.entitlements; sourceTree = "<group>"; };
+		869306C620F23AF60069305D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentArrival.swift; sourceTree = "<group>"; };
 		86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAActivityIndicator.swift; sourceTree = "<group>"; };
 		86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFirebase.swift; sourceTree = "<group>"; };
 		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
@@ -193,7 +276,7 @@
 		86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateCollectionViewCell.swift; sourceTree = "<group>"; };
 		86C1A13B209AF45E00D75D0F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		86C1A13D209AF69800D75D0F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingCabArrivalViewController.swift; sourceTree = "<group>"; };
+		86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingArrivalViewController.swift; sourceTree = "<group>"; };
 		86DCB9F32098443D00C67C70 /* signupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupViewController.swift; sourceTree = "<group>"; };
 		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +295,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */,
+				423187D820F378E400F10A23 /* FirebaseCore.framework in Frameworks */,
+				423187DA20F378E400F10A23 /* FirebaseDatabase.framework in Frameworks */,
+				423187DC20F378E400F10A23 /* FirebaseMessaging.framework in Frameworks */,
+				423187DE20F378E400F10A23 /* FirebaseStorage.framework in Frameworks */,
+				423187E020F378E400F10A23 /* FirebaseUI.framework in Frameworks */,
+				423187E220F378E400F10A23 /* GoogleToolboxForMac.framework in Frameworks */,
+				423187E420F378E400F10A23 /* GTMSessionFetcher.framework in Frameworks */,
+				423187E620F378E400F10A23 /* leveldb.framework in Frameworks */,
+				423187E820F378E400F10A23 /* nanopb.framework in Frameworks */,
+				423187EA20F378E400F10A23 /* Pods_nammaApartmentTests.framework in Frameworks */,
+				423187EC20F378E400F10A23 /* Pods_nammaApartmentUITests.framework in Frameworks */,
+				423187EE20F378E400F10A23 /* Protobuf.framework in Frameworks */,
 				86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */,
 				86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */,
 				D2C5590A6D512400507D2364 /* Pods_nammaApartment.framework in Frameworks */,
@@ -223,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */,
+				A98FFF475751632D77B37975 /* Pods_nammaApartmentTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DEFEDD02E7F8A93F05E92FA /* Pods_nammaApartmentUITests.framework in Frameworks */,
+				8EF5AA311F67B0FF14E70633 /* Pods_nammaApartmentUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,14 +338,39 @@
 		0816E56A20E7672900116FD0 /* VisitorListCategory */ = {
 			isa = PBXGroup;
 			children = (
+				867FF1B820FC70AD00A6A4C9 /* ExpectingArrival */,
 				86BF6A4020A0325200B175A1 /* MyGuestListCollectionViewCell.swift */,
 				86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */,
 				86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */,
 				86B1A8D920D50EAB00D90D88 /* NammaApartmentVisitor.swift */,
-				0816E56B20E782C300116FD0 /* CabArrivalViewController.swift */,
-				0816E56D20E782DE00116FD0 /* PackageArrivalViewController.swift */,
 			);
 			path = VisitorListCategory;
+			sourceTree = "<group>";
+		};
+		0856466F2101F98C00C5FBF6 /* NavigationMenu */ = {
+			isa = PBXGroup;
+			children = (
+				084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */,
+				084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */,
+				085646702101F9CC00C5FBF6 /* NavigationMenuCategory */,
+			);
+			path = NavigationMenu;
+			sourceTree = "<group>";
+		};
+		085646702101F9CC00C5FBF6 /* NavigationMenuCategory */ = {
+			isa = PBXGroup;
+			children = (
+				085646712101FA0C00C5FBF6 /* HelpViewController.swift */,
+				085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */,
+				085646752101FA6D00C5FBF6 /* SettingsViewController.swift */,
+				085646772101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift */,
+				0856467B210215A300C5FBF6 /* NotificationSettingsViewController.swift */,
+				0856467F2102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift */,
+				0856467D210215E800C5FBF6 /* GeneralSettingsViewController.swift */,
+				086081FA2104B19000B5990C /* RateUsView.swift */,
+				086081F82104A90900B5990C /* RateUsView.xib */,
+			);
+			path = NavigationMenuCategory;
 			sourceTree = "<group>";
 		};
 		15E253658059EF007BD00B9F /* Pods */ = {
@@ -301,6 +424,7 @@
 		862700EA209707BB004B28EB = {
 			isa = PBXGroup;
 			children = (
+				869306C520F22D050069305D /* nammaApartment.entitlements */,
 				860FAEEF209D700000D563F5 /* Onboarding */,
 				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
 				86270105209707BC004B28EB /* Info.plist */,
@@ -333,6 +457,7 @@
 				86C1A136209AF38300D75D0F /* Homescreen */,
 				86C1A138209AF3FC00D75D0F /* StoryBoard */,
 				86BD74E9209A2DD000B159A3 /* utilities */,
+				86C1A137209AF3C000D75D0F /* AppDelegate */,
 			);
 			path = namaApartment;
 			sourceTree = "<group>";
@@ -369,9 +494,9 @@
 		86548D7C209C1F5400C700DA /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				86548D7D209C1F7500C700DA /* DataModel.swift */,
 				86548D81209C1FB500C700DA /* MainScreenViewController.swift */,
 				86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */,
+				0856466F2101F98C00C5FBF6 /* NavigationMenu */,
 				860FAEF2209D763700D563F5 /* SocietyServices */,
 				86D19EF520A1C7BD00FB7DC8 /* ApartmentServices */,
 			);
@@ -428,6 +553,12 @@
 			children = (
 				867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */,
 				867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */,
+				083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */,
+				083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */,
+				081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */,
+				081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */,
+				083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */,
+				083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */,
 			);
 			path = HandedThingsToGuest;
 			sourceTree = "<group>";
@@ -447,6 +578,16 @@
 				0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */,
 			);
 			path = MySweetHome;
+			sourceTree = "<group>";
+		};
+		867FF1B820FC70AD00A6A4C9 /* ExpectingArrival */ = {
+			isa = PBXGroup;
+			children = (
+				08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */,
+				08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */,
+				867FF1B920FC737B00A6A4C9 /* NAExpectingArrival.swift */,
+			);
+			path = ExpectingArrival;
 			sourceTree = "<group>";
 		};
 		868D189020DA4A22007AD1D0 /* NAUser */ = {
@@ -472,6 +613,19 @@
 		86A8B933209EC9FE00EA1C35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				423187D520F378E400F10A23 /* FirebaseAuth.framework */,
+				423187D720F378E400F10A23 /* FirebaseCore.framework */,
+				423187D920F378E400F10A23 /* FirebaseDatabase.framework */,
+				423187DB20F378E400F10A23 /* FirebaseMessaging.framework */,
+				423187DD20F378E400F10A23 /* FirebaseStorage.framework */,
+				423187DF20F378E400F10A23 /* FirebaseUI.framework */,
+				423187E120F378E400F10A23 /* GoogleToolboxForMac.framework */,
+				423187E320F378E400F10A23 /* GTMSessionFetcher.framework */,
+				423187E520F378E400F10A23 /* leveldb.framework */,
+				423187E720F378E400F10A23 /* nanopb.framework */,
+				423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */,
+				423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */,
+				423187ED20F378E400F10A23 /* Protobuf.framework */,
 				86A8B934209EC9FF00EA1C35 /* Contacts.framework */,
 				86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */,
 				F5C08CD1BA13FD2A24912C31 /* Pods_nammaApartment.framework */,
@@ -484,7 +638,9 @@
 		86BD74E320999DBF00B159A3 /* OTP */ = {
 			isa = PBXGroup;
 			children = (
+				86548D7D209C1F7500C700DA /* DataModel.swift */,
 				86BD74E420999DE200B159A3 /* OTPViewController.swift */,
+				08A0210420F523FC00130185 /* Reachability.swift */,
 			);
 			path = OTP;
 			sourceTree = "<group>";
@@ -506,13 +662,19 @@
 				861CBFFD20B9AA98009EC0EF /* Font */,
 				86270100209707BC004B28EB /* Assets.xcassets */,
 				86BD74EB209A2E7000B159A3 /* NAFont.swift */,
+				422FF98820F8A9DA004089C2 /* PopupView.swift */,
+				422FF98620F8A9C8004089C2 /* PopupView.xib */,
 				86BD74ED209A2EB500B159A3 /* NAColor.swift */,
+				5DD9DF2620FCC280002C13BB /* HandedHistory.swift */,
 				86548D83209C343F00C700DA /* NAString.swift */,
 				8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */,
 				86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */,
 				08EF758F20D240620031FA66 /* NAValidation.swift */,
 				86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */,
+				42329D1920F9BF80000AA9AF /* OpacityView.swift */,
 				86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */,
+				08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */,
+				0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -580,7 +742,6 @@
 			children = (
 				86FFD738209B0ADB008A57B3 /* ApartmentViewController.swift */,
 				86FFD73A209B0AF7008A57B3 /* ApartmentTableViewCell.swift */,
-				86C1A137209AF3C000D75D0F /* AppDelegate */,
 			);
 			path = ApartmentServices;
 			sourceTree = "<group>";
@@ -588,7 +749,7 @@
 		86CE8E5D20C26AC10067F031 /* FirebasePlistFile */ = {
 			isa = PBXGroup;
 			children = (
-				08520A4F20E3BFF900433DAD /* GoogleService-Info.plist */,
+				869306C620F23AF60069305D /* GoogleService-Info.plist */,
 			);
 			path = FirebasePlistFile;
 			sourceTree = "<group>";
@@ -603,7 +764,8 @@
 		86D19EF820A2B20200FB7DC8 /* ExpectingCabArrival */ = {
 			isa = PBXGroup;
 			children = (
-				86D19EF920A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift */,
+				86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */,
+				869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */,
 			);
 			path = ExpectingCabArrival;
 			sourceTree = "<group>";
@@ -631,6 +793,7 @@
 			children = (
 				86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */,
 				86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */,
+				8679B77F21022C0C0020B004 /* NADailyServices.swift */,
 			);
 			path = AddMyServices;
 			sourceTree = "<group>";
@@ -647,6 +810,7 @@
 				862700F0209707BB004B28EB /* Frameworks */,
 				862700F1209707BB004B28EB /* Resources */,
 				FDEBBA9D98BD6965438A48D6 /* [CP] Embed Pods Frameworks */,
+				69B121B09BD640A3B6641419 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -707,6 +871,14 @@
 				TargetAttributes = {
 					862700F2209707BB004B28EB = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					86270109209707BC004B28EB = {
 						CreatedOnToolsVersion = 9.3;
@@ -755,8 +927,10 @@
 				861CC00E20B9AA99009EC0EF /* Lato-Hairline.ttf in Resources */,
 				86270101209707BC004B28EB /* Assets.xcassets in Resources */,
 				861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */,
+				422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */,
 				862700FC209707BB004B28EB /* Main.storyboard in Resources */,
-				08520A5020E3BFF900433DAD /* GoogleService-Info.plist in Resources */,
+				086081F92104A90900B5990C /* RateUsView.xib in Resources */,
+				869306C720F23AF70069305D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +967,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69B121B09BD640A3B6641419 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6F977111BCAE866508520A13 /* [CP] Check Pods Manifest.lock */ = {
@@ -840,6 +1034,8 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -847,6 +1043,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -864,26 +1062,34 @@
 			files = (
 				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
+				8679B78021022C0C0020B004 /* NADailyServices.swift in Sources */,
+				867FF1BA20FC737B00A6A4C9 /* NAExpectingArrival.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
 				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,
 				868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */,
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
+				085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
-				0816E56C20E782C300116FD0 /* CabArrivalViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
 				083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */,
 				868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */,
+				083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
 				86C1A13E209AF69800D75D0F /* HomeTableViewCell.swift in Sources */,
 				8627012F209715FD004B28EB /* splashSocietyServices.swift in Sources */,
+				085646802102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift in Sources */,
+				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
+				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
 				86FFD73F209B181C008A57B3 /* SocietyViewController.swift in Sources */,
+				085646762101FA6D00C5FBF6 /* SettingsViewController.swift in Sources */,
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				86BD74E520999DE200B159A3 /* OTPViewController.swift in Sources */,
 				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
+				42329D1A20F9BF80000AA9AF /* OpacityView.swift in Sources */,
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
@@ -893,20 +1099,32 @@
 				86646BBE20AB0472002A92B8 /* EmergencyViewController.swift in Sources */,
 				0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */,
 				0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */,
+				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
+				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
+				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
+				0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */,
+				086081FB2104B19000B5990C /* RateUsView.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
+				422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */,
 				86FFD73D209B1803008A57B3 /* SocietyTableViewCell.swift in Sources */,
 				86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */,
 				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
+				083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
 				86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */,
 				86BD74E82099B62100B159A3 /* myFlatDetailsViewController.swift in Sources */,
+				08A0210520F523FC00130185 /* Reachability.swift in Sources */,
+				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */,
+				0856467E210215E800C5FBF6 /* GeneralSettingsViewController.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
 				86FFD739209B0ADB008A57B3 /* ApartmentViewController.swift in Sources */,
-				0816E56E20E782DE00116FD0 /* PackageArrivalViewController.swift in Sources */,
 				8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */,
 				86BD74EE209A2EB500B159A3 /* NAColor.swift in Sources */,
+				084D963F2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift in Sources */,
 				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
+				085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */,
 				86BF6A4320A0326E00B175A1 /* MyGuestListViewController.swift in Sources */,
+				08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */,
 				86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */,
 				86548D7E209C1F7500C700DA /* DataModel.swift in Sources */,
 				0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */,
@@ -915,14 +1133,19 @@
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
 				86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */,
+				083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */,
+				083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
 				86C1A13C209AF45E00D75D0F /* HomeViewController.swift in Sources */,
 				86B1A8DA20D50EAB00D90D88 /* NammaApartmentVisitor.swift in Sources */,
 				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
+				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
-				86D19EFA20A2B26300FB7DC8 /* ExpectingCabArrivalViewController.swift in Sources */,
+				085646782101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift in Sources */,
+				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
+				86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1010,7 +1233,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roshan Halwai (NU55447NY6)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1070,7 +1293,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Roshan Halwai (NU55447NY6)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1097,16 +1320,14 @@
 			baseConfigurationReference = 0625CA33236AB31696C6B05B /* Pods-nammaApartment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = nammaApartment.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PUZKL58568;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlabs.nammaApartments;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -1119,16 +1340,14 @@
 			baseConfigurationReference = 77FD42EBD4E83001D5D996CF /* Pods-nammaApartment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = nammaApartment.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PUZKL58568;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlabs.nammaApartments;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -1145,11 +1364,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1167,11 +1382,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1188,11 +1399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1209,11 +1416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
