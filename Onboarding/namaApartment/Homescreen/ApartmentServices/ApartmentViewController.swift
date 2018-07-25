@@ -14,7 +14,7 @@ class ApartmentViewController: UIViewController,UITableViewDataSource,UITableVie
     
     
     var imageList=["1.cook_Service_3","2.maid_Service","3.car-Cleaning","4.child_Day","5.newsPaper_Service","6.milk_Man_Service","7.laundry_Service","8.driving-filled-50","9.grocery_Service"]
-    var headerList = ["Cook","Maid","Car / Bike Cleaning","Child Day Care","Daily Newspaper","Milk Man","Laundry","Driver","Groceries"]
+    var headerList = ["Cook Service","Maid","Car / Bike Cleaning","Child Day Care","Daily Newspaper","Milk Man","Laundry","Driver","Groceries"]
    
     
     override func viewDidLoad() {
