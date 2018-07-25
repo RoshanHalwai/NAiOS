@@ -8,8 +8,7 @@
 
 import UIKit
 
-class splashSocietyServices: UIViewController
-{
+class splashSocietyServices: UIViewController {
     @IBOutlet weak var imageView_SocietyServices: UIImageView!
     @IBOutlet weak var lbl_HeaderSocietyServices: UILabel!
     @IBOutlet weak var lbl_DescSocietyServices: UILabel!
@@ -17,7 +16,7 @@ class splashSocietyServices: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         //label formatting & setting
+        //label formatting & setting
         lbl_HeaderSocietyServices.font = NAFont().headerFont()
         lbl_DescSocietyServices.font = NAFont().splashdescriptionFont()
         
@@ -25,6 +24,6 @@ class splashSocietyServices: UIViewController
         lbl_DescSocietyServices.text = NAString().splash_SocietyServices_Description()
         
         //hide navigation bar
-       self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
 }

@@ -13,7 +13,7 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
     
     var imageList = [#imageLiteral(resourceName: "ExpectingVisitor"), #imageLiteral(resourceName: "ExpectingCabs"), #imageLiteral(resourceName: "ExpectingPackage")]
     var visitorsType = ["Guests", "Cab Arrivals", "Package Arrivals"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

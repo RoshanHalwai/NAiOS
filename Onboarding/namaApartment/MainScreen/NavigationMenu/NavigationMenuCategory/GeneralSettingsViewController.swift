@@ -20,8 +20,8 @@ class GeneralSettingsViewController: NANavigationViewController {
     var navTitle = String()
     
     /* - Assigning Font and line for text field.
-       - Assigning text and Font to Labels. */
-
+     - Assigning text and Font to Labels. */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,5 +40,5 @@ class GeneralSettingsViewController: NANavigationViewController {
         report_A_Bug_Label.font = NAFont().headerFont()
         app_Version_Label.font = NAFont().headerFont()
     }
-
+    
 }

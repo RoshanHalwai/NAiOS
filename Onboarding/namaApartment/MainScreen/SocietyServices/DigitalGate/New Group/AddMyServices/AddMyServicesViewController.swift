@@ -19,7 +19,7 @@ protocol DataPass {
 }
 
 class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass {
-
+    
     @IBOutlet weak var img_Profile: UIImageView!
     
     @IBOutlet weak var lbl_Name: UILabel!
@@ -46,7 +46,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     var timer = Timer()
     var count = 5
     
-  /* - To set navigation title.
+    /* - To set navigation title.
      - Gettig data from previous screen string.
      - To check from which view value is comming.
      - Created date picker programtically.
@@ -54,7 +54,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     var navTitle: String?
     var AddOtpString = String()
-
+    
     //created date picker programtically
     let picker = UIDatePicker()
     
@@ -74,7 +74,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      /* - Create Name textfield first letter capital.
+        /* - Create Name textfield first letter capital.
          - Add border color and round Image on profile imageview.
          - Assigned delegate method on textFields and Hiding error labels.
          - Identify screen coming from which screen and Setting navigation title.
@@ -185,7 +185,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         img_Profile.clipsToBounds = true
     }
     
-  /* - Create name textfield first letter capital function.
+    /* - Create name textfield first letter capital function.
      - Alert Popup when user give  grant access & try to add details.
      - Showing alert controller while giving Grant Access to family members.
      - Creating Reject & alert actions.
@@ -195,7 +195,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
-        
+    
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let actionCamera = UIAlertAction(title:NAString().camera(), style: .default, handler: {
@@ -256,7 +256,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         txt_Date.underlined()
     }
     
-  /* - Open App Setting if user cannot able to access Contacts.
+    /* - Open App Setting if user cannot able to access Contacts.
      - To call default address book app & User select any contact particular part.
      - Identify from which page screen is coming.
      - Create alert controller,Timer Function,AlertView Action and OK button.
@@ -322,7 +322,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             self.lbl_OTPDescription.text = NAString().inviteVisitorOTPDesc()
         }
     }
- 
+    
     @IBAction func btnAddDetails(_ sender: Any) {
         if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
@@ -358,9 +358,9 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
-
+                
                 AlertViewAction()
-
+                
             }
         }
     }
@@ -435,16 +435,16 @@ extension AddMyServicesViewController {
 }
 
 /*  Created Extension to write code seperatly in the file,So other can know easily
-    Using delegate method after coming from otp data is saving in Firebase
-    Mapping dailyservice UID with true in UserData -> DailyServices
-    Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
-    Mapping dailyservice UID with its DSType
-    Storing Daily services details in DailyServices -> All -> Public
-    Mapping status with type  Not Entered inside DS UID
-    Storing Profile Image in Storage Folder
-    Compressing profile image and assigning its content type.
-    Uploading Daily Services image url along with DailyServices UID
-    Adding Daily Services data under Daily Services -> UID
+ Using delegate method after coming from otp data is saving in Firebase
+ Mapping dailyservice UID with true in UserData -> DailyServices
+ Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
+ Mapping dailyservice UID with its DSType
+ Storing Daily services details in DailyServices -> All -> Public
+ Mapping status with type  Not Entered inside DS UID
+ Storing Profile Image in Storage Folder
+ Compressing profile image and assigning its content type.
+ Uploading Daily Services image url along with DailyServices UID
+ Adding Daily Services data under Daily Services -> UID
  */
 
 extension AddMyServicesViewController {
