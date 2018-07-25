@@ -152,7 +152,7 @@ class NAString : NSObject {
     }
     
     func i_agree_to_terms_and_conditions() -> String {
-        return String("By clicking on SignUp I agree to NammaApartments Privacy Policy and Terms&Conditions")
+        return String("By clicking on SignUp I agree to NammaApartments Privacy Policy and Terms & Conditions")
     }
     
     func i_already_have_an_account() -> String {
