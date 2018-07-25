@@ -16,7 +16,7 @@ class MainScreenTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         //Label formatting & setting
-        cellTitle.font = NAFont().headerFont()
+        cellTitle.font = NAFont().textFieldFont()
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
