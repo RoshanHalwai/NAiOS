@@ -72,6 +72,8 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         txt_EmailId.font = NAFont().textFieldFont()
         txt_Flat_Admin.font = NAFont().textFieldFont()
         
+        update_btn.titleLabel?.font = NAFont().buttonFont()
+        
         txt_Name.text = "Sundir Kumar"
         txt_EmailId.text = "talarisundir@gmail.com"
         txt_Flat_Admin.text = "You are the Administrator"

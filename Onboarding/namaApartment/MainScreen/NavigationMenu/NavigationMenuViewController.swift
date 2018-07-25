@@ -44,9 +44,9 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
         let currentCell = tableView.cellForRow(at: indexPath!)! as! NavigationMenuTableViewCell
         let currentItem = currentCell.labelView.text
         if currentItem == NAString().my_profile() {
-            let dv4 = NAViewPresenter().myProfileVC()
-            dv4.navTitle = NAString().my_profile()
-            self.navigationController?.pushViewController(dv4, animated: true)
+            let myProfileVC = NAViewPresenter().myProfileVC()
+            myProfileVC.navTitle = NAString().My_Profile()
+            self.navigationController?.pushViewController(myProfileVC, animated: true)
             mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().my_family_members() {
             let dv3 = NAViewPresenter().mySweetHomeVC()
