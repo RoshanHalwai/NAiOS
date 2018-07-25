@@ -33,25 +33,16 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         print("userflat Details ",userFlatDetailValues?.city! as Any)
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        // TODO: need to change UID in Future        
-//        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
-//            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-//            .child((userFlatDetailValues?.city)!)
-//            .child((userFlatDetailValues?.societyName)!)
-//            .child((userFlatDetailValues?.apartmentName)!)
-//            .child((userFlatDetailValues?.flatNumber)!)
-//            .child(userUID!)
         
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
             .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child("Bengaluru")
-            .child("Brigade Gateway")
-            .child("Chamber")
-            .child("C-1003")
-            .child("eg2qTmi7bbcZC6DtH9uxzvYOoaM2")
+            .child((userFlatDetailValues?.city)!)
+            .child((userFlatDetailValues?.societyName)!)
+            .child((userFlatDetailValues?.apartmentName)!)
+            .child((userFlatDetailValues?.flatNumber)!)
+            .child(userUID!)
         
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
-             print("snapshort",snapshot)
             if snapshot.exists() {
               
                 let visitorsUID = snapshot.value as? NSDictionary

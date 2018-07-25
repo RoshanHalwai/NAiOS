@@ -50,8 +50,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     var dataName : String!
     var dataMobile : String!
     
-    var apartmentArray = NSMutableArray()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -274,7 +272,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        //TODO Get The UID From the Firebase
             userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
                 .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
                 .child((userFlatDetailValues?.city)!)
