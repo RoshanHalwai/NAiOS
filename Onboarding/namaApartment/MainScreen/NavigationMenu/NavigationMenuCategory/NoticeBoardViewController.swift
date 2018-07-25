@@ -18,11 +18,12 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
 
     }
     
-    //TODO: Need to get Committe Members Notice Board Data from Firebase.
+    //TODO: Need to get Committe Members Notice Board Data Count from Firebase.
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     
+    //TODO: Need to get Committe Members Notice Board Data from Firebase.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! NoticeBoardCollectionViewCell
         NAShadowEffect().shadowEffect(Cell: cell)
