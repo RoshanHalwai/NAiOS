@@ -347,7 +347,11 @@ class ExpectingArrivalViewController: NANavigationViewController {
     //Creating CablabelNumber validation and text
     func inviteLabelCabNumberTitle() {
         lbl_cabNumber_Validation.isHidden = false
-        lbl_cabNumber_Validation.text = NAString().please_fill_details()
+        if (navTitle == NAString().expecting_cab_arrival()) {
+            lbl_cabNumber_Validation.text = NAString().please_fill_details(name: "Cab Number")
+        } else {
+            lbl_cabNumber_Validation.text = NAString().please_fill_details(name: "Name")
+        }
     }
     
     //AlertView For navigation
