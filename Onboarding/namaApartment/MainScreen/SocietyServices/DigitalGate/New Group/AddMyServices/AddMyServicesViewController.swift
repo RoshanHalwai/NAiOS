@@ -453,7 +453,7 @@ extension AddMyServicesViewController {
     }
     
     func storingDailyServicesInFirebase()  {
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceKey)

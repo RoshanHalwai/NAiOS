@@ -112,7 +112,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestTableViewCell
         let rowofIndex = indexPath.row
         let SavedValues = HandedThingsList[rowofIndex]
-        let VisitedByName =  Singleton_PersonalDetails.shared.personalDetails_Items
+        let VisitedByName =  GlobalUserData.shared.personalDetails_Items
         let UserDetails_Data = VisitedByName.first
         let VisitedBy = UserDetails_Data?.fullName
         let Status = SavedValues.getstatus()

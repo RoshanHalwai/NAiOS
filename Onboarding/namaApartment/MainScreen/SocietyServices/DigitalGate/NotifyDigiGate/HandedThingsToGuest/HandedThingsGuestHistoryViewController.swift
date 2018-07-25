@@ -87,7 +87,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! HandedThingsGuestHistoryCollectionViewCell
         let rowofIndex = indexPath.row
         let SavedValues = HandedThingsList[rowofIndex]
-        let VisitedByName =  Singleton_PersonalDetails.shared.personalDetails_Items
+        let VisitedByName =  GlobalUserData.shared.personalDetails_Items
         let UserDetails_Data = VisitedByName.first
         let VisitedBy = UserDetails_Data?.fullName
         cell.lbl_Visitor_Detail.text = SavedValues.getfullName()

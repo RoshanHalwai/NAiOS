@@ -9,7 +9,29 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
+//Created Class & Class Variable to pass the data
+class GlobalUserData {
+    
+    static let shared = GlobalUserData()
+    var flatDetails_Items = [FlatDetails]()
+    var personalDetails_Items = [PersonalDetails]()
+    var privileges_Items = [UserPrivileges]()
+    
+    func getUserDataReference() -> DatabaseReference {
+        let userFlatDetails = GlobalUserData.shared.flatDetails_Items.first
+        let userDataReference = Database.database().reference()
+            .child(Constants.FIREBASE_USERDATA)
+            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+            .child((userFlatDetails?.city)!)
+            .child((userFlatDetails?.societyName)!)
+            .child((userFlatDetails?.apartmentName)!)
+            .child((userFlatDetails?.flatNumber)!)
+        return userDataReference
+    }
+    
+}
 
 class NAUser {
     
