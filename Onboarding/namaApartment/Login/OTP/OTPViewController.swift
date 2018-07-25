@@ -18,7 +18,7 @@ protocol AlertViewDelegate {
     func activityIndicator_function(withData : Any)
 }
 
-var userUID = Auth.auth().currentUser?.uid
+var userUID = ""
 let dailyServicesUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
@@ -146,7 +146,7 @@ class OTPViewController: NANavigationViewController {
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return
                 } else {
-                    Constants.userUIDPer = userUID!
+                   // Constants.userUIDPer = userUID!
                     //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
                     self.delegateData.dataPassing()
                     self.navigationController?.popViewController(animated: true)

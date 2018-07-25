@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="whY-i0-8hA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xpH-eD-j9k">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -131,7 +131,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL-ID " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZV-Bk-bqS">
                                                 <rect key="frame" x="20" y="239" width="335" height="20"/>
@@ -168,7 +168,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yV6-1R-F1a" userLabel="StackViewSignup">
-                                                <rect key="frame" x="20" y="324" width="334.5" height="115"/>
+                                                <rect key="frame" x="20" y="324" width="334.5" height="66"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nt2-Pv-MH3">
                                                         <rect key="frame" x="0.0" y="0.0" width="334.5" height="39"/>
@@ -187,16 +187,6 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFc-H4-5Zi">
-                                                        <rect key="frame" x="0.0" y="76" width="334.5" height="39"/>
-                                                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="22"/>
-                                                        <state key="normal" title="I already have an Account">
-                                                            <color key="titleColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="signup_BtnLogin:" destination="AbP-lx-Gf0" eventType="touchUpInside" id="a1W-ct-thh"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -253,7 +243,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="SIGN UP" id="v70-BG-h5C"/>
                     <connections>
-                        <outlet property="btnLogin" destination="QFc-H4-5Zi" id="zei-s7-xTd"/>
                         <outlet property="btnSignup" destination="Nt2-Pv-MH3" id="BfT-DH-fN0"/>
                         <outlet property="lbl_EmailId" destination="BZV-Bk-bqS" id="kHa-UP-IC9"/>
                         <outlet property="lbl_Email_Validation" destination="FEF-4y-0Dh" id="G0b-dZ-Uzc"/>
@@ -295,7 +284,7 @@
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9980284574" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r53-Fl-MeY">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="8883458718" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r53-Fl-MeY">
                                 <rect key="frame" x="64" y="182" width="291" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="icP-E6-VUW"/>
@@ -1431,10 +1420,10 @@
             </objects>
             <point key="canvasLocation" x="2456.8000000000002" y="2722.4887556221893"/>
         </scene>
-        <!--Reschedule My Visitor List View Controller-->
+        <!--Reschedule My Guest List View Controller-->
         <scene sceneID="Lw6-bf-p2s">
             <objects>
-                <viewController storyboardIdentifier="rescheduleMyVisitorVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="pQ4-Mt-NNo" customClass="RescheduleMyVisitorListViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="rescheduleMyVisitorVC" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="pQ4-Mt-NNo" customClass="RescheduleMyGuestListViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qEG-tv-uUG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1533,7 +1522,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EkG-59-5Id" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3108" y="2721.5892053973016"/>
+            <point key="canvasLocation" x="3215" y="2722"/>
         </scene>
         <!--Notify Digi Gate View Controller-->
         <scene sceneID="5ng-nd-fxE">
@@ -4816,7 +4805,7 @@
         <!--Navigation Controller-->
         <scene sceneID="sPH-rm-p0K">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xpH-eD-j9k" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="rootVC" automaticallyAdjustsScrollViewInsets="NO" id="xpH-eD-j9k" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" backIndicatorImage="backBarButton" backIndicatorTransitionMaskImage="backBarButton" id="iVe-wS-tiN">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -4837,7 +4826,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5I-IX-av9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-31" y="47"/>
+            <point key="canvasLocation" x="10" y="47"/>
         </scene>
         <!--Edit My Profile View Controller-->
         <scene sceneID="fRr-F5-XiH">

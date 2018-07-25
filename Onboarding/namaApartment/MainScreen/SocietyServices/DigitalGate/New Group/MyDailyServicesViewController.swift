@@ -148,6 +148,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = "12:30"
         
         //For converting Int with String.
+      //  cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
+        
         cell.lbl_MyDailyServicesRating.text = "3"
         
         //TODO : Need to change Flat Number.

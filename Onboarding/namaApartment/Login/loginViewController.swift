@@ -9,22 +9,6 @@
 import UIKit
 import FirebaseAuth
 
-//Created Class & Class Variable to pass the data
-class Singleton_FlatDetails {
-    static let shared = Singleton_FlatDetails()
-    var flatDetails_Items = [FlatDetails]()
-}
-
-class Singleton_PersonalDetails {
-    static let shared = Singleton_PersonalDetails()
-    var personalDetails_Items = [PersonalDetails]()
-}
-
-class Singleton_privileges{
-    static let shared = Singleton_privileges()
-    var privileges_Items = [UserPrivileges]()
-}
-
 //Creating Variable to store FirebaseUser Data in Class.
 var flatDetailsFB = [FlatDetails]()
 var personalDetails = [PersonalDetails]()

@@ -32,13 +32,13 @@ enum UserFlatListFBKeys : String {
 class UserFlatDetails {
     
     //creatig string variables to get data from Firebase.
-     var apartmentName: String?
-     var city: String?
-     var flatNumber: String?
-     var societyName: String?
-     var tenantType: String?
+    var apartmentName: String?
+    var city: String?
+    var flatNumber: String?
+    var societyName: String?
+    var tenantType: String?
     
-     //initiliazing variables
+    //initiliazing variables
     init(apartmentName: String?,city: String?,flatNumber: String?,societyName: String?,tenantType: String?) {
         
         self.apartmentName = apartmentName
@@ -122,7 +122,7 @@ class FlatDetails {
         }
     }
     
- init(apartmentName: String?,city: String?,flatNumber: String?,societyName: String?,tenantType: String?) {
+    init(apartmentName: String?,city: String?,flatNumber: String?,societyName: String?,tenantType: String?) {
         self.apartmentName = apartmentName
         self.city = city
         self.flatNumber = flatNumber

@@ -38,6 +38,7 @@ enum VisitorListFBKeys : String {
 }
 
 class NammaApartmentVisitor {
+    
     //defining strings according to firebase names which is inside the visitor Node.
     private var dateAndTimeOfVisit: String?
     private var fullName: String?
@@ -46,6 +47,7 @@ class NammaApartmentVisitor {
     private var profilePhoto: String?
     private var status: String?
     private var uid: String?
+    
     //initilaize the variables
     init(dateAndTimeOfVisit: String?,fullName: String?,inviterUID: String?,mobileNumber: String?,profilePhoto: String?,status: String?,uid: String?) {
         self.dateAndTimeOfVisit = dateAndTimeOfVisit!

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class SearchTableViewController: UITableViewController, UISearchResultsUpdating {
     
@@ -17,11 +18,18 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
     
     //to get previous View Controller
     var myFlatDetailsVC: myFlatDetailsViewController!
+    
     //to set navigation title
-    var navTitle: String = "City"
+    var clientList = [String]()
+    var textFieldText = String()
+    
+    //Database References
+    var usersUIDRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usersUIDRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CLIENTS).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
         
         searchController = UISearchController(searchResultsController: tableViewResultController)
         tableView.tableHeaderView = searchController.searchBar
@@ -37,35 +45,18 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
         self.navigationItem.hidesBackButton = true
         
         if title == NAString().your_city() {
-            gettingArray = myFlatDetailsVC.cities
+            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_CITIES)
         } else if title == NAString().your_society() {
-            gettingArray = myFlatDetailsVC.societies
-        } else if title == NAString().your_apartment() && myFlatDetailsVC.societyString == myFlatDetailsVC.societies[0] {
-            gettingArray = myFlatDetailsVC.BrigadeGateway
-        } else if title == NAString().your_apartment() && myFlatDetailsVC.societyString == myFlatDetailsVC.societies[1] {
-            gettingArray = myFlatDetailsVC.SalarpuriaCambridge
+            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_SOCIETIES)
+                .child(textFieldText)
+        } else if title == NAString().your_apartment() {
+            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_APARTMENTS)
+                .child(textFieldText)
+        } else {
+            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_FLATS)
+                .child(textFieldText)
         }
-        else if title == NAString().your_flat() {
-            if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[0] {
-                gettingArray = myFlatDetailsVC.Aster
-            } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[1] {
-                gettingArray = myFlatDetailsVC.Bolivia
-            } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[2] {
-                gettingArray = myFlatDetailsVC.Chamber
-            } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.BrigadeGateway[3] {
-                gettingArray = myFlatDetailsVC.DSR
-            } else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[0] {
-                gettingArray = myFlatDetailsVC.Block1
-            }  else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[1] {
-                gettingArray = myFlatDetailsVC.Block2
-            }  else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[2] {
-                gettingArray = myFlatDetailsVC.Block3
-            }  else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[3] {
-                gettingArray = myFlatDetailsVC.Block4
-            }  else if myFlatDetailsVC.apartmentString == myFlatDetailsVC.SalarpuriaCambridge[4] {
-                gettingArray = myFlatDetailsVC.Block5
-            }
-        }
+        updateItemInList(userClientRef: usersUIDRef!)
     }
     
     //created custome back button to go back to My Visitors List
@@ -120,5 +111,19 @@ class SearchTableViewController: UITableViewController, UISearchResultsUpdating 
             myFlatDetailsVC.flatString = currentItem!
         }
         self.navigationController?.dismiss(animated: true)
+    }
+}
+
+extension SearchTableViewController {
+    func updateItemInList(userClientRef : DatabaseReference) {
+        self.clientList.removeAll()
+        userClientRef.observeSingleEvent(of: .value) { (snapshot) in
+            let keys = snapshot.value as? NSDictionary
+            for key in (keys?.allKeys)! {
+                self.clientList.append(key as! String)
+            }
+            self.gettingArray = self.clientList
+            self.tableView.reloadData()
+        }
     }
 }

@@ -26,6 +26,16 @@ class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewCo
     @IBOutlet weak var lbl_MyVisitorTime: UILabel!
     @IBOutlet weak var lbl_InvitedName: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        lbl_InvitedName.font = NAFont().headerFont()
+        lbl_MyVisitorType.font = NAFont().headerFont()
+        lbl_MyVisitorName.font = NAFont().headerFont()
+        lbl_MyVisitorDate.font = NAFont().headerFont()
+        lbl_MyVisitorTime.font = NAFont().headerFont()
+    }
+    
     //created object to use reschedule button action in cell class
     var objReschduling : (() -> Void)? = nil
     
