@@ -25,7 +25,7 @@ class MainScreenViewController: NANavigationViewController {
     
     var NavigationMenuOpen = false
     
-     var currentIndex = 0 
+    var currentIndex = 0
     
     //Declaring the varibles for structure.
     var apartmentData:[apartmentServicesModel] = []
@@ -37,9 +37,9 @@ class MainScreenViewController: NANavigationViewController {
     var usersPrivateRef: DatabaseReference?
     
     /* - Created Menu Button on NavigationBar and Calling function for retreiving User Data on view load.
-       - Formatting & Setting Segmented Controller and Calling Segment function.
-       - Performing Navigation according to given Id, Setting & fromatting Navigation Bar.
-       - assigning values in struct. */
+     - Formatting & Setting Segmented Controller and Calling Segment function.
+     - Performing Navigation according to given Id, Setting & fromatting Navigation Bar.
+     - assigning values in struct. */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +53,7 @@ class MainScreenViewController: NANavigationViewController {
         menuButton.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         menuButton.addTarget(self, action: #selector(NavigationMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
-    
+        
         self.retrieveUserData()
         
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
@@ -61,7 +61,7 @@ class MainScreenViewController: NANavigationViewController {
         
         segmentSelection.selectedSegmentIndex = currentIndex
         self.segmentControlSelection()
-
+        
         VCNamesSociety = [NAViewPresenter().digiGateVCID()]
         VCNamesApartment = [NAViewPresenter().homeVCID()]
         
@@ -69,7 +69,7 @@ class MainScreenViewController: NANavigationViewController {
         
         navigationItem.rightBarButtonItem = nil
         super.navigationItem.hidesBackButton = true
-     
+        
         societyData = [
             societyServicesModel(cellTitle: NAString().digital_gate(),cellImage:  #imageLiteral(resourceName: "Digital_Gate_2")),
             societyServicesModel(cellTitle: NAString().plumber(),cellImage:  #imageLiteral(resourceName: "plumbing (2)")),
@@ -99,17 +99,22 @@ class MainScreenViewController: NANavigationViewController {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
+        
+        opacity_View.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+        self.opacity_View.addGestureRecognizer(tapGesture)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let embeddedVC = segue.destination as? NavigationMenuViewController {
             navigationMenuVC = embeddedVC
         }
+        
     }
     
     /* - For switching the tableview data in between society & apartment services.
-       - Modifying SegmentControl text according to segment selection. */
-
+     - Modifying SegmentControl text according to segment selection. */
+    
     //To Logout the current user
     @objc func logout() {
         try! Auth.auth().signOut()
@@ -129,22 +134,21 @@ class MainScreenViewController: NANavigationViewController {
         self.tableView.alwaysBounceVertical = false
         self.tableView.reloadData()
     }
-
+    
     //For showing and closing Navigation menu
     @objc func NavigationMenuVC() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
-             opacity_View.isHidden = true
+            opacity_View.isHidden = true
         } else {
             showNavigationMenu()
         }
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch? = touches.first
+    @objc func handleTap() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
-             opacity_View.isHidden = true
-        } else if touch?.view != rateUsView {
+            opacity_View.isHidden = true
+        } else if rateUsView.isHidden == false {
             hidingRateUsView()
         }
     }
@@ -158,6 +162,9 @@ class MainScreenViewController: NANavigationViewController {
     func showNavigationMenu() {
         self.NavigationMenuOpen = true
         opacity_View.isHidden = false
+        if rateUsView != nil {
+            rateUsView.isHidden = true
+        }
         UIView.animate(withDuration: 0.3) {
             self.sideMenuConstrain.constant = 0
             self.view.layoutIfNeeded()
@@ -195,8 +202,8 @@ class MainScreenViewController: NANavigationViewController {
     }
     
     func hidingRateUsView() {
-            opacity_View.isHidden = true
-            rateUsView.isHidden = true
+        opacity_View.isHidden = true
+        rateUsView.isHidden = true
     }
     
     func segmentControlSelection() {
@@ -254,13 +261,11 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
         default:
             break
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //For Navigation Purpose.
-        
         let destVC = currentIndex == 0 ? VCNamesSociety[0]: VCNamesApartment[0]
         let viewController = storyboard?.instantiateViewController(withIdentifier: destVC)
         self.navigationController?.pushViewController(viewController!, animated: true)

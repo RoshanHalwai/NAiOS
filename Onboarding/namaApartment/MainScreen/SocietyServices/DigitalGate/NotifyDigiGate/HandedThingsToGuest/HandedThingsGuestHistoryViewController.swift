@@ -39,7 +39,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
                     let SnapShotValues = snapshot.value as? NSDictionary
                     for UserID  in (SnapShotValues?.allKeys)! {
                         let userIDS = UserID as! String
-                         // TODO: need to change UID in Future
+                        // TODO: need to change UID in Future
                         self.Visitor_Ref =  Database.database().reference()
                             .child(Constants.FIREBASE_CHILD_VISITORS)
                             .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
@@ -129,6 +129,4 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         cell.image_View.clipsToBounds = true
         return cell
     }
-    
-    
 }

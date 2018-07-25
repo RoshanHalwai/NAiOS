@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 class NANavigationViewController: UIViewController,UITextFieldDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackBarButton()

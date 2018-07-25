@@ -35,9 +35,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     var navTitle = String()
     
     /* - Creating Text Field Action for Name for first letter to be Capital.
-       - Assigning Delegates for text fields and Tableview & Removing Separator lines for tableview cells.
-       - Creating Round Image using Corner Radius and Giving Scroll view EdgeInset Values.
-       - Implemented Tap Gesture to Upload Image & resign PopUp Screen. */
+     - Assigning Delegates for text fields and Tableview & Removing Separator lines for tableview cells.
+     - Creating Round Image using Corner Radius and Giving Scroll view EdgeInset Values.
+     - Implemented Tap Gesture to Upload Image & resign PopUp Screen. */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         txt_Flat_Admin.underlined()
         
         super.ConfigureNavBarTitle(title: navTitle)
-    
+        
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
         opacity_View.isHidden = true
@@ -72,6 +72,8 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         txt_EmailId.font = NAFont().textFieldFont()
         txt_Flat_Admin.font = NAFont().textFieldFont()
         
+        update_btn.titleLabel?.font = NAFont().buttonFont()
+        
         txt_Name.text = "Sundir Kumar"
         txt_EmailId.text = "talarisundir@gmail.com"
         txt_Flat_Admin.text = "You are the Administrator"
@@ -80,11 +82,11 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         profile_Image.clipsToBounds = true
         
         scroll_View.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
-    
+        
         profile_Image.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         self.profile_Image.addGestureRecognizer(tapGesture)
-
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         opacity_View.addGestureRecognizer(tap)
     }

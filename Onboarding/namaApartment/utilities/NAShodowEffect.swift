@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 //For Creating Shadow Effect for Collection View Cell
-
 class NAShadowEffect: NSObject {
     
     func shadowEffect(Cell: UICollectionViewCell) {
@@ -25,5 +24,4 @@ class NAShadowEffect: NSObject {
         Cell.layer.masksToBounds = false
         Cell.layer.shadowPath = UIBezierPath(roundedRect: Cell.bounds, cornerRadius: Cell.contentView.layer.cornerRadius).cgPath
     }
-    
 }

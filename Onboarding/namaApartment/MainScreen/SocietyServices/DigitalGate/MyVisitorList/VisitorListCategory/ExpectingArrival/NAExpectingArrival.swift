@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
- /* Created enum instead of struct for App optimization and for getting values.
-    Use Internationalization, as appropriate. */
+/* Created enum instead of struct for App optimization and for getting values.
+ Use Internationalization, as appropriate. */
 enum ExpectingArrivalListFBKeys : String {
     case dateAndTimeOfArrival
     case reference
@@ -46,4 +46,3 @@ class NAExpectingArrival {
         return status!
     }
 }
-

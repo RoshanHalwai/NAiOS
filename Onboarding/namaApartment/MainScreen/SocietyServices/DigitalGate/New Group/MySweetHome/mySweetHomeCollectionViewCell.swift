@@ -33,7 +33,7 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
     @IBOutlet weak var btn_Message: UIButton!
     @IBOutlet weak var btn_Edit: UIButton!
     @IBOutlet weak var btn_Remove: UIButton!
-   
+    
     @IBOutlet weak var lbl_Call: UILabel!
     @IBOutlet weak var lbl_Message: UILabel!
     @IBOutlet weak var lbl_Edit: UILabel!
@@ -43,7 +43,7 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
     var objEdit : (() -> Void)? = nil
     
     @IBAction func btnCall(_ sender: Any) {
-       
+        
         //TODO : Need to change mobile number here
         UIApplication.shared.open(NSURL(string: "tel://9739591077")! as URL, options: [:], completionHandler: nil)
     }
@@ -60,7 +60,7 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
             messagesheet.body = ""
             self.window?.rootViewController?.present(messagesheet , animated: true , completion: nil)
         } else {
-           
+            
             let alert = UIAlertController(title:NAString().warning(), message: NAString().message_warning_text(), preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title:NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
         }
@@ -71,11 +71,11 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
         {
             btnAction()
         }
-    
+        
     }
     
     @IBAction func btnRemove(_ sender: Any) {
-         delegate?.deleteData(indx: (index?.row)!, cell: self)
+        delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {

@@ -8,8 +8,7 @@
 
 import UIKit
 
-class splashApartmentServices
-: UIViewController {
+class splashApartmentServices: UIViewController {
     
     @IBOutlet weak var imageView_ApartmentServices: UIImageView!
     @IBOutlet weak var lbl_HeaderApartmentServices: UILabel!
@@ -35,8 +34,7 @@ class splashApartmentServices
         self.navigationController?.isNavigationBarHidden = true
     }
     
-    @IBAction func btnLetsGetStarted(_ sender: Any)
-    {
+    @IBAction func btnLetsGetStarted(_ sender: Any) {
         let lv = NAViewPresenter().loginVC()
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(lv, animated: true)

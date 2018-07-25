@@ -44,7 +44,7 @@ class NammaApartmentVisitor_History {
     private var status: String?
     private var uid: String?
     private var Things: String?
-   
+    
     //initilaize the variables
     init(dateAndTimeOfVisit: String?,fullName: String?,inviterUID: String?,mobileNumber: String?,profilePhoto: String?,status: String?,uid: String?,Things:String) {
         

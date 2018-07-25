@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 
-class NAColor: NSObject
-{
-     func buttonFontColor() -> UIColor{
+class NAColor: NSObject {
+    func buttonFontColor() -> UIColor {
         return UIColor(red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
     }
     

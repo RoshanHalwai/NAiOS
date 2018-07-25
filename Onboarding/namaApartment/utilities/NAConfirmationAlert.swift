@@ -18,6 +18,5 @@ class NAConfirmationAlert: NSObject {
         alert.view.backgroundColor = UIColor.white
         alert.view.layer.cornerRadius = 10
         VC.present(alert, animated: true)
-        }
+    }
 }
-

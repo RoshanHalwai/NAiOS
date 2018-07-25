@@ -217,6 +217,9 @@ class NAString : NSObject {
     func my_profile() -> String {
         return String("MyProfile")
     }
+    func My_Profile() -> String {
+        return String("My Profile")
+    }
     
     func my_family_members() -> String {
         return String("My Family Members")
@@ -945,15 +948,15 @@ class NAString : NSObject {
     func inviteButtonTagValue() -> Int {
         return Int (101)
     }
-
+    
     func addMyFamilyMemberButtonTagValue() -> Int {
         return Int (102)
     }
-
+    
     func addMyDailyServicesButtonTagValue() -> Int {
         return Int (103)
     }
-
+    
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)

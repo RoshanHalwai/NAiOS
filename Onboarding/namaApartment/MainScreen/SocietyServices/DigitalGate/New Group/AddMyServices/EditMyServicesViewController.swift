@@ -61,10 +61,10 @@ class EditMyServicesViewController: NANavigationViewController {
         super.viewDidLoad()
         
         //Segmented Controller is selected according to CardView Data.
-       if getSegmentValue == NAString().yes() {
-        segment.selectedSegmentIndex = 0
+        if getSegmentValue == NAString().yes() {
+            segment.selectedSegmentIndex = 0
         } else {
-        segment.selectedSegmentIndex = 1
+            segment.selectedSegmentIndex = 1
         }
         
         //hide error labels
@@ -102,7 +102,7 @@ class EditMyServicesViewController: NANavigationViewController {
         self.txt_Name.text! = getName
         self.txt_MobileNo.text! = getMobile
         self.txt_InTime.text! = getTime
-      
+        
         //Formattimg & setting Label
         self.lbl_Name.font = NAFont().headerFont()
         self.lbl_InTime.font = NAFont().headerFont()
@@ -117,7 +117,7 @@ class EditMyServicesViewController: NANavigationViewController {
         self.lbl_MobileNo.text = NAString().mobile()
         self.lbl_InTime.text = NAString().time()
         self.lbl_GetAccess.text = NAString().grant_access()
-    
+        
         //Formatting & setting TextField
         self.txt_Name.font = NAFont().textFieldFont()
         self.txt_InTime.font = NAFont().textFieldFont()
@@ -188,11 +188,11 @@ class EditMyServicesViewController: NANavigationViewController {
     
     @IBAction func btnUpdate(_ sender: UIButton) {
         
-            //if Mobile Number will change then navigate to OTP Screen
+        //if Mobile Number will change then navigate to OTP Screen
         if ((getTitle == NAString().edit_my_daily_service_details().capitalized) && lbl_Description.isHidden == false) {
             let dv = NAViewPresenter().otpViewController()
             let passToOTP = NAString().enter_verification_code(first: "your \(servicesString)", second: "their")
-                dv.newOtpString = passToOTP
+            dv.newOtpString = passToOTP
             self.navigationController?.pushViewController(dv, animated: true)
         }
             //if Mobile Number will not change then navigate to My Daily Services VC
@@ -225,7 +225,7 @@ class EditMyServicesViewController: NANavigationViewController {
                 present(alert, animated: true, completion: nil)
             }
             
-             //Modify EDIT MY FAMILY MEMBER VC while NO is already selected at the time of modifying
+            //Modify EDIT MY FAMILY MEMBER VC while NO is already selected at the time of modifying
             if segment.selectedSegmentIndex == 1 {
                 isNoSegmentSelected()
             }
@@ -236,7 +236,7 @@ class EditMyServicesViewController: NANavigationViewController {
             dv.newOtpString = passToOTP
             self.navigationController?.pushViewController(dv, animated: true)
         }
-         if (getTitle == NAString().edit_my_family_member_details().capitalized) && lbl_Description.isHidden == true {
+        if (getTitle == NAString().edit_my_family_member_details().capitalized) && lbl_Description.isHidden == true {
             let dv = NAViewPresenter().mySweetHomeVC()
             self.navigationController?.pushViewController(dv, animated: true)
         }
@@ -254,28 +254,28 @@ class EditMyServicesViewController: NANavigationViewController {
     
     //Creted alertview to Modify EDIT MY FAMILY MEMBER VC while YES is already selected at the time of modifying
     func isNoSegmentSelected() {
-            let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().not_granting_access()) , message:nil, preferredStyle: .alert)
-            
-            let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
+        let alert = UIAlertController(title: NAString().edit_my_family_member_grantAccess_alertBox(first:NAString().not_granting_access()) , message:nil, preferredStyle: .alert)
         
-            let accept = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
-                
-                if (self.lbl_Description.isHidden == false) {
-                    //navigate to OTP
-                    let dv = NAViewPresenter().otpViewController()
-                    let passToOTP = NAString().enter_verification_code(first:"your Family Member", second: "their")
-                    dv.newOtpString = passToOTP
-                    self.navigationController?.pushViewController(dv, animated: true)
-                } else {
-                    //navigate back to card view
-                    let dv = NAViewPresenter().mySweetHomeVC()
-                    self.navigationController?.pushViewController(dv, animated: true)
-                }
+        let reject = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
+        
+        let accept = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
+            
+            if (self.lbl_Description.isHidden == false) {
+                //navigate to OTP
+                let dv = NAViewPresenter().otpViewController()
+                let passToOTP = NAString().enter_verification_code(first:"your Family Member", second: "their")
+                dv.newOtpString = passToOTP
+                self.navigationController?.pushViewController(dv, animated: true)
+            } else {
+                //navigate back to card view
+                let dv = NAViewPresenter().mySweetHomeVC()
+                self.navigationController?.pushViewController(dv, animated: true)
             }
-            alert.addAction(accept) //add accept action on AlertView
-            alert.addAction(reject) //add reject action on AlertView
-            present(alert, animated: true, completion: nil)
         }
+        alert.addAction(accept) //add accept action on AlertView
+        alert.addAction(reject) //add reject action on AlertView
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 //Created separate extention to use UITextfiled delegate Properties

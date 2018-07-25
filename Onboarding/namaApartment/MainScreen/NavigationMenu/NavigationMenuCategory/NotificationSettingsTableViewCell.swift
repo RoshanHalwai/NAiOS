@@ -9,7 +9,7 @@
 import UIKit
 
 class NotificationSettingsTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var labelView: UILabel!
     @IBOutlet weak var switch_btn: UISwitch!
 }
