@@ -16,5 +16,5 @@ class EditMyProfileTableViewCell: UITableViewCell {
         super.awakeFromNib()
         lbl_Family_Members_List.font = NAFont().descriptionFont()
     }
-
+    
 }

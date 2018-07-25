@@ -8,8 +8,7 @@
 
 import UIKit
 
-class splashNammaApartments: UIViewController
-{
+class splashNammaApartments: UIViewController {
     @IBOutlet weak var imageView_NammaApartments: UIImageView!
     @IBOutlet weak var lbl_HeaderNammaApartments: UILabel!
     @IBOutlet weak var lbl_DescNammaApartments: UILabel!

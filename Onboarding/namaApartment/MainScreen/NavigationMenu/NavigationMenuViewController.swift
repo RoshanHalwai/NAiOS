@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var nammaLabel: UILabel!
     @IBOutlet weak var oneStopLabel: UILabel!

@@ -45,35 +45,30 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     var yourobj : (() -> Void)? = nil
     
     //calling object on Cancel button action
-    @IBAction func btnCancel(_ sender: UIButton)
-    {
+    @IBAction func btnCancel(_ sender: UIButton) {
         delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
     
     //To call your visitor directly from app
-    @IBAction func btnCall(_ sender: UIButton)
-    {
+    @IBAction func btnCall(_ sender: UIButton) {
         //TODO : need to change  contact number.
         UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
     }
     
     //calling object in button action
-    @IBAction func btnEditMyDailyServices(_ sender: UIButton)
-    {
-        if let btnAction = self.yourobj
-        {
+    @IBAction func btnEditMyDailyServices(_ sender: UIButton) {
+        if let btnAction = self.yourobj {
             btnAction()
         }
     }
     
     //To message your visitor directly from app
-    @IBAction func btnMessage(_ sender: UIButton)
-    {
+    @IBAction func btnMessage(_ sender: UIButton) {
         if (MFMessageComposeViewController.canSendText()) {
             let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
             messageSheet.messageComposeDelegate = self
             
-             //TODO : need to change  contact number.
+            //TODO : need to change  contact number.
             messageSheet.recipients = ["9725098236"]
             messageSheet.body = ""
             

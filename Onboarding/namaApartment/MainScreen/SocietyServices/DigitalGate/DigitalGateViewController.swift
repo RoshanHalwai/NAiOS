@@ -10,11 +10,10 @@ import UIKit
 
 //To Identify cell
 private let reuseIdentifier = NAString().cellID()
-class DigitalGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource
-{
+class DigitalGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-  
+    
     var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","MySweetHome","Medical"]
     var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
     
@@ -26,11 +25,11 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         self.navigationItem.title = ""
     }
     
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return DGimageList.count
     }
     
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! DigitalGateCollectionViewCell
         
         cell.cellTitle.text = DGNameList[indexPath.row]
@@ -42,8 +41,7 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             let lv = NAViewPresenter().inviteVisitorVC()
@@ -60,13 +58,13 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         case 3:
             let lv3 = NAViewPresenter().notifyDigiGateVC()
             self.navigationController?.pushViewController(lv3, animated: true)
-
+            
             
         case 4:
             let lv4 = NAViewPresenter().mySweetHomeVC()
             lv4.navTitle = NAString().my_sweet_home()
             self.navigationController?.pushViewController(lv4, animated: true)
-          
+            
             
         case 5:
             let lv5 = NAViewPresenter().emergencyVC()

@@ -43,9 +43,9 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         btn_Reschedule.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_Reschedule.setTitle(NAString().reschedule(), for: .normal)
         btn_Reschedule.titleLabel?.font = NAFont().buttonFont()
-    
+        
         //Handling Action on TextField Click
-         txt_ReTime.addTarget(self, action: #selector(timeFunction), for: UIControlEvents.touchDown)
+        txt_ReTime.addTarget(self, action: #selector(timeFunction), for: UIControlEvents.touchDown)
         
         txt_ReDate.addTarget(self, action: #selector(dateFunction), for: UIControlEvents.touchDown)
         

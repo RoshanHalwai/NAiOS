@@ -8,11 +8,10 @@
 
 import UIKit
 
-class MainScreenTableViewCell: UITableViewCell
-{
+class MainScreenTableViewCell: UITableViewCell {
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var cellTitle: UILabel!
-  
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -20,6 +19,6 @@ class MainScreenTableViewCell: UITableViewCell
         cellTitle.font = NAFont().headerFont()
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
-            super.setSelected(selected, animated: animated)
-        }
+        super.setSelected(selected, animated: animated)
+    }
 }

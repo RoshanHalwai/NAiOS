@@ -56,7 +56,7 @@ class NammaApartmentVisitor {
         self.status = status
         self.uid = uid
     }
-   
+    
     //Get FullName
     func getfullName() -> String {
         return fullName!

@@ -262,20 +262,20 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
-
+            
             btnInviteVisitor.tag = NAString().inviteButtonTagValue()
             OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
             OpacityView.shared.showingPopupView(view: self)
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
         }
         //TODO Get The UID From the Firebase
-            userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
-                .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-                .child(Constants.FIREBASE_CHILD_BANGALORE)
-                .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
-                .child(Constants.FIREBASE_CHILD_ASTER)
-                .child(Constants.FIREBASE_CHILD_FLATNO)
-                .child(Constants.FLAT_Visitor).child(userUID!)
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
+            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+            .child(Constants.FIREBASE_CHILD_BANGALORE)
+            .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
+            .child(Constants.FIREBASE_CHILD_ASTER)
+            .child(Constants.FIREBASE_CHILD_FLATNO)
+            .child(Constants.FLAT_Visitor).child(userUID!)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 for a in ((snapshot.value as AnyObject).allKeys)!{
@@ -460,7 +460,3 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         return true
     }
 }
-
-
-
-

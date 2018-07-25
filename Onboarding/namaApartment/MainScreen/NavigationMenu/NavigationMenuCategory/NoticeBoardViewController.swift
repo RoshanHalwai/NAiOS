@@ -11,11 +11,10 @@ import UIKit
 class NoticeBoardViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var navTitle = String()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         super.ConfigureNavBarTitle(title: navTitle)
-
     }
     
     //TODO: Need to get Committe Members Notice Board Data Count from Firebase.

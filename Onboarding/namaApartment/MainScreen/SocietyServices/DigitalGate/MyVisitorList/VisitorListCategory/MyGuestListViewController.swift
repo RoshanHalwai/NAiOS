@@ -195,4 +195,3 @@ extension MyGuestListViewController : dataCollectionProtocol {
         collectionView.reloadData()
     }
 }
-
