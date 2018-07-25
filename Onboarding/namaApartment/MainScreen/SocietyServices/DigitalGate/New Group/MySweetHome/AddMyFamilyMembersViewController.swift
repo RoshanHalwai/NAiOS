@@ -373,7 +373,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     //Accept only 10 digit mobile number and Check for Text Removal. 
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let newLength = text.utf16.count + string.utf16.count - range.length
