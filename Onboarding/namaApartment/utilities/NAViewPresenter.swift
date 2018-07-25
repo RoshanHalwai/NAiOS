@@ -173,4 +173,8 @@ class NAViewPresenter: NSObject {
     func myProfileVC() -> EditMyProfileViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myProfileVC") as! EditMyProfileViewController
     }
+    //Notice Board Screen
+    func noticeBoardVC() -> NoticeBoardViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "noticeBoardVC") as! NoticeBoardViewController
+    }
 }

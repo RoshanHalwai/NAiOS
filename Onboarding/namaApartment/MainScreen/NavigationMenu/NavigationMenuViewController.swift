@@ -44,9 +44,9 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
         let currentCell = tableView.cellForRow(at: indexPath!)! as! NavigationMenuTableViewCell
         let currentItem = currentCell.labelView.text
         if currentItem == NAString().my_profile() {
-            let dv4 = NAViewPresenter().myProfileVC()
-            dv4.navTitle = NAString().my_profile()
-            self.navigationController?.pushViewController(dv4, animated: true)
+            let myProfileVC = NAViewPresenter().myProfileVC()
+            myProfileVC.navTitle = NAString().My_Profile()
+            self.navigationController?.pushViewController(myProfileVC, animated: true)
             mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().my_family_members() {
             let dv3 = NAViewPresenter().mySweetHomeVC()
@@ -70,6 +70,11 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
         } else if currentItem == NAString().rate_us() {
             mainScreen.showingRateUsView()
             mainScreen.opacity_View.isHidden = false
+        } else if currentItem == NAString().notice_board() {
+            let noticeBoardVC = NAViewPresenter().noticeBoardVC()
+            noticeBoardVC.navTitle = NAString().notice_board()
+            self.navigationController?.pushViewController(noticeBoardVC, animated: true)
+            mainScreen.opacity_View.isHidden = true
         }
         mainScreen.closeNavigationMenu()
         tableView.deselectRow(at: indexPath!, animated: true)
