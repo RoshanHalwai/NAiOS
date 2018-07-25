@@ -262,7 +262,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
-
+            
             btnInviteVisitor.tag = NAString().inviteButtonTagValue()
             OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
             OpacityView.shared.showingPopupView(view: self)
@@ -287,7 +287,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             } else {
                 print("we don't have that, add it to the DB now")
             }})
-        
     }
     
     //Create Timer Function
@@ -463,7 +462,3 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         return true
     }
 }
-
-
-
-

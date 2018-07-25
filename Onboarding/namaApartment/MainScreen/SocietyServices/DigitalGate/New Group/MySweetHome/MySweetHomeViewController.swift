@@ -36,7 +36,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      /* - Corner Radius for popUp View.
+        /* - Corner Radius for popUp View.
          - Formmating & setting in Buttons and Navigation bar.
          - Create My Sweet Home Back Button.
          - For navigating back to My Digi Gate VC. */
@@ -96,7 +96,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_MySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
         cell.MySweeetHomeimg.image = mysweethomeImages[indexPath.row]
         
-      /* - This creates the shadows and modifies the cards a little bit.
+        /* - This creates the shadows and modifies the cards a little bit.
          - Creating round Image using Corner radius.
          - Setting fonts & strings for labels.
          - Calling edit button action & Delete particular cell from list. */
@@ -169,7 +169,7 @@ extension MySweetHomeViewController : removeCollectionProtocol {
     
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
-      /* - AlertView will Display while removing Card view.
+        /* - AlertView will Display while removing Card view.
          - Remove collection view cell item with animation & Animation at final state. */
         
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
@@ -198,8 +198,3 @@ extension MySweetHomeViewController : removeCollectionProtocol {
         collectionView.reloadData()
     }
 }
-
-
-
-
-

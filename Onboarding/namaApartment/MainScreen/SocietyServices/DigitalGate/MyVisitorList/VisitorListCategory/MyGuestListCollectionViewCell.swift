@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 
 protocol dataCollectionProtocol {
-     func deleteData(indx: Int, cell: UICollectionViewCell)
+    func deleteData(indx: Int, cell: UICollectionViewCell)
 }
 class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
     
@@ -28,11 +28,11 @@ class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewCo
     
     //created object to use reschedule button action in cell class
     var objReschduling : (() -> Void)? = nil
-        
-     //To call your visitor directly from app
+    
+    //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton) {
         //TODO : Need to change mobile number here
-         UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
+        UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
     }
     
     //calling object on Reschedule button action
@@ -44,12 +44,12 @@ class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewCo
     
     //calling object on Cancel button action
     @IBAction func btnCancel(_ sender: UIButton) {
-       delegate?.deleteData(indx: (index?.row)!, cell: self)
+        delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
     
     //To message your visitor directly from app
     @IBAction func btnMessage(_ sender: UIButton) {
-         //TODO : Need to change mobile number here
+        //TODO : Need to change mobile number here
         if (MFMessageComposeViewController.canSendText()) {
             let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
             messageSheet.messageComposeDelegate = self

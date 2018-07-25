@@ -25,7 +25,7 @@ class MainScreenViewController: NANavigationViewController {
     
     var NavigationMenuOpen = false
     
-     var currentIndex = 0 
+    var currentIndex = 0
     
     //Declaring the varibles for structure.
     var apartmentData:[apartmentServicesModel] = []
@@ -116,8 +116,8 @@ class MainScreenViewController: NANavigationViewController {
     }
     
     /* - For switching the tableview data in between society & apartment services.
-       - Modifying SegmentControl text according to segment selection. */
-
+     - Modifying SegmentControl text according to segment selection. */
+    
     //To Logout the current user
     @objc func logout() {
         try! Auth.auth().signOut()
@@ -142,7 +142,7 @@ class MainScreenViewController: NANavigationViewController {
     @objc func NavigationMenuVC() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
-             opacity_View.isHidden = true
+            opacity_View.isHidden = true
         } else {
             showNavigationMenu()
         }
@@ -151,7 +151,7 @@ class MainScreenViewController: NANavigationViewController {
     @objc func handleTap() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
-             opacity_View.isHidden = true
+            opacity_View.isHidden = true
         } else if rateUsView.isHidden == false {
             hidingRateUsView()
         }
@@ -208,8 +208,8 @@ class MainScreenViewController: NANavigationViewController {
     }
     
     func hidingRateUsView() {
-            opacity_View.isHidden = true
-            rateUsView.isHidden = true
+        opacity_View.isHidden = true
+        rateUsView.isHidden = true
     }
     
     func segmentControlSelection() {

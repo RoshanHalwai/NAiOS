@@ -57,7 +57,7 @@ class HandedThingsToGuestTableViewCell: UITableViewCell {
                         let SnapShotValues_Cell = snapshot.value as? NSDictionary
                         for UserID_Cell  in (SnapShotValues_Cell?.allKeys)! {
                             let userIDS_Cell = UserID_Cell as! String
-                          // TODO: need to change UID in Future
+                            // TODO: need to change UID in Future
                             Database.database().reference()
                                 .child(Constants.FIREBASE_CHILD_VISITORS)
                                 .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)

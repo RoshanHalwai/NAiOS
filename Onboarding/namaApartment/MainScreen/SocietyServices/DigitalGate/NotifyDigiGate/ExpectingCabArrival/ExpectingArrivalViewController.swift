@@ -622,5 +622,3 @@ extension ExpectingArrivalViewController {
         inviteAlertView()
     }
 }
-
-
