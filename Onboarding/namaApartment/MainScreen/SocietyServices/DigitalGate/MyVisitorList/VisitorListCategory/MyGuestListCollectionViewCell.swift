@@ -37,7 +37,7 @@ class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewCo
     }
     
     //created object to use reschedule button action in cell class
-    var objReschduling : (() -> Void)? = nil
+    var actionRescheduling : (() -> Void)? = nil
     
     //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton) {
@@ -47,7 +47,7 @@ class MyGuestListCollectionViewCell: UICollectionViewCell,MFMessageComposeViewCo
     
     //calling object on Reschedule button action
     @IBAction func btnReschedule(_ sender: UIButton) {
-        if let btnAction = self.objReschduling {
+        if let btnAction = self.actionRescheduling {
             btnAction()
         }
     }

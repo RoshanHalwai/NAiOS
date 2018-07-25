@@ -131,18 +131,20 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.delegate = self
         
         //calling Reschdule button action on particular cell
-        cell.objReschduling = {
+        cell.actionRescheduling = {
             
             let dv = NAViewPresenter().rescheduleMyVisitorVC()
+            
+            //passing cell date & time to Reschedule VC
+            dv.getTime = cell.lbl_MyVisitorTime.text!
+            dv.getDate = cell.lbl_MyVisitorDate.text!
+            
             dv.providesPresentationContextTransitionStyle = true
             dv.definesPresentationContext = true
             dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
             dv.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
             self.present(dv, animated: true, completion: nil)
-            
-            //passing cell date & time to Reschedule VC
-            dv.getTime = cell.lbl_MyVisitorTime.text!
-            dv.getDate = cell.lbl_MyVisitorDate.text!
+           
         }
         return cell
     }
