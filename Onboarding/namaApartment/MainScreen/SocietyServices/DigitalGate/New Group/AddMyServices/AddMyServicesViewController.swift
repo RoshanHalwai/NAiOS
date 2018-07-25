@@ -19,7 +19,7 @@ protocol DataPass {
 }
 
 class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass,AlertViewDelegate {
-   
+    
     @IBOutlet weak var img_Profile: UIImageView!
     
     @IBOutlet weak var lbl_Name: UILabel!
@@ -46,7 +46,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     var timer = Timer()
     var count = 5
     
-  /* - To set navigation title.
+    /* - To set navigation title.
      - Gettig data from previous screen string.
      - To check from which view value is comming.
      - Created date picker programtically.
@@ -54,7 +54,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     var navTitle: String?
     var AddOtpString = String()
-
+    
     //created date picker programtically
     let picker = UIDatePicker()
     
@@ -74,7 +74,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      /* - Create Name textfield first letter capital.
+        /* - Create Name textfield first letter capital.
          - Add border color and round Image on profile imageview.
          - Assigned delegate method on textFields and Hiding error labels.
          - Identify screen coming from which screen and Setting navigation title.
@@ -185,7 +185,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         img_Profile.clipsToBounds = true
     }
     
-  /* - Create name textfield first letter capital function.
+    /* - Create name textfield first letter capital function.
      - Alert Popup when user give  grant access & try to add details.
      - Showing alert controller while giving Grant Access to family members.
      - Creating Reject & alert actions.
@@ -195,7 +195,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
-        
+    
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let actionCamera = UIAlertAction(title:NAString().camera(), style: .default, handler: {
@@ -255,8 +255,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         lbl_Date_Validation.isHidden = true
         txt_Date.underlined()
     }
-   
-  /* - Open App Setting if user cannot able to access Contacts.
+    
+    /* - Open App Setting if user cannot able to access Contacts.
      - To call default address book app & User select any contact particular part.
      - Identify from which page screen is coming.
      - Create alert controller,Timer Function,AlertView Action and OK button.
@@ -322,7 +322,38 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             self.lbl_OTPDescription.text = NAString().inviteVisitorOTPDesc()
         }
     }
- 
+    
+    func activityIndicator_function(withData: Any) {
+        btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
+        OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
+        OpacityView.shared.showingPopupView(view: self)
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
+    }
+    
+    // Create Timer Function
+    @objc func stopTimer() {
+        OpacityView.shared.hidingPopupView()
+        if (count >= 0){
+            if(count == 0) {
+                AlertViewAction()
+            }
+        }
+    }
+    
+    //Create AlertView Action
+    func AlertViewAction() {
+        let alertController = UIAlertController(title:NAString().addMyDailyService_AlertView_Title(), message:NAString().addMyDailyService_AlertView_Message(), preferredStyle: .alert)
+        // Create OK button
+        let OKAction = UIAlertAction(title: NAString().ok(), style: .default) { (action:UIAlertAction!) in
+            let lv = NAViewPresenter().myDailyServicesVC()
+            lv.fromAddMyDailyServicesVC = true
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
+        alertController.addAction(OKAction)
+        self.present(alertController, animated: true, completion:nil)
+    }
+    
     @IBAction func btnAddDetails(_ sender: Any) {
         if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
@@ -372,47 +403,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
     }
     
-    func activityIndicator_function(withData: Any) {
-        btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
-        OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
-        OpacityView.shared.showingPopupView(view: self)
-        
-        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
-    }
-    
-    // Create Timer Function
-    @objc func stopTimer() {
-        OpacityView.shared.hidingPopupView()
-        if (count >= 0){
-            if(count == 0) {
-                self.AlertViewAction()
-            }
-        }
-    }
-    
-    //Create AlertView Action
-    func AlertViewAction() {
-        let alertController = UIAlertController(title:NAString().addMyDailyService_AlertView_Title(), message:NAString().addMyDailyService_AlertView_Message(), preferredStyle: .alert)
-        // Create OK button
-        let OKAction = UIAlertAction(title: NAString().ok(), style: .default) { (action:UIAlertAction!) in
-             let lv = NAViewPresenter().myDailyServicesVC()
-            lv.fromAddMyDailyServicesVC = true
-            self.navigationController?.pushViewController(lv, animated: true)
-//            let lv = NAViewPresenter().otpViewController()
-//            let dailyServicesString = NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their")
-//            lv.getCountryCodeString = self.txt_CountryCode.text!
-//            lv.getMobileString = self.txt_MobileNo.text!
-//            lv.newOtpString = dailyServicesString
-//            lv.dailyServiceType = self.dailyServiceType
-//            //Assigning Delegate
-//            lv.delegateData = self
-//
-//            self.navigationController?.pushViewController(lv, animated: true)
-        }
-        alertController.addAction(OKAction)
-        self.present(alertController, animated: true, completion:nil)
-    }
-    
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == txt_Name {
             txt_MobileNo.becomeFirstResponder()
@@ -453,22 +443,22 @@ extension AddMyServicesViewController {
 }
 
 /*  Created Extension to write code seperatly in the file,So other can know easily
-    Using delegate method after coming from otp data is saving in Firebase
-    Mapping dailyservice UID with true in UserData -> DailyServices
-    Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
-    Mapping dailyservice UID with its DSType
-    Storing Daily services details in DailyServices -> All -> Public
-    Mapping status with type  Not Entered inside DS UID
-    Storing Profile Image in Storage Folder
-    Compressing profile image and assigning its content type.
-    Uploading Daily Services image url along with DailyServices UID
-    Adding Daily Services data under Daily Services -> UID
+ Using delegate method after coming from otp data is saving in Firebase
+ Mapping dailyservice UID with true in UserData -> DailyServices
+ Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
+ Mapping dailyservice UID with its DSType
+ Storing Daily services details in DailyServices -> All -> Public
+ Mapping status with type  Not Entered inside DS UID
+ Storing Profile Image in Storage Folder
+ Compressing profile image and assigning its content type.
+ Uploading Daily Services image url along with DailyServices UID
+ Adding Daily Services data under Daily Services -> UID
  */
 
 extension AddMyServicesViewController {
     
     func dataPassing() {
-//        storingDailyServicesInFirebase()
+        storingDailyServicesInFirebase()
     }
     
     func storingDailyServicesInFirebase()  {

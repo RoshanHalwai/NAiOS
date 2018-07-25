@@ -39,8 +39,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     @IBOutlet weak var grantAcess_Segment: UISegmentedControl!
     
     /* - Scrollview.
-       - To set navigation title.
-       - Gettig data from previous screen string. */
+     - To set navigation title.
+     - Gettig data from previous screen string. */
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -54,7 +54,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      /* - Create Name textfield first letter capital.
+        /* - Create Name textfield first letter capital.
          - Add border color and round Image on profile image.
          - Hiding error labels.
          - Assigned delegate methods and Black underline for textFields.
@@ -140,7 +140,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
     }
     
-  /* - Alert Popup when user give  grant access & try to add details and Showing alert controller while giving Grant Access to family members.
+    /* - Alert Popup when user give  grant access & try to add details and Showing alert controller while giving Grant Access to family members.
      - AddFamily_UseID.
      - Creating Accept alert actions. */
     
@@ -227,7 +227,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
     }
     
-  /* - To call default address book app.
+    /* - To call default address book app.
      - User select any contact particular part.
      - Retrive Data Alert View Delegate.
      - Create Timer Function,AlertView Action and OK button. */
