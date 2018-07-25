@@ -13,7 +13,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBOutlet weak var opacityView: UIView!
+    @IBOutlet weak var opacity_View: UIView!
+    @IBOutlet weak var PopUp_ParentView: UIView!
     @IBOutlet weak var popUp_View: UIView!
     @IBOutlet weak var access_Segment: UISegmentedControl!
     @IBOutlet weak var btn_Cancel: UIButton!
@@ -42,7 +43,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         popUp_View.layer.cornerRadius = 5
         
-        opacityView.isHidden = true
+        PopUp_ParentView.isHidden = true
+        opacity_View.isHidden = true
         popUp_View.isHidden = true
         
         lbl_Grant_Access.font = NAFont().headerFont()
@@ -140,19 +142,22 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.delegate = self
         
         cell.objEdit = {
-            self.opacityView.isHidden = false
+            self.opacity_View.isHidden = false
+            self.PopUp_ParentView.isHidden = false
             self.popUp_View.isHidden = false
         }
         return cell
     }
     
     @IBAction func Cancel_Action(_ sender: UIButton) {
-        opacityView.isHidden = true
+        opacity_View.isHidden = true
+        PopUp_ParentView.isHidden = true
         popUp_View.isHidden = true
     }
     
     @IBAction func Change_Button(_ sender: UIButton) {
-        opacityView.isHidden = true
+        opacity_View.isHidden = true
+        PopUp_ParentView.isHidden = true
         popUp_View.isHidden = true
     }
     

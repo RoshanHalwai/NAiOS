@@ -3244,7 +3244,11 @@
                                     <outlet property="delegate" destination="bdB-r2-sYz" id="Z9F-Rq-iDW"/>
                                 </connections>
                             </collectionView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDH-tB-VWz" userLabel="OpacityView">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2m-ZK-M2R">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDH-tB-VWz" userLabel="OpacityView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTU-OO-Gc7" userLabel="popUpView">
@@ -3315,7 +3319,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="fTU-OO-Gc7" firstAttribute="centerX" secondItem="YDH-tB-VWz" secondAttribute="centerX" id="KcB-K7-8j3"/>
                                     <constraint firstItem="fTU-OO-Gc7" firstAttribute="centerY" secondItem="YDH-tB-VWz" secondAttribute="centerY" id="Yoc-4k-uXV"/>
@@ -3341,21 +3345,26 @@
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="trailing" secondItem="3cz-UB-DR6" secondAttribute="trailing" id="LI1-5Y-cUG"/>
                             <constraint firstItem="b4Q-Pb-mPR" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" id="Mg0-RV-SJT"/>
                             <constraint firstItem="b4Q-Pb-mPR" firstAttribute="trailing" secondItem="3cz-UB-DR6" secondAttribute="trailing" id="OfM-qB-Z3T"/>
+                            <constraint firstItem="g2m-ZK-M2R" firstAttribute="trailing" secondItem="3cz-UB-DR6" secondAttribute="trailing" id="Pvf-YE-pOh"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="top" secondItem="I4Y-qU-z9x" secondAttribute="top" id="X9g-h6-NHb"/>
+                            <constraint firstItem="g2m-ZK-M2R" firstAttribute="top" secondItem="I4Y-qU-z9x" secondAttribute="top" id="YLN-Eg-XlG"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" id="elI-O7-ZLB"/>
+                            <constraint firstItem="g2m-ZK-M2R" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="o45-4g-42O"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="s18-rY-vnW"/>
+                            <constraint firstItem="g2m-ZK-M2R" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" id="soD-ux-P2E"/>
                             <constraint firstItem="3cz-UB-DR6" firstAttribute="trailing" secondItem="VZr-ya-GF6" secondAttribute="trailing" id="tQA-nf-orH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3cz-UB-DR6"/>
                     </view>
                     <connections>
+                        <outlet property="PopUp_ParentView" destination="YDH-tB-VWz" id="4cN-8L-vjN"/>
                         <outlet property="access_Segment" destination="oLs-Ss-sqJ" id="cc8-Oc-ZjP"/>
                         <outlet property="btn_AddmyFamilyMember" destination="b4Q-Pb-mPR" id="0U7-VJ-uO3"/>
                         <outlet property="btn_Cancel" destination="uKl-sS-Q3y" id="f4J-sX-iBy"/>
                         <outlet property="btn_ChangeAccess" destination="GQ5-fy-aKr" id="g6v-id-kMq"/>
                         <outlet property="collectionView" destination="VZr-ya-GF6" id="Eid-7H-ZN8"/>
                         <outlet property="lbl_Grant_Access" destination="gUj-0C-Bze" id="tF2-e2-9kO"/>
-                        <outlet property="opacityView" destination="YDH-tB-VWz" id="QDm-LG-eiG"/>
+                        <outlet property="opacity_View" destination="g2m-ZK-M2R" id="lJH-jt-GhL"/>
                         <outlet property="popUp_View" destination="fTU-OO-Gc7" id="S1d-mY-4D3"/>
                     </connections>
                 </viewController>
