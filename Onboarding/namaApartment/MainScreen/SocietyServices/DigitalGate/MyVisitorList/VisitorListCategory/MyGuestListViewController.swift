@@ -115,7 +115,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_InvitedName.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
         }
-        //Guest has been invited by some other family member; We check in firebase and get the name of that family member
+            //Guest has been invited by some other family member; We check in firebase and get the name of that family member
         else {
             //TODO Get inviter name from firebase
         }
