@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseDatabase
+import MessageUI
 
-class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
+class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate, MFMessageComposeViewControllerDelegate {
     
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
@@ -130,9 +131,8 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.index = indexPath
         cell.delegate = self
         
-        //calling Reschdule button action on particular cell
+        //calling Reschedule action to rechedule visitor date
         cell.actionRescheduling = {
-            
             let dv = NAViewPresenter().rescheduleMyVisitorVC()
             
             //passing cell date & time to Reschedule VC
@@ -144,9 +144,28 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
             dv.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
             self.present(dv, animated: true, completion: nil)
-           
+        }
+        
+        //Calling call action to call Visitor
+        cell.actionCall = {
+            UIApplication.shared.open(NSURL(string: "tel://\(nammaApartmentVisitor.getmobileNumber())")! as URL, options: [:], completionHandler: nil)
+        }
+        
+        //Calling Message action to message Visitor
+        cell.actionMessage = {
+            MFMessageComposeViewController.canSendText()
+            let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
+            messageSheet.messageComposeDelegate = self
+            messageSheet.recipients = [nammaApartmentVisitor.getmobileNumber()]
+            messageSheet.body = ""
+            self.present(messageSheet, animated: true, completion: nil)
         }
         return cell
+    }
+    
+    //Message UI default function to dismiss UI after calling.
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     //date action fucntion
