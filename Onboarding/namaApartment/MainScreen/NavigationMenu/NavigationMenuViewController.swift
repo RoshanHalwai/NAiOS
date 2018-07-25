@@ -70,6 +70,11 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
         } else if currentItem == NAString().rate_us() {
             mainScreen.showingRateUsView()
             mainScreen.opacity_View.isHidden = false
+        } else if currentItem == NAString().notice_board() {
+            let dv5 = NAViewPresenter().noticeBoardVC()
+            dv5.navTitle = NAString().notice_board()
+            self.navigationController?.pushViewController(dv5, animated: true)
+            mainScreen.opacity_View.isHidden = true
         }
         mainScreen.closeNavigationMenu()
         tableView.deselectRow(at: indexPath!, animated: true)

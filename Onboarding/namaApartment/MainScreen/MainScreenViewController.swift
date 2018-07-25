@@ -99,12 +99,17 @@ class MainScreenViewController: NANavigationViewController {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.view.addGestureRecognizer(swipeLeft)
+        
+        opacity_View.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+        self.opacity_View.addGestureRecognizer(tapGesture)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let embeddedVC = segue.destination as? NavigationMenuViewController {
             navigationMenuVC = embeddedVC
         }
+        
     }
     
     /* - For switching the tableview data in between society & apartment services.
@@ -139,12 +144,11 @@ class MainScreenViewController: NANavigationViewController {
             showNavigationMenu()
         }
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch: UITouch? = touches.first
+    @objc func handleTap() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
              opacity_View.isHidden = true
-        } else if touch?.view != rateUsView {
+        } else if rateUsView.isHidden == false {
             hidingRateUsView()
         }
     }
@@ -158,6 +162,9 @@ class MainScreenViewController: NANavigationViewController {
     func showNavigationMenu() {
         self.NavigationMenuOpen = true
         opacity_View.isHidden = false
+        if rateUsView != nil {
+            rateUsView.isHidden = true
+        }
         UIView.animate(withDuration: 0.3) {
             self.sideMenuConstrain.constant = 0
             self.view.layoutIfNeeded()
@@ -254,13 +261,11 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
         default:
             break
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //For Navigation Purpose.
-        
         let destVC = currentIndex == 0 ? VCNamesSociety[0]: VCNamesApartment[0]
         let viewController = storyboard?.instantiateViewController(withIdentifier: destVC)
         self.navigationController?.pushViewController(viewController!, animated: true)
