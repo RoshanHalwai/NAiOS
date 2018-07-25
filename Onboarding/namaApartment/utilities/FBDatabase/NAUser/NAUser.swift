@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
+
 class NAUser {
     
     //created variables to get details from following classes.
@@ -35,6 +36,7 @@ class NAUser {
         static let flatDetails = "flatDetails"
         static let privileges = "privileges"
         static let personalDetails = "personalDetails"
+        
     }
 }
 

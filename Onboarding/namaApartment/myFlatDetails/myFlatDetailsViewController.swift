@@ -271,15 +271,20 @@ extension myFlatDetailsViewController {
     
     //Save User Personal Details
     func storeUsersDetailsInFirebase() {
+        var userPrivateRef : DatabaseReference
+        let userUID = Auth.auth().currentUser?.uid
+
+        //User Private Reference
+        userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
         
         //Flat Details Firebase DB Reference
-        usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        usersFlatDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_FLATDETAILS)
         
         //Privileges Details Firebase DB Reference
-        usersPrivilegeDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+        usersPrivilegeDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_PRIVILEGES)
         
         //Personal Details Firebase DB Reference
-        usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        usersPersonalDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
         //Storing Data Under UsersData
         UsersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(txtCity.text!).child(txtSociety.text!).child(txtApartment.text!).child(txtFlat.text!)
@@ -302,7 +307,7 @@ extension myFlatDetailsViewController {
         ]
         
         //Maping UsersUID with admin
-        UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(userUID!)
+        UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(userUID)
         
         //Adding usersFlatDetails data under Users/Private/UID
         self.usersFlatDetailsRef?.setValue(usersFlatData)
@@ -349,7 +354,7 @@ extension myFlatDetailsViewController {
                     //Mapping Mobile Number with UID
                     
                     self.usersMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
-                    self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID!)
+                    self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID)
                     
                     //Generating & Mapping TokenID under Users/Private/UID
                     let tokenID = Messaging.messaging().fcmToken

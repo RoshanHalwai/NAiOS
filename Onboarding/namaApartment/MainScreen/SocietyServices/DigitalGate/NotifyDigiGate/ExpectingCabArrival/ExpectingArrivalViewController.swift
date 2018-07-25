@@ -555,7 +555,7 @@ extension ExpectingArrivalViewController {
         
         cabsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL)
         
-        userDataCabRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID!)
+        userDataCabRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID)
         
         
         //Mapping CabUID with true under UsersData -> Flat
@@ -598,7 +598,7 @@ extension ExpectingArrivalViewController {
         
         packagePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL)
         
-        userDataPackageRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID!)
+        userDataPackageRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
         
         
         //Mapping PackageUID with true under UsersData -> Flat

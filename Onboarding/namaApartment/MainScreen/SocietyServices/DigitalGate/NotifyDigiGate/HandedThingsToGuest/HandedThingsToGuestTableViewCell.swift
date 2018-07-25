@@ -50,7 +50,7 @@ class HandedThingsToGuestTableViewCell: UITableViewCell {
                 .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
                 .child(Constants.FIREBASE_CHILD_ASTER)
                 .child(Constants.FIREBASE_CHILD_FLATNO)
-                .child(Constants.FLAT_Visitor).child(userUID!)
+                .child(Constants.FLAT_Visitor).child(userUID)
             UserDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
                 if snapshot.exists(){
                     for DatavalueesCell in ((snapshot.value as AnyObject).allKeys)!{

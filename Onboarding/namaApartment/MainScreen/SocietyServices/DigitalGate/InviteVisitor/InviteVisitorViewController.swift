@@ -275,7 +275,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
             .child(Constants.FIREBASE_CHILD_ASTER)
             .child(Constants.FIREBASE_CHILD_FLATNO)
-            .child(Constants.FLAT_Visitor).child(userUID!)
+            .child(Constants.FLAT_Visitor).child(userUID)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 for a in ((snapshot.value as AnyObject).allKeys)!{
@@ -368,7 +368,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     let value =  Singleton_FlatDetails.shared.flatDetails_Items
                     let val = value.first
                     
-                    self.userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID!)
+                    self.userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID)
                     
                     self.userDataRef?.child(visitorUID!).setValue(NAString().gettrue())
                     

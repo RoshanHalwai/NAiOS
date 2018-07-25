@@ -468,7 +468,7 @@ extension AddMyServicesViewController {
         
         dailyServicesTypeRef?.child(dailyServicesUID!).setValue(dailyServiceKey)
         
-        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!).child(userUID!)
+        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!).child(userUID)
         
         dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!)
         

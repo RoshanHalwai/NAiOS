@@ -58,7 +58,6 @@ struct Constants {
     static let FLAT_Visitor = "visitors"
     static let FIREBASE_CHILD_CABS = "cabs"
     static let FIREBASE_CHILD_DELIVERIES = "deliveries"
-    static var userUIDPer = String()
     static let FIREBASE_CHILD_CITIES = "cities"
     static let FIREBASE_CHILD_SOCIETIES = "societies"
     static let FIREBASE_CHILD_APARTMENTS = "apartments"
