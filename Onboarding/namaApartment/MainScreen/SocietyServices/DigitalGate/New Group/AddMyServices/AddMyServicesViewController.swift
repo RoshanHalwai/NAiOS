@@ -434,18 +434,17 @@ extension AddMyServicesViewController {
     }
 }
 
-/*  Created Extension to write code seperatly in the file,So other can know easily
- Using delegate method after coming from otp data is saving in Firebase
- Mapping dailyservice UID with true in UserData -> DailyServices
- Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
- Mapping dailyservice UID with its DSType
- Storing Daily services details in DailyServices -> All -> Public
- Mapping status with type  Not Entered inside DS UID
- Storing Profile Image in Storage Folder
- Compressing profile image and assigning its content type.
- Uploading Daily Services image url along with DailyServices UID
- Adding Daily Services data under Daily Services -> UID
- */
+/*  - Created Extension to write code seperatly in the file,So other can know easily
+ - Using delegate method after coming from otp data is saving in Firebase
+ - Mapping dailyservice UID with true in UserData -> DailyServices
+ - Mapping dailyservice UID with Mobile Number in DailyServices -> All -> Private
+ - Mapping dailyservice UID with its DSType
+ - Storing Daily services details in DailyServices -> All -> Public
+ - Mapping status with type  Not Entered inside DS UID
+ - Storing Profile Image in Storage Folder
+ - Compressing profile image and assigning its content type.
+ - Uploading Daily Services image url along with DailyServices UID
+ - Adding Daily Services data under Daily Services -> UID */
 
 extension AddMyServicesViewController {
     
