@@ -319,7 +319,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     func screenComingFrom() {
         if self.navTitle == NAString().add_my_service() {
             self.lbl_Date.text = NAString().time()
-            self.lbl_OTPDescription.text = NAString().inviteVisitorOTPDesc()
+            self.lbl_OTPDescription.text = NAString().inviteVisitorOTPDesc(dailyServiceName: "\(self.dailyServiceType)")
         }
     }
  
