@@ -268,26 +268,21 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             OpacityView.shared.showingPopupView(view: self)
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
         }
-        //getting users Flat Details Form Singaltone class
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
-        let userFlatDetailValues = flatValues.first
-        
-            userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
-                .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-                .child((userFlatDetailValues?.city)!)
-                .child((userFlatDetailValues?.societyName)!)
-                .child((userFlatDetailValues?.apartmentName)!)
-                .child((userFlatDetailValues?.flatNumber)!)
-                .child((userFlatDetailValues?.tenantType)!).child(userUID!)
-            userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
+            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+            .child(Constants.FIREBASE_CHILD_BANGALORE)
+            .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
+            .child(Constants.FIREBASE_CHILD_ASTER)
+            .child(Constants.FIREBASE_CHILD_FLATNO)
+            .child(Constants.FLAT_Visitor).child(userUID)
+        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 for a in ((snapshot.value as AnyObject).allKeys)!{
                     print(a)
                 }
             } else {
-                print("we don't have that, add it to the DB now")
-            }
-        })
+                print("we don’t have that, add it to the DB now")
+            }})
     }
     
     //Create Timer Function
@@ -368,11 +363,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     self.preApprovedVisitorsRef?.setValue(visitorData)
                     
                     //Storing Visitor UID under UsersData -> UsersFlat
-                    let value =  Singleton_FlatDetails.shared.flatDetails_Items
-                    let val = value.first
-                    
-                    self.userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((val?.city)!).child((val?.societyName)!).child((val?.apartmentName)!).child((val?.flatNumber)!).child(Constants.FIREBASE_CHILD_VISITORS).child(userUID!)
-                    
+                    self.userDataRef = GlobalUserData.shared.getUserDataReference()
+                        .child(Constants.FIREBASE_CHILD_VISITORS)
+                        .child(userUID)
                     self.userDataRef?.child(visitorUID!).setValue(NAString().gettrue())
                     
                     //Using else statement & printing error,so the other developers can know what is going on.

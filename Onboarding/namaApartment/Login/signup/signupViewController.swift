@@ -42,7 +42,6 @@ class signupViewController: NANavigationViewController {
     @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var btnSignup: UIButton!
-    @IBOutlet weak var btnLogin: UIButton!
     
     @IBOutlet weak var lbl_TermsCondition: UILabel!
     @IBOutlet weak var lbl_Fullname: UILabel!
@@ -76,7 +75,7 @@ class signupViewController: NANavigationViewController {
         //Label formatting & setting
         lbl_Fullname.font = NAFont().headerFont()
         lbl_EmailId.font = NAFont().headerFont()
-        lbl_TermsCondition.font = NAFont().descriptionFont()
+        lbl_TermsCondition.font = NAFont().popupViewFont()
         lbl_Fullname.text = NAString().full_name()
         lbl_EmailId.text = NAString().email_id()
         lbl_TermsCondition.text = NAString().i_agree_to_terms_and_conditions()
@@ -94,11 +93,9 @@ class signupViewController: NANavigationViewController {
         btnSignup.setTitle(NAString().signup(), for: .normal)
         btnSignup.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btnSignup.titleLabel?.font = NAFont().buttonFont()
-        btnLogin.backgroundColor = UIColor.white
-        btnLogin.setTitle(NAString().i_already_have_an_account(), for: .normal)
         
         //scrollView
-        signupScrollView.contentInset = UIEdgeInsetsMake(0, 0, 300, 0)
+        signupScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         
         //tapGasture for upload new image
         profileImage.isUserInteractionEnabled = true
@@ -161,25 +158,13 @@ class signupViewController: NANavigationViewController {
             
             //Navigation to MyFlatDetail Screen With Personal Details Data.
             let dest = NAViewPresenter().myFlatDEtailsVC()
+            dest.title = NAString().My_flat_Details_title()
             dest.newProfileImage = self.profileImage.image
             dest.newMobileNumber = self.getNewMobileString
             dest.newEmail = self.signup_TxtEmailId.text!
             dest.newFullName = self.signup_TxtFullName.text!
             self.navigationController?.pushViewController(dest, animated: true)
-            
         }
-    }
-    
-    @IBAction func signup_BtnLogin(_ sender: UIButton) {
-        let lv : loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! loginViewController
-        self.navigationController?.setNavigationBarHidden(false, animated: true);
-        self.navigationController?.pushViewController(lv, animated: true)
-    }
-    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == signup_TxtFullName {
-            signup_TxtEmailId.becomeFirstResponder()
-        }
-        return true
     }
 }
 extension signupViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {

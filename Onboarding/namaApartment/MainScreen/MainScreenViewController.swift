@@ -54,6 +54,9 @@ class MainScreenViewController: NANavigationViewController {
         menuButton.addTarget(self, action: #selector(NavigationMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
         
+        /* Retrieve current Users UID*/
+        self.retreiveUserUID()
+        
         self.retrieveUserData()
         
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
@@ -122,7 +125,7 @@ class MainScreenViewController: NANavigationViewController {
     @objc func logout() {
         try! Auth.auth().signOut()
         if self.storyboard != nil {
-            print("Now string is Empty",Constants.userUIDPer)
+            //print("Now string is Empty",Constants.userUIDPer)
             let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
             let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
             self.present(NavLogin, animated: true)
@@ -232,6 +235,7 @@ class MainScreenViewController: NANavigationViewController {
                 showNavigationMenu()
             case UISwipeGestureRecognizerDirection.left:
                 closeNavigationMenu()
+                opacity_View.isHidden = true
             default:
                 break
             }
@@ -285,11 +289,21 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
 
 extension MainScreenViewController {
     
+    func retreiveUserUID() {
+        let preferences = UserDefaults.standard
+        let currentLevelKey = "USERUID"
+        if preferences.object(forKey: currentLevelKey) == nil {
+            preferences.set(Auth.auth().currentUser?.uid, forKey: currentLevelKey)
+        }
+        userUID = (preferences.object(forKey: currentLevelKey) as! String)
+        preferences.synchronize()
+    }
+    
     //Retrieving User's Data from firebase
     func retrieveUserData() {
         
         //Checking Users UID in Firebase under Users ->Private
-        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
         
         //Checking userData inside Users/Private
         
@@ -304,23 +318,28 @@ extension MainScreenViewController {
                 //Retrieving & Adding data in Flat Detail Class
                 let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
                 
-                flatDetailsFB.append(FlatDetails.init(apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String, city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String), flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String, societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String, tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
+                flatDetailsFB.append(FlatDetails.init(
+                    apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String,
+                    city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String),
+                    flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String,
+                    societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String,
+                    tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String))
                 
-                Singleton_FlatDetails.shared.flatDetails_Items = flatDetailsFB
+                GlobalUserData.shared.flatDetails_Items = flatDetailsFB
                 
                 //Retrieving & Adding Data in Personal Detail Class
                 let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
                 
                 personalDetails.append(PersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String ))
                 
-                Singleton_PersonalDetails.shared.personalDetails_Items = personalDetails
+                GlobalUserData.shared.personalDetails_Items = personalDetails
                 
                 //Retriving & Adding data in Privileges
                 let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
                 
                 userprivileges.append(UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? String, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? String, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? String ))
                 
-                Singleton_privileges.shared.privileges_Items = userprivileges
+                GlobalUserData.shared.privileges_Items = userprivileges
             }
         })
     }

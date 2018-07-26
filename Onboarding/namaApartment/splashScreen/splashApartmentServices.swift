@@ -36,7 +36,7 @@ class splashApartmentServices: UIViewController {
     
     @IBAction func btnLetsGetStarted(_ sender: Any) {
         let lv = NAViewPresenter().loginVC()
-        self.navigationController?.setNavigationBarHidden(false, animated: true);
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(lv, animated: true)
     }
 }

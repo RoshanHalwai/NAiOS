@@ -8,9 +8,9 @@
 
 import UIKit
 import FirebaseDatabase
+import MessageUI
 
-var myVisitorList = [NammaApartmentVisitor]()
-class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate {
+class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate, MFMessageComposeViewControllerDelegate {
     
     //Created variable of DBReference for storing data in firebase
     var myVisitorListReference : DatabaseReference?
@@ -24,30 +24,19 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     //A boolean variable to indicate if previous screen was Expecting Arrival.
     var fromInvitingVisitorsVC = false
     
+    var myVisitorList = [NammaApartmentVisitor]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //getting users Flat Details Form Singaltone class
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
-        let userFlatDetailValues = flatValues.first
-        print("userflat Details ",userFlatDetailValues?.city! as Any)
-        
+
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
-            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child((userFlatDetailValues?.city)!)
-            .child((userFlatDetailValues?.societyName)!)
-            .child((userFlatDetailValues?.apartmentName)!)
-            .child((userFlatDetailValues?.flatNumber)!)
-            .child(userUID!)
-        
+        userDataRef = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FLAT_Visitor).child(userUID)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
-              
+                NAActivityIndicator.shared.hideActivityIndicator()
                 let visitorsUID = snapshot.value as? NSDictionary
                 for visitorUID in (visitorsUID?.allKeys)! {
-                    // TODO: need to change UID in Future
                     self.visitorData =  Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
                         .child(visitorUID as! String)
                     self.visitorData?.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -63,11 +52,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                         //creating userAccount model & set earlier created let variables in userObject in the below parameter
                         let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
                         //Adding visitor in visitor List
-                        myVisitorList.append(user)
-                        NAActivityIndicator.shared.hideActivityIndicator()
-                        //reload collection view.
-                        myVisitorList.append(user)
-                        NAActivityIndicator.shared.hideActivityIndicator()
+                        self.myVisitorList.append(user)
                         self.collectionView.reloadData()
                     })
                 }
@@ -86,6 +71,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
     }
+    
     //Navigating Back to digi gate according to Screen coming from
     @objc func goBackToDigitGate() {
         if fromInvitingVisitorsVC {
@@ -104,12 +90,12 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyGuestListCollectionViewCell
         
         //Created constant variable to store all the firebase data in it.
-        let myList : NammaApartmentVisitor
-        myList = myVisitorList[indexPath.row]
+        let nammaApartmentVisitor : NammaApartmentVisitor
+        nammaApartmentVisitor = myVisitorList[indexPath.row]
         
         //Created local variable to store Date & Time from firebase
         var dateTimeString : String
-        dateTimeString = myList.getdateAndTimeOfVisit()
+        dateTimeString = nammaApartmentVisitor.getdateAndTimeOfVisit()
         //Created array to spilt Date & time in separate variables
         let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
         let dateString: String = arrayOfDateTime[0]
@@ -117,24 +103,25 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Assigning date & time separate variables to get data in cell labels.
         cell.lbl_MyVisitorTime.text = timeString
         cell.lbl_MyVisitorDate.text = dateString
-        cell.lbl_MyVisitorName.text = myList.getfullName()
+        cell.lbl_MyVisitorName.text = nammaApartmentVisitor.getfullName()
         cell.lbl_MyVisitorType.text = NAString().guest()
         
         //Calling function to get Profile Image from Firebase.
-        if let urlString = myList.getprofilePhoto() {
+        if let urlString = nammaApartmentVisitor.getprofilePhoto() {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
-        //TODO : Need to get Name from Firebase (According To Default User)
-        cell.lbl_InvitedName.text = "NAGARAJU"
+        
+        //We check if the inviters UID is equal to current UID if it is then we don't have to check in
+        //firebase since we now know that the inviter is current user.
+        if(nammaApartmentVisitor.getinviterUID() == userUID) {
+            cell.lbl_InvitedName.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
+        }
+            //Guest has been invited by some other family member; We check in firebase and get the name of that family member
+        else {
+            //TODO Get inviter name from firebase
+        }
         
         NAShadowEffect().shadowEffect(Cell: cell)
-        
-        //assigning font & style to cell labels
-        cell.lbl_InvitedName.font = NAFont().headerFont()
-        cell.lbl_MyVisitorType.font = NAFont().headerFont()
-        cell.lbl_MyVisitorName.font = NAFont().headerFont()
-        cell.lbl_MyVisitorDate.font = NAFont().headerFont()
-        cell.lbl_MyVisitorTime.font = NAFont().headerFont()
         
         //setting image round
         cell.myVisitorImage.layer.cornerRadius = cell.myVisitorImage.frame.size.width/2
@@ -144,21 +131,41 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.index = indexPath
         cell.delegate = self
         
-        //calling Reschdule button action on particular cell
-        cell.objReschduling = {
-            
+        //calling Reschedule action to rechedule visitor date
+        cell.actionRescheduling = {
             let dv = NAViewPresenter().rescheduleMyVisitorVC()
+            
+            //passing cell date & time to Reschedule VC
+            dv.getTime = cell.lbl_MyVisitorTime.text!
+            dv.getDate = cell.lbl_MyVisitorDate.text!
+            
             dv.providesPresentationContextTransitionStyle = true
             dv.definesPresentationContext = true
             dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
             dv.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
             self.present(dv, animated: true, completion: nil)
-            
-            //passing cell date & time to Reschedule VC
-            dv.getTime = cell.lbl_MyVisitorTime.text!
-            dv.getDate = cell.lbl_MyVisitorDate.text!
+        }
+        
+        //Calling call action to call Visitor
+        cell.actionCall = {
+            UIApplication.shared.open(NSURL(string: "tel://\(nammaApartmentVisitor.getmobileNumber())")! as URL, options: [:], completionHandler: nil)
+        }
+        
+        //Calling Message action to message Visitor
+        cell.actionMessage = {
+            MFMessageComposeViewController.canSendText()
+            let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
+            messageSheet.messageComposeDelegate = self
+            messageSheet.recipients = [nammaApartmentVisitor.getmobileNumber()]
+            messageSheet.body = ""
+            self.present(messageSheet, animated: true, completion: nil)
         }
         return cell
+    }
+    
+    //Message UI default function to dismiss UI after calling.
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     //date action fucntion
@@ -181,7 +188,7 @@ extension MyGuestListViewController : dataCollectionProtocol {
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             //Remove collection view cell item with animation
-            myVisitorList.remove(at: indx)
+            self.myVisitorList.remove(at: indx)
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity

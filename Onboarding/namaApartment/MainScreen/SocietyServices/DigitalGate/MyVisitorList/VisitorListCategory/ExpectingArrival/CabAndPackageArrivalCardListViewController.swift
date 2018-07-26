@@ -82,7 +82,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! CabAndPackageArrivalCardListCollectionViewCell
         
-        let personalValue = Singleton_PersonalDetails.shared.personalDetails_Items
+        let personalValue = GlobalUserData.shared.personalDetails_Items
         let userPersonalValues = personalValue.first
         
         if navTitle == NAString().cab_arrival() {
@@ -154,10 +154,10 @@ extension CabAndPackageArrivalCardListViewController {
     
     func expectingCabArrival() {
         
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID!)
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID)
         
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
@@ -186,10 +186,10 @@ extension CabAndPackageArrivalCardListViewController {
     
     func expectingPackageArrival()  {
         
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID!)
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
         
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {

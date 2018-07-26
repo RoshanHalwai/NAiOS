@@ -30,20 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Firebase app Configuration
         FirebaseApp.configure()
         
-        //Implemented AutoLogin Functionality. IF User not logout.
-        let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
-        if Auth.auth().currentUser != nil {
-            let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
-            self.window?.rootViewController = NavMain
-            self.window?.makeKeyAndVisible()
-            return true
-        } else {
-            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-            self.window?.rootViewController = NavLogin
-            self.window?.makeKeyAndVisible()
-            return true
-        }
-        
         //Firebase Messaging delegate
         Messaging.messaging().delegate = self
         
@@ -61,7 +47,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()
-        //END register for notifications
+        
+        //If User Data is empty then we navigate users to Login Screen, else we navigate users to Home screen
+        let preferences = UserDefaults.standard
+        let currentLevelKey = "USERUID"
+        let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
+        if preferences.object(forKey: currentLevelKey) == nil {
+            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().splashScreenRootVC())
+            self.window?.rootViewController = NavLogin
+            self.window?.makeKeyAndVisible()
+            return true
+        }
+        
+        let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+        self.window?.rootViewController = NavMain
+        self.window?.makeKeyAndVisible()
         return true
     }
     
@@ -99,7 +99,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
-        
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }

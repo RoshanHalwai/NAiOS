@@ -31,7 +31,7 @@ enum UserPersonalListFBKeys : String {
 
 class UserPersonalDetails {
     
-    //creatig string variables to get data from Firebase.
+    //creating string variables to get data from Firebase.
     var email: String?
     var fullName: String?
     var phoneNumber: String?
