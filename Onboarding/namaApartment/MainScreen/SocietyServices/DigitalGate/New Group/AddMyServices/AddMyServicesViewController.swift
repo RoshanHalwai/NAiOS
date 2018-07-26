@@ -18,7 +18,7 @@ protocol DataPass {
     func dataPassing()
 }
 
-class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass {
+class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass,AlertViewDelegate {
     
     @IBOutlet weak var img_Profile: UIImageView!
     
@@ -260,7 +260,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
      - To call default address book app & User select any contact particular part.
      - Identify from which page screen is coming.
      - Create alert controller,Timer Function,AlertView Action and OK button.
-     - Retrive Data from AlertView Delegate. */
+     - Retrive Data from AlertView Delegate.
+     - Create AlertView Delegate Function. */
     
     @IBAction func btnSelectContact(_ sender: Any) {
         let entityType = CNEntityType.contacts
@@ -323,6 +324,15 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
     }
     
+    func activityIndicator_function(withData: Any) {
+        btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
+        OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
+        OpacityView.shared.showingPopupView(view: self)
+        
+        self.AlertViewAction()
+    }
+    
+    
     @IBAction func btnAddDetails(_ sender: Any) {
         if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
             lbl_Picture_Validation.isHidden = false
@@ -358,9 +368,16 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
-                
-                AlertViewAction()
-                
+                let lv = NAViewPresenter().otpViewController()
+                let dailyServicesString = NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their")
+                lv.getCountryCodeString = self.txt_CountryCode.text!
+                lv.getMobileString = self.txt_MobileNo.text!
+                lv.newOtpString = dailyServicesString
+                lv.dailyServiceType = self.dailyServiceType
+                //Assigning Delegate
+                lv.delegateData = self
+                lv.delegate = self
+                self.navigationController?.pushViewController(lv, animated: true)
             }
         }
     }
@@ -380,15 +397,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
         // Create OK button
         let OKAction = UIAlertAction(title: NAString().ok(), style: .default) { (action:UIAlertAction!) in
-            let lv = NAViewPresenter().otpViewController()
-            let dailyServicesString = NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their")
-            lv.getCountryCodeString = self.txt_CountryCode.text!
-            lv.getMobileString = self.txt_MobileNo.text!
-            lv.newOtpString = dailyServicesString
-            lv.dailyServiceType = self.dailyServiceType
-            //Assigning Delegate
-            lv.delegateData = self
-            
+            let lv = NAViewPresenter().myDailyServicesVC()
+            lv.fromAddMyDailyServicesVC = true
             self.navigationController?.pushViewController(lv, animated: true)
         }
         alertController.addAction(OKAction)

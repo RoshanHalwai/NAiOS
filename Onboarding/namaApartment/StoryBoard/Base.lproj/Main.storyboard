@@ -733,7 +733,7 @@
                                                         <rect key="frame" x="0.0" y="32" width="334" height="24"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no"/>
+                                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" spellCheckingType="no" keyboardType="alphabet"/>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -3923,7 +3923,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="please enter name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeW-Qu-qaZ">
                                                 <rect key="frame" x="102" y="248.5" width="253" height="17"/>
@@ -4159,7 +4159,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" keyboardType="alphabet"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Upload Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9r-nY-w6E">
                                                 <rect key="frame" x="109" y="154" width="166" height="17"/>
