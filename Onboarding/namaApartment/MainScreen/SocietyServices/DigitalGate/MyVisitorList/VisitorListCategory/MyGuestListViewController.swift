@@ -28,7 +28,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         userDataRef = GlobalUserData.shared.getUserDataReference()
             .child(Constants.FLAT_Visitor).child(userUID)
@@ -138,6 +138,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             //passing cell date & time to Reschedule VC
             dv.getTime = cell.lbl_MyVisitorTime.text!
             dv.getDate = cell.lbl_MyVisitorDate.text!
+            dv.getVisitorUID = nammaApartmentVisitor.getuid()
             
             dv.providesPresentationContextTransitionStyle = true
             dv.definesPresentationContext = true
@@ -150,8 +151,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.actionCall = {
             UIApplication.shared.open(NSURL(string: "tel://\(nammaApartmentVisitor.getmobileNumber())")! as URL, options: [:], completionHandler: nil)
         }
-        
-        //Calling Message action to message Visitor
         cell.actionMessage = {
             MFMessageComposeViewController.canSendText()
             let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
