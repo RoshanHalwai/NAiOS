@@ -29,6 +29,8 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
         /* - Assigning Font and line for text field.
          - Assigning text and Font to Labels. */
         
+        language_Btn?.setTitle("English"  + "\t\t\t\t\t\t\t\t\t▾", for: .normal)
+        
         language_View?.frame = CGRect(x: 15, y: 50, width: 300, height: 250)
         self.view.addSubview(self.language_View!)
         language_View?.isHidden = true
@@ -76,7 +78,9 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
         
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
         let language = (currentCell.textLabel?.text)!
-        language_Btn?.titleLabel?.text = language
+        language_Btn?.setTitle(language + "\t\t\t\t\t\t\t\t\t▾", for: .selected)
+        language_Btn?.titleLabel?.text = language + "\t\t\t\t\t\t\t\t\t\t\t\t▾"
+//        language_Btn?.setTitle(language + "\t\t\t\t\t\t\t\t▾", for: .selected)
         language_View?.isHidden = true
     }
     
