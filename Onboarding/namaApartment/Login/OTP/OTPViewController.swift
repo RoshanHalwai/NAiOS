@@ -117,8 +117,9 @@ class OTPViewController: NANavigationViewController {
         
         //Back to My Sweet Home screen
         if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
-            let lv = NAViewPresenter().mySweetHomeVC()
-            self.navigationController?.pushViewController(lv, animated: true)
+
+            self.navigationController?.popViewController(animated: true)
+            self.delegate?.activityIndicator_function(withData: (Any).self)
         }
         //Back to My Daily Services Screen
         if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {
@@ -146,7 +147,6 @@ class OTPViewController: NANavigationViewController {
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return
                 } else {
-                   // Constants.userUIDPer = userUID!
                     //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
                     self.delegateData.dataPassing()
                     self.navigationController?.popViewController(animated: true)
