@@ -16,6 +16,8 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     var myVisitorListReference : DatabaseReference?
     var visitorData : DatabaseReference?
     var userDataRef : DatabaseReference?
+    var myVisitorList = [NammaApartmentVisitor]()
+    var VisitorUseruiD = [String]()
     
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
     @IBOutlet weak var collectionView: UICollectionView!
@@ -23,8 +25,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     
     //A boolean variable to indicate if previous screen was Expecting Arrival.
     var fromInvitingVisitorsVC = false
-    
-    var myVisitorList = [NammaApartmentVisitor]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,23 +179,26 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
 }
 
 extension MyGuestListViewController : dataCollectionProtocol {
+   
     func deleteData(indx: Int, cell: UICollectionViewCell) {
-        
-        //AlertView will Display while removing Card view
+        let visitor_UId =  myVisitorList[indx]
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
-            
+    
+            //Delete Data from the firebase database
+            self.userDataRef = GlobalUserData.shared.getUserDataReference()
+                .child(Constants.FLAT_Visitor).child(userUID)
+                .child(visitor_UId.getuid())
+            self.userDataRef?.removeValue()
             //Remove collection view cell item with animation
-            self.myVisitorList.remove(at: indx)
+            self.self.myVisitorList.remove(at: indx)
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
-            
             UIView.animate(withDuration: 0.3) {
                 cell.alpha = 0.0
-                let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
-                cell.layer.transform = transform
+                cell.transform = CGAffineTransform.identity
             }
             Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
         }
