@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class RescheduleMyGuestListViewController: NANavigationViewController {
     
@@ -16,9 +17,15 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
     @IBOutlet weak var btn_Cancel: UIButton!
     @IBOutlet weak var btn_Reschedule: UIButton!
     
-    //created string to get Time & Date for rescheduling purpose
+    //created string to get Time,Date & visitor UID for rescheduling purpose
     var getDate = String()
     var getTime = String()
+    var getVisitorUID = String()
+    
+    var reloadGuestVC : MyGuestListViewController!
+    
+    //Database References
+    var preApprovedVisitorsRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +99,10 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
     
     @IBAction func btnReschedule(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+        
+        //Calling Time Rescheduling Function
+        reschedulingVisitorTimeInFirebase()
+        
         let lv = NAViewPresenter().myGuestListVC()
         self.navigationController?.pushViewController(lv, animated: true)
     }
@@ -122,5 +133,17 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         let image = UIImage(named: "newClock")
         imageView.image = image
         txt_ReTime.rightView = imageView
+    }
+}
+
+extension RescheduleMyGuestListViewController {
+    
+    //Created function to reschedule date & time of visitor
+    func reschedulingVisitorTimeInFirebase() {
+        preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(self.getVisitorUID)
+        
+        var  newDateAndTimeOfVisit = String()
+        newDateAndTimeOfVisit = (self.txt_ReDate.text!) + "\t\t" + (txt_ReTime.text!)
+        preApprovedVisitorsRef?.child(VisitorListFBKeys.dateAndTimeOfVisit.key).setValue(newDateAndTimeOfVisit)
     }
 }
