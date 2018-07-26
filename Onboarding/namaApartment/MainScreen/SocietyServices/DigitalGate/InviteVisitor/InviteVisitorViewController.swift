@@ -268,7 +268,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             OpacityView.shared.showingPopupView(view: self)
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
         }
-        //TODO Get The UID From the Firebase
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA)
             .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
             .child(Constants.FIREBASE_CHILD_BANGALORE)
@@ -282,9 +281,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     print(a)
                 }
             } else {
-                print("we don't have that, add it to the DB now")
+                print("we don’t have that, add it to the DB now")
             }})
-        
     }
     
     //Create Timer Function

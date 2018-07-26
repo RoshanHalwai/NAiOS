@@ -61,7 +61,10 @@ class MainScreenViewController: NANavigationViewController {
         
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
-        
+        let normalTextAttributes: [NSObject : AnyObject] = [
+            NSAttributedStringKey.foregroundColor as NSObject: UIColor.white,
+            NSAttributedStringKey.font as NSObject: NAFont().descriptionFont()]
+        self.segmentSelection?.setTitleTextAttributes(normalTextAttributes, for: .normal)
         segmentSelection.selectedSegmentIndex = currentIndex
         self.segmentControlSelection()
         
@@ -129,8 +132,8 @@ class MainScreenViewController: NANavigationViewController {
         }
     }
     
-    /* * For switching the tableview data in between society & apartment services.
-     * Modifying SegmentControl text according to segment selection. */
+    /* - For switching the tableview data in between society & apartment services.
+       - Modifying SegmentControl text according to segment selection. */
     
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.segmentControlSelection()
@@ -147,6 +150,7 @@ class MainScreenViewController: NANavigationViewController {
             showNavigationMenu()
         }
     }
+    
     @objc func handleTap() {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
@@ -155,6 +159,7 @@ class MainScreenViewController: NANavigationViewController {
             hidingRateUsView()
         }
     }
+    
     func closeNavigationMenu() {
         self.NavigationMenuOpen = false
         UIView.animate(withDuration: 0.3) {
@@ -162,6 +167,7 @@ class MainScreenViewController: NANavigationViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
     func showNavigationMenu() {
         self.NavigationMenuOpen = true
         opacity_View.isHidden = false
@@ -214,9 +220,14 @@ class MainScreenViewController: NANavigationViewController {
         self.segmentSelection?.backgroundColor = UIColor.black
         let selectedAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.segmentSelection?.setTitleTextAttributes(selectedAttributes, for: .selected)
+        let selectedTextAttributes: [NSObject : AnyObject] = [
+            NSAttributedStringKey.foregroundColor as NSObject: UIColor.white,
+            NSAttributedStringKey.font as NSObject: NAFont().descriptionFont()]
+        self.segmentSelection?.setTitleTextAttributes(selectedTextAttributes, for: .selected)
         let normalAttributes = [NSAttributedStringKey.foregroundColor: UIColor.gray]
         self.segmentSelection?.setTitleTextAttributes(normalAttributes, for: .normal)
     }
+    
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
