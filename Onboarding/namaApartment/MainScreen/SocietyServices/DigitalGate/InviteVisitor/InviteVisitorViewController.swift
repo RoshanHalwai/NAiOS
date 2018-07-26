@@ -286,7 +286,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                 }
             } else {
                 print("we don't have that, add it to the DB now")
-            }})
+            }
+        })
     }
     
     //Create Timer Function
