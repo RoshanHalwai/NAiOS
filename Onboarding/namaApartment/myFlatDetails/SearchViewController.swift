@@ -63,10 +63,11 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
     @objc func goBackToMyFlatDetails() {
         self.navigationController?.dismiss(animated: true)
     }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredArray = gettingArray.filter({ (text) -> Bool in
-            let tmp: NSString = text as NSString
-            let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+            let string: NSString = text as NSString
+            let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return range.location != NSNotFound
         })
         if(filteredArray.count == 0){
@@ -113,7 +114,6 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
         }
         self.navigationController?.dismiss(animated: true)
     }
-    
 }
 
 extension SearchViewController {
