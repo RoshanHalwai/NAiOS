@@ -90,8 +90,10 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID()) as! SearchTableViewCell
         if(searchActive) {
             cell.textLabel?.text = filteredArray[indexPath.row]
+            filteredArray = filteredArray.sorted()
         } else {
             cell.textLabel?.text = gettingArray[indexPath.row]
+            gettingArray = gettingArray.sorted()
         }
         cell.textLabel?.font = NAFont().textFieldFont()
         return cell
