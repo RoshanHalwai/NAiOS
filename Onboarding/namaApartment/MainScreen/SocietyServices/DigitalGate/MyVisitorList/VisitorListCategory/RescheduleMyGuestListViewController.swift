@@ -22,6 +22,8 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
     var getTime = String()
     var getVisitorUID = String()
     
+   // var guestVC : MyGuestListViewController!
+    
     //Database References
     var preApprovedVisitorsRef : DatabaseReference?
     
@@ -100,7 +102,7 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         
         //Calling Time Rescheduling Function
         reschedulingVisitorTimeInFirebase()
-        
+
         let lv = NAViewPresenter().myGuestListVC()
         self.navigationController?.pushViewController(lv, animated: true)
     }
