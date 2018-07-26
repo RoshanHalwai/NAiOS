@@ -22,8 +22,6 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
     var getTime = String()
     var getVisitorUID = String()
     
-    var reloadGuestVC : MyGuestListViewController!
-    
     //Database References
     var preApprovedVisitorsRef : DatabaseReference?
     

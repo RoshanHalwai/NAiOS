@@ -28,7 +28,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         userDataRef = GlobalUserData.shared.getUserDataReference()
             .child(Constants.FLAT_Visitor).child(userUID)
