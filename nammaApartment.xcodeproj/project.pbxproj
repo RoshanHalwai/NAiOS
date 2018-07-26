@@ -18,7 +18,6 @@
 		083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */; };
 		083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */; };
 		083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */; };
-		083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083EA19920ECB55300714F85 /* SearchTableViewController.swift */; };
 		084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */; };
 		084D963F2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */; };
 		085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646712101FA0C00C5FBF6 /* HelpViewController.swift */; };
@@ -34,6 +33,8 @@
 		089A94B8210836940088F519 /* NoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A94B7210836940088F519 /* NoticeBoardViewController.swift */; };
 		089A94BA210837CA0088F519 /* NoticeBoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A94B9210837CA0088F519 /* NoticeBoardCollectionViewCell.swift */; };
 		08A0210520F523FC00130185 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A0210420F523FC00130185 /* Reachability.swift */; };
+		08B052F12109A40E002F2E93 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B052F02109A40E002F2E93 /* SearchViewController.swift */; };
+		08B052F32109A47E002F2E93 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B052F22109A47E002F2E93 /* SearchTableViewCell.swift */; };
 		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
 		08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */; };
@@ -160,7 +161,6 @@
 		083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesViewController.swift; sourceTree = "<group>"; };
 		083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesTableViewCell.swift; sourceTree = "<group>"; };
-		083EA19920ECB55300714F85 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuViewController.swift; sourceTree = "<group>"; };
 		084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenuTableViewCell.swift; sourceTree = "<group>"; };
 		085646712101FA0C00C5FBF6 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +176,8 @@
 		089A94B7210836940088F519 /* NoticeBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardViewController.swift; sourceTree = "<group>"; };
 		089A94B9210837CA0088F519 /* NoticeBoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardCollectionViewCell.swift; sourceTree = "<group>"; };
 		08A0210420F523FC00130185 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		08B052F02109A40E002F2E93 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		08B052F22109A47E002F2E93 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListViewController.swift; sourceTree = "<group>"; };
 		08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListCollectionViewCell.swift; sourceTree = "<group>"; };
 		08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAConfirmationAlert.swift; sourceTree = "<group>"; };
@@ -642,7 +644,8 @@
 			isa = PBXGroup;
 			children = (
 				86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */,
-				083EA19920ECB55300714F85 /* SearchTableViewController.swift */,
+				08B052F02109A40E002F2E93 /* SearchViewController.swift */,
+				08B052F22109A47E002F2E93 /* SearchTableViewCell.swift */,
 			);
 			path = myFlatDetails;
 			sourceTree = "<group>";
@@ -1036,7 +1039,6 @@
 				085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
 				867DFFA920AEA3BB00A45895 /* MySweetHomeViewController.swift in Sources */,
-				083EA19A20ECB55300714F85 /* SearchTableViewController.swift in Sources */,
 				868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */,
 				083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
@@ -1102,6 +1104,8 @@
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
+				08B052F12109A40E002F2E93 /* SearchViewController.swift in Sources */,
+				08B052F32109A47E002F2E93 /* SearchTableViewCell.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
 				085646782101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift in Sources */,
 				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
