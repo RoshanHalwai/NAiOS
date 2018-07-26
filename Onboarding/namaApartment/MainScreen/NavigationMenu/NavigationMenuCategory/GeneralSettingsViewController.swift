@@ -19,6 +19,7 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
     @IBOutlet weak var language_Btn: UIButton?
     @IBOutlet weak var language_View: UIView?
     @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var opacityView: UIView?
     
     var navTitle = String()
     let languagesList = ["English","Hindi","Tamil","Kannada","Telugu"]
@@ -29,11 +30,8 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
         /* - Assigning Font and line for text field.
          - Assigning text and Font to Labels. */
         
-        language_Btn?.setTitle("English"  + "\t\t\t\t\t\t\t\t\t▾", for: .normal)
-        
-        language_View?.frame = CGRect(x: 15, y: 50, width: 300, height: 250)
-        self.view.addSubview(self.language_View!)
         language_View?.isHidden = true
+        opacityView?.isHidden = true
         
         super.ConfigureNavBarTitle(title: navTitle)
         
@@ -49,7 +47,7 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
         location_Services_Label.font = NAFont().headerFont()
         report_A_Bug_Label.font = NAFont().headerFont()
         app_Version_Label.font = NAFont().headerFont()
-        language_Btn?.titleLabel?.font = NAFont().headerFont()
+        language_Btn?.titleLabel?.font = NAFont().textFieldFont()
     }
     
     /* - Calling TableView Data Source & Delegate Methods & UIView Methods.
@@ -62,6 +60,7 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath)
         cell.textLabel?.text = languagesList[indexPath.row]
+        cell.textLabel?.font = NAFont().textFieldFont()
         return cell
     }
     
@@ -78,17 +77,18 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
         
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
         let language = (currentCell.textLabel?.text)!
-        language_Btn?.setTitle(language + "\t\t\t\t\t\t\t\t\t▾", for: .selected)
-        language_Btn?.titleLabel?.text = language + "\t\t\t\t\t\t\t\t\t\t\t\t▾"
-//        language_Btn?.setTitle(language + "\t\t\t\t\t\t\t\t▾", for: .selected)
+        language_Btn?.titleLabel?.text = language
+        tableView.deselectRow(at: indexPath!, animated: true)
+        opacityView?.isHidden = true
         language_View?.isHidden = true
     }
     
     @IBAction func btn_LanguageAction() {
+        opacityView?.isHidden = false
         language_View?.isHidden = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        language_View?.isHidden = true
+        opacityView?.isHidden = true
     }
 }

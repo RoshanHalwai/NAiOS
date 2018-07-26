@@ -232,6 +232,10 @@ class MainScreenViewController: NANavigationViewController {
                 showNavigationMenu()
             case UISwipeGestureRecognizerDirection.left:
                 closeNavigationMenu()
+                opacity_View.isHidden = true
+                if rateUsView != nil {
+                    rateUsView.isHidden = true
+                }
             default:
                 break
             }
