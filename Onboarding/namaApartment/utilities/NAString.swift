@@ -439,8 +439,8 @@ class NAString : NSObject {
         return String("Date & Time")
     }
     
-    func inviteVisitorOTPDesc() -> String {
-        return String("We will send an OTP to your daily service for authentication.")
+    func inviteVisitorOTPDesc(dailyServiceName : String) -> String {
+        return String("We will send an OTP to your \(dailyServiceName) for authentication.")
     }
     
     func btnInvite() -> String {
