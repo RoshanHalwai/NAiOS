@@ -903,7 +903,7 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
     }
     
-    func layoutFeatureErrorHandedThings() -> String {
+    func layoutFeatureErrorHandedThingsList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
     }
     

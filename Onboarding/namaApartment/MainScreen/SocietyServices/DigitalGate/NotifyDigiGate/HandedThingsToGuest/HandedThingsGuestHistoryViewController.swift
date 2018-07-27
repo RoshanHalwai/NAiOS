@@ -69,7 +69,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
             } else {
                 //Hiding Activity Indicator & showing error image & message.
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThings())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsList())
             }
         })
     }
