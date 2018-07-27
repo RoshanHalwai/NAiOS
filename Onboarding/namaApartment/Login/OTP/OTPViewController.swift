@@ -17,7 +17,6 @@ import FirebaseAuth
 protocol AlertViewDelegate {
     func activityIndicator_function(withData : Any)
 }
-
 var userUID = ""
 let dailyServicesUID = Auth.auth().currentUser?.uid
 
@@ -51,7 +50,6 @@ class OTPViewController: NANavigationViewController {
     var mobileNumberValidRef : DatabaseReference?
     
     var credentialID = String()
-    
     var delegate : AlertViewDelegate?
     
     override func viewDidLoad() {
@@ -64,9 +62,7 @@ class OTPViewController: NANavigationViewController {
          - Assigned delegate method on textFields and Set Textfield bottom border line. */
         
         lbl_OTP_Validation.isHidden = true
-        
         triggerOTPFromFirebase()
-        
         self.lbl_OTPDescription.text = newOtpString
         
         btnVerify.backgroundColor = NAColor().buttonBgColor()
@@ -106,6 +102,9 @@ class OTPViewController: NANavigationViewController {
     }
     
     @IBAction func btnVerifyOTP(_ sender: Any) {
+        
+        btnVerify.tag = NAString().verifyOTPButtonTagValue()
+        OpacityView.shared.addButtonTagValue = btnVerify.tag
         
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
@@ -252,6 +251,9 @@ extension OTPViewController {
     
     func verifyOTPWithFirebase() {
         
+        //Showing Please wait PopUpView while while Verifying OTP
+        OpacityView.shared.showingPopupView(view: self)
+        
         let Otp_Strig1 = self.txtOTP1.text!
         let Otp_Strig2 = self.txtOTP2.text!
         let Otp_Strig3 = self.txtOTP3.text!
@@ -269,6 +271,7 @@ extension OTPViewController {
             if Reachability.Connection() {
                 if let error = error {
                     print("error",error.localizedDescription)
+                    OpacityView.shared.hidingPopupView()
                     self.lbl_OTP_Validation.isHidden = false
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return
@@ -288,7 +291,6 @@ extension OTPViewController {
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
                 } else {
-                    
                     let dest = NAViewPresenter().signupVC()
                     dest.getNewMobileString = self.getMobileString
                     self.navigationController?.pushViewController(dest, animated: true)

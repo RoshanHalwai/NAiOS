@@ -35,9 +35,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
     
-    var timer = Timer()
-    var count = 5
-    
     //Creating Firebase DB Reference variable.
     var preApprovedVisitorsRef : DatabaseReference?
     var preApprovedVisitorsMobileNoRef : DatabaseReference?
@@ -262,23 +259,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
-            
+        
             btnInviteVisitor.tag = NAString().inviteButtonTagValue()
             OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
             OpacityView.shared.showingPopupView(view: self)
-            timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
-        }
-    }
-    
-    //Create Timer Function
-    @objc func stopTimer() {
-        OpacityView.shared.hidingPopupView()
-        if (count >= 0){
-            if(count == 0)
-            {
-                self.inviteAlertView()
-            }
-            count -= 1
         }
     }
     
@@ -289,7 +273,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-            
             let dv = NAViewPresenter().myGuestListVC()
             dv.fromInvitingVisitorsVC = true
             self.navigationController?.pushViewController(dv, animated: true)
@@ -352,6 +335,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                         .child(Constants.FIREBASE_CHILD_VISITORS)
                         .child(userUID)
                     self.userDataRef?.child(visitorUID!).setValue(NAString().gettrue())
+                    
+                    //Hiding popView & Showing AlertView after adding all the data in firebase.
+                    OpacityView.shared.hidingPopupView()
+                    self.inviteAlertView()
                     
                     //Using else statement & printing error,so the other developers can know what is going on.
                 } else {

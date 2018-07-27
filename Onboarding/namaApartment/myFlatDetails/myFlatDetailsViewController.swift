@@ -76,8 +76,7 @@ class myFlatDetailsViewController: NANavigationViewController {
         //To get Selected Segment text
         if segment_ResidentType.selectedSegmentIndex == 0 {
             selectedSegmentValue = NAString().owner()
-        }
-        else {
+        } else {
             selectedSegmentValue = NAString().tenant()
         }
         
@@ -179,6 +178,11 @@ class myFlatDetailsViewController: NANavigationViewController {
     }
     
     @IBAction func btnContinue(_ sender: Any) {
+        
+        //Assigning tag value to butto to show popView Title based of button.
+        btnContinue.tag = NAString().continueButtonTagValue()
+        OpacityView.shared.addButtonTagValue = btnContinue.tag
+        OpacityView.shared.showingPopupView(view: self)
         //Calling Function to store UserFlatDetails & Privileges
         storeUsersDetailsInFirebase()
     }
@@ -273,7 +277,7 @@ extension myFlatDetailsViewController {
     func storeUsersDetailsInFirebase() {
         var userPrivateRef : DatabaseReference
         let userUID = Auth.auth().currentUser?.uid
-
+        
         //User Private Reference
         userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
         
