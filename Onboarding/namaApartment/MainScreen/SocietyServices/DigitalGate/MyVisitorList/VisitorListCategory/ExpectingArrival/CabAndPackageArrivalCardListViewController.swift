@@ -31,7 +31,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     var myExpectedPackageList = [NAExpectingArrival]()
     
     /*  Created custom back button for navigating back to My DigiGate VC Based on Screen Coming From.
-        Formatting & setting navigation bar. */
+     Formatting & setting navigation bar. */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,12 +77,12 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
     }
     
     /*  Loading Expected Package & Cab Data.
-        Getting users Flat Details Form Singaltone class. */
+     Getting users Flat Details Form Singaltone class. */
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! CabAndPackageArrivalCardListCollectionViewCell
         
-        let personalValue = Singleton_PersonalDetails.shared.personalDetails_Items
+        let personalValue = GlobalUserData.shared.personalDetails_Items
         let userPersonalValues = personalValue.first
         
         if navTitle == NAString().cab_arrival() {
@@ -133,7 +133,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         cell.lbl_Status_Detail.font = NAFont().headerFont()
         cell.lbl_Inviter_Detail.font = NAFont().headerFont()
         
-       /*Setting round image*/
+        /*Setting round image*/
         cell.image_View.layer.cornerRadius = cell.image_View.frame.size.width/2
         cell.image_View.clipsToBounds = true
         
@@ -154,10 +154,10 @@ extension CabAndPackageArrivalCardListViewController {
     
     func expectingCabArrival() {
         
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
-      
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID!)
+        
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID)
         
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
@@ -186,10 +186,10 @@ extension CabAndPackageArrivalCardListViewController {
     
     func expectingPackageArrival()  {
         
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID!)
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
         
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {

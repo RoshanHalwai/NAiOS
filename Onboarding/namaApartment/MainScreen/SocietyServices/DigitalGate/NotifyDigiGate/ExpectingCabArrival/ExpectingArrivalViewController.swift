@@ -347,7 +347,11 @@ class ExpectingArrivalViewController: NANavigationViewController {
     //Creating CablabelNumber validation and text
     func inviteLabelCabNumberTitle() {
         lbl_cabNumber_Validation.isHidden = false
-        lbl_cabNumber_Validation.text = NAString().please_fill_details()
+        if (navTitle == NAString().expecting_cab_arrival()) {
+            lbl_cabNumber_Validation.text = NAString().please_fill_details(name: "Cab Number")
+        } else {
+            lbl_cabNumber_Validation.text = NAString().please_fill_details(name: "Name")
+        }
     }
     
     //AlertView For navigation
@@ -544,7 +548,7 @@ extension ExpectingArrivalViewController {
         self.finalCabString = cabStateCode + hyphen + cabRTOCode + hyphen + cabSerialOne + hyphen + cabSerialTwo
         
         //getting users Flat Details Form Singaltone class
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
         cabsPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_PUBLIC)
@@ -555,7 +559,7 @@ extension ExpectingArrivalViewController {
         
         cabsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL)
         
-        userDataCabRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID!)
+        userDataCabRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID)
         
         
         //Mapping CabUID with true under UsersData -> Flat
@@ -583,11 +587,11 @@ extension ExpectingArrivalViewController {
     func expectingPackageArrival() {
         
         //getting users Personal Detail Form Singaltone class
-        let personalValue = Singleton_PersonalDetails.shared.personalDetails_Items
+        let personalValue = GlobalUserData.shared.personalDetails_Items
         let userPersonalValues = personalValue.first
         
         //getting users Flat Details Form Singaltone class
-        let flatValues = Singleton_FlatDetails.shared.flatDetails_Items
+        let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
         packagePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_PUBLIC)
@@ -598,7 +602,7 @@ extension ExpectingArrivalViewController {
         
         packagePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL)
         
-        userDataPackageRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID!)
+        userDataPackageRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
         
         
         //Mapping PackageUID with true under UsersData -> Flat
@@ -622,5 +626,3 @@ extension ExpectingArrivalViewController {
         inviteAlertView()
     }
 }
-
-

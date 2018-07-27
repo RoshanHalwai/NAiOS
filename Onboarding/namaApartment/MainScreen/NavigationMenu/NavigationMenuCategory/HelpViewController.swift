@@ -9,7 +9,7 @@
 import UIKit
 
 class HelpViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     @IBOutlet weak var collection_View: UICollectionView!
     
     var helpArray = [NAString().frequently_asked_questions(), NAString().using_namma_apartments_app(), NAString().contact_us(), NAString().terms_and_conditions(), NAString().privacy_policy()]

@@ -114,6 +114,10 @@ class NAViewPresenter: NSObject {
         return String("NavMain")
     }
     
+    func splashScreenRootVC() -> String {
+        return String("rootVC")
+    }
+    
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController

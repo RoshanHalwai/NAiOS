@@ -152,7 +152,7 @@ class NAString : NSObject {
     }
     
     func i_agree_to_terms_and_conditions() -> String {
-        return String("By clicking on SignUp I agree to NammaApartments Privacy Policy and Terms&Conditions")
+        return String("By clicking on SignUp I agree to NammaApartments Privacy Policy and Terms & Conditions")
     }
     
     func i_already_have_an_account() -> String {
@@ -439,8 +439,8 @@ class NAString : NSObject {
         return String("Date & Time")
     }
     
-    func inviteVisitorOTPDesc() -> String {
-        return String("We will send an OTP to your daily service for authentication.")
+    func inviteVisitorOTPDesc(dailyServiceName : String) -> String {
+        return String("We will send an OTP to your \(dailyServiceName) for authentication.")
     }
     
     func btnInvite() -> String {
@@ -892,7 +892,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorVisitorList() -> String {
-        return String ("Sorry you cannot use this feature since currently there are no visitors at your flat.")
+        return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
     }
     
     func layoutFeatureErrorCabArrivalList() -> String {
@@ -903,21 +903,25 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
     }
     
+    func layoutFeatureErrorHandedThingsList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
+    }
+    
     func statusNotEntered() -> String {
         return String ("Not Entered")
     }
     
     //Cab Arrival and Package Arrival Validation
-    func please_fill_details() -> String {
-        return String("Please fill details here")
+    func please_fill_details(name : String) -> String {
+        return String("Please Enter \(name)")
     }
     
     func Please_select_date() -> String {
-        return String("Please select Date")
+        return String("Please select date and time")
     }
     
     func Please_select_expected_Hours() -> String {
-        return String("Please select Expected Arrival in Hours")
+        return String("Please select at least one button")
     }
     
     func notifyButtonAlertViewMessage() -> String {
@@ -948,15 +952,15 @@ class NAString : NSObject {
     func inviteButtonTagValue() -> Int {
         return Int (101)
     }
-
+    
     func addMyFamilyMemberButtonTagValue() -> Int {
         return Int (102)
     }
-
+    
     func addMyDailyServicesButtonTagValue() -> Int {
         return Int (103)
     }
-
+    
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)

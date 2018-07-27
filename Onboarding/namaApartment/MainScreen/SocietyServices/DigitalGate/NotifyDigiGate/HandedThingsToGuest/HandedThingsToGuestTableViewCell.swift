@@ -50,14 +50,14 @@ class HandedThingsToGuestTableViewCell: UITableViewCell {
                 .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
                 .child(Constants.FIREBASE_CHILD_ASTER)
                 .child(Constants.FIREBASE_CHILD_FLATNO)
-                .child(Constants.FLAT_Visitor).child(userUID!)
+                .child(Constants.FLAT_Visitor).child(userUID)
             UserDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
                 if snapshot.exists(){
                     for DatavalueesCell in ((snapshot.value as AnyObject).allKeys)!{
                         let SnapShotValues_Cell = snapshot.value as? NSDictionary
                         for UserID_Cell  in (SnapShotValues_Cell?.allKeys)! {
                             let userIDS_Cell = UserID_Cell as! String
-                          // TODO: need to change UID in Future
+                            // TODO: need to change UID in Future
                             Database.database().reference()
                                 .child(Constants.FIREBASE_CHILD_VISITORS)
                                 .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)

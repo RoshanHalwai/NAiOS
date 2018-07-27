@@ -51,5 +51,5 @@ class SettingsViewController: NANavigationViewController, UICollectionViewDelega
             break
         }
     }
-
+    
 }

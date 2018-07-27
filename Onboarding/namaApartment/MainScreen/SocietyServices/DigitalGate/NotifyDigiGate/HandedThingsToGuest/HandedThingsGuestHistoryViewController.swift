@@ -32,14 +32,14 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
             .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
             .child(Constants.FIREBASE_CHILD_ASTER)
             .child(Constants.FIREBASE_CHILD_FLATNO)
-            .child(Constants.FLAT_Visitor).child(userUID!)
+            .child(Constants.FLAT_Visitor).child(userUID)
         UserDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists(){
                 for Datavaluees in ((snapshot.value as AnyObject).allKeys)!{
                     let SnapShotValues = snapshot.value as? NSDictionary
                     for UserID  in (SnapShotValues?.allKeys)! {
                         let userIDS = UserID as! String
-                         // TODO: need to change UID in Future
+                        // TODO: need to change UID in Future
                         self.Visitor_Ref =  Database.database().reference()
                             .child(Constants.FIREBASE_CHILD_VISITORS)
                             .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
@@ -66,7 +66,10 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
                         })
                     }
                 }
-                
+            } else {
+                //Hiding Activity Indicator & showing error image & message.
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsList())
             }
         })
     }
@@ -87,7 +90,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! HandedThingsGuestHistoryCollectionViewCell
         let rowofIndex = indexPath.row
         let SavedValues = HandedThingsList[rowofIndex]
-        let VisitedByName =  Singleton_PersonalDetails.shared.personalDetails_Items
+        let VisitedByName =  GlobalUserData.shared.personalDetails_Items
         let UserDetails_Data = VisitedByName.first
         let VisitedBy = UserDetails_Data?.fullName
         cell.lbl_Visitor_Detail.text = SavedValues.getfullName()
@@ -129,6 +132,4 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         cell.image_View.clipsToBounds = true
         return cell
     }
-    
-    
 }

@@ -37,21 +37,7 @@ class myFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Description: UILabel!
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    //TODO : Need to get data from firebase
-    var cities = ["Bengaluru", "Chennai"]
-    var societies = ["Brigade Gateway"]
-    var BrigadeGateway = ["Aster", "Bolivia", "Chamber", "DSR"]
-    var SalarpuriaCambridge = ["Block-1", "Block-2", "Block-3", "Block-4", "Block-5"]
-    var Aster = ["A-1001", "A-1002", "A-1003"]
-    var Bolivia = ["B-1001", "B-1002", "B-1003"]
-    var Chamber = ["C-1001", "C-1002", "C-1003"]
-    var DSR = ["D-1001", "D-1002", "D-1003"]
-    var Block1 = ["101", "102", "103", "104", "105"]
-    var Block2 = ["201", "202", "203", "204", "205"]
-    var Block3 = ["301", "302", "303", "304", "305"]
-    var Block4 = ["401", "402", "403", "404", "405"]
-    var Block5 = ["501", "502", "503", "504", "505"]
+    var cities = [String]()
     
     //placeHolder instance
     var placeHolder = NSMutableAttributedString()
@@ -80,6 +66,12 @@ class myFlatDetailsViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //To hide keyboard on textFiled click
+        txtFlat.inputView = UIView()
+        txtApartment.inputView = UIView()
+        txtSociety.inputView = UIView()
+        txtCity.inputView = UIView()
         
         //To get Selected Segment text
         if segment_ResidentType.selectedSegmentIndex == 0 {
@@ -147,11 +139,19 @@ class myFlatDetailsViewController: NANavigationViewController {
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
         
-        //Hiding Navigation bar Back Button
+        //Created custom back button for going back to Signup VC
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToSignupVC))
+        self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        self.navigationItem.rightBarButtonItem = nil
         
         //set Title in Navigation Bar
-        self.navigationItem.title = NAString().My_flat_Details_title()
+        super.ConfigureNavBarTitle(title: NAString().My_flat_Details_title())
+    }
+    
+    //Action for Navigating Back to SignupVC 
+    @objc func goBackToSignupVC() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -237,26 +237,30 @@ class myFlatDetailsViewController: NANavigationViewController {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchVC") as! SearchTableViewController
+        let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
         let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
         
         if textField == txtCity {
-            searchVC.title = NAString().your_city()
+            searchVC.navigationTitle = NAString().your_city()
             txtCity.resignFirstResponder()
         } else if textField == txtSociety {
-            searchVC.title = NAString().your_society()
+            searchVC.textFieldText = self.txtCity.text!
+            searchVC.navigationTitle = NAString().your_society()
             txtSociety.resignFirstResponder()
         } else if textField == txtApartment {
-            searchVC.title = NAString().your_apartment()
+            searchVC.navigationTitle = NAString().your_apartment()
+            searchVC.textFieldText = self.txtSociety.text!
             txtApartment.resignFirstResponder()
         } else if textField == txtFlat {
-            searchVC.title = NAString().your_flat()
+            searchVC.navigationTitle = NAString().your_flat()
+            searchVC.textFieldText = self.txtApartment.text!
             txtFlat.resignFirstResponder()
         }
         searchVC.myFlatDetailsVC = self
         self.navigationController?.present(nav, animated: true, completion: nil)
         return true
     }
+    
     //function to end editing on the touch on the view
     override func touchesBegan(_ touches: Set<UITouch>,with event: UIEvent?) {
         self.view.endEditing(true)
@@ -267,15 +271,20 @@ extension myFlatDetailsViewController {
     
     //Save User Personal Details
     func storeUsersDetailsInFirebase() {
+        var userPrivateRef : DatabaseReference
+        let userUID = Auth.auth().currentUser?.uid
+
+        //User Private Reference
+        userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
         
         //Flat Details Firebase DB Reference
-        usersFlatDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        usersFlatDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_FLATDETAILS)
         
         //Privileges Details Firebase DB Reference
-        usersPrivilegeDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+        usersPrivilegeDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_PRIVILEGES)
         
         //Personal Details Firebase DB Reference
-        usersPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        usersPersonalDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
         //Storing Data Under UsersData
         UsersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(txtCity.text!).child(txtSociety.text!).child(txtApartment.text!).child(txtFlat.text!)
@@ -298,7 +307,7 @@ extension myFlatDetailsViewController {
         ]
         
         //Maping UsersUID with admin
-        UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(userUID!)
+        UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(userUID)
         
         //Adding usersFlatDetails data under Users/Private/UID
         self.usersFlatDetailsRef?.setValue(usersFlatData)
@@ -345,7 +354,7 @@ extension myFlatDetailsViewController {
                     //Mapping Mobile Number with UID
                     
                     self.usersMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
-                    self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID!)
+                    self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID)
                     
                     //Generating & Mapping TokenID under Users/Private/UID
                     let tokenID = Messaging.messaging().fcmToken

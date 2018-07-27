@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var nammaLabel: UILabel!
     @IBOutlet weak var oneStopLabel: UILabel!
@@ -81,7 +81,9 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
     }
     //To Logout the current user
     @objc func logoutAction() {
-        try! Auth.auth().signOut()
+        let preferences = UserDefaults.standard
+        let currentLevelKey = "USERUID"
+        preferences.removeObject(forKey: currentLevelKey)
         if self.storyboard != nil {
             let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
             let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())

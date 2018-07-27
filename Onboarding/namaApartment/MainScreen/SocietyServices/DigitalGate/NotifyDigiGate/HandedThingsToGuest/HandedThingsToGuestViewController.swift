@@ -37,7 +37,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
             .child(Constants.FIREBASE_CHILD_ASTER)
             .child(Constants.FIREBASE_CHILD_FLATNO)
-            .child(Constants.FLAT_Visitor).child(userUID!)
+            .child(Constants.FLAT_Visitor).child(userUID)
         UserDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists(){
                 for Datavaluees in ((snapshot.value as AnyObject).allKeys)!{
@@ -70,6 +70,10 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
                         })
                     }
                 }
+            } else {
+                //Hiding Activity Indicator & showing error image & message.
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsList())
             }
         })
         
@@ -112,7 +116,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestTableViewCell
         let rowofIndex = indexPath.row
         let SavedValues = HandedThingsList[rowofIndex]
-        let VisitedByName =  Singleton_PersonalDetails.shared.personalDetails_Items
+        let VisitedByName =  GlobalUserData.shared.personalDetails_Items
         let UserDetails_Data = VisitedByName.first
         let VisitedBy = UserDetails_Data?.fullName
         let Status = SavedValues.getstatus()

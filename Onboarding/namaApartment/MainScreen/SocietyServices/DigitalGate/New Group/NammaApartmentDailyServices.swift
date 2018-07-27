@@ -43,7 +43,7 @@ class NammaApartmentDailyServices {
     var timeOfVisit: String?
     var uid: String?
     
-     //initilaize the variables
+    //initilaize the variables
     init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber

@@ -12,7 +12,7 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
     
     var ImageList = [#imageLiteral(resourceName: "hospital"),#imageLiteral(resourceName: "flame"),#imageLiteral(resourceName: "alarm")]
     var EmergencyList = ["Medical Emergency","Raise Fire Alarm","Raise Theft Alarm"]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,21 +25,19 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         return ImageList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EmergencyCollectionViewCell
         
         cell.cellImage.image = ImageList[indexPath.row]
         cell.cellLabel.text = EmergencyList[indexPath.row]
         
         NAShadowEffect().shadowEffect(Cell: cell)
-      
+        
         
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             let lv = NAViewPresenter().raiseAlarmVC()
@@ -59,6 +57,5 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         default:
             break
         }
-}
-    
+    }
 }

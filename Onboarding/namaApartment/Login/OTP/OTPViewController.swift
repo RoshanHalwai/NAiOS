@@ -11,14 +11,14 @@ import FirebaseDatabase
 import FirebaseAuth
 
 /* - AlertvieDelegate Protocol is passing the data to mainviewcontroller.
-   - activityIndicator_function : used to display the popup & alertvie with resepect time.
-   - Global variable to store users UID. */
+ - activityIndicator_function : used to display the popup & alertvie with resepect time.
+ - Global variable to store users UID. */
 
 protocol AlertViewDelegate {
     func activityIndicator_function(withData : Any)
 }
 
-var userUID = Auth.auth().currentUser?.uid
+var userUID = ""
 let dailyServicesUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
@@ -34,7 +34,7 @@ class OTPViewController: NANavigationViewController {
     @IBOutlet weak var txtOTP6: UITextField!
     @IBOutlet weak var lbl_OTP_Validation: UILabel!
     
-  /* - To take data from add my services.
+    /* - To take data from add my services.
      - Creating varibale to get mobile number string from Login VC TextField and Firebase DB Reference variable.
      - Store verification ID.
      - Create Alert View Delegate Object. */
@@ -57,7 +57,7 @@ class OTPViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      /* - Hiding validation label and tn Verify.
+        /* - Hiding validation label and tn Verify.
          - Calling trigger OTP function on viewDidLoad.
          - Creating string to take OTP Description from Add my daily services according to service which user will select.
          - Button,Label,Textfield,Navigation Bar formatting & setting.
@@ -109,18 +109,19 @@ class OTPViewController: NANavigationViewController {
         
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
-          /* - Calling verify OTP function, When OTP Screen is Coming From Login VC.
+            /* - Calling verify OTP function, When OTP Screen is Coming From Login VC.
              - Back to My Sweet Home screen and My Daily Services Screen. */
             
             verifyOTPWithFirebase()
         }
-
-            //Back to My Sweet Home screen
-         if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
-            let lv = NAViewPresenter().mySweetHomeVC()
-            self.navigationController?.pushViewController(lv, animated: true)
+        
+        //Back to My Sweet Home screen
+        if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
+            
+            self.navigationController?.popViewController(animated: true)
+            self.delegate?.activityIndicator_function(withData: (Any).self)
         }
-            //Back to My Daily Services Screen
+        //Back to My Daily Services Screen
         if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {
             
             //Assigning OTP TextFields To Variables.
@@ -136,21 +137,20 @@ class OTPViewController: NANavigationViewController {
             
             //Creating Credential variable to check correct OTP String.
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
-           
+            
             //If OTP is Valid then Login Sucess else show Error message in Console
             //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
             Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
-                    if let error = error {
-                        print("error",error.localizedDescription)
-                        self.lbl_OTP_Validation.isHidden = false
-                        self.lbl_OTP_Validation.text = NAString().incorrect_otp()
-                        return
-                    } else {
-                        Constants.userUIDPer = userUID!
-                        //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
-                        self.delegateData.dataPassing()
-                        self.navigationController?.popViewController(animated: true)
-                }
+                if let error = error {
+                    print("error",error.localizedDescription)
+                    self.lbl_OTP_Validation.isHidden = false
+                    self.lbl_OTP_Validation.text = NAString().incorrect_otp()
+                    return
+                } else {
+                    //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
+                    self.delegateData.dataPassing()
+                    self.navigationController?.popViewController(animated: true)
+                    self.delegate?.activityIndicator_function(withData: (Any).self)                }
             }
         }
     }
@@ -223,7 +223,7 @@ class OTPViewController: NANavigationViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-  /* - Generating OTP From Firebase Authentication.
+    /* - Generating OTP From Firebase Authentication.
      - IF verification code not sent. */
     
     func triggerOTPFromFirebase() {
@@ -241,12 +241,12 @@ class OTPViewController: NANavigationViewController {
 }
 
 /* - Created Extension for Verify OTP Function and Credential variable to check correct OTP String.
-   - Assigning OTP TextFields To Variables.
-   - Concatinating all the OTP String variables to get Final String.
-   - Once verified we check if user mobile number exists under users->all.
-   - Maping Mobile Number with UID & Storing in Users/All.
-   - If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
-   - Else navigating to Sign Up screen for allowing them to create New User. */
+ - Assigning OTP TextFields To Variables.
+ - Concatinating all the OTP String variables to get Final String.
+ - Once verified we check if user mobile number exists under users->all.
+ - Maping Mobile Number with UID & Storing in Users/All.
+ - If Data Exists into Firebase then navigate to Namma Apartment Home Screen.
+ - Else navigating to Sign Up screen for allowing them to create New User. */
 
 extension OTPViewController {
     
