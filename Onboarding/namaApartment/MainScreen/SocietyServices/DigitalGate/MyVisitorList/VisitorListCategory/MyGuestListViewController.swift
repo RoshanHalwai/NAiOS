@@ -103,7 +103,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.lbl_MyVisitorTime.text = timeString
         cell.lbl_MyVisitorDate.text = dateString
         cell.lbl_MyVisitorName.text = nammaApartmentVisitor.getfullName()
-        cell.lbl_MyVisitorType.text = NAString().guest()
+        cell.lbl_MyVisitorType.text = nammaApartmentVisitor.getstatus()
         
         //Calling function to get Profile Image from Firebase.
         if let urlString = nammaApartmentVisitor.getprofilePhoto() {
