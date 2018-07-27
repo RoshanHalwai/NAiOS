@@ -70,6 +70,10 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
                         })
                     }
                 }
+            } else {
+                //Hiding Activity Indicator & showing error image & message.
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsList())
             }
         })
         
