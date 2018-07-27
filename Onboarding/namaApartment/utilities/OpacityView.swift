@@ -40,6 +40,12 @@ class OpacityView {
         } else if addButtonTagValue == NAString().addMyDailyServicesButtonTagValue() {
             popupView.lbl_Title.text = NAString().addButtonDailyServicesloadViewTitle()
         }
+        else if addButtonTagValue == NAString().verifyOTPButtonTagValue() {
+            popupView.lbl_Title.text = NAString().verifyingOTPDescription()
+        }
+        else if addButtonTagValue == NAString().continueButtonTagValue() {
+            popupView.lbl_Title.text = NAString().verifyingAccountDescription()
+        }
     }
     
     //Create hiding popup view

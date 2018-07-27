@@ -107,6 +107,9 @@ class OTPViewController: NANavigationViewController {
     
     @IBAction func btnVerifyOTP(_ sender: Any) {
         
+        btnVerify.tag = NAString().verifyOTPButtonTagValue()
+        OpacityView.shared.addButtonTagValue = btnVerify.tag
+        
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
             /* - Calling verify OTP function, When OTP Screen is Coming From Login VC.
@@ -252,6 +255,9 @@ extension OTPViewController {
     
     func verifyOTPWithFirebase() {
         
+        //Showing Please wait PopUpView while while Verifying OTP
+        OpacityView.shared.showingPopupView(view: self)
+        
         let Otp_Strig1 = self.txtOTP1.text!
         let Otp_Strig2 = self.txtOTP2.text!
         let Otp_Strig3 = self.txtOTP3.text!
@@ -269,6 +275,10 @@ extension OTPViewController {
             if Reachability.Connection() {
                 if let error = error {
                     print("error",error.localizedDescription)
+                    
+                    OpacityView.shared.hidingPopupView()
+                    
+                    
                     self.lbl_OTP_Validation.isHidden = false
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return
@@ -288,7 +298,6 @@ extension OTPViewController {
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
                 } else {
-                    
                     let dest = NAViewPresenter().signupVC()
                     dest.getNewMobileString = self.getMobileString
                     self.navigationController?.pushViewController(dest, animated: true)
