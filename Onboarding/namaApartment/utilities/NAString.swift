@@ -892,7 +892,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorVisitorList() -> String {
-        return String ("Sorry you cannot use this feature since currently there are no visitors at your flat.")
+        return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
     }
     
     func layoutFeatureErrorCabArrivalList() -> String {

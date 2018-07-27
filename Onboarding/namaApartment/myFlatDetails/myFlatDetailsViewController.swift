@@ -237,22 +237,22 @@ class myFlatDetailsViewController: NANavigationViewController {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchVC") as! SearchTableViewController
+        let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchVC") as! SearchViewController
         let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
         
         if textField == txtCity {
-            searchVC.title = NAString().your_city()
+            searchVC.navigationTitle = NAString().your_city()
             txtCity.resignFirstResponder()
         } else if textField == txtSociety {
             searchVC.textFieldText = self.txtCity.text!
-            searchVC.title = NAString().your_society()
+            searchVC.navigationTitle = NAString().your_society()
             txtSociety.resignFirstResponder()
         } else if textField == txtApartment {
-            searchVC.title = NAString().your_apartment()
+            searchVC.navigationTitle = NAString().your_apartment()
             searchVC.textFieldText = self.txtSociety.text!
             txtApartment.resignFirstResponder()
         } else if textField == txtFlat {
-            searchVC.title = NAString().your_flat()
+            searchVC.navigationTitle = NAString().your_flat()
             searchVC.textFieldText = self.txtApartment.text!
             txtFlat.resignFirstResponder()
         }
