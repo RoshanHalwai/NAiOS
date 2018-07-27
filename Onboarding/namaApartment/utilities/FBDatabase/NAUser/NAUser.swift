@@ -30,7 +30,6 @@ class GlobalUserData {
             .child((userFlatDetails?.flatNumber)!)
         return userDataReference
     }
-    
 }
 
 class NAUser {

@@ -34,7 +34,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             .child(Constants.FLAT_Visitor).child(userUID)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
-                NAActivityIndicator.shared.hideActivityIndicator()
                 let visitorsUID = snapshot.value as? NSDictionary
                 for visitorUID in (visitorsUID?.allKeys)! {
                     self.visitorData =  Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
