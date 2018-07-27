@@ -908,16 +908,16 @@ class NAString : NSObject {
     }
     
     //Cab Arrival and Package Arrival Validation
-    func please_fill_details() -> String {
-        return String("Please fill details here")
+    func please_fill_details(name : String) -> String {
+        return String("Please Enter \(name)")
     }
     
     func Please_select_date() -> String {
-        return String("Please select Date")
+        return String("Please select date and time")
     }
     
     func Please_select_expected_Hours() -> String {
-        return String("Please select Expected Arrival in Hours")
+        return String("Please select at least one button")
     }
     
     func notifyButtonAlertViewMessage() -> String {
