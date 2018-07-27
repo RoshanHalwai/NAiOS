@@ -42,6 +42,7 @@
 		422E4769210A060800D2CE77 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E4768210A060800D2CE77 /* SearchTableViewCell.swift */; };
 		422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
 		422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FF98820F8A9DA004089C2 /* PopupView.swift */; };
+		4230EEB12108AB4F0037345D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4230EEAF2108AB4F0037345D /* Main.storyboard */; };
 		423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D520F378E400F10A23 /* FirebaseAuth.framework */; };
 		423187D820F378E400F10A23 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D720F378E400F10A23 /* FirebaseCore.framework */; };
 		423187DA20F378E400F10A23 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D920F378E400F10A23 /* FirebaseDatabase.framework */; };
@@ -72,7 +73,6 @@
 		861CC01020B9AA99009EC0EF /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00620B9AA98009EC0EF /* Lato-BoldItalic.ttf */; };
 		861CC01120B9AA99009EC0EF /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00720B9AA98009EC0EF /* Lato-Light.ttf */; };
 		862700F7209707BB004B28EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F6209707BB004B28EB /* AppDelegate.swift */; };
-		862700FC209707BB004B28EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862700FA209707BB004B28EB /* Main.storyboard */; };
 		862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */; };
 		86270101209707BC004B28EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86270100209707BC004B28EB /* Assets.xcassets */; };
 		86270104209707BC004B28EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86270102209707BC004B28EB /* LaunchScreen.storyboard */; };
@@ -184,6 +184,7 @@
 		422E4768210A060800D2CE77 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		422FF98620F8A9C8004089C2 /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		422FF98820F8A9DA004089C2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		4230EEB02108AB4F0037345D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		423187D520F378E400F10A23 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187D720F378E400F10A23 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187D920F378E400F10A23 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +220,6 @@
 		861CC00720B9AA98009EC0EF /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		862700F3209707BB004B28EB /* nammaApartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862700F6209707BB004B28EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		862700FB209707BB004B28EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		862700FE209707BB004B28EB /* namaAppartment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = namaAppartment.xcdatamodel; sourceTree = "<group>"; };
 		86270100209707BC004B28EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86270103209707BC004B28EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -708,7 +708,7 @@
 		86C1A138209AF3FC00D75D0F /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				862700FA209707BB004B28EB /* Main.storyboard */,
+				4230EEAF2108AB4F0037345D /* Main.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -893,9 +893,9 @@
 				861CC00920B9AA99009EC0EF /* Lato-LightItalic.ttf in Resources */,
 				861CC00E20B9AA99009EC0EF /* Lato-Hairline.ttf in Resources */,
 				86270101209707BC004B28EB /* Assets.xcassets in Resources */,
+				4230EEB12108AB4F0037345D /* Main.storyboard in Resources */,
 				861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */,
 				422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */,
-				862700FC209707BB004B28EB /* Main.storyboard in Resources */,
 				086081F92104A90900B5990C /* RateUsView.xib in Resources */,
 				869306C720F23AF70069305D /* GoogleService-Info.plist in Resources */,
 			);
@@ -1146,10 +1146,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		862700FA209707BB004B28EB /* Main.storyboard */ = {
+		4230EEAF2108AB4F0037345D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				862700FB209707BB004B28EB /* Base */,
+				4230EEB02108AB4F0037345D /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
