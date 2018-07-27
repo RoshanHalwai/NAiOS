@@ -14,7 +14,7 @@ class EditMyProfileTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        lbl_Family_Members_List.font = NAFont().descriptionFont()
+        lbl_Family_Members_List.font = NAFont().textFieldFont()
     }
     
 }

@@ -35,6 +35,8 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NavigationMenuTableViewCell
         cell.image_View.image = UIImage(named: sideMenuArray[indexPath.row])
         cell.labelView.text = sideMenuArray[indexPath.row]
+        
+        cell.labelView.font = NAFont().textFieldFont()
         return cell
     }
     

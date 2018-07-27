@@ -31,7 +31,7 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MyVisitorsListCollectionViewCell
         cell.visitors_Image.image = imageList[indexPath.row]
         cell.lbl_Visitors.text = visitorsType[indexPath.row]
-        cell.lbl_Visitors.font = NAFont().splashdescriptionFont()
+        cell.lbl_Visitors.font = NAFont().textFieldFont()
         
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell

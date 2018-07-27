@@ -32,7 +32,7 @@ class SettingsViewController: NANavigationViewController, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! SettingsCollectionViewCell
         cell.label_View.text = settingsArray[indexPath.row]
-        cell.label_View.font = NAFont().headerFont()
+        cell.label_View.font = NAFont().textFieldFont()
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
     }

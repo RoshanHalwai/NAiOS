@@ -36,7 +36,7 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         cell.cellImage.image = UIImage(named: DGimageList[indexPath.row])
         
         //Label formatting & Setting
-        cell.cellTitle.font = NAFont().headerFont()
+        cell.cellTitle.font = NAFont().textFieldFont()
         
         return cell
     }

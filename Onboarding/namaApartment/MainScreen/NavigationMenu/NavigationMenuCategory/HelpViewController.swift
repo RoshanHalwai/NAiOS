@@ -30,7 +30,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! HelpCollectionViewCell
         cell.label_View.text = helpArray[indexPath.row]
-        cell.label_View.font = NAFont().headerFont()
+        cell.label_View.font = NAFont().textFieldFont()
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
     }

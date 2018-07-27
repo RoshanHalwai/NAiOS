@@ -35,7 +35,7 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         NAShadowEffect().shadowEffect(Cell: cell)
         
         //assign font & size to the labels in cell
-        cell.cellLabel.font = NAFont().headerFont()
+        cell.cellLabel.font = NAFont().textFieldFont()
         return cell
     }
     
