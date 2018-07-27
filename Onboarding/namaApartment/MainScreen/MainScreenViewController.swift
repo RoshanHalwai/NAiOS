@@ -133,7 +133,7 @@ class MainScreenViewController: NANavigationViewController {
     }
     
     /* - For switching the tableview data in between society & apartment services.
-       - Modifying SegmentControl text according to segment selection. */
+     - Modifying SegmentControl text according to segment selection. */
     
     @IBAction func segmentChangeServices(_ sender: UISegmentedControl) {
         self.segmentControlSelection()
@@ -236,6 +236,9 @@ class MainScreenViewController: NANavigationViewController {
             case UISwipeGestureRecognizerDirection.left:
                 closeNavigationMenu()
                 opacity_View.isHidden = true
+                if rateUsView != nil {
+                    rateUsView.isHidden = true
+                }
             default:
                 break
             }
