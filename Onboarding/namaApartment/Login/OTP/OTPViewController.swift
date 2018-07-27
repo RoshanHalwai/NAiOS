@@ -17,7 +17,6 @@ import FirebaseAuth
 protocol AlertViewDelegate {
     func activityIndicator_function(withData : Any)
 }
-
 var userUID = ""
 let dailyServicesUID = Auth.auth().currentUser?.uid
 
@@ -51,7 +50,6 @@ class OTPViewController: NANavigationViewController {
     var mobileNumberValidRef : DatabaseReference?
     
     var credentialID = String()
-    
     var delegate : AlertViewDelegate?
     
     override func viewDidLoad() {
@@ -64,9 +62,7 @@ class OTPViewController: NANavigationViewController {
          - Assigned delegate method on textFields and Set Textfield bottom border line. */
         
         lbl_OTP_Validation.isHidden = true
-        
         triggerOTPFromFirebase()
-        
         self.lbl_OTPDescription.text = newOtpString
         
         btnVerify.backgroundColor = NAColor().buttonBgColor()
@@ -275,10 +271,7 @@ extension OTPViewController {
             if Reachability.Connection() {
                 if let error = error {
                     print("error",error.localizedDescription)
-                    
                     OpacityView.shared.hidingPopupView()
-                    
-                    
                     self.lbl_OTP_Validation.isHidden = false
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return

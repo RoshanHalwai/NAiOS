@@ -76,8 +76,7 @@ class myFlatDetailsViewController: NANavigationViewController {
         //To get Selected Segment text
         if segment_ResidentType.selectedSegmentIndex == 0 {
             selectedSegmentValue = NAString().owner()
-        }
-        else {
+        } else {
             selectedSegmentValue = NAString().tenant()
         }
         
@@ -278,7 +277,7 @@ extension myFlatDetailsViewController {
     func storeUsersDetailsInFirebase() {
         var userPrivateRef : DatabaseReference
         let userUID = Auth.auth().currentUser?.uid
-
+        
         //User Private Reference
         userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
         

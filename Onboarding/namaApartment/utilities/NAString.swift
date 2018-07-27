@@ -977,6 +977,7 @@ class NAString : NSObject {
     func verifyingOTPDescription() -> String {
         return String ("Verifying Account")
     }
+    
     func verifyingAccountDescription() -> String {
         return String ("Creating your Account")
     }

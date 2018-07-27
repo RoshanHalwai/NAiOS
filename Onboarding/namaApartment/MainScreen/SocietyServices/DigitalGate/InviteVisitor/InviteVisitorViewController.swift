@@ -259,11 +259,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
-            
+        
             btnInviteVisitor.tag = NAString().inviteButtonTagValue()
             OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
             OpacityView.shared.showingPopupView(view: self)
-            
         }
     }
     
@@ -274,7 +273,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-            
             let dv = NAViewPresenter().myGuestListVC()
             dv.fromInvitingVisitorsVC = true
             self.navigationController?.pushViewController(dv, animated: true)
