@@ -36,16 +36,20 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    //Database References
+    var userDataRef : DatabaseReference?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /* - Calling DatePicker Funtion and function to retriev data from firebase.
          - Adding image on date TextField.
          - To show activity indicator before loading data from firebase.
-         - Button,Navigation bar Formmating & setting. */
+         - Button,Navigation bar Formmating & setting.
+         - Calling Daily services Retrieving Function on Load */
         
         txt_PickTime.underlined()
-        
+        retrieveDailyServicesFromFirebase()
         createDatePicker()
         
         opacity_View.isHidden = true
@@ -315,3 +319,29 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
         collectionView.reloadData()
     }
 }
+
+extension MyDailyServicesViewController {
+    
+    func retrieveDailyServicesFromFirebase() {
+        
+        //To check that Any daily service is available or not inside user's flat
+        userDataRef =  GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+        
+        //To search user's DS UID in DS -> Public
+        userDataRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if (!(snapshot.exists())) {
+                print("Snapshot is Empty")
+                NAActivityIndicator.shared.hideActivityIndicator()
+                
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+            } else {
+                print("Snapshot Value is:", snapshot as Any)
+                
+            }
+        })
+        
+    }
+}
+
