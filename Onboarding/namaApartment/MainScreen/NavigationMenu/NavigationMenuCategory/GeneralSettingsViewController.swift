@@ -22,6 +22,7 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
     @IBOutlet weak var opacityView: UIView?
     
     var navTitle = String()
+    //TODO: Need to Add more Languages in future.
     let languagesList = ["English","Hindi","Tamil","Kannada","Telugu"]
     
     override func viewDidLoad() {
