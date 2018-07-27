@@ -35,9 +35,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
     
-   var timer = Timer()
-//    var count = 5
-    
     //Creating Firebase DB Reference variable.
     var preApprovedVisitorsRef : DatabaseReference?
     var preApprovedVisitorsMobileNoRef : DatabaseReference?

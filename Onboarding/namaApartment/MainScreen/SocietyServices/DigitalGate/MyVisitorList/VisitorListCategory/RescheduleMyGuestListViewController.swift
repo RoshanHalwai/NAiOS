@@ -21,14 +21,15 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
     var getDate = String()
     var getTime = String()
     var getVisitorUID = String()
-    
-   // var guestVC : MyGuestListViewController!
+    var getIndexPath = Int()
     
     //Database References
     var preApprovedVisitorsRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Selected Cell indexPath",getIndexPath as Any)
         
         //assigning strings to TextFields to get data from myVisitorList Cell
         self.txt_ReDate.text = getDate
@@ -104,6 +105,7 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         reschedulingVisitorTimeInFirebase()
 
         let lv = NAViewPresenter().myGuestListVC()
+       
         self.navigationController?.pushViewController(lv, animated: true)
     }
     
@@ -140,10 +142,12 @@ extension RescheduleMyGuestListViewController {
     
     //Created function to reschedule date & time of visitor
     func reschedulingVisitorTimeInFirebase() {
+        
         preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(self.getVisitorUID)
         
         var  newDateAndTimeOfVisit = String()
         newDateAndTimeOfVisit = (self.txt_ReDate.text!) + "\t\t" + (txt_ReTime.text!)
         preApprovedVisitorsRef?.child(VisitorListFBKeys.dateAndTimeOfVisit.key).setValue(newDateAndTimeOfVisit)
+        
     }
 }

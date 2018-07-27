@@ -56,8 +56,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                         self.collectionView.reloadData()
                     })
                 }
-            }
-            else {
+            } else {
                 //Hiding Activity Indicator & showing error image & message.
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
@@ -139,6 +138,9 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             dv.getTime = cell.lbl_MyVisitorTime.text!
             dv.getDate = cell.lbl_MyVisitorDate.text!
             dv.getVisitorUID = nammaApartmentVisitor.getuid()
+            
+            let index: Int = indexPath.row
+            dv.getIndexPath = index
             
             dv.providesPresentationContextTransitionStyle = true
             dv.definesPresentationContext = true
