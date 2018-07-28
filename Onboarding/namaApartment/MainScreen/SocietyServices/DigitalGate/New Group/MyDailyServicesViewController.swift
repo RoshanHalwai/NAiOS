@@ -333,7 +333,7 @@ extension MyDailyServicesViewController {
                                         numberOfFlats = Int((snapshot.childrenCount) - 1)
                                         
                                         print("Number Of Flat", numberOfFlats as Any)
-                                    
+                                        print("Daily Service Type", dailyServiceType as Any)
                                     })
                                     
                                     
