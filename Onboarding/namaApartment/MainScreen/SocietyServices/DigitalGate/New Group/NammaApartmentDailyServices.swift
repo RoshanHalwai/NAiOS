@@ -18,8 +18,6 @@ enum DailyServicesListFBKeys: String {
     case rating
     case timeOfVisit
     case uid
-    case type
-    case numberOfFlat
     
     var key : String {
         switch self {
@@ -31,8 +29,6 @@ enum DailyServicesListFBKeys: String {
         case .rating: return "rating"
         case .timeOfVisit:return "timeOfVisit"
         case .uid: return "uid"
-        case .type: return "type"
-        case .numberOfFlat: return "numberOfFlat"
         }
     }
 }
@@ -46,11 +42,9 @@ class NammaApartmentDailyServices {
     var rating: Int?
     var timeOfVisit: String?
     var uid: String?
-    var type: String?
-    var numberOfFlat: Int?
     
     //initilaize the variables
-    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?,type: String?,numberOfFlat: Int?) {
+    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
@@ -58,8 +52,6 @@ class NammaApartmentDailyServices {
         self.rating = rating
         self.timeOfVisit = timeOfVisit
         self.uid = uid
-        self.type = type
-        self.numberOfFlat = numberOfFlat
     }
     
     //Get FullName
@@ -96,16 +88,5 @@ class NammaApartmentDailyServices {
     func getuid() -> String {
         return uid!
     }
-    
-    func getDailyServiceType() -> String {
-        return type!
-    }
-    
-    func getNumberOfFlat() -> Int {
-        return numberOfFlat!
-    }
 }
 
-class NammaApartmentDailyServices: <#super class#> {
-    <#code#>
-}

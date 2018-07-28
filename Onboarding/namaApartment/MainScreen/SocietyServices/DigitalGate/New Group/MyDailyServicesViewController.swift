@@ -24,9 +24,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     @IBOutlet weak var btn_Cancel: UIButton!
     @IBOutlet weak var btn_Reschedule: UIButton!
     
-    // var myDailyServicesListReference : DatabaseReference?
-    
-    var myDailyServicesList = [NammaApartmentDailyServices]()
+    var NADailyServicesList = [NammaApartmentDailyServices]()
     
     var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
     
@@ -134,7 +132,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return myDailyServicesList.count
+        return NADailyServicesList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -146,24 +144,24 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
          - To display image in round shape & Labels Formatting & setting.
          - Calling button action & Delete particular cell from list.
          - TODO: Hardcoded values which need to fix in next pull request. */
-    
-        let list : NammaApartmentDailyServices
-        list = myDailyServicesList[indexPath.row]
         
-        cell.lbl_MyDailyServiceName.text = list.getfullName()
+        let DSList : NammaApartmentDailyServices
+        DSList = NADailyServicesList[indexPath.row]
+        
+        cell.lbl_MyDailyServiceName.text = DSList.getfullName()
         
         //TODO : Need to change Services type
         cell.lbl_MyDailyServiceType.text = "Cook"
         
-        cell.lbl_MyDailyServicesInTime.text = list.gettimeOfVisit()
+        cell.lbl_MyDailyServicesInTime.text = DSList.gettimeOfVisit()
         
         //For converting Int with String.
-          cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
+        cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
         
         //TODO : Need to change Flat Number.
-        cell.lbl_MyDailyServicesFlats.text = "5"
+        cell.lbl_MyDailyServicesFlats.text = "2"
         
-        if let urlString = list.profilePhoto {
+        if let urlString = DSList.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
         }
         
@@ -261,7 +259,7 @@ extension MyDailyServicesViewController : dataCollectionProtocolMyDailySVC{
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
-            self.myDailyServicesList.remove(at: indx)
+            self.NADailyServicesList.remove(at: indx)
             
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
@@ -291,7 +289,6 @@ extension MyDailyServicesViewController {
         userDataRef =  GlobalUserData.shared.getUserDataReference()
             .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         
-        
         dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
         
         //To search user's DS UID in DS -> Public
@@ -318,6 +315,7 @@ extension MyDailyServicesViewController {
                             print("Daily Service Type is:", dailyServiceType as Any)
                             
                             self.dailyServiceInUserRef?.child(dailyServiceType as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+                                
                                 //Finding UID's
                                 let dailyServicesUID = snapshot.value as? NSDictionary
                                 for dailyServiceUID in (dailyServicesUID?.allKeys)! {
@@ -332,10 +330,10 @@ extension MyDailyServicesViewController {
                                         var numberOfFlats = Int()
                                         numberOfFlats = Int((snapshot.childrenCount) - 1)
                                         
-                                        print("Number Of Flat", numberOfFlats as Any)
-                                        print("Daily Service Type", dailyServiceType as Any)
+                                        print("Number Of Flat is:", numberOfFlats as Any)
+                                        print("Daily Service Type is:", dailyServiceType as Any)
+                                        
                                     })
-                                    
                                     
                                     self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
                                         
@@ -354,24 +352,18 @@ extension MyDailyServicesViewController {
                                         
                                         let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?)
                                         
-                                        self.myDailyServicesList.append(dailyServicesData)
+                                        self.NADailyServicesList.append(dailyServicesData)
                                         
                                         NAActivityIndicator.shared.hideActivityIndicator()
                                         self.collectionView.reloadData()
-                                        
                                     })
-                                    
                                 }
-                                
                             })
-                            
                         }
                     }
                 })
-                
             }
         })
-        
     }
 }
 
