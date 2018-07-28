@@ -33,15 +33,16 @@
 		089A94B8210836940088F519 /* NoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A94B7210836940088F519 /* NoticeBoardViewController.swift */; };
 		089A94BA210837CA0088F519 /* NoticeBoardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A94B9210837CA0088F519 /* NoticeBoardCollectionViewCell.swift */; };
 		08A0210520F523FC00130185 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A0210420F523FC00130185 /* Reachability.swift */; };
-		08B052F12109A40E002F2E93 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B052F02109A40E002F2E93 /* SearchViewController.swift */; };
-		08B052F32109A47E002F2E93 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B052F22109A47E002F2E93 /* SearchTableViewCell.swift */; };
 		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
 		08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */; };
+		422E4765210A058900D2CE77 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E4763210A058900D2CE77 /* SearchViewController.swift */; };
+		422E4769210A060800D2CE77 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E4768210A060800D2CE77 /* SearchTableViewCell.swift */; };
 		422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
 		422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FF98820F8A9DA004089C2 /* PopupView.swift */; };
+		4230EEB12108AB4F0037345D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4230EEAF2108AB4F0037345D /* Main.storyboard */; };
 		423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D520F378E400F10A23 /* FirebaseAuth.framework */; };
 		423187D820F378E400F10A23 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D720F378E400F10A23 /* FirebaseCore.framework */; };
 		423187DA20F378E400F10A23 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D920F378E400F10A23 /* FirebaseDatabase.framework */; };
@@ -72,7 +73,6 @@
 		861CC01020B9AA99009EC0EF /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00620B9AA98009EC0EF /* Lato-BoldItalic.ttf */; };
 		861CC01120B9AA99009EC0EF /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00720B9AA98009EC0EF /* Lato-Light.ttf */; };
 		862700F7209707BB004B28EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F6209707BB004B28EB /* AppDelegate.swift */; };
-		862700FC209707BB004B28EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 862700FA209707BB004B28EB /* Main.storyboard */; };
 		862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */; };
 		86270101209707BC004B28EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86270100209707BC004B28EB /* Assets.xcassets */; };
 		86270104209707BC004B28EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86270102209707BC004B28EB /* LaunchScreen.storyboard */; };
@@ -176,14 +176,15 @@
 		089A94B7210836940088F519 /* NoticeBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardViewController.swift; sourceTree = "<group>"; };
 		089A94B9210837CA0088F519 /* NoticeBoardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardCollectionViewCell.swift; sourceTree = "<group>"; };
 		08A0210420F523FC00130185 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		08B052F02109A40E002F2E93 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		08B052F22109A47E002F2E93 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListViewController.swift; sourceTree = "<group>"; };
 		08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListCollectionViewCell.swift; sourceTree = "<group>"; };
 		08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAConfirmationAlert.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
+		422E4763210A058900D2CE77 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		422E4768210A060800D2CE77 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		422FF98620F8A9C8004089C2 /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		422FF98820F8A9DA004089C2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		4230EEB02108AB4F0037345D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		423187D520F378E400F10A23 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187D720F378E400F10A23 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187D920F378E400F10A23 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +220,6 @@
 		861CC00720B9AA98009EC0EF /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		862700F3209707BB004B28EB /* nammaApartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862700F6209707BB004B28EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		862700FB209707BB004B28EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		862700FE209707BB004B28EB /* namaAppartment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = namaAppartment.xcdatamodel; sourceTree = "<group>"; };
 		86270100209707BC004B28EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86270103209707BC004B28EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -644,8 +644,8 @@
 			isa = PBXGroup;
 			children = (
 				86BD74E72099B62100B159A3 /* myFlatDetailsViewController.swift */,
-				08B052F02109A40E002F2E93 /* SearchViewController.swift */,
-				08B052F22109A47E002F2E93 /* SearchTableViewCell.swift */,
+				422E4763210A058900D2CE77 /* SearchViewController.swift */,
+				422E4768210A060800D2CE77 /* SearchTableViewCell.swift */,
 			);
 			path = myFlatDetails;
 			sourceTree = "<group>";
@@ -708,7 +708,7 @@
 		86C1A138209AF3FC00D75D0F /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				862700FA209707BB004B28EB /* Main.storyboard */,
+				4230EEAF2108AB4F0037345D /* Main.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -893,9 +893,9 @@
 				861CC00920B9AA99009EC0EF /* Lato-LightItalic.ttf in Resources */,
 				861CC00E20B9AA99009EC0EF /* Lato-Hairline.ttf in Resources */,
 				86270101209707BC004B28EB /* Assets.xcassets in Resources */,
+				4230EEB12108AB4F0037345D /* Main.storyboard in Resources */,
 				861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */,
 				422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */,
-				862700FC209707BB004B28EB /* Main.storyboard in Resources */,
 				086081F92104A90900B5990C /* RateUsView.xib in Resources */,
 				869306C720F23AF70069305D /* GoogleService-Info.plist in Resources */,
 			);
@@ -1047,6 +1047,7 @@
 				085646802102CD9E00C5FBF6 /* NotificationSettingsTableViewCell.swift in Sources */,
 				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
 				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
+				422E4765210A058900D2CE77 /* SearchViewController.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				8627012D209715E5004B28EB /* splashApartmentServices.swift in Sources */,
 				085646762101FA6D00C5FBF6 /* SettingsViewController.swift in Sources */,
@@ -1095,6 +1096,7 @@
 				86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */,
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86DCB9F42098443D00C67C70 /* signupViewController.swift in Sources */,
+				422E4769210A060800D2CE77 /* SearchTableViewCell.swift in Sources */,
 				86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */,
 				083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */,
 				083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
@@ -1104,8 +1106,6 @@
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
-				08B052F12109A40E002F2E93 /* SearchViewController.swift in Sources */,
-				08B052F32109A47E002F2E93 /* SearchTableViewCell.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
 				085646782101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift in Sources */,
 				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
@@ -1146,10 +1146,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		862700FA209707BB004B28EB /* Main.storyboard */ = {
+		4230EEAF2108AB4F0037345D /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				862700FB209707BB004B28EB /* Base */,
+				4230EEB02108AB4F0037345D /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -439,8 +439,8 @@ class NAString : NSObject {
         return String("Date & Time")
     }
     
-    func inviteVisitorOTPDesc() -> String {
-        return String("We will send an OTP to your daily service for authentication.")
+    func inviteVisitorOTPDesc(dailyServiceName : String) -> String {
+        return String("We will send an OTP to your \(dailyServiceName) for authentication.")
     }
     
     func btnInvite() -> String {
@@ -903,21 +903,25 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
     }
     
+    func layoutFeatureErrorHandedThingsList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
+    }
+    
     func statusNotEntered() -> String {
         return String ("Not Entered")
     }
     
     //Cab Arrival and Package Arrival Validation
-    func please_fill_details() -> String {
-        return String("Please fill details here")
+    func please_fill_details(name : String) -> String {
+        return String("Please Enter \(name)")
     }
     
     func Please_select_date() -> String {
-        return String("Please select Date")
+        return String("Please select date and time")
     }
     
     func Please_select_expected_Hours() -> String {
-        return String("Please select Expected Arrival in Hours")
+        return String("Please select at least one button")
     }
     
     func notifyButtonAlertViewMessage() -> String {
@@ -960,6 +964,14 @@ class NAString : NSObject {
         return Int (103)
     }
     
+    func verifyOTPButtonTagValue() -> Int {
+        return Int (104)
+    }
+    
+    func continueButtonTagValue() -> Int {
+        return Int (105)
+    }
+    
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)
@@ -967,5 +979,13 @@ class NAString : NSObject {
     
     func status() -> String {
         return String ("status")
+    }
+    
+    func verifyingOTPDescription() -> String {
+        return String ("Verifying Account")
+    }
+    
+    func verifyingAccountDescription() -> String {
+        return String ("Creating your Account")
     }
 }

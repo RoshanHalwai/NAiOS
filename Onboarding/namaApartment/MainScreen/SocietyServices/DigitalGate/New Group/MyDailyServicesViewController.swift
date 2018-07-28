@@ -83,8 +83,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
      - For creating action sheet to select my daily services. */
     
     @objc func goBackToDigiGate() {
-        let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_four()]
-        self.navigationController?.popToViewController(vcToPop!, animated: true)
+        if fromAddMyDailyServicesVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_four()]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func floatingButton(_ sender: UIButton) {
@@ -148,7 +152,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = "12:30"
         
         //For converting Int with String.
-      //  cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
+        //  cell.lbl_MyDailyServicesRating.text = "\(list.rating!)"
         
         cell.lbl_MyDailyServicesRating.text = "3"
         

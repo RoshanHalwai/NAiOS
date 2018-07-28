@@ -17,7 +17,6 @@ import FirebaseAuth
 protocol AlertViewDelegate {
     func activityIndicator_function(withData : Any)
 }
-
 var userUID = ""
 let dailyServicesUID = Auth.auth().currentUser?.uid
 
@@ -51,7 +50,6 @@ class OTPViewController: NANavigationViewController {
     var mobileNumberValidRef : DatabaseReference?
     
     var credentialID = String()
-    
     var delegate : AlertViewDelegate?
     
     override func viewDidLoad() {
@@ -64,9 +62,7 @@ class OTPViewController: NANavigationViewController {
          - Assigned delegate method on textFields and Set Textfield bottom border line. */
         
         lbl_OTP_Validation.isHidden = true
-        
         triggerOTPFromFirebase()
-        
         self.lbl_OTPDescription.text = newOtpString
         
         btnVerify.backgroundColor = NAColor().buttonBgColor()
@@ -107,6 +103,9 @@ class OTPViewController: NANavigationViewController {
     
     @IBAction func btnVerifyOTP(_ sender: Any) {
         
+        btnVerify.tag = NAString().verifyOTPButtonTagValue()
+        OpacityView.shared.addButtonTagValue = btnVerify.tag
+        
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
             /* - Calling verify OTP function, When OTP Screen is Coming From Login VC.
@@ -117,8 +116,9 @@ class OTPViewController: NANavigationViewController {
         
         //Back to My Sweet Home screen
         if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
-            let lv = NAViewPresenter().mySweetHomeVC()
-            self.navigationController?.pushViewController(lv, animated: true)
+            
+            self.navigationController?.popViewController(animated: true)
+            self.delegate?.activityIndicator_function(withData: (Any).self)
         }
         //Back to My Daily Services Screen
         if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {
@@ -146,11 +146,10 @@ class OTPViewController: NANavigationViewController {
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return
                 } else {
-                   // Constants.userUIDPer = userUID!
                     //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
                     self.delegateData.dataPassing()
                     self.navigationController?.popViewController(animated: true)
-                }
+                    self.delegate?.activityIndicator_function(withData: (Any).self)                }
             }
         }
     }
@@ -252,6 +251,9 @@ extension OTPViewController {
     
     func verifyOTPWithFirebase() {
         
+        //Showing Please wait PopUpView while while Verifying OTP
+        OpacityView.shared.showingPopupView(view: self)
+        
         let Otp_Strig1 = self.txtOTP1.text!
         let Otp_Strig2 = self.txtOTP2.text!
         let Otp_Strig3 = self.txtOTP3.text!
@@ -269,6 +271,7 @@ extension OTPViewController {
             if Reachability.Connection() {
                 if let error = error {
                     print("error",error.localizedDescription)
+                    OpacityView.shared.hidingPopupView()
                     self.lbl_OTP_Validation.isHidden = false
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return
@@ -288,7 +291,6 @@ extension OTPViewController {
                     let dest = NAViewPresenter().mainScreenVC()
                     self.navigationController?.pushViewController(dest, animated: true)
                 } else {
-                    
                     let dest = NAViewPresenter().signupVC()
                     dest.getNewMobileString = self.getMobileString
                     self.navigationController?.pushViewController(dest, animated: true)
