@@ -29,38 +29,29 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        userDataRef = GlobalUserData.shared.getUserDataReference()
-            .child(Constants.FLAT_Visitor).child(userUID)
-        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
-            if snapshot.exists() {
-                let visitorsUID = snapshot.value as? NSDictionary
-                for visitorUID in (visitorsUID?.allKeys)! {
-                    self.visitorData =  Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
-                        .child(visitorUID as! String)
-                    self.visitorData?.observeSingleEvent(of: .value, with: {(snapshot) in
-                        let visitorData = snapshot.value as? [String: AnyObject]
-                        let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
-                        let fullName = visitorData?[VisitorListFBKeys.fullName.key] as? String
-                        let inviterUID = visitorData?[VisitorListFBKeys.inviterUID.key] as? String
-                        let mobileNumber = visitorData?[VisitorListFBKeys.mobileNumber.key] as? String
-                        let profilePhoto = visitorData?[VisitorListFBKeys.profilePhoto.key] as? String
-                        let status = visitorData?[VisitorListFBKeys.status.key] as? String
-                        let uid = visitorData?[VisitorListFBKeys.uid.key] as? String
-                        
-                        //creating userAccount model & set earlier created let variables in userObject in the below parameter
-                        let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
-                        //Adding visitor in visitor List
-                        self.myVisitorList.append(user)
-                        self.collectionView.reloadData()
-                    })
-                }
-            } else {
-                //Hiding Activity Indicator & showing error image & message.
-                NAActivityIndicator.shared.hideActivityIndicator()
+        
+        let retrieveGuestList : RetrievingGuestList
+        retrieveGuestList = RetrievingGuestList.init()
+        
+        //Retrieve guest of current userUID and their family members if any
+        retrieveGuestList.getGuests { (guestDataList) in
+            
+            //Hiding Progress indicator after retrieving data.
+            NAActivityIndicator.shared.hideActivityIndicator()
+            
+            if(guestDataList.count == 0) {
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+            } else {
+                for guestData in guestDataList {
+                    //Append only those guest data
+                    self.myVisitorList.append(guestData)
+                }
+                self.collectionView.reloadData()
             }
-        })
+        }
+        
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
         
@@ -177,13 +168,13 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
 }
 
 extension MyGuestListViewController : dataCollectionProtocol {
-   
+    
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         let visitor_UId =  myVisitorList[indx]
         let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
-    
+            
             //Delete Data from the firebase database
             self.userDataRef = GlobalUserData.shared.getUserDataReference()
                 .child(Constants.FLAT_Visitor).child(userUID)

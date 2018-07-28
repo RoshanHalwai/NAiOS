@@ -11,18 +11,13 @@ import FirebaseDatabase
 
 class HandedThingsToGuestViewController: NANavigationViewController,UITableViewDataSource,UITableViewDelegate {
     
-    var UserDetails = [NammaApartmentVisitor]()
     var selectedRow : Int?
     var currentTag: Int?
-    var Vistitor_UID = [String]()
-    var Vistitor_Main_UIDs = [String]()
-    var userDataRef : DatabaseReference?
-    var visitorDataRef : DatabaseReference?
     var handedThingsList = [NammaApartmentVisitor]()
-    var enteredGuestsUIDList = [EneteredGuestUIDList]()
-    var visitorsUIDCount = 0
-    @IBOutlet weak var TableView: UITableView!
     var titleName =  String()
+    
+    @IBOutlet weak var TableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +25,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         TableView.allowsSelection = false
         self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
+        //Calling Retrieval function
         retrieveHandedThingsToGuest()
         
         //Creating History icon on Navigation bar
@@ -65,10 +61,10 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! HandedThingsToGuestTableViewCell
-        //Create constant variable to store all the firebase data in it.
+        //Created constant variable to store all the firebase data in it.
         let nammaApartmentVisitor : NammaApartmentVisitor
         nammaApartmentVisitor = handedThingsList[indexPath.row]
-        //Create local variable to store Date & Time From Firebase
+        //Created local variable to store Date & Time From Firebase
         var dateTimeString : String
         dateTimeString = nammaApartmentVisitor.getdateAndTimeOfVisit()
         //Create array to split Date & Time from firebase
@@ -84,6 +80,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         if let urlString = nammaApartmentVisitor.getprofilePhoto() {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
         }
+        
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_GuestInvitedBy.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
         }
@@ -189,54 +186,34 @@ extension HandedThingsToGuestViewController {
     //TODO: Need to use CallBack methods for showing error layout message also when no guest entered.
     func retrieveHandedThingsToGuest() {
         
+        //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        userDataRef = GlobalUserData.shared.getUserDataReference()
-            .child(Constants.FLAT_Visitor).child(userUID)
         
-        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+        let retrieveGuestList : RetrievingGuestList
+        retrieveGuestList = RetrievingGuestList.init()
+        
+        //Retrieve guest of current userUID and their family members if any
+        retrieveGuestList.getGuests { (guestDataList) in
             
-            if snapshot.exists() {
-                let visitorsUID = snapshot.value as? NSDictionary
-                for visitorUID in (visitorsUID?.allKeys)! {
-                    self.visitorsUIDCount = self.visitorsUIDCount + 1
-                    
-                    self.visitorDataRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
-                        .child(visitorUID as! String)
-                    
-                    self.visitorDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
-                        print(snapshot)
-                        
-                        let visitorData = snapshot.value as? [String: AnyObject]
-                        let status = visitorData?[VisitorListFBKeys.status.key] as? String
-                        if status == NAString().entered() {
-                            let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
-                            let fullName = visitorData?[VisitorListFBKeys.fullName.key] as? String
-                            let inviterUID = visitorData?[VisitorListFBKeys.inviterUID.key] as? String
-                            let mobileNumber = visitorData?[VisitorListFBKeys.mobileNumber.key] as? String
-                            let profilePhoto = visitorData?[VisitorListFBKeys.profilePhoto.key] as? String
-                            let uid = visitorData?[VisitorListFBKeys.uid.key] as? String
-                            print(uid as Any)
-                            let enteredUser = EneteredGuestUIDList(uid: uid)
-                            self.enteredGuestsUIDList.append(enteredUser)
-                            print("For Data",self.enteredGuestsUIDList)
-                            let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
-                            self.handedThingsList.append(user)
-                            NAActivityIndicator.shared.hideActivityIndicator()
-                            self.TableView.reloadData()
-                            
-                            if(self.visitorsUIDCount == visitorsUID?.count) {
-                                if (self.enteredGuestsUIDList.count == 0) {
-                                    NAActivityIndicator.shared.hideActivityIndicator()
-                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
-                                }
-                            }
-                        }
-                    })
-                }
-            } else {
-                NAActivityIndicator.shared.hideActivityIndicator()
+            //Hiding Progress indicator after retrieving data.
+            NAActivityIndicator.shared.hideActivityIndicator()
+            
+            if(guestDataList.count == 0) {
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+            } else {
+                for guestData in guestDataList {
+                    
+                    //Append only those guest data whose status is ENTERED
+                    if guestData.getstatus() == NAString().entered() {
+                        self.handedThingsList.append(guestData)
+                    }
+                }
+                if(self.handedThingsList.count == 0) {
+                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                }
+                self.TableView.reloadData()
             }
-        })
+        }
     }
+    
 }
