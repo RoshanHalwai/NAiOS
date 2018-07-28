@@ -100,8 +100,9 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         
         //Calling Time Rescheduling Function
         reschedulingVisitorTimeInFirebase()
-        
+
         let lv = NAViewPresenter().myGuestListVC()
+       
         self.navigationController?.pushViewController(lv, animated: true)
     }
     
