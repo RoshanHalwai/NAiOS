@@ -18,6 +18,7 @@ enum VisitorListFBKeys : String {
     case profilePhoto
     case status
     case uid
+   
     var key : String {
         switch self {
         // Use Internationalization, as appropriate.
