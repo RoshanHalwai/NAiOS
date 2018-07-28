@@ -20,6 +20,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     var visitorDataRef : DatabaseReference?
     var handedThingsList = [NammaApartmentVisitor]()
     var enteredGuestsUIDList = [EneteredGuestUIDList]()
+    var visitorsUIDCount = 0
     @IBOutlet weak var TableView: UITableView!
     var titleName =  String()
     override func viewDidLoad() {
@@ -67,25 +68,25 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //Create constant variable to store all the firebase data in it.
         let nammaApartmentVisitor : NammaApartmentVisitor
         nammaApartmentVisitor = handedThingsList[indexPath.row]
-            //Create local variable to store Date & Time From Firebase
-            var dateTimeString : String
-            dateTimeString = nammaApartmentVisitor.getdateAndTimeOfVisit()
-            //Create array to split Date & Time from firebase
-            let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
-            let dateString: String = arrayOfDateTime[0]
-            let timeString: String = arrayOfDateTime[1]
-            
-            cell.lbl_GuestTime.text = timeString
-            cell.lbl_GuestDate.text = dateString
-            cell.lbl_VisiterName.text = nammaApartmentVisitor.getfullName()
-            
-            //Calling function to get Profile Image from Firebase.
-            if let urlString = nammaApartmentVisitor.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
-            }
-            if(nammaApartmentVisitor.getinviterUID() == userUID) {
-                cell.lbl_GuestInvitedBy.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
-            }
+        //Create local variable to store Date & Time From Firebase
+        var dateTimeString : String
+        dateTimeString = nammaApartmentVisitor.getdateAndTimeOfVisit()
+        //Create array to split Date & Time from firebase
+        let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
+        let dateString: String = arrayOfDateTime[0]
+        let timeString: String = arrayOfDateTime[1]
+        
+        cell.lbl_GuestTime.text = timeString
+        cell.lbl_GuestDate.text = dateString
+        cell.lbl_VisiterName.text = nammaApartmentVisitor.getfullName()
+        
+        //Calling function to get Profile Image from Firebase.
+        if let urlString = nammaApartmentVisitor.getprofilePhoto() {
+            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
+        }
+        if(nammaApartmentVisitor.getinviterUID() == userUID) {
+            cell.lbl_GuestInvitedBy.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
+        }
         
         //assigning delegate method to textFiled
         //cell.txt_Description.delegate = self
@@ -196,9 +197,10 @@ extension HandedThingsToGuestViewController {
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             
             if snapshot.exists() {
-                
+
                 let visitorsUID = snapshot.value as? NSDictionary
                 for visitorUID in (visitorsUID?.allKeys)! {
+                    self.visitorsUIDCount = self.visitorsUIDCount + 1
                     
                     self.visitorDataRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
                         .child(visitorUID as! String)
@@ -207,33 +209,31 @@ extension HandedThingsToGuestViewController {
                         print(snapshot)
                         
                         let visitorData = snapshot.value as? [String: AnyObject]
-                        
                         let status = visitorData?[VisitorListFBKeys.status.key] as? String
                         if status == NAString().entered() {
-                            
-//                            let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
-//                            let fullName = visitorData?[VisitorListFBKeys.fullName.key] as? String
-//                            let inviterUID = visitorData?[VisitorListFBKeys.inviterUID.key] as? String
-//                            let mobileNumber = visitorData?[VisitorListFBKeys.mobileNumber.key] as? String
-//                            let profilePhoto = visitorData?[VisitorListFBKeys.profilePhoto.key] as? String
+                            let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
+                            let fullName = visitorData?[VisitorListFBKeys.fullName.key] as? String
+                            let inviterUID = visitorData?[VisitorListFBKeys.inviterUID.key] as? String
+                            let mobileNumber = visitorData?[VisitorListFBKeys.mobileNumber.key] as? String
+                            let profilePhoto = visitorData?[VisitorListFBKeys.profilePhoto.key] as? String
                             let uid = visitorData?[VisitorListFBKeys.uid.key] as? String
                             print(uid as Any)
                             let enteredUser = EneteredGuestUIDList(uid: uid)
                             self.enteredGuestsUIDList.append(enteredUser)
                             print("For Data",self.enteredGuestsUIDList)
-//                            let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
-//                            self.handedThingsList.append(user)
-//                            NAActivityIndicator.shared.hideActivityIndicator()
-//                            self.TableView.reloadData()
+                            let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
+                            self.handedThingsList.append(user)
+                            NAActivityIndicator.shared.hideActivityIndicator()
+                            self.TableView.reloadData()
+                            
+                            if(self.visitorsUIDCount == visitorsUID?.count) {
+                                if (self.enteredGuestsUIDList.count == 0) {
+                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                                }
+                            }
                         }
                     })
-                }
-                if (self.enteredGuestsUIDList.isEmpty) {
-                    print("Empty Data",self.enteredGuestsUIDList)
-                    NAActivityIndicator.shared.hideActivityIndicator()
-                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
-                } else {
-                    
                 }
             } else {
                 NAActivityIndicator.shared.hideActivityIndicator()
