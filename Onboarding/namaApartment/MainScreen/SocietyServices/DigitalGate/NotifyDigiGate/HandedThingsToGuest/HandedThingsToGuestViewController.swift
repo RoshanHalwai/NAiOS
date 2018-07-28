@@ -177,9 +177,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     @objc func selectSegment(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             selectedRow = 0
-        }
-        else
-        {
+        } else {
             selectedRow = 1
         }
         currentTag = sender.tag
@@ -187,7 +185,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     }
 }
 extension HandedThingsToGuestViewController {
-    
+    //Retrieving Entered Guests from Firebase
+    //TODO: Need to use CallBack methods for showing error layout message also when no guest entered.
     func retrieveHandedThingsToGuest() {
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
@@ -197,7 +196,6 @@ extension HandedThingsToGuestViewController {
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             
             if snapshot.exists() {
-
                 let visitorsUID = snapshot.value as? NSDictionary
                 for visitorUID in (visitorsUID?.allKeys)! {
                     self.visitorsUIDCount = self.visitorsUIDCount + 1
