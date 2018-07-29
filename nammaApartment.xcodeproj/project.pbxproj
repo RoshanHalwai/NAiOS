@@ -69,6 +69,7 @@
 		5D77429B210DD49F0049344F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77428A210DD49F0049344F /* Reachability.swift */; };
 		5D77429D210DD49F0049344F /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77428D210DD49F0049344F /* SignupViewController.swift */; };
 		5D77429E210DD49F0049344F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77428E210DD49F0049344F /* LoginViewController.swift */; };
+		5D7742A2210E0ACB0049344F /* RetrieveFamilyMemberList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7742A1210E0ACB0049344F /* RetrieveFamilyMemberList.swift */; };
 		5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DF2620FCC280002C13BB /* HandedHistory.swift */; };
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
 		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
@@ -208,6 +209,7 @@
 		5D77428A210DD49F0049344F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		5D77428D210DD49F0049344F /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		5D77428E210DD49F0049344F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5D7742A1210E0ACB0049344F /* RetrieveFamilyMemberList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveFamilyMemberList.swift; sourceTree = "<group>"; };
 		5DD9DF2620FCC280002C13BB /* HandedHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedHistory.swift; sourceTree = "<group>"; };
 		60D95441DCC19BB789844829 /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		742095F612CC033BF2CC121B /* Pods_nammaApartment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -680,6 +682,7 @@
 				867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */,
 				5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */,
 				0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */,
+				5D7742A1210E0ACB0049344F /* RetrieveFamilyMemberList.swift */,
 			);
 			path = MySweetHome;
 			sourceTree = "<group>";
@@ -1117,6 +1120,7 @@
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
 				5D77429E210DD49F0049344F /* LoginViewController.swift in Sources */,
+				5D7742A2210E0ACB0049344F /* RetrieveFamilyMemberList.swift in Sources */,
 				42329D1A20F9BF80000AA9AF /* OpacityView.swift in Sources */,
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,

@@ -36,6 +36,13 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let retrieveUserList : RetrieveFamilyMemberList
+        retrieveUserList = RetrieveFamilyMemberList.init()
+        
+        retrieveUserList.getUserDataByUID(userUID: userUID) { (userData) in
+            print(userData as Any)
+        }
+        
         /* - Corner Radius for popUp View.
          - Formmating & setting in Buttons and Navigation bar.
          - Create My Sweet Home Back Button.

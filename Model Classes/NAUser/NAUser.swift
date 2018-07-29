@@ -35,20 +35,20 @@ class GlobalUserData {
 class NAUser {
     
     //created variables to get details from following classes.
-    var flatDetails = [UserFlatDetails]()
-    var personalDetails = [UserPersonalDetails]()
-    var privileges = [UserPrivileges]()
+    var flatDetails : UserFlatDetails
+    var personalDetails : UserPersonalDetails
+    var privileges : UserPrivileges
     var uid : String?
     
-     //initiliazing variables
+    //initiliazing variables
     init(uid: String?,flatDetails: UserFlatDetails,personalDetails: UserPersonalDetails,privileges: UserPrivileges) {
         self.uid = uid
-        self.flatDetails = [flatDetails]
-        self.privileges = [privileges]
-        self.personalDetails = [personalDetails]
+        self.flatDetails = flatDetails
+        self.privileges = privileges
+        self.personalDetails = personalDetails
     }
     
-     //creating structure for firebase to get data on it.
+    //creating structure for firebase to get data on it.
     struct NAUserStruct {
         
         static let uid = "uid"
