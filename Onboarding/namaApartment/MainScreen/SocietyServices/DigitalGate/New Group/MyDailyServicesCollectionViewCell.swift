@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import MessageUI
 
-protocol dataCollectionProtocolMyDailySVC {
+protocol dataCollectionProtocolDailyService {
     func deleteData(indx: Int, cell: UICollectionViewCell)
 }
-class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeViewControllerDelegate {
+
+class MyDailyServicesCollectionViewCell: UICollectionViewCell {
     
-    var delegate : dataCollectionProtocolMyDailySVC?
+    var delegate : dataCollectionProtocolDailyService?
     var index : IndexPath?
     
     @IBOutlet weak var myDailyServicesImage: UIImageView!
@@ -41,48 +41,31 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell,MFMessageComposeVi
     @IBOutlet weak var lbl_Message: UILabel!
     @IBOutlet weak var lbl_Call: UILabel!
     
-    //created object to call button action in cell class
-    var yourobj : (() -> Void)? = nil
+    //Created object to call button action in cell class
+    var actionEdit : (() -> Void)? = nil
+    var actionCall : (() -> Void)? = nil
+    var actionMessage : (() -> Void)? = nil
     
-    //calling object on Cancel button action
     @IBAction func btnCancel(_ sender: UIButton) {
         delegate?.deleteData(indx: (index?.row)!, cell: self)
     }
     
-    //To call your visitor directly from app
     @IBAction func btnCall(_ sender: UIButton) {
-        //TODO : need to change  contact number.
-        UIApplication.shared.open(NSURL(string: "tel://9725098236")! as URL, options: [:], completionHandler: nil)
-    }
-    
-    //calling object in button action
-    @IBAction func btnEditMyDailyServices(_ sender: UIButton) {
-        if let btnAction = self.yourobj {
-            btnAction()
+        if let btnCallAction = self.actionCall {
+            btnCallAction()
         }
     }
     
-    //To message your visitor directly from app
+    @IBAction func btnEdit(_ sender: UIButton) {
+        if let btnEditAction = self.actionEdit {
+            btnEditAction()
+        }
+    }
+    
     @IBAction func btnMessage(_ sender: UIButton) {
-        if (MFMessageComposeViewController.canSendText()) {
-            let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
-            messageSheet.messageComposeDelegate = self
-            
-            //TODO : need to change  contact number.
-            messageSheet.recipients = ["9725098236"]
-            messageSheet.body = ""
-            
-            self.window?.rootViewController?.present(messageSheet,animated: true, completion: nil)
-            
-        } else {
-            
-            let alert = UIAlertController(title:NAString().warning(), message:NAString().message_warning_text(), preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title:NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
+        if let btnMessageAction = self.actionMessage {
+            btnMessageAction()
         }
-    }
-    
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         
-        controller.dismiss(animated: true, completion: nil)
     }
 }

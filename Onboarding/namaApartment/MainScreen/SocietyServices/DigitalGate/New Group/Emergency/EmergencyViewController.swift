@@ -33,6 +33,8 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         
         NAShadowEffect().shadowEffect(Cell: cell)
         
+        //Label formatting & Setting
+        cell.cellLabel.font = NAFont().textFieldFont()
         
         return cell
     }

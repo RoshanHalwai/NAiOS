@@ -11,6 +11,7 @@ import UIKit
 protocol dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell)
 }
+
 class MyGuestListCollectionViewCell: UICollectionViewCell {
     
     var delegate : dataCollectionProtocol?

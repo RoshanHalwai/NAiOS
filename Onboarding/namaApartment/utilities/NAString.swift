@@ -981,6 +981,10 @@ class NAString : NSObject {
         return String ("status")
     }
     
+    func dailyServiceNotAvailable() -> String {
+        return String ("Please add your Daily Services for their hassle free entry at your Society")
+    }
+    
     func verifyingOTPDescription() -> String {
         return String ("Verifying Account")
     }
