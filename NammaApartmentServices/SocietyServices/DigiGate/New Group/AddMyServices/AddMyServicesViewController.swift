@@ -465,22 +465,23 @@ extension AddMyServicesViewController {
     func storingDailyServicesInFirebase()  {
         let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
+        let dailyServiceUID = Auth.auth().currentUser?.uid
         
         userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceKey)
         
-        userDataRef?.child(dailyServicesUID!).setValue(NAString().gettrue())
+        userDataRef?.child(dailyServiceUID!).setValue(NAString().gettrue())
         
         dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
         
-        dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServicesUID!)
+        dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServiceUID)
         
         dailyServicesTypeRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE)
         
-        dailyServicesTypeRef?.child(dailyServicesUID!).setValue(dailyServiceKey)
+        dailyServicesTypeRef?.child(dailyServiceUID!).setValue(dailyServiceKey)
         
-        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!).child(userUID)
+        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServiceUID!).child(userUID)
         
-        dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServicesUID!)
+        dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServiceUID!)
         
         self.dailyServicesStatusRef?.child(NAString().status()).setValue(NAString().notEntered())
         
@@ -492,7 +493,7 @@ extension AddMyServicesViewController {
         let metaDataContentType = StorageMetadata()
         metaDataContentType.contentType = NAString().imageContentType()
         
-        let uploadImageRef = dailyServicesImageRef?.child(dailyServicesUID!)
+        let uploadImageRef = dailyServicesImageRef?.child(dailyServiceUID!)
         let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
             
             uploadImageRef?.downloadURL(completion: { (url, urlError) in
@@ -504,7 +505,7 @@ extension AddMyServicesViewController {
                         NADailyServicesStringFBKeys.phoneNumber.key : self.txt_MobileNo.text!,
                         NADailyServicesStringFBKeys.rating.key : 3,
                         NADailyServicesStringFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
-                        NADailyServicesStringFBKeys.uid.key : dailyServicesUID!,
+                        NADailyServicesStringFBKeys.uid.key : dailyServiceUID!,
                         NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString ?? ""
                         ] as [String : Any]
                     
