@@ -48,7 +48,7 @@ class RetrieveFamilyMemberList {
      * ------------------------------------------------------------- */
     
     //Take userUID and returns a list of family members data added by the user
-    private func getFamilyMembersDataList(userUID : String, callback: @escaping (_ friendsUIDList : [NAUser]) -> Void) {
+    private func getFamilyMembersDataList(userUID : String, callback: @escaping (_ familyMembersDataList : [NAUser]) -> Void) {
         var familyMembersDataList = [NAUser]()
         
         self.getFamilyMembersUIDList(userUID: userUID) { (familyMembersUIDList) in
@@ -66,7 +66,7 @@ class RetrieveFamilyMemberList {
     }
     
     //Take userUID and returns a list of friends data added by the user
-    private func getFriendsDataList(userUID : String, callback: @escaping (_ friendsUIDList : [NAUser]) -> Void) {
+    private func getFriendsDataList(userUID : String, callback: @escaping (_ friendsDataList : [NAUser]) -> Void) {
         var friendsDataList = [NAUser]()
         
         self.getFriendsUIDList(userUID: userUID, callback: { (friendsUIDList) in
