@@ -97,3 +97,13 @@ class NammaApartmentVisitor {
         return uid!
     }
 }
+class EneteredGuestUIDList {
+    private var uid : String?
+    init(uid: String?) {
+        self.uid = uid
+    }
+    //Get uid
+    func getuid() -> String {
+        return uid!
+    }
+}

@@ -947,6 +947,9 @@ class NAString : NSObject {
     func notEntered() -> String {
         return String ("Not Entered")
     }
+    func entered() -> String {
+        return String("Entered")
+    }
     
     //Create Button Tag Values
     func inviteButtonTagValue() -> Int {

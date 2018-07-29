@@ -10,72 +10,23 @@ import UIKit
 import FirebaseDatabase
 
 class HandedThingsToGuestViewController: NANavigationViewController,UITableViewDataSource,UITableViewDelegate {
-    var UserDetails = [NammaApartmentVisitor]()
+    
     var selectedRow : Int?
     var currentTag: Int?
-    var Vistitor_UID = [String]()
-    var Vistitor_Main_UIDs = [String]()
-    var HandedDataRef : DatabaseReference?
-    var UserDataRef : DatabaseReference?
-    var VisitorPublicRef : DatabaseReference?
-    var HandedThingsList = [NammaApartmentVisitor]()
-    var VisitorUIDref : DatabaseReference?
-    @IBOutlet weak var TableView: UITableView!
+    var handedThingsList = [NammaApartmentVisitor]()
     var titleName =  String()
+    
+    @IBOutlet weak var TableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Disable Table view cell selection & cell border line.
         TableView.allowsSelection = false
         self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        //fetch the data from the firebase
-        // TODO: need to change UID in Future
         
-        
-        UserDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child(Constants.FIREBASE_CHILD_BANGALORE)
-            .child(Constants.FIREBASE_CHILD_BRIGADE_GATEWAY)
-            .child(Constants.FIREBASE_CHILD_ASTER)
-            .child(Constants.FIREBASE_CHILD_FLATNO)
-            .child(Constants.FLAT_Visitor).child(userUID)
-        UserDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
-            if snapshot.exists(){
-                for Datavaluees in ((snapshot.value as AnyObject).allKeys)!{
-                    let SnapShotValues = snapshot.value as? NSDictionary
-                    for UserID  in (SnapShotValues?.allKeys)! {
-                        let userIDS = UserID as! String
-                        // TODO: need to change UID in Futur
-                        self.VisitorPublicRef =  Database.database().reference()
-                            .child(Constants.FIREBASE_CHILD_VISITORS)
-                            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
-                            .child(userIDS)
-                        self.VisitorPublicRef?.observeSingleEvent(of: .value, with: {(snapshot) in
-                            if snapshot.exists() {
-                                let visitorData = snapshot.value as? [String: AnyObject]
-                                let dateAndTimeOfVisit = visitorData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
-                                let fullName = visitorData?[VisitorListFBKeys.fullName.key] as? String
-                                let inviterUID = visitorData?[VisitorListFBKeys.inviterUID.key] as? String
-                                let mobileNumber = visitorData?[VisitorListFBKeys.mobileNumber.key] as? String
-                                let profilePhoto = visitorData?[VisitorListFBKeys.profilePhoto.key] as? String
-                                let status = visitorData?[VisitorListFBKeys.status.key] as? String
-                                let uid = visitorData?[VisitorListFBKeys.uid.key] as? String
-                                //    creating userAccount model & set earlier created let variables in userObject in the below parameter
-                                let user = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status:
-                                    status, uid: uid)
-                                
-                                self.HandedThingsList.append(user)
-                                self.TableviewRelaod()
-                                
-                            }
-                        })
-                    }
-                }
-            } else {
-                //Hiding Activity Indicator & showing error image & message.
-                NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsList())
-            }
-        })
+        //Calling Retrieval function
+        retrieveHandedThingsToGuest()
         
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
@@ -105,36 +56,37 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return HandedThingsList.count
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return handedThingsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HandedThingsToGuestTableViewCell
-        let rowofIndex = indexPath.row
-        let SavedValues = HandedThingsList[rowofIndex]
-        let VisitedByName =  GlobalUserData.shared.personalDetails_Items
-        let UserDetails_Data = VisitedByName.first
-        let VisitedBy = UserDetails_Data?.fullName
-        let Status = SavedValues.getstatus()
-        if Status != "Not Entered"  {
-            cell.lbl_VisiterName.text = SavedValues.getfullName()
-            let dateTimeString = SavedValues.getdateAndTimeOfVisit()
-            //Created array to spilt Date & time in separate variables
-            let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
-            let dateString: String = arrayOfDateTime[0]
-            let timeString: String = arrayOfDateTime[1]
-            cell.lbl_GuestTime.text = timeString
-            cell.lbl_GuestDate.text = dateString
-            cell.lbl_GuestInvitedBy.text = VisitedBy
-        } else
-        {
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! HandedThingsToGuestTableViewCell
+        //Created constant variable to store all the firebase data in it.
+        let nammaApartmentVisitor : NammaApartmentVisitor
+        nammaApartmentVisitor = handedThingsList[indexPath.row]
+        //Created local variable to store Date & Time From Firebase
+        var dateTimeString : String
+        dateTimeString = nammaApartmentVisitor.getdateAndTimeOfVisit()
+        //Create array to split Date & Time from firebase
+        let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
+        let dateString: String = arrayOfDateTime[0]
+        let timeString: String = arrayOfDateTime[1]
+        
+        cell.lbl_GuestTime.text = timeString
+        cell.lbl_GuestDate.text = dateString
+        cell.lbl_VisiterName.text = nammaApartmentVisitor.getfullName()
+        
+        //Calling function to get Profile Image from Firebase.
+        if let urlString = nammaApartmentVisitor.getprofilePhoto() {
+            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
         }
+        
+        if(nammaApartmentVisitor.getinviterUID() == userUID) {
+            cell.lbl_GuestInvitedBy.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
+        }
+        
         //assigning delegate method to textFiled
-        cell.txt_Description.delegate = self
+        //cell.txt_Description.delegate = self
         //assigning title to cell Labels
         cell.lbl_Visiter.text = NAString().visitor()
         cell.lbl_Type.text = NAString().type()
@@ -209,12 +161,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         return cell
     }
     
-    func TableviewRelaod() {
-        DispatchQueue.main.async {
-            self.TableView.reloadData()
-        }
-    }
-    
     //Dynamically Change Cell Height while selecting segment Controller
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedRow == 1  && selectedRow != nil && currentTag != nil && currentTag == indexPath.row {
@@ -228,12 +174,46 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     @objc func selectSegment(sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             selectedRow = 0
-        }
-        else
-        {
+        } else {
             selectedRow = 1
         }
         currentTag = sender.tag
         self.TableView.reloadData()
     }
+}
+extension HandedThingsToGuestViewController {
+    
+    //Retrieving Entered Guests data from Firebase
+    func retrieveHandedThingsToGuest() {
+        
+        //Show Progress indicator while we retrieve user guests
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
+        let retrieveGuestList : RetrievingGuestList
+        retrieveGuestList = RetrievingGuestList.init()
+        
+        //Retrieve guest of current userUID and their family members if any
+        retrieveGuestList.getGuests { (guestDataList) in
+            
+            //Hiding Progress indicator after retrieving data.
+            NAActivityIndicator.shared.hideActivityIndicator()
+            
+            if(guestDataList.count == 0) {
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+            } else {
+                for guestData in guestDataList {
+                    
+                    //Append only those guest data whose status is ENTERED
+                    if guestData.getstatus() == NAString().entered() {
+                        self.handedThingsList.append(guestData)
+                    }
+                }
+                if(self.handedThingsList.count == 0) {
+                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                }
+                self.TableView.reloadData()
+            }
+        }
+    }
+    
 }
