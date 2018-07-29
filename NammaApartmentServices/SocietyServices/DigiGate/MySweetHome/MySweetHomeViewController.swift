@@ -33,8 +33,22 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     var navTitle = String()
     
+    var NAFamilyMemberList = [NAUser]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let retrieveUserList : RetrieveFamilyMemberList
+        retrieveUserList = RetrieveFamilyMemberList.init()
+        
+        retrieveUserList.getFamilyMembers(userUID: userUID) { (familyMembersDataList) in
+            if familyMembersDataList.count == 0 {
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorFamilyMembersList())
+            } else {
+                self.NAFamilyMemberList.append(contentsOf: familyMembersDataList)
+            }
+            self.collectionView.reloadData()
+        }
         
         /* - Corner Radius for popUp View.
          - Formmating & setting in Buttons and Navigation bar.
@@ -84,17 +98,24 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return MySweetHomeName.count
+        return self.NAFamilyMemberList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
         
-        cell.lbl_MySweetHomeName.text = MySweetHomeName[indexPath.row]
-        cell.lbl_MySweetHomeRelation.text = MySweetHomeRelation[indexPath.row]
-        cell.lbl_MySweetHomeGrantAccess.text = MySweetHomeGrantAccess[indexPath.row]
-        cell.MySweeetHomeimg.image = mysweethomeImages[indexPath.row]
+        let familyMember = self.NAFamilyMemberList[indexPath.row]
+        
+        cell.lbl_MySweetHomeName.text = familyMember.personalDetails.fullName
+        
+        //TODO Remove this data, we need to decide if a user is a friend or family member
+        cell.lbl_MySweetHomeRelation.text = "Family Member"
+        cell.lbl_MySweetHomeGrantAccess.text = familyMember.privileges.getGrantAccess() ? "Yes" : "No"
+       
+        if let urlString = familyMember.personalDetails.profilePhoto {
+            NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
+        }
         
         /* - This creates the shadows and modifies the cards a little bit.
          - Creating round Image using Corner radius.

@@ -28,25 +28,25 @@ enum UserPrivilegesListFBKeys : String {
 class UserPrivileges {
     
     //creatig string variables to get data from Firebase.
-    var admin: String?
-    var grantAccess: String?
-    var verified: String?
+    var admin: Bool?
+    var grantAccess: Bool?
+    var verified: Bool?
     
      //initiliazing variables
-    init(admin: String?,grantAccess: String?,verified: String?) {
+    init(admin: Bool?,grantAccess: Bool?,verified: Bool?) {
         
         self.admin = admin
         self.grantAccess = grantAccess
         self.verified = verified
     }
     
-    func getAdmin() -> String {
+    func getAdmin() -> Bool {
         return admin!
     }
-    func getGrantAccess() -> String {
+    func getGrantAccess() -> Bool {
         return grantAccess!
     }
-    func getVerified() -> String {
+    func getVerified() -> Bool {
         return verified!
     }
 }
