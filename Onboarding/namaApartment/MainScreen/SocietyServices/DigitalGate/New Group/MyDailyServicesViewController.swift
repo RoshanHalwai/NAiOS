@@ -25,6 +25,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     @IBOutlet weak var btn_Cancel: UIButton!
     @IBOutlet weak var btn_Reschedule: UIButton!
     
+    //Created Instance of Model Class To get data in card view
     var NADailyServicesList = [NammaApartmentDailyServices]()
     
     var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
@@ -143,8 +144,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
          - Calling global function to get Profile Image from Firebase.
          - This creates the shadows and modifies the cards a little bit.
          - To display image in round shape & Labels Formatting & setting.
-         - Calling button action & Delete particular cell from list.
-         - TODO: Hardcoded values which need to fix in next pull request. */
+         - Calling button action & Delete particular cell from list. */
         
         let DSList : NammaApartmentDailyServices
         DSList = NADailyServicesList[indexPath.row]
@@ -154,7 +154,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = DSList.gettimeOfVisit()
         cell.lbl_MyDailyServicesFlats.text = "\(DSList.getNumberOfFlats())"
         cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
-
+        
         if let urlString = DSList.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
         }
@@ -263,7 +263,8 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
         /* - AlertView will Display while removing Card view.
-         - Remove collection view cell item with animation at final state. */
+         - Remove collection view cell item with animation at final state.
+         - TODO : Need to Fix Delete Issue in My Daily Services List */
         
         let dailyServiceUID = NADailyServicesList[indx]
         
