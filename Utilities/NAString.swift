@@ -907,6 +907,10 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
     }
     
+    func layoutFeatureErrorFamilyMembersList() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no family members at your flat.")
+    }
+    
     func statusNotEntered() -> String {
         return String ("Not Entered")
     }
