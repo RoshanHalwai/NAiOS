@@ -36,13 +36,12 @@ class NAUser {
     
     //created variables to get details from following classes.
     var flatDetails = [UserFlatDetails]()
-    var personalDetails = [UserFlatDetails]()
+    var personalDetails = [UserPersonalDetails]()
     var privileges = [UserPrivileges]()
     var uid : String?
     
      //initiliazing variables
-    init(uid: String?,flatDetails: UserFlatDetails,personalDetails: UserFlatDetails,privileges: UserPrivileges) {
-    
+    init(uid: String?,flatDetails: UserFlatDetails,personalDetails: UserPersonalDetails,privileges: UserPrivileges) {
         self.uid = uid
         self.flatDetails = [flatDetails]
         self.privileges = [privileges]
