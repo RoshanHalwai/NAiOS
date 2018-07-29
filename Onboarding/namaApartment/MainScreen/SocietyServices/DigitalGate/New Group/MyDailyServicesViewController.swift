@@ -48,7 +48,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         /* - Calling DatePicker Funtion and function to retriev data from firebase.
          - Adding image on date TextField.
          - To show activity indicator before loading data from firebase.
-         - Button,Navigation bar Formmating & setting.
+         - Button & Navigation bar Formmating & setting.
          - Calling Daily services Retrieving Function on Load */
         
         txt_PickTime.underlined()

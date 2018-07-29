@@ -19,7 +19,6 @@ enum VisitorListFBKeys : String {
     case status
     case uid
     
-   
     var key : String {
         switch self {
         // Use Internationalization, as appropriate.
@@ -50,7 +49,6 @@ class NammaApartmentVisitor {
     private var status: String?
     private var uid: String?
    
-    
     //initilaize the variables
     init(dateAndTimeOfVisit: String?, fullName: String?,
         inviterUID: String?,mobileNumber: String?,
@@ -103,6 +101,7 @@ class NammaApartmentVisitor {
         return uid!
     }
 }
+
 class EneteredGuestUIDList {
     private var uid : String?
     init(uid: String?) {
