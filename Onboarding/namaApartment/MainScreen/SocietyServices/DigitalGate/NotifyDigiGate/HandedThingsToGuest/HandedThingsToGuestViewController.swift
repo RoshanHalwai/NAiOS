@@ -86,7 +86,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         }
         
         //assigning delegate method to textFiled
-        //cell.txt_Description.delegate = self
+        cell.txt_Description.delegate = self
+        
         //assigning title to cell Labels
         cell.lbl_Visiter.text = NAString().visitor()
         cell.lbl_Type.text = NAString().type()
