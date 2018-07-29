@@ -226,5 +226,4 @@ extension HandedThingsToGuestViewController {
             }
         }
     }
-    
 }

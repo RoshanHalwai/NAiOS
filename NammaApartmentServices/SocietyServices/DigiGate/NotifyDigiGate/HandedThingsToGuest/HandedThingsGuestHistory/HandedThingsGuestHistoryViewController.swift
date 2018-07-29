@@ -21,7 +21,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
-       
+        
         //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
