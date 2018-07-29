@@ -947,6 +947,9 @@ class NAString : NSObject {
     func notEntered() -> String {
         return String ("Not Entered")
     }
+    func entered() -> String {
+        return String("Entered")
+    }
     
     //Create Button Tag Values
     func inviteButtonTagValue() -> Int {
@@ -961,6 +964,14 @@ class NAString : NSObject {
         return Int (103)
     }
     
+    func verifyOTPButtonTagValue() -> Int {
+        return Int (104)
+    }
+    
+    func continueButtonTagValue() -> Int {
+        return Int (105)
+    }
+    
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)
@@ -972,5 +983,12 @@ class NAString : NSObject {
     
     func dailyServiceNotAvailable() -> String {
         return String ("Please add your Daily Services for their hassle free entry at your Society")
+    }
+    func verifyingOTPDescription() -> String {
+        return String ("Verifying Account")
+    }
+    
+    func verifyingAccountDescription() -> String {
+        return String ("Creating your Account")
     }
 }

@@ -15,6 +15,7 @@ class HandedThingsToGuestTableViewCell: UITableViewCell {
     //created object to use History button action in cell class
     var objHistoryVC : (() -> Void)? = nil
     
+    @IBOutlet weak var image_View: UIImageView!
     @IBOutlet weak var lbl_Visiter: UILabel!
     @IBOutlet weak var lbl_Type: UILabel!
     @IBOutlet weak var lbl_Date: UILabel!

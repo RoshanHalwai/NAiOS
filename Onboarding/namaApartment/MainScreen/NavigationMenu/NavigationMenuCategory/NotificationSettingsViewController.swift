@@ -27,7 +27,9 @@ class NotificationSettingsViewController: NANavigationViewController, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! NotificationSettingsTableViewCell
         cell.labelView.text = notificationsArray[indexPath.row]
-        cell.labelView.font = NAFont().headerFont()
+        
+        //Label formatting & setting
+        cell.labelView.font = NAFont().textFieldFont()
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -14,6 +14,7 @@
 		0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */; };
 		081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */; };
 		081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */; };
+		081F25D1210C8EB60065F90E /* RetrievingGuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */; };
 		083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */; };
 		083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */; };
 		083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */; };
@@ -37,7 +38,7 @@
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
 		08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
-		19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */; };
+		1EF8A901EBB9048DF1AF25E0 /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 742095F612CC033BF2CC121B /* Pods_nammaApartment.framework */; };
 		422E4765210A058900D2CE77 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E4763210A058900D2CE77 /* SearchViewController.swift */; };
 		422E4769210A060800D2CE77 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E4768210A060800D2CE77 /* SearchTableViewCell.swift */; };
 		422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
@@ -53,13 +54,11 @@
 		423187E420F378E400F10A23 /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E320F378E400F10A23 /* GTMSessionFetcher.framework */; };
 		423187E620F378E400F10A23 /* leveldb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E520F378E400F10A23 /* leveldb.framework */; };
 		423187E820F378E400F10A23 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E720F378E400F10A23 /* nanopb.framework */; };
-		423187EA20F378E400F10A23 /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */; };
-		423187EC20F378E400F10A23 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */; };
 		423187EE20F378E400F10A23 /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187ED20F378E400F10A23 /* Protobuf.framework */; };
 		42329D1A20F9BF80000AA9AF /* OpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42329D1920F9BF80000AA9AF /* OpacityView.swift */; };
+		4879E19903C8331738E9681E /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD561F3747CE5F4511F794A1 /* Pods_nammaApartmentTests.framework */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
 		5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DF2620FCC280002C13BB /* HandedHistory.swift */; };
-		5DEFEDD02E7F8A93F05E92FA /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */; };
 		86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */; };
 		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
 		861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFE20B9AA98009EC0EF /* Lato-Italic.ttf */; };
@@ -126,9 +125,7 @@
 		86DCB9F72098A80800C67C70 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCB9F62098A80800C67C70 /* loginViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
 		86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */; };
-		8EF5AA311F67B0FF14E70633 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */; };
-		A98FFF475751632D77B37975 /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */; };
-		D2C5590A6D512400507D2364 /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5C08CD1BA13FD2A24912C31 /* Pods_nammaApartment.framework */; };
+		BE620C2833F09BA2E1250FDD /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C376994C35A2D4713716EC15 /* Pods_nammaApartmentUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,7 +146,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0625CA33236AB31696C6B05B /* Pods-nammaApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.debug.xcconfig"; sourceTree = "<group>"; };
 		0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListViewController.swift; sourceTree = "<group>"; };
 		0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -157,6 +153,7 @@
 		0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyFamilyMembersViewController.swift; sourceTree = "<group>"; };
 		081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryViewController.swift; sourceTree = "<group>"; };
 		081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingGuestList.swift; sourceTree = "<group>"; };
 		083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryViewController.swift; sourceTree = "<group>"; };
 		083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesViewController.swift; sourceTree = "<group>"; };
@@ -195,17 +192,13 @@
 		423187E320F378E400F10A23 /* GTMSessionFetcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GTMSessionFetcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187E520F378E400F10A23 /* leveldb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = leveldb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187E720F378E400F10A23 /* nanopb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = nanopb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_nammaApartmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187ED20F378E400F10A23 /* Protobuf.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Protobuf.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42329D1920F9BF80000AA9AF /* OpacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityView.swift; sourceTree = "<group>"; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
-		5D83E8166C92F951887F6368 /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DD9DF2620FCC280002C13BB /* HandedHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedHistory.swift; sourceTree = "<group>"; };
-		5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		77FD42EBD4E83001D5D996CF /* Pods-nammaApartment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.release.xcconfig"; sourceTree = "<group>"; };
-		78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		81945498D71730E6597591AB /* Pods-nammaApartmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.release.xcconfig"; sourceTree = "<group>"; };
+		60D95441DCC19BB789844829 /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
+		742095F612CC033BF2CC121B /* Pods_nammaApartment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DD59A8FBC7EDC59150F0DCF /* Pods-nammaApartment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.release.xcconfig"; sourceTree = "<group>"; };
 		86114E5B20B56E4300656B56 /* EditMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMyServicesViewController.swift; sourceTree = "<group>"; };
 		86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewPresenter.swift; sourceTree = "<group>"; };
 		861CBFFE20B9AA98009EC0EF /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
@@ -279,9 +272,12 @@
 		86DCB9F62098A80800C67C70 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
 		86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentDailyServices.swift; sourceTree = "<group>"; };
-		A1154ABB788AE2864D232F8D /* Pods-nammaApartmentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.release.xcconfig"; sourceTree = "<group>"; };
-		CD81E11D397094E2309A5BA0 /* Pods-nammaApartmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F5C08CD1BA13FD2A24912C31 /* Pods_nammaApartment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D9A8B27668415B2AF3F3D89 /* Pods-nammaApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.debug.xcconfig"; sourceTree = "<group>"; };
+		9E0A3681815BCCBA69F9361F /* Pods-nammaApartmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C376994C35A2D4713716EC15 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA5F9FA6D9A5A56E6B203B64 /* Pods-nammaApartmentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DA32DFB4FA5CE82DA26BC37A /* Pods-nammaApartmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.release.xcconfig"; sourceTree = "<group>"; };
+		FD561F3747CE5F4511F794A1 /* Pods_nammaApartmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,12 +295,10 @@
 				423187E420F378E400F10A23 /* GTMSessionFetcher.framework in Frameworks */,
 				423187E620F378E400F10A23 /* leveldb.framework in Frameworks */,
 				423187E820F378E400F10A23 /* nanopb.framework in Frameworks */,
-				423187EA20F378E400F10A23 /* Pods_nammaApartmentTests.framework in Frameworks */,
-				423187EC20F378E400F10A23 /* Pods_nammaApartmentUITests.framework in Frameworks */,
 				423187EE20F378E400F10A23 /* Protobuf.framework in Frameworks */,
 				86A8B936209EC9FF00EA1C35 /* Contacts.framework in Frameworks */,
 				86A8B937209EC9FF00EA1C35 /* ContactsUI.framework in Frameworks */,
-				D2C5590A6D512400507D2364 /* Pods_nammaApartment.framework in Frameworks */,
+				1EF8A901EBB9048DF1AF25E0 /* Pods_nammaApartment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,8 +306,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19CCEBCB19E26A595DA96F9A /* Pods_nammaApartmentTests.framework in Frameworks */,
-				A98FFF475751632D77B37975 /* Pods_nammaApartmentTests.framework in Frameworks */,
+				4879E19903C8331738E9681E /* Pods_nammaApartmentTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,8 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DEFEDD02E7F8A93F05E92FA /* Pods_nammaApartmentUITests.framework in Frameworks */,
-				8EF5AA311F67B0FF14E70633 /* Pods_nammaApartmentUITests.framework in Frameworks */,
+				BE620C2833F09BA2E1250FDD /* Pods_nammaApartmentUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +329,7 @@
 				86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */,
 				86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */,
 				86B1A8D920D50EAB00D90D88 /* NammaApartmentVisitor.swift */,
+				081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */,
 			);
 			path = VisitorListCategory;
 			sourceTree = "<group>";
@@ -369,15 +362,15 @@
 			path = NavigationMenuCategory;
 			sourceTree = "<group>";
 		};
-		15E253658059EF007BD00B9F /* Pods */ = {
+		55CE6949C99AB45ABA87C8B0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0625CA33236AB31696C6B05B /* Pods-nammaApartment.debug.xcconfig */,
-				77FD42EBD4E83001D5D996CF /* Pods-nammaApartment.release.xcconfig */,
-				5D83E8166C92F951887F6368 /* Pods-nammaApartmentTests.debug.xcconfig */,
-				81945498D71730E6597591AB /* Pods-nammaApartmentTests.release.xcconfig */,
-				CD81E11D397094E2309A5BA0 /* Pods-nammaApartmentUITests.debug.xcconfig */,
-				A1154ABB788AE2864D232F8D /* Pods-nammaApartmentUITests.release.xcconfig */,
+				8D9A8B27668415B2AF3F3D89 /* Pods-nammaApartment.debug.xcconfig */,
+				7DD59A8FBC7EDC59150F0DCF /* Pods-nammaApartment.release.xcconfig */,
+				60D95441DCC19BB789844829 /* Pods-nammaApartmentTests.debug.xcconfig */,
+				DA32DFB4FA5CE82DA26BC37A /* Pods-nammaApartmentTests.release.xcconfig */,
+				9E0A3681815BCCBA69F9361F /* Pods-nammaApartmentUITests.debug.xcconfig */,
+				CA5F9FA6D9A5A56E6B203B64 /* Pods-nammaApartmentUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -429,7 +422,7 @@
 				86270118209707BC004B28EB /* namaApartmentUITests */,
 				862700F4209707BB004B28EB /* Products */,
 				86A8B933209EC9FE00EA1C35 /* Frameworks */,
-				15E253658059EF007BD00B9F /* Pods */,
+				55CE6949C99AB45ABA87C8B0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -618,14 +611,12 @@
 				423187E320F378E400F10A23 /* GTMSessionFetcher.framework */,
 				423187E520F378E400F10A23 /* leveldb.framework */,
 				423187E720F378E400F10A23 /* nanopb.framework */,
-				423187E920F378E400F10A23 /* Pods_nammaApartmentTests.framework */,
-				423187EB20F378E400F10A23 /* Pods_nammaApartmentUITests.framework */,
 				423187ED20F378E400F10A23 /* Protobuf.framework */,
 				86A8B934209EC9FF00EA1C35 /* Contacts.framework */,
 				86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */,
-				F5C08CD1BA13FD2A24912C31 /* Pods_nammaApartment.framework */,
-				78BC12F61403ED047D261C6F /* Pods_nammaApartmentTests.framework */,
-				5F095CE0DA13152224A3291C /* Pods_nammaApartmentUITests.framework */,
+				742095F612CC033BF2CC121B /* Pods_nammaApartment.framework */,
+				FD561F3747CE5F4511F794A1 /* Pods_nammaApartmentTests.framework */,
+				C376994C35A2D4713716EC15 /* Pods_nammaApartmentUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -772,12 +763,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8627011E209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartment" */;
 			buildPhases = (
-				9634B434051F521BA9A27B80 /* [CP] Check Pods Manifest.lock */,
+				1D26CA69790012A8A9C2C194 /* [CP] Check Pods Manifest.lock */,
 				862700EF209707BB004B28EB /* Sources */,
 				862700F0209707BB004B28EB /* Frameworks */,
 				862700F1209707BB004B28EB /* Resources */,
-				FDEBBA9D98BD6965438A48D6 /* [CP] Embed Pods Frameworks */,
-				69B121B09BD640A3B6641419 /* [CP] Copy Pods Resources */,
+				54D8F60FFB68119011D39AED /* [CP] Embed Pods Frameworks */,
+				7FBFCE548036401CD949C911 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -792,7 +783,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86270121209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartmentTests" */;
 			buildPhases = (
-				5D8D1789F488BF21117D1646 /* [CP] Check Pods Manifest.lock */,
+				836FC9E5F6633F7964FBFB13 /* [CP] Check Pods Manifest.lock */,
 				86270106209707BC004B28EB /* Sources */,
 				86270107209707BC004B28EB /* Frameworks */,
 				86270108209707BC004B28EB /* Resources */,
@@ -811,7 +802,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86270124209707BC004B28EB /* Build configuration list for PBXNativeTarget "nammaApartmentUITests" */;
 			buildPhases = (
-				6F977111BCAE866508520A13 /* [CP] Check Pods Manifest.lock */,
+				B53C564EE6A619489238F8AF /* [CP] Check Pods Manifest.lock */,
 				86270111209707BC004B28EB /* Sources */,
 				86270112209707BC004B28EB /* Frameworks */,
 				86270113209707BC004B28EB /* Resources */,
@@ -918,63 +909,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5D8D1789F488BF21117D1646 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-nammaApartmentTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		69B121B09BD640A3B6641419 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6F977111BCAE866508520A13 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-nammaApartmentUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9634B434051F521BA9A27B80 /* [CP] Check Pods Manifest.lock */ = {
+		1D26CA69790012A8A9C2C194 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -992,7 +927,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FDEBBA9D98BD6965438A48D6 /* [CP] Embed Pods Frameworks */ = {
+		54D8F60FFB68119011D39AED /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1018,6 +953,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FBFCE548036401CD949C911 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		836FC9E5F6633F7964FBFB13 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nammaApartmentTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B53C564EE6A619489238F8AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nammaApartmentUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1068,6 +1059,7 @@
 				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
 				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
 				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
+				081F25D1210C8EB60065F90E /* RetrievingGuestList.swift in Sources */,
 				0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */,
 				086081FB2104B19000B5990C /* RateUsView.swift in Sources */,
 				8627012B209715D5004B28EB /* splashNammaApartments.swift in Sources */,
@@ -1281,7 +1273,7 @@
 		};
 		8627011F209707BC004B28EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0625CA33236AB31696C6B05B /* Pods-nammaApartment.debug.xcconfig */;
+			baseConfigurationReference = 8D9A8B27668415B2AF3F3D89 /* Pods-nammaApartment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = nammaApartment.entitlements;
@@ -1290,10 +1282,7 @@
 				DEVELOPMENT_TEAM = PUZKL58568;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1304,7 +1293,7 @@
 		};
 		86270120209707BC004B28EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77FD42EBD4E83001D5D996CF /* Pods-nammaApartment.release.xcconfig */;
+			baseConfigurationReference = 7DD59A8FBC7EDC59150F0DCF /* Pods-nammaApartment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = nammaApartment.entitlements;
@@ -1313,10 +1302,7 @@
 				DEVELOPMENT_TEAM = PUZKL58568;
 				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1327,18 +1313,14 @@
 		};
 		86270122209707BC004B28EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D83E8166C92F951887F6368 /* Pods-nammaApartmentTests.debug.xcconfig */;
+			baseConfigurationReference = 60D95441DCC19BB789844829 /* Pods-nammaApartmentTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1349,18 +1331,14 @@
 		};
 		86270123209707BC004B28EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81945498D71730E6597591AB /* Pods-nammaApartmentTests.release.xcconfig */;
+			baseConfigurationReference = DA32DFB4FA5CE82DA26BC37A /* Pods-nammaApartmentTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1371,17 +1349,13 @@
 		};
 		86270125209707BC004B28EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD81E11D397094E2309A5BA0 /* Pods-nammaApartmentUITests.debug.xcconfig */;
+			baseConfigurationReference = 9E0A3681815BCCBA69F9361F /* Pods-nammaApartmentUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1392,17 +1366,13 @@
 		};
 		86270126209707BC004B28EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1154ABB788AE2864D232F8D /* Pods-nammaApartmentUITests.release.xcconfig */;
+			baseConfigurationReference = CA5F9FA6D9A5A56E6B203B64 /* Pods-nammaApartmentUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FZH6P99TXU;
 				INFOPLIST_FILE = namaAppartmentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vikasnayak.namaAppartmentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

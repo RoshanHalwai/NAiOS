@@ -95,6 +95,8 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
             cell.textLabel?.text = gettingArray[indexPath.row]
             gettingArray = gettingArray.sorted()
         }
+        
+        //Label formatting & setting
         cell.textLabel?.font = NAFont().textFieldFont()
         return cell
     }

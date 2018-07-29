@@ -68,6 +68,11 @@ class NammaApartmentVisitor {
     func getdateAndTimeOfVisit() -> String {
         return dateAndTimeOfVisit!
     }
+    
+    func setdateAndTimeOfVisit(date: String) {
+         dateAndTimeOfVisit = date
+    }
+    
     //Get Photo
     func getprofilePhoto() -> String? {
         return profilePhoto!
@@ -88,6 +93,16 @@ class NammaApartmentVisitor {
         return status!
     }
     
+    //Get uid
+    func getuid() -> String {
+        return uid!
+    }
+}
+class EneteredGuestUIDList {
+    private var uid : String?
+    init(uid: String?) {
+        self.uid = uid
+    }
     //Get uid
     func getuid() -> String {
         return uid!

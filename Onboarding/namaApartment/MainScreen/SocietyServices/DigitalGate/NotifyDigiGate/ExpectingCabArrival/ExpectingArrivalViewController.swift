@@ -68,6 +68,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
     var packagePublicRef : DatabaseReference?
     
     var finalCabString = String()
+    var btn_Hour_String = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -276,6 +277,8 @@ class ExpectingArrivalViewController: NANavigationViewController {
     }
     
     @IBAction func btnSelectHours(_ sender: UIButton) {
+        //Getting Button Text
+        btn_Hour_String = (sender.titleLabel?.text)!
         selectedColor(tag: sender.tag)
     }
     
@@ -573,9 +576,7 @@ extension ExpectingArrivalViewController {
             ArrivalListFBKeys.inviterUID.key : userUID,
             ArrivalListFBKeys.reference.key : finalCabString,
             ArrivalListFBKeys.status.key :NAString().notEntered(),
-            
-            //TODO: Hardcoded valid For Button Value.
-            ArrivalListFBKeys.validFor.key : "1 hr"
+            ArrivalListFBKeys.validFor.key : btn_Hour_String
         ]
         //Adding data in Firebase from dictionary
         self.cabsPublicRef?.child(cabUID!).setValue(expectingCabData)
@@ -615,10 +616,7 @@ extension ExpectingArrivalViewController {
             ArrivalListFBKeys.dateAndTimeOfArrival.key : txt_DateTime.text! as String?,
             ArrivalListFBKeys.inviterUID.key : userUID,
             ArrivalListFBKeys.reference.key : txt_PackageVendor.text! as String,
-            ArrivalListFBKeys.status.key :NAString().notEntered(),
-            
-            //TODO: Hardcoded valid For Button Value.
-            ArrivalListFBKeys.validFor.key : "1 hr"
+            ArrivalListFBKeys.status.key : btn_Hour_String
         ]
         //Adding data in Firebase from dictionary
         self.packagePublicRef?.child(packageUID!).setValue(expectingPackageData)
