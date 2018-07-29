@@ -38,10 +38,17 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Show Progress indicator while we retrieve user guests
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
         let retrieveUserList : RetrieveFamilyMemberList
         retrieveUserList = RetrieveFamilyMemberList.init()
         
-        retrieveUserList.getFamilyMembers(userUID: userUID) { (familyMembersDataList) in
+        //Retrieve user friends and family members if they have added else we show FEATURE UNAVAILABLE
+        retrieveUserList.getFriendsAndFamilyMembers(userUID: userUID) { (familyMembersDataList) in
+            //Hide Progress indicator
+            NAActivityIndicator.shared.hideActivityIndicator()
+            
             if familyMembersDataList.count == 0 {
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorFamilyMembersList())
             } else {
@@ -112,7 +119,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         //TODO Remove this data, we need to decide if a user is a friend or family member
         cell.lbl_MySweetHomeRelation.text = "Family Member"
         cell.lbl_MySweetHomeGrantAccess.text = familyMember.privileges.getGrantAccess() ? "Yes" : "No"
-       
+        
         if let urlString = familyMember.personalDetails.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
         }

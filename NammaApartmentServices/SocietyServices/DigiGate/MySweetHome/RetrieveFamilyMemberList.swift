@@ -30,59 +30,58 @@ class RetrieveFamilyMemberList {
      * Public API's
      * ------------------------------------------------------------- */
     
-    //Takes a userUID and returns a list of their family members data
-    public func getFamilyMembers(userUID : String, callback: @escaping (_ familyMembersUIDList : [NAUser]) -> Void) {
+    //Takes a userUID and returns a list of their friends and family members data
+    public func getFriendsAndFamilyMembers(userUID : String, callback: @escaping (_ familyMembersUIDList : [NAUser]) -> Void) {
         var familyAndFriendsDataList = [NAUser]()
         
-        self.getFamilyMembersUIDList(userUID: userUID) { (familyMembersUIDList) in
-            
-            //If FamilyMembers UID List is empty we check if user has any friends
-            if familyMembersUIDList.count == 0 {
-                self.getFriendsUIDList(userUID: userUID, callback: { (friendsUIDList) in
-                    
-                    //If Friends UID List is empty we return an empty list indicating that user does not
-                    //friends or family members
-                    if friendsUIDList.count == 0 {
-                        callback(familyAndFriendsDataList)
-                    } else {
-                        
-                        //User does not have family members but has friends added so we return user friends data
-                        self.getUserData(userUIDList: friendsUIDList, callback: { (friendsData) in
-                            familyAndFriendsDataList.append(contentsOf: friendsData)
-                            callback(familyAndFriendsDataList)
-                        })
-                    }
-                })
-            } else {
-                
-                //User has family members so we append family members data in the list
-                self.getUserData(userUIDList: familyMembersUIDList, callback: { (familyMembersData) in
-                    familyAndFriendsDataList.append(contentsOf: familyMembersData)
-                    self.getFriendsUIDList(userUID: userUID, callback: { (friendsUIDList) in
-                        
-                        //If family members UID list is empty indicates user has added only family members
-                        //but not friends
-                        if friendsUIDList.count == 0 {
-                            callback(familyAndFriendsDataList)
-                        } else {
-                            
-                            //We reach this point when user has added both family members and friends
-                            self.getUserData(userUIDList: friendsUIDList, callback: { (friendsData) in
-                                familyAndFriendsDataList.append(contentsOf: friendsData)
-                                callback(familyAndFriendsDataList)
-                            })
-                        }
-                    })
-                })
-            }
-            
+        self.getFamilyMembersDataList(userUID: userUID) { (familyMembersDataList) in
+            familyAndFriendsDataList.append(contentsOf: familyMembersDataList)
+            self.getFriendsDataList(userUID: userUID, callback: { (friendsDataList) in
+                familyAndFriendsDataList.append(contentsOf: friendsDataList)
+                callback(familyAndFriendsDataList)
+            })
         }
     }
     
     /* ------------------------------------------------------------- *
      * Private API's
      * ------------------------------------------------------------- */
-
+    
+    //Take userUID and returns a list of family members data added by the user
+    private func getFamilyMembersDataList(userUID : String, callback: @escaping (_ friendsUIDList : [NAUser]) -> Void) {
+        var familyMembersDataList = [NAUser]()
+        
+        self.getFamilyMembersUIDList(userUID: userUID) { (familyMembersUIDList) in
+            //If FamilyMembers UID List is empty we check if user has any friends
+            if familyMembersUIDList.count == 0 {
+                callback(familyMembersDataList)
+            } else {
+                //User has family members so we append family members data in the list
+                self.getUserDataList(userUIDList: familyMembersUIDList, callback: { (familyMembersData) in
+                    familyMembersDataList.append(contentsOf: familyMembersData)
+                    callback(familyMembersDataList)
+                })
+            }
+        }
+    }
+    
+    //Take userUID and returns a list of friends data added by the user
+    private func getFriendsDataList(userUID : String, callback: @escaping (_ friendsUIDList : [NAUser]) -> Void) {
+        var friendsDataList = [NAUser]()
+        
+        self.getFriendsUIDList(userUID: userUID, callback: { (friendsUIDList) in
+            if friendsUIDList.count == 0 {
+                callback(friendsDataList)
+            } else {
+                //Appending user friends data to the friends data list
+                self.getUserDataList(userUIDList: friendsUIDList, callback: { (friendsData) in
+                    friendsDataList.append(contentsOf: friendsData)
+                    callback(friendsDataList)
+                })
+            }
+        })
+    }
+    
     //Take a userUID and returns a list of their family members UID
     private func getFamilyMembersUIDList(userUID : String, callback: @escaping (_ familyMembersUIDList : [String]) -> Void) {
         var familyMembersUIDList = [String]()
@@ -122,7 +121,7 @@ class RetrieveFamilyMemberList {
     }
     
     //Takes a list of userUID and returns a list of userData
-    private func getUserData(userUIDList : [String], callback: @escaping (_ userDataList : [NAUser]) -> Void) {
+    private func getUserDataList(userUIDList : [String], callback: @escaping (_ userDataList : [NAUser]) -> Void) {
         var userDataList = [NAUser]()
         
         for userUID in userUIDList {
@@ -174,9 +173,7 @@ class RetrieveFamilyMemberList {
             
             //We are done with retrieval send the received data back to the calling function
             callback(userData)
-            
         })
-        
         
     }
     
