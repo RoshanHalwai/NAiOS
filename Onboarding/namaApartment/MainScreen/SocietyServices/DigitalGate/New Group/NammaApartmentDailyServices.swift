@@ -46,7 +46,7 @@ class NammaApartmentDailyServices {
     private var noOfFlats: Int?
     
     //initilaize the variables
-    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, noOfFlats: Int?) {
+    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
@@ -55,7 +55,7 @@ class NammaApartmentDailyServices {
         self.timeOfVisit = timeOfVisit
         self.uid = uid
         self.type = type
-        self.noOfFlats = noOfFlats
+        self.noOfFlats = numberOfFlat
        
     }
     
