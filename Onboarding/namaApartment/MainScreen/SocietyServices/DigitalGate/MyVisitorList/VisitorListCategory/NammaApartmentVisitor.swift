@@ -18,6 +18,7 @@ enum VisitorListFBKeys : String {
     case profilePhoto
     case status
     case uid
+    
     var key : String {
         switch self {
         // Use Internationalization, as appropriate.
@@ -47,9 +48,11 @@ class NammaApartmentVisitor {
     private var profilePhoto: String?
     private var status: String?
     private var uid: String?
-    
+   
     //initilaize the variables
-    init(dateAndTimeOfVisit: String?,fullName: String?,inviterUID: String?,mobileNumber: String?,profilePhoto: String?,status: String?,uid: String?) {
+    init(dateAndTimeOfVisit: String?, fullName: String?,
+        inviterUID: String?,mobileNumber: String?,
+        profilePhoto: String?,status: String?,uid: String?) {
         self.dateAndTimeOfVisit = dateAndTimeOfVisit!
         self.fullName = fullName!
         self.inviterUID = inviterUID
@@ -63,6 +66,7 @@ class NammaApartmentVisitor {
     func getfullName() -> String {
         return fullName!
     }
+    
     //Get DateAndTime
     func getdateAndTimeOfVisit() -> String {
         return dateAndTimeOfVisit!
@@ -97,6 +101,7 @@ class NammaApartmentVisitor {
         return uid!
     }
 }
+
 class EneteredGuestUIDList {
     private var uid : String?
     init(uid: String?) {
