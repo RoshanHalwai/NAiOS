@@ -182,8 +182,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     }
 }
 extension HandedThingsToGuestViewController {
-    //Retrieving Entered Guests from Firebase
-    //TODO: Need to use CallBack methods for showing error layout message also when no guest entered.
+    
+    //Retrieving Entered Guests data from Firebase
     func retrieveHandedThingsToGuest() {
         
         //Show Progress indicator while we retrieve user guests
