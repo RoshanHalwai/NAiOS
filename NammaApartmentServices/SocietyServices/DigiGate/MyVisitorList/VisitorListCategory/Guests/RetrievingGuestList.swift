@@ -119,6 +119,7 @@ class RetrievingGuestList {
         let visitorDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
             .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(visitorUID)
         
+        
         //Adding observe event to each of visitors UID
         visitorDataRef.observeSingleEvent(of: .value, with: { (guestDataSnapshot) in
             let guestsData = guestDataSnapshot.value as? [String: AnyObject]
@@ -133,8 +134,12 @@ class RetrievingGuestList {
             let mobileNumber = guestsData?[VisitorListFBKeys.mobileNumber.key] as? String
             let profilePhoto = guestsData?[VisitorListFBKeys.profilePhoto.key] as? String
             let uid = guestsData?[VisitorListFBKeys.uid.key] as? String
+            var handedThings = ""
+            if guestsData?[VisitorListFBKeys.handedThings.key] != nil {
+                handedThings = (guestsData?[VisitorListFBKeys.handedThings.key] as? String)!
+            }
             
-            let enteredGuestData = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid)
+            let enteredGuestData = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid, handedThings: handedThings)
             
             //We are done with retrieval send the received data back to the calling function
             callback(enteredGuestData)

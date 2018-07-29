@@ -18,6 +18,7 @@ enum VisitorListFBKeys : String {
     case profilePhoto
     case status
     case uid
+    case handedThings
     
     var key : String {
         switch self {
@@ -34,6 +35,8 @@ enum VisitorListFBKeys : String {
             return "status"
         case .uid:
             return "uid"
+        case .handedThings:
+            return "handedThings"
         }
     }
 }
@@ -48,11 +51,12 @@ class NammaApartmentVisitor {
     private var profilePhoto: String?
     private var status: String?
     private var uid: String?
+    private var handedThings: String?
    
     //initilaize the variables
     init(dateAndTimeOfVisit: String?, fullName: String?,
         inviterUID: String?,mobileNumber: String?,
-        profilePhoto: String?,status: String?,uid: String?) {
+        profilePhoto: String?,status: String?,uid: String?, handedThings: String?) {
         self.dateAndTimeOfVisit = dateAndTimeOfVisit!
         self.fullName = fullName!
         self.inviterUID = inviterUID
@@ -60,6 +64,7 @@ class NammaApartmentVisitor {
         self.profilePhoto = profilePhoto
         self.status = status
         self.uid = uid
+        self.handedThings = handedThings
     }
     
     //Get FullName
@@ -99,6 +104,11 @@ class NammaApartmentVisitor {
     //Get uid
     func getuid() -> String {
         return uid!
+    }
+    
+    //get handed things
+    func getHandedThings() -> String {
+        return handedThings!
     }
 }
 
