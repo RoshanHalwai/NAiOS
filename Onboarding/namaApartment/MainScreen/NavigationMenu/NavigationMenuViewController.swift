@@ -36,6 +36,7 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
         cell.image_View.image = UIImage(named: sideMenuArray[indexPath.row])
         cell.labelView.text = sideMenuArray[indexPath.row]
         
+        //Label formatting & setting
         cell.labelView.font = NAFont().textFieldFont()
         return cell
     }

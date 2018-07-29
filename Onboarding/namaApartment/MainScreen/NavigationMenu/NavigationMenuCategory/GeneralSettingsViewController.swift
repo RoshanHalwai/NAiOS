@@ -61,6 +61,8 @@ class GeneralSettingsViewController: NANavigationViewController,UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath)
         cell.textLabel?.text = languagesList[indexPath.row]
+        
+        //Label formatting & setting
         cell.textLabel?.font = NAFont().textFieldFont()
         return cell
     }
