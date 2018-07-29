@@ -86,7 +86,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         }
         
         //assigning delegate method to textFiled
-        //cell.txt_Description.delegate = self
+        cell.txt_Description.delegate = self
+        
         //assigning title to cell Labels
         cell.lbl_Visiter.text = NAString().visitor()
         cell.lbl_Type.text = NAString().type()
@@ -149,14 +150,24 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         
         //calling HistoryVC button action on particular cell
         cell.objHistoryVC = {
-            let alert = UIAlertController(title: NAString().notify_btnClick_Alert_title(), message: NAString().notify_btnClick_Alert_message(), preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                let lv = NAViewPresenter().handedThingsGuestHistoryVC()
-                self.navigationController?.pushViewController(lv, animated: true)
-                lv.titleName = NAString().history().capitalized
-            }
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
+            //Storing Data of Handed Things to Guest.
+            let visitorDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
+                .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(nammaApartmentVisitor.getuid())
+            visitorDataRef.child(Constants.FIREBASE_HANDEDTHINGS).setValue(cell.txt_Description.text, withCompletionBlock: { (error, ref) in
+                if error == nil {
+                    print("Success")
+                    let alert = UIAlertController(title: NAString().notify_btnClick_Alert_title(), message: NAString().notify_btnClick_Alert_message(), preferredStyle: UIAlertControllerStyle.alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+                        let lv = NAViewPresenter().handedThingsGuestHistoryVC()
+                        self.navigationController?.pushViewController(lv, animated: true)
+                        lv.titleName = NAString().history().capitalized
+                    }
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    print("Failure")
+                }
+            })
         }
         return cell
     }
@@ -215,5 +226,4 @@ extension HandedThingsToGuestViewController {
             }
         }
     }
-    
 }
