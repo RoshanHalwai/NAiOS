@@ -119,6 +119,7 @@ class RetrievingGuestList {
         let visitorDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
             .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(visitorUID)
         
+        
         //Adding observe event to each of visitors UID
         visitorDataRef.observeSingleEvent(of: .value, with: { (guestDataSnapshot) in
             let guestsData = guestDataSnapshot.value as? [String: AnyObject]

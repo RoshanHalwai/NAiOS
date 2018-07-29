@@ -89,11 +89,11 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID()) as! SearchTableViewCell
         if(searchActive) {
-            cell.textLabel?.text = filteredArray[indexPath.row]
             filteredArray = filteredArray.sorted()
+            cell.textLabel?.text = filteredArray[indexPath.row]
         } else {
-            cell.textLabel?.text = gettingArray[indexPath.row]
             gettingArray = gettingArray.sorted()
+            cell.textLabel?.text = gettingArray[indexPath.row]
         }
         
         //Label formatting & setting
