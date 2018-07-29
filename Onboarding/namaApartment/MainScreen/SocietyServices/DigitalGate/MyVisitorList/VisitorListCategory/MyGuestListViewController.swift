@@ -139,9 +139,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             dv.getDate = cell.lbl_MyVisitorDate.text!
             dv.getVisitorUID = nammaApartmentVisitor.getuid()
             
-            let index: Int = indexPath.row
-            dv.getIndexPath = index
-            
             dv.providesPresentationContextTransitionStyle = true
             dv.definesPresentationContext = true
             dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
