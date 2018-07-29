@@ -263,10 +263,9 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         
         /* - AlertView will Display while removing Card view.
-         - Remove collection view cell item with animation at final state.
-         - TODO : Need to Fix Delete Issue in My Daily Services List */
+         - Remove collection view cell item with animation at final state.*/
         
-        let dailyServiceUID = NADailyServicesList[indx]
+        let dailyService = NADailyServicesList[indx]
         
         self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         
@@ -274,23 +273,14 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
         
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
-            self.dailyServiceInUserRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                //Getting Daily Services Type From Firebase.
-                let dailyServiceTypes = snapshot.value as? NSDictionary
-                for dailyServiceType in (dailyServiceTypes?.allKeys)! {
-                    self.dailyServiceInUserRef?.child(dailyServiceType as! String).child(dailyServiceUID.getuid())
-                    
-                    //Removing item from list according to cell index
+            
                     self.NADailyServicesList.remove(at: indx)
-                    self.dailyServiceInUserRef?.removeValue()
-                    
+                    self.dailyServiceInUserRef?.child(dailyService.getType()).child(dailyService.getuid()).removeValue()
+            
                     cell.alpha = 1
                     cell.layer.transform = CATransform3DIdentity
                     
                     Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
-                }
-            })
         }
         alert.addAction(actionNO) //add No action on AlertView
         alert.addAction(actionYES) //add YES action on AlertView
