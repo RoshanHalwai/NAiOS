@@ -18,7 +18,6 @@ protocol AlertViewDelegate {
     func activityIndicator_function(withData : Any)
 }
 var userUID = ""
-//let dailyServicesUID = Auth.auth().currentUser?.uid
 
 class OTPViewController: NANavigationViewController {
     
