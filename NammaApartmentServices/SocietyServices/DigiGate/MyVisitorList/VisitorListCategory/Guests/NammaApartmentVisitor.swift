@@ -22,7 +22,7 @@ enum VisitorListFBKeys : String {
     
     var key : String {
         switch self {
-        // Use Internationalization, as appropriate.
+        //Use Internationalization, as appropriate.
         case .dateAndTimeOfVisit: return "dateAndTimeOfVisit"
         case .fullName: return "fullName"
         case .inviterUID:

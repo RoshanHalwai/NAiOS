@@ -375,7 +375,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
                 lv.newOtpString = dailyServicesString
                 lv.dailyServiceType = self.dailyServiceType
                 //Assigning Delegate
-                lv.delegateData = self
+               // lv.delegateData = self
                 lv.delegate = self
                 self.navigationController?.pushViewController(lv, animated: true)
             }
