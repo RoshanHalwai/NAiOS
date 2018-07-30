@@ -145,16 +145,31 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         }
         cell.segmentSelect.addTarget(self, action: #selector(selectSegment(sender:)), for: .valueChanged)
         
-        //calling History button action on particular cell
-        cell.objHistoryVC = {
-            let alert = UIAlertController(title: NAString().notify_btnClick_Alert_title(), message: NAString().notify_btnClick_Alert_message(), preferredStyle: UIAlertControllerStyle.alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
-                let lv = NAViewPresenter().handedThingsServiceHistoryVC()
-                self.navigationController?.pushViewController(lv, animated: true)
-                lv.titleName = NAString().history()
-            }
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
+        //Storing Handed Things To My Daily Services in Firebase & Calling History Button for Navigating.
+        cell.actionHistory = {
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-MM-yyyy"
+            let currentDate = formatter.string(from: date)
+            
+            self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(DSList.getType()).child(DSList.getuid()).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
+            
+            //Implemented Completion block,becouse need to show AlertView after storing data in Firebase.
+            self.dailyServicePublicRef?.child(currentDate).setValue(cell.txt_Description.text, withCompletionBlock: { (error,ref) in
+                if error == nil {
+                    print("Success")
+                    let alert = UIAlertController(title: NAString().notify_btnClick_Alert_title(), message: NAString().notify_btnClick_Alert_message(), preferredStyle: UIAlertControllerStyle.alert)
+                    let okAction = UIAlertAction(title: NAString().ok(), style: .default) { (_) in
+                        let lv = NAViewPresenter().handedThingsServiceHistoryVC()
+                        self.navigationController?.pushViewController(lv, animated: true)
+                        lv.titleName = NAString().history()
+                    }
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    print("Failure")
+                }
+            })
         }
         return cell
     }
@@ -187,7 +202,6 @@ extension HandedThingsToDailyServicesViewController {
         var type: String
         var flat: Int
         var status: String
-        
     }
     
     func retrieveHandedThingsDSFirebase() {
@@ -275,7 +289,7 @@ extension HandedThingsToDailyServicesViewController {
                                                     })
                                                 } else {
                                                     //TODO: Need to work on it after completing HandedThings Storing in Firebase.
-                                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                                    //  NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                                                 }
                                             })
                                         }
@@ -290,5 +304,3 @@ extension HandedThingsToDailyServicesViewController {
         })
     }
 }
-
-

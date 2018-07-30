@@ -153,7 +153,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         cell.lbl_MyDailyServiceName.text = DSList.getfullName()
         cell.lbl_MyDailyServiceType.text = DSList.getType()
-        cell.lbl_MyDailyServicesInTime.text = DSList.getStatus()
+        cell.lbl_MyDailyServicesInTime.text = DSList.gettimeOfVisit()
         cell.lbl_MyDailyServicesFlats.text = "\(DSList.getNumberOfFlats())"
         cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
         
@@ -195,7 +195,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_myDailyName.text = NAString().name()
         cell.lbl_myDailytype.text = NAString().type()
         cell.lbl_myDailyFlats.text = NAString().flats()
-        cell.lbl_myDailyTime.text = NAString().time()
+        cell.lbl_myDailyTime.text = NAString().status().capitalized
         cell.lbl_myDailyRating.text = NAString().rating()
         
         cell.index = indexPath
