@@ -619,12 +619,12 @@
 			children = (
 				86548D86209C63C700C700DA /* DigitalGateViewController.swift */,
 				86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */,
-				867DFFA720AEA33A00A45895 /* MySweetHome */,
 				86646BBC20AB042B002A92B8 /* Emergency */,
 				86BF6A4420A0572A00B175A1 /* NotifyDigiGate */,
 				865C7BCA209D835800443C75 /* InviteVisitor */,
-				86BF6A3F20A0322100B175A1 /* MyVisitorList */,
 				8672B3B920A97EFC0040A5E2 /* MyDailyServices */,
+				86BF6A3F20A0322100B175A1 /* MyVisitorList */,
+				867DFFA720AEA33A00A45895 /* MySweetHome */,
 			);
 			path = DigiGate;
 			sourceTree = "<group>";

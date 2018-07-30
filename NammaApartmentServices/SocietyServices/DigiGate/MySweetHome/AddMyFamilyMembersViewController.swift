@@ -96,6 +96,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         super.ConfigureNavBarTitle(title: navTitle!)
         self.navigationItem.title = ""
         
+        //Setting By defalut No selection in Segment Control
+        Relation_Segment.selectedSegmentIndex = UISegmentedControlNoSegment
+        grantAcess_Segment.selectedSegmentIndex = UISegmentedControlNoSegment
+        
         img_Profile.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         self.img_Profile.addGestureRecognizer(tapGesture)
