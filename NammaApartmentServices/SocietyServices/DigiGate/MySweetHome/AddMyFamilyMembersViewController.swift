@@ -56,7 +56,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     var userFamilyMemberRef : DatabaseReference?
     var currentUserRef : DatabaseReference?
     
-    
     /* - Scrollview.
      - To set navigation title.
      - Gettig data from previous screen string. */
