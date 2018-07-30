@@ -11,7 +11,7 @@ import UIKit
 class HandedThingsToDailyServicesTableViewCell: UITableViewCell {
     
     //created object to use history button action in cell class
-    var objHistoryVC : (() -> Void)? = nil
+    var actionHistory : (() -> Void)? = nil
     
     @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_Type: UILabel!
@@ -40,7 +40,7 @@ class HandedThingsToDailyServicesTableViewCell: UITableViewCell {
     class var defaultHeight: CGFloat  { get { return 215 } }
     
     @IBAction func btn_NotifyGate_Action(_ sender: UIButton) {
-        if let btnAction = self.objHistoryVC {
+        if let btnAction = self.actionHistory {
             btnAction()
         }
     }
