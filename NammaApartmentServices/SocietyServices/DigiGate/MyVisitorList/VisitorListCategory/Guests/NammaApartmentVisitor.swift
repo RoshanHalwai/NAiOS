@@ -41,6 +41,8 @@ enum VisitorListFBKeys : String {
     }
 }
 
+
+
 class NammaApartmentVisitor {
     
     //defining strings according to firebase names which is inside the visitor Node.

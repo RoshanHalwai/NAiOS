@@ -16,14 +16,14 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     var handedThingsList = [NammaApartmentVisitor]()
     var titleName =  String()
     
-    @IBOutlet weak var TableView: UITableView!
+    @IBOutlet weak var table_View: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Disable Table view cell selection & cell border line.
-        TableView.allowsSelection = false
-        self.TableView.separatorStyle = UITableViewCellSeparatorStyle.none
+        table_View.allowsSelection = false
+        self.table_View.separatorStyle = UITableViewCellSeparatorStyle.none
         
         //Calling Retrieval function
         retrieveHandedThingsToGuest()
@@ -172,6 +172,14 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         return cell
     }
     
+    //Resizing Cell when Coming Back from History Screen.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedRow = 0
+        currentTag = 0
+        table_View.reloadData()
+    }
+    
     //Dynamically Change Cell Height while selecting segment Controller
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if selectedRow == 1  && selectedRow != nil && currentTag != nil && currentTag == indexPath.row {
@@ -189,7 +197,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             selectedRow = 1
         }
         currentTag = sender.tag
-        self.TableView.reloadData()
+        self.table_View.reloadData()
     }
 }
 extension HandedThingsToGuestViewController {
@@ -222,7 +230,7 @@ extension HandedThingsToGuestViewController {
                 if(self.handedThingsList.count == 0) {
                     NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
                 }
-                self.TableView.reloadData()
+                self.table_View.reloadData()
             }
         }
     }

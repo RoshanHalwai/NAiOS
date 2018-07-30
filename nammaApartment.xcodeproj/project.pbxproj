@@ -15,6 +15,7 @@
 		081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */; };
 		081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */; };
 		081F25D1210C8EB60065F90E /* RetrievingGuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */; };
+		08355B0D210E2CB700F671D2 /* NammaApartmentEmergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08355B0C210E2CB700F671D2 /* NammaApartmentEmergency.swift */; };
 		083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */; };
 		083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */; };
 		083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */; };
@@ -157,6 +158,7 @@
 		081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryViewController.swift; sourceTree = "<group>"; };
 		081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingGuestList.swift; sourceTree = "<group>"; };
+		08355B0C210E2CB700F671D2 /* NammaApartmentEmergency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentEmergency.swift; sourceTree = "<group>"; };
 		083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryViewController.swift; sourceTree = "<group>"; };
 		083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToDailyServicesViewController.swift; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 				86646BBD20AB0472002A92B8 /* EmergencyViewController.swift */,
 				86646BBF20AB0704002A92B8 /* EmergencyCollectionViewCell.swift */,
 				86646BC120AB1530002A92B8 /* RaiseAlarmViewController.swift */,
+				08355B0C210E2CB700F671D2 /* NammaApartmentEmergency.swift */,
 			);
 			path = Emergency;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				86BF6A4120A0325200B175A1 /* MyGuestListCollectionViewCell.swift in Sources */,
 				5D774298210DD49F0049344F /* SplashNammaApartments.swift in Sources */,
 				5D774291210DD49F0049344F /* SearchTableViewCell.swift in Sources */,
+				08355B0D210E2CB700F671D2 /* NammaApartmentEmergency.swift in Sources */,
 				86646BC220AB1530002A92B8 /* RaiseAlarmViewController.swift in Sources */,
 				86646BBE20AB0472002A92B8 /* EmergencyViewController.swift in Sources */,
 				089A94B8210836940088F519 /* NoticeBoardViewController.swift in Sources */,
