@@ -41,6 +41,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     var dailyServiceInUserRef : DatabaseReference?
     var dailyServicePublicRef : DatabaseReference?
     var dailyServiceCountRef : DatabaseReference?
+    var dailyServiceStatusRef : DatabaseReference?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +153,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         cell.lbl_MyDailyServiceName.text = DSList.getfullName()
         cell.lbl_MyDailyServiceType.text = DSList.getType()
-        cell.lbl_MyDailyServicesInTime.text = DSList.gettimeOfVisit()
+        cell.lbl_MyDailyServicesInTime.text = DSList.getStatus()
         cell.lbl_MyDailyServicesFlats.text = "\(DSList.getNumberOfFlats())"
         cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
         
@@ -274,13 +276,13 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
-                    self.NADailyServicesList.remove(at: indx)
-                    self.dailyServiceInUserRef?.child(dailyService.getType()).child(dailyService.getuid()).removeValue()
+            self.NADailyServicesList.remove(at: indx)
+            self.dailyServiceInUserRef?.child(dailyService.getType()).child(dailyService.getuid()).removeValue()
             
-                    cell.alpha = 1
-                    cell.layer.transform = CATransform3DIdentity
-                    
-                    Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
+            cell.alpha = 1
+            cell.layer.transform = CATransform3DIdentity
+            
+            Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
         }
         alert.addAction(actionNO) //add No action on AlertView
         alert.addAction(actionYES) //add YES action on AlertView
@@ -298,6 +300,7 @@ extension MyDailyServicesViewController {
     struct dailySericeTypeAndNumberOfFlat {
         var type: String
         var flat: Int
+        var status: String
     }
     
     func retrieveDailyServicesFromFirebase() {
@@ -322,6 +325,7 @@ extension MyDailyServicesViewController {
                     //Created this to get Number of flat & Daily Service Type From Firebase & to use iterator for getting Data.
                     var numberOfFlat = 0
                     var dsType = ""
+                    var dsStatus = ""
                     var iterator = 0
                     
                     if snapshot.exists() {
@@ -340,42 +344,50 @@ extension MyDailyServicesViewController {
                                 for dailyServiceUID in (dailyServicesUID?.allKeys)! {
                                     self.dailyServiceCountRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String)
                                     
-                                    queue.addOperation {
-                                        self.dailyServiceCountRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-                                            numberOfFlat = Int((snapshot.childrenCount) - 1)
-                                            dsType = dailyServiceType as! String
-                                            
-                                            //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
-                                            let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat)
-                                            dsInfo.append(servicetype)
-                                            
-                                            self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
-                                            self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                    //Getting Daily Services Status (Like Entered or Not)
+                                    self.dailyServiceStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(NAString().status())
+                                    
+                                    self.dailyServiceStatusRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+                                        let dailyServiceStatus = snapshot.value
+                                        
+                                        queue.addOperation {
+                                            self.dailyServiceCountRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+                                                numberOfFlat = Int((snapshot.childrenCount) - 1)
+                                                dsType = dailyServiceType as! String
+                                                dsStatus = dailyServiceStatus as! String
                                                 
-                                                //Getting Data Form Firebase & Adding into Model Class
-                                                let dailyServiceData = snapshot.value as? [String: AnyObject]
+                                                //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
+                                                let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus)
+                                                dsInfo.append(servicetype)
                                                 
-                                                let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
-                                                let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
-                                                let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
-                                                let providedThings = dailyServiceData?[DailyServicesListFBKeys.providedThings.key]
-                                                let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
-                                                let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
-                                                let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
-                                                
-                                                if dsInfo.count > 0 {
-                                                    let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?)
+                                                self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
+                                                self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
                                                     
-                                                    self.NADailyServicesList.append(dailyServicesData)
+                                                    //Getting Data Form Firebase & Adding into Model Class
+                                                    let dailyServiceData = snapshot.value as? [String: AnyObject]
                                                     
-                                                    NAActivityIndicator.shared.hideActivityIndicator()
-                                                    self.collectionView.reloadData()
-                                                    iterator = iterator + 1
-                                                }
+                                                    let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
+                                                    let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
+                                                    let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
+                                                    let providedThings = dailyServiceData?[DailyServicesListFBKeys.providedThings.key]
+                                                    let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
+                                                    let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
+                                                    let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
+                                                    
+                                                    if dsInfo.count > 0 {
+                                                        let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
+                                                        
+                                                        self.NADailyServicesList.append(dailyServicesData)
+                                                        
+                                                        NAActivityIndicator.shared.hideActivityIndicator()
+                                                        self.collectionView.reloadData()
+                                                        iterator = iterator + 1
+                                                    }
+                                                })
                                             })
-                                        })
-                                    }
-                                    queue.waitUntilAllOperationsAreFinished()
+                                        }
+                                        queue.waitUntilAllOperationsAreFinished()
+                                    })
                                 }
                             })
                         }
