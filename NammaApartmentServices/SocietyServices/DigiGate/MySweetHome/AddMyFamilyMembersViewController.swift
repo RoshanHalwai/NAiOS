@@ -158,6 +158,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         }
     }
     
+    
     /* - Alert Popup when user give  grant access & try to add details and Showing alert controller while giving Grant Access to family members.
      - AddFamily_UseID.
      - Creating Accept alert actions. */
@@ -505,9 +506,16 @@ extension AddMyFamilyMembersViewController {
         //Storing new flat member Privileges in firebase under users->private->family member uid
         userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
         
+        var grantAccessValue: Bool?
+        if grantAcess_Segment.selectedSegmentIndex == 0 {
+            grantAccessValue = NAString().gettrue()
+        } else {
+            grantAccessValue = NAString().getfalse()
+        }
+        
         let userPrivilegesData = [
             UserPrivilegesListFBKeys.admin.key : NAString().getfalse(),
-            UserPrivilegesListFBKeys.grantedAccess.key : NAString().gettrue(),
+            UserPrivilegesListFBKeys.grantedAccess.key : grantAccessValue,
             UserPrivilegesListFBKeys.verified.key : NAString().getfalse()
         ]
         userPrivilegesRef?.setValue(userPrivilegesData)
