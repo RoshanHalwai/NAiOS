@@ -8,8 +8,17 @@
 
 import UIKit
 import ContactsUI
+import FirebaseDatabase
+import FirebaseAuth
+import Firebase
+import FirebaseStorage
 
-class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AlertViewDelegate {
+//Created Delegate method for storing data, After verifying Flat members Mobile Number
+protocol FamilyDataPass {
+    func familydataPassing()
+}
+
+class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AlertViewDelegate, FamilyDataPass  {
     
     @IBOutlet weak var img_Profile: UIImageView!
     
@@ -37,6 +46,15 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     
     @IBOutlet weak var Relation_Segment: UISegmentedControl!
     @IBOutlet weak var grantAcess_Segment: UISegmentedControl!
+    
+    var userDataRef : DatabaseReference?
+    var userFlatDetailsRef : DatabaseReference?
+    var userPersonalDetailsRef : DatabaseReference?
+    var userPrivilegesRef : DatabaseReference?
+    var userUIDRef : DatabaseReference?
+    var userAllRef : DatabaseReference?
+    var userFamilyMemberRef : DatabaseReference?
+    var currentUserRef : DatabaseReference?
     
     /* - Scrollview.
      - To set navigation title.
@@ -77,6 +95,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         super.ConfigureNavBarTitle(title: navTitle!)
         self.navigationItem.title = ""
+        
+        //Setting By defalut No selection in Segment Control
+        Relation_Segment.selectedSegmentIndex = UISegmentedControlNoSegment
+        grantAcess_Segment.selectedSegmentIndex = UISegmentedControlNoSegment
         
         img_Profile.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
@@ -348,6 +370,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 let lv = NAViewPresenter().otpViewController()
                 let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
                 lv.newOtpString = familyString
+                lv.getCountryCodeString = self.txt_CountryCode.text!
+                lv.getMobileString = self.txt_MobileNo.text!
+                //Assigning Delegate
+                lv.familyDelegateData = self
                 lv.delegate = self
                 self.navigationController?.pushViewController(lv, animated: true)
             }
@@ -396,5 +422,102 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             }
         }
         return true
+    }
+}
+
+extension AddMyFamilyMembersViewController {
+    
+    func familydataPassing() {
+        storingFamilyMembers()
+    }
+    
+    func storingFamilyMembers() {
+        
+        let familyMemberUID = Auth.auth().currentUser?.uid
+        
+        //Map flat Members UID to true in UserData
+        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+        userDataRef?.child(familyMemberUID!).setValue(NAString().gettrue())
+        
+        //Map family member's mobile number with uid in users->all
+        userAllRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+        userAllRef?.child(self.txt_MobileNo.text!).setValue(familyMemberUID)
+        
+        //Storing Flat details in firebase under users->private->family member uid
+        userFlatDetailsRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        
+        let usersFlatData = [
+            UserFlatListFBKeys.apartmentName.key : GlobalUserData.shared.flatDetails_Items.first?.apartmentName,
+            UserFlatListFBKeys.city.key : GlobalUserData.shared.flatDetails_Items.first?.city,
+            UserFlatListFBKeys.flatNumber.key : GlobalUserData.shared.flatDetails_Items.first?.flatNumber,
+            UserFlatListFBKeys.societyName.key : GlobalUserData.shared.flatDetails_Items.first?.societyName,
+            UserFlatListFBKeys.tenantType.key : GlobalUserData.shared.flatDetails_Items.first?.tenantType
+        ]
+        userFlatDetailsRef?.setValue(usersFlatData)
+        
+        //Storing new flat member Personal details in firebase under users->private->family member uid
+        userPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        
+        //Storing FlatMembers data along with their profile photo
+        var familyImageRef: StorageReference?
+        familyImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        
+        //Compressing profile image and assigning its content type.
+        guard let image = img_Profile.image else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
+        
+        let metaDataContentType = StorageMetadata()
+        metaDataContentType.contentType = "image/jpeg"
+        
+        //Uploading Visitor image url along with Visitor UID
+        let uploadImageRef = familyImageRef?.child(familyMemberUID!)
+        let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
+            
+            uploadImageRef?.downloadURL(completion: { (url, urlError) in
+                
+                if urlError == nil {
+                    
+                    let usersPersonalData = [
+                        UserPersonalListFBKeys.email.key : self.txt_Email.text as String?,
+                        UserPersonalListFBKeys.fullName.key : self.txt_Name.text as String?,
+                        UserPersonalListFBKeys.profilePhoto.key : url?.absoluteString,
+                        UserPersonalListFBKeys.phoneNumber.key : self.txt_MobileNo.text as String?
+                    ]
+                    self.userPersonalDetailsRef?.setValue(usersPersonalData)
+                } else {
+                    print(urlError as Any)
+                }
+            })
+        })
+        uploadTask?.resume()
+        
+        //Checking Relation Status
+        if Relation_Segment.selectedSegmentIndex == 0 {
+            currentUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(familyMemberUID!)
+            currentUserRef?.setValue(NAString().gettrue())
+            
+            userFamilyMemberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(userUID)
+            userFamilyMemberRef?.setValue(NAString().gettrue())
+        } else {
+            currentUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FRIENDS).child(familyMemberUID!)
+            currentUserRef?.setValue(NAString().gettrue())
+            
+            userFamilyMemberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FRIENDS).child(userUID)
+            userFamilyMemberRef?.setValue(NAString().gettrue())
+        }
+        
+        //Storing new flat member Privileges in firebase under users->private->family member uid
+        userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+        
+        let userPrivilegesData = [
+            UserPrivilegesListFBKeys.admin.key : NAString().getfalse(),
+            UserPrivilegesListFBKeys.grantedAccess.key : NAString().gettrue(),
+            UserPrivilegesListFBKeys.verified.key : NAString().getfalse()
+        ]
+        userPrivilegesRef?.setValue(userPrivilegesData)
+        
+        //Store family member's UID under users data structure for future use
+        userUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_UID)
+        userUIDRef?.setValue(familyMemberUID!)
     }
 }

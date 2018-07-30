@@ -22,6 +22,8 @@ var userUID = ""
 class OTPViewController: NANavigationViewController {
     
     var delegateData : DataPass!
+    var familyDelegateData : FamilyDataPass!
+    
     @IBOutlet weak var btnVerify: UIButton!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
     @IBOutlet weak var txtOTP1: UITextField!
@@ -105,6 +107,17 @@ class OTPViewController: NANavigationViewController {
         btnVerify.tag = NAString().verifyOTPButtonTagValue()
         OpacityView.shared.addButtonTagValue = btnVerify.tag
         
+        //Assigning OTP TextFields To Variables.
+        let Otp_Strig1 = self.txtOTP1.text!
+        let Otp_Strig2 = self.txtOTP2.text!
+        let Otp_Strig3 = self.txtOTP3.text!
+        let Otp_Strig4 = self.txtOTP4.text!
+        let Otp_Strig5 = self.txtOTP5.text!
+        let Otp_Strig6 = self.txtOTP6.text!
+        
+        //Concatinating all the OTP String variables to get Final String.
+        finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
+        
         if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
             
             /* - Calling verify OTP function, When OTP Screen is Coming From Login VC.
@@ -116,22 +129,29 @@ class OTPViewController: NANavigationViewController {
         //Back to My Sweet Home screen
         if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
             
+            //Creating Credential variable to check correct OTP String.
+            let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
+            
+            //If OTP is Valid then Login Sucess else show Error message in Console
+            //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
+            Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
+                if let error = error {
+                    print("error",error.localizedDescription)
+                    self.lbl_OTP_Validation.isHidden = false
+                    self.lbl_OTP_Validation.text = NAString().incorrect_otp()
+                    return
+                } else {
+                    //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
+                    self.familyDelegateData.familydataPassing()
+                    self.navigationController?.popViewController(animated: true)
+                    self.delegate?.activityIndicator_function(withData: (Any).self)                }
+            }
+            
             self.navigationController?.popViewController(animated: true)
             self.delegate?.activityIndicator_function(withData: (Any).self)
         }
         //Back to My Daily Services Screen
         if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {
-            
-            //Assigning OTP TextFields To Variables.
-            let Otp_Strig1 = self.txtOTP1.text!
-            let Otp_Strig2 = self.txtOTP2.text!
-            let Otp_Strig3 = self.txtOTP3.text!
-            let Otp_Strig4 = self.txtOTP4.text!
-            let Otp_Strig5 = self.txtOTP5.text!
-            let Otp_Strig6 = self.txtOTP6.text!
-            
-            //Concatinating all the OTP String variables to get Final String.
-            finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
             
             //Creating Credential variable to check correct OTP String.
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
