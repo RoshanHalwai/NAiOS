@@ -1086,13 +1086,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mj5-bN-6IC">
-                                                    <rect key="frame" x="10" y="13" width="88" height="74"/>
+                                                    <rect key="frame" x="10" y="13" width="88" height="66"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="88" id="ng8-3l-Bxl"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsZ-Is-ir4">
-                                                    <rect key="frame" x="108" y="28" width="221" height="44"/>
+                                                    <rect key="frame" x="108" y="28" width="221" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2717,7 +2717,7 @@
                         <viewLayoutGuide key="safeArea" id="03S-cc-fYd"/>
                     </view>
                     <connections>
-                        <outlet property="TableView" destination="1nD-61-H04" id="1ZX-yw-1ZZ"/>
+                        <outlet property="tableView" destination="1nD-61-H04" id="1ZX-yw-1ZZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yow-hz-IiK" userLabel="First Responder" sceneMemberID="firstResponder"/>

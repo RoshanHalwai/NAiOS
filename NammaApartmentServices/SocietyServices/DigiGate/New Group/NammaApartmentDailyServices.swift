@@ -44,9 +44,10 @@ class NammaApartmentDailyServices {
     var uid: String?
     private var type: String?
     private var numberOfFlat: Int?
+    private var status: String?
     
     //initilaize the variables
-    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?) {
+    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
@@ -56,6 +57,7 @@ class NammaApartmentDailyServices {
         self.uid = uid
         self.type = type
         self.numberOfFlat = numberOfFlat
+        self.status = status
        
     }
     
@@ -100,6 +102,10 @@ class NammaApartmentDailyServices {
     
     func getType() -> String {
         return type!
+    }
+    
+    func getStatus() -> String {
+        return status!
     }
 }
 
