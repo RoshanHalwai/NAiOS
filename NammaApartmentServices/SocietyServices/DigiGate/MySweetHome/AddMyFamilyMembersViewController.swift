@@ -13,7 +13,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseStorage
 
-//Created Delegate method for storing data, After verifying DS Mobile Number
+//Created Delegate method for storing data, After verifying Flat members Mobile Number
 protocol FamilyDataPass {
     func familydataPassing()
 }
@@ -54,7 +54,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     var userUIDRef : DatabaseReference?
     var userAllRef : DatabaseReference?
     var userFamilyMemberRef : DatabaseReference?
-    var currenyUserRef : DatabaseReference?
+    var currentUserRef : DatabaseReference?
     
     
     /* - Scrollview.
@@ -455,7 +455,6 @@ extension AddMyFamilyMembersViewController {
         //Storing new flat member Personal details in firebase under users->private->family member uid
         userPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
-        
         //Storing FlatMembers data along with their profile photo
         var familyImageRef: StorageReference?
         familyImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
@@ -482,7 +481,6 @@ extension AddMyFamilyMembersViewController {
                         UserPersonalListFBKeys.phoneNumber.key : self.txt_MobileNo.text as String?
                     ]
                     self.userPersonalDetailsRef?.setValue(usersPersonalData)
-                    
                 } else {
                     print(urlError as Any)
                 }
@@ -492,14 +490,14 @@ extension AddMyFamilyMembersViewController {
         
         //Checking Relation Status
         if Relation_Segment.selectedSegmentIndex == 0 {
-            currenyUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(familyMemberUID!)
-            currenyUserRef?.setValue(NAString().gettrue())
+            currentUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(familyMemberUID!)
+            currentUserRef?.setValue(NAString().gettrue())
             
             userFamilyMemberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(userUID)
             userFamilyMemberRef?.setValue(NAString().gettrue())
         } else {
-            currenyUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FRIENDS).child(familyMemberUID!)
-            currenyUserRef?.setValue(NAString().gettrue())
+            currentUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FRIENDS).child(familyMemberUID!)
+            currentUserRef?.setValue(NAString().gettrue())
             
             userFamilyMemberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FRIENDS).child(userUID)
             userFamilyMemberRef?.setValue(NAString().gettrue())
