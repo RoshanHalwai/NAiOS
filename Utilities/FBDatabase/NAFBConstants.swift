@@ -64,4 +64,5 @@ struct Constants {
     static let FIREBASE_CHILD_FLATS = "flats"
     static let FIREBASE_CHILD_FAMILY_MEMBERS = "familyMembers"
     static let FIREBASE_CHILD_FRIENDS = "friends"
+    static let FIREBASE_CHILD_EMERGENCY = "emergencies"
 }
