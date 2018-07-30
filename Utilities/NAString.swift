@@ -639,6 +639,14 @@ class NAString : NSObject {
         return String("Laundry man")
     }
     
+    func remove_myDailyService_alertView_Title() -> String {
+        return String("Remove Daily Service")
+    }
+    
+    func remove_myDailyService_alertView_Message() -> String {
+        return String("Are you sure you want to remove this Daily Service?")
+    }
+    
     //adding my daily services
     func addMyDailyService_AlertView_Title() -> String {
         return String("Daily Service Message")
@@ -873,7 +881,7 @@ class NAString : NSObject {
     }
     
     func remove_alertview_description() -> String {
-        return String("Are you sure you want to remove this data?")
+        return String("Are you sure you want to remove this Data?")
     }
     
     func delete() -> String {
@@ -917,7 +925,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorFamilyMembersList() -> String {
-        return String ("Sorry you cannot use this feature since currently there are no family members at your flat.")
+        return String ("Please add your Family Members to approve visitors on your behalf.")
     }
     
     func statusNotEntered() -> String {
