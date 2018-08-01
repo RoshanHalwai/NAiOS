@@ -160,7 +160,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         cell.lbl_Name.text = NAString().name()
         cell.lbl_Relation.text = NAString().relation()
-        cell.lbl_GrantAccess.text = NAString().grant_access()
+        cell.lbl_GrantAccess.text = NAString().access()
         cell.lbl_Call.text = NAString().call()
         cell.lbl_Message.text = NAString().message()
         cell.lbl_Edit.text = NAString().edit()
