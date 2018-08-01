@@ -29,8 +29,8 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Loading Retrieving History function on Load
         retrieveDailyServiceHandedThingsHistory()
-        
         
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
@@ -102,7 +102,6 @@ extension HandedThingsDailyServicesHistoryViewController {
     
     func retrieveDailyServiceHandedThingsHistory() {
         
-        
         var dsInfo: [dailySericeTypeAndStatus] = []
         
         //To check that Any daily service is available or not inside user's flat
@@ -156,58 +155,53 @@ extension HandedThingsDailyServicesHistoryViewController {
                                             
                                             if dsStatus == NAString().entered() {
                                                 
-                                                //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
-                                                let servicetype = dailySericeTypeAndStatus.init(type: dsType, status: dsStatus, dateOfVisit: dsDateOfVisit, handedThings: dsHandedThings)
-                                                dsInfo.append(servicetype)
+                                                self.dailyServiceHandedThingsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
                                                 
-                               self.dailyServiceHandedThingsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
-                                                
-                                               
                                                 self.dailyServiceHandedThingsRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                                     
-                                                    print(snapshot as Any)
                                                     //Getting Daily Services Date here
-                                                    let dailyServicesDate = snapshot.value as? NSDictionary
-                                                    for dailyServiceDate in (dailyServicesDate?.allKeys)! {
+                                                    let dailyServicesDate = snapshot.value
+                                                    for dailyServiceDate in ((dailyServicesDate as AnyObject).allKeys)! {
                                                         print(dailyServiceDate as Any)
+                                                        //TODO: Need to change Date Format here.
+                                                        dsDateOfVisit = dailyServiceDate as! String
                                                     }
                                                     
-                                                    let dailyServicesHandedThings = snapshot.value as? NSDictionary
-                                                    for dailyServiceHandedThings in (dailyServicesHandedThings?.allValues)! {
+                                                    //Getting Daily Services HandedThings here
+                                                    let dailyServicesHandedThings = snapshot.value
+                                                    for dailyServiceHandedThings in ((dailyServicesHandedThings as AnyObject).allValues)! {
                                                         
-                                                        print(dailyServiceHandedThings as Any)
+                                                        dsHandedThings = dailyServiceHandedThings as! String
                                                     }
                                                     
-                                               
-                                                })
-                                                
-                                                
-                                                
-                                                self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
-                                                self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                                    //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
+                                                    let servicetype = dailySericeTypeAndStatus.init(type: dsType, status: dsStatus, dateOfVisit: dsDateOfVisit, handedThings: dsHandedThings)
+                                                    dsInfo.append(servicetype)
                                                     
-                                                    //Getting Data Form Firebase & Adding into Model Class
-                                                    let dailyServiceData = snapshot.value as? [String: AnyObject]
-                                                    
-                                                 //   print(dailyServiceData as Any)
-                                                    
-                                                    let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
-                                                    let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
-                                                    let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
-                                                    let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
-                                                    
-                                                    if dsInfo.count > 0 {
-                                                        let handedThingsData = NADailyServiceHandedThingsHistory(fullName: (fullName as! String?)!, profilePhoto: (profilePhoto as! String?)!, timeOfVisit: (timeOfVisit as! String?)!, uid: uid as? String, dateOfVisit: dsInfo[iterator].dateOfVisit as String?, type: dsInfo[iterator].type as String?, handedThings: dsInfo[iterator].handedThings as String?, status: dsInfo[iterator].status as String?)
+                                                    self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
+                                                    self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
                                                         
-                                                        self.dailyServiceHistoryList.append(handedThingsData)
+                                                        //Getting Data Form Firebase & Adding into Model Class
+                                                        let dailyServiceData = snapshot.value as? [String: AnyObject]
                                                         
-                                                        NAActivityIndicator.shared.hideActivityIndicator()
-                                                        self.collectionView.reloadData()
-                                                        iterator = iterator + 1
-                                                    }
+                                                        let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
+                                                        let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
+                                                        let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
+                                                        let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
+                                                        
+                                                        if dsInfo.count > 0 {
+                                                            let handedThingsData = NADailyServiceHandedThingsHistory(fullName: (fullName as! String?)!, profilePhoto: (profilePhoto as! String?)!, timeOfVisit: (timeOfVisit as! String?)!, uid: uid as? String, dateOfVisit: dsInfo[iterator].dateOfVisit as String?, type: dsInfo[iterator].type as String?, handedThings: dsInfo[iterator].handedThings as String?, status: dsInfo[iterator].status as String?)
+                                                            
+                                                            self.dailyServiceHistoryList.append(handedThingsData)
+                                                            
+                                                            NAActivityIndicator.shared.hideActivityIndicator()
+                                                            self.collectionView.reloadData()
+                                                            iterator = iterator + 1
+                                                        }
+                                                    })
                                                 })
                                             } else {
-                                                //TODO: Need to work on it after completing HandedThings Storing in Firebase.
+                                                //TODO: Need to work on it in next pull request.
                                                 //  NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                                             }
                                         }
