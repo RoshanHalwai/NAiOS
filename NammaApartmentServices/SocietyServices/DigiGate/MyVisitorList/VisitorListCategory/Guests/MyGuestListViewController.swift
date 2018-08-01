@@ -32,6 +32,29 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
+        //Calling Retriving Data Function
+        self.retrivingMyGuestData()
+        
+        //Setting & Formatting Navigation bar
+        super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
+        
+        //created custom back button for goto My DigiGate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData(notification:)), name: Notification.Name("refreshRescheduledData"), object: nil)
+    }
+    
+    //Create Refresh Data Function
+    @objc func refreshData(notification: Notification) {
+        self.myVisitorList.removeAll()
+        self.retrivingMyGuestData()
+    }
+    
+    //Create Retriving Data in My GuestList View Controller
+    func retrivingMyGuestData() {
         let retrieveGuestList : RetrievingGuestList
         retrieveGuestList = RetrievingGuestList.init()
         
@@ -51,14 +74,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                 self.collectionView.reloadData()
             }
         }
-        
-        //Setting & Formatting Navigation bar
-        super.ConfigureNavBarTitle(title: NAString().myVisitorViewTitle())
-        
-        //created custom back button for goto My DigiGate
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
     }
     
     //Navigating Back to digi gate according to Screen coming from

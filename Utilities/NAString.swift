@@ -763,7 +763,11 @@ class NAString : NSObject {
     }
     
     func grant_access() -> String {
-        return String (" Grant Access:")
+        return String ("Grant Access:")
+    }
+    
+    func access() -> String {
+        return String ("Access:")
     }
     
     func remove() -> String {
