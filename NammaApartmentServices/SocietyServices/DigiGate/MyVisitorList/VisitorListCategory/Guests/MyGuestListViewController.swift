@@ -197,6 +197,10 @@ extension MyGuestListViewController : dataCollectionProtocol {
             self.userDataRef?.setValue(NAString().getfalse())
             //Remove collection view cell item with animation
             self.myVisitorList.remove(at: indx)
+            
+            if self.myVisitorList.isEmpty {
+                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+            }
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity

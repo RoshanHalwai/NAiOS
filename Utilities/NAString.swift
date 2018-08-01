@@ -888,8 +888,22 @@ class NAString : NSObject {
         return String("Are you sure you want to remove this Data?")
     }
     
+    func remove_invitation_message() -> String {
+        return String("Are you sure you want to cancel this Invitation?")
+    }
+    func remove_guests_message() -> String {
+        return String("Are you sure you want to remove this Guest data from the list?")
+    }
+    
     func delete() -> String {
         return String("Delete")
+    }
+    
+    func cancel_invitation() -> String {
+        return String("Cancel Invitation")
+    }
+    func remove_guest() -> String {
+        return String("Remove Guests")
     }
     
     func mobile_number_not_available() -> String {
