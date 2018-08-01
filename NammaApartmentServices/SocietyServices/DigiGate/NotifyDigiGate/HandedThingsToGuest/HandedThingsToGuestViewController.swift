@@ -134,6 +134,9 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //Creating black bottom line
         cell.txt_Description.underlined()
         
+        //Create Description textfield first letter capital
+        cell.txt_Description.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         //image makes round
         cell.cellImage.layer.cornerRadius = cell.cellImage.frame.size.width/2
         cell.cellImage.clipsToBounds = true
@@ -172,6 +175,11 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         return cell
     }
     
+    //Create Description textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
+    }
+    
     //Resizing Cell when Coming Back from History Screen.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -200,6 +208,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         self.table_View.reloadData()
     }
 }
+
 extension HandedThingsToGuestViewController {
     
     //Retrieving Entered Guests data from Firebase
