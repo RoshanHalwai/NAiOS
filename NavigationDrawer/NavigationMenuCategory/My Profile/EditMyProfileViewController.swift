@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class EditMyProfileViewController: NANavigationViewController, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
@@ -32,6 +33,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     @IBOutlet weak var scroll_View: UIScrollView!
     
+    var userName = String()
+    var userEmail = String()
+    
     var navTitle = String()
     
     /* - Creating Text Field Action for Name for first letter to be Capital.
@@ -41,6 +45,26 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userDataRef = Database.database().reference().child(Constants.FIREBASE_USER)
+            .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
+        
+        //Adding observe event to each of user UID
+        userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
+            let usersData = userDataSnapshot.value as? [String: AnyObject]
+            
+            //Creating instance of UserPersonalDetails
+            let userPersonalDataMap = usersData?["personalDetails"] as? [String: AnyObject]
+        
+            self.txt_Name.text = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
+            self.txt_EmailId.text = userPersonalDataMap?[UserPersonalListFBKeys.email.key] as? String
+            let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
+            
+            //Calling function to get Profile Image from Firebase.
+            if let urlString = profilePhoto {
+                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: self.profile_Image)
+            }
+        })
         
         txt_Name.underlined()
         txt_EmailId.underlined()
@@ -73,9 +97,8 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         txt_Flat_Admin.font = NAFont().textFieldFont()
         
         update_btn.titleLabel?.font = NAFont().buttonFont()
-        
-        txt_Name.text = "Sundir Kumar"
-        txt_EmailId.text = "talarisundir@gmail.com"
+    
+        //TODO: Need to get Flat members Details.
         txt_Flat_Admin.text = "You are the Administrator"
         
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.width/2
@@ -140,8 +163,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func update_Action_Btn(_ sender: UIButton) {
-    }
+    @IBAction func update_Action_Btn(_ sender: UIButton) { }
     
     //Email Validation Function
     func isValidEmailAddress(emailAddressString: String) -> Bool {
@@ -171,3 +193,4 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         return cell
     }
 }
+
