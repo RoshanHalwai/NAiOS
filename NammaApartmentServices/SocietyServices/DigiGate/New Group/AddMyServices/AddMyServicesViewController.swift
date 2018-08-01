@@ -240,7 +240,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         toolbar.setItems([done], animated: false)
         txt_Date.inputAccessoryView = toolbar
         txt_Date.inputView = picker
-        
         picker.datePickerMode = .time
     }
     
