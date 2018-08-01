@@ -49,7 +49,7 @@ struct Constants {
     static let FIREBASE_CHILD_EMAIL = "email"
     static let FIREBASE_CHILD_FULLNAME = "fullName"
     static let FIREBASE_CHILD_PHONENUMBER = "phoneNumber"
-    static let FIREBASE_CHILD_GRANTACCESS = "grantAccess"
+    static let FIREBASE_CHILD_GRANTACCESS = "grantedAccess"
     static let FIREBASE_CHILD_VERIFIED = "verified"
     static let FIREBASE_AREA = "Chennai"
     static let FIREBASE_COL = "Air Force Colony"
