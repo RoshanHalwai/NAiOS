@@ -56,7 +56,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     //Create Retriving Data in My GuestList View Controller
     func retrivingMyGuestData() {
         let retrieveGuestList : RetrievingGuestList
-        retrieveGuestList = RetrievingGuestList.init()
+        retrieveGuestList = RetrievingGuestList.init(pastGuestListRequired: true)
         
         //Retrieve guest of current userUID and their family members if any
         retrieveGuestList.getGuests { (guestDataList) in
@@ -194,9 +194,9 @@ extension MyGuestListViewController : dataCollectionProtocol {
             self.userDataRef = GlobalUserData.shared.getUserDataReference()
                 .child(Constants.FLAT_Visitor).child(userUID)
                 .child(visitor_UId.getuid())
-            self.userDataRef?.removeValue()
+            self.userDataRef?.setValue(NAString().getfalse())
             //Remove collection view cell item with animation
-            self.self.myVisitorList.remove(at: indx)
+            self.myVisitorList.remove(at: indx)
             //animation at final state
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity

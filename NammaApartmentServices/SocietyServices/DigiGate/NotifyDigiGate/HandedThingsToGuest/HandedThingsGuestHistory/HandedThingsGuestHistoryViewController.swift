@@ -26,7 +26,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
         let retrieveGuestList : RetrievingGuestList
-        retrieveGuestList = RetrievingGuestList.init()
+        retrieveGuestList = RetrievingGuestList.init(pastGuestListRequired: false)
         
         //Retrieve guest of current userUID and their family members if any
         retrieveGuestList.getGuests { (guestDataList) in

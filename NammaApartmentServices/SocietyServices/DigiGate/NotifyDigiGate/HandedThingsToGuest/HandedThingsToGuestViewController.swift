@@ -209,7 +209,7 @@ extension HandedThingsToGuestViewController {
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
         let retrieveGuestList : RetrievingGuestList
-        retrieveGuestList = RetrievingGuestList.init()
+        retrieveGuestList = RetrievingGuestList.init(pastGuestListRequired: true)
         
         //Retrieve guest of current userUID and their family members if any
         retrieveGuestList.getGuests { (guestDataList) in
