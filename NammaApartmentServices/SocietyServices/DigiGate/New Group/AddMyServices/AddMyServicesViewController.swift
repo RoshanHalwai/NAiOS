@@ -43,9 +43,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     
     @IBOutlet weak var stackView_InTime: UIStackView!
     
-    var timer = Timer()
-    var count = 5
-    
     /* - To set navigation title.
      - Gettig data from previous screen string.
      - To check from which view value is comming.
@@ -328,10 +325,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
         OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
         OpacityView.shared.showingPopupView(view: self)
-        
-        self.AlertViewAction()
     }
-    
     
     @IBAction func btnAddDetails(_ sender: Any) {
         if img_Profile.image == #imageLiteral(resourceName: "ExpectingVisitor") {
@@ -381,17 +375,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             }
         }
     }
-    
-    // Create Timer Function
-    @objc func stopTimer() {
-        OpacityView.shared.hidingPopupView()
-        if (count >= 0){
-            if(count == 0) {
-                self.AlertViewAction()
-            }
-        }
-    }
-    
+
     //Create AlertView Action
     func AlertViewAction() {
         let alertController = UIAlertController(title:NAString().add_my_service(), message:NAString().addButtonloadViewMessage(), preferredStyle: .alert)
@@ -510,6 +494,10 @@ extension AddMyServicesViewController {
                         ] as [String : Any]
                     
                     self.dailyServicesPublicRef?.setValue(dailyServicesData)
+                    
+                    //Hiding PopupView & Showing Alert After Adding Data in Firebase.
+                    OpacityView.shared.hidingPopupView()
+                    self.AlertViewAction()
                 } else {
                     //TODO: Using else condtion for printing error if anything is wrong while storing data
                     print("Error is:",urlError as Any)
