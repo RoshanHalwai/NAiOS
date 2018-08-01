@@ -33,9 +33,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     @IBOutlet weak var scroll_View: UIScrollView!
     
-    var userName = String()
-    var userEmail = String()
-    
     var navTitle = String()
     
     /* - Creating Text Field Action for Name for first letter to be Capital.
@@ -55,7 +52,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             
             //Creating instance of UserPersonalDetails
             let userPersonalDataMap = usersData?["personalDetails"] as? [String: AnyObject]
-        
+            
             self.txt_Name.text = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
             self.txt_EmailId.text = userPersonalDataMap?[UserPersonalListFBKeys.email.key] as? String
             let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
@@ -97,7 +94,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         txt_Flat_Admin.font = NAFont().textFieldFont()
         
         update_btn.titleLabel?.font = NAFont().buttonFont()
-    
+        
         //TODO: Need to get Flat members Details.
         txt_Flat_Admin.text = "You are the Administrator"
         
