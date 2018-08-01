@@ -124,6 +124,9 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.actionRescheduling = {
             let dv = NAViewPresenter().rescheduleMyVisitorVC()
             
+            cell.btn_Reschedule.tag = NAString().rescheduleButtonTagValue()
+            dv.buttonTagValue = cell.btn_Reschedule.tag
+            
             //passing cell date & time to Reschedule VC
             dv.getTime = cell.lbl_MyVisitorTime.text!
             dv.getDate = cell.lbl_MyVisitorDate.text!
