@@ -43,7 +43,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     var dailyServiceCountRef : DatabaseReference?
     var dailyServiceStatusRef : DatabaseReference?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -147,13 +146,13 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
          - This creates the shadows and modifies the cards a little bit.
          - To display image in round shape & Labels Formatting & setting.
          - Calling button action & Delete particular cell from list. */
-        
+    
         let DSList : NammaApartmentDailyServices
         DSList = NADailyServicesList[indexPath.row]
         
         cell.lbl_MyDailyServiceName.text = DSList.getfullName()
         cell.lbl_MyDailyServiceType.text = DSList.getType()
-        cell.lbl_MyDailyServicesInTime.text = DSList.gettimeOfVisit()
+        cell.lbl_MyDailyServicesInTime.text = DSList.getStatus()
         cell.lbl_MyDailyServicesFlats.text = "\(DSList.getNumberOfFlats())"
         cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
         
