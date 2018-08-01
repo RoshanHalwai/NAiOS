@@ -159,7 +159,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                                 
                                                 self.dailyServiceHandedThingsRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                                     
-                                                    //Getting Daily Services Date here
+                                                    //Getting Daily Services Given Date here
                                                     let dailyServicesDate = snapshot.value
                                                     for dailyServiceDate in ((dailyServicesDate as AnyObject).allKeys)! {
                                                         print(dailyServiceDate as Any)
@@ -174,7 +174,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                                         dsHandedThings = dailyServiceHandedThings as! String
                                                     }
                                                     
-                                                    //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
+                                                    //After getting Daily Service Type from Firebase, Here i'm appending data in structure
                                                     let servicetype = dailySericeTypeAndStatus.init(type: dsType, status: dsStatus, dateOfVisit: dsDateOfVisit, handedThings: dsHandedThings)
                                                     dsInfo.append(servicetype)
                                                     
