@@ -53,24 +53,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
          - Button & Navigation bar Formmating & setting.
          - Calling Daily services Retrieving Function on Load */
         
-        //        txt_PickTime.underlined()
         retrieveDailyServicesFromFirebase()
-        //        createDatePicker()
-        
-        //        opacity_View.isHidden = true
-        //        popUp_View.isHidden = true
-        //        popUp_View.layer.cornerRadius = 5
-        
-        //        txt_PickTime.rightViewMode = UITextFieldViewMode.always
-        //        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
-        //        let image = UIImage(named: "newClock")
-        //        imageView.image = image
-        //        txt_PickTime.rightView = imageView
-        //        
-        //        lbl_PickTime.font = NAFont().headerFont()
-        //        txt_PickTime.font = NAFont().textFieldFont()
-        //        btn_Cancel.titleLabel?.font = NAFont().popUpButtonFont()
-        //        btn_Reschedule.titleLabel?.font = NAFont().popUpButtonFont()
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
