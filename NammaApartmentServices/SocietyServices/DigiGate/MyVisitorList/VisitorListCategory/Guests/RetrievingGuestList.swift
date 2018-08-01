@@ -17,14 +17,16 @@ class RetrievingGuestList {
     
     let userDataReference : DatabaseReference
     var userUIDList = [String]()
+    var pastGuestListRequired: Bool
     
     /* ------------------------------------------------------------- *
      * Constructor
      * ------------------------------------------------------------- */
     
-    init() {
+    init(pastGuestListRequired: Bool ) {
         userDataReference = GlobalUserData.shared.getUserDataReference()
         self.userUIDList.append(userUID)
+        self.pastGuestListRequired = pastGuestListRequired
         // TODO Add UID of the family member as well
     }
     
@@ -86,7 +88,7 @@ class RetrievingGuestList {
             for guestUID in (guestsUIDMap?.allKeys)! {
                 
                 //TODO: Add one more condition to the below if statement for Handed things history
-                if guestsUIDMap![guestUID] as! Bool == true {
+                if guestsUIDMap![guestUID] as! Bool == true || guestsUIDMap![guestUID] as! Bool == self.pastGuestListRequired {
                     guestUIDList.append(guestUID as! String)
                 }
             }
