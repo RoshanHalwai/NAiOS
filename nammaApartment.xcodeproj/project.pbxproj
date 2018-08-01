@@ -125,6 +125,7 @@
 		86BF6A4320A0326E00B175A1 /* MyGuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */; };
 		86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */; };
 		86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */; };
+		86C4E7E62111B17B00BE1AFD /* NADailyServiceHandedThingsHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4E7E52111B17A00BE1AFD /* NADailyServiceHandedThingsHistory.swift */; };
 		86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
 		86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */; };
@@ -278,6 +279,7 @@
 		86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuestListViewController.swift; sourceTree = "<group>"; };
 		86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateViewController.swift; sourceTree = "<group>"; };
 		86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyDigiGateCollectionViewCell.swift; sourceTree = "<group>"; };
+		86C4E7E52111B17A00BE1AFD /* NADailyServiceHandedThingsHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NADailyServiceHandedThingsHistory.swift; sourceTree = "<group>"; };
 		86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingArrivalViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
 		86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentDailyServices.swift; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			children = (
 				083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */,
 				083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */,
+				86C4E7E52111B17A00BE1AFD /* NADailyServiceHandedThingsHistory.swift */,
 			);
 			path = HandedThingsDailyServiceHistory;
 			sourceTree = "<group>";
@@ -1171,6 +1174,7 @@
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */,
 				083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */,
+				86C4E7E62111B17B00BE1AFD /* NADailyServiceHandedThingsHistory.swift in Sources */,
 				083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
 				86B1A8DA20D50EAB00D90D88 /* NammaApartmentVisitor.swift in Sources */,
 				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,

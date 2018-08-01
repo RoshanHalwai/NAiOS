@@ -47,6 +47,10 @@ class NAUser {
         self.privileges = privileges
         self.personalDetails = personalDetails
     }
+    //Get uid
+    func flatMembersUID() -> String {
+        return uid!
+    }
     
     //creating structure for firebase to get data on it.
     struct NAUserStruct {
