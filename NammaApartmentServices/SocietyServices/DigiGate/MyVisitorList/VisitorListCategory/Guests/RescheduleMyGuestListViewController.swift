@@ -100,9 +100,9 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         
         //Calling Time Rescheduling Function
         reschedulingVisitorTimeInFirebase()
-
+        
+        //Push the My Guest ViewController
         let lv = NAViewPresenter().myGuestListVC()
-       
         self.navigationController?.pushViewController(lv, animated: true)
     }
     
@@ -144,5 +144,8 @@ extension RescheduleMyGuestListViewController {
         var  newDateAndTimeOfVisit = String()
         newDateAndTimeOfVisit = (self.txt_ReDate.text!) + "\t\t" + (txt_ReTime.text!)
         preApprovedVisitorsRef?.child(VisitorListFBKeys.dateAndTimeOfVisit.key).setValue(newDateAndTimeOfVisit)
+        
+        //Here Post the Value using NotificationCenter
+        NotificationCenter.default.post(name: Notification.Name("refreshRescheduledData"), object: nil)
     }
 }
