@@ -22,6 +22,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var lbl_Grant_Access: UILabel!
     @IBOutlet weak var btn_AddmyFamilyMember: UIButton!
     
+    var userPrivilegesRef : DatabaseReference?
+    
     var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MySweetHomeName =  ["Preeti","Vikas"]
     var MySweetHomeRelation = ["Sister","Brother"]
@@ -184,6 +186,18 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     }
     
     @IBAction func Change_Button(_ sender: UIButton) {
+
+        //TODO: Need to Implement Update Functionality
+//        userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child().child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
+//
+//        var newGrantAccessValue: Bool?
+//        if access_Segment.selectedSegmentIndex == 0 {
+//            newGrantAccessValue = NAString().gettrue()
+//        } else {
+//            newGrantAccessValue = NAString().getfalse()
+//        }
+//        userPrivilegesRef?.setValue(newGrantAccessValue)
+        
         opacity_View.isHidden = true
         PopUp_ParentView.isHidden = true
         popUp_View.isHidden = true
