@@ -644,7 +644,7 @@ class NAString : NSObject {
     }
     
     func remove_myDailyService_alertView_Message() -> String {
-        return String("Are you sure you want to remove this Daily Service?")
+        return String("Are you sure you want to remove this Daily Service?  \n \n NOTE: You will stop receiving notifications related to this Daily Service.")
     }
     
     //adding my daily services
