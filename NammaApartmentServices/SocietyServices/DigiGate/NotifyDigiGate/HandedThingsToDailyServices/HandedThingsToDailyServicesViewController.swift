@@ -208,6 +208,8 @@ extension HandedThingsToDailyServicesViewController {
         
         var dsInfo: [dailySericeTypeAndNumberOfFlat] = []
         
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
         //To check that Any daily service is available or not inside user's flat
         userDataRef =  GlobalUserData.shared.getUserDataReference()
             .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
@@ -281,16 +283,18 @@ extension HandedThingsToDailyServicesViewController {
                                                             let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
                                                             
                                                             self.dailyServiceHandedThingsList.append(dailyServicesData)
-                                                            
                                                             NAActivityIndicator.shared.hideActivityIndicator()
                                                             self.tableView.reloadData()
                                                             iterator = iterator + 1
+                                                        } else {
+                                                            NAActivityIndicator.shared.hideActivityIndicator()
+                                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                                         }
                                                     })
                                                     
                                                 } else {
-                                                    //TODO: Need to work on it after completing HandedThings Storing in Firebase.
-                                                      NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                                 }
                                             })
                                         }

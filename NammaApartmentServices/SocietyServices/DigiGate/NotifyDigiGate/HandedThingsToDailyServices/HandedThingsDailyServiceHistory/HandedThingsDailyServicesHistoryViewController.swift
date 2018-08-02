@@ -104,6 +104,8 @@ extension HandedThingsDailyServicesHistoryViewController {
         
         var dsInfo: [dailySericeTypeAndStatus] = []
         
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
         //To check that Any daily service is available or not inside user's flat
         userDataRef =  GlobalUserData.shared.getUserDataReference()
             .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
@@ -197,12 +199,15 @@ extension HandedThingsDailyServicesHistoryViewController {
                                                             NAActivityIndicator.shared.hideActivityIndicator()
                                                             self.collectionView.reloadData()
                                                             iterator = iterator + 1
+                                                        } else {
+                                                            NAActivityIndicator.shared.hideActivityIndicator()
+                                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                                         }
                                                     })
                                                 })
                                             } else {
-                                                //TODO: Need to work on it in next pull request.
-                                                //  NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                                NAActivityIndicator.shared.hideActivityIndicator()
+                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                             }
                                         }
                                         queue.waitUntilAllOperationsAreFinished()
