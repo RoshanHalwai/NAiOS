@@ -22,8 +22,6 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
     var userDataRef : DatabaseReference?
     var dailyServiceInUserRef : DatabaseReference?
     var dailyServicePublicRef : DatabaseReference?
-    var dailyServiceCountRef : DatabaseReference?
-    var dailyServiceStatusRef : DatabaseReference?
     var dailyServiceHandedThingsRef : DatabaseReference?
     
     override func viewDidLoad() {
@@ -129,7 +127,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                     var iterator = 0
                     
                     if snapshot.exists() {
-                    
+                        
                         let dailyServiceTypes = snapshot.value as? NSDictionary
                         
                         //Used OperationQueue thread to add data in a priority level
@@ -141,76 +139,60 @@ extension HandedThingsDailyServicesHistoryViewController {
                                 //Getting Daily Services UID here
                                 let dailyServicesUID = snapshot.value as? NSDictionary
                                 for dailyServiceUID in (dailyServicesUID?.allKeys)! {
-                                    self.dailyServiceCountRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String)
-                                    
-                                    //Getting Daily Services Status (Like Entered or Not)
-                                    self.dailyServiceStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(NAString().status())
-                                    
-                                    self.dailyServiceStatusRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-                                        let dailyServiceStatus = snapshot.value
+                                    queue.addOperation {
+                                        dsType = dailyServiceType as! String
                                         
-                                        queue.addOperation {
-                                            
-                                            dsType = dailyServiceType as! String
-                                            dsStatus = dailyServiceStatus as! String
-                                            
-                                            if dsStatus == NAString().entered() {
+                                        self.dailyServiceHandedThingsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
+                                        
+                                        self.dailyServiceHandedThingsRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+                                            if snapshot.exists() {
                                                 
-                                                self.dailyServiceHandedThingsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
+                                                //Getting Daily Services Given Date here
+                                                let dailyServicesDate = snapshot.value
+                                                for dailyServiceDate in ((dailyServicesDate as AnyObject).allKeys)! {
+                                                    print(dailyServiceDate as Any)
+                                                    //TODO: Need to change Date Format here.
+                                                    dsDateOfVisit = dailyServiceDate as! String
+                                                }
                                                 
-                                                self.dailyServiceHandedThingsRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+                                                //Getting Daily Services HandedThings here
+                                                let dailyServicesHandedThings = snapshot.value
+                                                for dailyServiceHandedThings in ((dailyServicesHandedThings as AnyObject).allValues)! {
                                                     
-                                                    //Getting Daily Services Given Date here
-                                                    let dailyServicesDate = snapshot.value
-                                                    for dailyServiceDate in ((dailyServicesDate as AnyObject).allKeys)! {
-                                                        print(dailyServiceDate as Any)
-                                                        //TODO: Need to change Date Format here.
-                                                        dsDateOfVisit = dailyServiceDate as! String
+                                                    dsHandedThings = dailyServiceHandedThings as! String
+                                                }
+                                                //After getting Daily Service Type from Firebase, Here i'm appending data in structure
+                                                let servicetype = dailySericeTypeAndStatus.init(type: dsType, status: dsStatus, dateOfVisit: dsDateOfVisit, handedThings: dsHandedThings)
+                                                dsInfo.append(servicetype)
+                                                
+                                                self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
+                                                self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                                    
+                                                    //Getting Data Form Firebase & Adding into Model Class
+                                                    let dailyServiceData = snapshot.value as? [String: AnyObject]
+                                                    
+                                                    let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
+                                                    let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
+                                                    let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
+                                                    let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
+                                                    
+                                                    if dsInfo.count > 0 {
+                                                        let handedThingsData = NADailyServiceHandedThingsHistory(fullName: (fullName as! String?)!, profilePhoto: (profilePhoto as! String?)!, timeOfVisit: (timeOfVisit as! String?)!, uid: uid as? String, dateOfVisit: dsInfo[iterator].dateOfVisit as String?, type: dsInfo[iterator].type as String?, handedThings: dsInfo[iterator].handedThings as String?, status: dsInfo[iterator].status as String?)
+                                                        
+                                                        self.dailyServiceHistoryList.append(handedThingsData)
+                                                        
+                                                        NAActivityIndicator.shared.hideActivityIndicator()
+                                                        self.collectionView.reloadData()
+                                                        iterator = iterator + 1
                                                     }
-                                                    
-                                                    //Getting Daily Services HandedThings here
-                                                    let dailyServicesHandedThings = snapshot.value
-                                                    for dailyServiceHandedThings in ((dailyServicesHandedThings as AnyObject).allValues)! {
-                                                        
-                                                        dsHandedThings = dailyServiceHandedThings as! String
-                                                    }
-                                                    
-                                                    //After getting Daily Service Type from Firebase, Here i'm appending data in structure
-                                                    let servicetype = dailySericeTypeAndStatus.init(type: dsType, status: dsStatus, dateOfVisit: dsDateOfVisit, handedThings: dsHandedThings)
-                                                    dsInfo.append(servicetype)
-                                                    
-                                                    self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
-                                                    self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
-                                                        
-                                                        //Getting Data Form Firebase & Adding into Model Class
-                                                        let dailyServiceData = snapshot.value as? [String: AnyObject]
-                                                        
-                                                        let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
-                                                        let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
-                                                        let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
-                                                        let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
-                                                        
-                                                        if dsInfo.count > 0 {
-                                                            let handedThingsData = NADailyServiceHandedThingsHistory(fullName: (fullName as! String?)!, profilePhoto: (profilePhoto as! String?)!, timeOfVisit: (timeOfVisit as! String?)!, uid: uid as? String, dateOfVisit: dsInfo[iterator].dateOfVisit as String?, type: dsInfo[iterator].type as String?, handedThings: dsInfo[iterator].handedThings as String?, status: dsInfo[iterator].status as String?)
-                                                            
-                                                            self.dailyServiceHistoryList.append(handedThingsData)
-                                                            
-                                                            NAActivityIndicator.shared.hideActivityIndicator()
-                                                            self.collectionView.reloadData()
-                                                            iterator = iterator + 1
-                                                        } else {
-                                                            NAActivityIndicator.shared.hideActivityIndicator()
-                                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
-                                                        }
-                                                    })
                                                 })
                                             } else {
                                                 NAActivityIndicator.shared.hideActivityIndicator()
                                                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                             }
-                                        }
-                                        queue.waitUntilAllOperationsAreFinished()
-                                    })
+                                        })
+                                    }
+                                    queue.waitUntilAllOperationsAreFinished()
                                 }
                             })
                         }
