@@ -189,20 +189,36 @@ extension MyGuestListViewController : dataCollectionProtocol {
     
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         let visitor_UId =  myVisitorList[indx]
-        let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
+        
+        self.userDataRef = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FLAT_Visitor).child(userUID)
+            .child(visitor_UId.getuid())
+        
+        var removeButtonTitle: String?
+        var removeButtonMessage: String?
+        
+        //Changing Alert Title and Message Based on the Visitor status
+        if visitor_UId.getstatus() == NAString().entered() {
+            removeButtonTitle = NAString().remove_guest()
+            removeButtonMessage = NAString().remove_guests_message()
+        } else if visitor_UId.getstatus() == NAString().notEntered() {
+            removeButtonTitle = NAString().cancel_invitation()
+            removeButtonMessage = NAString().remove_invitation_message()
+        }
+        
+        let alert = UIAlertController(title: removeButtonTitle, message: removeButtonMessage, preferredStyle: .alert)
         let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
-            //Delete Data from the firebase database
-            self.userDataRef = GlobalUserData.shared.getUserDataReference()
-                .child(Constants.FLAT_Visitor).child(userUID)
-                .child(visitor_UId.getuid())
+            //Changing the Value of Visitor UID to false on Remove Button Click.
             self.userDataRef?.setValue(NAString().getfalse())
+            
             //Remove collection view cell item with animation
             self.myVisitorList.remove(at: indx)
             
+            //Showing Error layout Message if all the Visitors Data removed from the Guests List.
             if self.myVisitorList.isEmpty {
-                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
             }
             //animation at final state
             cell.alpha = 1
