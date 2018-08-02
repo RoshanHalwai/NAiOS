@@ -619,6 +619,7 @@ extension ExpectingArrivalViewController {
             ArrivalListFBKeys.status.key :NAString().notEntered(),
             ArrivalListFBKeys.validFor.key : btn_Hour_String
         ]
+        
         //Adding data in Firebase from dictionary
         self.packagePublicRef?.child(packageUID!).setValue(expectingPackageData)
         //Calling Alert View Function After Storing Data in Firebase
