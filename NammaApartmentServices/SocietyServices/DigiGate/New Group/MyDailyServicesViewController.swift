@@ -52,9 +52,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
          - Button & Navigation bar Formmating & setting.
          - Calling Daily services Retrieving Function on Load */
         
-        retrieveDailyServicesFromFirebase()
-        
         NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
+        retrieveDailyServicesFromFirebase()
         
         self.btn_AddMyDailyServices.setTitle(NAString().add_my_service().capitalized, for: .normal)
         self.btn_AddMyDailyServices.backgroundColor = NAColor().buttonBgColor()
@@ -188,10 +188,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let dv = NAViewPresenter().rescheduleMyVisitorVC()
             cell.btn_Edit.tag = NAString().editButtonTagValue()
             dv.buttonTagValue = cell.btn_Edit.tag
-            
-            //passing cell time to Reschedule VC
-            dv.getTime = cell.lbl_myDailyTime.text!
-            
+            dv.hideDateFromDailyServicesVC = NAString().yes()
+            dv.getTime = DSList.gettimeOfVisit()
             dv.providesPresentationContextTransitionStyle = true
             dv.definesPresentationContext = true
             dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
