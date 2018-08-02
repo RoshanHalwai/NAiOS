@@ -1038,4 +1038,37 @@ class NAString : NSObject {
     func verifyingAccountDescription() -> String {
         return String ("Creating your Account")
     }
+    
+    //Create Society Service Plumber Screen Strings
+    func selectSlot() -> String {
+        return String ("Select Slot")
+    }
+    
+    func selectProblem() -> String {
+        return String ("Select Problem")
+    }
+    
+    func immediately() -> String {
+        return String ("Immediately")
+    }
+    
+    func _9AM_12PM() -> String {
+        return String ("9AM - 12PM")
+    }
+    
+    func _12PM_3PM() -> String {
+        return String ("12PM - 3PM")
+    }
+    
+    func _3PM_5PM() -> String {
+        return String ("3PM - 5PM")
+    }
+    
+    func requestPlumber() -> String {
+        return String ("REQUEST PLUMBER")
+    }
+    
+    func selectAnyProblem() -> String {
+        return String ("Select Any Problem")
+    }
 }
