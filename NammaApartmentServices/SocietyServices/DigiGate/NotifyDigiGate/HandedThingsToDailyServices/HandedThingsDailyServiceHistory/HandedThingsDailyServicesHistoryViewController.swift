@@ -121,7 +121,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                     
                     //Created this to get Number of flat & Daily Service Type From Firebase & to use iterator for getting Data.
                     var dsType = ""
-                    var dsStatus = ""
+                    let dsStatus = ""
                     var dsDateOfVisit = ""
                     var dsHandedThings = ""
                     var iterator = 0
