@@ -5,7 +5,6 @@
 //  Created by Vikas Nayak on 04/05/18.
 //  Copyright © 2018 Vikas Nayak. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -32,7 +31,7 @@ class NAString : NSObject {
     }
     
     func splash_SocietyServices_Description() -> String {
-        return String("A smarter way to manage your daily needs from our dedicated NammaApartment service team.")
+        return String("A smarter way to manage your daily needs from our dedicated service team.")
     }
     
     func splash_ApartementServices_Title() -> String {
@@ -111,7 +110,7 @@ class NAString : NSObject {
     }
     
     func continue_button() -> String {
-        return String("CONTINUE")
+        return String("CREATE ACCOUNT")
     }
     
     func your_city() -> String {
@@ -888,8 +887,22 @@ class NAString : NSObject {
         return String("Are you sure you want to remove this Data?")
     }
     
+    func remove_invitation_message() -> String {
+        return String("Are you sure you want to cancel this Invitation?")
+    }
+    func remove_guests_message() -> String {
+        return String("Are you sure you want to remove this Guest data from the list?")
+    }
+    
     func delete() -> String {
         return String("Delete")
+    }
+    
+    func cancel_invitation() -> String {
+        return String("Cancel Invitation")
+    }
+    func remove_guest() -> String {
+        return String("Remove Guests")
     }
     
     func mobile_number_not_available() -> String {
