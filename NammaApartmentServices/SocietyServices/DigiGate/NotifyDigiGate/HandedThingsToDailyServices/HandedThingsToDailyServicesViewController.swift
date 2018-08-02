@@ -287,9 +287,10 @@ extension HandedThingsToDailyServicesViewController {
                                                             iterator = iterator + 1
                                                         }
                                                     })
+                                                    
                                                 } else {
                                                     //TODO: Need to work on it after completing HandedThings Storing in Firebase.
-                                                    //  NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                                      NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                                                 }
                                             })
                                         }
