@@ -1031,6 +1031,10 @@ class NAString : NSObject {
         return String ("Please add your Daily Services for their hassle free entry at your Society")
     }
     
+    func dailyServiceNotAvailableHandedThings() -> String {
+        return String ("Sorry you cannot use this feature since currently there are no daily service at your flat.")
+    }
+    
     func verifyingOTPDescription() -> String {
         return String ("Verifying Account")
     }
