@@ -40,6 +40,8 @@
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
 		422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FF98820F8A9DA004089C2 /* PopupView.swift */; };
+		42305D6A2113063D009FE3B6 /* SocietyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */; };
+		42305D6C211323AB009FE3B6 /* SocietyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */; };
 		4230EEB12108AB4F0037345D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4230EEAF2108AB4F0037345D /* Main.storyboard */; };
 		423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D520F378E400F10A23 /* FirebaseAuth.framework */; };
 		423187D820F378E400F10A23 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D720F378E400F10A23 /* FirebaseCore.framework */; };
@@ -185,6 +187,8 @@
 		0A57802A1AA1E8103BBFEF75 /* Pods-nammaApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.debug.xcconfig"; sourceTree = "<group>"; };
 		422FF98620F8A9C8004089C2 /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		422FF98820F8A9DA004089C2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyServicesViewController.swift; sourceTree = "<group>"; };
+		42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyTableViewController.swift; sourceTree = "<group>"; };
 		4230EEB02108AB4F0037345D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		423187D520F378E400F10A23 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187D720F378E400F10A23 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,6 +356,15 @@
 			path = NavigationMenuCategory;
 			sourceTree = "<group>";
 		};
+		42305D66211304A6009FE3B6 /* Plumber */ = {
+			isa = PBXGroup;
+			children = (
+				42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */,
+				42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */,
+			);
+			path = Plumber;
+			sourceTree = "<group>";
+		};
 		5604502185698E5A09687321 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +398,7 @@
 		5D243EED210DBD3400806091 /* SocietyServices */ = {
 			isa = PBXGroup;
 			children = (
+				42305D66211304A6009FE3B6 /* Plumber */,
 				86548D85209C621F00C700DA /* DigiGate */,
 			);
 			path = SocietyServices;
@@ -1098,6 +1112,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42305D6C211323AB009FE3B6 /* SocietyTableViewController.swift in Sources */,
 				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
 				5D77429D210DD49F0049344F /* SignupViewController.swift in Sources */,
@@ -1149,6 +1164,7 @@
 				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
 				081F25D1210C8EB60065F90E /* RetrievingGuestList.swift in Sources */,
 				0856467C210215A300C5FBF6 /* NotificationSettingsViewController.swift in Sources */,
+				42305D6A2113063D009FE3B6 /* SocietyServicesViewController.swift in Sources */,
 				086081FB2104B19000B5990C /* RateUsView.swift in Sources */,
 				422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */,
 				86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */,

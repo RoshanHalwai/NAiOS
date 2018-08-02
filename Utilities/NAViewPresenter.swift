@@ -181,4 +181,9 @@ class NAViewPresenter: NSObject {
     func noticeBoardVC() -> NoticeBoardViewController {
         return storyBoard.instantiateViewController(withIdentifier: "noticeBoardVC") as! NoticeBoardViewController
     }
+    
+    //Create Society Service Plumber Screen
+    func societyServiceVC() -> SocietyServicesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "societyServiceVC") as! SocietyServicesViewController
+    }
 }
