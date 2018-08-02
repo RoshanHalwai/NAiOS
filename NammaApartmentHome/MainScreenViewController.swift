@@ -283,10 +283,19 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //For Navigation Purpose.
-        let destVC = currentIndex == 0 ? VCNamesSociety[0]: VCNamesApartment[0]
-        let viewController = storyboard?.instantiateViewController(withIdentifier: destVC)
-        self.navigationController?.pushViewController(viewController!, animated: true)
+        switch indexPath.row {
+        case 0:
+            let lv = NAViewPresenter().digiGateVC()
+            self.navigationController?.pushViewController(lv, animated: true)
+            
+        case 1:
+            let lv1 = NAViewPresenter().societyServiceVC()
+            lv1.navTitle = NAString().plumber()
+            self.navigationController?.pushViewController(lv1, animated: true)
+    
+        default:
+            break
+        }
     }
 }
 
