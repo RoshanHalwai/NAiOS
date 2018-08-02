@@ -25,6 +25,8 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
     var getTime = String()
     var getVisitorUID = String()
     var hideDateFromDailyServicesVC = String()
+    var getDailyServiceType = String()
+    var getDailyServiceUID = String()
     
     //Created Navigation Title String and Button Tag Values
     var navTitle = String()
@@ -32,6 +34,7 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
     
     //Database References
     var preApprovedVisitorsRef : DatabaseReference?
+    var dailyServicesTimeOfVisitRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,6 +129,10 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         dismiss(animated: true, completion: nil)
         
         if buttonTagValue == NAString().editButtonTagValue() {
+            
+            //Calling Time Rescheduling Function, When screen is My Daily Services.
+            reschedulingDailyServicesTimeInFirebase()
+            
             let lv = NAViewPresenter().myDailyServicesVC()
             self.navigationController?.pushViewController(lv, animated: true)
         } else {
@@ -178,5 +185,18 @@ extension RescheduleMyGuestListViewController {
         
         //Here Post the Value using NotificationCenter
         NotificationCenter.default.post(name: Notification.Name("refreshRescheduledData"), object: nil)
+    }
+}
+
+extension RescheduleMyGuestListViewController {
+    
+    //Created function to reschedule time of Daily service.
+    func reschedulingDailyServicesTimeInFirebase() {
+        
+        dailyServicesTimeOfVisitRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(self.getDailyServiceType).child(self.getDailyServiceUID).child(userUID)
+        
+        var newTimeOfVisit = String()
+        newTimeOfVisit  = self.txt_ReTime.text!
+        dailyServicesTimeOfVisitRef?.child(DailyServicesListFBKeys.timeOfVisit.key).setValue(newTimeOfVisit)
     }
 }

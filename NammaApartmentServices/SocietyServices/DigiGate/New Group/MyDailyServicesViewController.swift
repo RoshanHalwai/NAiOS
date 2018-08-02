@@ -190,6 +190,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             dv.buttonTagValue = cell.btn_Edit.tag
             dv.hideDateFromDailyServicesVC = NAString().yes()
             dv.getTime = DSList.gettimeOfVisit()
+            dv.getDailyServiceUID = DSList.getuid()
+            dv.getDailyServiceType = DSList.getType()
             dv.providesPresentationContextTransitionStyle = true
             dv.definesPresentationContext = true
             dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
