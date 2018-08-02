@@ -198,12 +198,12 @@ extension MyGuestListViewController : dataCollectionProtocol {
         var removeButtonMessage: String?
         
         //Changing Alert Title and Message Based on the Visitor status
-        if visitor_UId.getstatus() == NAString().entered() {
-            removeButtonTitle = NAString().remove_guest()
-            removeButtonMessage = NAString().remove_guests_message()
-        } else if visitor_UId.getstatus() == NAString().notEntered() {
+        if visitor_UId.getstatus() == NAString().notEntered() {
             removeButtonTitle = NAString().cancel_invitation()
             removeButtonMessage = NAString().remove_invitation_message()
+        } else {
+            removeButtonTitle = NAString().remove_guest()
+            removeButtonMessage = NAString().remove_guests_message()
         }
         
         let alert = UIAlertController(title: removeButtonTitle, message: removeButtonMessage, preferredStyle: .alert)
