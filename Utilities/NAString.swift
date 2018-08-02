@@ -5,7 +5,6 @@
 //  Created by Vikas Nayak on 04/05/18.
 //  Copyright © 2018 Vikas Nayak. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -32,7 +31,7 @@ class NAString : NSObject {
     }
     
     func splash_SocietyServices_Description() -> String {
-        return String("A smarter way to manage your daily needs from our dedicated NammaApartment service team.")
+        return String("A smarter way to manage your daily needs from our dedicated service team.")
     }
     
     func splash_ApartementServices_Title() -> String {
@@ -111,7 +110,7 @@ class NAString : NSObject {
     }
     
     func continue_button() -> String {
-        return String("CONTINUE")
+        return String("CREATE ACCOUNT")
     }
     
     func your_city() -> String {
