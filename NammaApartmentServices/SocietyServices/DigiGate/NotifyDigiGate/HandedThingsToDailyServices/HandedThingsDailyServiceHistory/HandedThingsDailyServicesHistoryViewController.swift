@@ -129,8 +129,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                     var iterator = 0
                     
                     if snapshot.exists() {
-                        NAActivityIndicator.shared.hideActivityIndicator()
-                        
+                    
                         let dailyServiceTypes = snapshot.value as? NSDictionary
                         
                         //Used OperationQueue thread to add data in a priority level

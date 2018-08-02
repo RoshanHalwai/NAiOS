@@ -219,9 +219,10 @@ extension HandedThingsToDailyServicesViewController {
             
             if (!(snapshot.exists())) {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
+                 NAActivityIndicator.shared.showActivityIndicator(view: self)
+                
                 self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
                 self.dailyServiceInUserRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                     
