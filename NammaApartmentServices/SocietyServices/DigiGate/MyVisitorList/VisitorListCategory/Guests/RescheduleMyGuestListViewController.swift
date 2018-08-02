@@ -57,7 +57,6 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         
         //set local date to Europe to show 24 hours
         datePicker.locale = Locale(identifier: "en_GB")
-        // datePicker.datePickerMode = UIDatePickerMode.date
         
         //assigning strings to TextFields to get data from myVisitorList Cell
         self.txt_ReDate.text = getDate
