@@ -31,6 +31,14 @@ class SocietyServicesDataViewController: NANavigationViewController {
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)
         
+        //assigning font & style to cell labels
+        lbl_Title?.font = NAFont().headerFont()
+        lbl_message?.font = NAFont().headerFont()
+        lbl_ServiceName?.font = NAFont().headerFont()
+        lbl_ServiceNumber?.font = NAFont().headerFont()
+        lbl_Name?.font = NAFont().textFieldFont()
+        lbl_Mobile?.font = NAFont().textFieldFont()
+        
         //cardUIView
         cardView?.layer.cornerRadius = 3
         cardView?.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
