@@ -883,7 +883,7 @@ class NAString : NSObject {
         return String("Reject")
     }
     
-    func remove_alertview_description() -> String {
+    func delete_FamilyMembers_AlertMessage() -> String {
         return String("This feature is currently unavailable")
     }
     
