@@ -200,7 +200,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         userDataRef?.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
             let flatMembersUID = userDataSnapshot.value as? NSDictionary
             for flatMemberUID in (flatMembersUID?.allKeys)! {
-                print(flatMemberUID as Any)
+                
                 
                 //TODO: Need to Implement Update Functionality
                 self.userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
@@ -232,8 +232,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         popUp_View.isHidden = true
     }
     
-    @IBAction func aceess_Segment_Action(_ sender: UISegmentedControl) {
-    }
+    @IBAction func aceess_Segment_Action(_ sender: UISegmentedControl) { }
 }
 
 extension MySweetHomeViewController {
