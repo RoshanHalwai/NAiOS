@@ -1068,8 +1068,8 @@ class NAString : NSObject {
         return String ("3PM - 5PM")
     }
     
-    func requestPlumber() -> String {
-        return String ("REQUEST PLUMBER")
+    func requestPlumber(name : String) -> String {
+        return String ("REQUEST  \(name)")
     }
     
     func selectAnyProblem() -> String {

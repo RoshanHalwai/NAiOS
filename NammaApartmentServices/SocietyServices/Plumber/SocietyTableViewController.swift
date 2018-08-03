@@ -16,48 +16,63 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
     
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var navTitle: UILabel!
     
     //to get previous View Controller
     var societyServiceVC: SocietyServicesViewController!
     var searchActive : Bool = false
     
-    var gettingArray = [String]()
+    var titleString : String?
     var filteredArray = [String]()
-    var selectAnyString = String()
     var delegate : SelectProblemDelegate?
     
-    //TODO: Need to Add more Languages in future.
-    var selectAnyList = ["Dripping faucets","Slow draining sink","Clogged bath or shower drain","Clogged toilet","Running toilet","Faulty water heater","Low water pressure","Jammed garbage disposal","Leaky pipes","Sewer system backup"]
+    //TODO: Need to Add more Problems in future.
+    var plumberProblemsList = ["Dripping faucets","Slow draining sink","Clogged bath or shower drain","Clogged toilet","Running toilet","Faulty water heater","Low water pressure","Jammed garbage disposal","Leaky pipes","Sewer system backup"]
+    var carpenterProblemsList = ["Carpentry finish appears uneven","Split in the wood","Weak joints","Dents in wood","Glue stuck"]
+    var electricianProblemsList = ["Frequent Electrical Surge","Sags and Dips in Power","Light Switches not working properly","Circuit Overload","Circuit Breaker Tripping Frequently","Lights too Bright or Dim","Electrical Shocks","High Electrical Bill","Light Bulbs burning out too often","Recessed Light 'Goes Out' and comesback on"]
+    
+    //To set navigation title
+    var navTitle : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Setting Society View Controller Title
-        navTitle?.text = NAString().selectAnyProblem()
+        //Passing NavigationBar Title
+        super.ConfigureNavBarTitle(title: navTitle!)
         
-        //Hiding Navigation Bar
-        navigationController?.isNavigationBarHidden = true
         searchBar.delegate = self
-    }
-    
-    //Create Society ViewController Back button Action
-    @IBAction func btn_Back_Action(_ sender: UIButton) {
-        goBackToSocietyServicePlumberVC()
+        
+        //Create Navigationbar Back Button
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToSocietyServicePlumberVC))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
     
     //Navigating back to Society Service Plumber screen on click of back button.
     @objc func goBackToSocietyServicePlumberVC() {
-        self.navigationController?.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     //Calling Searchbar Delegate Function
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredArray = selectAnyList.filter({ (text) -> Bool in
-            let string: NSString = text as NSString
-            let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-            return range.location != NSNotFound
-        })
+        if NAString().plumber() == titleString {
+            filteredArray = plumberProblemsList.filter({ (text) -> Bool in
+                let string: NSString = text as NSString
+                let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return range.location != NSNotFound
+            })
+        } else if (NAString().carpenter() == titleString) {
+            filteredArray = carpenterProblemsList.filter({ (text) -> Bool in
+                let string: NSString = text as NSString
+                let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return range.location != NSNotFound
+            })
+        } else {
+            filteredArray = electricianProblemsList.filter({ (text) -> Bool in
+                let string: NSString = text as NSString
+                let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return range.location != NSNotFound
+            })
+        }
         if(filteredArray.count == 0){
             searchActive = false
         } else {
@@ -70,8 +85,12 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
             return filteredArray.count
+        } else if (NAString().plumber() == titleString) {
+            return plumberProblemsList.count
+        } else if (NAString().carpenter() == titleString) {
+            return carpenterProblemsList.count
         } else {
-            return selectAnyList.count
+            return electricianProblemsList.count
         }
     }
     
@@ -80,9 +99,15 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
         if(searchActive) {
             filteredArray = filteredArray.sorted()
             cell.textLabel?.text = filteredArray[indexPath.row]
+        } else if (NAString().plumber() == titleString) {
+            plumberProblemsList = plumberProblemsList.sorted()
+            cell.textLabel?.text = plumberProblemsList[indexPath.row]
+        } else if (NAString().carpenter() == titleString) {
+            carpenterProblemsList = carpenterProblemsList.sorted()
+            cell.textLabel?.text = carpenterProblemsList[indexPath.row]
         } else {
-            selectAnyList = selectAnyList.sorted()
-            cell.textLabel?.text = selectAnyList[indexPath.row]
+            electricianProblemsList = electricianProblemsList.sorted()
+            cell.textLabel?.text = electricianProblemsList[indexPath.row]
         }
         
         //Label formatting & setting
@@ -104,6 +129,6 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
         let currentItem = currentCell.textLabel?.text
         delegate?.passingSelectString(name: currentItem)
         tableView.deselectRow(at: indexPath!, animated: true)
-        self.navigationController?.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 }

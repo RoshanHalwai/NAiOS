@@ -26,13 +26,22 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     var buttons : [UIButton] = []
     var isValidButtonClicked: [Bool] = []
     
-    var navTitle = String()
+    //To set navigation title & Screen title
+    var navTitle : String?
+    var plumberString : String?
+    var carpenterString : String?
+    var electricianString : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Adding Screen Titles
+        plumberString = NAString().plumber()
+        carpenterString = NAString().carpenter()
+        electricianString = NAString().electrician()
+        
         //Passing NavigationBar Title
-        super.ConfigureNavBarTitle(title: navTitle)
+        super.ConfigureNavBarTitle(title: navTitle!)        
         
         //Label formatting & setting
         lbl_SelectProblem.text = NAString().selectProblem()
@@ -62,9 +71,9 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
         btn_3PMto5PM.setTitleColor(UIColor.black, for: .selected)
         
         //Button Formatting & settings
-        btn_requestPlumber.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        btn_requestPlumber.backgroundColor = NAColor().buttonBgColor()
-        btn_requestPlumber.titleLabel?.font = NAFont().buttonFont()
+        btn_requestPlumber?.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        btn_requestPlumber?.backgroundColor = NAColor().buttonBgColor()
+        btn_requestPlumber?.titleLabel?.font = NAFont().buttonFont()
         
         //set tag values to buttons
         btn_Immediately.tag = 1
@@ -93,6 +102,20 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
         
         //Calling Button Color Function
         self.selectedColor(tag: btn_Immediately.tag)
+        
+        //Calling Button Titles Function
+        self.changingButtonTitles()
+    }
+    
+    //Create Changing the Button Titles Function
+    func changingButtonTitles() {
+        if (navTitle == plumberString) {
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "PLUMBER"), for: .normal)
+        } else if (navTitle == carpenterString) {
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "CARPENTER"), for: .normal)
+        } else {
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "ELECTRICIAN"), for: .normal)
+        }
     }
     
     //creating function to highlight select button color
@@ -122,13 +145,27 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     }
     //Calling SelectAny Button Function
     @IBAction func btn_selectAnyOneAction() {
-        let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "searchTableViewVC") as! SocietyTableViewController
-        searchVC.delegate = self
-        let nextVC : UINavigationController = UINavigationController(rootViewController: searchVC)
-        self.navigationController?.present(nextVC, animated: true, completion: nil)
+        if (navTitle == plumberString) {
+            let lv = NAViewPresenter().societyServiceTableVC()
+            lv.navTitle = NAString().selectAnyProblem()
+            lv.delegate = self
+            lv.titleString = plumberString
+            self.navigationController?.pushViewController(lv, animated: true)
+        } else if (navTitle == carpenterString) {
+            let lv = NAViewPresenter().societyServiceTableVC()
+            lv.navTitle = NAString().selectAnyProblem()
+            lv.delegate = self
+            lv.titleString = carpenterString
+            self.navigationController?.pushViewController(lv, animated: true)
+        } else {
+            let lv = NAViewPresenter().societyServiceTableVC()
+            lv.navTitle = NAString().selectAnyProblem()
+            lv.delegate = self
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
     }
-    
-    @IBAction func btn_requestPlumberAction(_ sender: Any) {
+    //TODO : Need to add Functionality in future
+    @IBAction func btn_requestPlumberAction() {
         
     }
 }
