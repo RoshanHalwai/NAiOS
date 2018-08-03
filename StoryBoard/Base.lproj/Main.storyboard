@@ -3243,7 +3243,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTU-OO-Gc7" userLabel="popUpView">
-                                        <rect key="frame" x="31.5" y="269" width="312" height="128"/>
+                                        <rect key="frame" x="31.5" y="269.5" width="312" height="128"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oLs-Ss-sqJ">
                                                 <rect key="frame" x="140" y="12" width="161" height="41"/>
@@ -3277,9 +3277,6 @@
                                                 <state key="normal" title="Change Access">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="Change_Button:" destination="bdB-r2-sYz" eventType="touchUpInside" id="luf-Gb-ON9"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uKl-sS-Q3y">
                                                 <rect key="frame" x="84" y="91" width="48" height="27"/>
@@ -3352,7 +3349,7 @@
                         <outlet property="access_Segment" destination="oLs-Ss-sqJ" id="cc8-Oc-ZjP"/>
                         <outlet property="btn_AddmyFamilyMember" destination="b4Q-Pb-mPR" id="0U7-VJ-uO3"/>
                         <outlet property="btn_Cancel" destination="uKl-sS-Q3y" id="f4J-sX-iBy"/>
-                        <outlet property="btn_ChangeAccess" destination="GQ5-fy-aKr" id="g6v-id-kMq"/>
+                        <outlet property="btn_ChangeAccess" destination="GQ5-fy-aKr" id="TKQ-P1-6Ku"/>
                         <outlet property="collectionView" destination="VZr-ya-GF6" id="Eid-7H-ZN8"/>
                         <outlet property="lbl_Grant_Access" destination="gUj-0C-Bze" id="tF2-e2-9kO"/>
                         <outlet property="opacity_View" destination="g2m-ZK-M2R" id="lJH-jt-GhL"/>
