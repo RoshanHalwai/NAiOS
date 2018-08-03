@@ -48,6 +48,13 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         let DSHandedList : NADailyServiceHandedThingsHistory
         DSHandedList = dailyServiceHistoryList[indexPath.row]
         
+        //Changing Date Format here & showing in Card View.
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "dd-MM-yyyy"
+        let showDate = inputFormatter.date(from: DSHandedList.getDateOfVisit())
+        inputFormatter.dateFormat = "MMM dd,yyyy"
+        let newDateOfVisit = inputFormatter.string(from: showDate!)
+        
         //Implementing switch case to get daily services type in proper format
         //TODO: Need to refactore & Use this swicth case from global function
         switch DSHandedList.getType() {
@@ -78,7 +85,7 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
             break
         }
         
-        cell.lbl_Date_Detail.text = DSHandedList.getDateOfVisit()
+        cell.lbl_Date_Detail.text = newDateOfVisit
         cell.lbl_InTime_Detail.text = DSHandedList.gettimeOfVisit()
         cell.lbl_Type_Detail.text = dailyServiceKey
         cell.lbl_Things_Detail.text = DSHandedList.getHandedThings()
