@@ -18,9 +18,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var popUp_View: UIView!
     @IBOutlet weak var access_Segment: UISegmentedControl!
     @IBOutlet weak var btn_Cancel: UIButton!
-    @IBOutlet weak var btn_ChangeAccess: UIButton!
     @IBOutlet weak var lbl_Grant_Access: UILabel!
     @IBOutlet weak var btn_AddmyFamilyMember: UIButton!
+    @IBOutlet weak var btn_ChangeAccess: UIButton!
+    
     
     var userPrivilegesRef : DatabaseReference?
     
@@ -171,6 +172,16 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.btn_Remove.addTarget(self,action:#selector(deleteData), for:.touchUpInside)
         
         cell.objEdit = {
+            
+            self.userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMember.flatMembersUID()).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
+            
+            //Showing Segment Index Based on the Firebase data
+            if familyMember.privileges.getGrantAccess() == true {
+                self.access_Segment.selectedSegmentIndex = 0
+            } else {
+                self.access_Segment.selectedSegmentIndex = 1
+            }
+            self.btn_ChangeAccess.addTarget(self, action: #selector(self.Change_Button), for: .touchUpInside)
             self.opacity_View.isHidden = false
             self.PopUp_ParentView.isHidden = false
             self.popUp_View.isHidden = false
@@ -184,31 +195,26 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         popUp_View.isHidden = true
     }
     
-    @IBAction func Change_Button(_ sender: UIButton) {
-
-        //TODO: Need to Implement Update Functionality
-//        userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child().child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
-//
-//        var newGrantAccessValue: Bool?
-//        if access_Segment.selectedSegmentIndex == 0 {
-//            newGrantAccessValue = NAString().gettrue()
-//        } else {
-//            newGrantAccessValue = NAString().getfalse()
-//        }
-//        userPrivilegesRef?.setValue(newGrantAccessValue)
+    @objc func Change_Button() {
+        var newGrantAccessValue: Bool?
+        
+        //Changing Grant Access of particular flat member.
+        if self.access_Segment.selectedSegmentIndex == 0 {
+            newGrantAccessValue = NAString().gettrue()
+        } else {
+            newGrantAccessValue = NAString().getfalse()
+        }
+        self.userPrivilegesRef?.setValue(newGrantAccessValue)
         
         opacity_View.isHidden = true
         PopUp_ParentView.isHidden = true
         popUp_View.isHidden = true
     }
-    
-    @IBAction func aceess_Segment_Action(_ sender: UISegmentedControl) {
-    }
 }
 
 extension MySweetHomeViewController {
     
-      @objc func deleteData() {
+    @objc func deleteData() {
         
         let alert = UIAlertController(title: NAString().warning(), message: NAString().delete_FamilyMembers_AlertMessage(), preferredStyle: .alert)
         
