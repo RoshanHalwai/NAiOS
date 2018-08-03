@@ -24,7 +24,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     
     var userPrivilegesRef : DatabaseReference?
-    var userDataRef: DatabaseReference?
     
     var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
     var MySweetHomeName =  ["Preeti","Vikas"]
@@ -211,8 +210,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         PopUp_ParentView.isHidden = true
         popUp_View.isHidden = true
     }
-    
-    @IBAction func aceess_Segment_Action(_ sender: UISegmentedControl) { }
 }
 
 extension MySweetHomeViewController {
