@@ -30,6 +30,8 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
     
+    var dailyServiceKey = String()
+    
     let picker = UIDatePicker()
     
     var fromAddMyDailyServicesVC = false
@@ -133,8 +135,38 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let DSList : NammaApartmentDailyServices
         DSList = NADailyServicesList[indexPath.row]
         
+        //Implementing switch case to get daily services type in proper format
+        //TODO: Need to refactore & Use this swicth case from global function
+        switch DSList.getType() {
+        case Constants.FIREBASE_DSTYPE_COOKS:
+            dailyServiceKey = NAString().cook()
+            break
+        case Constants.FIREBASE_DSTYPE_MAIDS:
+            dailyServiceKey = NAString().maid()
+            break
+        case Constants.FIREBASE_DSTYPE_CARBIKE_CLEANER:
+            dailyServiceKey = NAString().car_bike_cleaning()
+        case Constants.FIREBASE_DSTYPE_CHILDDAY_CARE:
+            dailyServiceKey = NAString().child_day_care()
+            break
+        case Constants.FIREBASE_DSTYPE_DAILY_NEWSPAPER:
+            dailyServiceKey = NAString().daily_newspaper()
+            break
+        case Constants.FIREBASE_DSTYPE_MILKMEN:
+            dailyServiceKey = NAString().milk_man()
+            break
+        case  Constants.FIREBASE_DSTYPE_LAUNDRIES:
+            dailyServiceKey = NAString().laundry()
+            break
+        case Constants.FIREBASE_DSTYPE_DRIVERS:
+            dailyServiceKey = NAString().driver()
+            break
+        default:
+            break
+        }
+        
         cell.lbl_MyDailyServiceName.text = DSList.getfullName()
-        cell.lbl_MyDailyServiceType.text = DSList.getType()
+        cell.lbl_MyDailyServiceType.text = dailyServiceKey
         cell.lbl_MyDailyServicesInTime.text = DSList.getStatus()
         cell.lbl_MyDailyServicesFlats.text = "\(DSList.getNumberOfFlats())"
         cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
