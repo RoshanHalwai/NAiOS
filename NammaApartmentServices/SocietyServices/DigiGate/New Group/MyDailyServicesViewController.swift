@@ -131,7 +131,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
          - This creates the shadows and modifies the cards a little bit.
          - To display image in round shape & Labels Formatting & setting.
          - Calling button action & Delete particular cell from list. */
-    
+        
         let DSList : NammaApartmentDailyServices
         DSList = NADailyServicesList[indexPath.row]
         

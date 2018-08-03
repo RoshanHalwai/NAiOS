@@ -58,7 +58,7 @@ class NammaApartmentDailyServices {
         self.type = type
         self.numberOfFlat = numberOfFlat
         self.status = status
-       
+        
     }
     
     //Get FullName
