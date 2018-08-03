@@ -168,8 +168,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_Edit.text = NAString().edit()
         cell.lbl_Remove.text = NAString().remove()
         
-        cell.index = indexPath
-        cell.delegate = self
+        cell.btn_Remove.addTarget(self,action:#selector(deleteData), for:.touchUpInside)
         
         cell.objEdit = {
             self.opacity_View.isHidden = false
@@ -207,32 +206,15 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     }
 }
 
-extension MySweetHomeViewController : removeCollectionProtocol {
+extension MySweetHomeViewController {
     
-    func deleteData(indx: Int, cell: UICollectionViewCell) {
+      @objc func deleteData() {
         
-        /* - AlertView will Display while removing Card view.
-         - Remove collection view cell item with animation & Animation at final state. */
+        let alert = UIAlertController(title: NAString().warning(), message: NAString().delete_FamilyMembers_AlertMessage(), preferredStyle: .alert)
         
-        let alert = UIAlertController(title: NAString().delete(), message: NAString().remove_alertview_description(), preferredStyle: .alert)
+        let actionOK = UIAlertAction(title:NAString().ok(), style: .cancel) { (action) in }
         
-        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
-        let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
-            
-            self.MySweetHomeName.remove(at: indx)
-            
-            cell.alpha = 1
-            cell.layer.transform = CATransform3DIdentity
-            
-            UIView.animate(withDuration: 0.3) {
-                cell.alpha = 0.0
-                let transform = CATransform3DTranslate(CATransform3DIdentity, 400, 20, 0)
-                cell.layer.transform = transform
-            }
-            Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
-        }
-        alert.addAction(actionNO) //add No action on AlertView
-        alert.addAction(actionYES) //add YES action on AlertView
+        alert.addAction(actionOK)
         present(alert, animated: true, completion: nil)
     }
     

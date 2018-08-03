@@ -16,6 +16,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     var currentTag: Int?
     
     @IBOutlet weak var tableView: UITableView!
+    var dailyServiceKey = String()
     
     //set title from previous page
     var titleName =  String()
@@ -76,11 +77,41 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         let DSList : NammaApartmentDailyServices
         DSList = dailyServiceHandedThingsList[indexPath.row]
         
+        //Implementing switch case to get daily services type in proper format
+        //TODO: Need to refactore & Use this swicth case from global function
+        switch DSList.getType() {
+        case Constants.FIREBASE_DSTYPE_COOKS:
+            dailyServiceKey = NAString().cook()
+            break
+        case Constants.FIREBASE_DSTYPE_MAIDS:
+            dailyServiceKey = NAString().maid()
+            break
+        case Constants.FIREBASE_DSTYPE_CARBIKE_CLEANER:
+            dailyServiceKey = NAString().car_bike_cleaning()
+        case Constants.FIREBASE_DSTYPE_CHILDDAY_CARE:
+            dailyServiceKey = NAString().child_day_care()
+            break
+        case Constants.FIREBASE_DSTYPE_DAILY_NEWSPAPER:
+            dailyServiceKey = NAString().daily_newspaper()
+            break
+        case Constants.FIREBASE_DSTYPE_MILKMEN:
+            dailyServiceKey = NAString().milk_man()
+            break
+        case  Constants.FIREBASE_DSTYPE_LAUNDRIES:
+            dailyServiceKey = NAString().laundry()
+            break
+        case Constants.FIREBASE_DSTYPE_DRIVERS:
+            dailyServiceKey = NAString().driver()
+            break
+        default:
+            break
+        }
+        
         //assigning delegate method to textFiled
         cell.txt_Description.delegate = self
         
         cell.lbl_ServiceName.text = DSList.getfullName()
-        cell.lbl_ServiceType.text = DSList.getType()
+        cell.lbl_ServiceType.text = dailyServiceKey
         cell.lbl_ServiceRating.text = "\(DSList.getrating())"
         cell.lbl_ServiceInTime.text = DSList.getStatus()
         cell.lbl_ServiceFlats.text = "\(DSList.getNumberOfFlats())"
@@ -221,7 +252,7 @@ extension HandedThingsToDailyServicesViewController {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
-                 NAActivityIndicator.shared.showActivityIndicator(view: self)
+                NAActivityIndicator.shared.showActivityIndicator(view: self)
                 
                 self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
                 self.dailyServiceInUserRef?.observeSingleEvent(of: .value, with: { (snapshot) in
