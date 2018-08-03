@@ -292,7 +292,17 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             let lv1 = NAViewPresenter().societyServiceVC()
             lv1.navTitle = NAString().plumber()
             self.navigationController?.pushViewController(lv1, animated: true)
-    
+            
+        case 2:
+            let lv2 = NAViewPresenter().societyServiceVC()
+            lv2.navTitle = NAString().carpenter()
+            self.navigationController?.pushViewController(lv2, animated: true)
+            
+        case 3:
+            let lv3 = NAViewPresenter().societyServiceVC()
+            lv3.navTitle = NAString().electrician()
+            self.navigationController?.pushViewController(lv3, animated: true)
+            
         default:
             break
         }
