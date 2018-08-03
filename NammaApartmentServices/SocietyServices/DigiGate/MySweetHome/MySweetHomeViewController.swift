@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseDatabase
-import FirebaseAuth
 
 class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
     
@@ -39,8 +38,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     var navTitle = String()
     
     var NAFamilyMemberList = [NAUser]()
-    
-    let familyMemberUID = Auth.auth().currentUser?.uid
     
     override func viewDidLoad() {
         super.viewDidLoad()
