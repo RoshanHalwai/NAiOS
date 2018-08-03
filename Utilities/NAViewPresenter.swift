@@ -191,4 +191,9 @@ class NAViewPresenter: NSObject {
     func societyServiceTableVC() -> SocietyTableViewController {
         return storyBoard.instantiateViewController(withIdentifier: "societyServiceTableVC") as! SocietyTableViewController
     }
+    
+    //Create Society Service History Screen
+    func societyServiceHistoryVC() -> SocietyHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "societyServiceHistoryVC") as! SocietyHistoryViewController
+    }
 }
