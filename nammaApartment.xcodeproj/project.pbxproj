@@ -38,6 +38,8 @@
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
 		08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
+		422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */; };
+		422E7E062114619F00648D40 /* SocietyHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */; };
 		422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
 		422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FF98820F8A9DA004089C2 /* PopupView.swift */; };
 		42305D6A2113063D009FE3B6 /* SocietyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */; };
@@ -185,6 +187,8 @@
 		08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAConfirmationAlert.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
 		0A57802A1AA1E8103BBFEF75 /* Pods-nammaApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.debug.xcconfig"; sourceTree = "<group>"; };
+		422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyHistoryViewController.swift; sourceTree = "<group>"; };
 		422FF98620F8A9C8004089C2 /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		422FF98820F8A9DA004089C2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyServicesViewController.swift; sourceTree = "<group>"; };
@@ -356,9 +360,19 @@
 			path = NavigationMenuCategory;
 			sourceTree = "<group>";
 		};
+		422E7E07211472D700648D40 /* Society Service History */ = {
+			isa = PBXGroup;
+			children = (
+				422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */,
+				422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */,
+			);
+			path = "Society Service History";
+			sourceTree = "<group>";
+		};
 		42305D66211304A6009FE3B6 /* Plumber */ = {
 			isa = PBXGroup;
 			children = (
+				422E7E07211472D700648D40 /* Society Service History */,
 				42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */,
 				42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */,
 			);
@@ -1140,6 +1154,7 @@
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				085646762101FA6D00C5FBF6 /* SettingsViewController.swift in Sources */,
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
+				422E7E062114619F00648D40 /* SocietyHistoryViewController.swift in Sources */,
 				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
 				5D77429E210DD49F0049344F /* LoginViewController.swift in Sources */,
 				5D7742A2210E0ACB0049344F /* RetrieveFamilyMemberList.swift in Sources */,
@@ -1198,6 +1213,7 @@
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				5D774299210DD49F0049344F /* DataModel.swift in Sources */,
+				422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
 				085646782101FA9F00C5FBF6 /* SettingsCollectionViewCell.swift in Sources */,
