@@ -110,13 +110,13 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
         historyButton.frame = CGRect(x: 0, y: 0, width: 34, height: 30)
-        historyButton.addTarget(self, action: #selector(gotoHandedThingsGuestHistoryVC), for: .touchUpInside)
+        historyButton.addTarget(self, action: #selector(gotoSocietyServiceHistoryVC), for: .touchUpInside)
         let history = UIBarButtonItem(customView: historyButton)
         self.navigationItem.setRightBarButtonItems([history], animated: true)
     }
     
-    //To Navigate to Guest History VC
-    @objc func gotoHandedThingsGuestHistoryVC() {
+    //To Navigate to Society Service History VC
+    @objc func gotoSocietyServiceHistoryVC() {
         let dv = NAViewPresenter().societyServiceHistoryVC()
         dv.titleName = NAString().history().capitalized
         self.navigationController?.pushViewController(dv, animated: true)
