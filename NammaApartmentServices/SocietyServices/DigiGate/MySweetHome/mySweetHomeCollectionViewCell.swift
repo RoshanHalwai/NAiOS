@@ -67,8 +67,7 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
     }
     
     @IBAction func btnEdit(_ sender: Any) {
-        if let btnAction = self.objEdit
-        {
+        if let btnAction = self.objEdit {
             btnAction()
         }
     }
