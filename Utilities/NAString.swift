@@ -884,7 +884,7 @@ class NAString : NSObject {
     }
     
     func remove_alertview_description() -> String {
-        return String("Are you sure you want to remove this Data?")
+        return String("This feature is currently unavailable")
     }
     
     func remove_invitation_message() -> String {
