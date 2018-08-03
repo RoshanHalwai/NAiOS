@@ -105,6 +105,21 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
         
         //Calling Button Titles Function
         self.changingButtonTitles()
+        
+        //Creating History icon on Navigation bar
+        let historyButton = UIButton(type: .system)
+        historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
+        historyButton.frame = CGRect(x: 0, y: 0, width: 34, height: 30)
+        historyButton.addTarget(self, action: #selector(gotoHandedThingsGuestHistoryVC), for: .touchUpInside)
+        let history = UIBarButtonItem(customView: historyButton)
+        self.navigationItem.setRightBarButtonItems([history], animated: true)
+    }
+    
+    //To Navigate to Guest History VC
+    @objc func gotoHandedThingsGuestHistoryVC() {
+        let dv = NAViewPresenter().societyServiceHistoryVC()
+        dv.titleName = NAString().history().capitalized
+        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     //Create Changing the Button Titles Function
