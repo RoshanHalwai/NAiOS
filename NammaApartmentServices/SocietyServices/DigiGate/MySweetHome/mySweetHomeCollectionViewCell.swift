@@ -71,12 +71,9 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
         {
             btnAction()
         }
-        
     }
     
-    @IBAction func btnRemove(_ sender: Any) {
-        delegate?.deleteData(indx: (index?.row)!, cell: self)
-    }
+    @IBAction func btnRemove(_ sender: Any) { }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
