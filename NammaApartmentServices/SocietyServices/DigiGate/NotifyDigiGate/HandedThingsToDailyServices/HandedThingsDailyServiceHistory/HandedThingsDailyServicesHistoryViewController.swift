@@ -51,9 +51,9 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         inputFormatter.dateFormat = "dd-MM-yyyy"
         let showDate = inputFormatter.date(from: DSHandedList.getDateOfVisit())
         inputFormatter.dateFormat = "MMM dd,yyyy"
-        let newDateOfVisite = inputFormatter.string(from: showDate!)
+        let newDateOfVisit = inputFormatter.string(from: showDate!)
         
-        cell.lbl_Date_Detail.text = newDateOfVisite
+        cell.lbl_Date_Detail.text = newDateOfVisit
         cell.lbl_InTime_Detail.text = DSHandedList.gettimeOfVisit()
         cell.lbl_Type_Detail.text = DSHandedList.getType()
         cell.lbl_Things_Detail.text = DSHandedList.getHandedThings()
