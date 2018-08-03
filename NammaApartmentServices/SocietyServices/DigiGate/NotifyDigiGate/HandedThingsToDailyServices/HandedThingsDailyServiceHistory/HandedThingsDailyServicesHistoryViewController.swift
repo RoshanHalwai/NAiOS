@@ -15,6 +15,8 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
     //set title from previous page
     var titleName =  String()
     
+    var dailyServiceKey = String()
+    
     //Created Instance of Model Class To get data in card view
     var dailyServiceHistoryList = [NADailyServiceHandedThingsHistory]()
     
@@ -46,9 +48,39 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         let DSHandedList : NADailyServiceHandedThingsHistory
         DSHandedList = dailyServiceHistoryList[indexPath.row]
         
+        //Implementing switch case to get daily services type in proper format
+        //TODO: Need to refactore & Use this swicth case from global function
+        switch DSHandedList.getType() {
+        case Constants.FIREBASE_DSTYPE_COOKS:
+            dailyServiceKey = NAString().cook()
+            break
+        case Constants.FIREBASE_DSTYPE_MAIDS:
+            dailyServiceKey = NAString().maid()
+            break
+        case Constants.FIREBASE_DSTYPE_CARBIKE_CLEANER:
+            dailyServiceKey = NAString().car_bike_cleaning()
+        case Constants.FIREBASE_DSTYPE_CHILDDAY_CARE:
+            dailyServiceKey = NAString().child_day_care()
+            break
+        case Constants.FIREBASE_DSTYPE_DAILY_NEWSPAPER:
+            dailyServiceKey = NAString().daily_newspaper()
+            break
+        case Constants.FIREBASE_DSTYPE_MILKMEN:
+            dailyServiceKey = NAString().milk_man()
+            break
+        case  Constants.FIREBASE_DSTYPE_LAUNDRIES:
+            dailyServiceKey = NAString().laundry()
+            break
+        case Constants.FIREBASE_DSTYPE_DRIVERS:
+            dailyServiceKey = NAString().driver()
+            break
+        default:
+            break
+        }
+        
         cell.lbl_Date_Detail.text = DSHandedList.getDateOfVisit()
         cell.lbl_InTime_Detail.text = DSHandedList.gettimeOfVisit()
-        cell.lbl_Type_Detail.text = DSHandedList.getType()
+        cell.lbl_Type_Detail.text = dailyServiceKey
         cell.lbl_Things_Detail.text = DSHandedList.getHandedThings()
         cell.lbl_Name_Detail.text = DSHandedList.getfullName()
         
