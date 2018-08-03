@@ -1075,4 +1075,8 @@ class NAString : NSObject {
     func selectAnyProblem() -> String {
         return String ("Select Any Problem")
     }
+    
+    func societyService() -> String {
+        return String ("Society Services")
+    }
 }

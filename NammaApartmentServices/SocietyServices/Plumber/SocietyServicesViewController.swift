@@ -181,6 +181,8 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     }
     //TODO : Need to add Functionality in future
     @IBAction func btn_requestPlumberAction() {
-        
+        let lv = NAViewPresenter().societyServiceDataVC()
+        lv.navTitle = NAString().societyService()
+        self.navigationController?.pushViewController(lv, animated: true)
     }
 }
