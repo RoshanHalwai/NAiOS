@@ -20,11 +20,10 @@ class SocietyHistoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var cardView: UIView?
-
+    
     @IBOutlet weak var lbl_ServiceName: UILabel!
     @IBOutlet weak var lbl_ServiceNumber: UILabel!
     @IBOutlet weak var lbl_ServiceProblem: UILabel!
     @IBOutlet weak var lbl_ServiceSlotTime: UILabel!
-        
 }
 

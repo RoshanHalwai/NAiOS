@@ -360,13 +360,21 @@
 			path = NavigationMenuCategory;
 			sourceTree = "<group>";
 		};
+		422E7E07211472D700648D40 /* Society Service History */ = {
+			isa = PBXGroup;
+			children = (
+				422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */,
+				422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */,
+			);
+			path = "Society Service History";
+			sourceTree = "<group>";
+		};
 		42305D66211304A6009FE3B6 /* Plumber */ = {
 			isa = PBXGroup;
 			children = (
+				422E7E07211472D700648D40 /* Society Service History */,
 				42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */,
 				42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */,
-				422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */,
-				422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */,
 			);
 			path = Plumber;
 			sourceTree = "<group>";

@@ -11,16 +11,18 @@ import UIKit
 class SocietyHistoryViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     //set title from previous page
     var titleName =  String()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
     }
+    
+    //MARK : CollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -47,4 +49,4 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         
         return cell
     }
-  }
+}
