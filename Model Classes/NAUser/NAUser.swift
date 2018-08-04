@@ -38,15 +38,20 @@ class NAUser {
     var flatDetails : UserFlatDetails
     var personalDetails : UserPersonalDetails
     var privileges : UserPrivileges
+    var familyMembers : [String]
+    var friends : [String]
     var uid : String?
     
-    //initiliazing variables
-    init(uid: String?,flatDetails: UserFlatDetails,personalDetails: UserPersonalDetails,privileges: UserPrivileges) {
+    init(uid: String?,flatDetails: UserFlatDetails,personalDetails: UserPersonalDetails,privileges: UserPrivileges,
+         familyMembers: [String], friends:[String]) {
         self.uid = uid
         self.flatDetails = flatDetails
         self.privileges = privileges
         self.personalDetails = personalDetails
+        self.familyMembers = familyMembers
+        self.friends = friends
     }
+    
     //Get uid
     func flatMembersUID() -> String {
         return uid!
@@ -60,7 +65,8 @@ class NAUser {
         static let flatDetails = "flatDetails"
         static let privileges = "privileges"
         static let personalDetails = "personalDetails"
-        
+        static let familyMembers = "familyMembers"
+        static let friends = "friends"
     }
 }
 
