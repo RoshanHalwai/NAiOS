@@ -63,14 +63,14 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
         lbl_SelectProblem.font = NAFont().headerFont()
         lbl_SelectSlot.font = NAFont().headerFont()
         
-        //for changing button color
+        //for changing Select Slot buttons color
         selectSlotbuttons.removeAll()
         selectSlotbuttons.append(btn_Immediately)
         selectSlotbuttons.append(btn_9AMto12PM)
         selectSlotbuttons.append(btn_12PMto3PM)
         selectSlotbuttons.append(btn_3PMto5PM)
         
-        //for changing button color
+        //for changing Garbage buttons color
         garbageButtons.removeAll()
         garbageButtons.append(btn_DryWaste)
         garbageButtons.append(btn_WetWaste)
