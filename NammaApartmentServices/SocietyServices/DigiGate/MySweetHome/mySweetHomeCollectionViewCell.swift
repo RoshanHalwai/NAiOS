@@ -39,30 +39,20 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
     @IBOutlet weak var lbl_Edit: UILabel!
     @IBOutlet weak var lbl_Remove: UILabel!
     
-    //created object to use Edit button action in cell class
+    //created object to use button action in cell class
     var objEdit : (() -> Void)? = nil
+    var objCall : (() -> Void)? = nil
+    var objMessage : (() -> Void)? = nil
     
     @IBAction func btnCall(_ sender: Any) {
-        
-        //TODO : Need to change mobile number here
-        UIApplication.shared.open(NSURL(string: "tel://9739591077")! as URL, options: [:], completionHandler: nil)
+        if let btnCallAction = self.objCall {
+            btnCallAction()
+        }
     }
     
     @IBAction func btnMessage(_ sender: Any) {
-        
-        if(MFMessageComposeViewController.canSendText()){
-            
-            let messagesheet : MFMessageComposeViewController = MFMessageComposeViewController()
-            messagesheet.messageComposeDelegate = self
-            
-            //TODO : Nedd to change phone Number.
-            messagesheet.recipients = ["9739591077"]
-            messagesheet.body = ""
-            self.window?.rootViewController?.present(messagesheet , animated: true , completion: nil)
-        } else {
-            
-            let alert = UIAlertController(title:NAString().warning(), message: NAString().message_warning_text(), preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title:NAString().ok(), style: UIAlertActionStyle.default, handler: nil))
+        if let btnMessageAction = self.objMessage {
+            btnMessageAction()
         }
     }
     

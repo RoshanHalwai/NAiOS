@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseDatabase
+import MessageUI
 
-class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -115,15 +116,15 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
         
-        let familyMember = self.NAFamilyMemberList[indexPath.row]
+        let flatMember = self.NAFamilyMemberList[indexPath.row]
         
-        cell.lbl_MySweetHomeName.text = familyMember.personalDetails.fullName
+        cell.lbl_MySweetHomeName.text = flatMember.personalDetails.fullName
         
         //TODO Remove this data, we need to decide if a user is a friend or family member
         cell.lbl_MySweetHomeRelation.text = "Family Member"
-        cell.lbl_MySweetHomeGrantAccess.text = familyMember.privileges.getGrantAccess() ? "Yes" : "No"
+        cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
         
-        if let urlString = familyMember.personalDetails.profilePhoto {
+        if let urlString = flatMember.personalDetails.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
         }
         
@@ -173,10 +174,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         cell.objEdit = {
             
-            self.userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMember.flatMembersUID()).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
+            self.userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(flatMember.flatMembersUID()).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
             
             //Showing Segment Index Based on the Firebase data
-            if familyMember.privileges.getGrantAccess() == true {
+            if flatMember.privileges.getGrantAccess() == true {
                 self.access_Segment.selectedSegmentIndex = 0
             } else {
                 self.access_Segment.selectedSegmentIndex = 1
@@ -186,7 +187,25 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             self.PopUp_ParentView.isHidden = false
             self.popUp_View.isHidden = false
         }
+        
+        cell.objCall = {
+            UIApplication.shared.open(NSURL(string: "tel://\(flatMember.personalDetails.getphoneNumber())")! as URL, options: [:], completionHandler: nil)
+        }
+        
+        cell.objMessage = {
+            MFMessageComposeViewController.canSendText()
+            let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
+            messageSheet.messageComposeDelegate = self
+            messageSheet.recipients = [flatMember.personalDetails.getphoneNumber()]
+            messageSheet.body = ""
+            self.present(messageSheet, animated: true, completion: nil)
+        }
         return cell
+    }
+    
+    //Message UI default function to dismiss UI after calling MessageUI.
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func Cancel_Action(_ sender: UIButton) {
