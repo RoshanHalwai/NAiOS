@@ -113,16 +113,16 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! mySweetHomeCollectionViewCell
         
         let flatMember = self.NAFamilyMemberList[indexPath.row]
         
         cell.lbl_MySweetHomeName.text = flatMember.personalDetails.fullName
         
         if flatMember.familyMembers.contains(userUID) {
-            cell.lbl_MySweetHomeRelation.text = "Family Member"
+            cell.lbl_MySweetHomeRelation.text = NAString().family_Member()
         } else {
-            cell.lbl_MySweetHomeRelation.text = "Friend"
+            cell.lbl_MySweetHomeRelation.text = NAString().friend()
         }
         cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
         
