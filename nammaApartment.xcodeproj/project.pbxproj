@@ -374,12 +374,20 @@
 		42305D66211304A6009FE3B6 /* Plumber */ = {
 			isa = PBXGroup;
 			children = (
+				42335F292115A49C006E52FB /* Society Service */,
 				422E7E07211472D700648D40 /* Society Service History */,
-				42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */,
-				42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */,
 				422E7E0C2114882700648D40 /* SocietyServicesDataViewController.swift */,
 			);
 			path = Plumber;
+			sourceTree = "<group>";
+		};
+		42335F292115A49C006E52FB /* Society Service */ = {
+			isa = PBXGroup;
+			children = (
+				42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */,
+				42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */,
+			);
+			path = "Society Service";
 			sourceTree = "<group>";
 		};
 		5604502185698E5A09687321 /* Pods */ = {
