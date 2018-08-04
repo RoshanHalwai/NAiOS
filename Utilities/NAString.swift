@@ -776,6 +776,12 @@ class NAString : NSObject {
     func otp_message_family_member(name : String) -> String {
         return String ("We will send an OTP to your \(name) for Authentication.")
     }
+    func family_Member() -> String {
+        return String("Family Member")
+    }
+    func friend() -> String {
+        return String("Friend")
+    }
     
     //Emergency Screen
     func tap_on_bell_icon_to_create_alert() -> String {
@@ -1089,7 +1095,7 @@ class NAString : NSObject {
     }
     
     func selectAnyProblem() -> String {
-        return String ("Select Any Problem")
+        return String ("Select Problem")
     }
     
     func societyService() -> String {

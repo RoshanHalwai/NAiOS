@@ -41,6 +41,9 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
         
         searchBar.delegate = self
         
+        //Hiding NavigationBar RightBarButtonItem
+        navigationItem.rightBarButtonItem = nil
+        
         //Create Navigationbar Back Button
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToSocietyServicePlumberVC))
         self.navigationItem.leftBarButtonItem = backButton

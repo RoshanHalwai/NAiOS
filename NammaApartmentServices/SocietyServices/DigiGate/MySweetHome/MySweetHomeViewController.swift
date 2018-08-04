@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseDatabase
+import MessageUI
 
-class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -21,7 +22,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var lbl_Grant_Access: UILabel!
     @IBOutlet weak var btn_AddmyFamilyMember: UIButton!
     @IBOutlet weak var btn_ChangeAccess: UIButton!
-    
     
     var userPrivilegesRef : DatabaseReference?
     
@@ -118,14 +118,17 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! mySweetHomeCollectionViewCell
         
         let flatMember = self.NAFamilyMemberList[indexPath.row]
         
         cell.lbl_MySweetHomeName.text = flatMember.personalDetails.fullName
         
-        //TODO Remove this data, we need to decide if a user is a friend or family member
-        cell.lbl_MySweetHomeRelation.text = "Family Member"
+        if flatMember.familyMembers.contains(userUID) {
+            cell.lbl_MySweetHomeRelation.text = NAString().family_Member()
+        } else {
+            cell.lbl_MySweetHomeRelation.text = NAString().friend()
+        }
         cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
         
         if let urlString = flatMember.personalDetails.profilePhoto {
@@ -137,16 +140,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
          - Setting fonts & strings for labels.
          - Calling edit button action & Delete particular cell from list. */
         
-        cell.contentView.layer.cornerRadius = 4.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = false
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        cell.layer.shadowRadius = 4.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        NAShadowEffect().shadowEffect(Cell: cell)
         
         cell.MySweeetHomeimg.layer.cornerRadius = cell.MySweeetHomeimg.frame.size.width/2
         cell.MySweeetHomeimg.clipsToBounds = true
@@ -196,7 +190,25 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
                 NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().edit_Message_Alert_Title(), Message: NAString().edit_Alert_Message(), OkStyle: .default, OK: { (action) in})
             }
         }
+        
+        cell.objCall = {
+            UIApplication.shared.open(NSURL(string: "tel://\(flatMember.personalDetails.getphoneNumber())")! as URL, options: [:], completionHandler: nil)
+        }
+        
+        cell.objMessage = {
+            MFMessageComposeViewController.canSendText()
+            let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
+            messageSheet.messageComposeDelegate = self
+            messageSheet.recipients = [flatMember.personalDetails.getphoneNumber()]
+            messageSheet.body = ""
+            self.present(messageSheet, animated: true, completion: nil)
+        }
         return cell
+    }
+    
+    //Message UI default function to dismiss UI after calling MessageUI.
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func Cancel_Action(_ sender: UIButton) {
@@ -206,6 +218,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     }
     
     @objc func Change_Button() {
+        
         var newGrantAccessValue: Bool?
         
         //Changing Grant Access of particular flat member.
