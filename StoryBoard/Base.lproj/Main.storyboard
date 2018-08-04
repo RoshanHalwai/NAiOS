@@ -3023,7 +3023,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VZr-ya-GF6">
-                                <rect key="frame" x="0.0" y="33" width="375" height="634"/>
+                                <rect key="frame" x="0.0" y="33" width="375" height="595"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1de-qf-530">
                                     <size key="itemSize" width="340" height="200"/>
@@ -3239,7 +3239,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YDH-tB-VWz" userLabel="OpacityView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YDH-tB-VWz" userLabel="OpacityView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fTU-OO-Gc7" userLabel="popUpView">
@@ -3310,7 +3310,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="fTU-OO-Gc7" firstAttribute="centerX" secondItem="YDH-tB-VWz" secondAttribute="centerX" id="KcB-K7-8j3"/>
-                                    <constraint firstItem="fTU-OO-Gc7" firstAttribute="centerY" secondItem="YDH-tB-VWz" secondAttribute="centerY" id="Yoc-4k-uXV"/>
+                                    <constraint firstItem="fTU-OO-Gc7" firstAttribute="centerY" secondItem="YDH-tB-VWz" secondAttribute="centerY" constant="-1" id="Yoc-4k-uXV"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4Q-Pb-mPR">
@@ -3329,14 +3329,14 @@
                             <constraint firstItem="VZr-ya-GF6" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="AGA-NU-yYr"/>
                             <constraint firstItem="VZr-ya-GF6" firstAttribute="top" secondItem="3cz-UB-DR6" secondAttribute="top" constant="13" id="E61-wZ-4nF"/>
                             <constraint firstItem="b4Q-Pb-mPR" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="EpL-n0-3Mr"/>
-                            <constraint firstItem="3cz-UB-DR6" firstAttribute="bottom" secondItem="VZr-ya-GF6" secondAttribute="bottom" id="KPD-Ne-zid"/>
+                            <constraint firstItem="3cz-UB-DR6" firstAttribute="bottom" secondItem="VZr-ya-GF6" secondAttribute="bottom" constant="39" id="KPD-Ne-zid"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="trailing" secondItem="3cz-UB-DR6" secondAttribute="trailing" id="LI1-5Y-cUG"/>
                             <constraint firstItem="b4Q-Pb-mPR" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" id="Mg0-RV-SJT"/>
                             <constraint firstItem="b4Q-Pb-mPR" firstAttribute="trailing" secondItem="3cz-UB-DR6" secondAttribute="trailing" id="OfM-qB-Z3T"/>
                             <constraint firstItem="g2m-ZK-M2R" firstAttribute="trailing" secondItem="3cz-UB-DR6" secondAttribute="trailing" id="Pvf-YE-pOh"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="top" secondItem="I4Y-qU-z9x" secondAttribute="top" id="X9g-h6-NHb"/>
                             <constraint firstItem="g2m-ZK-M2R" firstAttribute="top" secondItem="I4Y-qU-z9x" secondAttribute="top" id="YLN-Eg-XlG"/>
-                            <constraint firstItem="YDH-tB-VWz" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" id="elI-O7-ZLB"/>
+                            <constraint firstItem="YDH-tB-VWz" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" constant="1" id="elI-O7-ZLB"/>
                             <constraint firstItem="g2m-ZK-M2R" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="o45-4g-42O"/>
                             <constraint firstItem="YDH-tB-VWz" firstAttribute="leading" secondItem="3cz-UB-DR6" secondAttribute="leading" id="s18-rY-vnW"/>
                             <constraint firstItem="g2m-ZK-M2R" firstAttribute="bottom" secondItem="3cz-UB-DR6" secondAttribute="bottom" id="soD-ux-P2E"/>
@@ -5936,7 +5936,7 @@
                                 <rect key="frame" x="0.0" y="120" width="260" height="483"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -5944,7 +5944,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

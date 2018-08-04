@@ -102,9 +102,14 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     }
     
     @IBAction func btnAddFamilyMember(_ sender: UIButton) {
-        let lv = NAViewPresenter().myFamilyMembers()
-        lv.navTitle = NAString().addFamilyMemberTitle()
-        self.navigationController?.pushViewController(lv, animated: true)
+        
+        if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
+            let lv = NAViewPresenter().myFamilyMembers()
+            lv.navTitle = NAString().addFamilyMemberTitle()
+            self.navigationController?.pushViewController(lv, animated: true)
+        } else {
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().add_Family_Members_Alert_Title(), Message: NAString().add_Family_Members_Alert_Message(), OkStyle: .default) { (action) in }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -115,15 +120,15 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
         
-        let familyMember = self.NAFamilyMemberList[indexPath.row]
+        let flatMember = self.NAFamilyMemberList[indexPath.row]
         
-        cell.lbl_MySweetHomeName.text = familyMember.personalDetails.fullName
+        cell.lbl_MySweetHomeName.text = flatMember.personalDetails.fullName
         
         //TODO Remove this data, we need to decide if a user is a friend or family member
         cell.lbl_MySweetHomeRelation.text = "Family Member"
-        cell.lbl_MySweetHomeGrantAccess.text = familyMember.privileges.getGrantAccess() ? "Yes" : "No"
+        cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
         
-        if let urlString = familyMember.personalDetails.profilePhoto {
+        if let urlString = flatMember.personalDetails.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
         }
         
@@ -173,18 +178,23 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         cell.objEdit = {
             
-            self.userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMember.flatMembersUID()).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
+            self.userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(flatMember.flatMembersUID()).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
             
-            //Showing Segment Index Based on the Firebase data
-            if familyMember.privileges.getGrantAccess() == true {
-                self.access_Segment.selectedSegmentIndex = 0
+            if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
+                
+                //Showing Segment Index Based on the Firebase data
+                if flatMember.privileges.getGrantAccess() == true {
+                    self.access_Segment.selectedSegmentIndex = 0
+                } else {
+                    self.access_Segment.selectedSegmentIndex = 1
+                }
+                self.btn_ChangeAccess.addTarget(self, action: #selector(self.Change_Button), for: .touchUpInside)
+                self.opacity_View.isHidden = false
+                self.PopUp_ParentView.isHidden = false
+                self.popUp_View.isHidden = false
             } else {
-                self.access_Segment.selectedSegmentIndex = 1
+                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().edit_Message_Alert_Title(), Message: NAString().edit_Alert_Message(), OkStyle: .default, OK: { (action) in})
             }
-            self.btn_ChangeAccess.addTarget(self, action: #selector(self.Change_Button), for: .touchUpInside)
-            self.opacity_View.isHidden = false
-            self.PopUp_ParentView.isHidden = false
-            self.popUp_View.isHidden = false
         }
         return cell
     }
