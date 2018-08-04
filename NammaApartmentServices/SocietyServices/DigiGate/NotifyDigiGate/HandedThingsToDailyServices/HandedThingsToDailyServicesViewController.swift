@@ -291,6 +291,7 @@ extension HandedThingsToDailyServicesViewController {
                             //Getting Daily Services UID here
                             let dailyServicesUID = snapshot.value as? NSDictionary
                             for dailyServiceUID in (dailyServicesUID?.allKeys)! {
+                                
                                 self.dailyServiceCountRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String)
                                 
                                 //Getting Daily Services Status (Like Entered or Not)
