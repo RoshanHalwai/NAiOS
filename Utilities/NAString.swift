@@ -1101,4 +1101,24 @@ class NAString : NSObject {
     func societyService() -> String {
         return String ("Society Services")
     }
+    
+    func collectGarbage(name: String) -> String {
+        return String ("\(name) Garbage")
+    }
+    
+    func selectAnyOne() -> String {
+        return String ("Select Any One")
+    }
+    
+    func dryWaste() -> String {
+        return String ("Dry Waste")
+    }
+    
+    func wetWaste() -> String {
+        return String ("Wet Waste")
+    }
+    
+    func societyServiceLabelMessage(name: String) -> String {
+        return String ("Please wait \(name) has not Responded")
+    }
 }

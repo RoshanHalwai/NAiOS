@@ -10,65 +10,86 @@ import UIKit
 
 class SocietyServicesViewController: NANavigationViewController,SelectProblemDelegate {
     
-    @IBOutlet weak var btn_SelectAny : UIButton!
+    @IBOutlet weak var btn_SelectAny : UIButton?
     @IBOutlet weak var btn_Immediately : UIButton!
     @IBOutlet weak var btn_9AMto12PM : UIButton!
     @IBOutlet weak var btn_12PMto3PM : UIButton!
     @IBOutlet weak var btn_3PMto5PM : UIButton!
+    @IBOutlet weak var btn_DryWaste : UIButton!
+    @IBOutlet weak var btn_WetWaste : UIButton!
     @IBOutlet weak var btn_requestPlumber : UIButton!
     
     @IBOutlet weak var lbl_SelectProblem: UILabel!
     @IBOutlet weak var lbl_SelectSlot: UILabel!
     
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var garbageStackView: UIStackView!
     
-    //array of buttons for color changing purpose
-    var buttons : [UIButton] = []
-    var isValidButtonClicked: [Bool] = []
+    //Select slot array of buttons for color changing purpose
+    var selectSlotbuttons : [UIButton] = []
+    var isValidSelectSlotButtonClicked: [Bool] = []
     
     //To set navigation title & Screen title
     var navTitle : String?
     var plumberString : String?
     var carpenterString : String?
     var electricianString : String?
+    var garbageString : String?
+    
+    //Garbage array of buttons for color changing purpose
+    var garbageButtons : [UIButton] = []
+    var isValidgarbageButtonClicked: [Bool] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Hiding the StackView
+        garbageStackView.isHidden = true
         
         //Adding Screen Titles
         plumberString = NAString().plumber()
         carpenterString = NAString().carpenter()
         electricianString = NAString().electrician()
+        garbageString = NAString().garbage_management()
         
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)        
         
         //Label formatting & setting
-        lbl_SelectProblem.text = NAString().selectProblem()
         lbl_SelectSlot.text = NAString().selectSlot()
         
         //lbl_Title.font = NAFont().headerFont()
         lbl_SelectProblem.font = NAFont().headerFont()
         lbl_SelectSlot.font = NAFont().headerFont()
         
-        //for changing button color
-        buttons.removeAll()
-        buttons.append(btn_Immediately)
-        buttons.append(btn_9AMto12PM)
-        buttons.append(btn_12PMto3PM)
-        buttons.append(btn_3PMto5PM)
+        //for changing Select Slot buttons color
+        selectSlotbuttons.removeAll()
+        selectSlotbuttons.append(btn_Immediately)
+        selectSlotbuttons.append(btn_9AMto12PM)
+        selectSlotbuttons.append(btn_12PMto3PM)
+        selectSlotbuttons.append(btn_3PMto5PM)
+        
+        //for changing Garbage buttons color
+        garbageButtons.removeAll()
+        garbageButtons.append(btn_DryWaste)
+        garbageButtons.append(btn_WetWaste)
         
         //button Formatting & setting
         btn_Immediately.setTitle(NAString().immediately(), for: .normal)
         btn_9AMto12PM.setTitle(NAString()._9AM_12PM(), for: .normal)
         btn_12PMto3PM.setTitle(NAString()._12PM_3PM(), for: .normal)
         btn_3PMto5PM.setTitle(NAString()._3PM_5PM(), for: .normal)
+        btn_DryWaste.setTitle(NAString().dryWaste(), for: .normal)
+        btn_WetWaste.setTitle(NAString().wetWaste(), for: .normal)
         
         //color set on selected
         btn_Immediately.setTitleColor(UIColor.black, for: .selected)
         btn_9AMto12PM.setTitleColor(UIColor.black, for: .selected)
         btn_12PMto3PM.setTitleColor(UIColor.black, for: .selected)
         btn_3PMto5PM.setTitleColor(UIColor.black, for: .selected)
+        btn_DryWaste.setTitleColor(UIColor.black, for: .selected)
+        btn_WetWaste.setTitleColor(UIColor.black, for: .selected)
         
         //Button Formatting & settings
         btn_requestPlumber?.setTitleColor(NAColor().buttonFontColor(), for: .normal)
@@ -80,18 +101,24 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
         btn_9AMto12PM.tag = 2
         btn_12PMto3PM.tag = 3
         btn_3PMto5PM.tag = 4
+        btn_DryWaste.tag = 5
+        btn_WetWaste.tag = 6
         
         //make buttons rounded corner
         btn_Immediately.layer.cornerRadius = 15.0
         btn_9AMto12PM.layer.cornerRadius = 15.0
         btn_12PMto3PM.layer.cornerRadius = 15.0
         btn_3PMto5PM.layer.cornerRadius = 15.0
+        btn_DryWaste.layer.cornerRadius = 15.0
+        btn_WetWaste.layer.cornerRadius = 15.0
         
         //setting border width for buttons
         btn_Immediately.layer.borderWidth = 1
         btn_9AMto12PM.layer.borderWidth = 1
         btn_12PMto3PM.layer.borderWidth = 1
         btn_3PMto5PM.layer.borderWidth = 1
+        btn_DryWaste.layer.borderWidth = 1
+        btn_WetWaste.layer.borderWidth = 1
         
         //cardUIView
         cardView.layer.cornerRadius = 3
@@ -102,9 +129,12 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
         
         //Calling Button Color Function
         self.selectedColor(tag: btn_Immediately.tag)
+        self.selectedGarbageColor(tag: btn_DryWaste.tag)
         
-        //Calling Button Titles Function
+        //Calling Button Titles Functions
         self.changingButtonTitles()
+        self.changingSelectAnyButtonTitles()
+        self.changingLabelSelectProblemTitles()
         
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
@@ -128,15 +158,55 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
             btn_requestPlumber.setTitle(NAString().requestPlumber(name: "PLUMBER"), for: .normal)
         } else if (navTitle == carpenterString) {
             btn_requestPlumber.setTitle(NAString().requestPlumber(name: "CARPENTER"), for: .normal)
-        } else {
+        } else if (navTitle == electricianString) {
             btn_requestPlumber.setTitle(NAString().requestPlumber(name: "ELECTRICIAN"), for: .normal)
+        } else {
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "GARBAGE"), for: .normal)
         }
     }
     
-    //creating function to highlight select button color
+    //Create Changing the SelectAny Button Titles Function
+    func changingSelectAnyButtonTitles() {
+        if (navTitle == garbageString) {
+            btn_SelectAny?.isHidden = true
+            garbageStackView.isHidden = false
+        } else {
+            garbageStackView.isHidden = true
+        }
+    }
+    
+    //Create Changing the Label Select Problem Titles Function
+    func changingLabelSelectProblemTitles() {
+        if (navTitle == plumberString) {
+            lbl_SelectProblem.text = NAString().selectProblem()
+        } else if (navTitle == carpenterString) {
+            lbl_SelectProblem.text = NAString().selectProblem()
+        } else if (navTitle == electricianString) {
+            lbl_SelectProblem.text = NAString().selectProblem()
+        } else {
+            lbl_SelectProblem.text = NAString().collectGarbage(name: "Select")
+        }
+    }
+    
+    //creating function to highlight select slot button color
     func selectedColor(tag: Int) {
-        for button in buttons as [UIButton] {
-            isValidButtonClicked = [true]
+        for button in selectSlotbuttons as [UIButton] {
+            isValidSelectSlotButtonClicked = [true]
+            if button.tag == tag {
+                button.isSelected = true
+            } else {
+                button.isSelected = false
+            }
+            let color = button.isSelected ? NAColor().buttonFontColor() : UIColor.white
+            button.backgroundColor = color
+            button.tintColor = color
+        }
+    }
+    
+    //creating function to highlight garbage button color
+    func selectedGarbageColor(tag: Int) {
+        for button in garbageButtons as [UIButton] {
+            isValidgarbageButtonClicked = [true]
             if button.tag == tag {
                 button.isSelected = true
             } else {
@@ -150,13 +220,18 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     
     //Calling SelectProblem Delegate Function
     func passingSelectString(name: String?) {
-        btn_SelectAny.titleLabel?.text = name
+        btn_SelectAny?.titleLabel?.text = name
     }
     
     //MARK : Create Button Actions
+    
     //Create Button SelectSlot Function
     @IBAction func btnSelectSlotFunction(_ sender: UIButton) {
         selectedColor(tag: sender.tag)
+    }
+    //Create Button garbage Function
+    @IBAction func btnSelectGarbageFunction(_ sender: UIButton) {
+        selectedGarbageColor(tag: sender.tag)
     }
     //Calling SelectAny Button Function
     @IBAction func btn_selectAnyOneAction() {
@@ -179,10 +254,19 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
             self.navigationController?.pushViewController(lv, animated: true)
         }
     }
-    //TODO : Need to add Functionality in future
+    //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
         let lv = NAViewPresenter().societyServiceDataVC()
         lv.navTitle = NAString().societyService()
+        if (navTitle == plumberString) {
+            lv.titleString = plumberString
+        } else if (navTitle == carpenterString) {
+            lv.titleString = carpenterString
+        } else if (navTitle == electricianString) {
+            lv.titleString = electricianString
+        } else {
+            lv.titleString = garbageString
+        }
         self.navigationController?.pushViewController(lv, animated: true)
     }
 }
