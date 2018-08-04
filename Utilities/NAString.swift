@@ -163,6 +163,13 @@ class NAString : NSObject {
         return String("Are you sure you want to make \(name) as Admin? Note, your admin privileges will be transferred to \(name)")
     }
     
+    func update_Alert_Title() -> String {
+        return String("Update Message")
+    }
+    func update_Successfull_Alert_Message() -> String {
+        return String("You have successfully updated your profile")
+    }
+    
     //Signin screen and Visitor screen
     func create_an_account_button() -> String {
         return String("Create an Account")

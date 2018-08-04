@@ -33,6 +33,8 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     @IBOutlet weak var scroll_View: UIScrollView!
     
+    var updateUserRef : DatabaseReference?
+    
     var navTitle = String()
     
     /* - Creating Text Field Action for Name for first letter to be Capital.
@@ -95,8 +97,11 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         
         update_btn.titleLabel?.font = NAFont().buttonFont()
         
-        //TODO: Need to get Flat members Details.
-        txt_Flat_Admin.text = "You are the Administrator"
+        if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
+            txt_Flat_Admin.text = "You are the Administrator"
+        } else {
+            txt_Flat_Admin.text = 
+        }
         
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.width/2
         profile_Image.clipsToBounds = true
@@ -160,7 +165,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func update_Action_Btn(_ sender: UIButton) { }
+    @IBAction func update_Action_Btn(_ sender: UIButton) {
+        updateProfileChanges()
+    }
     
     //Email Validation Function
     func isValidEmailAddress(emailAddressString: String) -> Bool {
@@ -179,6 +186,11 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         }
         return  returnValue
     }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        updateProfileChanges()
+//        return true
+//    }
     //TODO: Need to get Flat members Count After Firebase Retrieval.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -190,4 +202,25 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         return cell
     }
 }
+
+extension EditMyProfileViewController {
+    func updateProfileChanges() {
+        self.updateUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        if !(txt_Name.text?.isEmpty)! {
+            updateUserRef?.child(Constants.FIREBASE_CHILD_FULLNAME).setValue(txt_Name.text)
+        }
+        if !(txt_EmailId.text?.isEmpty)! {
+            updateUserRef?.child(Constants.FIREBASE_CHILD_EMAIL).setValue(txt_EmailId.text)
+        }
+        
+        let alert = UIAlertController(title: NAString().update_Alert_Title(), message: NAString().update_Successfull_Alert_Message(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NAString().ok(), style: .default, handler: { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        alert.view.backgroundColor = UIColor.white
+        alert.view.layer.cornerRadius = 10
+        self.present(alert, animated: true)
+    }
+}
+
 
