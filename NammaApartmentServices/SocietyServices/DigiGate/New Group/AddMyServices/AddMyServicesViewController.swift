@@ -468,7 +468,7 @@ extension AddMyServicesViewController {
         
         self.dailyServicesStatusRef?.child(NAString().status()).setValue(NAString().notEntered())
         
-        dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(dailyServiceKey)
+        dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(dailyServiceKey).child(Constants.FIREBASE_CHILD_OWNERSUID).child(userUID)
         
         guard let image = self.img_Profile.image else { return }
         guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
