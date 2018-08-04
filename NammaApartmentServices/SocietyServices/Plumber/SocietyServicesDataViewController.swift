@@ -24,6 +24,7 @@ class SocietyServicesDataViewController: NANavigationViewController {
     
     //To set navigation title
     var navTitle : String?
+    var titleString : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,26 @@ class SocietyServicesDataViewController: NANavigationViewController {
         cardView?.layer.shadowRadius = 1.7
         cardView?.layer.shadowOpacity = 0.45
         
+        //Hiding History NavigationBar  RightBarButtonItem
+        navigationItem.rightBarButtonItem = nil
+        
         //Hiding CardView
         cardView?.isHidden = true
+        
+        //Calling Society Service Messages Function
+        self.changingSocietyServiceMessages()
+    }
+    
+    //Create Changing the Society Service Messages Function
+    func changingSocietyServiceMessages() {
+        if ( titleString == NAString().plumber()) {
+            lbl_message?.text = NAString().societyServiceLabelMessage(name: "Plumber")
+        } else if (titleString == NAString().carpenter()) {
+            lbl_message?.text = NAString().societyServiceLabelMessage(name: "Carpenter")
+        } else if (titleString == NAString().electrician()) {
+            lbl_message?.text = NAString().societyServiceLabelMessage(name: "Electrician")
+        } else {
+            lbl_message?.text = NAString().societyServiceLabelMessage(name: "Garbage")
+        }
     }
 }

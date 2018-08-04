@@ -26,9 +26,9 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
     var delegate : SelectProblemDelegate?
     
     //TODO: Need to Add more Problems in future.
-    var plumberProblemsList = ["Dripping faucets","Slow draining sink","Clogged bath or shower drain","Clogged toilet","Running toilet","Faulty water heater","Low water pressure","Jammed garbage disposal","Leaky pipes","Sewer system backup"]
-    var carpenterProblemsList = ["Carpentry finish appears uneven","Split in the wood","Weak joints","Dents in wood","Glue stuck"]
-    var electricianProblemsList = ["Frequent Electrical Surge","Sags and Dips in Power","Light Switches not working properly","Circuit Overload","Circuit Breaker Tripping Frequently","Lights too Bright or Dim","Electrical Shocks","High Electrical Bill","Light Bulbs burning out too often","Recessed Light 'Goes Out' and comesback on"]
+    var plumberProblemsList = ["Dripping faucets","Slow draining sink","Clogged bath or shower drain","Clogged toilet","Running toilet","Faulty water heater","Low water pressure","Jammed garbage disposal","Leaky pipes","Sewer system backup","Others"]
+    var carpenterProblemsList = ["Carpentry finish appears uneven","Split in the wood","Weak joints","Dents in wood","Glue stuck","Others"]
+    var electricianProblemsList = ["Frequent Electrical Surge","Sags and Dips in Power","Light Switches not working properly","Circuit Overload","Circuit Breaker Tripping Frequently","Lights too Bright or Dim","Electrical Shocks","High Electrical Bill","Light Bulbs burning out too often","Recessed Light 'Goes Out' and comesback on","Others"]
     
     //To set navigation title
     var navTitle : String?
