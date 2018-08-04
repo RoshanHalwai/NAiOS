@@ -21,6 +21,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         
+        //Hiding History NavigationBar  RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
     }
     
