@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseDatabase
+import MessageUI
 
-class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -118,7 +119,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         cell.lbl_MySweetHomeName.text = flatMember.personalDetails.fullName
         
-        //TODO Remove this data, we need to decide if a user is a friend or family member
         if flatMember.familyMembers.contains(userUID) {
             cell.lbl_MySweetHomeRelation.text = "Family Member"
         } else {
@@ -180,7 +180,25 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             self.PopUp_ParentView.isHidden = false
             self.popUp_View.isHidden = false
         }
+        
+        cell.objCall = {
+            UIApplication.shared.open(NSURL(string: "tel://\(flatMember.personalDetails.getphoneNumber())")! as URL, options: [:], completionHandler: nil)
+        }
+        
+        cell.objMessage = {
+            MFMessageComposeViewController.canSendText()
+            let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
+            messageSheet.messageComposeDelegate = self
+            messageSheet.recipients = [flatMember.personalDetails.getphoneNumber()]
+            messageSheet.body = ""
+            self.present(messageSheet, animated: true, completion: nil)
+        }
         return cell
+    }
+    
+    //Message UI default function to dismiss UI after calling MessageUI.
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func Cancel_Action(_ sender: UIButton) {

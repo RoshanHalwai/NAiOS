@@ -16,14 +16,18 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     var handedThingsList = [NammaApartmentVisitor]()
     var titleName =  String()
     
-    @IBOutlet weak var table_View: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //TableView cell move up automatically, If keyboard will appaer
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         //Disable Table view cell selection & cell border line.
-        table_View.allowsSelection = false
-        self.table_View.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableView.allowsSelection = false
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         
         //Calling Retrieval function
         retrieveHandedThingsToGuest()
@@ -175,6 +179,19 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         return cell
     }
     
+    //TableView cell move up automatically, If when keyboard will appaer
+    @objc func keyboardWillShow(_ notification:Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+            tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        }
+    }
+    
     //Create Description textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
@@ -185,7 +202,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         super.viewWillAppear(animated)
         selectedRow = 0
         currentTag = 0
-        table_View.reloadData()
+        tableView.reloadData()
     }
     
     //Dynamically Change Cell Height while selecting segment Controller
@@ -205,7 +222,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             selectedRow = 1
         }
         currentTag = sender.tag
-        self.table_View.reloadData()
+        self.tableView.reloadData()
     }
 }
 
@@ -239,7 +256,7 @@ extension HandedThingsToGuestViewController {
                 if(self.handedThingsList.count == 0) {
                     NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
                 }
-                self.table_View.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
