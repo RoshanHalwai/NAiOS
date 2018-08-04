@@ -900,6 +900,22 @@ class NAString : NSObject {
         return String("Are you sure you want to remove this Guest data from the list?")
     }
     
+    func edit_Message_Alert_Title() -> String {
+        return String("Edit Message")
+    }
+    
+    func add_Family_Members_Alert_Title() -> String {
+        return String("Add Family Members Message")
+    }
+    
+    func edit_Alert_Message() -> String {
+        return String("Sorry you cannot edit this family member since you are not the admin of this flat")
+    }
+    
+    func add_Family_Members_Alert_Message() -> String {
+        return String("Sorry you cannot add family members to this flat since you are not the admin of this flat")
+    }
+    
     func delete() -> String {
         return String("Delete")
     }
