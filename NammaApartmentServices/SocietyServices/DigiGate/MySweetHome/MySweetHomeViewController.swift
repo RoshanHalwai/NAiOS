@@ -23,7 +23,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var btn_AddmyFamilyMember: UIButton!
     @IBOutlet weak var btn_ChangeAccess: UIButton!
     
-    
     var userPrivilegesRef : DatabaseReference?
     
     var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
@@ -114,14 +113,17 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! mySweetHomeCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! mySweetHomeCollectionViewCell
         
         let flatMember = self.NAFamilyMemberList[indexPath.row]
         
         cell.lbl_MySweetHomeName.text = flatMember.personalDetails.fullName
         
-        //TODO Remove this data, we need to decide if a user is a friend or family member
-        cell.lbl_MySweetHomeRelation.text = "Family Member"
+        if flatMember.familyMembers.contains(userUID) {
+            cell.lbl_MySweetHomeRelation.text = NAString().family_Member()
+        } else {
+            cell.lbl_MySweetHomeRelation.text = NAString().friend()
+        }
         cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
         
         if let urlString = flatMember.personalDetails.profilePhoto {
@@ -133,16 +135,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
          - Setting fonts & strings for labels.
          - Calling edit button action & Delete particular cell from list. */
         
-        cell.contentView.layer.cornerRadius = 4.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = false
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        cell.layer.shadowRadius = 4.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        NAShadowEffect().shadowEffect(Cell: cell)
         
         cell.MySweeetHomeimg.layer.cornerRadius = cell.MySweeetHomeimg.frame.size.width/2
         cell.MySweeetHomeimg.clipsToBounds = true
@@ -215,6 +208,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     }
     
     @objc func Change_Button() {
+        
         var newGrantAccessValue: Bool?
         
         //Changing Grant Access of particular flat member.
