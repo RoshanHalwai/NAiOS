@@ -33,13 +33,9 @@ class RetrieveFamilyMemberList {
     //Takes a userUID and returns a list of their friends and family members data
     public func getFriendsAndFamilyMembers(userUID : String, callback: @escaping (_ familyAndFriendsDataList : [NAUser]) -> Void) {
         var familyAndFriendsDataList = [NAUser]()
-        
-        self.getFamilyMembersDataList(userUID: userUID) { (familyMembersDataList) in
+        self.getFlatMembersDataList(userUID: userUID) { (familyMembersDataList) in
             familyAndFriendsDataList.append(contentsOf: familyMembersDataList)
-            self.getFriendsDataList(userUID: userUID, callback: { (friendsDataList) in
-                familyAndFriendsDataList.append(contentsOf: friendsDataList)
-                callback(familyAndFriendsDataList)
-            })
+            callback(familyAndFriendsDataList)
         }
     }
     
@@ -47,75 +43,39 @@ class RetrieveFamilyMemberList {
      * Private API's
      * ------------------------------------------------------------- */
     
-    //Take userUID and returns a list of family members data added by the user
-    private func getFamilyMembersDataList(userUID : String, callback: @escaping (_ familyMembersDataList : [NAUser]) -> Void) {
-        var familyMembersDataList = [NAUser]()
+    //Takes a list of userUID and returns a list of flat members data list.
+    private func getFlatMembersDataList(userUID : String, callback: @escaping (_ flatMemberDataList : [NAUser]) -> Void) {
+        var flatMemberDataList = [NAUser]()
         
-        self.getFamilyMembersUIDList(userUID: userUID) { (familyMembersUIDList) in
-            //If FamilyMembers UID List is empty we check if user has any friends
-            if familyMembersUIDList.count == 0 {
-                callback(familyMembersDataList)
-            } else {
-                //User has family members so we append family members data in the list
-                self.getUserDataList(userUIDList: familyMembersUIDList, callback: { (familyMembersData) in
-                    familyMembersDataList.append(contentsOf: familyMembersData)
-                    callback(familyMembersDataList)
-                })
-            }
-        }
-    }
-    
-    //Take userUID and returns a list of friends data added by the user
-    private func getFriendsDataList(userUID : String, callback: @escaping (_ friendsDataList : [NAUser]) -> Void) {
-        var friendsDataList = [NAUser]()
-        
-        self.getFriendsUIDList(userUID: userUID, callback: { (friendsUIDList) in
-            if friendsUIDList.count == 0 {
-                callback(friendsDataList)
+        self.getFlatMembersUIDList(userUID: userUID, callback: { (flatMembersUIDList) in
+            if flatMembersUIDList.count == 0 {
+                callback(flatMemberDataList)
             } else {
                 //Appending user friends data to the friends data list
-                self.getUserDataList(userUIDList: friendsUIDList, callback: { (friendsData) in
-                    friendsDataList.append(contentsOf: friendsData)
-                    callback(friendsDataList)
+                self.getUserDataList(userUIDList: flatMembersUIDList, callback: { (friendsData) in
+                    flatMemberDataList.append(contentsOf: friendsData)
+                    callback(flatMemberDataList)
                 })
             }
         })
     }
     
-    //Take a userUID and returns a list of their family members UID
-    private func getFamilyMembersUIDList(userUID : String, callback: @escaping (_ familyMembersUIDList : [String]) -> Void) {
-        var familyMembersUIDList = [String]()
+    //Takes a list of userUID and returns a list of flat members UID List.
+    private func getFlatMembersUIDList(userUID : String, callback: @escaping (_ flatMembersUIDList : [String]) -> Void) {
+        var flatMembersUIDList = [String]()
         
-        let flatMemberReference = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
-        flatMemberReference.observeSingleEvent(of: .value) { (familyMemberUIDSnapshot) in
-            if  !familyMemberUIDSnapshot.exists() {
-                callback(familyMembersUIDList)
+        let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+        flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
+            if flatMembersUIDSnapshot.childrenCount == 1 {
+                callback(flatMembersUIDList)
             } else {
-                let familyMemberUIDMap = familyMemberUIDSnapshot.value as? NSDictionary
-                for familyMemberUID in (familyMemberUIDMap?.allKeys)! {
-                    familyMembersUIDList.append(familyMemberUID as! String)
+                let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
+                for flatMemberUID in (flatMembersUIDMap?.allKeys)! {
+                    if flatMemberUID as! String != userUID {
+                        flatMembersUIDList.append(flatMemberUID as! String)
+                    }
                 }
-                callback(familyMembersUIDList)
-            }
-        }
-    }
-    
-    //Take a userUID and returns a list of their friends UID
-    private func getFriendsUIDList(userUID : String, callback: @escaping (_ friendsUIDList : [String]) -> Void) {
-        var friendsUIDList = [String]()
-        
-        let flatMemberReference = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-            .child(userUID).child(Constants.FIREBASE_CHILD_FRIENDS)
-        flatMemberReference.observeSingleEvent(of: .value) { (friendsUIDSnapshot) in
-            if  !friendsUIDSnapshot.exists() {
-                callback(friendsUIDList)
-            } else {
-                let friendsUIDMap = friendsUIDSnapshot.value as? NSDictionary
-                for friendUID in (friendsUIDMap?.allKeys)! {
-                    friendsUIDList.append(friendUID as! String)
-                }
-                callback(friendsUIDList)
+                callback(flatMembersUIDList)
             }
         }
     }
@@ -168,8 +128,26 @@ class RetrieveFamilyMemberList {
             let tenantType = userFlatDataMap?[UserFlatListFBKeys.tenantType.key] as? String
             let userFlatDetails = UserFlatDetails(apartmentName: apartmentName, city: city, flatNumber: flatNumber, societyName: societyName, tenantType: tenantType)
             
+            //Create instance of FamilyMembers
+            let userFamilyMembersDataMap:[String: AnyObject]? = usersData?["familyMembers"] as? [String: AnyObject]
+            var familyMembersUIDList = [String]()
+            if userFamilyMembersDataMap != nil {
+                for familyMemberUID in (userFamilyMembersDataMap?.keys)! {
+                    familyMembersUIDList.append(familyMemberUID)
+                }
+            }
+            
+            //Create instance of Friends
+            let userFriendsDataMap:[String: AnyObject]? = usersData?["friends"] as? [String: AnyObject]
+            var friendsUIDList = [String]()
+            if userFriendsDataMap != nil {
+                for friendUID in (userFriendsDataMap?.keys)! {
+                    friendsUIDList.append(friendUID)
+                }
+            }
+            
             //Creating instance of NAUser
-            let userData = NAUser(uid: userUID, flatDetails: userFlatDetails, personalDetails: userPersonalDetails, privileges: userPrivileges)
+            let userData = NAUser(uid: userUID, flatDetails: userFlatDetails, personalDetails: userPersonalDetails, privileges: userPrivileges, familyMembers: familyMembersUIDList, friends: friendsUIDList)
             
             //We are done with retrieval send the received data back to the calling function
             callback(userData)

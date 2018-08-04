@@ -776,6 +776,12 @@ class NAString : NSObject {
     func otp_message_family_member(name : String) -> String {
         return String ("We will send an OTP to your \(name) for Authentication.")
     }
+    func family_Member() -> String {
+        return String("Family Member")
+    }
+    func friend() -> String {
+        return String("Friend")
+    }
     
     //Emergency Screen
     func tap_on_bell_icon_to_create_alert() -> String {
@@ -892,6 +898,22 @@ class NAString : NSObject {
     }
     func remove_guests_message() -> String {
         return String("Are you sure you want to remove this Guest data from the list?")
+    }
+    
+    func edit_Message_Alert_Title() -> String {
+        return String("Edit Message")
+    }
+    
+    func add_Family_Members_Alert_Title() -> String {
+        return String("Add Family Members Message")
+    }
+    
+    func edit_Alert_Message() -> String {
+        return String("Sorry you cannot edit this family member since you are not the admin of this flat")
+    }
+    
+    func add_Family_Members_Alert_Message() -> String {
+        return String("Sorry you cannot add family members to this flat since you are not the admin of this flat")
     }
     
     func delete() -> String {
