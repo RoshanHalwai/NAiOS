@@ -164,6 +164,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                     var dsDateOfVisit = ""
                     var dsHandedThings = ""
                     var iterator = 0
+                    var count = 0
                     
                     if snapshot.exists() {
                         
@@ -178,6 +179,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                 //Getting Daily Services UID here
                                 let dailyServicesUID = snapshot.value as? NSDictionary
                                 for dailyServiceUID in (dailyServicesUID?.allKeys)! {
+                                    count = count + 1
                                     queue.addOperation {
                                         dsType = dailyServiceType as! String
                                         
@@ -223,11 +225,16 @@ extension HandedThingsDailyServicesHistoryViewController {
                                                         NAActivityIndicator.shared.hideActivityIndicator()
                                                         self.collectionView.reloadData()
                                                         iterator = iterator + 1
+                                                    } else {
+                                                        NAActivityIndicator.shared.hideActivityIndicator()
+                                                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                                     }
                                                 })
                                             } else {
-                                                NAActivityIndicator.shared.hideActivityIndicator()
-                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
+                                                if count == dailyServicesUID?.count {
+                                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
+                                                }
                                             }
                                         })
                                     }
