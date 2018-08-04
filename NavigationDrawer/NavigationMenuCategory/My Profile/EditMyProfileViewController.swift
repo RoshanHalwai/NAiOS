@@ -65,6 +65,19 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             }
         })
         
+        let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+        flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
+            if flatMembersUIDSnapshot.childrenCount == 1 {
+                
+            } else {
+//                let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
+//                for flatMemberUID in (flatMembersUIDMap?.allKeys)! {
+//                    if flatMemberUID as! String != userUID {
+//                        flatMembersUIDList.append(flatMemberUID as! String)
+//                    }
+//                }
+            }
+        }
         txt_Name.underlined()
         txt_EmailId.underlined()
         txt_Flat_Admin.underlined()
@@ -100,7 +113,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
             txt_Flat_Admin.text = "You are the Administrator"
         } else {
-            txt_Flat_Admin.text = 
+//            txt_Flat_Admin.text = 
         }
         
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.width/2
