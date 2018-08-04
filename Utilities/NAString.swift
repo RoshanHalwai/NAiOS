@@ -1073,7 +1073,7 @@ class NAString : NSObject {
     }
     
     func selectAnyProblem() -> String {
-        return String ("Select Any Problem")
+        return String ("Select Problem")
     }
     
     func societyService() -> String {
