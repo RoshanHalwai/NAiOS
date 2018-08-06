@@ -163,15 +163,16 @@ extension CabAndPackageArrivalCardListViewController {
             if snapshot.exists() {
                 let cabsUID = snapshot.value as? NSDictionary
                 for cabsUID in (cabsUID?.allKeys)! {
-                    self.cabsPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_PUBLIC).child(cabsUID as! String)
+                    self.cabsPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(cabsUID as! String)
                     
                     self.cabsPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let cabData = snapshot.value as?[String: AnyObject]
+                        let approvalType = cabData?[ExpectingArrivalListFBKeys.approvalType.key] as? String
                         let dateAndTimeOfArrival = cabData?[ExpectingArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
                         let reference = cabData?[ExpectingArrivalListFBKeys.reference.key] as? String?
                         let status = cabData?[ExpectingArrivalListFBKeys.status.key] as? String?
-                        let cabDetails = NAExpectingArrival(dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
+                        let cabDetails = NAExpectingArrival(approvalType: approvalType,dateAndTimeOfArrival: dateAndTimeOfArrival, reference: reference!, status: status!)
                         self.myExpectedCabList.append(cabDetails)
                         NAActivityIndicator.shared.hideActivityIndicator()
                         self.collection_View.reloadData()
@@ -195,15 +196,16 @@ extension CabAndPackageArrivalCardListViewController {
             if snapshot.exists() {
                 let packageUID = snapshot.value as? NSDictionary
                 for vendorUID in (packageUID?.allKeys)! {
-                    self.packagePublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_PUBLIC).child(vendorUID as! String)
+                    self.packagePublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(vendorUID as! String)
                     
                     self.packagePublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         let packageData = snapshot.value as?[String: AnyObject]
+                        let approvalType = packageData?[ExpectingArrivalListFBKeys.approvalType.key] as? String
                         let dateAndTimeOfArrival = packageData?[ExpectingArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
                         let reference = packageData?[ExpectingArrivalListFBKeys.reference.key] as? String?
                         let status = packageData?[ExpectingArrivalListFBKeys.status.key] as? String?
-                        let packageDetails = NAExpectingArrival(dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
+                        let packageDetails = NAExpectingArrival(approvalType: approvalType,dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!)
                         self.myExpectedPackageList.append(packageDetails)
                         
                         NAActivityIndicator.shared.hideActivityIndicator()
