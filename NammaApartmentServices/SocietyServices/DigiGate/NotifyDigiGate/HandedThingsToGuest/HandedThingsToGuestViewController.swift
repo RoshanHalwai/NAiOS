@@ -238,7 +238,7 @@ extension HandedThingsToGuestViewController {
         retrieveGuestList = RetrievingGuestList.init(pastGuestListRequired: true)
         
         //Retrieve guest of current userUID and their family members if any
-        retrieveGuestList.getGuests { (guestDataList) in
+        retrieveGuestList.getPreAndPostApprovedGuests { (guestDataList) in
             
             //Hiding Progress indicator after retrieving data.
             NAActivityIndicator.shared.hideActivityIndicator()
