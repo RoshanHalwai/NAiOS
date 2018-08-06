@@ -43,7 +43,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
+       
         let retrieveUserList : RetrieveFamilyMemberList
         retrieveUserList = RetrieveFamilyMemberList.init()
         
@@ -228,6 +228,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             newGrantAccessValue = NAString().getfalse()
         }
         self.userPrivilegesRef?.setValue(newGrantAccessValue)
+        
+        userPrivilegesRef?.observe(.value) { (snapshot) in
+            self.collectionView.reloadData()
+        }
         
         opacity_View.isHidden = true
         PopUp_ParentView.isHidden = true
