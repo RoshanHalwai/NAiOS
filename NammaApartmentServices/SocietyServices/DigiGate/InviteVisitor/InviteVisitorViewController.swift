@@ -365,14 +365,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let actionCamera = UIAlertAction(title: NAString().camera(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.camera
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
         let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
@@ -386,7 +378,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             
             (alert: UIAlertAction!) -> Void in
         })
-        actionSheet.addAction(actionCamera)
         actionSheet.addAction(actionGallery)
         actionSheet.addAction(cancel)
         
