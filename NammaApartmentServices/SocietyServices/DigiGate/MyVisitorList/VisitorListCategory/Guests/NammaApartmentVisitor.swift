@@ -71,7 +71,7 @@ class NammaApartmentVisitor {
         self.handedThings = handedThings
     }
     
-    //Get ApprovedType
+    //Get ApprovalType
     func getApprovalType() -> String {
         return approvalType!
     }
