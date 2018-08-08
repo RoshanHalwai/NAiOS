@@ -279,6 +279,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             mobileNumber = String(mobileNumber[range1])
         }
         self.txt_MobileNo.text = mobileNumber
+        lbl_Name_Validation.isHidden = true
+        lbl_Mobile_Validation.isHidden = true
+        txt_Name.underlined()
+        txt_MobileNo.underlined()
     }
     
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {

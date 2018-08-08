@@ -1005,6 +1005,10 @@ class NAString : NSObject {
         return String("Please select date and time")
     }
     
+    func Please_select_time() -> String {
+        return String("Please select time")
+    }
+    
     func Please_select_expected_Hours() -> String {
         return String("Please select at least one button")
     }
