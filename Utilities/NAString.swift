@@ -1005,6 +1005,10 @@ class NAString : NSObject {
         return String("Please select at least one button")
     }
     
+    func Please_select_atleast_oneRelation() -> String {
+        return String("Please select At least One Relation")
+    }
+    
     func notifyButtonAlertViewMessage() -> String {
         return String("Arrival Notification has been sent to your Security Guard.")
     }

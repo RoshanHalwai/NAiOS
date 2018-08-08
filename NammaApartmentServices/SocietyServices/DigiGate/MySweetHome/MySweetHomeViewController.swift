@@ -105,7 +105,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
             let lv = NAViewPresenter().myFamilyMembers()
-            lv.navTitle = NAString().addFamilyMemberTitle()
+            lv.navTitle = NAString().btn_mySweet_home()
             self.navigationController?.pushViewController(lv, animated: true)
         } else {
             NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().add_Family_Members_Alert_Title(), Message: NAString().add_Family_Members_Alert_Message(), OkStyle: .default) { (action) in }
