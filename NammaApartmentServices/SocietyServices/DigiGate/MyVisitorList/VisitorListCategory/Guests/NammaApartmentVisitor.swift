@@ -72,7 +72,8 @@ class NammaApartmentVisitor {
     }
     
     //Get ApprovalType
-    func getApprovalType() -> String {
+
+    func getapprovalType() -> String {
         return approvalType!
     }
     

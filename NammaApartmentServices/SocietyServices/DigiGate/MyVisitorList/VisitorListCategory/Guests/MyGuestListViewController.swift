@@ -136,7 +136,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.delegate = self
         
         //Setting Label Invitor text based on Firebase Approved Type
-        if nammaApartmentVisitor.getApprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
+        if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
             cell.lbl_Invitor.text = NAString().approver()
         }
         
