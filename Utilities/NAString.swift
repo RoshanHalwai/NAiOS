@@ -194,7 +194,11 @@ class NAString : NSObject {
     }
     
     func please_enter_mobile_no() -> String{
-        return String("Please enter your mobile number")
+        return String("Please Enter Mobile Number")
+    }
+    
+    func please_enter_your_mobile_no() -> String{
+        return String("Please Enter Your Mobile Number")
     }
     
     func please_enter_10_digit_no() -> String{
@@ -999,6 +1003,10 @@ class NAString : NSObject {
     
     func Please_select_date() -> String {
         return String("Please select date and time")
+    }
+    
+    func Please_select_time() -> String {
+        return String("Please select time")
     }
     
     func Please_select_expected_Hours() -> String {

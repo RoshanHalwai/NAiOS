@@ -27,6 +27,11 @@ class MyGuestListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_Invitor: UILabel!
     @IBOutlet weak var btn_Reschedule: UIButton!
     
+    @IBOutlet weak var lbl_Call: UILabel!
+    @IBOutlet weak var lbl_Message: UILabel!
+    @IBOutlet weak var lbl_Reschedule: UILabel!
+    @IBOutlet weak var lbl_Cancel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -35,6 +40,11 @@ class MyGuestListCollectionViewCell: UICollectionViewCell {
         lbl_MyVisitorName.font = NAFont().headerFont()
         lbl_MyVisitorDate.font = NAFont().headerFont()
         lbl_MyVisitorTime.font = NAFont().headerFont()
+        
+        lbl_Call.font = NAFont().cellButtonFont()
+        lbl_Message.font = NAFont().cellButtonFont()
+        lbl_Reschedule.font = NAFont().cellButtonFont()
+        lbl_Cancel.font = NAFont().cellButtonFont()
         lbl_Invitor.font = NAFont().textFieldFont()
     }
     

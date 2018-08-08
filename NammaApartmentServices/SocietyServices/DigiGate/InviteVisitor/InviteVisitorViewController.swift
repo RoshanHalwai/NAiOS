@@ -219,6 +219,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             mobileNumber = String(mobileNumber[range1])
         }
         self.txtInvitorMobile.text = mobileNumber
+        lbl_Name_Validation.isHidden = true
+        lbl_Mob_Validation.isHidden = true
+        txtInvitorName.underlined()
+        txtInvitorMobile.underlined()
     }
     
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
