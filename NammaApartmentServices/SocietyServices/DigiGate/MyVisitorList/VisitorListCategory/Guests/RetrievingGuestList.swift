@@ -141,9 +141,7 @@ class RetrievingGuestList {
             if guestsData?[VisitorListFBKeys.handedThings.key] != nil {
                 handedThings = (guestsData?[VisitorListFBKeys.handedThings.key] as? String)!
             }
-            
             let enteredGuestData = NammaApartmentVisitor(approvalType: approvalType,dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid, handedThings: handedThings)
-            
             //We are done with retrieval send the received data back to the calling function
             callback(enteredGuestData)
         })
