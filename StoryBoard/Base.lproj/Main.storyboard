@@ -1365,11 +1365,15 @@
                                         <size key="customSize" width="349" height="231"/>
                                         <connections>
                                             <outlet property="btn_Reschedule" destination="q3S-wB-HhT" id="hmS-Hc-tIf"/>
+                                            <outlet property="lbl_Call" destination="jbW-mR-ui6" id="JHc-2L-2ao"/>
+                                            <outlet property="lbl_Cancel" destination="ohv-tL-aR3" id="f6v-AK-p91"/>
                                             <outlet property="lbl_InvitedName" destination="y8h-8d-x2Y" id="H4W-hO-cHv"/>
+                                            <outlet property="lbl_Message" destination="JKM-Z2-Tco" id="8G0-bs-TiG"/>
                                             <outlet property="lbl_MyVisitorDate" destination="xLT-M4-oIY" id="nMW-OP-Snd"/>
                                             <outlet property="lbl_MyVisitorName" destination="uRt-WI-zOb" id="fBd-po-l12"/>
                                             <outlet property="lbl_MyVisitorTime" destination="bHm-Ck-nQQ" id="8cN-gw-6UA"/>
                                             <outlet property="lbl_MyVisitorType" destination="n4e-Zg-blc" id="BUH-oo-yxF"/>
+                                            <outlet property="lbl_Reschedule" destination="eNZ-rz-6Lf" id="tpZ-hD-U6U"/>
                                             <outlet property="myVisitorImage" destination="TzA-Vi-zzS" id="7pS-WI-aQ6"/>
                                             <outlet property="typeLabel" destination="Q2c-Xv-xK9" id="HpL-MK-QnA"/>
                                         </connections>

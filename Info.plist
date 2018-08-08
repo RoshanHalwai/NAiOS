@@ -54,6 +54,7 @@
 		<string>Lato-Italic.ttf</string>
 		<string>Lato-BlackItalic.ttf</string>
 		<string>Lato-LightItalic.ttf</string>
+		<string>Lato-BoldItalic.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

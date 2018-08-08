@@ -194,7 +194,11 @@ class NAString : NSObject {
     }
     
     func please_enter_mobile_no() -> String{
-        return String("Please enter your mobile number")
+        return String("Please Enter Mobile Number")
+    }
+    
+    func please_enter_your_mobile_no() -> String{
+        return String("Please Enter Your Mobile Number")
     }
     
     func please_enter_10_digit_no() -> String{
