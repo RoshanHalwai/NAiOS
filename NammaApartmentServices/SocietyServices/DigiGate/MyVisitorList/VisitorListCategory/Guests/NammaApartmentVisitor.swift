@@ -46,7 +46,7 @@ enum VisitorListFBKeys : String {
 class NammaApartmentVisitor {
     
     //defining strings according to firebase names which is inside the visitor Node.
-    private var approvedType: String?
+    private var approvalType: String?
     private var dateAndTimeOfVisit: String?
     private var fullName: String?
     private var inviterUID: String?
@@ -57,10 +57,10 @@ class NammaApartmentVisitor {
     private var handedThings: String?
     
     //initilaize the variables
-    init(approvedType: String?,dateAndTimeOfVisit: String?, fullName: String?,
+    init(approvalType: String?,dateAndTimeOfVisit: String?, fullName: String?,
          inviterUID: String?,mobileNumber: String?,
          profilePhoto: String?,status: String?,uid: String?, handedThings: String?) {
-        self.approvedType = approvedType
+        self.approvalType = approvalType
         self.dateAndTimeOfVisit = dateAndTimeOfVisit!
         self.fullName = fullName!
         self.inviterUID = inviterUID
@@ -72,8 +72,8 @@ class NammaApartmentVisitor {
     }
     
     //Get ApprovedType
-    func getApprovedType() -> String {
-        return approvedType!
+    func getApprovalType() -> String {
+        return approvalType!
     }
     
     //Get FullName

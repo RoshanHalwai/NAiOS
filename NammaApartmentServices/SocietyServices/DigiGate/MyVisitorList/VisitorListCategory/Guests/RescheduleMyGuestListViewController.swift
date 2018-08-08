@@ -176,7 +176,7 @@ extension RescheduleMyGuestListViewController {
     
     //Created function to reschedule date & time of visitor
     func reschedulingVisitorTimeInFirebase() {
-        preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(self.getVisitorUID)
+        preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRE_APPROVED).child(self.getVisitorUID)
         
         var  newDateAndTimeOfVisit = String()
         newDateAndTimeOfVisit = (self.txt_ReDate.text!) + "\t\t" + (txt_ReTime.text!)
