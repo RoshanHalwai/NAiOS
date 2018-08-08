@@ -16,6 +16,7 @@ enum ArrivalListFBKeys: String {
     case reference
     case status
     case validFor
+    case approvalType
     
     var key : String {
         switch self {
@@ -25,6 +26,7 @@ enum ArrivalListFBKeys: String {
         case .reference: return "reference"
         case .status: return "status"
         case .validFor:return "validFor"
+        case .approvalType: return "approvalType"
         }
     }
 }
