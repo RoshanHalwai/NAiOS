@@ -323,7 +323,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     
                     //defining node with type of data in it.
                     let visitorData = [
-                        VisitorListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS,
+                        VisitorListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_PRE_APPROVED,
                         VisitorListFBKeys.uid.key : visitorUID!,
                         VisitorListFBKeys.dateAndTimeOfVisit.key : self.txtDate.text! as String,
                         VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,

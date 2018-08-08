@@ -61,11 +61,11 @@ class ExpectingArrivalViewController: NANavigationViewController {
     //Database References
     var userDataCabRef : DatabaseReference?
     var cabsPrivateRef : DatabaseReference?
-    var cabsPublicRef : DatabaseReference?
+    var cabPrivateRef : DatabaseReference?
     
     var userDataPackageRef : DatabaseReference?
     var packagePrivateRef : DatabaseReference?
-    var packagePublicRef : DatabaseReference?
+    var packagesPrivateRef : DatabaseReference?
     
     var finalCabString = String()
     var btn_Hour_String = String()
@@ -266,7 +266,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = (NAString().dateFormat() + "\t\t " + NAString().timeFormat())
+        date.dateFormat = (NAString().dateFormat() + "\t\t  " + NAString().timeFormat())
         let dateString = date.string(from: (picker?.date)!)
         txt_DateTime.text = dateString
         self.view.endEditing(true)
@@ -554,13 +554,13 @@ extension ExpectingArrivalViewController {
         let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        cabsPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_PUBLIC)
+        cabPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
         
         //Generating Cab UID
         let cabUID : String?
-        cabUID = (cabsPublicRef?.childByAutoId().key)!
+        cabUID = (cabPrivateRef?.childByAutoId().key)!
         
-        cabsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL)
+        cabsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_ALL)
         
         userDataCabRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID)
         
@@ -572,6 +572,7 @@ extension ExpectingArrivalViewController {
         cabsPrivateRef?.child(finalCabString).setValue(cabUID)
         
         let expectingCabData = [
+            ArrivalListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_PRE_APPROVED,
             ArrivalListFBKeys.dateAndTimeOfArrival.key : txt_DateTime.text! as String?,
             ArrivalListFBKeys.inviterUID.key : userUID,
             ArrivalListFBKeys.reference.key : finalCabString,
@@ -579,7 +580,7 @@ extension ExpectingArrivalViewController {
             ArrivalListFBKeys.validFor.key : btn_Hour_String
         ]
         //Adding data in Firebase from dictionary
-        self.cabsPublicRef?.child(cabUID!).setValue(expectingCabData)
+        self.cabPrivateRef?.child(cabUID!).setValue(expectingCabData)
         //Calling Alert Function After Storing Data in Firebase
         inviteAlertView()
     }
@@ -595,13 +596,13 @@ extension ExpectingArrivalViewController {
         let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        packagePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_PUBLIC)
+        packagesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
         
         //Generating Cab UID
         let packageUID : String?
-        packageUID = (packagePublicRef?.childByAutoId().key)!
+        packageUID = (packagesPrivateRef?.childByAutoId().key)!
         
-        packagePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL)
+        packagePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_ALL)
         
         userDataPackageRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
         
@@ -613,6 +614,7 @@ extension ExpectingArrivalViewController {
         packagePrivateRef?.child((userPersonalValues?.phoneNumber)!).setValue(packageUID)
         
         let expectingPackageData = [
+            ArrivalListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_PRE_APPROVED,
             ArrivalListFBKeys.dateAndTimeOfArrival.key : txt_DateTime.text! as String?,
             ArrivalListFBKeys.inviterUID.key : userUID,
             ArrivalListFBKeys.reference.key : txt_PackageVendor.text! as String,
@@ -621,7 +623,7 @@ extension ExpectingArrivalViewController {
         ]
         
         //Adding data in Firebase from dictionary
-        self.packagePublicRef?.child(packageUID!).setValue(expectingPackageData)
+        self.packagesPrivateRef?.child(packageUID!).setValue(expectingPackageData)
         //Calling Alert View Function After Storing Data in Firebase
         inviteAlertView()
     }

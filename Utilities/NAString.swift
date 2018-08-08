@@ -1150,4 +1150,8 @@ class NAString : NSObject {
     func societyServiceLabelMessage(name: String) -> String {
         return String ("Please wait \(name) has not Responded")
     }
+    
+    func approver() -> String {
+        return ("Approver:")
+    }
 }
