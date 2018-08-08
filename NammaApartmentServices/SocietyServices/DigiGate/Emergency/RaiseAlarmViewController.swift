@@ -76,6 +76,6 @@ class RaiseAlarmViewController: NANavigationViewController {
             
             self.publicEmergencyRef?.setValue(dailyServicesData)
             
-        }, Cancel: {(action) in})
+        }, Cancel: {(action) in}, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().ok())
     }
 }

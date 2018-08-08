@@ -56,6 +56,13 @@ class NAUser {
     func flatMembersUID() -> String {
         return uid!
     }
+    func getFamilyMembers() -> [String] {
+        return familyMembers
+    }
+    
+    func getFriends() -> [String] {
+        return friends
+    }
     
     //creating structure for firebase to get data on it.
     struct NAUserStruct {
