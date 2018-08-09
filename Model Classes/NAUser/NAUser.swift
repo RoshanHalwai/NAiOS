@@ -15,9 +15,10 @@ import FirebaseDatabase
 class GlobalUserData {
     
     static let shared = GlobalUserData()
-    var flatDetails_Items = [FlatDetails]()
-    var personalDetails_Items = [PersonalDetails]()
+    var flatDetails_Items = [UserFlatDetails]()
+    var personalDetails_Items = [UserPersonalDetails]()
     var privileges_Items = [UserPrivileges]()
+    var nammaApartmentUser : NAUser?
     
     func getUserDataReference() -> DatabaseReference {
         let userFlatDetails = GlobalUserData.shared.flatDetails_Items.first
@@ -29,6 +30,14 @@ class GlobalUserData {
             .child((userFlatDetails?.apartmentName)!)
             .child((userFlatDetails?.flatNumber)!)
         return userDataReference
+    }
+    
+    func getNammaApartmentUser() -> NAUser {
+        return nammaApartmentUser!
+    }
+    
+    func setNammaApartmentUser(nammaApartmentUser: NAUser) {
+        self.nammaApartmentUser = nammaApartmentUser
     }
 }
 

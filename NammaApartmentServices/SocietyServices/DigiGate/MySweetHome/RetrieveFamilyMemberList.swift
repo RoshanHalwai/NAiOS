@@ -149,6 +149,7 @@ class RetrieveFamilyMemberList {
             
             //Creating instance of NAUser
             let userData = NAUser(uid: userUID, flatDetails: userFlatDetails, personalDetails: userPersonalDetails, privileges: userPrivileges, familyMembers: familyMembersUIDList, friends: friendsUIDList)
+             GlobalUserData.shared.setNammaApartmentUser(nammaApartmentUser: userData)
             
             //We are done with retrieval send the received data back to the calling function
             callback(userData)

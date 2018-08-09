@@ -115,14 +115,21 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
         
-        //We check if the inviters UID is equal to current UID if it is then we don't have to check in
-        //firebase since we now know that the inviter is current user.
+        /* We check if the inviters UID is equal to current UID if it is then we don't have to check in
+        firebase since we now know that the inviter is current user.*/
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_InvitedName.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
-        }
-            //Guest has been invited by some other family member; We check in firebase and get the name of that family member
-        else {
-            //TODO Get inviter name from firebase
+        } else {
+            let inviterNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(nammaApartmentVisitor.getinviterUID())
+       
+            inviterNameRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
+                let usersData = userDataSnapshot.value as? [String: AnyObject]
+                
+                //Creating instance of UserPersonalDetails
+                let userPersonalDataMap = usersData?["personalDetails"] as? [String: AnyObject]
+                let fullName = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
+            cell.lbl_InvitedName.text = fullName
+            })
         }
         
         NAShadowEffect().shadowEffect(Cell: cell)
@@ -196,7 +203,7 @@ extension MyGuestListViewController : dataCollectionProtocol {
         let visitor_UId =  myVisitorList[indx]
         
         self.userDataRef = GlobalUserData.shared.getUserDataReference()
-            .child(Constants.FLAT_Visitor).child(userUID)
+            .child(Constants.FIREBASE_CHILD_VISITORS).child(userUID)
             .child(visitor_UId.getuid())
         
         var removeButtonTitle: String?
