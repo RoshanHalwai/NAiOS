@@ -194,7 +194,11 @@ class NAString : NSObject {
     }
     
     func please_enter_mobile_no() -> String{
-        return String("Please enter your mobile number")
+        return String("Please Enter Mobile Number")
+    }
+    
+    func please_enter_your_mobile_no() -> String{
+        return String("Please Enter Your Mobile Number")
     }
     
     func please_enter_10_digit_no() -> String{
@@ -1001,8 +1005,16 @@ class NAString : NSObject {
         return String("Please select date and time")
     }
     
+    func Please_select_time() -> String {
+        return String("Please select time")
+    }
+    
     func Please_select_expected_Hours() -> String {
         return String("Please select at least one button")
+    }
+    
+    func Please_select_atleast_oneRelation() -> String {
+        return String("Please select At least One Relation")
     }
     
     func notifyButtonAlertViewMessage() -> String {
@@ -1141,5 +1153,9 @@ class NAString : NSObject {
     
     func societyServiceLabelMessage(name: String) -> String {
         return String ("Please wait \(name) has not Responded")
+    }
+    
+    func approver() -> String {
+        return ("Approver:")
     }
 }

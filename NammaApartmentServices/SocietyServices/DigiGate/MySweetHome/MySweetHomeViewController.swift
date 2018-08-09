@@ -105,7 +105,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
             let lv = NAViewPresenter().myFamilyMembers()
-            lv.navTitle = NAString().addFamilyMemberTitle()
+            lv.navTitle = NAString().btn_mySweet_home()
             self.navigationController?.pushViewController(lv, animated: true)
         } else {
             NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().add_Family_Members_Alert_Title(), Message: NAString().add_Family_Members_Alert_Message(), OkStyle: .default) { (action) in }
@@ -151,10 +151,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_Name.font = NAFont().headerFont()
         cell.lbl_Relation.font = NAFont().headerFont()
         cell.lbl_GrantAccess.font = NAFont().headerFont()
-        cell.lbl_Call.font = NAFont().headerFont()
-        cell.lbl_Message.font = NAFont().headerFont()
-        cell.lbl_Edit.font = NAFont().headerFont()
-        cell.lbl_Remove.font = NAFont().headerFont()
+        cell.lbl_Call.font = NAFont().cellButtonFont()
+        cell.lbl_Message.font = NAFont().cellButtonFont()
+        cell.lbl_Edit.font = NAFont().cellButtonFont()
+        cell.lbl_Remove.font = NAFont().cellButtonFont()
         
         cell.lbl_Name.font = NAFont().textFieldFont()
         cell.lbl_Relation.font = NAFont().textFieldFont()

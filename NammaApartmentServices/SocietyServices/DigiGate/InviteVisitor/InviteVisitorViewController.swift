@@ -219,6 +219,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             mobileNumber = String(mobileNumber[range1])
         }
         self.txtInvitorMobile.text = mobileNumber
+        lbl_Name_Validation.isHidden = true
+        lbl_Mob_Validation.isHidden = true
+        txtInvitorName.underlined()
+        txtInvitorMobile.underlined()
     }
     
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
@@ -319,7 +323,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     
                     //defining node with type of data in it.
                     let visitorData = [
-                        VisitorListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS,
+                        VisitorListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_PRE_APPROVED,
                         VisitorListFBKeys.uid.key : visitorUID!,
                         VisitorListFBKeys.dateAndTimeOfVisit.key : self.txtDate.text! as String,
                         VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,

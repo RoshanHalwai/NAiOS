@@ -35,7 +35,7 @@ class RetrievingGuestList {
      * ------------------------------------------------------------- */
     
     // Returns a list of all guests of a user along with their family members
-    public func getGuests(callback : @escaping (_ allGuestList : [NammaApartmentVisitor]) -> Void) {
+    public func getPreAndPostApprovedGuests(callback : @escaping (_ allGuestList : [NammaApartmentVisitor]) -> Void) {
         var allGuestList = [NammaApartmentVisitor]()
         var count = 0
         self.isGuestRefExists { (guestRefExists) in
@@ -130,6 +130,7 @@ class RetrievingGuestList {
             let status = guestsData?[VisitorListFBKeys.status.key] as? String
             
             //We create an instance of Namma Apartment guest to append to entered guest list
+            let approvalType = guestsData?[VisitorListFBKeys.approvalType.key] as? String
             let dateAndTimeOfVisit = guestsData?[VisitorListFBKeys.dateAndTimeOfVisit.key] as? String
             let fullName = guestsData?[VisitorListFBKeys.fullName.key] as? String
             let inviterUID = guestsData?[VisitorListFBKeys.inviterUID.key] as? String
@@ -140,9 +141,7 @@ class RetrievingGuestList {
             if guestsData?[VisitorListFBKeys.handedThings.key] != nil {
                 handedThings = (guestsData?[VisitorListFBKeys.handedThings.key] as? String)!
             }
-            
-            let enteredGuestData = NammaApartmentVisitor(dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid, handedThings: handedThings)
-            
+            let enteredGuestData = NammaApartmentVisitor(approvalType: approvalType,dateAndTimeOfVisit: dateAndTimeOfVisit , fullName: fullName , inviterUID: inviterUID , mobileNumber: mobileNumber , profilePhoto: profilePhoto , status: status, uid: uid, handedThings: handedThings)
             //We are done with retrieval send the received data back to the calling function
             callback(enteredGuestData)
         })
