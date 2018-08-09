@@ -300,19 +300,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     func activityIndicator_function(withData: Any) {
         btn_addDetails.tag = NAString().addMyFamilyMemberButtonTagValue()
         OpacityView.shared.addButtonTagValue = btn_addDetails.tag
-        OpacityView.shared.showingPopupView(view: self)
-        
-        timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(self.stopTimer), userInfo: nil, repeats: true)
-    }
-    
-    @objc func stopTimer() {
-        OpacityView.shared.hidingPopupView()
-        if (count >= 0) {
-            if(count == 0) {
-                self.addAlertViewAction()
-            }
-            count -= 1
-        }
     }
     
     func addAlertViewAction() {
@@ -444,6 +431,8 @@ extension AddMyFamilyMembersViewController {
     }
     
     func storingFamilyMembers() {
+        //Showing PopupView
+        OpacityView.shared.showingPopupView(view: self)
         
         let familyMemberUID = Auth.auth().currentUser?.uid
         
@@ -495,6 +484,10 @@ extension AddMyFamilyMembersViewController {
                         UserPersonalListFBKeys.phoneNumber.key : self.txt_MobileNo.text as String?
                     ]
                     self.userPersonalDetailsRef?.setValue(usersPersonalData)
+                    
+                    //Hiding PopupView & Showing Alert After Adding Data in Firebase.
+                    OpacityView.shared.hidingPopupView()
+                    self.addAlertViewAction()
                 } else {
                     print(urlError as Any)
                 }
