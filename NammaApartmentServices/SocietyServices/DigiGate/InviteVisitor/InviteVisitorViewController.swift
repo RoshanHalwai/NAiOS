@@ -36,8 +36,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var seperatingLineView: UIView!
     
     //Creating Firebase DB Reference variable.
-    var preApprovedVisitorsRef : DatabaseReference?
-    var preApprovedVisitorsMobileNoRef : DatabaseReference?
+    var visitorsPrivateRef : DatabaseReference?
+    var visitorsAllRef : DatabaseReference?
     var userDataRef : DatabaseReference?
     
     //created date picker programtically
@@ -156,7 +156,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @objc func donePressed() {
         // format date
         let date = DateFormatter()
-        date.dateFormat = (NAString().dateFormat() + "\t\t" + NAString().timeFormat())
+        date.dateFormat = (NAString().dateFormat() + "\t\t " + NAString().timeFormat())
         let dateString = date.string(from: picker.date)
         txtDate.text = dateString
         self.view.endEditing(true)
@@ -219,6 +219,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             mobileNumber = String(mobileNumber[range1])
         }
         self.txtInvitorMobile.text = mobileNumber
+        lbl_Name_Validation.isHidden = true
+        lbl_Mob_Validation.isHidden = true
+        txtInvitorName.underlined()
+        txtInvitorMobile.underlined()
     }
     
     //Navigate to My Visitor List Screen After Click on Inviting button alertView
@@ -259,7 +263,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
-        
+            
             btnInviteVisitor.tag = NAString().inviteButtonTagValue()
             OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
             OpacityView.shared.showingPopupView(view: self)
@@ -284,19 +288,19 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     //Created Function for inviting visitor with the help of firebase.
     func storeVisitorDetailsInFirebase() {
         //Creating visitors UID
-        preApprovedVisitorsMobileNoRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS_MOBILENUMBER)
+        visitorsAllRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
+            .child(Constants.FIREBASE_USER_CHILD_ALL)
         let visitorUID : String?
-        visitorUID = (preApprovedVisitorsMobileNoRef?.childByAutoId().key)!
+        visitorUID = (visitorsAllRef?.childByAutoId().key)!
         
         //Mapping Visitor's mobile number with their UID
-        preApprovedVisitorsMobileNoRef?.child(self.txtInvitorMobile.text!).setValue(visitorUID)
-        preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(visitorUID!)
+        visitorsAllRef?.child(self.txtInvitorMobile.text!).setValue(visitorUID)
+        visitorsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
+            .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(visitorUID!)
         
         //Storing visitors data along with their profile photo
         var visitorImageRef: StorageReference?
-        visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS)
+        visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
         
         //Compressing profile image and assigning its content type.
         guard let image = img_Profile.image else { return }
@@ -319,6 +323,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     
                     //defining node with type of data in it.
                     let visitorData = [
+                        VisitorListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_PRE_APPROVED,
                         VisitorListFBKeys.uid.key : visitorUID!,
                         VisitorListFBKeys.dateAndTimeOfVisit.key : self.txtDate.text! as String,
                         VisitorListFBKeys.mobileNumber.key : self.txtInvitorMobile.text! as String,
@@ -328,7 +333,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                         VisitorListFBKeys.profilePhoto.key : url?.absoluteString
                     ]
                     //Adding visitor data under preApproved visitors
-                    self.preApprovedVisitorsRef?.setValue(visitorData)
+                    self.visitorsPrivateRef?.setValue(visitorData)
                     
                     //Storing Visitor UID under UsersData -> UsersFlat
                     self.userDataRef = GlobalUserData.shared.getUserDataReference()
@@ -364,14 +369,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
     @objc func imageTapped() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        let actionCamera = UIAlertAction(title: NAString().camera(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.camera
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
         let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             let pickerController = UIImagePickerController()
@@ -385,7 +382,6 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             
             (alert: UIAlertAction!) -> Void in
         })
-        actionSheet.addAction(actionCamera)
         actionSheet.addAction(actionGallery)
         actionSheet.addAction(cancel)
         

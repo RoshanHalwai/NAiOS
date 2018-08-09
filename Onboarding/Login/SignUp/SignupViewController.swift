@@ -75,7 +75,7 @@ class SignupViewController: NANavigationViewController {
         //Label formatting & setting
         lbl_Fullname.font = NAFont().headerFont()
         lbl_EmailId.font = NAFont().headerFont()
-        lbl_TermsCondition.font = NAFont().popupViewFont()
+        lbl_TermsCondition.font = NAFont().descriptionFont()
         lbl_Fullname.text = NAString().full_name()
         lbl_EmailId.text = NAString().email_id()
         lbl_TermsCondition.text = NAString().i_agree_to_terms_and_conditions()

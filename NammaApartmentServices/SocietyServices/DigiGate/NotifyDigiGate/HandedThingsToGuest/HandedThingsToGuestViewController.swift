@@ -159,7 +159,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.objHistoryVC = {
             //Storing Data of Handed Things to Guest.
             let visitorDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-                .child(Constants.FIREBASE_CHILD_PRE_APPROVED_VISITORS).child(nammaApartmentVisitor.getuid())
+                .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(nammaApartmentVisitor.getuid())
             visitorDataRef.child(Constants.FIREBASE_HANDEDTHINGS).setValue(cell.txt_Description.text, withCompletionBlock: { (error, ref) in
                 if error == nil {
                     print("Success")
@@ -238,7 +238,7 @@ extension HandedThingsToGuestViewController {
         retrieveGuestList = RetrievingGuestList.init(pastGuestListRequired: true)
         
         //Retrieve guest of current userUID and their family members if any
-        retrieveGuestList.getGuests { (guestDataList) in
+        retrieveGuestList.getPreAndPostApprovedGuests { (guestDataList) in
             
             //Hiding Progress indicator after retrieving data.
             NAActivityIndicator.shared.hideActivityIndicator()

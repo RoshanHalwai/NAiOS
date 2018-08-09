@@ -308,6 +308,11 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             lv4.navTitle = NAString().garbage_management()
             self.navigationController?.pushViewController(lv4, animated: true)
             
+        case 5:
+            let lv5 = NAViewPresenter().raiseAlarmVC()
+            lv5.titleName = NAString().medical_emergency()
+            self.navigationController?.pushViewController(lv5, animated: true)
+            
         default:
             break
         }

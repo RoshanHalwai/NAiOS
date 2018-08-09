@@ -158,11 +158,32 @@ class NAString : NSObject {
         return String("I already have an Account")
     }
     
-    //Edit my profile Screen
-    func change_admin_alert_message(name: String) -> String {
-        return String("Are you sure you want to make \(name) as Admin? Note, your admin privileges will be transferred to \(name)")
+    func update_Alert_Title() -> String {
+        return String("Update Message")
+    }
+    func update_Successfull_Alert_Message() -> String {
+        return String("You have successfully updated your profile")
+    }
+    func update_Failure_Alert_Message() -> String {
+        return String("You have not made any changes to your profile")
     }
     
+    func change_Admin_Alert_Title() -> String {
+        return String("Change Admin")
+    }
+    func you_are_the_Administrator() -> String {
+        return String("You are the Administrator")
+    }
+    func change_Admin_Alert_Message() -> String {
+        return String("Sorry there are no Flat members Added to your flat")
+    }
+    
+    func change_Admin_Message_Alert_Title() -> String {
+        return String("Change Admin Message")
+    }
+    func change_Admin_Message_Alert_Message(name: String) -> String {
+        return String("Are you sure you want to make \(name) as Admin? \n Note: Your admin privileges will be transferred to \(name)")
+    }
     //Signin screen and Visitor screen
     func create_an_account_button() -> String {
         return String("Create an Account")
@@ -173,7 +194,11 @@ class NAString : NSObject {
     }
     
     func please_enter_mobile_no() -> String{
-        return String("Please enter your mobile number")
+        return String("Please Enter Mobile Number")
+    }
+    
+    func please_enter_your_mobile_no() -> String{
+        return String("Please Enter Your Mobile Number")
     }
     
     func please_enter_10_digit_no() -> String{
@@ -980,8 +1005,16 @@ class NAString : NSObject {
         return String("Please select date and time")
     }
     
+    func Please_select_time() -> String {
+        return String("Please select time")
+    }
+    
     func Please_select_expected_Hours() -> String {
         return String("Please select at least one button")
+    }
+    
+    func Please_select_atleast_oneRelation() -> String {
+        return String("Please select At least One Relation")
     }
     
     func notifyButtonAlertViewMessage() -> String {
@@ -1120,5 +1153,9 @@ class NAString : NSObject {
     
     func societyServiceLabelMessage(name: String) -> String {
         return String ("Please wait \(name) has not Responded")
+    }
+    
+    func approver() -> String {
+        return ("Approver:")
     }
 }

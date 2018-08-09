@@ -201,6 +201,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_myDailyName.font = NAFont().textFieldFont()
         cell.lbl_myDailyRating.font = NAFont().textFieldFont()
         
+        cell.lbl_Call.font = NAFont().cellButtonFont()
+        cell.lbl_Edit.font = NAFont().cellButtonFont()
+        cell.lbl_Remove.font = NAFont().cellButtonFont()
+        cell.lbl_Message.font = NAFont().cellButtonFont()
+        
         cell.lbl_Call.text = NAString().call()
         cell.lbl_Edit.text = NAString().edit()
         cell.lbl_Remove.text = NAString().remove()

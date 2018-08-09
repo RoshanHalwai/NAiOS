@@ -19,6 +19,7 @@ enum VisitorListFBKeys : String {
     case status
     case uid
     case handedThings
+    case approvalType
     
     var key : String {
         switch self {
@@ -37,6 +38,7 @@ enum VisitorListFBKeys : String {
             return "uid"
         case .handedThings:
             return "handedThings"
+        case .approvalType: return "approvalType"
         }
     }
 }
@@ -44,6 +46,7 @@ enum VisitorListFBKeys : String {
 class NammaApartmentVisitor {
     
     //defining strings according to firebase names which is inside the visitor Node.
+    private var approvalType: String?
     private var dateAndTimeOfVisit: String?
     private var fullName: String?
     private var inviterUID: String?
@@ -52,11 +55,12 @@ class NammaApartmentVisitor {
     private var status: String?
     private var uid: String?
     private var handedThings: String?
-   
+    
     //initilaize the variables
-    init(dateAndTimeOfVisit: String?, fullName: String?,
-        inviterUID: String?,mobileNumber: String?,
-        profilePhoto: String?,status: String?,uid: String?, handedThings: String?) {
+    init(approvalType: String?,dateAndTimeOfVisit: String?, fullName: String?,
+         inviterUID: String?,mobileNumber: String?,
+         profilePhoto: String?,status: String?,uid: String?, handedThings: String?) {
+        self.approvalType = approvalType
         self.dateAndTimeOfVisit = dateAndTimeOfVisit!
         self.fullName = fullName!
         self.inviterUID = inviterUID
@@ -65,6 +69,12 @@ class NammaApartmentVisitor {
         self.status = status
         self.uid = uid
         self.handedThings = handedThings
+    }
+    
+    //Get ApprovalType
+
+    func getapprovalType() -> String {
+        return approvalType!
     }
     
     //Get FullName
@@ -78,7 +88,7 @@ class NammaApartmentVisitor {
     }
     
     func setdateAndTimeOfVisit(date: String) {
-         dateAndTimeOfVisit = date
+        dateAndTimeOfVisit = date
     }
     
     //Get Photo

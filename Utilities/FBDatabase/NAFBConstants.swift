@@ -12,7 +12,8 @@ import UIKit
 struct Constants {
     static let FIREBASE_CHILD_CLIENTS = "clients"
     static let FIREBASE_CHILD_VISITORS = "visitors"
-    static let FIREBASE_CHILD_PRE_APPROVED_VISITORS = "preApprovedVisitors"
+    static let FIREBASE_CHILD_PRE_APPROVED = "preApproved"
+    static let FIREBASE_CHILD_POST_APPROVED = "postApproved"
     static let FIREBASE_CHILD_PRE_APPROVED_VISITORS_MOBILENUMBER = "preApprovedVisitorsMobileNumber"
     static let FIREBASE_USER = "users"
     static let FIREBASE_USER_CHILD_PRIVATE = "private"
@@ -67,4 +68,5 @@ struct Constants {
     static let FIREBASE_CHILD_EMERGENCY = "emergencies"
     static let FIREBASE_CHILD_UID = "uid"
     static let FIREBASE_CHILD_OWNERSUID = "ownersUID"
+    static let FIREBASE_CHILD_PERSONALDETAILS_PROFILEIMAGE = "profilePhoto"
 }

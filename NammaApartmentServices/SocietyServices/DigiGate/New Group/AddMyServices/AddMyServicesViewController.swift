@@ -311,6 +311,10 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             mobileNumber = String(mobileNumber[range1])
         }
         self.txt_MobileNo.text = mobileNumber
+        lbl_Name_Validation.isHidden = true
+        lbl_Mobile_Validation.isHidden = true
+        txt_Name.underlined()
+        txt_MobileNo.underlined()
     }
     
     func screenComingFrom() {
@@ -333,7 +337,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         if (txt_Date.text?.isEmpty)! {
             lbl_Date_Validation.isHidden = false
-            lbl_Date_Validation.text = NAString().Please_select_date()
+            lbl_Date_Validation.text = NAString().Please_select_time()
             txt_Date.redunderlined()
         } else {
             lbl_Date_Validation.isHidden = true

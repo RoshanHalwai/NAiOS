@@ -35,6 +35,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     @IBOutlet weak var lbl_Mobile_Validation: UILabel!
     @IBOutlet weak var lbl_Picture_Validation: UILabel!
     @IBOutlet weak var lbl_Email_Validation: UILabel!
+    @IBOutlet weak var lbl_Relation_Validation: UILabel!
     
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
@@ -63,7 +64,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     @IBOutlet weak var scrollView: UIScrollView!
     
     var timer = Timer()
-    var count = 5
+    var count = 3
     
     var navTitle: String?
     
@@ -87,6 +88,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         lbl_Mobile_Validation.isHidden = true
         lbl_Picture_Validation.isHidden = true
         lbl_Email_Validation.isHidden = true
+        lbl_Relation_Validation.isHidden = true
         
         txt_Name.delegate = self
         txt_CountryCode.delegate = self
@@ -98,7 +100,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         //Setting By defalut No selection in Segment Control
         Relation_Segment.selectedSegmentIndex = UISegmentedControlNoSegment
-        grantAcess_Segment.selectedSegmentIndex = UISegmentedControlNoSegment
         
         img_Profile.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
@@ -121,6 +122,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.lbl_Mobile_Validation.font = NAFont().descriptionFont()
         self.lbl_Picture_Validation.font = NAFont().descriptionFont()
         self.lbl_Email_Validation.font = NAFont().descriptionFont()
+        self.lbl_Relation_Validation.font = NAFont().descriptionFont()
         self.lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
@@ -156,12 +158,13 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     
     @IBAction func relationSegmentAction() {
         if Relation_Segment.selectedSegmentIndex == 0 {
+            lbl_Relation_Validation.isHidden = true
             lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
         } else {
+            lbl_Relation_Validation.isHidden = true
             lbl_OTPDescription.text = NAString().otp_message_family_member(name: "friends")
         }
     }
-    
     
     /* - Alert Popup when user give  grant access & try to add details and Showing alert controller while giving Grant Access to family members.
      - AddFamily_UseID.
@@ -279,6 +282,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             mobileNumber = String(mobileNumber[range1])
         }
         self.txt_MobileNo.text = mobileNumber
+        lbl_Name_Validation.isHidden = true
+        lbl_Mobile_Validation.isHidden = true
+        txt_Name.underlined()
+        txt_MobileNo.underlined()
     }
     
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -350,6 +357,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             lbl_Email_Validation.isHidden = false
             lbl_Email_Validation.text = NAString().please_enter_email()
             txt_Email.redunderlined()
+        }
+        if  Relation_Segment.selectedSegmentIndex == UISegmentedControlNoSegment {
+            lbl_Relation_Validation.isHidden = false
+            lbl_Relation_Validation.text = NAString().Please_select_atleast_oneRelation()
         }
         if (txt_MobileNo.text?.isEmpty)! {
             lbl_Mobile_Validation.isHidden = false
@@ -455,7 +466,6 @@ extension AddMyFamilyMembersViewController {
             UserFlatListFBKeys.tenantType.key : GlobalUserData.shared.flatDetails_Items.first?.tenantType
         ]
         userFlatDetailsRef?.setValue(usersFlatData)
-        
         //Storing new flat member Personal details in firebase under users->private->family member uid
         userPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         

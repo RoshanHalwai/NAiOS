@@ -59,7 +59,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         retrieveGuestList = RetrievingGuestList.init(pastGuestListRequired: true)
         
         //Retrieve guest of current userUID and their family members if any
-        retrieveGuestList.getGuests { (guestDataList) in
+        retrieveGuestList.getPreAndPostApprovedGuests { (guestDataList) in
             
             //Hiding Progress indicator after retrieving data.
             NAActivityIndicator.shared.hideActivityIndicator()
@@ -134,6 +134,11 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //delete particular cell from list
         cell.index = indexPath
         cell.delegate = self
+        
+        //Setting Label Invitor text based on Firebase Approved Type
+        if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
+            cell.lbl_Invitor.text = NAString().approver()
+        }
         
         //calling Reschedule action to rechedule visitor date
         cell.actionRescheduling = {

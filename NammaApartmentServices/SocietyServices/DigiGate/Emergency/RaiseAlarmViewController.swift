@@ -28,6 +28,9 @@ class RaiseAlarmViewController: NANavigationViewController {
         
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: titleName)
+        
+        //Hiding History NavigationBar  RightBarButtonItem
+        navigationItem.rightBarButtonItem = nil
     }
     
     @IBAction func btnRaiseAlarm(_ sender: UIButton) {
@@ -74,6 +77,6 @@ class RaiseAlarmViewController: NANavigationViewController {
             
             self.publicEmergencyRef?.setValue(dailyServicesData)
             
-        }, Cancel: {(action) in})
+        }, Cancel: {(action) in}, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().ok())
     }
 }
