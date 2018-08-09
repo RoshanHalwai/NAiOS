@@ -16,10 +16,10 @@ import FirebaseMessaging
 //Calling class & adding in singleton class to get values
 class SingletonFlatDetails {
     static let shared = SingletonFlatDetails()
-    var flatDetails = [FlatDetails]()
+    var flatDetails = [UserFlatDetails]()
 }
 //Creating Array variable to access item of FlatDetails class.
-var flatDetails = [FlatDetails]()
+var flatDetails = [UserFlatDetails]()
 
 class MyFlatDetailsViewController: NANavigationViewController {
     @IBOutlet weak var btnContinue: UIButton!

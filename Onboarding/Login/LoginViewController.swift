@@ -10,8 +10,8 @@ import UIKit
 import FirebaseAuth
 
 //Creating Variable to store FirebaseUser Data in Class.
-var flatDetailsFB = [FlatDetails]()
-var personalDetails = [PersonalDetails]()
+var flatDetailsFB = [UserFlatDetails]()
+var personalDetails = [UserPersonalDetails]()
 var userprivileges = [UserPrivileges]()
 
 class LoginViewController: NANavigationViewController {
