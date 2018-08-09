@@ -19,7 +19,7 @@ class RaiseAlarmViewController: NANavigationViewController {
     var publicEmergencyRef : DatabaseReference?
     
     var titleName =  String()
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +31,7 @@ class RaiseAlarmViewController: NANavigationViewController {
     }
     
     @IBAction func btnRaiseAlarm(_ sender: UIButton) {
+        
         NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().emergency_alert_Title(), Message: NAString().emergency_Alert_Message(), CancelStyle: .default, OkStyle: .destructive, OK: {(action) in
             self.lbl_Description.isHidden = false
             
