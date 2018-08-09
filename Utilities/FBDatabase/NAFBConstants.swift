@@ -56,7 +56,6 @@ struct Constants {
     static let FIREBASE_COL = "Air Force Colony"
     static let FIREBASE_BLOCK = "D-Block"
     static let FIREBASE_FLAT = "D-101"
-    static let FLAT_Visitor = "visitors"
     static let FIREBASE_CHILD_CABS = "cabs"
     static let FIREBASE_CHILD_DELIVERIES = "deliveries"
     static let FIREBASE_CHILD_CITIES = "cities"

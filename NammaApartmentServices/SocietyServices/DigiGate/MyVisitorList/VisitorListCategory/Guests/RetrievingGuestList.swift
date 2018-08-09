@@ -18,6 +18,7 @@ class RetrievingGuestList {
     let userDataReference : DatabaseReference
     var userUIDList = [String]()
     var pastGuestListRequired: Bool
+    var userFamilyMembersUID = [String]()
     
     /* ------------------------------------------------------------- *
      * Constructor
@@ -25,9 +26,10 @@ class RetrievingGuestList {
     
     init(pastGuestListRequired: Bool ) {
         userDataReference = GlobalUserData.shared.getUserDataReference()
+        userFamilyMembersUID = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
         self.userUIDList.append(userUID)
+        self.userUIDList.append(contentsOf: userFamilyMembersUID)
         self.pastGuestListRequired = pastGuestListRequired
-        // TODO Add UID of the family member as well
     }
     
     /* ------------------------------------------------------------- *
@@ -61,7 +63,7 @@ class RetrievingGuestList {
     
     // Checks if flat has Visitors key as one of its children
     private func isGuestRefExists(callback : @escaping (_ guestRefExists : Bool) -> Void) {
-        let guestDataReference = self.userDataReference.child(Constants.FLAT_Visitor)
+        let guestDataReference = self.userDataReference.child(Constants.FIREBASE_CHILD_VISITORS)
         guestDataReference.observeSingleEvent(of: .value) { (dataSnapshot) in
             callback(dataSnapshot.exists())
         }
@@ -79,17 +81,18 @@ class RetrievingGuestList {
     // Take user UID as input and returns a list of all guests UID
     private func getGuestUIDList(userUID : String, callback : @escaping (_ guestUIDList : [String]) -> Void) {
         let guestListReference = self.userDataReference
-            .child(Constants.FLAT_Visitor)
+            .child(Constants.FIREBASE_CHILD_VISITORS)
             .child(userUID)
         
         guestListReference.observeSingleEvent(of: .value) { (snapshot) in
             var guestUIDList = [String]()
-            let guestsUIDMap = snapshot.value as? NSDictionary
-            for guestUID in (guestsUIDMap?.allKeys)! {
-                
-                //TODO: Add one more condition to the below if statement for Handed things history
-                if guestsUIDMap![guestUID] as! Bool == true || guestsUIDMap![guestUID] as! Bool == self.pastGuestListRequired {
-                    guestUIDList.append(guestUID as! String)
+            if (snapshot.exists()) {
+                let guestsUIDMap = snapshot.value as? NSDictionary
+                for guestUID in (guestsUIDMap?.allKeys)! {
+                    
+                    if guestsUIDMap![guestUID] as! Bool == true || guestsUIDMap![guestUID] as! Bool == self.pastGuestListRequired {
+                        guestUIDList.append(guestUID as! String)
+                    }
                 }
             }
             callback(guestUIDList)
