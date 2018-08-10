@@ -8,51 +8,49 @@
 
 import UIKit
 
-protocol SelectProblemDelegate {
-    func passingSelectString(name : String?)
-}
-
 class SocietyTableViewController: NANavigationViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var navTitle: UILabel!
+    
     
     //to get previous View Controller
     var societyServiceVC: SocietyServicesViewController!
     var searchActive : Bool = false
     
     var titleString : String?
+    var navigationTitle = String()
     var filteredArray = [String]()
-    var delegate : SelectProblemDelegate?
     
     //TODO: Need to Add more Problems in future.
     var plumberProblemsList = ["Dripping faucets","Slow draining sink","Clogged bath or shower drain","Clogged toilet","Running toilet","Faulty water heater","Low water pressure","Jammed garbage disposal","Leaky pipes","Sewer system backup","Others"]
     var carpenterProblemsList = ["Carpentry finish appears uneven","Split in the wood","Weak joints","Dents in wood","Glue stuck","Others"]
     var electricianProblemsList = ["Frequent Electrical Surge","Sags and Dips in Power","Light Switches not working properly","Circuit Overload","Circuit Breaker Tripping Frequently","Lights too Bright or Dim","Electrical Shocks","High Electrical Bill","Light Bulbs burning out too often","Recessed Light 'Goes Out' and comesback on","Others"]
     
-    //To set navigation title
-    var navTitle : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Passing NavigationBar Title
-        super.ConfigureNavBarTitle(title: navTitle!)
+        navTitle?.text = navigationTitle
+        
+        //Hiding Navigation Bar
+        navigationController?.isNavigationBarHidden = true
         
         searchBar.delegate = self
         
         //Hiding NavigationBar RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
         
-        //Create Navigationbar Back Button
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToSocietyServicePlumberVC))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
+    }
+    
+    @IBAction func btn_Back(_ sender: UIButton) {
+        goBackToSocietyServicePlumberVC()
     }
     
     //Navigating back to Society Service Plumber screen on click of back button.
-    @objc func goBackToSocietyServicePlumberVC() {
-        self.navigationController?.popViewController(animated: true)
+     @objc func goBackToSocietyServicePlumberVC() {
+        self.navigationController?.dismiss(animated: true)
     }
     
     //Calling Searchbar Delegate Function
@@ -130,8 +128,8 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell;()
         let currentItem = currentCell.textLabel?.text
-        delegate?.passingSelectString(name: currentItem)
+        societyServiceVC.btn_problem = currentItem!
         tableView.deselectRow(at: indexPath!, animated: true)
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.dismiss(animated: true)
     }
 }

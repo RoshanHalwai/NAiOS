@@ -4660,7 +4660,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Lu-AJ-Ak2">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                                <rect key="frame" x="0.0" y="134" width="375" height="533"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="72" id="lt3-DL-eAK">
@@ -4678,27 +4678,64 @@
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4c2-JU-eak">
-                                <rect key="frame" x="0.0" y="20" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="74" width="375" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.76680581709999995" blue="0.36619166310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="2Df-hx-XAi"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMi-d8-yCy">
+                                <rect key="frame" x="0.0" y="20" width="375" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IE8-nH-IR2">
+                                        <rect key="frame" x="53" y="8" width="265" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRZ-E4-xSj">
+                                        <rect key="frame" x="19" y="15" width="26" height="26"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="26" id="WBi-oy-nOg"/>
+                                            <constraint firstAttribute="width" constant="26" id="WeK-k6-RKh"/>
+                                        </constraints>
+                                        <state key="normal" image="backBarButton"/>
+                                        <connections>
+                                            <action selector="btn_Back:" destination="cbF-1H-fxp" eventType="touchUpInside" id="TME-dE-HAY"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="IE8-nH-IR2" secondAttribute="bottom" constant="8" id="Eor-xw-pbp"/>
+                                    <constraint firstAttribute="trailing" secondItem="IE8-nH-IR2" secondAttribute="trailing" constant="57" id="NQA-IP-f9E"/>
+                                    <constraint firstItem="IE8-nH-IR2" firstAttribute="top" secondItem="AMi-d8-yCy" secondAttribute="top" constant="8" id="dFh-aC-LGc"/>
+                                    <constraint firstItem="pRZ-E4-xSj" firstAttribute="leading" secondItem="AMi-d8-yCy" secondAttribute="leading" constant="19" id="fqH-ze-52K"/>
+                                    <constraint firstAttribute="bottom" secondItem="pRZ-E4-xSj" secondAttribute="bottom" constant="13" id="gzx-VN-LdX"/>
+                                    <constraint firstItem="IE8-nH-IR2" firstAttribute="leading" secondItem="pRZ-E4-xSj" secondAttribute="trailing" constant="8" id="hT7-GR-k8h"/>
+                                    <constraint firstItem="pRZ-E4-xSj" firstAttribute="top" secondItem="AMi-d8-yCy" secondAttribute="top" constant="15" id="oNP-cO-aep"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="4c2-JU-eak" firstAttribute="top" secondItem="n7a-zY-h5K" secondAttribute="top" id="Awu-Ey-rCa"/>
+                            <constraint firstItem="4c2-JU-eak" firstAttribute="top" secondItem="n7a-zY-h5K" secondAttribute="top" constant="54" id="Awu-Ey-rCa"/>
+                            <constraint firstItem="AMi-d8-yCy" firstAttribute="trailing" secondItem="4c2-JU-eak" secondAttribute="trailing" id="BGu-ou-VSV"/>
+                            <constraint firstItem="AMi-d8-yCy" firstAttribute="leading" secondItem="4c2-JU-eak" secondAttribute="leading" id="LjQ-O5-ial"/>
                             <constraint firstItem="4Lu-AJ-Ak2" firstAttribute="trailing" secondItem="n7a-zY-h5K" secondAttribute="trailing" id="QNc-bS-26q"/>
+                            <constraint firstItem="AMi-d8-yCy" firstAttribute="bottom" secondItem="4c2-JU-eak" secondAttribute="top" id="Qzh-FQ-yhs"/>
                             <constraint firstItem="4c2-JU-eak" firstAttribute="trailing" secondItem="n7a-zY-h5K" secondAttribute="trailing" id="VVR-G5-8m2"/>
                             <constraint firstItem="4Lu-AJ-Ak2" firstAttribute="bottom" secondItem="n7a-zY-h5K" secondAttribute="bottom" id="dS3-Hh-rod"/>
                             <constraint firstItem="4c2-JU-eak" firstAttribute="leading" secondItem="n7a-zY-h5K" secondAttribute="leading" id="eB8-Eb-452"/>
+                            <constraint firstItem="AMi-d8-yCy" firstAttribute="top" secondItem="n7a-zY-h5K" secondAttribute="top" id="gBy-Da-bdx"/>
                             <constraint firstItem="4Lu-AJ-Ak2" firstAttribute="top" secondItem="4c2-JU-eak" secondAttribute="bottom" id="i5E-A0-m9r"/>
                             <constraint firstItem="4Lu-AJ-Ak2" firstAttribute="leading" secondItem="n7a-zY-h5K" secondAttribute="leading" id="o2z-kO-80Z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="n7a-zY-h5K"/>
                     </view>
                     <connections>
+                        <outlet property="navTitle" destination="IE8-nH-IR2" id="I8D-Cd-tfc"/>
                         <outlet property="searchBar" destination="4c2-JU-eak" id="4YK-ay-NaM"/>
                         <outlet property="tableView" destination="4Lu-AJ-Ak2" id="iG0-Hb-s1J"/>
                     </connections>
