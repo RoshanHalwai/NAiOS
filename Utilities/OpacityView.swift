@@ -18,7 +18,7 @@ class OpacityView {
     var addButtonTagValue : Int = NAString().zero_length()
     var opacityView = UIView()
     
-    //Create showing popup view
+    //Create showing Opacity view
     func showingOpacityView(view: UIViewController) {
         opacityView.frame = CGRect(x: 0, y:0, width:view.view.frame.width, height: view.view.frame.height)
         opacityView.backgroundColor = UIColor.black
