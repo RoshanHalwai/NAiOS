@@ -165,7 +165,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                     var dsHandedThings = ""
                     var iterator = 0
                     var count = 0
-                    var isDataEntered = false
+                    var isHandedThingsAdded = false
                     
                     if snapshot.exists() {
                         
@@ -188,7 +188,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                         
                                         self.dailyServiceHandedThingsRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                             if snapshot.exists() {
-                                                isDataEntered = true
+                                                isHandedThingsAdded = true
                                                 //Getting Daily Services Given Date here
                                                 let dailyServicesDate = snapshot.value
                                                 for dailyServiceDate in ((dailyServicesDate as AnyObject).allKeys)! {
@@ -231,7 +231,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                                         NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                                     }
                                                 })
-                                            } else if (isDataEntered == false) {
+                                            } else if (isHandedThingsAdded == false) {
                                                 NAActivityIndicator.shared.hideActivityIndicator()
                                                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                             }
