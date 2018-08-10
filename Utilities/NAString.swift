@@ -1158,4 +1158,9 @@ class NAString : NSObject {
     func approver() -> String {
         return ("Approver:")
     }
+    
+    // Apartment Services Cook
+    func cookViewTitle() -> String {
+        return ("Cook")
+    }
 }

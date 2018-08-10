@@ -25,26 +25,25 @@ class NAFirebase {
     }
     
     func layoutFeatureUnavailable(mainView : UIViewController, newText : String) {
-        
-        //Created SubView Programatically
         let newSubView = UIView(frame: CGRect(x: 14, y: 50, width: 349, height: 255))
         newSubView.backgroundColor = UIColor.white
-        mainView.view.addSubview(newSubView)
-        
-        //Created UILabel Programatically
         let newLabel = UILabel(frame: CGRect(x: 20, y: 170, width: 300, height: 70))
         newLabel.text = newText
         newLabel.numberOfLines = 3
         newLabel.textAlignment = NSTextAlignment.center
         newLabel.font = NAFont().layoutFeatureErrorFont()
         newLabel.textColor = UIColor.black
-        
-        //Created UIImageView Programatically
-        var newImage : UIImageView
-        newImage = UIImageView(frame: CGRect(x: (newSubView.frame.size.width/2)-80, y: 15, width: 150, height: 150))
+        let newImage = UIImageView(frame: CGRect(x: (newSubView.frame.size.width/2)-80, y: 15, width: 150, height: 150))
         newImage.image = UIImage(named: "exclamation256")
+        mainView.view.addSubview(newSubView)
+        
         //Adding to SubView
         newSubView.addSubview(newImage)
         newSubView.addSubview(newLabel)
+        if newText.count == 0 {
+            newSubView.removeFromSuperview()
+            newLabel.removeFromSuperview()
+            newImage.removeFromSuperview()
+        }
     }
 }
