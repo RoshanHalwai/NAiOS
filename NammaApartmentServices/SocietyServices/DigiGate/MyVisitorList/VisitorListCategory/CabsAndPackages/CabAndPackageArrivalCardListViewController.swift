@@ -260,7 +260,7 @@ extension CabAndPackageArrivalCardListViewController {
         userDataReference.observeSingleEvent(of: .value) { (deliveriesSnapshot) in
             if !(deliveriesSnapshot.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
             } else {
                 self.expectingPackageArrival(userUID: userUID)
                 var familyMembers = [String]()
