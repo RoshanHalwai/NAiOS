@@ -7,7 +7,6 @@
 
 import UIKit
 import UserNotifications
-import FirebaseInstanceID
 import FirebaseCore
 import FirebaseMessaging
 
