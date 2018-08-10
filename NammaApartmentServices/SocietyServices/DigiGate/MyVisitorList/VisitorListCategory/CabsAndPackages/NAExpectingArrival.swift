@@ -15,6 +15,7 @@ enum ExpectingArrivalListFBKeys : String {
     case dateAndTimeOfArrival
     case reference
     case status
+    case inviterUID
     
     var key : String {
         switch self {
@@ -22,6 +23,7 @@ enum ExpectingArrivalListFBKeys : String {
         case .reference: return "reference"
         case .status: return "status"
         case .approvalType: return "approvalType"
+        case .inviterUID : return "inviterUID"
         }
     }
 }
@@ -32,12 +34,14 @@ class NAExpectingArrival {
     var dateAndTimeOfArrival : String?
     var reference : String?
     var status : String?
+    var inviterUID : String?
     
-    init(approvalType : String?,dateAndTimeOfArrival : String?, reference: String?, status: String?) {
+    init(approvalType : String?,dateAndTimeOfArrival : String?, reference: String?, status: String?, inviterUID : String?) {
         self.approvalType = approvalType
         self.dateAndTimeOfArrival = dateAndTimeOfArrival
         self.reference = reference
         self.status = status
+        self.inviterUID = inviterUID
     }
     
     func getapprovalType() -> String {
@@ -51,5 +55,8 @@ class NAExpectingArrival {
     }
     func getstatus() -> String {
         return status!
+    }
+    func getInviterUID() -> String {
+        return inviterUID!
     }
 }
