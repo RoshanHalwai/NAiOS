@@ -20,7 +20,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     
     //set title from previous page
     var titleName =  String()
-    
+   
     //Database References
     var userDataRef : DatabaseReference?
     var dailyServiceInUserRef : DatabaseReference?
@@ -220,6 +220,14 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
             })
         }
         return cell
+    }
+    
+    //Resizing Cell when Coming Back from History Screen.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedRow = 0
+        currentTag = 0
+        tableView.reloadData()
     }
     
     //Dynamically Change Cell Height while selecting segment Controller
