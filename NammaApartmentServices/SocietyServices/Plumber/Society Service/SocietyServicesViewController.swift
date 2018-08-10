@@ -270,3 +270,6 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
         self.navigationController?.pushViewController(lv, animated: true)
     }
 }
+extension SocietyServicesViewController {
+    
+}
