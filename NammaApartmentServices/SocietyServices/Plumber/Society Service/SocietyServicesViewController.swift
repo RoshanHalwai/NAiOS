@@ -242,7 +242,7 @@ class SocietyServicesViewController: NANavigationViewController {
     }
     //Calling SelectAny Button Function
     @IBAction func btn_selectAnyOneAction() {
-        let searchVC = self.storyboard!.instantiateViewController(withIdentifier: "societyServiceTableVC") as! SocietyTableViewController
+        let searchVC = NAViewPresenter().societyServiceTableVC()
         let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
         searchVC.navigationTitle = NAString().selectAnyProblem()
         if (navTitle == plumberString) {
