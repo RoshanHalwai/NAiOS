@@ -7,17 +7,18 @@
 
 import UIKit
 import UserNotifications
-import Firebase
 import FirebaseCore
 import FirebaseMessaging
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     
     var window: UIWindow?
+    
     //GCM is stands fro Google Cloud Messaging
     let gcmMessageIDKey = "gcm.message_id"
     
+    //This method will call when application finished its launching state.
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -27,12 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         statusBar.backgroundColor = UIColor.black
         
-        //Firebase app Configuration
-        FirebaseApp.configure()
-        
-        //Firebase Messaging delegate
-        Messaging.messaging().delegate = self
-        
+        //If iOS version is 10 or later then this will call.
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -40,13 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(
                 options: authOptions,
-                completionHandler: {_, _ in })
+                completionHandler: {_,_ in })
+            
+            //else if iOS version is 9 or earlier then this will call.
         } else {
             let settings: UIUserNotificationSettings =
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()
+        
+        //Firebase app Configuration & assigning delegate to messaging services.
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         
         //If User Data is empty then we navigate users to Login Screen, else we navigate users to Home screen
         let preferences = UserDefaults.standard
@@ -66,43 +68,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
+        
+        //Calling establishing channel for FCM function
+        connectToFCM()
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
+        //Calling establishing channel for FCM function
+        connectToFCM()
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
-    // [START receive_message]
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        print(userInfo)
+    // Creating function to establishing channel for FCM
+    func connectToFCM() {
+        Messaging.messaging().shouldEstablishDirectChannel = true
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
-        }
-        print(userInfo)
-        completionHandler(UIBackgroundFetchResult.newData)
-    }
-    // [END receive_message]
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Unable to register for remote notifications: \(error.localizedDescription)")
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("APNs token retrieved: \(deviceToken)")
-    }
-}
-
-extension AppDelegate : UNUserNotificationCenterDelegate {
-    
-    // Receive displayed notifications for iOS 10 devices.
+    // This method will call when notification will recieved by the device.
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -117,22 +100,19 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         completionHandler([.alert ,.badge ,.sound])
     }
     
+    //This is for Performing Action, when user clicks on notification view.
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
         print(userInfo)
-        
         completionHandler()
     }
-}
-
-extension AppDelegate : MessagingDelegate {
-    // [START refresh_token]
+    
+    // This method is for refreshing the Token ID
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
         
@@ -142,6 +122,7 @@ extension AppDelegate : MessagingDelegate {
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
+    // This method is called on iOS 10 devices to handle data messages received via FCM
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("Received data message: \(remoteMessage.appData)")
     }
