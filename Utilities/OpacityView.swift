@@ -16,10 +16,19 @@ class OpacityView {
     var popupView: PopupView!
     var navTitle: String?
     var addButtonTagValue : Int = NAString().zero_length()
+    var opacityView = UIView()
+    
+    //Create showing Opacity view
+    func showingOpacityView(view: UIViewController) {
+        opacityView.frame = CGRect(x: 0, y:0, width:view.view.frame.width, height: view.view.frame.height)
+        opacityView.backgroundColor = UIColor.black
+        opacityView.alpha = 0.5
+        view.view.addSubview(opacityView)
+    }
     
     //Create showing popup view
     func showingPopupView(view: UIViewController) {
-        popupView = PopupView(frame: CGRect(x: 0, y:0, width: 300, height: 120))
+        popupView = PopupView(frame: CGRect(x: 0, y:0, width: 250, height: 150))
         popupView.center.x = view.view.bounds.width/2
         popupView.center.y = view.view.bounds.height/2
         popupView.lbl_Message.text = NAString().addButtonloadViewMessage()
@@ -51,5 +60,10 @@ class OpacityView {
     //Create hiding popup view
     func hidingPopupView() {
         popupView.isHidden = true
+    }
+    
+    //Create hiding Opacity view
+    func hidingOpacityView() {
+        opacityView.isHidden = true
     }
 }

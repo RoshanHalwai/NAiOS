@@ -432,6 +432,7 @@ extension AddMyFamilyMembersViewController {
     
     func storingFamilyMembers() {
         //Showing PopupView
+        OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
         
         let familyMemberUID = Auth.auth().currentUser?.uid
@@ -486,6 +487,7 @@ extension AddMyFamilyMembersViewController {
                     self.userPersonalDetailsRef?.setValue(usersPersonalData)
                     
                     //Hiding PopupView & Showing Alert After Adding Data in Firebase.
+                    OpacityView.shared.hidingOpacityView()
                     OpacityView.shared.hidingPopupView()
                     self.addAlertViewAction()
                 } else {

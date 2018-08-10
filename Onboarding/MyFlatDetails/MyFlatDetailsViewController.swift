@@ -182,6 +182,7 @@ class MyFlatDetailsViewController: NANavigationViewController {
         //Assigning tag value to butto to show popView Title based of button.
         btnContinue.tag = NAString().continueButtonTagValue()
         OpacityView.shared.addButtonTagValue = btnContinue.tag
+        OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
         //Calling Function to store UserFlatDetails & Privileges
         storeUsersDetailsInFirebase()
