@@ -271,6 +271,7 @@ extension OTPViewController {
     func verifyOTPWithFirebase() {
         
         //Showing Please wait PopUpView while while Verifying OTP
+        OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
         
         let Otp_Strig1 = self.txtOTP1.text!
@@ -290,6 +291,7 @@ extension OTPViewController {
             if Reachability.Connection() {
                 if let error = error {
                     print("error",error.localizedDescription)
+                    OpacityView.shared.hidingOpacityView()
                     OpacityView.shared.hidingPopupView()
                     self.lbl_OTP_Validation.isHidden = false
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()

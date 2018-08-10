@@ -266,6 +266,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             btnInviteVisitor.tag = NAString().inviteButtonTagValue()
             OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
+            OpacityView.shared.showingOpacityView(view: self)
             OpacityView.shared.showingPopupView(view: self)
         }
     }
@@ -342,6 +343,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     self.userDataRef?.child(visitorUID!).setValue(NAString().gettrue())
                     
                     //Hiding popView & Showing AlertView after adding all the data in firebase.
+                    OpacityView.shared.hidingOpacityView()
                     OpacityView.shared.hidingPopupView()
                     self.inviteAlertView()
                     
