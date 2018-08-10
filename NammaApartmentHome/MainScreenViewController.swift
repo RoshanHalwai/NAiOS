@@ -283,35 +283,52 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.row {
+        
+        switch segmentSelection.selectedSegmentIndex {
         case 0:
-            let lv = NAViewPresenter().digiGateVC()
-            self.navigationController?.pushViewController(lv, animated: true)
+            switch indexPath.row {
+            case 0:
+                let lv = NAViewPresenter().digiGateVC()
+                self.navigationController?.pushViewController(lv, animated: true)
+                
+            case 1:
+                let lv1 = NAViewPresenter().societyServiceVC()
+                lv1.navTitle = NAString().plumber()
+                self.navigationController?.pushViewController(lv1, animated: true)
+                
+            case 2:
+                let lv2 = NAViewPresenter().societyServiceVC()
+                lv2.navTitle = NAString().carpenter()
+                self.navigationController?.pushViewController(lv2, animated: true)
+                
+            case 3:
+                let lv3 = NAViewPresenter().societyServiceVC()
+                lv3.navTitle = NAString().electrician()
+                self.navigationController?.pushViewController(lv3, animated: true)
+                
+            case 4:
+                let lv4 = NAViewPresenter().societyServiceVC()
+                lv4.navTitle = NAString().garbage_management()
+                self.navigationController?.pushViewController(lv4, animated: true)
+                
+            case 5:
+                let lv5 = NAViewPresenter().raiseAlarmVC()
+                lv5.titleName = NAString().medical_emergency()
+                self.navigationController?.pushViewController(lv5, animated: true)
+                
+            default:
+                break
+            }
             
-        case 1:
-            let lv1 = NAViewPresenter().societyServiceVC()
-            lv1.navTitle = NAString().plumber()
-            self.navigationController?.pushViewController(lv1, animated: true)
-            
-        case 2:
-            let lv2 = NAViewPresenter().societyServiceVC()
-            lv2.navTitle = NAString().carpenter()
-            self.navigationController?.pushViewController(lv2, animated: true)
-            
-        case 3:
-            let lv3 = NAViewPresenter().societyServiceVC()
-            lv3.navTitle = NAString().electrician()
-            self.navigationController?.pushViewController(lv3, animated: true)
-            
-        case 4:
-            let lv4 = NAViewPresenter().societyServiceVC()
-            lv4.navTitle = NAString().garbage_management()
-            self.navigationController?.pushViewController(lv4, animated: true)
-            
-        case 5:
-            let lv5 = NAViewPresenter().raiseAlarmVC()
-            lv5.titleName = NAString().medical_emergency()
-            self.navigationController?.pushViewController(lv5, animated: true)
+        case 1 :
+            switch indexPath.row {
+            case 0:
+                let lv = NAViewPresenter().apartmentServiceCookVC()
+                self.navigationController?.pushViewController(lv, animated: true)
+                
+            default:
+                break
+            }
             
         default:
             break
