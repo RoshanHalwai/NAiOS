@@ -20,7 +20,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     
     //set title from previous page
     var titleName =  String()
-    
+   
     //Database References
     var userDataRef : DatabaseReference?
     var dailyServiceInUserRef : DatabaseReference?
@@ -209,8 +209,8 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
                     let alert = UIAlertController(title: NAString().notify_btnClick_Alert_title(), message: NAString().notify_btnClick_Alert_message(), preferredStyle: UIAlertControllerStyle.alert)
                     let okAction = UIAlertAction(title: NAString().ok(), style: .default) { (_) in
                         let lv = NAViewPresenter().handedThingsServiceHistoryVC()
-                        self.navigationController?.pushViewController(lv, animated: true)
                         lv.titleName = NAString().history()
+                        self.navigationController?.pushViewController(lv, animated: true)
                     }
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
@@ -220,6 +220,14 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
             })
         }
         return cell
+    }
+    
+    //Resizing Cell when Coming Back from History Screen.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedRow = 0
+        currentTag = 0
+        tableView.reloadData()
     }
     
     //Dynamically Change Cell Height while selecting segment Controller
@@ -279,6 +287,7 @@ extension HandedThingsToDailyServicesViewController {
                     var dsType = ""
                     var dsStatus = ""
                     var iterator = 0
+                    var isDataEntered = false
                     
                     let dailyServiceTypes = snapshot.value as? NSDictionary
                     
@@ -310,6 +319,8 @@ extension HandedThingsToDailyServicesViewController {
                                                 dsStatus = dailyServiceStatus as! String
                                                 
                                                 if dsStatus == NAString().entered() {
+                                                    isDataEntered = true
+                                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: "")
                                                     
                                                     //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
                                                     let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus)
@@ -338,7 +349,7 @@ extension HandedThingsToDailyServicesViewController {
                                                             iterator = iterator + 1
                                                         }
                                                     })
-                                                } else {
+                                                } else if (isDataEntered == false) {
                                                     NAActivityIndicator.shared.hideActivityIndicator()
                                                     NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                                 }

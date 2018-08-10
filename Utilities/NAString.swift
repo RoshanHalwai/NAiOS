@@ -1162,4 +1162,9 @@ class NAString : NSObject {
     func in_Progress() -> String {
         return String("in progress")
     }
+        
+    // Apartment Services Cook
+    func cookViewTitle() -> String {
+        return ("Cook")
+    }
 }

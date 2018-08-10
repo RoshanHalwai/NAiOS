@@ -56,7 +56,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
-        retrieveDailyServicesFromFirebase()
+        checkAndRetrieveDailyService()
         
         self.btn_AddMyDailyServices.setTitle(NAString().add_my_service().capitalized, for: .normal)
         self.btn_AddMyDailyServices.backgroundColor = NAColor().buttonBgColor()
@@ -332,7 +332,7 @@ extension MyDailyServicesViewController {
         var status: String
     }
     
-    func retrieveDailyServicesFromFirebase() {
+    func retrieveDailyServicesFromFirebase(userUID : String) {
         
         var dsInfo: [dailySericeTypeAndNumberOfFlat] = []
         
@@ -391,29 +391,31 @@ extension MyDailyServicesViewController {
                                                     
                                                     self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
                                                     self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
-                                                        
-                                                        //Getting Data Form Firebase & Adding into Model Class
-                                                        let dailyServiceData = snapshot.value as? [String: AnyObject]
-                                                        
-                                                        let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
-                                                        let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
-                                                        let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
-                                                        let providedThings = dailyServiceData?[DailyServicesListFBKeys.providedThings.key]
-                                                        let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
-                                                        let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
-                                                        let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
-                                                        
-                                                        if dsInfo.count > 0 {
-                                                            let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
+                                                        if snapshot.exists() {
                                                             
-                                                            self.NADailyServicesList.append(dailyServicesData)
+                                                            //Getting Data Form Firebase & Adding into Model Class
+                                                            let dailyServiceData = snapshot.value as? [String: AnyObject]
                                                             
-                                                            NAActivityIndicator.shared.hideActivityIndicator()
-                                                            self.collectionView.reloadData()
-                                                            iterator = iterator + 1
-                                                        } else {
-                                                            NAActivityIndicator.shared.hideActivityIndicator()
-                                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                                            let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
+                                                            let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
+                                                            let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
+                                                            let providedThings = dailyServiceData?[DailyServicesListFBKeys.providedThings.key]
+                                                            let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
+                                                            let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
+                                                            let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
+                                                            
+                                                            if dsInfo.count > 0 {
+                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
+                                                                
+                                                                self.NADailyServicesList.append(dailyServicesData)
+                                                                
+                                                                NAActivityIndicator.shared.hideActivityIndicator()
+                                                                self.collectionView.reloadData()
+                                                                iterator = iterator + 1
+                                                            } else {
+                                                                NAActivityIndicator.shared.hideActivityIndicator()
+                                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                                            }
                                                         }
                                                     })
                                                 })
@@ -431,6 +433,28 @@ extension MyDailyServicesViewController {
                 })
             }
         })
+    }
+    
+    /* - Check if the flat has any daily service. If it does not have any Daily services added, we show daily service unavailable message
+     - Else, we Display the cardView of all daily services of the current user. */
+    func checkAndRetrieveDailyService() {
+        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+        userDataReference.observeSingleEvent(of: .value) { (dailyServiceSnapshot) in
+            if !(dailyServiceSnapshot.exists()) {
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+            } else {
+                let privateFlatReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+                privateFlatReference.observeSingleEvent(of: .value, with: { (flatSnapshot) in
+                    let flatMembers = flatSnapshot.value as? NSDictionary
+                    print(flatMembers as Any)
+                    for flatMembersUID in (flatMembers?.allKeys)! {
+                        print(flatMembersUID as Any)
+                        self.retrieveDailyServicesFromFirebase(userUID: flatMembersUID as! String)
+                    }
+                })
+            }
+        }
     }
 }
 

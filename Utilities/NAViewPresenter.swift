@@ -201,4 +201,9 @@ class NAViewPresenter: NSObject {
     func societyServiceDataVC() -> SocietyServicesDataViewController {
         return storyBoard.instantiateViewController(withIdentifier: "societyServiceDataVC") as! SocietyServicesDataViewController
     }
+    
+    //Create Apartment Service Cook Screen
+    func apartmentServiceCookVC() -> CookViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "apartmentServiceCookVC") as! CookViewController
+    }
 }
