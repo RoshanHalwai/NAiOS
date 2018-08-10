@@ -165,6 +165,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                     var dsHandedThings = ""
                     var iterator = 0
                     var count = 0
+                    var isHandedThingsAdded = false
                     
                     if snapshot.exists() {
                         
@@ -187,7 +188,8 @@ extension HandedThingsDailyServicesHistoryViewController {
                                         
                                         self.dailyServiceHandedThingsRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                             if snapshot.exists() {
-                                                
+                                                isHandedThingsAdded = true
+                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: "")
                                                 //Getting Daily Services Given Date here
                                                 let dailyServicesDate = snapshot.value
                                                 for dailyServiceDate in ((dailyServicesDate as AnyObject).allKeys)! {
@@ -225,16 +227,11 @@ extension HandedThingsDailyServicesHistoryViewController {
                                                         NAActivityIndicator.shared.hideActivityIndicator()
                                                         self.collectionView.reloadData()
                                                         iterator = iterator + 1
-                                                    } else {
-                                                        NAActivityIndicator.shared.hideActivityIndicator()
-                                                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
-                                                    }
+                                                    } 
                                                 })
-                                            } else {
-                                                if count == dailyServicesUID?.count {
-                                                    NAActivityIndicator.shared.hideActivityIndicator()
-                                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
-                                                }
+                                            } else if (isHandedThingsAdded == false) {
+                                                NAActivityIndicator.shared.hideActivityIndicator()
+                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                                             }
                                         })
                                     }
