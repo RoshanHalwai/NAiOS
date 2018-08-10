@@ -22,6 +22,7 @@ class CookViewController: NANavigationViewController,UICollectionViewDelegate,UI
     
     //MARK : UICollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //TODO : Feature Added Firebase Cooks List
         return 2
     }
     
