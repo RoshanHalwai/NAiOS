@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
-class SocietyServicesViewController: NANavigationViewController,SelectProblemDelegate {
+class SocietyServicesViewController: NANavigationViewController {
     
     @IBOutlet weak var btn_SelectAny : UIButton?
     @IBOutlet weak var btn_Immediately : UIButton!
@@ -26,6 +27,8 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var garbageStackView: UIStackView!
     
+    var nammaApartmentsSocietyServices = [NASocietyServices]()
+    
     //Select slot array of buttons for color changing purpose
     var selectSlotbuttons : [UIButton] = []
     var isValidSelectSlotButtonClicked: [Bool] = []
@@ -36,6 +39,9 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     var carpenterString : String?
     var electricianString : String?
     var garbageString : String?
+    var btn_Hour_String = String()
+    var btn_problem = String()
+    
     
     //Garbage array of buttons for color changing purpose
     var garbageButtons : [UIButton] = []
@@ -43,6 +49,8 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.btn_SelectAny?.titleLabel?.text = btn_problem
         
         //Hiding the StackView
         garbageStackView.isHidden = true
@@ -217,16 +225,15 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
             button.tintColor = color
         }
     }
-    
-    //Calling SelectProblem Delegate Function
-    func passingSelectString(name: String?) {
-        btn_SelectAny?.titleLabel?.text = name
+    override func viewWillAppear(_ animated: Bool) {
+        self.btn_SelectAny?.titleLabel?.text = btn_problem
     }
     
     //MARK : Create Button Actions
     
     //Create Button SelectSlot Function
     @IBAction func btnSelectSlotFunction(_ sender: UIButton) {
+        btn_Hour_String = (sender.titleLabel?.text)!
         selectedColor(tag: sender.tag)
     }
     //Create Button garbage Function
@@ -235,27 +242,23 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     }
     //Calling SelectAny Button Function
     @IBAction func btn_selectAnyOneAction() {
+        let searchVC = NAViewPresenter().societyServiceTableVC()
+        let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
+        searchVC.navigationTitle = NAString().selectAnyProblem()
         if (navTitle == plumberString) {
-            let lv = NAViewPresenter().societyServiceTableVC()
-            lv.navTitle = NAString().selectAnyProblem()
-            lv.delegate = self
-            lv.titleString = plumberString
-            self.navigationController?.pushViewController(lv, animated: true)
+            searchVC.titleString = plumberString
         } else if (navTitle == carpenterString) {
-            let lv = NAViewPresenter().societyServiceTableVC()
-            lv.navTitle = NAString().selectAnyProblem()
-            lv.delegate = self
-            lv.titleString = carpenterString
-            self.navigationController?.pushViewController(lv, animated: true)
+            searchVC.titleString = carpenterString
         } else {
-            let lv = NAViewPresenter().societyServiceTableVC()
-            lv.navTitle = NAString().selectAnyProblem()
-            lv.delegate = self
-            self.navigationController?.pushViewController(lv, animated: true)
+            searchVC.titleString = electricianString
         }
+        searchVC.societyServiceVC = self
+        self.navigationController?.present(nav, animated: true, completion: nil)
+        
     }
     //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
+        storeSocietyServiceDetails()
         let lv = NAViewPresenter().societyServiceDataVC()
         lv.navTitle = NAString().societyService()
         if (navTitle == plumberString) {
@@ -268,5 +271,30 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
             lv.titleString = garbageString
         }
         self.navigationController?.pushViewController(lv, animated: true)
+    }
+}
+
+extension SocietyServicesViewController {
+    
+    //Storing User requests of Society service Problems
+    func storeSocietyServiceDetails() {
+        let societyServiceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
+        let notificationUID: String
+        notificationUID = societyServiceNotificationRef.childByAutoId().key
+        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        userDataRef.child((navTitle?.lowercased())!).child(notificationUID).setValue(NAString().gettrue())
+        
+        let societyServiceNotificationData = [
+            NASocietyServicesFBKeys.problem.key : btn_problem,
+            NASocietyServicesFBKeys.timeSlot.key : btn_Hour_String,
+            NASocietyServicesFBKeys.userUID.key: userUID,
+            NASocietyServicesFBKeys.societyServiceType.key : navTitle?.lowercased(),
+            NASocietyServicesFBKeys.notificationUID.key : notificationUID,
+            NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
+        
+        societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData)
+        
+        //Storing Current System time in milli seconds for time stamp.
+        societyServiceNotificationRef.child(notificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000))
     }
 }

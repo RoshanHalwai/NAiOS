@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0809B91C211DAB7100B30EE2 /* NASocietyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809B91B211DAB7100B30EE2 /* NASocietyServices.swift */; };
 		0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */; };
 		0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */; };
 		0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */; };
@@ -158,6 +159,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0809B91B211DAB7100B30EE2 /* NASocietyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASocietyServices.swift; sourceTree = "<group>"; };
 		0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListViewController.swift; sourceTree = "<group>"; };
 		0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 			children = (
 				42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */,
 				42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */,
+				0809B91B211DAB7100B30EE2 /* NASocietyServices.swift */,
 			);
 			path = "Society Service";
 			sourceTree = "<group>";
@@ -1197,6 +1200,7 @@
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
+				0809B91C211DAB7100B30EE2 /* NASocietyServices.swift in Sources */,
 				86BF6A4120A0325200B175A1 /* MyGuestListCollectionViewCell.swift in Sources */,
 				5D774298210DD49F0049344F /* SplashNammaApartments.swift in Sources */,
 				5D774291210DD49F0049344F /* SearchTableViewCell.swift in Sources */,

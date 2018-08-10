@@ -1159,6 +1159,10 @@ class NAString : NSObject {
         return ("Approver:")
     }
     
+    func in_Progress() -> String {
+        return String("in progress")
+    }
+        
     // Apartment Services Cook
     func cookViewTitle() -> String {
         return ("Cook")
