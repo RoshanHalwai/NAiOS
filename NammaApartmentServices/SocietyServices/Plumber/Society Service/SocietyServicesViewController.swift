@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class SocietyServicesViewController: NANavigationViewController,SelectProblemDelegate {
     
@@ -26,6 +27,8 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var garbageStackView: UIStackView!
     
+    var nammaApartmentsSocietyServices = [NASocietyServices]()
+    
     //Select slot array of buttons for color changing purpose
     var selectSlotbuttons : [UIButton] = []
     var isValidSelectSlotButtonClicked: [Bool] = []
@@ -36,6 +39,8 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     var carpenterString : String?
     var electricianString : String?
     var garbageString : String?
+     var btn_Hour_String = String()
+    
     
     //Garbage array of buttons for color changing purpose
     var garbageButtons : [UIButton] = []
@@ -43,6 +48,7 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         //Hiding the StackView
         garbageStackView.isHidden = true
@@ -227,6 +233,7 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     
     //Create Button SelectSlot Function
     @IBAction func btnSelectSlotFunction(_ sender: UIButton) {
+        btn_Hour_String = (sender.titleLabel?.text)!
         selectedColor(tag: sender.tag)
     }
     //Create Button garbage Function
@@ -256,6 +263,7 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     }
     //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
+        storeSocietyServiceDetails()
         let lv = NAViewPresenter().societyServiceDataVC()
         lv.navTitle = NAString().societyService()
         if (navTitle == plumberString) {
@@ -271,5 +279,29 @@ class SocietyServicesViewController: NANavigationViewController,SelectProblemDel
     }
 }
 extension SocietyServicesViewController {
-    
+    func storeSocietyServiceDetails() {
+        let societyServiceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
+        let notificationUID: String
+        notificationUID = societyServiceNotificationRef.childByAutoId().key
+        
+        let societyServiceNotificationData = [
+            NASocietyServicesFBKeys.problem.key : btn_SelectAny?.titleLabel?.text,
+            NASocietyServicesFBKeys.timeSlot.key : btn_Hour_String,
+            NASocietyServicesFBKeys.userUID.key: userUID,
+            NASocietyServicesFBKeys.societyServiceType.key : navTitle?.lowercased(),
+            NASocietyServicesFBKeys.notificationUID.key : notificationUID,
+            NASocietyServicesFBKeys.status.key : NAString().in_Progress()
+        ]
+        
+        societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData)
+        
+        let timestamp = NSDate().timeIntervalSince1970
+        let myTimeInterval = TimeInterval(timestamp)
+        let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+
+        societyServiceNotificationRef.child(notificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(time)
+        
+        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        userDataRef.child((navTitle?.lowercased())!).child(notificationUID).setValue(NAString().gettrue())
+    }
 }

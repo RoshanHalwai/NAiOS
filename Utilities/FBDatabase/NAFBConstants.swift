@@ -69,4 +69,5 @@ struct Constants {
     static let FIREBASE_CHILD_OWNERSUID = "ownersUID"
     static let FIREBASE_CHILD_PERSONALDETAILS_PROFILEIMAGE = "profilePhoto"
     static let FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION = "societyServiceNotifications"
+    static let FIREBASE_CHILD_TIMESTAMP = "timestamp"
 }
