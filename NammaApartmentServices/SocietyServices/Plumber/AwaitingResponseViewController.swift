@@ -117,7 +117,7 @@ class AwaitingResponseViewController: NANavigationViewController {
         } else if (titleString == NAString().electrician()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().electrician())
         } else {
-            lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage())
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_management())
         }
     }
 }

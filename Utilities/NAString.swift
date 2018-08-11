@@ -355,10 +355,6 @@ class NAString : NSObject {
         return String("Electrician")
     }
     
-    func garbage() -> String {
-        return String("Garbage")
-    }
-    
     func garbage_management() -> String {
         return String("Garbage Management")
     }
