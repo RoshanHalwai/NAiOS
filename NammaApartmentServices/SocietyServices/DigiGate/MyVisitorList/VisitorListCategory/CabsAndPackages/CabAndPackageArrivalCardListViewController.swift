@@ -175,12 +175,13 @@ extension CabAndPackageArrivalCardListViewController {
     func expectingCabArrival(userUID : String) {
         
         userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS).child(userUID)
-        
+        userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let cabsUID = snapshot.value as? NSDictionary
                 for cabsUID in (cabsUID?.allKeys)! {
                     self.cabsPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(cabsUID as! String)
+                    self.cabsPublicRef?.keepSynced(true)
                     self.cabsPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
                             
@@ -201,10 +202,10 @@ extension CabAndPackageArrivalCardListViewController {
         })
     }
     
-     //Showing cab Arrivals data to other Family members but not to friends.
+    //Showing cab Arrivals data to other Family members but not to friends.
     func checkAndRetrieveCabArrivals() {
         let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS)
-        
+        userDataReference.keepSynced(true)
         userDataReference.observeSingleEvent(of: .value) { (cabsSnapshot) in
             if !(cabsSnapshot.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
@@ -225,13 +226,13 @@ extension CabAndPackageArrivalCardListViewController {
     func expectingPackageArrival(userUID : String)  {
         
         userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
-        
+        userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let packageUID = snapshot.value as? NSDictionary
                 for vendorUID in (packageUID?.allKeys)! {
                     self.packagePublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(vendorUID as! String)
-                    
+                    self.packagePublicRef?.keepSynced(true)
                     self.packagePublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
                             
@@ -249,14 +250,14 @@ extension CabAndPackageArrivalCardListViewController {
                         }
                     })
                 }
-            } 
+            }
         })
     }
     
     //Showing Package Arrivals data to other Family members but not to friends.
     func checkAndRetrievePackageArrivals() {
         let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES)
-        
+        userDataReference.keepSynced(true)
         userDataReference.observeSingleEvent(of: .value) { (deliveriesSnapshot) in
             if !(deliveriesSnapshot.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()

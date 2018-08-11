@@ -339,7 +339,7 @@ extension MyDailyServicesViewController {
         //To check that Any daily service is available or not inside user's flat
         userDataRef =  GlobalUserData.shared.getUserDataReference()
             .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
-        
+        userDataRef?.keepSynced(true)
         //To Daily Service UID in dailyServive child -> Public
         userDataRef?.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -349,6 +349,7 @@ extension MyDailyServicesViewController {
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
                 self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+                self.dailyServiceInUserRef?.keepSynced(true)
                 self.dailyServiceInUserRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                     
                     //Created this to get Number of flat & Daily Service Type From Firebase & to use iterator for getting Data.
@@ -372,10 +373,8 @@ extension MyDailyServicesViewController {
                                     
                                     if dailyServicesUID![dailyServiceUID] as! Bool == true {
                                         self.dailyServiceCountRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String)
-                                        
                                         //Getting Daily Services Status (Like Entered or Not)
                                         self.dailyServiceStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(NAString().status())
-                                        
                                         self.dailyServiceStatusRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                             let dailyServiceStatus = snapshot.value
                                             
@@ -390,6 +389,7 @@ extension MyDailyServicesViewController {
                                                     dsInfo.append(servicetype)
                                                     
                                                     self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
+                                                    self.dailyServicePublicRef?.keepSynced(true)
                                                     self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
                                                         if snapshot.exists() {
                                                             
@@ -439,12 +439,14 @@ extension MyDailyServicesViewController {
      - Else, we Display the cardView of all daily services of the current user. */
     func checkAndRetrieveDailyService() {
         let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+        userDataReference.keepSynced(true)
         userDataReference.observeSingleEvent(of: .value) { (dailyServiceSnapshot) in
             if !(dailyServiceSnapshot.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
             } else {
                 let privateFlatReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+                privateFlatReference.keepSynced(true)
                 privateFlatReference.observeSingleEvent(of: .value, with: { (flatSnapshot) in
                     let flatMembers = flatSnapshot.value as? NSDictionary
                     print(flatMembers as Any)
