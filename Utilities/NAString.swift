@@ -1167,4 +1167,24 @@ class NAString : NSObject {
     func cookViewTitle() -> String {
         return ("Cook")
     }
+    
+    func accepted() -> String {
+        return ("Accepted")
+    }
+    
+    func rejected() -> String {
+        return ("Rejected")
+    }
+    
+    func notificationAcceptIdentifier() -> String {
+        return ("acceptAction")
+    }
+    
+    func notificationRejectIdentifier() -> String {
+        return ("rejectAction")
+    }
+    
+    func notificationActionCategory() -> String {
+        return ("actionCategory")
+    }
 }
