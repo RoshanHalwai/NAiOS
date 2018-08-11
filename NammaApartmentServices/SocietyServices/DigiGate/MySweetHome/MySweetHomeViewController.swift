@@ -43,7 +43,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-       
+        
         let retrieveUserList : RetrieveFamilyMemberList
         retrieveUserList = RetrieveFamilyMemberList.init()
         
