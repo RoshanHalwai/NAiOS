@@ -116,19 +116,19 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         }
         
         /* We check if the inviters UID is equal to current UID if it is then we don't have to check in
-        firebase since we now know that the inviter is current user.*/
+         firebase since we now know that the inviter is current user.*/
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_InvitedName.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
         } else {
             let inviterNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(nammaApartmentVisitor.getinviterUID())
-       
+            
             inviterNameRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
                 let usersData = userDataSnapshot.value as? [String: AnyObject]
                 
                 //Creating instance of UserPersonalDetails
                 let userPersonalDataMap = usersData?["personalDetails"] as? [String: AnyObject]
                 let fullName = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
-            cell.lbl_InvitedName.text = fullName
+                cell.lbl_InvitedName.text = fullName
             })
         }
         
