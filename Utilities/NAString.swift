@@ -355,6 +355,10 @@ class NAString : NSObject {
         return String("Electrician")
     }
     
+    func garbage() -> String {
+        return String("Garbage")
+    }
+    
     func garbage_management() -> String {
         return String("Garbage Management")
     }
@@ -1151,7 +1155,7 @@ class NAString : NSObject {
         return String ("Wet Waste")
     }
     
-    func societyServiceLabelMessage(name: String) -> String {
+    func societyServiceMessage(name: String) -> String {
         return String ("Please wait \(name) has not Responded")
     }
     

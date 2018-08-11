@@ -29,7 +29,6 @@ class AwaitingResponseViewController: NANavigationViewController {
     //To set navigation title
     var navTitle : String?
     var titleString : String?
-    
     var notificationUID = String()
     
     override func viewDidLoad() {
@@ -72,6 +71,7 @@ class AwaitingResponseViewController: NANavigationViewController {
                 .child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
                 .child(Constants.FIREBASE_USER_CHILD_ALL)
                 .child(notificationUID)
+            
             societyServiceReference.observe(DataEventType.value, with: { (snapshot) in
                 let societyServiceData = snapshot.value as? [String: AnyObject]
                 
@@ -102,7 +102,6 @@ class AwaitingResponseViewController: NANavigationViewController {
                         self.lbl_ServiceNumber?.text = societyServiceNumber
                         let endOTP: String = societyServiceData?[NASocietyServicesFBKeys.endOTP.key] as! String
                         self.lbl_ServiceOTP?.text = endOTP
-                        
                     })
                 }
             })
@@ -112,13 +111,13 @@ class AwaitingResponseViewController: NANavigationViewController {
     //Create Changing the Society Service Messages Function
     func changingSocietyServiceMessages() {
         if ( titleString == NAString().plumber()) {
-            lbl_message?.text = NAString().societyServiceLabelMessage(name: "Plumber")
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().plumber())
         } else if (titleString == NAString().carpenter()) {
-            lbl_message?.text = NAString().societyServiceLabelMessage(name: "Carpenter")
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().carpenter())
         } else if (titleString == NAString().electrician()) {
-            lbl_message?.text = NAString().societyServiceLabelMessage(name: "Electrician")
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().electrician())
         } else {
-            lbl_message?.text = NAString().societyServiceLabelMessage(name: "Garbage")
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage())
         }
     }
 }
