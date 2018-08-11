@@ -74,23 +74,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //Notification action button function
     func setActionCategories(){
         let acceptAction = UNNotificationAction(
-            identifier: "accept.action",
+            identifier: NAString().notificationAcceptIdentifier(),
             title: NAString().accept().capitalized,
             options: [.init(rawValue: 0)])
         
         let rejectAction = UNNotificationAction(
-            identifier: "reject.action",
+            identifier: NAString().notificationRejectIdentifier(),
             title: NAString().reject().capitalized,
             options: [.init(rawValue: 0)])
         
-        let snoozeCategory = UNNotificationCategory(
-            identifier: "action.category",
+        let actionCategory = UNNotificationCategory(
+            identifier: NAString().notificationActionCategory(),
             actions: [acceptAction,rejectAction],
             intentIdentifiers: [],
             options: [.customDismissAction])
         
         UNUserNotificationCenter.current().setNotificationCategories(
-            [snoozeCategory])
+            [actionCategory])
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -137,10 +137,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
         //Here we are performing Action on Notification Buttons & We created this buttons in  "setActionCategories" function.
         if response.notification.request.content.categoryIdentifier ==
-            "action.category" {
+            NAString().notificationActionCategory() {
             
             //Getting Post Approved visitor's UID for accepting or rejecting the request.
-             let postApprVisitorUID = userInfo["notification_uid"] as? String
+             let postApprVisitorUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
            
             //Created Firebase reference to get currently invited visitor by E-Intercom
             var visitorGateNotificationRef : DatabaseReference?
@@ -150,12 +150,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             switch response.actionIdentifier {
                 
                 //If Accept button will pressed
-            case "accept.action":
+            case NAString().notificationAcceptIdentifier():
                 visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().accepted())
                 break
                 
                  //If Reject button will pressed
-            case "reject.action":
+            case NAString().notificationRejectIdentifier():
                  visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().rejected())
                 break
                 

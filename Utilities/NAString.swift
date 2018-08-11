@@ -1176,5 +1176,15 @@ class NAString : NSObject {
         return ("Rejected")
     }
     
+    func notificationAcceptIdentifier() -> String {
+        return ("acceptAction")
+    }
     
+    func notificationRejectIdentifier() -> String {
+        return ("rejectAction")
+    }
+    
+    func notificationActionCategory() -> String {
+        return ("actionCategory")
+    }
 }

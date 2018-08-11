@@ -72,4 +72,5 @@ struct Constants {
     static let FIREBASE_CHILD_TIMESTAMP = "timestamp"
     static let FIREBASE_CHILD_GATE_NOTIFICATION = "gateNotifications"
     static let FIREBASE_CHILD_GUESTS = "guests"
+    static let FIREBASE_CHILD_NOTIFICATION_UID = "notification_uid"
 }
