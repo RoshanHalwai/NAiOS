@@ -73,19 +73,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     //Notification action button function
     func setActionCategories(){
-        let snoozeAction = UNNotificationAction(
-            identifier: "snooze.action",
-            title: "Accept",
+        let acceptAction = UNNotificationAction(
+            identifier: "accept.action",
+            title: NAString().accept().capitalized,
             options: [.init(rawValue: 0)])
         
-        let snoozeAction1 = UNNotificationAction(
-            identifier: "snooze.action1",
-            title: "Reject",
+        let rejectAction = UNNotificationAction(
+            identifier: "reject.action",
+            title: NAString().reject().capitalized,
             options: [.init(rawValue: 0)])
         
         let snoozeCategory = UNNotificationCategory(
-            identifier: "snoozeIn.category",
-            actions: [snoozeAction,snoozeAction1],
+            identifier: "action.category",
+            actions: [acceptAction,rejectAction],
             intentIdentifiers: [],
             options: [.customDismissAction])
         
@@ -137,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
         //Here we are performing Action on Notification Buttons & We created this buttons in  "setActionCategories" function.
         if response.notification.request.content.categoryIdentifier ==
-            "snoozeIn.category" {
+            "action.category" {
             
             //Getting Post Approved visitor's UID for accepting or rejecting the request.
              let postApprVisitorUID = userInfo["notification_uid"] as? String
@@ -150,12 +150,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             switch response.actionIdentifier {
                 
                 //If Accept button will pressed
-            case "snooze.action":
+            case "accept.action":
                 visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().accepted())
                 break
                 
                  //If Reject button will pressed
-            case "snooze.action1":
+            case "reject.action":
                  visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().rejected())
                 break
                 
