@@ -327,6 +327,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     func activityIndicator_function(withData: Any) {
         btn_AddDetails.tag = NAString().addMyDailyServicesButtonTagValue()
         OpacityView.shared.addButtonTagValue = btn_AddDetails.tag
+        OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
     }
     
@@ -499,6 +500,7 @@ extension AddMyServicesViewController {
                     self.dailyServicesPublicRef?.setValue(dailyServicesData)
                     
                     //Hiding PopupView & Showing Alert After Adding Data in Firebase.
+                    OpacityView.shared.hidingOpacityView()
                     OpacityView.shared.hidingPopupView()
                     self.AlertViewAction()
                 } else {
