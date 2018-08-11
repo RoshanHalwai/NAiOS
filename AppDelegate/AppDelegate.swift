@@ -50,6 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
+        //Calling Notification action button function
+        setActionCategories()
+        
         //If User Data is empty then we navigate users to Login Screen, else we navigate users to Home screen
         let preferences = UserDefaults.standard
         let currentLevelKey = "USERUID"
@@ -66,6 +69,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.window?.makeKeyAndVisible()
         return true
     }
+    
+    //Notification action button function
+    func setActionCategories(){
+        let snoozeAction = UNNotificationAction(
+            identifier: "snooze.action",
+            title: "Accept",
+            options: [.foreground])
+        
+        let snoozeAction1 = UNNotificationAction(
+            identifier: "snooze.action1",
+            title: "Reject",
+            options: [.foreground])
+        
+        let snoozeCategory = UNNotificationCategory(
+            identifier: "snoozeIn.category",
+            actions: [snoozeAction,snoozeAction1],
+            intentIdentifiers: [],
+            options: [])
+        
+        UNUserNotificationCenter.current().setNotificationCategories(
+            [snoozeCategory])
+    }
+
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         
