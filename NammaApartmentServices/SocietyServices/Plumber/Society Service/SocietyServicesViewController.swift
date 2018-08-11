@@ -255,8 +255,8 @@ class SocietyServicesViewController: NANavigationViewController {
         }
         searchVC.societyServiceVC = self
         self.navigationController?.present(nav, animated: true, completion: nil)
-        
     }
+    
     //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
         storeSocietyServiceDetails()
@@ -281,13 +281,11 @@ extension SocietyServicesViewController {
             NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
         
         societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData) { (error, snapshot) in
-            
             //Storing Current System time in milli seconds for time stamp.
             societyServiceNotificationRef.child(self.notificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
                 self.callAwaitingResponseViewController()
             })
         }
-        
     }
     
     func callAwaitingResponseViewController() {
