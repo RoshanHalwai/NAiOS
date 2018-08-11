@@ -83,8 +83,7 @@ class MainScreenViewController: NANavigationViewController {
             societyServicesModel(cellTitle: NAString().electrician(),cellImage: #imageLiteral(resourceName: "switchBoard") ),
             societyServicesModel(cellTitle: NAString().garbage_management(),cellImage:  #imageLiteral(resourceName: "garbage-bin (2)")),
             societyServicesModel(cellTitle: NAString().medical_emergency(),cellImage:  #imageLiteral(resourceName: "Medical_Emergency_1")),
-            societyServicesModel(cellTitle: NAString().event_management(),cellImage: #imageLiteral(resourceName: "event")),
-            societyServicesModel(cellTitle: NAString().water_services(),cellImage: #imageLiteral(resourceName: "New waterTank") )
+            societyServicesModel(cellTitle: NAString().event_management(),cellImage: #imageLiteral(resourceName: "event"))
         ]
         apartmentData = [
             apartmentServicesModel(cellTitle: NAString().cook(), cellImage: #imageLiteral(resourceName: "cook_Service")),
