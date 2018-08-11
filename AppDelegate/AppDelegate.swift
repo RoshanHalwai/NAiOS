@@ -75,23 +75,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let snoozeAction = UNNotificationAction(
             identifier: "snooze.action",
             title: "Accept",
-            options: [.foreground])
+            options: [.init(rawValue: 0)])
         
         let snoozeAction1 = UNNotificationAction(
             identifier: "snooze.action1",
             title: "Reject",
-            options: [.foreground])
+            options: [.init(rawValue: 0)])
         
         let snoozeCategory = UNNotificationCategory(
             identifier: "snoozeIn.category",
             actions: [snoozeAction,snoozeAction1],
             intentIdentifiers: [],
-            options: [])
+            options: [.customDismissAction])
         
         UNUserNotificationCenter.current().setNotificationCategories(
             [snoozeCategory])
     }
-
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         
@@ -133,6 +132,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let userInfo = response.notification.request.content.userInfo
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
+        }
+    
+        //Here we are performing Action on Notification Buttons & We created this buttons in  "setActionCategories" function.
+        if response.notification.request.content.categoryIdentifier ==
+            "snoozeIn.category" {
+            
+            switch response.actionIdentifier {
+            case "snooze.action":
+                print("Accept")
+                break
+            case "snooze.action1":
+                print("Reject")
+                break
+                
+            default:
+                break
+            }
         }
         print(userInfo)
         completionHandler()
