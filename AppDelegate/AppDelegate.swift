@@ -9,6 +9,7 @@ import UIKit
 import UserNotifications
 import FirebaseCore
 import FirebaseMessaging
+import FirebaseDatabase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -138,12 +139,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if response.notification.request.content.categoryIdentifier ==
             "snoozeIn.category" {
             
+            //Getting Post Approved visitor's UID for accepting or rejecting the request.
+             let postApprVisitorUID = userInfo["notification_uid"] as? String
+           
+            //Created Firebase reference to get currently invited visitor by E-Intercom
+            var visitorGateNotificationRef : DatabaseReference?
+            visitorGateNotificationRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID).child(Constants.FIREBASE_CHILD_GUESTS).child(postApprVisitorUID!)
+        
+            //Performing accept & reject on click of recently invited visitor by E-Intercom from Notification view.
             switch response.actionIdentifier {
+                
+                //If Accept button will pressed
             case "snooze.action":
-                print("Accept")
+                visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().accepted())
                 break
+                
+                 //If Reject button will pressed
             case "snooze.action1":
-                print("Reject")
+                 visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().rejected())
                 break
                 
             default:
