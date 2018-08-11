@@ -9,6 +9,7 @@ import UIKit
 import UserNotifications
 import FirebaseCore
 import FirebaseMessaging
+import FirebaseDatabase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -50,6 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
+        //Calling Notification action button function
+        setActionCategories()
+        
         //If User Data is empty then we navigate users to Login Screen, else we navigate users to Home screen
         let preferences = UserDefaults.standard
         let currentLevelKey = "USERUID"
@@ -65,6 +69,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.window?.rootViewController = NavMain
         self.window?.makeKeyAndVisible()
         return true
+    }
+    
+    //Notification action button function
+    func setActionCategories(){
+        let acceptAction = UNNotificationAction(
+            identifier: NAString().notificationAcceptIdentifier(),
+            title: NAString().accept().capitalized,
+            options: [.init(rawValue: 0)])
+        
+        let rejectAction = UNNotificationAction(
+            identifier: NAString().notificationRejectIdentifier(),
+            title: NAString().reject().capitalized,
+            options: [.init(rawValue: 0)])
+        
+        let actionCategory = UNNotificationCategory(
+            identifier: NAString().notificationActionCategory(),
+            actions: [acceptAction,rejectAction],
+            intentIdentifiers: [],
+            options: [.customDismissAction])
+        
+        UNUserNotificationCenter.current().setNotificationCategories(
+            [actionCategory])
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -107,6 +133,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let userInfo = response.notification.request.content.userInfo
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
+        }
+    
+        //Here we are performing Action on Notification Buttons & We created this buttons in  "setActionCategories" function.
+        if response.notification.request.content.categoryIdentifier ==
+            NAString().notificationActionCategory() {
+            
+            //Getting Post Approved visitor's UID for accepting or rejecting the request.
+             let postApprVisitorUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
+           
+            //Created Firebase reference to get currently invited visitor by E-Intercom
+            var visitorGateNotificationRef : DatabaseReference?
+            visitorGateNotificationRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID).child(Constants.FIREBASE_CHILD_GUESTS).child(postApprVisitorUID!)
+        
+            //Performing accept & reject on click of recently invited visitor by E-Intercom from Notification view.
+            switch response.actionIdentifier {
+                
+                //If Accept button will pressed
+            case NAString().notificationAcceptIdentifier():
+                visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().accepted())
+                break
+                
+                 //If Reject button will pressed
+            case NAString().notificationRejectIdentifier():
+                 visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().rejected())
+                break
+                
+            default:
+                break
+            }
         }
         print(userInfo)
         completionHandler()
