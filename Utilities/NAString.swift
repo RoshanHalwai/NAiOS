@@ -1151,7 +1151,7 @@ class NAString : NSObject {
         return String ("Wet Waste")
     }
     
-    func societyServiceLabelMessage(name: String) -> String {
+    func societyServiceMessage(name: String) -> String {
         return String ("Please wait \(name) has not Responded")
     }
     

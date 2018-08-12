@@ -15,6 +15,8 @@ enum NASocietyServicesFBKeys : String {
     case status
     case takenBy
     case endOTP
+    case fullName
+    case mobileNumber
     
     var key : String {
         switch self {
@@ -27,6 +29,8 @@ enum NASocietyServicesFBKeys : String {
         case .status: return "status"
         case .takenBy: return "takenBy"
         case .endOTP: return "endOTP"
+        case .fullName: return "fullName"
+        case .mobileNumber: return "mobileNumber"
         }
     }
 }

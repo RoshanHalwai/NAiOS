@@ -28,6 +28,7 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var garbageStackView: UIStackView!
     
     var nammaApartmentsSocietyServices = [NASocietyServices]()
+    var notificationUID = String()
     
     //Select slot array of buttons for color changing purpose
     var selectSlotbuttons : [UIButton] = []
@@ -254,23 +255,11 @@ class SocietyServicesViewController: NANavigationViewController {
         }
         searchVC.societyServiceVC = self
         self.navigationController?.present(nav, animated: true, completion: nil)
-        
     }
+    
     //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
         storeSocietyServiceDetails()
-        let lv = NAViewPresenter().societyServiceDataVC()
-        lv.navTitle = NAString().societyService()
-        if (navTitle == plumberString) {
-            lv.titleString = plumberString
-        } else if (navTitle == carpenterString) {
-            lv.titleString = carpenterString
-        } else if (navTitle == electricianString) {
-            lv.titleString = electricianString
-        } else {
-            lv.titleString = garbageString
-        }
-        self.navigationController?.pushViewController(lv, animated: true)
     }
 }
 
@@ -279,7 +268,6 @@ extension SocietyServicesViewController {
     //Storing User requests of Society service Problems
     func storeSocietyServiceDetails() {
         let societyServiceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
-        let notificationUID: String
         notificationUID = societyServiceNotificationRef.childByAutoId().key
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child((navTitle?.lowercased())!).child(notificationUID).setValue(NAString().gettrue())
@@ -292,9 +280,27 @@ extension SocietyServicesViewController {
             NASocietyServicesFBKeys.notificationUID.key : notificationUID,
             NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
         
-        societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData)
-        
-        //Storing Current System time in milli seconds for time stamp.
-        societyServiceNotificationRef.child(notificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000))
+        societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData) { (error, snapshot) in
+            //Storing Current System time in milli seconds for time stamp.
+            societyServiceNotificationRef.child(self.notificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
+                self.callAwaitingResponseViewController()
+            })
+        }
+    }
+    
+    func callAwaitingResponseViewController() {
+        let lv = NAViewPresenter().societyServiceDataVC()
+        lv.navTitle = NAString().societyService()
+        lv.notificationUID = notificationUID
+        if (navTitle == plumberString) {
+            lv.titleString = plumberString
+        } else if (navTitle == carpenterString) {
+            lv.titleString = carpenterString
+        } else if (navTitle == electricianString) {
+            lv.titleString = electricianString
+        } else {
+            lv.titleString = garbageString
+        }
+        self.navigationController?.pushViewController(lv, animated: true)
     }
 }
