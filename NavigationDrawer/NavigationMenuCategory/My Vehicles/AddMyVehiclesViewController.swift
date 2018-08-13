@@ -181,7 +181,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
         }
     }
     
-    // Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
+    // Creating VehicleStateCodeAndSerailCodeLength Validation and vehicleSerialNumberLength Validation
     func vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: Int) -> Bool{
         if (isVehicleNumberLength >= 2) {
             return true
