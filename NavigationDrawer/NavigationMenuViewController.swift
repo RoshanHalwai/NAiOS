@@ -16,7 +16,7 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var oneStopLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
+    var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
     var mainScreen: MainScreenViewController!
     
     override func viewDidLoad() {
@@ -52,20 +52,30 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
             self.navigationController?.pushViewController(myProfileVC, animated: true)
             mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().my_family_members() {
-            let dv3 = NAViewPresenter().mySweetHomeVC()
-            dv3.navTitle = NAString().my_sweet_home()
-            dv3.fromHomeScreenVC = true
-            self.navigationController?.pushViewController(dv3, animated: true)
-            mainScreen.opacity_View.isHidden = true
-        } else if currentItem == NAString().help() {
-            let dv = NAViewPresenter().helpVC()
-            dv.navTitle = NAString().help()
+            let dv = NAViewPresenter().mySweetHomeVC()
+            dv.navTitle = NAString().my_sweet_home()
+            dv.fromHomeScreenVC = true
             self.navigationController?.pushViewController(dv, animated: true)
             mainScreen.opacity_View.isHidden = true
-        } else if currentItem == NAString().settings() {
-            let dv1 = NAViewPresenter().settingsVC()
-            dv1.navTitle = NAString().settings()
+        } else if currentItem == NAString().my_vehicles() {
+            let dv1 = NAViewPresenter().myVehiclesVC()
+            dv1.navTitle = NAString().my_vehicles()
             self.navigationController?.pushViewController(dv1, animated: true)
+            mainScreen.opacity_View.isHidden = true
+        } else if currentItem == NAString().my_guards() {
+            let dv2 = NAViewPresenter().myGuardsVC()
+            dv2.navTitle = NAString().my_guards()
+            self.navigationController?.pushViewController(dv2, animated: true)
+            mainScreen.opacity_View.isHidden = true
+        } else if currentItem == NAString().help() {
+            let dv3 = NAViewPresenter().helpVC()
+            dv3.navTitle = NAString().help()
+            self.navigationController?.pushViewController(dv3, animated: true)
+            mainScreen.opacity_View.isHidden = true
+        } else if currentItem == NAString().settings() {
+            let dv4 = NAViewPresenter().settingsVC()
+            dv4.navTitle = NAString().settings()
+            self.navigationController?.pushViewController(dv4, animated: true)
             mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().logout() {
             self.logoutAction()
