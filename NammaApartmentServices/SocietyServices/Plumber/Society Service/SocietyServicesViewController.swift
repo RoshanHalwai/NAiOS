@@ -42,6 +42,7 @@ class SocietyServicesViewController: NANavigationViewController {
     var garbageString : String?
     var btn_Hour_String = String()
     var btn_problem = String()
+    var btn_GarbageProblem = String()
     
     
     //Garbage array of buttons for color changing purpose
@@ -240,6 +241,7 @@ class SocietyServicesViewController: NANavigationViewController {
     }
     //Create Button garbage Function
     @IBAction func btnSelectGarbageFunction(_ sender: UIButton) {
+        btn_GarbageProblem = (sender.titleLabel?.text)!
         selectedGarbageColor(tag: sender.tag)
     }
     //Calling SelectAny Button Function
@@ -273,13 +275,20 @@ extension SocietyServicesViewController {
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child((navTitle?.lowercased())!).child(notificationUID).setValue(NAString().gettrue())
         
+        var problem = String()
+        if (navTitle == garbageString) {
+            problem = btn_GarbageProblem
+        } else {
+            problem = btn_problem
+        }
+        
         let societyServiceNotificationData = [
-            NASocietyServicesFBKeys.problem.key : btn_problem,
-            NASocietyServicesFBKeys.timeSlot.key : btn_Hour_String,
-            NASocietyServicesFBKeys.userUID.key: userUID,
-            NASocietyServicesFBKeys.societyServiceType.key : navTitle?.lowercased(),
-            NASocietyServicesFBKeys.notificationUID.key : notificationUID,
-            NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
+        NASocietyServicesFBKeys.problem.key : problem,
+        NASocietyServicesFBKeys.timeSlot.key : btn_Hour_String,
+        NASocietyServicesFBKeys.userUID.key: userUID,
+        NASocietyServicesFBKeys.societyServiceType.key : navTitle?.lowercased(),
+        NASocietyServicesFBKeys.notificationUID.key : notificationUID,
+        NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
         
         societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData) { (error, snapshot) in
             //Storing Current System time in milli seconds for time stamp.
