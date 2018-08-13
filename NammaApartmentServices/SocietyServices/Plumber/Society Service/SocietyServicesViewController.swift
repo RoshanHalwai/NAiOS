@@ -158,6 +158,7 @@ class SocietyServicesViewController: NANavigationViewController {
     @objc func gotoSocietyServiceHistoryVC() {
         let dv = NAViewPresenter().societyServiceHistoryVC()
         dv.titleName = NAString().history().capitalized
+        dv.navigationTitle = navTitle!
         self.navigationController?.pushViewController(dv, animated: true)
     }
     
