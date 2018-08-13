@@ -184,6 +184,7 @@ extension RescheduleMyGuestListViewController {
         
         //Here Post the Value using NotificationCenter
         NotificationCenter.default.post(name: Notification.Name("refreshRescheduledData"), object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

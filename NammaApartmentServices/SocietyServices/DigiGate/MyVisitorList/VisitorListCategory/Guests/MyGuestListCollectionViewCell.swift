@@ -26,6 +26,7 @@ class MyGuestListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_InvitedName: UILabel!
     @IBOutlet weak var lbl_Invitor: UILabel!
     @IBOutlet weak var btn_Reschedule: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var lbl_Call: UILabel!
     @IBOutlet weak var lbl_Message: UILabel!
