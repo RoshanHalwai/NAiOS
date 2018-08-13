@@ -283,12 +283,12 @@ extension SocietyServicesViewController {
         }
         
         let societyServiceNotificationData = [
-        NASocietyServicesFBKeys.problem.key : problem,
-        NASocietyServicesFBKeys.timeSlot.key : btn_Hour_String,
-        NASocietyServicesFBKeys.userUID.key: userUID,
-        NASocietyServicesFBKeys.societyServiceType.key : navTitle?.lowercased(),
-        NASocietyServicesFBKeys.notificationUID.key : notificationUID,
-        NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
+            NASocietyServicesFBKeys.problem.key : problem,
+            NASocietyServicesFBKeys.timeSlot.key : btn_Hour_String,
+            NASocietyServicesFBKeys.userUID.key: userUID,
+            NASocietyServicesFBKeys.societyServiceType.key : navTitle?.lowercased(),
+            NASocietyServicesFBKeys.notificationUID.key : notificationUID,
+            NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
         
         societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData) { (error, snapshot) in
             //Storing Current System time in milli seconds for time stamp.
