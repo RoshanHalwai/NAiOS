@@ -63,8 +63,10 @@ class RaiseAlarmViewController: NANavigationViewController {
                 emergencyType = NAString().medical()
             } else if self.titleName == NAString().raise_Fire_Alarm_Title() {
                 emergencyType = NAString().fire()
-            } else {
+            } else if self.titleName == NAString().raise_Theft_Alarm_Title() {
                 emergencyType = NAString().theft()
+            } else {
+                emergencyType = NAString().water()
             }
             
             //defining node with type of data in it.
