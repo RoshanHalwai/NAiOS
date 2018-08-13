@@ -116,11 +116,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
-        
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        print(userInfo)
         
         // Change this to your preferred presentation option
         completionHandler([.alert ,.badge ,.sound])
@@ -134,36 +132,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-    
+        
+        //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
+        let guestType = userInfo[Constants.FIREBASE_CHILD_VISITOR_TYPE] as? String
+        let guestUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
+        
         //Here we are performing Action on Notification Buttons & We created this buttons in  "setActionCategories" function.
         if response.notification.request.content.categoryIdentifier ==
             NAString().notificationActionCategory() {
             
-            //Getting Post Approved visitor's UID for accepting or rejecting the request.
-             let postApprVisitorUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
-           
             //Created Firebase reference to get currently invited visitor by E-Intercom
-            var visitorGateNotificationRef : DatabaseReference?
-            visitorGateNotificationRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID).child(Constants.FIREBASE_CHILD_GUESTS).child(postApprVisitorUID!)
-        
+            var gateNotificationRef : DatabaseReference?
+            gateNotificationRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID).child(guestType!).child(guestUID!)
+            
             //Performing accept & reject on click of recently invited visitor by E-Intercom from Notification view.
             switch response.actionIdentifier {
                 
-                //If Accept button will pressed
+            //If Accept button will pressed
             case NAString().notificationAcceptIdentifier():
-                visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().accepted())
+                gateNotificationRef?.child(NAString().status()).setValue(NAString().accepted())
                 break
                 
-                 //If Reject button will pressed
+            //If Reject button will pressed
             case NAString().notificationRejectIdentifier():
-                 visitorGateNotificationRef?.child(NAString().status()).setValue(NAString().rejected())
+                gateNotificationRef?.child(NAString().status()).setValue(NAString().rejected())
                 break
                 
             default:
                 break
             }
         }
-        print(userInfo)
         completionHandler()
     }
     
