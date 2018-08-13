@@ -821,6 +821,19 @@ class NAString : NSObject {
         return String ("Tap on bell icon to create alert")
     }
     
+    func medicalEmergency_Title() -> String {
+        return String("Medical Emergency")
+    }
+    func raise_Fire_Alarm_Title() -> String {
+        return String("Raise Fire Alarm")
+    }
+    func raise_Theft_Alarm_Title() -> String {
+        return String("Raise Theft Alarm")
+    }
+    func raise_water_Alarm_Title() -> String {
+        return String("Raise Water Alarm")
+    }
+    
     func emergency_alert_Title() -> String {
         return String("Emergency Alert")
     }
@@ -833,17 +846,6 @@ class NAString : NSObject {
         return String ("Emergency alarm raised")
     }
     
-    func medical_emergency_Title() -> String {
-        return String ("Medical Emergency")
-    }
-    
-    func raise_Fire_Alarm_Title() -> String {
-        return String ("Raise Fire Alarm")
-    }
-    
-    func raise_Theft_Alarm_Title() -> String {
-        return String ("Raise Theft Alarm")
-    }
     func medical() -> String {
         return String("Medical")
     }
@@ -852,6 +854,9 @@ class NAString : NSObject {
     }
     func theft() -> String {
         return String("Theft")
+    }
+    func water() -> String {
+        return String("Water")
     }
     
     //Edit My daily services
