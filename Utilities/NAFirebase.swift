@@ -19,6 +19,9 @@ class NAFirebase {
                 let image = UIImage(data: data!)
                 DispatchQueue.main.async(execute: { () -> Void in
                     imageView.image = image
+                    
+                    //Here Post the Value using NotificationCenter
+                    NotificationCenter.default.post(name: Notification.Name("CallBack"), object: nil)
                 })
             }
         }).resume()

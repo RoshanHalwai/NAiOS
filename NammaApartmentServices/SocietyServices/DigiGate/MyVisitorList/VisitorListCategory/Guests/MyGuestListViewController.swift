@@ -22,6 +22,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
+    var isActivityIndicatorRunning = false
     
     //A boolean variable to indicate if previous screen was Expecting Arrival.
     var fromInvitingVisitorsVC = false
@@ -45,6 +46,15 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData(notification:)), name: Notification.Name("refreshRescheduledData"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+    }
+    
+    //Create image Handle  Function
+    @objc func imageHandle(notification: Notification) {
+        DispatchQueue.main.async {
+            self.isActivityIndicatorRunning = true
+            self.collectionView.reloadData()
+        }
     }
     
     //Create Refresh Data Function
@@ -109,11 +119,15 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.lbl_MyVisitorDate.text = dateString
         cell.lbl_MyVisitorName.text = nammaApartmentVisitor.getfullName()
         cell.lbl_MyVisitorType.text = nammaApartmentVisitor.getstatus()
+        let queue = OperationQueue()
         
+        queue.addOperation {
         //Calling function to get Profile Image from Firebase.
         if let urlString = nammaApartmentVisitor.getprofilePhoto() {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
         }
+        }
+        queue.waitUntilAllOperationsAreFinished()
         
         /* We check if the inviters UID is equal to current UID if it is then we don't have to check in
          firebase since we now know that the inviter is current user.*/
@@ -130,6 +144,13 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                 let fullName = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
                 cell.lbl_InvitedName.text = fullName
             })
+        }
+        
+        if isActivityIndicatorRunning == false {
+            cell.activityIndicator.startAnimating()
+        } else if (isActivityIndicatorRunning == true) {
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.isHidden = true
         }
         
         NAShadowEffect().shadowEffect(Cell: cell)

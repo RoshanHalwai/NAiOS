@@ -33,6 +33,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     //A boolean variable to indicate if previous screen was Home Screen and My Sweet Home Screen.
     var fromHomeScreenVC = false
     var fromMySweetHomeScreenVC = false
+    var isActivityIndicatorRunning = false
     
     var navTitle = String()
     
@@ -86,6 +87,17 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+    }
+    
+    //Create image Handle  Function
+    @objc func imageHandle(notification: Notification) {
+        DispatchQueue.main.async {
+            self.isActivityIndicatorRunning = true
+            self.collectionView.reloadData()
+        }
     }
     
     //Navigating Back to Home Screen according to Screen coming from
@@ -131,9 +143,14 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         }
         cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
         
+        let queue = OperationQueue()
+        
+        queue.addOperation {
         if let urlString = flatMember.personalDetails.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
         }
+        }
+        queue.waitUntilAllOperationsAreFinished()
         
         /* - This creates the shadows and modifies the cards a little bit.
          - Creating round Image using Corner radius.
@@ -169,6 +186,13 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_Remove.text = NAString().remove()
         
         cell.btn_Remove.addTarget(self,action:#selector(deleteData), for:.touchUpInside)
+        
+        if isActivityIndicatorRunning == false {
+            cell.activityIndicator.startAnimating()
+        } else if (isActivityIndicatorRunning == true) {
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.isHidden = true
+        }
         
         cell.objEdit = {
             
