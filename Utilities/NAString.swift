@@ -260,6 +260,12 @@ class NAString : NSObject {
     func notice_board() -> String {
         return String("Notice Board")
     }
+    func logout_Confirmation_Title() -> String {
+        return String("LogOut Message")
+    }
+    func logout_Confirmation_Message() -> String {
+        return String("Are you sure you want to Log out?")
+    }
     
     func help() -> String {
         return String("Help")
