@@ -159,7 +159,11 @@ class SocietyServicesViewController: NANavigationViewController {
     @objc func gotoSocietyServiceHistoryVC() {
         let dv = NAViewPresenter().societyServiceHistoryVC()
         dv.titleName = NAString().history().capitalized
-        dv.navigationTitle = navTitle!
+        if navTitle == garbageString {
+            dv.navigationTitle = NAString().garbageManagement()
+        } else {
+            dv.navigationTitle = navTitle!.lowercased()
+        }
         self.navigationController?.pushViewController(dv, animated: true)
     }
     
@@ -270,23 +274,26 @@ extension SocietyServicesViewController {
     
     //Storing User requests of Society service Problems
     func storeSocietyServiceDetails() {
+        
+        var problem = String()
+        var serviceType = String()
+        if (navTitle == garbageString) {
+            problem = btn_GarbageProblem
+            serviceType = NAString().garbageManagement()
+        } else {
+            problem = btn_problem
+            serviceType = (navTitle?.lowercased())!
+        }
         let societyServiceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
         notificationUID = societyServiceNotificationRef.childByAutoId().key
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
-        userDataRef.child((navTitle?.lowercased())!).child(notificationUID).setValue(NAString().gettrue())
-        
-        var problem = String()
-        if (navTitle == garbageString) {
-            problem = btn_GarbageProblem
-        } else {
-            problem = btn_problem
-        }
+        userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         
         let societyServiceNotificationData = [
             NASocietyServicesFBKeys.problem.key : problem,
             NASocietyServicesFBKeys.timeSlot.key : btn_Hour_String,
             NASocietyServicesFBKeys.userUID.key: userUID,
-            NASocietyServicesFBKeys.societyServiceType.key : navTitle?.lowercased(),
+            NASocietyServicesFBKeys.societyServiceType.key : serviceType,
             NASocietyServicesFBKeys.notificationUID.key : notificationUID,
             NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
         

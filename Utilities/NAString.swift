@@ -366,6 +366,9 @@ class NAString : NSObject {
     func garbage_management() -> String {
         return String("Garbage Management")
     }
+    func garbageManagement() -> String {
+        return String("garbageManagement")
+    }
     
     func event_management() -> String
     {
