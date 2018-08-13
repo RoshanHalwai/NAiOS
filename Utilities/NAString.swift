@@ -249,6 +249,14 @@ class NAString : NSObject {
         return String("My Family Members")
     }
     
+    func my_vehicles() -> String {
+        return String("My Vehicles")
+    }
+    
+    func my_guards() -> String {
+        return String("My Guards")
+    }
+    
     func notice_board() -> String {
         return String("Notice Board")
     }
@@ -1131,6 +1139,14 @@ class NAString : NSObject {
         return String ("Select Problem")
     }
     
+    func addVehicle() -> String {
+        return String ("ADD VEHICLE")
+    }
+    
+    func addMyVehicles() -> String {
+        return String ("Add My Vehicles")
+    }
+    
     func societyService() -> String {
         return String ("Society Services")
     }
@@ -1186,5 +1202,22 @@ class NAString : NSObject {
     
     func notificationActionCategory() -> String {
         return ("actionCategory")
+    }
+    
+    //Add My Vehicles
+    func car() -> String {
+        return ("Car")
+    }
+    
+    func bike() -> String {
+        return ("Bike")
+    }
+    
+    func please_Select_Atleast_OneButton() -> String {
+        return ("Please Select Atleast One Button")
+    }
+    
+    func please_Enter_Vehicle_Number() -> String {
+        return ("Please Enter Vehicle Number")
     }
 }
