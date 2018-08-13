@@ -261,10 +261,10 @@ class NAString : NSObject {
         return String("Notice Board")
     }
     func logout_Confirmation_Title() -> String {
-        return String("LogOut Message")
+        return String("Logout Message")
     }
     func logout_Confirmation_Message() -> String {
-        return String("Are you sure you want to Log out?")
+        return String("Are you sure you want to logout?")
     }
     
     func help() -> String {
