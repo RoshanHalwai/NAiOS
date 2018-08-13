@@ -206,4 +206,19 @@ class NAViewPresenter: NSObject {
     func apartmentServiceCookVC() -> CookViewController {
         return storyBoard.instantiateViewController(withIdentifier: "apartmentServiceCookVC") as! CookViewController
     }
+    
+    //Create My Vehicles Screen
+    func myVehiclesVC() -> MyVehiclesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myVehiclesVC") as! MyVehiclesViewController
+    }
+    
+    //Create My Guards Screen
+    func myGuardsVC() -> MyGuardsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myGuardsVC") as! MyGuardsViewController
+    }
+    
+    //Create Add My Vehicles Screen
+    func addMyVehiclesVC() -> AddMyVehiclesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "addMyVehiclesVC") as! AddMyVehiclesViewController
+    }
 }
