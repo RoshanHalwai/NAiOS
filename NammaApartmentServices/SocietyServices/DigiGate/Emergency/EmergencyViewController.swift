@@ -10,7 +10,7 @@ import UIKit
 
 class EmergencyViewController: NANavigationViewController, UICollectionViewDelegate,UICollectionViewDataSource{
     
-    var ImageList = [#imageLiteral(resourceName: "hospital"),#imageLiteral(resourceName: "flame"),#imageLiteral(resourceName: "alarm"),#imageLiteral(resourceName: "water alarm")]
+    var ImageList = [#imageLiteral(resourceName: "Medical Alarm"), #imageLiteral(resourceName: "Fire Alarm"), #imageLiteral(resourceName: "Theft Alarm"), #imageLiteral(resourceName: "Water Alarm")]
     var EmergencyList = [NAString().medicalEmergency_Title(), NAString().raise_Fire_Alarm_Title(), NAString().raise_Theft_Alarm_Title(), NAString().raise_water_Alarm_Title()]
     
     override func viewDidLoad() {
