@@ -1090,6 +1090,10 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no daily service at your flat.")
     }
     
+    func societyServiceNotAvailable() -> String {
+        return String("Sorry you cannot use this feature since currently there has not been any Society Service at your flat so far.")
+    }
+    
     func verifyingOTPDescription() -> String {
         return String ("Verifying Account")
     }
