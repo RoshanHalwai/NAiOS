@@ -3030,13 +3030,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="g5E-aY-SeO">
-                                        <rect key="frame" x="20" y="55.5" width="315" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="g5E-aY-SeO">
+                                        <rect key="frame" x="20" y="55.5" width="315" height="39"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNh-dh-fo2">
-                                                <rect key="frame" x="0.0" y="0.0" width="155" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="155.5" height="39"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="KgC-yx-tKm"/>
+                                                    <constraint firstAttribute="height" constant="39" id="Ojw-Vv-eUR"/>
                                                 </constraints>
                                                 <state key="normal" title="Bike">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3046,9 +3046,9 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zW2-X9-kOi">
-                                                <rect key="frame" x="160" y="0.0" width="155" height="30"/>
+                                                <rect key="frame" x="159.5" y="0.0" width="155.5" height="39"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="wVJ-0u-yCT"/>
+                                                    <constraint firstAttribute="height" constant="39" id="CMX-92-eag"/>
                                                 </constraints>
                                                 <state key="normal" title="Car">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3060,13 +3060,13 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vehicle Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNF-vo-tHx">
-                                        <rect key="frame" x="20" y="126" width="315" height="20.5"/>
+                                        <rect key="frame" x="20" y="135" width="315" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JRi-aD-Jd5">
-                                        <rect key="frame" x="20" y="166.5" width="315" height="30"/>
+                                        <rect key="frame" x="20" y="175.5" width="315" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="KA" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SZb-E9-tXd">
                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="30"/>
@@ -3075,7 +3075,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="alphabet"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="YKs-pt-tOl" id="7td-RZ-fQC"/>
                                                 </connections>
@@ -3099,7 +3099,7 @@
                                                 </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="alphabet"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="YKs-pt-tOl" id="qLc-Sa-NAX"/>
                                                 </connections>
@@ -3119,23 +3119,26 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select One Vehicle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWM-NS-Lcb">
-                                        <rect key="frame" x="20" y="90.5" width="315" height="20.5"/>
+                                        <rect key="frame" x="20" y="99.5" width="315" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Vehicle Number" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvq-A2-Ljt">
-                                        <rect key="frame" x="20" y="201.5" width="315" height="20.5"/>
+                                        <rect key="frame" x="20" y="210.5" width="315" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cW7-p6-yur">
-                                        <rect key="frame" x="20" y="247" width="315" height="39"/>
+                                        <rect key="frame" x="20" y="256" width="315" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="39" id="0ld-Sa-KUR"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="addVehicleButtonAction" destination="YKs-pt-tOl" eventType="touchUpInside" id="vzU-Gx-6Cb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3183,10 +3186,10 @@
                         <outlet property="lbl_VehicleNumber_Validation" destination="yvq-A2-Ljt" id="Q6p-kV-weg"/>
                         <outlet property="lbl_VehicleType" destination="2K7-nc-Pd3" id="hY3-ds-9up"/>
                         <outlet property="lbl_VehicleType_Validation" destination="FWM-NS-Lcb" id="pSw-8B-yoK"/>
-                        <outlet property="txt_CabRtoNumber" destination="SZb-E9-tXd" id="u1T-nf-zh9"/>
-                        <outlet property="txt_CabSerialNumberOne" destination="KJ5-fP-It1" id="knl-o2-Tcw"/>
-                        <outlet property="txt_CabSerialNumberTwo" destination="8sE-v6-JXj" id="g74-Mj-ChI"/>
-                        <outlet property="txt_CabStateCode" destination="Ze6-oE-Cix" id="Usa-wO-W45"/>
+                        <outlet property="txt_CabRtoNumber" destination="KJ5-fP-It1" id="UNH-aO-FGt"/>
+                        <outlet property="txt_CabSerialNumberOne" destination="8sE-v6-JXj" id="pnM-UK-2Uq"/>
+                        <outlet property="txt_CabSerialNumberTwo" destination="Ze6-oE-Cix" id="Tl9-EU-anp"/>
+                        <outlet property="txt_CabStateCode" destination="SZb-E9-tXd" id="P0M-yW-Y1W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBt-L5-wo0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -7064,8 +7067,8 @@
         <image name="checked" width="64" height="64"/>
         <image name="downmenu" width="30" height="30"/>
         <image name="kidImage" width="1600" height="1000"/>
-        <image name="motorCycle" width="64" height="64"/>
-        <image name="policeman" width="64" height="64"/>
+        <image name="motorCycle" width="256" height="256"/>
+        <image name="policeman" width="256" height="256"/>
         <image name="splashScreen" width="205" height="159"/>
         <image name="whatsapp" width="32" height="32"/>
     </resources>

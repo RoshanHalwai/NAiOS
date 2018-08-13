@@ -1217,11 +1217,15 @@ class NAString : NSObject {
         return ("Bike")
     }
     
-    func please_Select_Atleast_OneButton() -> String {
-        return ("Please Select Atleast One Button")
-    }
-    
     func please_Enter_Vehicle_Number() -> String {
         return ("Please Enter Vehicle Number")
+    }
+    
+    func addVehicle_AlertMessage() -> String {
+        return ("You have successfully added your Vehicle.")
+    }
+    
+    func addVehicle_AlertTitle() -> String {
+        return ("Vehicle Added Message")
     }
 }

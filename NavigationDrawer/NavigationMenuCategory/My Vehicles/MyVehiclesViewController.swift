@@ -16,7 +16,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     var navTitle = String()
     
     //TODO: Feature Added Firebase Data
-    var vehiclesImagesArray = ["motorCycle.png","car.png"]
+    var vehiclesImagesArray = ["motorCycle","car"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

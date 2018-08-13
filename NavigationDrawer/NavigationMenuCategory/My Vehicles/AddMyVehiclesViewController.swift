@@ -80,6 +80,12 @@ class AddMyVehiclesViewController: NANavigationViewController {
         btn_AddVehicle.backgroundColor = NAColor().buttonBgColor()
         btn_AddVehicle.titleLabel?.font = NAFont().buttonFont()
         
+        //set tag values to textFields
+        txt_CabStateCode.tag = 1
+        txt_CabRtoNumber.tag = 2
+        txt_CabSerialNumberOne.tag = 3
+        txt_CabSerialNumberTwo.tag = 4
+        
         //set tag values to buttons
         btn_Bike.tag = 1
         btn_Car.tag = 2
@@ -101,11 +107,85 @@ class AddMyVehiclesViewController: NANavigationViewController {
         
     }
     
+    @IBAction func btnSelectVehicles(_ sender: UIButton) {
+        selectedVehicleColor(tag: sender.tag)
+        lbl_VehicleType_Validation.isHidden = true
+    }
+    
+    @IBAction func addVehicleButtonAction() {
+        if (txt_CabStateCode.text?.isEmpty)! {
+            txt_CabStateCode.redunderlined()
+        } else {
+            lbl_VehicleNumber_Validation.isHidden = true
+            txt_CabStateCode.underlined()
+        }
+        if (txt_CabRtoNumber.text?.isEmpty)! {
+            txt_CabRtoNumber.redunderlined()
+        } else {
+            lbl_VehicleNumber_Validation.isHidden = true
+            txt_CabRtoNumber.underlined()
+        }
+        if (txt_CabSerialNumberOne.text?.isEmpty)! {
+            txt_CabSerialNumberOne.redunderlined()
+        } else {
+            lbl_VehicleNumber_Validation.isHidden = true
+            txt_CabSerialNumberOne.underlined()
+        }
+        if (txt_CabSerialNumberTwo.text?.isEmpty)! {
+            txt_CabSerialNumberTwo.redunderlined()
+        } else {
+            lbl_VehicleNumber_Validation.isHidden = true
+            txt_CabSerialNumberTwo.underlined()
+        }
+        if !(txt_CabStateCode.text?.isEmpty)! &&  !(txt_CabRtoNumber.text?.isEmpty)! && !(txt_CabSerialNumberOne.text?.isEmpty)! && !(txt_CabSerialNumberTwo.text?.isEmpty)! {
+            lbl_VehicleNumber_Validation.isHidden = true
+        } else {
+            lbl_VehicleNumber_Validation.isHidden = false
+            lbl_VehicleNumber_Validation.text = NAString().please_Enter_Vehicle_Number()
+        }
+        if (isValidVehicleButtonClicked.index(of: true) == nil) {
+            lbl_VehicleType_Validation.isHidden = false
+            lbl_VehicleType_Validation.text = NAString().Please_select_expected_Hours()
+        }
+        if !(txt_CabStateCode.text?.isEmpty)! &&  !(txt_CabRtoNumber.text?.isEmpty)! && !(txt_CabSerialNumberOne.text?.isEmpty)! && !(txt_CabSerialNumberTwo.text?.isEmpty)! &&  (isValidVehicleButtonClicked.index(of: true) != nil) {
+             inviteAlertView()
+        }
+    }
+    
+    //AlertView For navigation
+    func inviteAlertView() {
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().addVehicle_AlertTitle() , message: NAString().addVehicle_AlertMessage(), preferredStyle: .alert)
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+                let lv = NAViewPresenter().myVehiclesVC()
+                 lv.navTitle = NAString().my_vehicles()
+                self.navigationController?.pushViewController(lv, animated: true)
+            }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    //creating function to highlight garbage button color
+    func selectedVehicleColor(tag: Int) {
+        for button in vehicleButtons as [UIButton] {
+            isValidVehicleButtonClicked = [true]
+            if button.tag == tag {
+                button.isSelected = true
+            } else {
+                button.isSelected = false
+            }
+            let color = button.isSelected ? NAColor().buttonFontColor() : UIColor.white
+            button.backgroundColor = color
+            button.tintColor = color
+        }
+    }
+    
     // Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
     func vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: Int) -> Bool{
         if (isVehicleNumberLength >= 2) {
             return true
-        }else{
+        } else {
             return false
         }
     }
@@ -113,7 +193,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
     func vehicleSerialNumberLength(isVehicleSerialNumberLength: Int) -> Bool {
         if (isVehicleSerialNumberLength >= 4) {
             return true
-        }else{
+        } else {
             return false
         }
     }
@@ -153,6 +233,9 @@ class AddMyVehiclesViewController: NANavigationViewController {
         }
         return true
     }
+}
+
+extension AddMyVehiclesViewController {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
@@ -210,26 +293,6 @@ class AddMyVehiclesViewController: NANavigationViewController {
             }
             return vehicle_New_TextLength <= 4
         }
-        return true
-    }
-    
-    @IBAction func btnSelectVehicles(_ sender: UIButton) {
-        //Getting Button Text
-        selectedVehicleColor(tag: sender.tag)
-    }
-    
-    //creating function to highlight garbage button color
-    func selectedVehicleColor(tag: Int) {
-        for button in vehicleButtons as [UIButton] {
-            isValidVehicleButtonClicked = [true]
-            if button.tag == tag {
-                button.isSelected = true
-            } else {
-                button.isSelected = false
-            }
-            let color = button.isSelected ? NAColor().buttonFontColor() : UIColor.white
-            button.backgroundColor = color
-            button.tintColor = color
-        }
+        return false
     }
 }
