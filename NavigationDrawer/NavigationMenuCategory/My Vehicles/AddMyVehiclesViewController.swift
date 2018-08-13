@@ -49,6 +49,10 @@ class AddMyVehiclesViewController: NANavigationViewController {
         txt_CabSerialNumberOne.font = NAFont().textFieldFont()
         txt_CabSerialNumberTwo.font = NAFont().textFieldFont()
         
+        //Label formatting & setting
+        lbl_VehicleType.font = NAFont().headerFont()
+        lbl_VehicleNumber.font = NAFont().headerFont()
+        
         //for changing Vehicle buttons color
         vehicleButtons.removeAll()
         vehicleButtons.append(btn_Bike)
@@ -97,23 +101,20 @@ class AddMyVehiclesViewController: NANavigationViewController {
         
     }
     
-    @IBAction func btnSelectVehicles(_ sender: UIButton) {
-        //Getting Button Text
-        selectedVehicleColor(tag: sender.tag)
+    // Creating CabStateCodeAndSerailCodeLength Validation and cabSerialNumberLength Validation
+    func vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: Int) -> Bool{
+        if (isVehicleNumberLength >= 2) {
+            return true
+        }else{
+            return false
+        }
     }
     
-    //creating function to highlight garbage button color
-    func selectedVehicleColor(tag: Int) {
-        for button in vehicleButtons as [UIButton] {
-            isValidVehicleButtonClicked = [true]
-            if button.tag == tag {
-                button.isSelected = true
-            } else {
-                button.isSelected = false
-            }
-            let color = button.isSelected ? NAColor().buttonFontColor() : UIColor.white
-            button.backgroundColor = color
-            button.tintColor = color
+    func vehicleSerialNumberLength(isVehicleSerialNumberLength: Int) -> Bool {
+        if (isVehicleSerialNumberLength >= 4) {
+            return true
+        }else{
+            return false
         }
     }
     
@@ -151,5 +152,84 @@ class AddMyVehiclesViewController: NANavigationViewController {
             return false
         }
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true}
+        let vehicle_New_TextLength = text.utf16.count + string.utf16.count - range.length
+        if textField == txt_CabStateCode {
+            if (vehicle_New_TextLength == NAString().zero_length()) {
+                txt_CabStateCode.redunderlined()
+            } else {
+                lbl_VehicleNumber_Validation.isHidden = true
+                txt_CabStateCode.underlined()
+            }
+            if shouldChangeCustomCharacters(textField: textField, string: string) {
+                if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
+                    return vehicle_New_TextLength <= 2
+                }
+                return true
+            }
+        }
+        if textField == txt_CabRtoNumber {
+            if (vehicle_New_TextLength == NAString().zero_length()) {
+                txt_CabRtoNumber.redunderlined()
+            } else {
+                lbl_VehicleNumber_Validation.isHidden = true
+                txt_CabRtoNumber.underlined()
+            }
+            if shouldChangeCustomCharacters(textField: textField, string: string) {
+                if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
+                    return vehicle_New_TextLength <= 2
+                }
+                return true
+            }
+        }
+        if textField == txt_CabSerialNumberOne {
+            if (vehicle_New_TextLength == NAString().zero_length()) {
+                txt_CabSerialNumberOne.redunderlined()
+            } else {
+                lbl_VehicleNumber_Validation.isHidden = true
+                txt_CabSerialNumberOne.underlined()
+            }
+            if shouldChangeCustomCharacters(textField: textField, string: string) {
+                if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
+                    return vehicle_New_TextLength <= 2
+                }
+                return true
+            }
+        }
+        if textField == txt_CabSerialNumberTwo {
+            if vehicleSerialNumberLength(isVehicleSerialNumberLength: vehicle_New_TextLength) {
+                if (vehicle_New_TextLength == NAString().zero_length()) {
+                    txt_CabSerialNumberTwo.redunderlined()
+                } else {
+                    lbl_VehicleNumber_Validation.isHidden = true
+                    txt_CabSerialNumberTwo.underlined()
+                }
+            }
+            return vehicle_New_TextLength <= 4
+        }
+        return true
+    }
+    
+    @IBAction func btnSelectVehicles(_ sender: UIButton) {
+        //Getting Button Text
+        selectedVehicleColor(tag: sender.tag)
+    }
+    
+    //creating function to highlight garbage button color
+    func selectedVehicleColor(tag: Int) {
+        for button in vehicleButtons as [UIButton] {
+            isValidVehicleButtonClicked = [true]
+            if button.tag == tag {
+                button.isSelected = true
+            } else {
+                button.isSelected = false
+            }
+            let color = button.isSelected ? NAColor().buttonFontColor() : UIColor.white
+            button.backgroundColor = color
+            button.tintColor = color
+        }
     }
 }
