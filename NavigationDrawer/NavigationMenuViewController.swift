@@ -94,13 +94,16 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
     }
     //To Logout the current user
     @objc func logoutAction() {
-        let preferences = UserDefaults.standard
-        let currentLevelKey = "USERUID"
-        preferences.removeObject(forKey: currentLevelKey)
-        if self.storyboard != nil {
-            let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
-            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-            self.present(NavLogin, animated: true)
-        }
+        //Logout Confirmation Alert
+        NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().logout_Confirmation_Title(), Message: NAString().logout_Confirmation_Message(), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+            let preferences = UserDefaults.standard
+            let currentLevelKey = "USERUID"
+            preferences.removeObject(forKey: currentLevelKey)
+            if self.storyboard != nil {
+                let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
+                let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
+                self.present(NavLogin, animated: true)
+            }
+        }, Cancel: { (action) in}, cancelActionTitle: NAString().no(), okActionTitle: NAString().yes())
     }
 }
