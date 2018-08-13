@@ -75,7 +75,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         userDataRef.observeSingleEvent(of: .value) { (snapshot) in
             if snapshot.exists() {
                 
-                userDataRef.child(self.navigationTitle.lowercased()).observeSingleEvent(of: .value, with: { (UIDSnapshot) in
+                userDataRef.child(self.navigationTitle).observeSingleEvent(of: .value, with: { (UIDSnapshot) in
                     
                     if UIDSnapshot.exists() {
                         let notificationsUID = UIDSnapshot.value as! NSDictionary

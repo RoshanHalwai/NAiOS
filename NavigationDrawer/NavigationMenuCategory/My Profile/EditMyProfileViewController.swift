@@ -24,7 +24,8 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_EmailId: UITextField!
     @IBOutlet weak var txt_Flat_Admin: UITextField!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
     @IBOutlet weak var update_btn: UIButton!
     
     @IBOutlet weak var opacity_View: UIView!
@@ -56,6 +57,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+        
         //Hiding Keyboard on click of FlatAdmin textFiled
         txt_Flat_Admin.inputView = UIView()
         imagePickerController.delegate = self
@@ -76,10 +80,15 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             self.existedEmail = self.txt_EmailId.text
             let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
             
+            let queue = OperationQueue()
+            
+            queue.addOperation {
             //Calling function to get Profile Image from Firebase.
-            if let urlString = profilePhoto {
+             if let urlString = profilePhoto {
                 NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: self.profile_Image)
+             }
             }
+            queue.waitUntilAllOperationsAreFinished()
         })
         txt_Name.underlined()
         txt_EmailId.underlined()
@@ -146,6 +155,14 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         //Implemented to get data content size to change height based on data
         self.table_View.addObserver(self, forKeyPath: NAString().tableView_Content_size(), options: NSKeyValueObservingOptions.new, context: nil)
     }
+    
+    //Create image Handle  Function
+    @objc func imageHandle(notification: Notification) {
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = true
+        }
+    }
+    
     //For Resizing TableView based on content
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         table_View.layer.removeAllAnimations()

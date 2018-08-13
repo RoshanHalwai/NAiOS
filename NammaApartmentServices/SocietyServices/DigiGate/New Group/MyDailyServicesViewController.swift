@@ -35,6 +35,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     let picker = UIDatePicker()
     
     var fromAddMyDailyServicesVC = false
+    var isActivityIndicatorRunning = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -68,6 +69,17 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigiGate))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+    }
+    
+    //Create image Handle  Function
+    @objc func imageHandle(notification: Notification) {
+        DispatchQueue.main.async {
+            self.isActivityIndicatorRunning = true
+            self.collectionView.reloadData()
+        }
     }
     
     /* - For navigating back to My Digi Gate VC.
@@ -170,10 +182,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = DSList.getStatus()
         cell.lbl_MyDailyServicesFlats.text = "\(DSList.getNumberOfFlats())"
         cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
+        let queue = OperationQueue()
         
+        queue.addOperation {
         if let urlString = DSList.profilePhoto {
             NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
         }
+        }
+        queue.waitUntilAllOperationsAreFinished()
         
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0
@@ -216,6 +232,13 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_myDailyFlats.text = NAString().flats()
         cell.lbl_myDailyTime.text = NAString().status().capitalized
         cell.lbl_myDailyRating.text = NAString().rating()
+        
+        if isActivityIndicatorRunning == false {
+            cell.activityIndicator.startAnimating()
+        } else if (isActivityIndicatorRunning == true) {
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.isHidden = true
+        }
         
         cell.index = indexPath
         cell.delegate = self

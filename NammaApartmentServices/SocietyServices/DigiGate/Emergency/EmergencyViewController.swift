@@ -10,8 +10,8 @@ import UIKit
 
 class EmergencyViewController: NANavigationViewController, UICollectionViewDelegate,UICollectionViewDataSource{
     
-    var ImageList = [#imageLiteral(resourceName: "hospital"),#imageLiteral(resourceName: "flame"),#imageLiteral(resourceName: "alarm")]
-    var EmergencyList = ["Medical Emergency","Raise Fire Alarm","Raise Theft Alarm"]
+    var ImageList = [#imageLiteral(resourceName: "Medical Alarm"), #imageLiteral(resourceName: "Fire Alarm"), #imageLiteral(resourceName: "Theft Alarm"), #imageLiteral(resourceName: "Water Alarm")]
+    var EmergencyList = [NAString().medicalEmergency_Title(), NAString().raise_Fire_Alarm_Title(), NAString().raise_Theft_Alarm_Title(), NAString().raise_water_Alarm_Title()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EmergencyCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! EmergencyCollectionViewCell
         
         cell.cellImage.image = ImageList[indexPath.row]
         cell.cellLabel.text = EmergencyList[indexPath.row]
@@ -44,7 +44,7 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         case 0:
             let lv = NAViewPresenter().raiseAlarmVC()
             self.navigationController?.pushViewController(lv, animated: true)
-            lv.titleName = NAString().medical_emergency_Title().capitalized
+            lv.titleName = NAString().medicalEmergency_Title().capitalized
             
         case 1:
             let lv1 = NAViewPresenter().raiseAlarmVC()
@@ -55,6 +55,11 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
             let lv2 = NAViewPresenter().raiseAlarmVC()
             self.navigationController?.pushViewController(lv2, animated: true)
             lv2.titleName = NAString().raise_Theft_Alarm_Title().capitalized
+            
+        case 3:
+            let lv3 = NAViewPresenter().raiseAlarmVC()
+            lv3.titleName = NAString().raise_water_Alarm_Title().capitalized
+            self.navigationController?.pushViewController(lv3, animated: true)
             
         default:
             break
