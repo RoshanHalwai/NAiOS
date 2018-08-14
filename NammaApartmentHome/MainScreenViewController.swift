@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import HCSStarRatingView
+import FirebaseMessaging
 
 class MainScreenViewController: NANavigationViewController {
     
@@ -369,11 +370,17 @@ extension MainScreenViewController {
     //Retrieving User's Data from firebase
     func retrieveUserData() {
         
+        //Created Token ID & Storing in Firebase
+        let token = Messaging.messaging().fcmToken
+   
+        var usersTokenRef : DatabaseReference?
+        usersTokenRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
+        usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
+        
         //Checking Users UID in Firebase under Users ->Private
         usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
-        
+    
         //Checking userData inside Users/Private
-        
         self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
             
             //If usersUID is Exists then retrievd all the data of user.

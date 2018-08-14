@@ -16,6 +16,10 @@ class NotificationSettingsViewController: NANavigationViewController, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Hiding History NavigationBar  RightBarButtonItem
+        navigationItem.rightBarButtonItem = nil
+        
         table_View.separatorStyle = .none
         super.ConfigureNavBarTitle(title: navTitle)
     }
