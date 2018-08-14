@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class SocietyServicesViewController: NANavigationViewController {
     
-    @IBOutlet weak var btn_SelectAny : UIButton?
+    @IBOutlet weak var txt_SelectAny: UITextField!
     @IBOutlet weak var btn_Immediately : UIButton!
     @IBOutlet weak var btn_9AMto12PM : UIButton!
     @IBOutlet weak var btn_12PMto3PM : UIButton!
@@ -22,6 +22,7 @@ class SocietyServicesViewController: NANavigationViewController {
     
     @IBOutlet weak var lbl_SelectProblem: UILabel!
     @IBOutlet weak var lbl_SelectSlot: UILabel!
+    @IBOutlet weak var lbl_ErrorValidation_Message: UILabel!
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var stackView: UIStackView!
@@ -52,7 +53,15 @@ class SocietyServicesViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.btn_SelectAny?.titleLabel?.text = btn_problem
+        self.txt_SelectAny.text = btn_problem
+        txt_SelectAny.underlined()
+        txt_SelectAny.inputView = UIView()
+        txt_SelectAny.delegate = self
+        txt_SelectAny.font = NAFont().textFieldFont()
+        
+        lbl_ErrorValidation_Message.font = NAFont().descriptionFont()
+        lbl_ErrorValidation_Message.isHidden = true
+        
         
         //Hiding the StackView
         garbageStackView.isHidden = true
@@ -183,7 +192,8 @@ class SocietyServicesViewController: NANavigationViewController {
     //Create Changing the SelectAny Button Titles Function
     func changingSelectAnyButtonTitles() {
         if (navTitle == garbageString) {
-            btn_SelectAny?.isHidden = true
+            txt_SelectAny.isHidden = true
+            lbl_ErrorValidation_Message.isHidden = true
             garbageStackView.isHidden = false
         } else {
             garbageStackView.isHidden = true
@@ -233,7 +243,7 @@ class SocietyServicesViewController: NANavigationViewController {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.btn_SelectAny?.titleLabel?.text = btn_problem
+        self.txt_SelectAny.text = btn_problem
     }
     
     //MARK : Create Button Actions
@@ -249,7 +259,9 @@ class SocietyServicesViewController: NANavigationViewController {
         selectedGarbageColor(tag: sender.tag)
     }
     //Calling SelectAny Button Function
-    @IBAction func btn_selectAnyOneAction() {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        lbl_ErrorValidation_Message.isHidden = true
+        txt_SelectAny.underlined()
         let searchVC = NAViewPresenter().societyServiceTableVC()
         let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
         searchVC.navigationTitle = NAString().selectAnyProblem()
@@ -262,11 +274,22 @@ class SocietyServicesViewController: NANavigationViewController {
         }
         searchVC.societyServiceVC = self
         self.navigationController?.present(nav, animated: true, completion: nil)
+        return true
     }
     
     //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
-        storeSocietyServiceDetails()
+        if navTitle == garbageString {
+            storeSocietyServiceDetails()
+        } else {
+            if (txt_SelectAny.text?.isEmpty)! {
+                txt_SelectAny.redunderlined()
+                lbl_ErrorValidation_Message.isHidden = false
+            } else {
+                lbl_ErrorValidation_Message.isHidden = true
+                storeSocietyServiceDetails()
+            }
+        }
     }
 }
 
