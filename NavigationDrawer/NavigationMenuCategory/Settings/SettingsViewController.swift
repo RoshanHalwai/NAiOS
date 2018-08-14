@@ -18,6 +18,9 @@ class SettingsViewController: NANavigationViewController, UICollectionViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Hiding History NavigationBar  RightBarButtonItem
+        navigationItem.rightBarButtonItem = nil
+        
         super.ConfigureNavBarTitle(title: navTitle)
         
         collection_View.delegate = self
