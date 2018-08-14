@@ -55,7 +55,7 @@ class MainScreenViewController: NANavigationViewController {
         menuButton.addTarget(self, action: #selector(NavigationMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
         
-        //Calling Retrieve Data Fuctions
+        /* Retrieve current Users UID*/
         self.retreiveUserUID()
         self.retrieveUserData()
         
@@ -384,7 +384,6 @@ extension MainScreenViewController {
                 
                 //Retrieving Navigation Data in Header
                 let societyName = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
-                print(societyName as Any)
                 let apartmentName = GlobalUserData.shared.flatDetails_Items.first?.getapartmentName()
                 let flatNumber = GlobalUserData.shared.flatDetails_Items.first?.getflatNumber()
                 
