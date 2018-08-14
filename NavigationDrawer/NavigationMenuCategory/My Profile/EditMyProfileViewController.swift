@@ -25,7 +25,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     @IBOutlet weak var txt_EmailId: UITextField!
     @IBOutlet weak var txt_Flat_Admin: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     @IBOutlet weak var update_btn: UIButton!
     
     @IBOutlet weak var opacity_View: UIView!
@@ -57,6 +57,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Hiding History NavigationBar  RightBarButtonItem
+        navigationItem.rightBarButtonItem = nil
+        
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
         
@@ -83,10 +86,10 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             let queue = OperationQueue()
             
             queue.addOperation {
-            //Calling function to get Profile Image from Firebase.
-             if let urlString = profilePhoto {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: self.profile_Image)
-             }
+                //Calling function to get Profile Image from Firebase.
+                if let urlString = profilePhoto {
+                    NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: self.profile_Image)
+                }
             }
             queue.waitUntilAllOperationsAreFinished()
         })
@@ -172,10 +175,10 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     func textFieldDidBeginEditing(_ textField: UITextField) {
         //On click of Flat Admin textField only Admin Can see the List of flat members.
         if textField == txt_Flat_Admin &&  GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
-            txt_Flat_Admin.resignFirstResponder()
             let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
             flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
                 if flatMembersUIDSnapshot.childrenCount == 1 {
+                    self.txt_Flat_Admin.resignFirstResponder()
                     NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), OkStyle: .default, OK: { (action) in })
                 } else {
                     let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
