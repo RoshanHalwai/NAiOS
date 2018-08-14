@@ -58,7 +58,6 @@ class MainScreenViewController: NANavigationViewController {
         //Calling Retrieve Data Fuctions
         self.retreiveUserUID()
         self.retrieveUserData()
-        self.retrieveFlatDetails()
         
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
@@ -109,25 +108,6 @@ class MainScreenViewController: NANavigationViewController {
         opacity_View.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         self.opacity_View.addGestureRecognizer(tapGesture)
-    }
-    
-    //Here Retrieving FlatDetails
-    func retrieveFlatDetails() {
-        let userDataRef = Database.database().reference().child(Constants.FIREBASE_USER)
-            .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FLATDETAILS)
-        userDataRef.keepSynced(true)
-        //Adding observe event to each of user UID
-        userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
-            if userDataSnapshot.exists() {
-                let usersData = userDataSnapshot.value as! NSDictionary
-                let societyName = (usersData[UserFlatListFBKeys.societyName.key] as? String)!
-                let apartmentName = (usersData[UserFlatListFBKeys.apartmentName.key] as? String)!
-                let flatNumber = (usersData[UserFlatListFBKeys.flatNumber.key] as? String)!
-                
-                self.navigationMenuVC.lbl_Apartment.text = societyName
-                self.navigationMenuVC.lbl_Flat.text = apartmentName + "," + " " + flatNumber
-            }
-        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -372,14 +352,14 @@ extension MainScreenViewController {
         
         //Created Token ID & Storing in Firebase
         let token = Messaging.messaging().fcmToken
-   
+        
         var usersTokenRef : DatabaseReference?
         usersTokenRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
         usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         //Checking Users UID in Firebase under Users ->Private
         usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
-    
+        
         //Checking userData inside Users/Private
         self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
             
@@ -401,6 +381,15 @@ extension MainScreenViewController {
                 flatDetailsFB.append(userFlatDetails)
                 
                 GlobalUserData.shared.flatDetails_Items = flatDetailsFB
+                
+                //Retrieving Navigation Data in Header
+                let societyName = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
+                print(societyName as Any)
+                let apartmentName = GlobalUserData.shared.flatDetails_Items.first?.getapartmentName()
+                let flatNumber = GlobalUserData.shared.flatDetails_Items.first?.getflatNumber()
+                
+                self.navigationMenuVC.lbl_Apartment.text = societyName
+                self.navigationMenuVC.lbl_Flat.text = apartmentName! + "," + " " + flatNumber!
                 
                 //Retrieving & Adding Data in UserPersonalDetails class
                 let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
