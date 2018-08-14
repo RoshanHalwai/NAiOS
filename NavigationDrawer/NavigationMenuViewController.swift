@@ -9,11 +9,11 @@
 import UIKit
 import FirebaseAuth
 
-class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var sideMenuView: UIView!
-    @IBOutlet weak var nammaLabel: UILabel!
-    @IBOutlet weak var oneStopLabel: UILabel!
+    @IBOutlet weak var lbl_Apartment: UILabel!
+    @IBOutlet weak var lbl_Flat: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
@@ -21,10 +21,15 @@ class NavigationMenuViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.alwaysBounceVertical = false
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //Setting & Formatting Label Fonts
+        lbl_Apartment.font = NAFont().labelFont()
+        lbl_Flat.font = NAFont().textFieldFont()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -54,10 +54,10 @@ class MainScreenViewController: NANavigationViewController {
         menuButton.addTarget(self, action: #selector(NavigationMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
         
-        /* Retrieve current Users UID*/
+        //Calling Retrieve Data Fuctions
         self.retreiveUserUID()
-        
         self.retrieveUserData()
+        self.retrieveFlatDetails()
         
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
@@ -108,6 +108,25 @@ class MainScreenViewController: NANavigationViewController {
         opacity_View.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         self.opacity_View.addGestureRecognizer(tapGesture)
+    }
+    
+    //Here Retrieving FlatDetails
+    func retrieveFlatDetails() {
+        let userDataRef = Database.database().reference().child(Constants.FIREBASE_USER)
+            .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        userDataRef.keepSynced(true)
+        //Adding observe event to each of user UID
+        userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
+            if userDataSnapshot.exists() {
+                let usersData = userDataSnapshot.value as! NSDictionary
+                let societyName = (usersData[UserFlatListFBKeys.societyName.key] as? String)!
+                let apartmentName = (usersData[UserFlatListFBKeys.apartmentName.key] as? String)!
+                let flatNumber = (usersData[UserFlatListFBKeys.flatNumber.key] as? String)!
+                
+                self.navigationMenuVC.lbl_Apartment.text = societyName
+                self.navigationMenuVC.lbl_Flat.text = apartmentName + "," + " " + flatNumber
+            }
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

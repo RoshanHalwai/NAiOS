@@ -11,6 +11,10 @@ import UIKit
 
 class NAFont: NSObject {
     
+    func labelFont() -> UIFont {
+        return UIFont(name: "Lato-Bold", size: 22)!
+    }
+    
     func headerFont() -> UIFont {
         return UIFont(name: "Lato-Bold", size: 18)!
     }
