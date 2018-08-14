@@ -10,8 +10,6 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
-import FirebaseInstanceID
-import FirebaseMessaging
 
 //Calling class & adding in singleton class to get values
 class SingletonFlatDetails {
@@ -360,10 +358,6 @@ extension MyFlatDetailsViewController {
                     
                     self.usersMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
                     self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID)
-                    
-                    //Generating & Mapping TokenID under Users/Private/UID
-                    let tokenID = Messaging.messaging().fcmToken
-                    self.usersUIDRef?.child(NAUser.NAUserStruct.tokenId).setValue(tokenID)
                     
                     //Storing Flat Member UID
                     self.userFlatMemberRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
