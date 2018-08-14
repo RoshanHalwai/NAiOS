@@ -21,6 +21,9 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
         collection_View.delegate = self
         collection_View.dataSource = self
         collection_View.reloadData()
+        
+        //Hiding History NavigationBar  RightBarButtonItem
+        navigationItem.rightBarButtonItem = nil
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

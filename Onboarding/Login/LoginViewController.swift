@@ -82,6 +82,7 @@ class LoginViewController: NANavigationViewController {
             lbl_Validation.text =  NAString().please_enter_10_digit_no()
             txt_MobileNo.redunderlined()
         } else if ((txt_MobileNo.text?.count)! == NAString().required_mobileNo_Length()) {
+            txt_MobileNo.resignFirstResponder()
             let lv = NAViewPresenter().otpViewController()
             let otpString = NAString().enter_verification_code(first: "your", second: "your")
             lv.newOtpString = otpString
