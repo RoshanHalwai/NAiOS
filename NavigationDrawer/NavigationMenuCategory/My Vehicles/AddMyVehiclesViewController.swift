@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class AddMyVehiclesViewController: NANavigationViewController {
     
@@ -19,10 +20,10 @@ class AddMyVehiclesViewController: NANavigationViewController {
     @IBOutlet weak var lbl_VehicleType_Validation: UILabel!
     @IBOutlet weak var lbl_VehicleNumber_Validation: UILabel!
     
-    @IBOutlet weak var txt_CabStateCode: UITextField!
-    @IBOutlet weak var txt_CabRtoNumber: UITextField!
-    @IBOutlet weak var txt_CabSerialNumberOne: UITextField!
-    @IBOutlet weak var txt_CabSerialNumberTwo: UITextField!
+    @IBOutlet weak var txt_VehicleStateCode: UITextField!
+    @IBOutlet weak var txt_VehicleRtoNumber: UITextField!
+    @IBOutlet weak var txt_VehicleSerialNumberOne: UITextField!
+    @IBOutlet weak var txt_VehicleSerialNumberTwo: UITextField!
     
     @IBOutlet weak var cardView: UIView!
     
@@ -31,6 +32,14 @@ class AddMyVehiclesViewController: NANavigationViewController {
     var isValidVehicleButtonClicked: [Bool] = []
     var navTitle = String()
     
+    //Database References
+    var userDataVehicleRef : DatabaseReference?
+    var vehiclesPrivateRef : DatabaseReference?
+    var vehiclePrivateRef : DatabaseReference?
+    
+    var finalVehicleString = String()
+    var btn_VehicleType_String = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,16 +47,16 @@ class AddMyVehiclesViewController: NANavigationViewController {
         super.ConfigureNavBarTitle(title: navTitle)
         
         //putting black bottom line on textFields
-        txt_CabStateCode.underlined()
-        txt_CabRtoNumber.underlined()
-        txt_CabSerialNumberOne.underlined()
-        txt_CabSerialNumberTwo.underlined()
+        txt_VehicleStateCode.underlined()
+        txt_VehicleRtoNumber.underlined()
+        txt_VehicleSerialNumberOne.underlined()
+        txt_VehicleSerialNumberTwo.underlined()
         
         //Textfield formatting & setting
-        txt_CabStateCode.font = NAFont().textFieldFont()
-        txt_CabRtoNumber.font = NAFont().textFieldFont()
-        txt_CabSerialNumberOne.font = NAFont().textFieldFont()
-        txt_CabSerialNumberTwo.font = NAFont().textFieldFont()
+        txt_VehicleStateCode.font = NAFont().textFieldFont()
+        txt_VehicleRtoNumber.font = NAFont().textFieldFont()
+        txt_VehicleSerialNumberOne.font = NAFont().textFieldFont()
+        txt_VehicleSerialNumberTwo.font = NAFont().textFieldFont()
         
         //Label formatting & setting
         lbl_VehicleType.font = NAFont().headerFont()
@@ -81,10 +90,10 @@ class AddMyVehiclesViewController: NANavigationViewController {
         btn_AddVehicle.titleLabel?.font = NAFont().buttonFont()
         
         //set tag values to textFields
-        txt_CabStateCode.tag = 1
-        txt_CabRtoNumber.tag = 2
-        txt_CabSerialNumberOne.tag = 3
-        txt_CabSerialNumberTwo.tag = 4
+        txt_VehicleStateCode.tag = 1
+        txt_VehicleRtoNumber.tag = 2
+        txt_VehicleSerialNumberOne.tag = 3
+        txt_VehicleSerialNumberTwo.tag = 4
         
         //set tag values to buttons
         btn_Bike.tag = 1
@@ -108,36 +117,37 @@ class AddMyVehiclesViewController: NANavigationViewController {
     }
     
     @IBAction func btnSelectVehicles(_ sender: UIButton) {
+        btn_VehicleType_String = (sender.titleLabel?.text)!
         selectedVehicleColor(tag: sender.tag)
         lbl_VehicleType_Validation.isHidden = true
     }
     
     @IBAction func addVehicleButtonAction() {
-        if (txt_CabStateCode.text?.isEmpty)! {
-            txt_CabStateCode.redunderlined()
+        if (txt_VehicleStateCode.text?.isEmpty)! {
+            txt_VehicleStateCode.redunderlined()
         } else {
             lbl_VehicleNumber_Validation.isHidden = true
-            txt_CabStateCode.underlined()
+            txt_VehicleStateCode.underlined()
         }
-        if (txt_CabRtoNumber.text?.isEmpty)! {
-            txt_CabRtoNumber.redunderlined()
+        if (txt_VehicleRtoNumber.text?.isEmpty)! {
+            txt_VehicleRtoNumber.redunderlined()
         } else {
             lbl_VehicleNumber_Validation.isHidden = true
-            txt_CabRtoNumber.underlined()
+            txt_VehicleRtoNumber.underlined()
         }
-        if (txt_CabSerialNumberOne.text?.isEmpty)! {
-            txt_CabSerialNumberOne.redunderlined()
+        if (txt_VehicleSerialNumberOne.text?.isEmpty)! {
+            txt_VehicleSerialNumberOne.redunderlined()
         } else {
             lbl_VehicleNumber_Validation.isHidden = true
-            txt_CabSerialNumberOne.underlined()
+            txt_VehicleSerialNumberOne.underlined()
         }
-        if (txt_CabSerialNumberTwo.text?.isEmpty)! {
-            txt_CabSerialNumberTwo.redunderlined()
+        if (txt_VehicleSerialNumberTwo.text?.isEmpty)! {
+            txt_VehicleSerialNumberTwo.redunderlined()
         } else {
             lbl_VehicleNumber_Validation.isHidden = true
-            txt_CabSerialNumberTwo.underlined()
+            txt_VehicleSerialNumberTwo.underlined()
         }
-        if !(txt_CabStateCode.text?.isEmpty)! &&  !(txt_CabRtoNumber.text?.isEmpty)! && !(txt_CabSerialNumberOne.text?.isEmpty)! && !(txt_CabSerialNumberTwo.text?.isEmpty)! {
+        if !(txt_VehicleStateCode.text?.isEmpty)! &&  !(txt_VehicleRtoNumber.text?.isEmpty)! && !(txt_VehicleSerialNumberOne.text?.isEmpty)! && !(txt_VehicleSerialNumberTwo.text?.isEmpty)! {
             lbl_VehicleNumber_Validation.isHidden = true
         } else {
             lbl_VehicleNumber_Validation.isHidden = false
@@ -147,8 +157,10 @@ class AddMyVehiclesViewController: NANavigationViewController {
             lbl_VehicleType_Validation.isHidden = false
             lbl_VehicleType_Validation.text = NAString().Please_select_expected_Hours()
         }
-        if !(txt_CabStateCode.text?.isEmpty)! &&  !(txt_CabRtoNumber.text?.isEmpty)! && !(txt_CabSerialNumberOne.text?.isEmpty)! && !(txt_CabSerialNumberTwo.text?.isEmpty)! &&  (isValidVehicleButtonClicked.index(of: true) != nil) {
-             inviteAlertView()
+        if !(txt_VehicleStateCode.text?.isEmpty)! &&  !(txt_VehicleRtoNumber.text?.isEmpty)! && !(txt_VehicleSerialNumberOne.text?.isEmpty)! && !(txt_VehicleSerialNumberTwo.text?.isEmpty)! &&  (isValidVehicleButtonClicked.index(of: true) != nil) {
+            
+            //Calling Expecting Vehicle Function
+            storeVehicleDetailsInFirebase()
         }
     }
     
@@ -158,10 +170,10 @@ class AddMyVehiclesViewController: NANavigationViewController {
         let alert = UIAlertController(title: NAString().addVehicle_AlertTitle() , message: NAString().addVehicle_AlertMessage(), preferredStyle: .alert)
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-                let lv = NAViewPresenter().myVehiclesVC()
-                 lv.navTitle = NAString().my_vehicles()
-                self.navigationController?.pushViewController(lv, animated: true)
-            }
+            let lv = NAViewPresenter().myVehiclesVC()
+            lv.navTitle = NAString().my_vehicles()
+            self.navigationController?.pushViewController(lv, animated: true)
+        }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
     }
@@ -240,12 +252,12 @@ extension AddMyVehiclesViewController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let vehicle_New_TextLength = text.utf16.count + string.utf16.count - range.length
-        if textField == txt_CabStateCode {
+        if textField == txt_VehicleStateCode {
             if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_CabStateCode.redunderlined()
+                txt_VehicleStateCode.redunderlined()
             } else {
                 lbl_VehicleNumber_Validation.isHidden = true
-                txt_CabStateCode.underlined()
+                txt_VehicleStateCode.underlined()
             }
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
@@ -254,12 +266,12 @@ extension AddMyVehiclesViewController {
                 return true
             }
         }
-        if textField == txt_CabRtoNumber {
+        if textField == txt_VehicleRtoNumber {
             if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_CabRtoNumber.redunderlined()
+                txt_VehicleRtoNumber.redunderlined()
             } else {
                 lbl_VehicleNumber_Validation.isHidden = true
-                txt_CabRtoNumber.underlined()
+                txt_VehicleRtoNumber.underlined()
             }
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
@@ -268,12 +280,12 @@ extension AddMyVehiclesViewController {
                 return true
             }
         }
-        if textField == txt_CabSerialNumberOne {
+        if textField == txt_VehicleSerialNumberOne {
             if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_CabSerialNumberOne.redunderlined()
+                txt_VehicleSerialNumberOne.redunderlined()
             } else {
                 lbl_VehicleNumber_Validation.isHidden = true
-                txt_CabSerialNumberOne.underlined()
+                txt_VehicleSerialNumberOne.underlined()
             }
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
@@ -282,17 +294,64 @@ extension AddMyVehiclesViewController {
                 return true
             }
         }
-        if textField == txt_CabSerialNumberTwo {
+        if textField == txt_VehicleSerialNumberTwo {
             if vehicleSerialNumberLength(isVehicleSerialNumberLength: vehicle_New_TextLength) {
                 if (vehicle_New_TextLength == NAString().zero_length()) {
-                    txt_CabSerialNumberTwo.redunderlined()
+                    txt_VehicleSerialNumberTwo.redunderlined()
                 } else {
                     lbl_VehicleNumber_Validation.isHidden = true
-                    txt_CabSerialNumberTwo.underlined()
+                    txt_VehicleSerialNumberTwo.underlined()
                 }
             }
             return vehicle_New_TextLength <= 4
         }
         return false
+    }
+}
+
+extension AddMyVehiclesViewController {
+    
+    //Creating Function for Storing Vehicle Data in Firebase
+    func storeVehicleDetailsInFirebase() {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        let currentDate = formatter.string(from: date)
+        
+        //Concatination of Vehicle textFields
+        let vehicleStateCode  = self.txt_VehicleStateCode.text!
+        let vehicleRTOCode  = self.txt_VehicleRtoNumber.text!
+        let vehicleSerialOne  = self.txt_VehicleSerialNumberOne.text!
+        let vehicleSerialTwo = self.txt_VehicleSerialNumberTwo.text!
+        let hyphen = "-"
+        self.finalVehicleString = vehicleStateCode + hyphen + vehicleRTOCode + hyphen + vehicleSerialOne + hyphen + vehicleSerialTwo
+        
+        vehiclePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        
+        //Generating Vehicle UID
+        let vehicleUID : String?
+        vehicleUID = (vehiclePrivateRef?.childByAutoId().key)!
+        
+        vehiclesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+        userDataVehicleRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VEHICLES)
+        
+        //Mapping VehicleUID with true under UsersData -> Flat
+        userDataVehicleRef?.child(vehicleUID!).setValue(NAString().gettrue())
+        
+        //Mapping Vehicle Number With  Vehicle UID
+        vehiclesPrivateRef?.child(finalVehicleString).setValue(vehicleUID)
+        
+        let expectingVehicleData = [
+            VehicleListFBKeys.addedDate.key : currentDate,
+            VehicleListFBKeys.ownerName.key : GlobalUserData.shared.personalDetails_Items.first?.fullName,
+            VehicleListFBKeys.vehicleNumber.key : finalVehicleString,
+            VehicleListFBKeys.vehicleType.key : btn_VehicleType_String
+        ]
+        
+        //Adding data in Firebase from dictionary
+        self.vehiclePrivateRef?.child(vehicleUID!).setValue(expectingVehicleData)
+        //Calling Alert Function After Storing Data in Firebase
+        inviteAlertView()
     }
 }
