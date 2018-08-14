@@ -1113,7 +1113,7 @@ class NAString : NSObject {
     }
     
     func societyServiceNotAvailable(serviceName: String) -> String {
-        return String("Sorry you cannot use this feature since there has not been any \(serviceName) service availed at your Flat yet")
+        return String("Sorry you cannot use this feature since you haven't raised any \(serviceName) request at your flat yet")
     }
     
     func verifyingOTPDescription() -> String {
