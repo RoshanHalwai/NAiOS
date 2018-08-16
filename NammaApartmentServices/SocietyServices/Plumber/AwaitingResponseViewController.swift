@@ -62,6 +62,17 @@ class AwaitingResponseViewController: NANavigationViewController {
         
         //Calling Society Service Messages Function
         self.changingSocietyServiceMessages()
+        
+        //created custom back button for goto MainScreen view Controller
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToMainScreenVC))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    //Navigating Back to Main Screen View Controller.
+    @objc func goBackToMainScreenVC() {
+        let mainScreenVC = NAViewPresenter().mainScreenVC()
+        self.navigationController?.pushViewController(mainScreenVC, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
