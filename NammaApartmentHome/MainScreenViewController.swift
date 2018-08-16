@@ -154,8 +154,6 @@ class MainScreenViewController: NANavigationViewController {
         if self.NavigationMenuOpen {
             closeNavigationMenu()
             opacity_View.isHidden = true
-        } else if rateUsView.isHidden == false {
-            hidingRateUsView()
         }
     }
     
@@ -170,9 +168,6 @@ class MainScreenViewController: NANavigationViewController {
     func showNavigationMenu() {
         self.NavigationMenuOpen = true
         opacity_View.isHidden = false
-        if rateUsView != nil {
-            rateUsView.isHidden = true
-        }
         UIView.animate(withDuration: 0.3) {
             self.sideMenuConstrain.constant = 0
             self.view.layoutIfNeeded()
@@ -207,11 +202,6 @@ class MainScreenViewController: NANavigationViewController {
         starRatingView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(rateUsView)
-    }
-    
-    func hidingRateUsView() {
-        opacity_View.isHidden = true
-        rateUsView.isHidden = true
     }
     
     func segmentControlSelection() {
