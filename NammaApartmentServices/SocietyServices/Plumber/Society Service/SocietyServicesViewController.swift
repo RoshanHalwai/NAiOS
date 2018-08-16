@@ -48,6 +48,9 @@ class SocietyServicesViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getButtonHour_Text = NAString().immediately()
+        getButtonGarbage_Problem_Text = NAString().dryWaste()
+        
         self.txt_SelectAny.text = selectedProblem
         txt_SelectAny.underlined()
         txt_SelectAny.inputView = UIView()
@@ -57,7 +60,6 @@ class SocietyServicesViewController: NANavigationViewController {
         lbl_ErrorValidation_Message.font = NAFont().descriptionFont()
         lbl_ErrorValidation_Message.isHidden = true
         
-
         //Hiding the StackView
         garbageStackView.isHidden = true
         
