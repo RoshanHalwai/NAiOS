@@ -128,7 +128,7 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell;()
         let currentItem = currentCell.textLabel?.text
-        societyServiceVC.btn_problem = currentItem!
+        societyServiceVC.selectedProblem = currentItem!
         tableView.deselectRow(at: indexPath!, animated: true)
         self.navigationController?.dismiss(animated: true)
     }
