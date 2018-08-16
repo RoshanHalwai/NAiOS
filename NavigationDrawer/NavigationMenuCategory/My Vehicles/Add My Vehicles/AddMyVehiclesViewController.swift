@@ -122,7 +122,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
     }
     
     @objc func goBackToMyVehicleScreen() {
-        self.navigationController?.popViewController(animated: true)
+        
     }
     
     @IBAction func btnSelectVehicles(_ sender: UIButton) {
@@ -180,6 +180,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             let lv = NAViewPresenter().myVehiclesVC()
+            lv.fromHomeScreenVC = true
             lv.navTitle = NAString().my_vehicles()
             self.navigationController?.pushViewController(lv, animated: true)
         }

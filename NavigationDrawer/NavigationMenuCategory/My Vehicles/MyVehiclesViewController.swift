@@ -17,6 +17,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     var navTitle = String()
     var expectedVehicleString = String()
     var vehicleImage: UIImage?
+    var fromHomeScreenVC = false
     
     //Database References
     var userDataRef : DatabaseReference?
@@ -35,6 +36,20 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         btn_AddVehicle.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_AddVehicle.backgroundColor = NAColor().buttonBgColor()
         btn_AddVehicle.titleLabel?.font = NAFont().buttonFont()
+        
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    //Navigating Back to Home Screen according to Screen coming from
+    @objc func goBackToHomeScreenVC() {
+        if fromHomeScreenVC {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_two()]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        }
     }
 
     //MARK : UICollectionView Delegate & DataSource Functions
@@ -82,6 +97,9 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         self.navigationController?.pushViewController(dv, animated: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        retrieviedVehicleDataInFirebase()
+    }
     
 }
 
@@ -118,8 +136,5 @@ extension MyVehiclesViewController {
             }
         })
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        retrieviedVehicleDataInFirebase()
-    }
+   
 }
