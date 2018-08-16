@@ -442,10 +442,18 @@
 			children = (
 				42341BB2212165510005160B /* MyVehiclesViewController.swift */,
 				42341BB8212165CC0005160B /* MyVehiclesCollectionViewCell.swift */,
+				4235FB0B21255F3700965352 /* Add My Vehicles */,
+			);
+			path = "My Vehicles";
+			sourceTree = "<group>";
+		};
+		4235FB0B21255F3700965352 /* Add My Vehicles */ = {
+			isa = PBXGroup;
+			children = (
 				42341BB6212165A50005160B /* AddMyVehiclesViewController.swift */,
 				42358A372122F99700186B1D /* NammaApartmentVehicle.swift */,
 			);
-			path = "My Vehicles";
+			path = "Add My Vehicles";
 			sourceTree = "<group>";
 		};
 		5604502185698E5A09687321 /* Pods */ = {

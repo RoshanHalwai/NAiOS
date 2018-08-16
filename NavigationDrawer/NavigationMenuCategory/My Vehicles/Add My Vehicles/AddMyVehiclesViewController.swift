@@ -114,6 +114,15 @@ class AddMyVehiclesViewController: NANavigationViewController {
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
         
+        //created custom back button for goto My Vehicle Screen
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToMyVehicleScreen))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+        
+    }
+    
+    @objc func goBackToMyVehicleScreen() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnSelectVehicles(_ sender: UIButton) {
@@ -307,9 +316,6 @@ extension AddMyVehiclesViewController {
         }
         return false
     }
-}
-
-extension AddMyVehiclesViewController {
     
     //Creating Function for Storing Vehicle Data in Firebase
     func storeVehicleDetailsInFirebase() {

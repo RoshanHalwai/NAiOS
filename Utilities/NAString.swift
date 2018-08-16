@@ -1242,4 +1242,8 @@ class NAString : NSObject {
     func addVehicle_AlertTitle() -> String {
         return ("Vehicle Added Message")
     }
+    
+    func add_your_vehicle_message() -> String {
+        return ("Please add your vehicles for Hassle Free entry into the society.")
+    }
 }
