@@ -16,7 +16,6 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     
     var navTitle = String()
     var expectedVehicleString = String()
-    var vehicleImage: UIImage?
     var fromHomeScreenVC = false
     
     //Database References
@@ -51,7 +50,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
             self.navigationController?.popViewController(animated: true)
         }
     }
-
+    
     //MARK : UICollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myExpectedVehicleList.count
@@ -100,16 +99,15 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     override func viewWillAppear(_ animated: Bool) {
         retrieviedVehicleDataInFirebase()
     }
-    
 }
 
 extension MyVehiclesViewController {
-
+    
     func retrieviedVehicleDataInFirebase() {
         
-          userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VEHICLES)
-          userDataRef?.keepSynced(true)
-          userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VEHICLES)
+        userDataRef?.keepSynced(true)
+        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let vehiclesUID = snapshot.value as? NSDictionary
                 for vehiclesUID in (vehiclesUID?.allKeys)! {
@@ -117,7 +115,7 @@ extension MyVehiclesViewController {
                     self.vehiclesPublicRef?.keepSynced(true)
                     self.vehiclesPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
-
+                            
                             let vehicleData = snapshot.value as?[String: AnyObject]
                             let vehicleType = (vehicleData?[VehicleListFBKeys.vehicleType.key] as? String)!
                             let addedDate = vehicleData?[VehicleListFBKeys.addedDate.key] as? String
@@ -136,5 +134,5 @@ extension MyVehiclesViewController {
             }
         })
     }
-   
+    
 }
