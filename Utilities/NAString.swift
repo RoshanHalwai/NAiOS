@@ -1246,4 +1246,8 @@ class NAString : NSObject {
     func add_your_vehicle_message() -> String {
         return ("Please add your vehicles for Hassle Free entry into the society.")
     }
+    
+    func three() -> Int {
+        return 3
+    }
 }

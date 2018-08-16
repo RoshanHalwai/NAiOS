@@ -45,10 +45,10 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     //Navigating Back to Home Screen according to Screen coming from
     @objc func goBackToHomeScreenVC() {
         if fromHomeScreenVC {
-            self.navigationController?.popViewController(animated: true)
-        } else {
-            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_two()]
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_four()]
             self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 
