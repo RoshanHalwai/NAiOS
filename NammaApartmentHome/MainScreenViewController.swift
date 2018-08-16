@@ -293,17 +293,17 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             case 1:
                 let lv1 = NAViewPresenter().societyServiceVC()
                 lv1.navTitle = NAString().plumber()
-                self.navigationController?.pushViewController(lv1, animated: true)
+                getInProgressUID(VC: lv1, titleName: NAString().plumber().lowercased())
                 
             case 2:
                 let lv2 = NAViewPresenter().societyServiceVC()
                 lv2.navTitle = NAString().carpenter()
-                self.navigationController?.pushViewController(lv2, animated: true)
+                getInProgressUID(VC: lv2, titleName: NAString().carpenter().lowercased())
                 
             case 3:
                 let lv3 = NAViewPresenter().societyServiceVC()
                 lv3.navTitle = NAString().electrician()
-                self.navigationController?.pushViewController(lv3, animated: true)
+                getInProgressUID(VC: lv3, titleName: NAString().electrician().lowercased())
                 
             case 4:
                 let lv4 = NAViewPresenter().societyServiceVC()
@@ -331,6 +331,51 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             
         default:
             break
+        }
+    }
+    
+    //Checking the user Request whether it is in-Progress or Completed
+    func getInProgressUID(VC : UIViewController, titleName: String) {
+        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        
+        userDataReference.observeSingleEvent(of: .value) { (serviceSnapshot) in
+            if serviceSnapshot.exists() {
+                userDataReference.child(titleName).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        var count = 0
+                        let allUIDMap = snapshot.value as! NSDictionary
+                        var allUIDArray = [String]()
+                        for uid in allUIDMap.allKeys {
+                            count = count + 1
+                            allUIDArray.append(uid as! String)
+                            
+                            if count == allUIDMap.count {
+                                //getting last UID from the Array
+                                let lastUID = allUIDArray.last
+                                let serviceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(lastUID!)
+                                
+                                serviceNotificationRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
+                                    let dataMap = dataSnapshot.value as! [String: AnyObject]
+                                    
+                                    let status: String = dataMap[NASocietyServicesFBKeys.status.key] as! String
+                                    
+                                    /* If the Status is in Progress we are Allowing user to awaiting response Screen else allowing user to Request one more service. */
+                                    if status == NAString().in_Progress() {
+                                        let awaitingResponseVC = NAViewPresenter().societyServiceDataVC()
+                                        awaitingResponseVC.navTitle = NAString().societyService()
+                                        awaitingResponseVC.notificationUID = lastUID!
+                                        self.navigationController?.pushViewController(awaitingResponseVC, animated: true)
+                                    } else {
+                                        self.navigationController?.pushViewController(VC, animated: true)
+                                    }
+                                })
+                            }
+                        }
+                    } else {
+                        self.navigationController?.pushViewController(VC, animated: true)
+                    }
+                })
+            }
         }
     }
 }
