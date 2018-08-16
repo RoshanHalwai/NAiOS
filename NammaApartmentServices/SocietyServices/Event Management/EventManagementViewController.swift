@@ -27,7 +27,7 @@ class EventManagementViewController: NANavigationViewController {
     @IBOutlet weak var lbl_ChooseCategory: UILabel!
     @IBOutlet weak var lbl_EventDate: UILabel!
     @IBOutlet weak var lbl_ChooseTimeSlot: UILabel!
-    @IBOutlet weak var lbl_Text: UILabel!
+    @IBOutlet weak var lbl_description: UILabel!
     
     @IBOutlet weak var txt_EventTitle: UITextField!
     @IBOutlet weak var txt_EventDate: UITextField!
@@ -55,14 +55,14 @@ class EventManagementViewController: NANavigationViewController {
         lbl_ChooseCategory.font = NAFont().headerFont()
         lbl_EventDate.font = NAFont().headerFont()
         lbl_ChooseTimeSlot.font = NAFont().headerFont()
-        lbl_Text.font = NAFont().headerFont()
+        lbl_description.font = NAFont().headerFont()
         
         //Label formatting & setting
         lbl_EventTitle.text = NAString().event_title()
         lbl_ChooseCategory.text = NAString().choose_category()
         lbl_EventDate.text = NAString().event_date()
         lbl_ChooseTimeSlot.text = NAString().choose_time_slot()
-        lbl_Text.text = NAString().query_time_slot()
+        lbl_description.text = NAString().query_time_slot()
         
         //TextField formatting & setting
         txt_EventTitle.font = NAFont().textFieldFont()
@@ -115,36 +115,36 @@ class EventManagementViewController: NANavigationViewController {
         btn_Book.titleLabel?.font = NAFont().buttonFont()
         
         //set tag values to Select Event buttons
-        btn_8AMto12PM.tag = 1
-        btn_12PMto4PM.tag = 2
-        btn_4PMto8PM.tag = 3
-        btn_8PMto12PM.tag = 4
+        btn_8AMto12PM.tag = NAString().one()
+        btn_12PMto4PM.tag = NAString().two()
+        btn_4PMto8PM.tag = NAString().three()
+        btn_8PMto12PM.tag = NAString().four()
         
         //set tag values to Select Slot buttons
-        btn_Parties.tag = 1
-        btn_Concerts.tag = 2
-        btn_Meetings.tag = 3
-        btn_Seminars.tag = 4
+        btn_Parties.tag = NAString().one()
+        btn_Concerts.tag = NAString().two()
+        btn_Meetings.tag = NAString().three()
+        btn_Seminars.tag = NAString().four()
         
         //make buttons rounded corner
-        btn_8AMto12PM.layer.cornerRadius = 15.0
-        btn_12PMto4PM.layer.cornerRadius = 15.0
-        btn_4PMto8PM.layer.cornerRadius = 15.0
-        btn_8PMto12PM.layer.cornerRadius = 15.0
-        btn_Parties.layer.cornerRadius = 15.0
-        btn_Concerts.layer.cornerRadius = 15.0
-        btn_Meetings.layer.cornerRadius = 15.0
-        btn_Seminars.layer.cornerRadius = 15.0
+        btn_8AMto12PM.layer.cornerRadius = CGFloat(NAString().fifteen())
+        btn_12PMto4PM.layer.cornerRadius = CGFloat(NAString().fifteen())
+        btn_4PMto8PM.layer.cornerRadius = CGFloat(NAString().fifteen())
+        btn_8PMto12PM.layer.cornerRadius = CGFloat(NAString().fifteen())
+        btn_Parties.layer.cornerRadius = CGFloat(NAString().fifteen())
+        btn_Concerts.layer.cornerRadius = CGFloat(NAString().fifteen())
+        btn_Meetings.layer.cornerRadius = CGFloat(NAString().fifteen())
+        btn_Seminars.layer.cornerRadius = CGFloat(NAString().fifteen())
         
         //setting border width for buttons
-        btn_8AMto12PM.layer.borderWidth = 1
-        btn_12PMto4PM.layer.borderWidth = 1
-        btn_4PMto8PM.layer.borderWidth = 1
-        btn_8PMto12PM.layer.borderWidth = 1
-        btn_Parties.layer.borderWidth = 1
-        btn_Concerts.layer.borderWidth = 1
-        btn_Meetings.layer.borderWidth = 1
-        btn_Seminars.layer.borderWidth = 1
+        btn_8AMto12PM.layer.borderWidth = CGFloat(NAString().one())
+        btn_12PMto4PM.layer.borderWidth = CGFloat(NAString().one())
+        btn_4PMto8PM.layer.borderWidth = CGFloat(NAString().one())
+        btn_8PMto12PM.layer.borderWidth = CGFloat(NAString().one())
+        btn_Parties.layer.borderWidth = CGFloat(NAString().one())
+        btn_Concerts.layer.borderWidth = CGFloat(NAString().one())
+        btn_Meetings.layer.borderWidth = CGFloat(NAString().one())
+        btn_Seminars.layer.borderWidth = CGFloat(NAString().one())
         
         //placing image calender imgage inside the Date&Time TextField
         self.txt_EventDate.rightViewMode = UITextFieldViewMode.always
