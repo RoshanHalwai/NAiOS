@@ -113,7 +113,6 @@ class AddMyVehiclesViewController: NANavigationViewController {
         cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
-        
     }
     
     @IBAction func btnSelectVehicles(_ sender: UIButton) {
@@ -171,6 +170,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             let lv = NAViewPresenter().myVehiclesVC()
+            lv.fromHomeScreenVC = true
             lv.navTitle = NAString().my_vehicles()
             self.navigationController?.pushViewController(lv, animated: true)
         }
@@ -307,9 +307,6 @@ extension AddMyVehiclesViewController {
         }
         return false
     }
-}
-
-extension AddMyVehiclesViewController {
     
     //Creating Function for Storing Vehicle Data in Firebase
     func storeVehicleDetailsInFirebase() {

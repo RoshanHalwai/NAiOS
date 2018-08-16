@@ -1263,6 +1263,10 @@ class NAString : NSObject {
         return ("Vehicle Added Message")
     }
     
+    func add_your_vehicle_message() -> String {
+        return ("Please add your vehicles for Hassle Free entry into the society.")
+    }
+    
     // Event Management Activity
     func event_title() -> String {
         return ("Event Title")

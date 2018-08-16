@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class MyVehiclesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
@@ -14,9 +15,14 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     @IBOutlet weak var btn_AddVehicle: UIButton!
     
     var navTitle = String()
+    var expectedVehicleString = String()
+    var fromHomeScreenVC = false
     
-    //TODO: Feature Added Firebase Data
-    var vehiclesImagesArray = ["motorCycle","car"]
+    //Database References
+    var userDataRef : DatabaseReference?
+    var vehiclesPublicRef : DatabaseReference?
+    
+    var myExpectedVehicleList = [NAExpectingVehicle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +35,42 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         btn_AddVehicle.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_AddVehicle.backgroundColor = NAColor().buttonBgColor()
         btn_AddVehicle.titleLabel?.font = NAFont().buttonFont()
+        
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    //Navigating Back to Home Screen according to Screen coming from
+    @objc func goBackToHomeScreenVC() {
+        if fromHomeScreenVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-NAString().count_four()]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     //MARK : UICollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return vehiclesImagesArray.count
+        return myExpectedVehicleList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! MyVehiclesCollectionViewCell
         
-        //TODO: Feature Added Firebase Data
-        cell.lbl_MyVehicleNumber.text = "Sourav"
-        cell.lbl_MyVehicleOwner.text = "5"
-        cell.lbl_MyVehicleAddedNo.text = "AVAILABLE"
+        let myVehicleList : NAExpectingVehicle
+        myVehicleList = myExpectedVehicleList[indexPath.row]
         
-        //TODO: Feature Added Firebase Data
-        cell.myVehicleImage.image = UIImage(named: vehiclesImagesArray[indexPath.row])
+        cell.lbl_MyVehicleNumber.text = myVehicleList.getvehicleNumber()
+        cell.lbl_MyVehicleOwner.text = myVehicleList.getownerName()
+        cell.lbl_MyVehicleAddedNo.text = myVehicleList.getaddedDate()
+        
+        if  myVehicleList.getvehicleType() == NAString().car() {
+            cell.myVehicleImage.image = #imageLiteral(resourceName: "car")
+        } else {
+            cell.myVehicleImage.image = #imageLiteral(resourceName: "motorCycle")
+        }
         
         //assigning font & style to cell labels
         cell.lbl_MyVehicleNumber.font = NAFont().headerFont()
@@ -70,4 +95,44 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         dv.navTitle = NAString().addMyVehicles()
         self.navigationController?.pushViewController(dv, animated: true)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        retrieviedVehicleDataInFirebase()
+    }
+}
+
+extension MyVehiclesViewController {
+    
+    func retrieviedVehicleDataInFirebase() {
+        
+        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VEHICLES)
+        userDataRef?.keepSynced(true)
+        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+            if snapshot.exists() {
+                let vehiclesUID = snapshot.value as? NSDictionary
+                for vehiclesUID in (vehiclesUID?.allKeys)! {
+                    self.vehiclesPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(vehiclesUID as! String)
+                    self.vehiclesPublicRef?.keepSynced(true)
+                    self.vehiclesPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.exists() {
+                            
+                            let vehicleData = snapshot.value as?[String: AnyObject]
+                            let vehicleType = (vehicleData?[VehicleListFBKeys.vehicleType.key] as? String)!
+                            let addedDate = vehicleData?[VehicleListFBKeys.addedDate.key] as? String
+                            let ownerName = vehicleData?[VehicleListFBKeys.ownerName.key] as? String
+                            let vehicleNumber = vehicleData?[VehicleListFBKeys.vehicleNumber.key] as? String
+                            let vehicleDetails = NAExpectingVehicle(addedDate: addedDate,ownerName: ownerName, vehicleNumber: vehicleNumber!,vehicleType: vehicleType)
+                            self.myExpectedVehicleList.append(vehicleDetails)
+                            NAActivityIndicator.shared.hideActivityIndicator()
+                            self.collectionView.reloadData()
+                        }
+                    })
+                }
+            } else {
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().add_your_vehicle_message())
+            }
+        })
+    }
+    
 }
