@@ -57,7 +57,6 @@ class MainScreenViewController: NANavigationViewController {
         
         /* Retrieve current Users UID*/
         self.retreiveUserUID()
-        
         self.retrieveUserData()
         
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
@@ -353,14 +352,14 @@ extension MainScreenViewController {
         
         //Created Token ID & Storing in Firebase
         let token = Messaging.messaging().fcmToken
-   
+        
         var usersTokenRef : DatabaseReference?
         usersTokenRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
         usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         //Checking Users UID in Firebase under Users ->Private
         usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
-    
+        
         //Checking userData inside Users/Private
         self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
             
@@ -382,6 +381,14 @@ extension MainScreenViewController {
                 flatDetailsFB.append(userFlatDetails)
                 
                 GlobalUserData.shared.flatDetails_Items = flatDetailsFB
+                
+                //Retrieving Navigation Data in Header
+                let societyName = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
+                let apartmentName = GlobalUserData.shared.flatDetails_Items.first?.getapartmentName()
+                let flatNumber = GlobalUserData.shared.flatDetails_Items.first?.getflatNumber()
+                
+                self.navigationMenuVC.lbl_Apartment.text = societyName
+                self.navigationMenuVC.lbl_Flat.text = apartmentName! + "," + " " + flatNumber!
                 
                 //Retrieving & Adding Data in UserPersonalDetails class
                 let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]

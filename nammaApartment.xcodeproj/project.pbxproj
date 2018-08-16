@@ -66,6 +66,7 @@
 		42341BB7212165A50005160B /* AddMyVehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB6212165A50005160B /* AddMyVehiclesViewController.swift */; };
 		42341BB9212165CC0005160B /* MyVehiclesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB8212165CC0005160B /* MyVehiclesCollectionViewCell.swift */; };
 		42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BBA212165D90005160B /* MyGuardsCollectionViewCell.swift */; };
+		42358A382122F99700186B1D /* NammaApartmentVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42358A372122F99700186B1D /* NammaApartmentVehicle.swift */; };
 		5D0A230692BD5675BDF1151F /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
 		5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427B210DD49F0049344F /* SearchViewController.swift */; };
@@ -224,6 +225,7 @@
 		42341BB6212165A50005160B /* AddMyVehiclesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyVehiclesViewController.swift; sourceTree = "<group>"; };
 		42341BB8212165CC0005160B /* MyVehiclesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVehiclesCollectionViewCell.swift; sourceTree = "<group>"; };
 		42341BBA212165D90005160B /* MyGuardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuardsCollectionViewCell.swift; sourceTree = "<group>"; };
+		42358A372122F99700186B1D /* NammaApartmentVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentVehicle.swift; sourceTree = "<group>"; };
 		57024B9AAB6FF7DBC02BCC40 /* Pods-nammaApartmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D77427B210DD49F0049344F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 				42341BB2212165510005160B /* MyVehiclesViewController.swift */,
 				42341BB8212165CC0005160B /* MyVehiclesCollectionViewCell.swift */,
 				42341BB6212165A50005160B /* AddMyVehiclesViewController.swift */,
+				42358A372122F99700186B1D /* NammaApartmentVehicle.swift */,
 			);
 			path = "My Vehicles";
 			sourceTree = "<group>";
@@ -1285,6 +1288,7 @@
 				083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
 				86B1A8DA20D50EAB00D90D88 /* NammaApartmentVisitor.swift in Sources */,
 				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
+				42358A382122F99700186B1D /* NammaApartmentVehicle.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
