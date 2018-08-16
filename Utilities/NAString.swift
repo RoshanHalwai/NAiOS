@@ -369,6 +369,10 @@ class NAString : NSObject {
         return String("Electrician")
     }
     
+    func garbage() -> String {
+        return String("Garbage")
+    }
+    
     func garbage_management() -> String {
         return String("Garbage Management")
     }
@@ -1169,8 +1173,8 @@ class NAString : NSObject {
         return String ("Society Services")
     }
     
-    func collectGarbage(name: String) -> String {
-        return String ("\(name) Garbage")
+    func collectGarbage() -> String {
+        return String ("Select Garbage")
     }
     
     func selectAnyOne() -> String {

@@ -57,6 +57,7 @@ class SocietyServicesViewController: NANavigationViewController {
         lbl_ErrorValidation_Message.font = NAFont().descriptionFont()
         lbl_ErrorValidation_Message.isHidden = true
         
+
         //Hiding the StackView
         garbageStackView.isHidden = true
         
@@ -167,13 +168,13 @@ class SocietyServicesViewController: NANavigationViewController {
     //Create Changing the Button Titles Function
     func changingButtonTitles() {
         if (navTitle == NAString().plumber()) {
-            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "PLUMBER"), for: .normal)
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: NAString().plumber().uppercased()), for: .normal)
         } else if (navTitle == NAString().carpenter()) {
-            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "CARPENTER"), for: .normal)
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: NAString().carpenter().uppercased()), for: .normal)
         } else if (navTitle == NAString().electrician()) {
-            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "ELECTRICIAN"), for: .normal)
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: NAString().electrician().uppercased()), for: .normal)
         } else {
-            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "GARBAGE"), for: .normal)
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: ""), for: .normal)
         }
     }
     
@@ -197,7 +198,7 @@ class SocietyServicesViewController: NANavigationViewController {
         } else if (navTitle == NAString().electrician()) {
             lbl_SelectProblem.text = NAString().selectProblem()
         } else {
-            lbl_SelectProblem.text = NAString().collectGarbage(name: "Select")
+            lbl_SelectProblem.text = NAString().collectGarbage()
         }
     }
     

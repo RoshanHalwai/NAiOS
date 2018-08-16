@@ -309,7 +309,6 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                 let lv4 = NAViewPresenter().societyServiceVC()
                 lv4.navTitle = NAString().garbage_management()
                 self.navigationController?.pushViewController(lv4, animated: true)
-                getInProgressUID(VC: lv4, titleName: NAString().garbageManagement())
                 
             case 5:
                 let lv5 = NAViewPresenter().raiseAlarmVC()
@@ -356,7 +355,6 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                                 let serviceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(lastUID!)
                                 
                                 serviceNotificationRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
-                                    print(dataSnapshot)
                                     let dataMap = dataSnapshot.value as! [String: AnyObject]
                                     
                                     let status: String = dataMap[NASocietyServicesFBKeys.status.key] as! String
