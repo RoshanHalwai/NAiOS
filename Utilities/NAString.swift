@@ -1196,7 +1196,7 @@ class NAString : NSObject {
     func in_Progress() -> String {
         return String("in progress")
     }
-        
+    
     // Apartment Services Cook
     func cookViewTitle() -> String {
         return ("Cook")
@@ -1241,5 +1241,62 @@ class NAString : NSObject {
     
     func addVehicle_AlertTitle() -> String {
         return ("Vehicle Added Message")
+    }
+    
+    // Event Management Activity
+    func event_title() -> String {
+        return ("Event Title")
+    }
+    
+    func choose_category() -> String {
+        return ("Choose Category")
+    }
+    
+    func choose_time_slot() -> String {
+        return ("Choose Time Slot")
+    }
+    
+    func event_date() -> String {
+        return ("Event Date:")
+    }
+    
+    func parties() -> String {
+        return ("Parties")
+    }
+    
+    func concerts() -> String {
+        return ("Concerts")
+    }
+    
+    func meetings() -> String {
+        return ("Meetings")
+    }
+    
+    func seminar_workshops() -> String {
+        return ("Seminars/WorkShops")
+    }
+    
+    func book() -> String {
+        return ("BOOK")
+    }
+    
+    func morning() -> String {
+        return ("8AM - 12PM")
+    }
+    
+    func noon() -> String {
+        return ("2PM - 4PM")
+    }
+    
+    func evening() -> String {
+        return ("4PM - 8PM")
+    }
+    
+    func night() -> String {
+        return ("8PM - 12PM")
+    }
+    
+    func query_time_slot() -> String {
+        return ("For any queries related to time slot, Contact Admin.")
     }
 }

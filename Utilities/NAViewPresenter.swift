@@ -221,4 +221,9 @@ class NAViewPresenter: NSObject {
     func addMyVehiclesVC() -> AddMyVehiclesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "addMyVehiclesVC") as! AddMyVehiclesViewController
     }
+    
+    //Create Event Mnagement Screen
+    func addEventManagementVC() -> EventManagementViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "addEventManagementVC") as! EventManagementViewController
+    }
 }
