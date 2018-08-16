@@ -55,45 +55,40 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             let myProfileVC = NAViewPresenter().myProfileVC()
             myProfileVC.navTitle = NAString().My_Profile()
             self.navigationController?.pushViewController(myProfileVC, animated: true)
-            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().my_family_members() {
             let dv = NAViewPresenter().mySweetHomeVC()
             dv.navTitle = NAString().my_sweet_home()
             dv.fromHomeScreenVC = true
             self.navigationController?.pushViewController(dv, animated: true)
-            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().my_vehicles() {
             let dv1 = NAViewPresenter().myVehiclesVC()
             dv1.navTitle = NAString().my_vehicles()
             self.navigationController?.pushViewController(dv1, animated: true)
-            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().my_guards() {
             let dv2 = NAViewPresenter().myGuardsVC()
             dv2.navTitle = NAString().my_guards()
             self.navigationController?.pushViewController(dv2, animated: true)
-            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().help() {
             let dv3 = NAViewPresenter().helpVC()
             dv3.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv3, animated: true)
-            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().settings() {
             let dv4 = NAViewPresenter().settingsVC()
             dv4.navTitle = NAString().settings()
             self.navigationController?.pushViewController(dv4, animated: true)
-            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().logout() {
             self.logoutAction()
-            mainScreen.opacity_View.isHidden = true
         } else if currentItem == NAString().rate_us() {
-            mainScreen.showingRateUsView()
-            mainScreen.opacity_View.isHidden = false
+            /** calling 'showReviewView' method with desired launch counts needed. **/
+            if #available(iOS 10.3, *) {
+                RateUs().showReviewView(afterMinimumLaunchCount: 2)
+            }
         } else if currentItem == NAString().notice_board() {
             let noticeBoardVC = NAViewPresenter().noticeBoardVC()
             noticeBoardVC.navTitle = NAString().notice_board()
             self.navigationController?.pushViewController(noticeBoardVC, animated: true)
-            mainScreen.opacity_View.isHidden = true
         }
+        mainScreen.opacity_View.isHidden = true
         mainScreen.closeNavigationMenu()
         tableView.deselectRow(at: indexPath!, animated: true)
     }

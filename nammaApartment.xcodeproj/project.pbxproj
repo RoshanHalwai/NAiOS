@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0809B91C211DAB7100B30EE2 /* NASocietyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809B91B211DAB7100B30EE2 /* NASocietyServices.swift */; };
+		081156822125866B002386D9 /* RateUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081156812125866B002386D9 /* RateUs.swift */; };
 		0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */; };
 		0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */; };
 		0816E57B20EA77E800116FD0 /* EditMyProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */; };
@@ -166,6 +167,7 @@
 
 /* Begin PBXFileReference section */
 		0809B91B211DAB7100B30EE2 /* NASocietyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASocietyServices.swift; sourceTree = "<group>"; };
+		081156812125866B002386D9 /* RateUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUs.swift; sourceTree = "<group>"; };
 		0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListViewController.swift; sourceTree = "<group>"; };
 		0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisitorsListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0816E57920EA77E700116FD0 /* EditMyProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMyProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -563,6 +565,7 @@
 			isa = PBXGroup;
 			children = (
 				086081FA2104B19000B5990C /* RateUsView.swift */,
+				081156812125866B002386D9 /* RateUs.swift */,
 				086081F82104A90900B5990C /* RateUsView.xib */,
 			);
 			path = "Rate Us";
@@ -1248,6 +1251,7 @@
 				0816E57C20EA77E800116FD0 /* EditMyProfileViewController.swift in Sources */,
 				0816E56920E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift in Sources */,
 				5D774292210DD49F0049344F /* MyFlatDetailsViewController.swift in Sources */,
+				081156822125866B002386D9 /* RateUs.swift in Sources */,
 				089A94BA210837CA0088F519 /* NoticeBoardCollectionViewCell.swift in Sources */,
 				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
 				42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */,
