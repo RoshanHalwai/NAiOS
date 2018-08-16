@@ -122,12 +122,12 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                         }
                     } else {
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable())
+                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.navigationTitle.capitalized))
                     }
                 })
             } else {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.navigationTitle.capitalized))
             }
         }
     }

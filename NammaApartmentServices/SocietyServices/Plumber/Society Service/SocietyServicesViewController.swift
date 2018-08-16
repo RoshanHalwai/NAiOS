@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 class SocietyServicesViewController: NANavigationViewController {
     
-    @IBOutlet weak var btn_SelectAny : UIButton?
+    @IBOutlet weak var txt_SelectAny: UITextField!
     @IBOutlet weak var btn_Immediately : UIButton!
     @IBOutlet weak var btn_9AMto12PM : UIButton!
     @IBOutlet weak var btn_12PMto3PM : UIButton!
@@ -22,6 +22,7 @@ class SocietyServicesViewController: NANavigationViewController {
     
     @IBOutlet weak var lbl_SelectProblem: UILabel!
     @IBOutlet weak var lbl_SelectSlot: UILabel!
+    @IBOutlet weak var lbl_ErrorValidation_Message: UILabel!
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var stackView: UIStackView!
@@ -36,14 +37,9 @@ class SocietyServicesViewController: NANavigationViewController {
     
     //To set navigation title & Screen title
     var navTitle : String?
-    var plumberString : String?
-    var carpenterString : String?
-    var electricianString : String?
-    var garbageString : String?
-    var btn_Hour_String = String()
-    var btn_problem = String()
-    var btn_GarbageProblem = String()
-    
+    var getButtonHour_Text = String()
+    var selectedProblem = String()
+    var getButtonGarbage_Problem_Text = String()
     
     //Garbage array of buttons for color changing purpose
     var garbageButtons : [UIButton] = []
@@ -52,16 +48,18 @@ class SocietyServicesViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.btn_SelectAny?.titleLabel?.text = btn_problem
+        self.txt_SelectAny.text = selectedProblem
+        txt_SelectAny.underlined()
+        txt_SelectAny.inputView = UIView()
+        txt_SelectAny.delegate = self
+        txt_SelectAny.font = NAFont().textFieldFont()
         
+        lbl_ErrorValidation_Message.font = NAFont().descriptionFont()
+        lbl_ErrorValidation_Message.isHidden = true
+        
+
         //Hiding the StackView
         garbageStackView.isHidden = true
-        
-        //Adding Screen Titles
-        plumberString = NAString().plumber()
-        carpenterString = NAString().carpenter()
-        electricianString = NAString().electrician()
-        garbageString = NAString().garbage_management()
         
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)        
@@ -159,7 +157,7 @@ class SocietyServicesViewController: NANavigationViewController {
     @objc func gotoSocietyServiceHistoryVC() {
         let dv = NAViewPresenter().societyServiceHistoryVC()
         dv.titleName = NAString().history().capitalized
-        if navTitle == garbageString {
+        if navTitle == NAString().garbage_management() {
             dv.navigationTitle = NAString().garbageManagement()
         } else {
             dv.navigationTitle = navTitle!.lowercased()
@@ -169,21 +167,22 @@ class SocietyServicesViewController: NANavigationViewController {
     
     //Create Changing the Button Titles Function
     func changingButtonTitles() {
-        if (navTitle == plumberString) {
-            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "PLUMBER"), for: .normal)
-        } else if (navTitle == carpenterString) {
-            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "CARPENTER"), for: .normal)
-        } else if (navTitle == electricianString) {
-            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "ELECTRICIAN"), for: .normal)
+        if (navTitle == NAString().plumber()) {
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: NAString().plumber().uppercased()), for: .normal)
+        } else if (navTitle == NAString().carpenter()) {
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: NAString().carpenter().uppercased()), for: .normal)
+        } else if (navTitle == NAString().electrician()) {
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: NAString().electrician().uppercased()), for: .normal)
         } else {
-            btn_requestPlumber.setTitle(NAString().requestPlumber(name: "GARBAGE"), for: .normal)
+            btn_requestPlumber.setTitle(NAString().requestPlumber(name: ""), for: .normal)
         }
     }
     
     //Create Changing the SelectAny Button Titles Function
     func changingSelectAnyButtonTitles() {
-        if (navTitle == garbageString) {
-            btn_SelectAny?.isHidden = true
+        if (navTitle == NAString().garbage_management()) {
+            txt_SelectAny.isHidden = true
+            lbl_ErrorValidation_Message.isHidden = true
             garbageStackView.isHidden = false
         } else {
             garbageStackView.isHidden = true
@@ -192,14 +191,14 @@ class SocietyServicesViewController: NANavigationViewController {
     
     //Create Changing the Label Select Problem Titles Function
     func changingLabelSelectProblemTitles() {
-        if (navTitle == plumberString) {
+        if (navTitle == NAString().plumber()) {
             lbl_SelectProblem.text = NAString().selectProblem()
-        } else if (navTitle == carpenterString) {
+        } else if (navTitle == NAString().carpenter()) {
             lbl_SelectProblem.text = NAString().selectProblem()
-        } else if (navTitle == electricianString) {
+        } else if (navTitle == NAString().electrician()) {
             lbl_SelectProblem.text = NAString().selectProblem()
         } else {
-            lbl_SelectProblem.text = NAString().collectGarbage(name: "Select")
+            lbl_SelectProblem.text = NAString().collectGarbage()
         }
     }
     
@@ -233,40 +232,53 @@ class SocietyServicesViewController: NANavigationViewController {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.btn_SelectAny?.titleLabel?.text = btn_problem
+        self.txt_SelectAny.text = selectedProblem
     }
     
     //MARK : Create Button Actions
     
     //Create Button SelectSlot Function
     @IBAction func btnSelectSlotFunction(_ sender: UIButton) {
-        btn_Hour_String = (sender.titleLabel?.text)!
+        getButtonHour_Text = (sender.titleLabel?.text)!
         selectedColor(tag: sender.tag)
     }
     //Create Button garbage Function
     @IBAction func btnSelectGarbageFunction(_ sender: UIButton) {
-        btn_GarbageProblem = (sender.titleLabel?.text)!
+        getButtonGarbage_Problem_Text = (sender.titleLabel?.text)!
         selectedGarbageColor(tag: sender.tag)
     }
     //Calling SelectAny Button Function
-    @IBAction func btn_selectAnyOneAction() {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        lbl_ErrorValidation_Message.isHidden = true
+        txt_SelectAny.underlined()
         let searchVC = NAViewPresenter().societyServiceTableVC()
         let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
         searchVC.navigationTitle = NAString().selectAnyProblem()
-        if (navTitle == plumberString) {
-            searchVC.titleString = plumberString
-        } else if (navTitle == carpenterString) {
-            searchVC.titleString = carpenterString
+        if (navTitle == NAString().plumber()) {
+            searchVC.titleString = NAString().plumber()
+        } else if (navTitle == NAString().carpenter()) {
+            searchVC.titleString = NAString().carpenter()
         } else {
-            searchVC.titleString = electricianString
+            searchVC.titleString = NAString().electrician()
         }
         searchVC.societyServiceVC = self
         self.navigationController?.present(nav, animated: true, completion: nil)
+        return true
     }
     
     //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
-        storeSocietyServiceDetails()
+        if navTitle == NAString().garbage_management() {
+            storeSocietyServiceDetails()
+        } else {
+            if (txt_SelectAny.text?.isEmpty)! {
+                txt_SelectAny.redunderlined()
+                lbl_ErrorValidation_Message.isHidden = false
+            } else {
+                lbl_ErrorValidation_Message.isHidden = true
+                storeSocietyServiceDetails()
+            }
+        }
     }
 }
 
@@ -277,11 +289,11 @@ extension SocietyServicesViewController {
         
         var problem = String()
         var serviceType = String()
-        if (navTitle == garbageString) {
-            problem = btn_GarbageProblem
+        if (navTitle == NAString().garbage_management()) {
+            problem = getButtonGarbage_Problem_Text
             serviceType = NAString().garbageManagement()
         } else {
-            problem = btn_problem
+            problem = selectedProblem
             serviceType = (navTitle?.lowercased())!
         }
         let societyServiceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
@@ -291,7 +303,7 @@ extension SocietyServicesViewController {
         
         let societyServiceNotificationData = [
             NASocietyServicesFBKeys.problem.key : problem,
-            NASocietyServicesFBKeys.timeSlot.key : btn_Hour_String,
+            NASocietyServicesFBKeys.timeSlot.key : getButtonHour_Text,
             NASocietyServicesFBKeys.userUID.key: userUID,
             NASocietyServicesFBKeys.societyServiceType.key : serviceType,
             NASocietyServicesFBKeys.notificationUID.key : notificationUID,
@@ -309,14 +321,14 @@ extension SocietyServicesViewController {
         let lv = NAViewPresenter().societyServiceDataVC()
         lv.navTitle = NAString().societyService()
         lv.notificationUID = notificationUID
-        if (navTitle == plumberString) {
-            lv.titleString = plumberString
-        } else if (navTitle == carpenterString) {
-            lv.titleString = carpenterString
-        } else if (navTitle == electricianString) {
-            lv.titleString = electricianString
+        if (navTitle == NAString().plumber()) {
+            lv.titleString = NAString().plumber()
+        } else if (navTitle == NAString().carpenter()) {
+            lv.titleString = NAString().carpenter()
+        } else if (navTitle == NAString().electrician()) {
+            lv.titleString = NAString().electrician()
         } else {
-            lv.titleString = garbageString
+            lv.titleString = NAString().garbage_management()
         }
         self.navigationController?.pushViewController(lv, animated: true)
     }

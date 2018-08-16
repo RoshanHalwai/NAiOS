@@ -369,6 +369,10 @@ class NAString : NSObject {
         return String("Electrician")
     }
     
+    func garbage() -> String {
+        return String("Garbage")
+    }
+    
     func garbage_management() -> String {
         return String("Garbage Management")
     }
@@ -1112,8 +1116,8 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no daily service at your flat.")
     }
     
-    func societyServiceNotAvailable() -> String {
-        return String("Sorry you cannot use this feature since currently there has not been any Society Service at your flat so far.")
+    func societyServiceNotAvailable(serviceName: String) -> String {
+        return String("Sorry you cannot use this feature since you haven't raised any \(serviceName) request at your flat yet")
     }
     
     func verifyingOTPDescription() -> String {
@@ -1169,8 +1173,8 @@ class NAString : NSObject {
         return String ("Society Services")
     }
     
-    func collectGarbage(name: String) -> String {
-        return String ("\(name) Garbage")
+    func collectGarbage() -> String {
+        return String ("Select Garbage")
     }
     
     func selectAnyOne() -> String {
