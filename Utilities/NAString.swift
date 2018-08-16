@@ -237,6 +237,22 @@ class NAString : NSObject {
         return Int(1)
     }
     
+    func two() -> Int{
+        return Int(2)
+    }
+    
+    func three() -> Int{
+        return Int(3)
+    }
+    
+    func four() -> Int{
+        return Int(4)
+    }
+    
+    func fifteen() -> Int{
+        return Int(15)
+    }
+    
     //Home Screen
     func my_profile() -> String {
         return String("MyProfile")

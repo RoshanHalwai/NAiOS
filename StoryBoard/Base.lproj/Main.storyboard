@@ -5398,7 +5398,7 @@
                         <outlet property="lbl_ChooseTimeSlot" destination="WWk-gT-F5B" id="8jR-kp-Ab7"/>
                         <outlet property="lbl_EventDate" destination="FHv-GM-O6M" id="nqI-Ay-fKg"/>
                         <outlet property="lbl_EventTitle" destination="gbv-iO-H1G" id="ZNG-Qm-LLH"/>
-                        <outlet property="lbl_Text" destination="eFM-vP-ggU" id="2kC-VN-8Dh"/>
+                        <outlet property="lbl_description" destination="eFM-vP-ggU" id="2kC-VN-8Dh"/>
                         <outlet property="scrollView" destination="MZb-kh-bil" id="H3Y-VB-Klk"/>
                         <outlet property="txt_EventDate" destination="e5K-mu-Yho" id="thj-ib-CpN"/>
                         <outlet property="txt_EventTitle" destination="1vA-A7-t4S" id="ZBI-sg-Vu4"/>
