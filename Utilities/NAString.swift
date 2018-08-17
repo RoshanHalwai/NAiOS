@@ -813,7 +813,7 @@ class NAString : NSObject {
     }
     
     func addFamilyMemberTitle(name : String) -> String {
-        return String ("Add \(name) Details")
+        return String ("Adding \(name) Details")
     }
     
     func addFamilyMember_AlertView_Title() -> String {
