@@ -42,6 +42,7 @@ class OTPViewController: NANavigationViewController {
     //To take data from add my services
     var newOtpString = String()
     var dailyServiceType = String()
+    var familyMemberType = String()
     
     var getMobileString = String()
     var getCountryCodeString = String()
@@ -125,10 +126,8 @@ class OTPViewController: NANavigationViewController {
             
             verifyOTPWithFirebase()
         }
-        
         //Back to My Sweet Home screen
-        if(lbl_OTPDescription.text == NAString().enter_verification_code(first: "your Family Member", second: "their")) {
-            
+        if(lbl_OTPDescription.text == self.familyMemberType) {
             //Creating Credential variable to check correct OTP String.
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
             
@@ -144,9 +143,8 @@ class OTPViewController: NANavigationViewController {
                     //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
                     self.familyDelegateData.familydataPassing()
                     self.navigationController?.popViewController(animated: true)
-                    self.delegate?.activityIndicator_function(withData: (Any).self)                }
+                    self.delegate?.activityIndicator_function(withData: (Any).self)              }
             }
-            
             self.navigationController?.popViewController(animated: true)
             self.delegate?.activityIndicator_function(withData: (Any).self)
         }

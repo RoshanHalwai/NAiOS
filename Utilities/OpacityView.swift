@@ -15,6 +15,7 @@ class OpacityView {
     
     var popupView: PopupView!
     var navTitle: String?
+    var familyMemberType = String()
     var addButtonTagValue : Int = NAString().zero_length()
     var opacityView = UIView()
     
@@ -45,7 +46,11 @@ class OpacityView {
         if addButtonTagValue == NAString().inviteButtonTagValue() {
             popupView.lbl_Title.text = NAString().inviteButtonloadViewTitle()
         } else if addButtonTagValue == NAString().addMyFamilyMemberButtonTagValue() {
-            popupView.lbl_Title.text = NAString().addFamilyMemberTitle()
+            if familyMemberType == NAString().family_Member() {
+                popupView.lbl_Title.text = NAString().addFamilyMemberTitle(name: "Friend")
+            } else {
+                popupView.lbl_Title.text = NAString().addFamilyMemberTitle(name: "Family Member")
+            }
         } else if addButtonTagValue == NAString().addMyDailyServicesButtonTagValue() {
             popupView.lbl_Title.text = NAString().addButtonDailyServicesloadViewTitle()
         }
