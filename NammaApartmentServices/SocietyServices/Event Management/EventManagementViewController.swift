@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class EventManagementViewController: NANavigationViewController {
     
@@ -40,12 +41,18 @@ class EventManagementViewController: NANavigationViewController {
     
     //To set navigation title
     var navTitle : String?
+    var notificationUID = String()
+    var getButtonHour_Text = String()
+    var getButtonCategory_Text = String()
     
     //created date picker programtically
     let picker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getButtonHour_Text = NAString().morning()
+        getButtonCategory_Text = NAString().parties()
         
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)    
@@ -243,13 +250,61 @@ class EventManagementViewController: NANavigationViewController {
     
     //Create Button SelectSlot Function
     @IBAction func btnSelectSlotFunction(_ sender: UIButton) {
+        getButtonHour_Text = (sender.titleLabel?.text)!
         selectedTimeSlotColor(tag: sender.tag)
     }
     //Create Button SelectEvent Function
     @IBAction func btnSelectEventFunction(_ sender: UIButton) {
+        getButtonCategory_Text = (sender.titleLabel?.text)!
         selectedEventButtonsColor(tag: sender.tag)
     }
     //Calling Book Button Function
     @IBAction func btn_bookAction() {
+        self.storeEventManagementDetails()
+    }
+    
+    //AlertView For navigation
+    func inviteAlertView() {
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().eventManagement_AlertTitle() , message: NAString().eventManagement_AlertMessage(), preferredStyle: .alert)
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+            
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
+
+extension EventManagementViewController {
+    
+    //Storing User requests of Society service Problems
+    func storeEventManagementDetails() {
+        
+        var serviceType = NAString().eventManagement()
+        
+        let eventManagementNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
+        notificationUID = eventManagementNotificationRef.childByAutoId().key
+        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
+        
+        let eventManagementNotificationData = [
+            NAEventManagementFBKeys.eventTitle.key : self.txt_EventTitle.text! as String,
+            NAEventManagementFBKeys.eventDate.key : self.txt_EventDate.text! as String,
+            NAEventManagementFBKeys.category.key : getButtonCategory_Text,
+            NAEventManagementFBKeys.timeSlot.key : getButtonHour_Text,
+            NAEventManagementFBKeys.userUID.key: userUID,
+            NAEventManagementFBKeys.societyServiceType.key : serviceType,
+            NAEventManagementFBKeys.notificationUID.key : notificationUID,
+            NAEventManagementFBKeys.status.key : NAString().in_Progress()]
+        
+        eventManagementNotificationRef.child(notificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
+            //Storing Current System time in milli seconds for time stamp.
+            eventManagementNotificationRef.child(self.notificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
+                //Calling Alert Function After Storing Data in Firebase
+                self.inviteAlertView()
+            })
+        }
+    }
+}
+
