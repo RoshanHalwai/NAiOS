@@ -18,9 +18,6 @@ class SettingsViewController: NANavigationViewController, UITableViewDataSource,
     
     var navTitle = String()
     
-    //Cell Identifier
-    let cellID = "bandCellId"
-    
     //TODO: Need to Remove the HardCoded Content in Future
     let generalArray = ["Choose Language", "Sounds", "Location Services", "Report A Bug", "About"]
     
@@ -36,7 +33,7 @@ class SettingsViewController: NANavigationViewController, UITableViewDataSource,
     func setupTableView() {
         tableVIew.delegate = self
         tableVIew.dataSource = self
-        tableVIew.register(TableViewCell.self, forCellReuseIdentifier: cellID)
+        tableVIew.register(TableViewCell.self, forCellReuseIdentifier: NAString().cellID())
         
         view.addSubview(tableVIew)
         tableVIew.setAnchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
@@ -54,7 +51,7 @@ class SettingsViewController: NANavigationViewController, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! TableViewCell
         
         if indexPath.section == 1 {
             cell.titleLabel.text = notificationArray[indexPath.item]
