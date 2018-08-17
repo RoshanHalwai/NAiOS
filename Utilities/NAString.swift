@@ -1356,4 +1356,12 @@ class NAString : NSObject {
     func their() -> String {
         return "their"
     }
+    
+    func event_Validation_Message() -> String {
+        return "Please Enter Your Event"
+    }
+    
+    func event_Date() -> String {
+        return "Please Select Your Event Date"
+    }
 }
