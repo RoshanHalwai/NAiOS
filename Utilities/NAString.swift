@@ -1274,11 +1274,11 @@ class NAString : NSObject {
     
     // Event Management Activity
     func eventManagement_AlertTitle() -> String {
-        return ("Event Added Message")
+        return ("Event Message")
     }
     
     func eventManagement_AlertMessage() -> String {
-        return ("You have successfully added your Event.")
+        return ("You have successfully booked your Event.")
     }
     
     func event_title() -> String {

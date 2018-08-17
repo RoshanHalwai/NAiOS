@@ -269,7 +269,8 @@ class EventManagementViewController: NANavigationViewController {
         let alert = UIAlertController(title: NAString().eventManagement_AlertTitle() , message: NAString().eventManagement_AlertMessage(), preferredStyle: .alert)
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-            
+            let lv = NAViewPresenter().mainScreenVC()
+            self.navigationController?.pushViewController(lv, animated: true)
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
