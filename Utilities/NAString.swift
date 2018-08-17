@@ -1323,4 +1323,12 @@ class NAString : NSObject {
     func query_time_slot() -> String {
         return ("For any queries related to time slot, Contact Admin.")
     }
+    
+    func sendMessageToSocietyServives() -> String {
+        return ("Hey there! I got the reference of this Service from Namma Apartments app. You can also avail this Service by downloading..")
+    }
+
+    func sendMessageToSocietyServivesWhatsapp() -> String {
+        return ("whatsapp://send?text=Hey%20there%20!%20I%20would%20like%20to%20have%20your%20Service%20at%20my%20Flat.%20Revert%20back%20so%20that%20we%20we%20can%20schedule%20and%20sort%20things%20out%20quickly.")
+    }
 }
