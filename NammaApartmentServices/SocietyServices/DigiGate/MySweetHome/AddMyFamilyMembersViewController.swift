@@ -375,21 +375,21 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
-                let lv = NAViewPresenter().otpViewController()
+                let destVC = NAViewPresenter().otpViewController()
                 var segmentType = String()
                 if familyType == familyMember {
                     segmentType = NAString().enter_verification_code(first: NAString().your_Friend(), second: NAString().their())
                 } else {
                     segmentType = NAString().enter_verification_code(first:NAString().your_Family_Member(), second: NAString().their())
                 }
-                lv.newOtpString = segmentType
-                lv.getCountryCodeString = self.txt_CountryCode.text!
-                lv.getMobileString = self.txt_MobileNo.text!
+                destVC.newOtpString = segmentType
+                destVC.getCountryCodeString = self.txt_CountryCode.text!
+                destVC.getMobileString = self.txt_MobileNo.text!
                 //Assigning Delegate
-                lv.familyDelegateData = self
-                lv.familyMemberType = segmentType
-                lv.delegate = self
-                self.navigationController?.pushViewController(lv, animated: true)
+                destVC.familyDelegateData = self
+                destVC.familyMemberType = segmentType
+                destVC.delegate = self
+                familyMemberExistsOrNot(VC: destVC)
             }
         }
     }
@@ -549,3 +549,27 @@ extension AddMyFamilyMembersViewController {
         userUIDRef?.setValue(familyMemberUID!)
     }
 }
+
+extension AddMyFamilyMembersViewController {
+    
+    func familyMemberExistsOrNot(VC: UIViewController)  {
+        
+        let familyMemberMobileRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+        familyMemberMobileRef.observeSingleEvent(of: .value) { (mobileSnapshot) in
+            
+            var count = 0
+            let mobileNumbers = mobileSnapshot.value as! NSDictionary
+            for mobileNumber in mobileNumbers.allKeys {
+                count = count + 1
+                if (mobileNumber as? String == self.txt_MobileNo.text)  {
+                    self.lbl_Mobile_Validation.isHidden = false
+                    self.lbl_Mobile_Validation.text = NAString().mobileNumberAlreadyExists()
+                }
+                if count == mobileNumbers.count && self.lbl_Mobile_Validation.isHidden == true {
+                    self.navigationController?.pushViewController(VC, animated: true)
+                }
+            }
+        }
+    }
+}
+
