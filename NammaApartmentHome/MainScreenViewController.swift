@@ -370,6 +370,8 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                         self.navigationController?.pushViewController(VC, animated: true)
                     }
                 })
+            } else {
+                self.navigationController?.pushViewController(VC, animated: true)
             }
         }
     }

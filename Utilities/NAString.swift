@@ -392,6 +392,7 @@ class NAString : NSObject {
     func garbage_management() -> String {
         return String("Garbage Management")
     }
+    
     func garbageManagement() -> String {
         return String("garbageManagement")
     }
@@ -399,6 +400,10 @@ class NAString : NSObject {
     func event_management() -> String
     {
         return String("Event Management")
+    }
+    
+    func eventManagement() -> String {
+        return String("eventManagement")
     }
     
     func medical_emergency() -> String {
@@ -1268,6 +1273,14 @@ class NAString : NSObject {
     }
     
     // Event Management Activity
+    func eventManagement_AlertTitle() -> String {
+        return ("Event Added Message")
+    }
+    
+    func eventManagement_AlertMessage() -> String {
+        return ("You have successfully added your Event.")
+    }
+    
     func event_title() -> String {
         return ("Event Title")
     }
