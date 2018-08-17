@@ -165,14 +165,6 @@ class NAViewPresenter: NSObject {
     func settingsVC() -> SettingsViewController {
         return storyBoard.instantiateViewController(withIdentifier: "settingsVC") as! SettingsViewController
     }
-    //Navigation Menu Notifications settings Screen
-    func notificationSettingsVC() -> NotificationSettingsViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "notificationSettingsVC") as! NotificationSettingsViewController
-    }
-    //Navigation Menu General settings Screen
-    func generalSettingsVC() -> GeneralSettingsViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "generalSettingsVC") as! GeneralSettingsViewController
-    }
     //My Profile Screen
     func myProfileVC() -> EditMyProfileViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myProfileVC") as! EditMyProfileViewController

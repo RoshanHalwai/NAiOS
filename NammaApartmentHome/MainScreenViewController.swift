@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-import HCSStarRatingView
 import FirebaseMessaging
 
 class MainScreenViewController: NANavigationViewController {
@@ -22,7 +21,6 @@ class MainScreenViewController: NANavigationViewController {
     var navigationMenuVC: NavigationMenuViewController!
     
     fileprivate var isSocietyServices = true
-    var rateUsView: RateUsView!
     
     var NavigationMenuOpen = false
     
@@ -174,36 +172,6 @@ class MainScreenViewController: NANavigationViewController {
         }
     }
     
-    //Function to show Rate Us View.
-    func showingRateUsView() {
-        rateUsView = RateUsView(frame: CGRect(x: 0, y: 0, width: 230, height: 304))
-        rateUsView.center.x = self.view.bounds.width/2
-        rateUsView.center.y = self.view.bounds.height/2
-        rateUsView.btn_Rate_Now.titleLabel?.font = NAFont().buttonFont()
-        rateUsView.btn_Remind_me_Later.titleLabel?.font = NAFont().buttonFont()
-        rateUsView.btn_Rate_Now.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        rateUsView.btn_Remind_me_Later.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        rateUsView.btn_Rate_Now.backgroundColor = NAColor().buttonBgColor()
-        rateUsView.btn_Rate_Now.backgroundColor = NAColor().buttonBgColor()
-        rateUsView.layer.cornerRadius = 10
-        rateUsView.layer.masksToBounds = true
-        
-        //Customized Code for Star rating
-        let starRatingView: HCSStarRatingView = HCSStarRatingView()
-        starRatingView.maximumValue = 5
-        starRatingView.minimumValue = 0
-        starRatingView.value = 1
-        starRatingView.tintColor = UIColor.yellow
-        starRatingView.allowsHalfStars = false
-        starRatingView.emptyStarImage = UIImage(named: "EmptyStar")?.withRenderingMode(.alwaysTemplate)
-        starRatingView.filledStarImage = UIImage(named: "FullStar")?.withRenderingMode(.alwaysTemplate)
-        starRatingView.center = self.view.center
-        rateUsView.view.addSubview(starRatingView)
-        starRatingView.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.view.addSubview(rateUsView)
-    }
-    
     func segmentControlSelection() {
         self.segmentSelection?.tintColor = UIColor.black
         self.segmentSelection?.backgroundColor = UIColor.black
@@ -225,9 +193,6 @@ class MainScreenViewController: NANavigationViewController {
             case UISwipeGestureRecognizerDirection.left:
                 closeNavigationMenu()
                 opacity_View.isHidden = true
-                if rateUsView != nil {
-                    rateUsView.isHidden = true
-                }
             default:
                 break
             }
