@@ -69,6 +69,9 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     var navTitle: String?
     
     var AddOtpString = String()
+    var familyMember = String()
+    var friend = String()
+    var familyType = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +154,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     // Create name textField first letter capital function and RelationSegment Action.
-    
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
@@ -160,9 +162,11 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         if Relation_Segment.selectedSegmentIndex == 0 {
             lbl_Relation_Validation.isHidden = true
             lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
+            familyMember = lbl_OTPDescription.text!
         } else {
             lbl_Relation_Validation.isHidden = true
-            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "friends")
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "friend")
+            friend = lbl_OTPDescription.text!
         }
     }
     
@@ -303,7 +307,12 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     func addAlertViewAction() {
-        let alertController = UIAlertController(title:NAString().addFamilyMember_AlertView_Title(), message:NAString().addFamilyMember_AlertView_Message(), preferredStyle: .alert)
+        var alertController = UIAlertController()
+        if familyType == familyMember {
+            alertController = UIAlertController(title:NAString().addFamilyMember_AlertView_Title(), message:NAString().addFamilyMember_AlertView_Message(name: "Friend"), preferredStyle: .alert)
+        } else {
+            alertController = UIAlertController(title:NAString().addFamilyMember_AlertView_Title(), message:NAString().addFamilyMember_AlertView_Message(name: "Family Member"), preferredStyle: .alert)
+        }
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().mySweetHomeVC()
@@ -367,12 +376,18 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 grantAccessAlert()
             } else {
                 let lv = NAViewPresenter().otpViewController()
-                let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
-                lv.newOtpString = familyString
+                var segmentType = String()
+                if familyType == familyMember {
+                   segmentType = NAString().enter_verification_code(first: "your Friend", second: "their")
+                } else {
+                   segmentType = NAString().enter_verification_code(first: "your Family Member", second: "their")
+                }
+                lv.newOtpString = segmentType
                 lv.getCountryCodeString = self.txt_CountryCode.text!
                 lv.getMobileString = self.txt_MobileNo.text!
                 //Assigning Delegate
                 lv.familyDelegateData = self
+                lv.familyMemberType = segmentType
                 lv.delegate = self
                 self.navigationController?.pushViewController(lv, animated: true)
             }

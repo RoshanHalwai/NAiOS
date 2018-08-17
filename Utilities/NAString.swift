@@ -812,16 +812,16 @@ class NAString : NSObject {
         return String ("Add My Family Members")
     }
     
-    func addFamilyMemberTitle() -> String {
-        return String ("Add Family Members Details")
+    func addFamilyMemberTitle(name : String) -> String {
+        return String ("Add \(name) Details")
     }
     
     func addFamilyMember_AlertView_Title() -> String {
-        return String ("Family Member Message")
+        return String ("Flat Member Message")
     }
     
-    func addFamilyMember_AlertView_Message() -> String{
-        return String("You have successfully added your Family Member.")
+    func addFamilyMember_AlertView_Message(name: String) -> String{
+        return String("You have successfully added your \(name).")
     }
     
     func relation() -> String {
