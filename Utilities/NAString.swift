@@ -1364,4 +1364,8 @@ class NAString : NSObject {
     func event_Date() -> String {
         return "Please Select Your Event Date"
     }
+    
+    func mobileNumberAlreadyExists() -> String {
+        return ("Mobile Number already exists")
+    }
 }
