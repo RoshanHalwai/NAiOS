@@ -126,32 +126,30 @@ class OTPViewController: NANavigationViewController {
             
             verifyOTPWithFirebase()
         }
-            //Back to My Sweet Home screen
-            if(lbl_OTPDescription.text == self.familyMemberType) {
-                //Creating Credential variable to check correct OTP String.
-                let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
-                
-                //If OTP is Valid then Login Sucess else show Error message in Console
-                //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
-                Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
-                    if let error = error {
-                        print("error",error.localizedDescription)
-                        self.lbl_OTP_Validation.isHidden = false
-                        self.lbl_OTP_Validation.text = NAString().incorrect_otp()
-                        return
-                    } else {
-                        //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
-                        self.familyDelegateData.familydataPassing()
-                        self.navigationController?.popViewController(animated: true)
-                        self.delegate?.activityIndicator_function(withData: (Any).self)              }
-                  }
-                self.navigationController?.popViewController(animated: true)
-                self.delegate?.activityIndicator_function(withData: (Any).self)
+        //Back to My Sweet Home screen
+        if(lbl_OTPDescription.text == self.familyMemberType) {
+            //Creating Credential variable to check correct OTP String.
+            let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
+            
+            //If OTP is Valid then Login Sucess else show Error message in Console
+            //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
+            Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
+                if let error = error {
+                    print("error",error.localizedDescription)
+                    self.lbl_OTP_Validation.isHidden = false
+                    self.lbl_OTP_Validation.text = NAString().incorrect_otp()
+                    return
+                } else {
+                    //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
+                    self.familyDelegateData.familydataPassing()
+                    self.navigationController?.popViewController(animated: true)
+                    self.delegate?.activityIndicator_function(withData: (Any).self)              }
             }
-        
+            self.navigationController?.popViewController(animated: true)
+            self.delegate?.activityIndicator_function(withData: (Any).self)
+        }
         //Back to My Daily Services Screen
         if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {
-    
             
             //Creating Credential variable to check correct OTP String.
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)

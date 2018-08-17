@@ -126,7 +126,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.lbl_Picture_Validation.font = NAFont().descriptionFont()
         self.lbl_Email_Validation.font = NAFont().descriptionFont()
         self.lbl_Relation_Validation.font = NAFont().descriptionFont()
-        self.lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
+        self.lbl_OTPDescription.text = NAString().otp_message_family_member(name:NAString().family_Member())
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
         self.lbl_Name.text = NAString().name()
@@ -161,11 +161,11 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     @IBAction func relationSegmentAction() {
         if Relation_Segment.selectedSegmentIndex == 0 {
             lbl_Relation_Validation.isHidden = true
-            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "family Member")
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name: NAString().family_Member())
             familyMember = lbl_OTPDescription.text!
         } else {
             lbl_Relation_Validation.isHidden = true
-            lbl_OTPDescription.text = NAString().otp_message_family_member(name: "friend")
+            lbl_OTPDescription.text = NAString().otp_message_family_member(name:NAString().friend())
             friend = lbl_OTPDescription.text!
         }
     }
@@ -183,7 +183,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
             
             let lv = NAViewPresenter().otpViewController()
-            let familyString = NAString().enter_verification_code(first: "your Family Member", second: "their")
+            let familyString = NAString().enter_verification_code(first: NAString().your_Family_Member(), second: NAString().their())
             lv.newOtpString = familyString
             self.navigationController?.pushViewController(lv, animated: true)
         }
@@ -309,9 +309,9 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     func addAlertViewAction() {
         var alertController = UIAlertController()
         if familyType == familyMember {
-            alertController = UIAlertController(title:NAString().addFamilyMember_AlertView_Title(), message:NAString().addFamilyMember_AlertView_Message(name: "Friend"), preferredStyle: .alert)
+            alertController = UIAlertController(title:NAString().addFamilyMember_AlertView_Title(), message:NAString().addFamilyMember_AlertView_Message(name:NAString().friend()), preferredStyle: .alert)
         } else {
-            alertController = UIAlertController(title:NAString().addFamilyMember_AlertView_Title(), message:NAString().addFamilyMember_AlertView_Message(name: "Family Member"), preferredStyle: .alert)
+            alertController = UIAlertController(title:NAString().addFamilyMember_AlertView_Title(), message:NAString().addFamilyMember_AlertView_Message(name: NAString().family_Member()), preferredStyle: .alert)
         }
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
@@ -378,9 +378,9 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 let lv = NAViewPresenter().otpViewController()
                 var segmentType = String()
                 if familyType == familyMember {
-                   segmentType = NAString().enter_verification_code(first: "your Friend", second: "their")
+                    segmentType = NAString().enter_verification_code(first: NAString().your_Friend(), second: NAString().their())
                 } else {
-                   segmentType = NAString().enter_verification_code(first: "your Family Member", second: "their")
+                    segmentType = NAString().enter_verification_code(first:NAString().your_Family_Member(), second: NAString().their())
                 }
                 lv.newOtpString = segmentType
                 lv.getCountryCodeString = self.txt_CountryCode.text!
