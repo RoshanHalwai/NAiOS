@@ -212,7 +212,7 @@ class EventManagementViewController: NANavigationViewController {
         dateTextField.inputView = picker
         
         // format picker for date
-        picker.datePickerMode = .dateAndTime
+        picker.datePickerMode = .date
         picker.minimumDate = NSDate() as Date
     }
     
@@ -316,7 +316,7 @@ extension EventManagementViewController {
     //Storing User requests of Society service Problems
     func storeEventManagementDetails() {
         
-        var serviceType = NAString().eventManagement()
+        let serviceType = NAString().eventManagement()
         
         let eventManagementNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
         notificationUID = eventManagementNotificationRef.childByAutoId().key
