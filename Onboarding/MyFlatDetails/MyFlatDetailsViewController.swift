@@ -107,7 +107,7 @@ class MyFlatDetailsViewController: NANavigationViewController {
         lbl_Society.font = NAFont().headerFont()
         lbl_Apartment.font = NAFont().headerFont()
         lbl_ResidentType.font = NAFont().headerFont()
-        lbl_Description.font = NAFont().descriptionFont()
+        lbl_Description.font = NAFont().popupViewFont()
         
         txtCity.font = NAFont().textFieldFont()
         txtSociety.font = NAFont().textFieldFont()

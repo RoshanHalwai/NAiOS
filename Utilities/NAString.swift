@@ -809,7 +809,7 @@ class NAString : NSObject {
     
     //my sweet home
     func btn_mySweet_home() -> String {
-        return String ("Add My Family Members")
+        return String ("Add My Flat Member")
     }
     
     func addFamilyMemberTitle(name : String) -> String {
@@ -981,7 +981,7 @@ class NAString : NSObject {
     }
     
     func edit_Alert_Message() -> String {
-        return String("Sorry you cannot edit this family member since you are not the admin of this flat")
+        return String("Sorry you cannot edit this flat member since you are not the admin of this flat")
     }
     
     func add_Family_Members_Alert_Message() -> String {
@@ -1036,7 +1036,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorFamilyMembersList() -> String {
-        return String ("Please add your Family Members to approve visitors on your behalf.")
+        return String ("Please add your Flat Members to approve visitors on your behalf.")
     }
     
     func statusNotEntered() -> String {
