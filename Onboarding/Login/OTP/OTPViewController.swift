@@ -200,6 +200,7 @@ class OTPViewController: NANavigationViewController {
             else {
                 txtOTP6?.becomeFirstResponder()
                 self.btnVerify.isHidden = false
+                txtOTP6?.resignFirstResponder()
             }
             return false
         }

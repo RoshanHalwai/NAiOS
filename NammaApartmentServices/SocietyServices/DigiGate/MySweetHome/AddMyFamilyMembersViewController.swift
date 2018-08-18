@@ -18,7 +18,7 @@ protocol FamilyDataPass {
     func familydataPassing()
 }
 
-class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AlertViewDelegate, FamilyDataPass  {
+class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AlertViewDelegate, FamilyDataPass {
     
     @IBOutlet weak var img_Profile: UIImageView!
     
@@ -117,7 +117,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.lbl_OR.font = NAFont().headerFont()
         self.lbl_MobileNo.font = NAFont().headerFont()
         self.lbl_Name.font = NAFont().headerFont()
-        self.lbl_OTPDescription.font = NAFont().descriptionFont()
+        self.lbl_OTPDescription.font = NAFont().popupViewFont()
         self.lbl_Relation.font = NAFont().headerFont()
         self.lbl_Email.font = NAFont().headerFont()
         self.lbl_GrantAccess.font = NAFont().headerFont()
@@ -297,6 +297,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             txt_MobileNo.becomeFirstResponder()
         } else if textField == txt_MobileNo {
             txt_Email.becomeFirstResponder()
+        } else {
+           txt_Email.resignFirstResponder()
         }
         return true
     }
