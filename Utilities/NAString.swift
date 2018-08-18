@@ -360,6 +360,42 @@ class NAString : NSObject {
         return String("App Version 1.0")
     }
     
+    func what_Is_NA() -> String {
+        return String("What is Namma Apartments?")
+    }
+    
+    func why_NA() -> String {
+        return String("Why Namma Apartments?")
+    }
+    
+    func what_Are_SocietyServices() -> String {
+        return String("What are Society Services?")
+    }
+    
+    func what_Are_ApartmentServices() -> String {
+        return String("What are Apartment Services?")
+    }
+    
+    func what_Is_DigiGate() -> String {
+        return String("What is Digi Gate?")
+    }
+    
+    func full_Address() -> String {
+        return String("Full Address:")
+    }
+    
+    func address_Detail() -> String {
+        return String("For any queries, contact: \n\n Full Address: \n #59/2, \n Kirtan Labs, \n 9th Cross, \n Tulasi Theatre Road, \n Marathahalli, Bengaluru - 560037, \n Karanataka \n\n Landmark: Behind Innovative Multiplex \n\n Contact No: \n Ashish Jha \n Mob No: +91-9986553474 \n Email:iamashishjha@gmail.com")
+    }
+    
+    func privacy_policy_Detail() -> String {
+        return String("Namma Apartments respects the privacy of our users and has developed this Privacy Policy to demonstrate its commitment to protecting your privacy. \n\n These privacy policies (the 'Privacy Policy') are intended to describe for you, as an individual who is a user of Namma Apartments or any of our related sites, mobile and connected applications, or other online services, the information we collect, how that information may be used, with whom it may be shared, and your choices about such uses and disclosures. \n\n  We encourage you to read this Privacy Policy carefully when using our website or services or transacting business with us. By using our websites or any of our applications, you are accepting the practices described in this Privacy Policy.")
+    }
+    
+    func termsAndConditions_Detail() -> String {
+        return String(" Please read these terms and conditions carefully before using Namma Apartments Mobile Application, operated by Kirtan Labs. \n\n Conditions of Use: \n We will provide their services to you, which are subject to the conditions stated below in this document. Every time you visit this application, use its services or make a purchase, you accept the following conditions. This is why we urge you to read them carefully. \n\n Privacy Policy: \n Before you continue using our application, we advise you to read our privacy policy regarding our user data collection. It will help you better understand our practices. Copyright Content published on this website (digital downloads, images, texts, graphics, logos) is the property of Kirtan Labs and/or its content creators and protected by international copyright laws. The entire compilation of the content found on this website is the exclusive property of Kirtan Labs, with copyright authorship for this compilation by Kirtan Labs. \n\n Communications: \n The entire communication with us is electronic. Every time you send us an email or visit our application, you are going to be communicating with us. You hereby consent to receive communications from us. If you subscribe to the news on our website, you are going to receive regular emails from us. We will continue to communicate with you by posting news and notices on our application and by sending you emails. You also agree that all notices, disclosures, agreements and other communications we provide to you electronically meet the legal requirements that such communications be in writing. \n\n Law: \n By visiting this website, you agree that the laws of the Government of India, without regard to principles of conflict laws, will govern these terms and conditions, or any dispute of any sort that might come between Kirtan Labs and you, or its business partners and associates. \n\n Disputes: \n Any dispute related in any way to your visit to this website or to products you purchase from us shall be arbitrated by state or federal court of Government of India and you consent to exclusive jurisdiction and venue of such courts. Comments, Reviews, and Emails Visitors may post content as long as it is not obscene, illegal, defamatory, threatening, infringing. \n\n User Account: \n If you are an owner of an account on this application, you are solely responsible for maintaining the confidentiality of your private user details. You are responsible for all activities that occur under your account or password. We reserve all rights to terminate accounts, edit or remove content and cancel orders in their sole discretion. Create your own professional terms and conditions tailored to your website or app.")
+    }
+    
     //Particular ViewController Count
     func count_two() -> Int {
         return Int(2)

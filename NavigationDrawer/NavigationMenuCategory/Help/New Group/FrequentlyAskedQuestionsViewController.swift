@@ -11,7 +11,7 @@ import UIKit
 class FrequentlyAskedQuestionsViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var frequentlyAskedArray = [NAString().frequently_asked_questions(), NAString().using_namma_apartments_app(), NAString().contact_us(), NAString().terms_and_conditions(), NAString().privacy_policy()]
+    var frequentlyAskedArray = [NAString().what_Is_NA(), NAString().why_NA(), NAString().what_Are_SocietyServices(), NAString().what_Are_ApartmentServices(), NAString().what_Is_DigiGate()]
     var navTitle = String()
     
     override func viewDidLoad() {
@@ -30,11 +30,11 @@ class FrequentlyAskedQuestionsViewController: NANavigationViewController, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! HelpCollectionViewCell
-        cell.label_View.text = frequentlyAskedArray[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! FrequentlyAskedQuestionsCollectionViewCell
+        cell.lbl_View.text = frequentlyAskedArray[indexPath.row]
         
         //Label formatting & setting
-        cell.label_View.font = NAFont().textFieldFont()
+        cell.lbl_View.font = NAFont().textFieldFont()
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
     }
