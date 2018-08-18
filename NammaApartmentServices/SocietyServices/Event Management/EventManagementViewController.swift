@@ -29,6 +29,8 @@ class EventManagementViewController: NANavigationViewController {
     @IBOutlet weak var lbl_EventDate: UILabel!
     @IBOutlet weak var lbl_ChooseTimeSlot: UILabel!
     @IBOutlet weak var lbl_description: UILabel!
+    @IBOutlet weak var lbl_eventValidation: UILabel!
+    @IBOutlet weak var lbl_eventDateValidation: UILabel!
     
     @IBOutlet weak var txt_EventTitle: UITextField!
     @IBOutlet weak var txt_EventDate: UITextField!
@@ -51,6 +53,9 @@ class EventManagementViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Create Event Title textfield first letter capital
+        txt_EventTitle.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         getButtonHour_Text = NAString().morning()
         getButtonCategory_Text = NAString().parties()
         
@@ -63,6 +68,8 @@ class EventManagementViewController: NANavigationViewController {
         lbl_EventDate.font = NAFont().headerFont()
         lbl_ChooseTimeSlot.font = NAFont().headerFont()
         lbl_description.font = NAFont().headerFont()
+        lbl_eventDateValidation.font = NAFont().descriptionFont()
+        lbl_eventValidation.font = NAFont().descriptionFont()
         
         //Label formatting & setting
         lbl_EventTitle.text = NAString().event_title()
@@ -70,12 +77,17 @@ class EventManagementViewController: NANavigationViewController {
         lbl_EventDate.text = NAString().event_date()
         lbl_ChooseTimeSlot.text = NAString().choose_time_slot()
         lbl_description.text = NAString().query_time_slot()
+        lbl_eventValidation.text = NAString().event_Validation_Message()
+        lbl_eventDateValidation.text = NAString().event_Date()
         
         //TextField formatting & setting
         txt_EventTitle.font = NAFont().textFieldFont()
         txt_EventDate.font = NAFont().textFieldFont()
         txt_EventTitle.underlined()
         txt_EventDate.underlined()
+        
+        lbl_eventValidation.isHidden = true
+        lbl_eventDateValidation.isHidden = true
         
         //assigned delegate method on textFields
         txt_EventTitle.delegate = self
@@ -182,6 +194,11 @@ class EventManagementViewController: NANavigationViewController {
         self.navigationItem.setRightBarButtonItems([history], animated: true)
     }
     
+    //Create Event Title textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
+    }
+    
     //for datePicker
     func createDatePicker(dateTextField : UITextField) {
         // toolbar
@@ -195,7 +212,7 @@ class EventManagementViewController: NANavigationViewController {
         dateTextField.inputView = picker
         
         // format picker for date
-        picker.datePickerMode = .dateAndTime
+        picker.datePickerMode = .date
         picker.minimumDate = NSDate() as Date
     }
     
@@ -206,6 +223,7 @@ class EventManagementViewController: NANavigationViewController {
         let dateString = date.string(from: picker.date)
         txt_EventDate.text = dateString
         self.view.endEditing(true)
+        lbl_eventDateValidation.isHidden = true
         txt_EventDate.underlined()
     }
     
@@ -260,7 +278,23 @@ class EventManagementViewController: NANavigationViewController {
     }
     //Calling Book Button Function
     @IBAction func btn_bookAction() {
-        self.storeEventManagementDetails()
+        if (txt_EventTitle.text?.isEmpty)! {
+            txt_EventTitle?.redunderlined()
+            lbl_eventValidation.isHidden = false
+        } else {
+            txt_EventTitle?.underlined()
+            lbl_eventValidation.isHidden = true
+        }
+        if (txt_EventDate.text?.isEmpty)! {
+            txt_EventDate?.redunderlined()
+            lbl_eventDateValidation.isHidden = false
+        } else {
+            txt_EventDate?.underlined()
+            lbl_eventDateValidation.isHidden = true
+        }
+        if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! {
+            self.storeEventManagementDetails()
+        }
     }
     
     //AlertView For navigation
@@ -282,7 +316,7 @@ extension EventManagementViewController {
     //Storing User requests of Society service Problems
     func storeEventManagementDetails() {
         
-        var serviceType = NAString().eventManagement()
+        let serviceType = NAString().eventManagement()
         
         let eventManagementNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
         notificationUID = eventManagementNotificationRef.childByAutoId().key
@@ -306,6 +340,14 @@ extension EventManagementViewController {
                 self.inviteAlertView()
             })
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == txt_EventTitle {
+            lbl_eventValidation.isHidden = true
+            txt_EventTitle.underlined()
+        }
+        return true
     }
 }
 

@@ -65,6 +65,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         
         //Hiding Keyboard on click of FlatAdmin textFiled
         txt_Flat_Admin.inputView = UIView()
+        txt_Flat_Admin.tintColor = UIColor.clear
         imagePickerController.delegate = self
         
         let userDataRef = Database.database().reference().child(Constants.FIREBASE_USER)
