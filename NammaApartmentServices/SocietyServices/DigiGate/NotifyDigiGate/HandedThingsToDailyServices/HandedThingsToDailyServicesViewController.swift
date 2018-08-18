@@ -130,7 +130,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         cell.lbl_ServiceName.text = DSList.getfullName()
         cell.lbl_ServiceType.text = dailyServiceKey
         cell.lbl_ServiceRating.text = "\(DSList.getrating())"
-        cell.lbl_ServiceInTime.text = DSList.getStatus()
+        cell.lbl_ServiceInTime.text = DSList.gettimeOfVisit()
         cell.lbl_ServiceFlats.text = "\(DSList.getNumberOfFlats())"
         
         if let urlString = DSList.profilePhoto {
