@@ -809,7 +809,7 @@ class NAString : NSObject {
     
     //my sweet home
     func btn_mySweet_home() -> String {
-        return String ("Add My Flat Member")
+        return String ("Add Flat Member")
     }
     
     func addFamilyMemberTitle(name : String) -> String {
