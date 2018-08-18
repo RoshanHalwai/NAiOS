@@ -194,7 +194,7 @@ class EventManagementViewController: NANavigationViewController {
         self.navigationItem.setRightBarButtonItems([history], animated: true)
     }
     
-    //Create name textfield first letter capital function
+    //Create Event Title textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
