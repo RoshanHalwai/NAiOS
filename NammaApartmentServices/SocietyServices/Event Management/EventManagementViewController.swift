@@ -53,6 +53,9 @@ class EventManagementViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Create Event Title textfield first letter capital
+        txt_EventTitle.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         getButtonHour_Text = NAString().morning()
         getButtonCategory_Text = NAString().parties()
         
@@ -189,6 +192,11 @@ class EventManagementViewController: NANavigationViewController {
         historyButton.addTarget(self, action: #selector(gotoSocietyServiceHistoryVC), for: .touchUpInside)
         let history = UIBarButtonItem(customView: historyButton)
         self.navigationItem.setRightBarButtonItems([history], animated: true)
+    }
+    
+    //Create Event Title textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
     }
     
     //for datePicker
