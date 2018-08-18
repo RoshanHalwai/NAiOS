@@ -33,6 +33,8 @@ class OTPViewController: NANavigationViewController {
     @IBOutlet weak var txtOTP5: UITextField!
     @IBOutlet weak var txtOTP6: UITextField!
     @IBOutlet weak var lbl_OTP_Validation: UILabel!
+    @IBOutlet weak var lbl_ShowTimer: UILabel!
+    @IBOutlet weak var lbl_WaitingForOTP: UILabel!
     
     /* - To take data from add my services.
      - Creating varibale to get mobile number string from Login VC TextField and Firebase DB Reference variable.
@@ -54,6 +56,10 @@ class OTPViewController: NANavigationViewController {
     var credentialID = String()
     var delegate : AlertViewDelegate?
     
+    //Created variables for timer functionality
+    var countdownTimer: Timer!
+    var totalTime = 120
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -101,6 +107,61 @@ class OTPViewController: NANavigationViewController {
         txtOTP4.underlined()
         txtOTP5.underlined()
         txtOTP6.underlined()
+    
+        //Start timer on View load
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        
+        //Performing action on Change Mobile Number Function
+        let tapChangeMobile = UITapGestureRecognizer(target: self, action: #selector(tapChangeMobileNumber))
+        lbl_ShowTimer.isUserInteractionEnabled = true
+        lbl_ShowTimer.addGestureRecognizer(tapChangeMobile)
+        
+         //Performing action on Resend OTP Function
+        let tapResendOTP = UITapGestureRecognizer(target: self, action: #selector(tapResend))
+        lbl_WaitingForOTP.isUserInteractionEnabled = true
+        lbl_WaitingForOTP.addGestureRecognizer(tapResendOTP)
+    }
+    
+    //Resend OTP Action
+    @objc func tapResend(sender:UITapGestureRecognizer) {
+        if lbl_WaitingForOTP.text == NAString().resendOTP() {
+            //Generating OTP again & again changing Text of lables
+            lbl_WaitingForOTP.text = NAString().waitingForOTP()
+            
+            //TODO:Need to restart Timer
+             triggerOTPFromFirebase()
+        }
+    }
+    
+    //Craeted Functions for getting timer count
+    @objc func updateTime() {
+        lbl_WaitingForOTP.text = NAString().waitingForOTP()
+        lbl_ShowTimer.text = "\(timeFormatted(totalTime))"
+        
+        if totalTime != 0 {
+            totalTime -= 1
+        } else {
+            endTimer()
+        }
+    }
+    
+    func endTimer() {
+        countdownTimer.invalidate()
+        lbl_WaitingForOTP.text = NAString().resendOTP()
+        lbl_ShowTimer.text = NAString().changeMobileNumber()
+    }
+    
+    func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+    //Change Mobile number Action (navigating back to Login Screen)
+    @objc func tapChangeMobileNumber(sender:UITapGestureRecognizer) {
+        if lbl_ShowTimer.text == NAString().changeMobileNumber() {
+                self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func btnVerifyOTP(_ sender: Any) {
