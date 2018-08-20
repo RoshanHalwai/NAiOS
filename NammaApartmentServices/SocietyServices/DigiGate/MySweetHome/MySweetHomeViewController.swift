@@ -45,21 +45,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
-        let retrieveUserList : RetrieveFamilyMemberList
-        retrieveUserList = RetrieveFamilyMemberList.init()
-        
-        //Retrieve user friends and family members if they have added else we show FEATURE UNAVAILABLE
-        retrieveUserList.getFriendsAndFamilyMembers(userUID: userUID) { (familyMembersDataList) in
-            //Hide Progress indicator
-            NAActivityIndicator.shared.hideActivityIndicator()
-            
-            if familyMembersDataList.count == 0 {
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorFamilyMembersList())
-            } else {
-                self.NAFamilyMemberList.append(contentsOf: familyMembersDataList)
-            }
-            self.collectionView.reloadData()
-        }
+        retrieveFlatMembersData()
         
         /* - Corner Radius for popUp View.
          - Formmating & setting in Buttons and Navigation bar.
@@ -87,15 +73,32 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
-        
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
     }
     
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
         DispatchQueue.main.async {
             self.isActivityIndicatorRunning = true
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func retrieveFlatMembersData() {
+        
+        let retrieveUserList : RetrieveFamilyMemberList
+        retrieveUserList = RetrieveFamilyMemberList.init()
+        
+        //Retrieve user friends and family members if they have added else we show FEATURE UNAVAILABLE
+        retrieveUserList.getFriendsAndFamilyMembers(userUID: userUID) { (familyMembersDataList) in
+            //Hide Progress indicator
+            NAActivityIndicator.shared.hideActivityIndicator()
+            
+            if familyMembersDataList.count == 0 {
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorFamilyMembersList())
+            } else {
+                self.NAFamilyMemberList.removeAll()
+                self.NAFamilyMemberList.append(contentsOf: familyMembersDataList)
+            }
             self.collectionView.reloadData()
         }
     }
@@ -146,9 +149,11 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         let queue = OperationQueue()
         
         queue.addOperation {
-        if let urlString = flatMember.personalDetails.profilePhoto {
-            NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
-        }
+            if let urlString = flatMember.personalDetails.profilePhoto {
+                NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
+                //Here Adding Observer Value Using NotificationCenter
+                NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+            }
         }
         queue.waitUntilAllOperationsAreFinished()
         
@@ -254,7 +259,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         self.userPrivilegesRef?.setValue(newGrantAccessValue)
         
         userPrivilegesRef?.observe(.value) { (snapshot) in
-            self.collectionView.reloadData()
+            self.retrieveFlatMembersData()
         }
         
         opacity_View.isHidden = true

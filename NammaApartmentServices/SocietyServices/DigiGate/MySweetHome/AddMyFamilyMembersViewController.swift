@@ -157,7 +157,9 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     @objc func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 150
+        if self.view.frame.origin.y >= 0 {
+            self.view.frame.origin.y -= 150
+        }
     }
     @objc func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y += 150
@@ -292,7 +294,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         var mobileNumber = mobileNo.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
         
         if mobileNumber.count > NAString().required_mobileNo_Length() {
-            let range1 = mobileNumber.characters.index(mobileNumber.startIndex, offsetBy: 2)..<mobileNumber.endIndex
+            let range1 = mobileNumber.index(mobileNumber.startIndex, offsetBy: 2)..<mobileNumber.endIndex
             mobileNumber = String(mobileNumber[range1])
         }
         self.txt_MobileNo.text = mobileNumber
@@ -303,13 +305,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == txt_Name {
-            txt_MobileNo.becomeFirstResponder()
-        } else if textField == txt_MobileNo {
-            txt_Email.becomeFirstResponder()
-        } else {
-           txt_Email.resignFirstResponder()
-        }
+        textField.resignFirstResponder()
         return true
     }
     
