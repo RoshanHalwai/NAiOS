@@ -213,27 +213,62 @@ extension CabAndPackageArrivalCardListViewController {
         })
     }
     
-    //Showing cab Arrivals data to other Family members but not to friends.
+    //Retriving Expecting cab data for both family & friends
+    //TODO: Need to fix -> Progress bar is showing without error layout msg if friend will invite a cab for the first time.
     func checkAndRetrieveCabArrivals() {
-        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS)
-        userDataReference.keepSynced(true)
-        userDataReference.observeSingleEvent(of: .value) { (cabsSnapshot) in
-            if !(cabsSnapshot.exists()) {
+        var friend = [String]()
+        friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
+        let cabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS)
+        cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
+            var isFlatMemberKeys = false
+            if !(snapshotCab.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
             } else {
-                self.expectingCabArrival(userUID: userUID)
-                var familyMembers = [String]()
-                familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
-                for familyMembersUID in familyMembers {
-                    print(familyMembersUID as Any)
-                    self.expectingCabArrival(userUID: familyMembersUID)
-                }
-                
+                let userUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
+                userUIDRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        self.expectingCabArrival(userUID: userUID)
+                        
+                        var familyMembers = [String]()
+                        familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
+                        
+                        for familyMembersUID in familyMembers {
+                            self.expectingCabArrival(userUID: familyMembersUID)
+                            if let flatMembersUID = snapshotCab.value as? [String: Any] {
+                                let flatMembersUIDKeys = Array(flatMembersUID.keys)
+                                for friendUID in friend {
+                                    for flatMemberUIDKey in flatMembersUIDKeys {
+                                        if flatMemberUIDKey == familyMembersUID || flatMemberUIDKey == userUID || flatMemberUIDKey == friendUID {
+                                            isFlatMemberKeys = true
+                                        } else if (isFlatMemberKeys == false){
+                                            NAActivityIndicator.shared.hideActivityIndicator()
+                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        self.expectingCabArrival(userUID: userUID)
+                        if let flatMembersUID = snapshotCab.value as? [String: Any] {
+                            let flatMembersUIDKeys = Array(flatMembersUID.keys)
+                            for flatMemberUIDKey in flatMembersUIDKeys {
+                                if flatMemberUIDKey == userUID {
+                                    isFlatMemberKeys = true
+                                } else if (isFlatMemberKeys == false)  {
+                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                                }
+                            }
+                        }
+                    }
+                })
             }
-        }
+        })
     }
     
+    //Creating Function to get Expecting Package Arrival Data from Firebase.
     func expectingPackageArrival(userUID : String)  {
         
         userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
@@ -265,24 +300,59 @@ extension CabAndPackageArrivalCardListViewController {
         })
     }
     
-    //Showing Package Arrivals data to other Family members but not to friends.
+    //Retriving Expecting Package data for both family & friends
+  //  TODO: Need to fix -> Progress bar is showing without error layout msg if friend will invite a Package for the first time.
     func checkAndRetrievePackageArrivals() {
-        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES)
-        userDataReference.keepSynced(true)
-        userDataReference.observeSingleEvent(of: .value) { (deliveriesSnapshot) in
-            if !(deliveriesSnapshot.exists()) {
+        var friend = [String]()
+        friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
+        let cabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES)
+        cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
+            var isFlatMemberKeys = false
+            if !(snapshotCab.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
             } else {
-                self.expectingPackageArrival(userUID: userUID)
-                var familyMembers = [String]()
-                familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
-                for familyMembersUID in familyMembers {
-                    print(familyMembersUID as Any)
-                    self.expectingPackageArrival(userUID: familyMembersUID)
-                }
+                let userUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
+                userUIDRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        self.expectingPackageArrival(userUID: userUID)
+                        
+                        var familyMembers = [String]()
+                        familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
+                        
+                        for familyMembersUID in familyMembers {
+                            self.expectingPackageArrival(userUID: familyMembersUID)
+                            if let flatMembersUID = snapshotCab.value as? [String: Any] {
+                                let flatMembersUIDKeys = Array(flatMembersUID.keys)
+                                for friendUID in friend {
+                                    for flatMemberUIDKey in flatMembersUIDKeys {
+                                        if flatMemberUIDKey == familyMembersUID || flatMemberUIDKey == userUID || flatMemberUIDKey == friendUID {
+                                            isFlatMemberKeys = true
+                                        } else if (isFlatMemberKeys == false){
+                                            NAActivityIndicator.shared.hideActivityIndicator()
+                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        self.expectingPackageArrival(userUID: userUID)
+                        if let flatMembersUID = snapshotCab.value as? [String: Any] {
+                            let flatMembersUIDKeys = Array(flatMembersUID.keys)
+                            for flatMemberUIDKey in flatMembersUIDKeys {
+                                if flatMemberUIDKey == userUID {
+                                    isFlatMemberKeys = true
+                                } else if (isFlatMemberKeys == false)  {
+                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
+                                }
+                            }
+                        }
+                    }
+                })
             }
-        }
+        })
     }
 }
 
