@@ -1368,4 +1368,17 @@ class NAString : NSObject {
     func mobileNumberAlreadyExists() -> String {
         return ("Mobile Number already exists")
     }
+    
+    func resendOTP() -> String {
+        return ("Resend OTP")
+    }
+    
+    func changeMobileNumber() -> String {
+        return ("Change Mobile Number")
+    }
+    
+    func waitingForOTP() -> String {
+        return ("Waiting for OTP...")
+    }
+    
 }

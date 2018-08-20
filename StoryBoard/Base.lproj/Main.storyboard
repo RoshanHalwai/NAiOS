@@ -435,19 +435,37 @@
                                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for OTP..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJE-a8-bKO">
+                                                <rect key="frame" x="20" y="343" width="335" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nYz-XH-4aR">
+                                                <rect key="frame" x="20" y="373.5" width="335" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="nYz-XH-4aR" secondAttribute="trailing" constant="20" id="2bz-M7-rFP"/>
                                             <constraint firstItem="UYv-10-2zw" firstAttribute="top" secondItem="SYT-Hb-viB" secondAttribute="bottom" constant="4" id="40N-3p-I5y"/>
                                             <constraint firstAttribute="trailing" secondItem="cNT-Uz-RBG" secondAttribute="trailing" constant="20" id="44n-VY-QHE"/>
+                                            <constraint firstItem="nYz-XH-4aR" firstAttribute="leading" secondItem="mF3-0T-uFq" secondAttribute="leading" constant="20" id="Bvc-rm-s3L"/>
                                             <constraint firstItem="SYT-Hb-viB" firstAttribute="top" secondItem="cNT-Uz-RBG" secondAttribute="bottom" constant="30" id="HBx-PZ-oOv"/>
                                             <constraint firstItem="9vu-lC-2Mp" firstAttribute="top" secondItem="UYv-10-2zw" secondAttribute="bottom" constant="9" id="I0z-uW-HvM"/>
                                             <constraint firstAttribute="trailing" secondItem="UYv-10-2zw" secondAttribute="trailing" constant="20" id="I73-aL-jzD"/>
                                             <constraint firstAttribute="trailing" secondItem="SYT-Hb-viB" secondAttribute="trailing" constant="20" id="JAE-n2-Ymx"/>
+                                            <constraint firstItem="nYz-XH-4aR" firstAttribute="top" secondItem="tJE-a8-bKO" secondAttribute="bottom" constant="10" id="KlS-EH-0Pz"/>
                                             <constraint firstItem="9vu-lC-2Mp" firstAttribute="top" secondItem="SYT-Hb-viB" secondAttribute="bottom" constant="30" id="KwT-OA-b4k"/>
+                                            <constraint firstItem="tJE-a8-bKO" firstAttribute="top" secondItem="9vu-lC-2Mp" secondAttribute="bottom" constant="20" id="M7Z-tw-bPQ"/>
+                                            <constraint firstItem="tJE-a8-bKO" firstAttribute="leading" secondItem="mF3-0T-uFq" secondAttribute="leading" constant="20" id="O82-La-iHl"/>
                                             <constraint firstItem="cNT-Uz-RBG" firstAttribute="top" secondItem="mF3-0T-uFq" secondAttribute="top" constant="120" id="P1j-ZC-MCH"/>
                                             <constraint firstItem="cNT-Uz-RBG" firstAttribute="leading" secondItem="mF3-0T-uFq" secondAttribute="leading" constant="20" id="R3O-DY-HJi"/>
                                             <constraint firstItem="9vu-lC-2Mp" firstAttribute="leading" secondItem="mF3-0T-uFq" secondAttribute="leading" constant="20" id="mqg-hM-Yc7"/>
+                                            <constraint firstAttribute="trailing" secondItem="tJE-a8-bKO" secondAttribute="trailing" constant="20" id="nxH-uw-DMj"/>
                                             <constraint firstAttribute="trailing" secondItem="9vu-lC-2Mp" secondAttribute="trailing" constant="20" id="qOo-Ux-k9Z"/>
                                             <constraint firstItem="SYT-Hb-viB" firstAttribute="leading" secondItem="mF3-0T-uFq" secondAttribute="leading" constant="20" id="reN-1I-IVl"/>
                                         </constraints>
@@ -476,6 +494,8 @@
                         <outlet property="btnVerify" destination="9vu-lC-2Mp" id="2g1-T0-8EE"/>
                         <outlet property="lbl_OTPDescription" destination="cNT-Uz-RBG" id="3Rd-Wo-A8M"/>
                         <outlet property="lbl_OTP_Validation" destination="UYv-10-2zw" id="2am-V3-tDo"/>
+                        <outlet property="lbl_ShowTimer" destination="nYz-XH-4aR" id="6nG-OX-wIU"/>
+                        <outlet property="lbl_WaitingForOTP" destination="tJE-a8-bKO" id="q7c-sj-Usf"/>
                         <outlet property="txtOTP1" destination="Pwo-yh-TDk" id="LmB-zs-gij"/>
                         <outlet property="txtOTP2" destination="lX6-TS-Cng" id="mMR-FX-mSP"/>
                         <outlet property="txtOTP3" destination="hMa-py-GhW" id="E4K-oO-SZP"/>
@@ -486,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTH-PJ-bfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2900" y="714"/>
+            <point key="canvasLocation" x="2900" y="713.79310344827593"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="Vsk-Nw-3iJ">
