@@ -213,76 +213,140 @@ extension CabAndPackageArrivalCardListViewController {
         })
     }
     
-    //Showing cab Arrivals data to other Family members but not to friends.
+    //    //Showing cab Arrivals data to other Family members but not to friends.
+    //    func checkAndRetrieveCabArrivals() {
+    //        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS)
+    //        userDataReference.keepSynced(true)
+    //        userDataReference.observeSingleEvent(of: .value) { (cabsSnapshot) in
+    //            if !(cabsSnapshot.exists()) {
+    //                NAActivityIndicator.shared.hideActivityIndicator()
+    //                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+    //            } else {
+    //                self.expectingCabArrival(userUID: userUID)
+    //                var familyMembers = [String]()
+    //                familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
+    //                for familyMembersUID in familyMembers {
+    //                    self.expectingCabArrival(userUID: familyMembersUID)
+    //                }
+    //            }
+    //        }
+    //    }
+    
     func checkAndRetrieveCabArrivals() {
-        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS)
-        userDataReference.keepSynced(true)
-        userDataReference.observeSingleEvent(of: .value) { (cabsSnapshot) in
-            if !(cabsSnapshot.exists()) {
+        var friend = [String]()
+        friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
+        let cabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS)
+        cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
+            var haveKeys = false
+            if !(snapshotCab.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
             } else {
-                self.expectingCabArrival(userUID: userUID)
-                var familyMembers = [String]()
-                familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
-                for familyMembersUID in familyMembers {
-                    print(familyMembersUID as Any)
-                    self.expectingCabArrival(userUID: familyMembersUID)
-                }
-                
-            }
-        }
-    }
-    
-    func expectingPackageArrival(userUID : String)  {
-        
-        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
-        userDataRef?.keepSynced(true)
-        userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
-            if snapshot.exists() {
-                let packageUID = snapshot.value as? NSDictionary
-                for vendorUID in (packageUID?.allKeys)! {
-                    self.packagePublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(vendorUID as! String)
-                    self.packagePublicRef?.keepSynced(true)
-                    self.packagePublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-                        if snapshot.exists() {
+                let userUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
+                userUIDRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if snapshot.exists() {
+                        self.expectingCabArrival(userUID: userUID)
+                        
+                        var familyMembers = [String]()
+                        familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
+                        
+                        for familyMembersUID in familyMembers {
+                            self.expectingCabArrival(userUID: familyMembersUID)
+                            if let data = snapshotCab.value as? [String: Any] {
+                                let keys = Array(data.keys)
+                                
+                                for friendUID in friend {
+                                    for keyUID in keys {
+                                        if keyUID == familyMembersUID || keyUID == userUID || keyUID == friendUID {
+                                            haveKeys = true
+                                        } else if (haveKeys == false){
+                                            NAActivityIndicator.shared.hideActivityIndicator()
+                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        self.expectingCabArrival(userUID: userUID)
+                        
+                        if let data = snapshotCab.value as? [String: Any] {
+                            let keys = Array(data.keys)
+                           
+                            for keyUID in keys {
+                               
+                                if keyUID == userUID{
+                                    haveKeys = true
+                                    
+                                } else if (haveKeys == false)  {
+                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                                }
+                                    
+                                }
                             
-                            let packageData = snapshot.value as?[String: AnyObject]
-                            let approvalType = packageData?[ExpectingArrivalListFBKeys.approvalType.key] as? String
-                            let dateAndTimeOfArrival = packageData?[ExpectingArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
-                            let reference = packageData?[ExpectingArrivalListFBKeys.reference.key] as? String?
-                            let inviterUID = packageData?[ExpectingArrivalListFBKeys.inviterUID.key] as? String?
-                            let status = packageData?[ExpectingArrivalListFBKeys.status.key] as? String?
-                            
-                            let packageDetails = NAExpectingArrival(approvalType: approvalType,dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!, inviterUID: inviterUID!)
-                            self.myExpectedPackageList.append(packageDetails)
-                            NAActivityIndicator.shared.hideActivityIndicator()
-                            self.collection_View.reloadData()
+                        }
                         }
                     })
                 }
-            }
-        })
-    }
-    
-    //Showing Package Arrivals data to other Family members but not to friends.
-    func checkAndRetrievePackageArrivals() {
-        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES)
-        userDataReference.keepSynced(true)
-        userDataReference.observeSingleEvent(of: .value) { (deliveriesSnapshot) in
-            if !(deliveriesSnapshot.exists()) {
-                NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
-            } else {
-                self.expectingPackageArrival(userUID: userUID)
-                var familyMembers = [String]()
-                familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
-                for familyMembersUID in familyMembers {
-                    print(familyMembersUID as Any)
-                    self.expectingPackageArrival(userUID: familyMembersUID)
+            })
+            
+        }
+        
+        
+        
+        
+        
+        
+        //Creating Function to get Expecting Package Arrival Data from Firebase.
+        func expectingPackageArrival(userUID : String)  {
+            
+            userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
+            userDataRef?.keepSynced(true)
+            userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
+                if snapshot.exists() {
+                    let packageUID = snapshot.value as? NSDictionary
+                    for vendorUID in (packageUID?.allKeys)! {
+                        self.packagePublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(vendorUID as! String)
+                        self.packagePublicRef?.keepSynced(true)
+                        self.packagePublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+                            if snapshot.exists() {
+                                
+                                let packageData = snapshot.value as?[String: AnyObject]
+                                let approvalType = packageData?[ExpectingArrivalListFBKeys.approvalType.key] as? String
+                                let dateAndTimeOfArrival = packageData?[ExpectingArrivalListFBKeys.dateAndTimeOfArrival.key] as? String
+                                let reference = packageData?[ExpectingArrivalListFBKeys.reference.key] as? String?
+                                let inviterUID = packageData?[ExpectingArrivalListFBKeys.inviterUID.key] as? String?
+                                let status = packageData?[ExpectingArrivalListFBKeys.status.key] as? String?
+                                
+                                let packageDetails = NAExpectingArrival(approvalType: approvalType,dateAndTimeOfArrival: dateAndTimeOfArrival!, reference: reference!, status: status!, inviterUID: inviterUID!)
+                                self.myExpectedPackageList.append(packageDetails)
+                                NAActivityIndicator.shared.hideActivityIndicator()
+                                self.collection_View.reloadData()
+                            }
+                        })
+                    }
+                }
+            })
+        }
+        
+        //Showing Package Arrivals data to other Family members but not to friends.
+        func checkAndRetrievePackageArrivals() {
+            let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES)
+            userDataReference.keepSynced(true)
+            userDataReference.observeSingleEvent(of: .value) { (deliveriesSnapshot) in
+                if !(deliveriesSnapshot.exists()) {
+                    NAActivityIndicator.shared.hideActivityIndicator()
+                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
+                } else {
+                    self.expectingPackageArrival(userUID: userUID)
+                    var familyMembers = [String]()
+                    familyMembers = GlobalUserData.shared.getNammaApartmentUser().getFamilyMembers()
+                    for familyMembersUID in familyMembers {
+                        self.expectingPackageArrival(userUID: familyMembersUID)
+                    }
                 }
             }
         }
-    }
 }
 
