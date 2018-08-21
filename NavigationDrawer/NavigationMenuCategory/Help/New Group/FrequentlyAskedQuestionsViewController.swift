@@ -43,6 +43,7 @@ class FrequentlyAskedQuestionsViewController: NANavigationViewController, UITabl
     var emergencyRelatedArray = [NAString().emergencyAlarm_raising_Query(),
                                  NAString().emergencyAlarm_Actions_Query(),
                                  NAString().emergency_EstimatedTime_Query()]
+    
     var plumberRelatedArray = [NAString().SocietyService_Approval_Query(Service: NAString().plumber()),
                                NAString().SocietyService_EstimatedTime_Query(Service: NAString().plumber())]
     

@@ -9,8 +9,6 @@
 import UIKit
 
 class HelpCategoryTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var lbl_View: UILabel!
-    
 }

@@ -9,9 +9,6 @@
 import UIKit
 
 class HelpCategoryViewController: NANavigationViewController, UITableViewDelegate, UITableViewDataSource {
-   
-    
-
     @IBOutlet weak var lbl_Title: UILabel!
     @IBOutlet weak var table_View: UITableView!
     
@@ -30,13 +27,11 @@ class HelpCategoryViewController: NANavigationViewController, UITableViewDelegat
         } else if navTitle == NAString().terms_and_conditions().capitalized {
             lbl_Title.text = NAString().terms_and_conditions()
         }
-        
          lbl_Title.font = NAFont().labelFont()
         
         table_View.rowHeight = UITableViewAutomaticDimension
         table_View.estimatedRowHeight = UITableViewAutomaticDimension
         table_View.reloadData()
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,7 +50,7 @@ class HelpCategoryViewController: NANavigationViewController, UITableViewDelegat
             cell.lbl_View.text = NAString().termsAndConditions_Detail()
         }
         
-         cell.lbl_View.font = NAFont().layoutFeatureErrorFont()
+        cell.lbl_View.font = NAFont().layoutFeatureErrorFont()
         cell.lbl_View.sizeToFit()
         cell.lbl_View.layoutIfNeeded()
         cell.cardView.sizeToFit()
