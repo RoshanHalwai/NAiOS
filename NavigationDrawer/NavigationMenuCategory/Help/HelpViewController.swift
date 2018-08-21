@@ -39,4 +39,31 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let dv = NAViewPresenter().frequentlyAskedHelpVC()
+            dv.navTitle = NAString().frequently_asked_questions().capitalized
+            self.navigationController?.pushViewController(dv, animated: true)
+            
+        case 2:
+            let helpCategoryVC = NAViewPresenter().helpCategoryVC()
+            helpCategoryVC.navTitle = NAString().contact_us().capitalized
+            self.navigationController?.pushViewController(helpCategoryVC, animated: true)
+            
+        case 3:
+            let termsAndConditionsVC = NAViewPresenter().helpCategoryVC()
+            termsAndConditionsVC.navTitle = NAString().terms_and_conditions().capitalized
+            self.navigationController?.pushViewController(termsAndConditionsVC, animated: true)
+            
+        case 4:
+            let privacyPolicyVC = NAViewPresenter().helpCategoryVC()
+            privacyPolicyVC.navTitle = NAString().privacy_policy().capitalized
+            self.navigationController?.pushViewController(privacyPolicyVC, animated: true)
+            
+        default:
+            break
+        }
+    }
 }
