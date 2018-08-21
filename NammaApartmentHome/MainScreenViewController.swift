@@ -263,7 +263,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             case 4:
                 let lv4 = NAViewPresenter().societyServiceVC()
                 lv4.navTitle = NAString().garbage_management()
-                self.navigationController?.pushViewController(lv4, animated: true)
+                getInProgressUID(VC: lv4, titleName: NAString().garbageManagement())
                 
             case 5:
                 let lv5 = NAViewPresenter().raiseAlarmVC()
@@ -273,8 +273,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             case 6:
                 let lv6 = NAViewPresenter().addEventManagementVC()
                 lv6.navTitle = NAString().event_management()
-                self.navigationController?.pushViewController(lv6, animated: true)
-                
+                getInProgressUID(VC: lv6, titleName: NAString().eventManagement())
             default:
                 break
             }
@@ -324,7 +323,14 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                                         let awaitingResponseVC = NAViewPresenter().societyServiceDataVC()
                                         awaitingResponseVC.navTitle = NAString().societyService()
                                         awaitingResponseVC.notificationUID = lastUID!
-                                        self.navigationController?.pushViewController(awaitingResponseVC, animated: true)
+                                        if titleName == NAString().eventManagement() {
+                                            let lv = NAViewPresenter().showEventManagementVC()
+                                            lv.getEventUID = lastUID!
+                                            lv.navTitle = NAString().event_management()
+                                            self.navigationController?.pushViewController(lv, animated: true)
+                                        } else {
+                                            self.navigationController?.pushViewController(awaitingResponseVC, animated: true)
+                                        }
                                     } else {
                                         self.navigationController?.pushViewController(VC, animated: true)
                                     }

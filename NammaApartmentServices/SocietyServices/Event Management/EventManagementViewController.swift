@@ -43,10 +43,10 @@ class EventManagementViewController: NANavigationViewController {
     
     //To set navigation title
     var navTitle : String?
-    var notificationUID = String()
+    var eventNotificationUID = String()
     var getButtonHour_Text = String()
     var getButtonCategory_Text = String()
-    
+
     //created date picker programtically
     let picker = UIDatePicker()
     
@@ -306,6 +306,7 @@ class EventManagementViewController: NANavigationViewController {
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             let lv = NAViewPresenter().showEventManagementVC()
             lv.navTitle = NAString().event_management()
+            lv.getEventUID = self.eventNotificationUID
             self.navigationController?.pushViewController(lv, animated: true)
         }
         alert.addAction(okAction)
@@ -321,9 +322,9 @@ extension EventManagementViewController {
         let serviceType = NAString().eventManagement()
         
         let eventManagementNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
-        notificationUID = eventManagementNotificationRef.childByAutoId().key
+        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
-        userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
+        userDataRef.child(serviceType).child(eventNotificationUID).setValue(NAString().gettrue())
         
         let eventManagementNotificationData = [
             NAEventManagementFBKeys.eventTitle.key : self.txt_EventTitle.text! as String,
@@ -332,12 +333,12 @@ extension EventManagementViewController {
             NAEventManagementFBKeys.timeSlot.key : getButtonHour_Text,
             NAEventManagementFBKeys.userUID.key: userUID,
             NAEventManagementFBKeys.societyServiceType.key : serviceType,
-            NAEventManagementFBKeys.notificationUID.key : notificationUID,
+            NAEventManagementFBKeys.notificationUID.key : eventNotificationUID,
             NAEventManagementFBKeys.status.key : NAString().in_Progress()]
         
-        eventManagementNotificationRef.child(notificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
+        eventManagementNotificationRef.child(eventNotificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
             //Storing Current System time in milli seconds for time stamp.
-            eventManagementNotificationRef.child(self.notificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
+            eventManagementNotificationRef.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
                 //Calling Alert Function After Storing Data in Firebase
                 self.inviteAlertView()
             })
