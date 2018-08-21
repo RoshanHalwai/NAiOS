@@ -77,22 +77,17 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         }
         
         //assigning font & style to cell labels
-        cell.lbl_Name.font = NAFont().headerFont()
-        cell.lbl_Number.font = NAFont().headerFont()
-        cell.lbl_Problem.font = NAFont().headerFont()
-        cell.lbl_SlotTime.font = NAFont().headerFont()
-        cell.lbl_ServiceName.font = NAFont().textFieldFont()
-        cell.lbl_ServiceNumber.font = NAFont().textFieldFont()
-        cell.lbl_ServiceProblem.font = NAFont().textFieldFont()
-        cell.lbl_ServiceSlotTime.font = NAFont().textFieldFont()
+        cell.lbl_Name.font = NAFont().textFieldFont()
+        cell.lbl_Number.font = NAFont().textFieldFont()
+        cell.lbl_Problem.font = NAFont().textFieldFont()
+        cell.lbl_SlotTime.font = NAFont().textFieldFont()
         
-        //cardUIView
-        cell.cardView?.layer.cornerRadius = 3
-        cell.cardView?.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
-        cell.cardView?.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-        cell.cardView?.layer.shadowRadius = 1.7
-        cell.cardView?.layer.shadowOpacity = 0.45
+        cell.lbl_ServiceName.font = NAFont().headerFont()
+        cell.lbl_ServiceNumber.font = NAFont().headerFont()
+        cell.lbl_ServiceProblem.font = NAFont().headerFont()
+        cell.lbl_ServiceSlotTime.font = NAFont().headerFont()
         
+        NAShadowEffect().shadowEffect(Cell: cell)
         return cell
     }
     
@@ -186,8 +181,6 @@ extension SocietyHistoryViewController {
                         //Getting all the event management data & storing in model class
                         let eventManagementData = eventDataSnapshot.value as? [String: AnyObject]
                         
-                        print(eventManagementData as Any)
-                        
                         let eventTitle : String = eventManagementData?[NAEventManagementFBKeys.eventTitle.key] as! String
                         print(eventTitle as Any)
                         let eventDate : String = eventManagementData?[NAEventManagementFBKeys.eventDate.key] as! String
@@ -198,7 +191,7 @@ extension SocietyHistoryViewController {
                         
                         self.NAEventList.append(eventManagementsData)
                         self.collectionView.reloadData()
-                        
+                        NAActivityIndicator.shared.hideActivityIndicator()
                     })
                 }
             } else {
