@@ -79,7 +79,7 @@ extension EventManagementCardViewController {
         
         self.cardView.isHidden = true
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
+
         var societyServiceNotificationsRef : DatabaseReference?
         
         societyServiceNotificationsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(getEventUID)

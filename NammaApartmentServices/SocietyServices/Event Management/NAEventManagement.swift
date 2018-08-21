@@ -30,3 +30,35 @@ enum NAEventManagementFBKeys : String {
         }
     }
 }
+
+class NAEventManagement {
+    //defining strings according to firebase names which is inside the Daily Services Node.
+    var title: String?
+    var date: String?
+    var timeSlot: String?
+    var status: String?
+    
+    //initilaize the variables
+    init(title: String?,date: String?,timeSlot: String?,status: String?) {
+        self.title = title
+        self.date = date
+        self.timeSlot = timeSlot
+        self.status = status
+    }
+
+    func getTitle() -> String {
+        return title!
+    }
+    
+    func getDate() -> String {
+        return date!
+    }
+    
+    func getTimeSlot() -> String {
+        return timeSlot!
+    }
+    
+    func getStatus() -> String {
+        return status!
+    }
+}

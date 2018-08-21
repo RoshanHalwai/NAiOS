@@ -18,6 +18,9 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     var navigationTitle = String()
     var NASocietyServiceData = [NASocietyServices]()
     
+    //Created Instance of Model Class To get data in card view
+    var NAEventList = [NAEventManagement]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Showing Activity Indicator
@@ -27,7 +30,12 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
-        retrieveSocietyServiceHistoryData()
+        
+        if navigationTitle == NAString().eventManagement() {
+            retrieveEventManagement()
+        } else {
+            retrieveSocietyServiceHistoryData()
+        }
         
         //Hiding History NavigationBar  RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
@@ -35,20 +43,38 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     
     //MARK : CollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if navigationTitle == NAString().eventManagement() {
+            return NAEventList.count
+        }
         return NASocietyServiceData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! SocietyHistoryCollectionViewCell
-      
         
-        let societyServiceList : NASocietyServices
-        societyServiceList = NASocietyServiceData[indexPath.row]
-        
-        cell.lbl_ServiceName.text = societyServiceList.getFullName()
-        cell.lbl_ServiceNumber.text = societyServiceList.getMobileNumber()
-        cell.lbl_ServiceProblem.text = societyServiceList.getProblem()
-        cell.lbl_ServiceSlotTime.text = societyServiceList.getTimeSlot()
+        if navigationTitle == NAString().eventManagement() {
+            
+            let eventServiceList : NAEventManagement
+            eventServiceList = NAEventList[indexPath.row]
+            cell.lbl_Name.text = NAString().title()
+            cell.lbl_Number.text = NAString().date()
+            cell.lbl_Problem.text = NAString().timeSlot()
+            cell.lbl_SlotTime.text = NAString().status()
+            
+            cell.lbl_ServiceName.text = eventServiceList.getTitle()
+            cell.lbl_ServiceNumber.text = eventServiceList.getDate()
+            cell.lbl_ServiceProblem.text = eventServiceList.getTimeSlot()
+            cell.lbl_ServiceSlotTime.text = eventServiceList.getStatus()
+        } else {
+            
+            let societyServiceList : NASocietyServices
+            societyServiceList = NASocietyServiceData[indexPath.row]
+            
+            cell.lbl_ServiceName.text = societyServiceList.getFullName()
+            cell.lbl_ServiceNumber.text = societyServiceList.getMobileNumber()
+            cell.lbl_ServiceProblem.text = societyServiceList.getProblem()
+            cell.lbl_ServiceSlotTime.text = societyServiceList.getTimeSlot()
+        }
         
         //assigning font & style to cell labels
         cell.lbl_Name.font = NAFont().headerFont()
@@ -135,4 +161,51 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
             }
         }
     }
+}
+
+extension SocietyHistoryViewController {
+    
+    func retrieveEventManagement() {
+        
+        var eventManagementUIDRef : DatabaseReference?
+        var societyServiceNotificationsRef : DatabaseReference?
+        
+        eventManagementUIDRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
+        
+        eventManagementUIDRef?.observeSingleEvent(of: .value, with: { (eventUIDSnapShot) in
+            
+            if eventUIDSnapShot.exists() {
+                //Getting Event Management UIDs here
+                let eventUIDs = eventUIDSnapShot.value as? NSDictionary
+                for eventUID in (eventUIDs?.allKeys)! {
+                    
+                    societyServiceNotificationsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(eventUID as! String)
+                    
+                    societyServiceNotificationsRef?.observeSingleEvent(of: .value, with: { (eventDataSnapshot) in
+                        
+                        //Getting all the event management data & storing in model class
+                        let eventManagementData = eventDataSnapshot.value as? [String: AnyObject]
+                        
+                        print(eventManagementData as Any)
+                        
+                        let eventTitle : String = eventManagementData?[NAEventManagementFBKeys.eventTitle.key] as! String
+                        print(eventTitle as Any)
+                        let eventDate : String = eventManagementData?[NAEventManagementFBKeys.eventDate.key] as! String
+                        let eventStatus : String = eventManagementData?[NAEventManagementFBKeys.status.key] as! String
+                        let eventTimeSlot : String = eventManagementData?[NAEventManagementFBKeys.timeSlot.key] as! String
+                        
+                        let eventManagementsData = NAEventManagement(title: eventTitle as String?, date: eventDate as String?, timeSlot: eventTimeSlot as String?, status: eventStatus as String?)
+                        
+                        self.NAEventList.append(eventManagementsData)
+                        self.collectionView.reloadData()
+                        
+                    })
+                }
+            } else {
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.navigationTitle.capitalized))
+            }
+        })
+    }
+    
 }
