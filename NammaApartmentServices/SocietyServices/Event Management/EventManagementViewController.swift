@@ -67,7 +67,7 @@ class EventManagementViewController: NANavigationViewController {
         lbl_ChooseCategory.font = NAFont().headerFont()
         lbl_EventDate.font = NAFont().headerFont()
         lbl_ChooseTimeSlot.font = NAFont().headerFont()
-        lbl_description.font = NAFont().headerFont()
+        lbl_description.font = NAFont().descriptionFont()
         lbl_eventDateValidation.font = NAFont().descriptionFont()
         lbl_eventValidation.font = NAFont().descriptionFont()
         
@@ -294,6 +294,7 @@ class EventManagementViewController: NANavigationViewController {
         }
         if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! {
             self.storeEventManagementDetails()
+            self.inviteAlertView()
         }
     }
     
@@ -303,7 +304,8 @@ class EventManagementViewController: NANavigationViewController {
         let alert = UIAlertController(title: NAString().eventManagement_AlertTitle() , message: NAString().eventManagement_AlertMessage(), preferredStyle: .alert)
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-            let lv = NAViewPresenter().mainScreenVC()
+            let lv = NAViewPresenter().showEventManagementVC()
+            lv.navTitle = NAString().event_management()
             self.navigationController?.pushViewController(lv, animated: true)
         }
         alert.addAction(okAction)
