@@ -83,30 +83,34 @@ class FrequentlyAskedQuestionsViewController: NANavigationViewController, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 {
+        switch section {
+        case 0 :
             return generalRelatedArray.count
-        } else if section == 1 {
+        case 1 :
             return accountRelatedArray.count
-        } else if section == 2{
+        case 2 :
             return visitorsRelatedArray.count
-        } else if section == 3{
+        case 3 :
             return dailyServiceRelatedArray.count
-        } else if section == 4{
+        case 4 :
             return flatMembersRelatedArray.count
-        } else if section == 5{
+        case 5 :
             return handedThingsRelatedArray.count
-        } else if section == 6 {
+        case 6 :
             return emergencyRelatedArray.count
-        } else if section == 7 {
+        case 7 :
             return plumberRelatedArray.count
-        } else if section == 8 {
+        case 8 :
             return carpenterRelatedArray.count
-        } else if section == 9 {
+        case 9 :
             return electricianRelatedArray.count
-        } else if section == 10 {
+        case 10 :
             return garbageRelatedArray.count
-        } else if section == 11 {
+        case 11 :
             return eventsRelatedArray.count
+            
+        default:
+            break
         }
         return notificationRelatedArray.count
     }
@@ -114,62 +118,70 @@ class FrequentlyAskedQuestionsViewController: NANavigationViewController, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table_View.dequeueReusableCell(withIdentifier: NAString().cellID()) as! FrequentlyAskedTableViewCell
         
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0 :
             cell.label_View.text = generalRelatedArray[indexPath.item]
-        } else if indexPath.section == 1 {
+        case 1 :
             cell.label_View.text = accountRelatedArray[indexPath.item]
-        } else if indexPath.section == 2 {
+        case 2 :
             cell.label_View.text = visitorsRelatedArray[indexPath.item]
-        } else if indexPath.section == 3 {
+        case 3 :
             cell.label_View.text = dailyServiceRelatedArray[indexPath.item]
-        } else if indexPath.section == 4 {
+        case 4 :
             cell.label_View.text = flatMembersRelatedArray[indexPath.item]
-        } else if indexPath.section == 5 {
+        case 5 :
             cell.label_View.text = handedThingsRelatedArray[indexPath.item]
-        } else if indexPath.section == 6 {
+        case 6 :
             cell.label_View.text = emergencyRelatedArray[indexPath.item]
-        } else if indexPath.section == 7 {
+        case 7 :
             cell.label_View.text = plumberRelatedArray[indexPath.item]
-        } else if indexPath.section == 8 {
+        case 8 :
             cell.label_View.text = carpenterRelatedArray[indexPath.item]
-        } else if indexPath.section == 9 {
+        case 9 :
             cell.label_View.text = electricianRelatedArray[indexPath.item]
-        } else if indexPath.section == 10 {
+        case 10 :
             cell.label_View.text = garbageRelatedArray[indexPath.item]
-        } else if indexPath.section == 11 {
+        case 11 :
             cell.label_View.text = eventsRelatedArray[indexPath.item]
-        } else {
+        case 12 :
             cell.label_View.text = notificationRelatedArray[indexPath.item]
+            
+        default:
+            break
         }
         cell.label_View.font = NAFont().textFieldFont()
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
+        
+        switch section {
+        case 0 :
             return NAString().general()
-        } else if section == 1 {
+        case 1 :
             return NAString().account()
-        } else if section == 2 {
+        case 2 :
             return NAString().Visitors()
-        } else if section == 3 {
+        case 3 :
             return NAString().daily_Services()
-        } else if section == 4 {
+        case 4 :
             return NAString().flatMembers()
-        } else if section == 5 {
+        case 5 :
             return NAString().handed_Things()
-        } else if section == 6 {
+        case 6 :
             return NAString().emergency()
-        } else if section == 7 {
+        case 7 :
             return NAString().plumber()
-        } else if section == 8 {
+        case 8 :
             return NAString().carpenter()
-        } else if section == 9 {
+        case 9 :
             return NAString().electrician()
-        } else if section == 10 {
+        case 10 :
             return NAString().garbage()
-        } else if section == 11 {
+        case 11 :
             return NAString().event_management()
+        default:
+            break
         }
         return NAString().notification()
     }

@@ -223,14 +223,6 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "frequentlyAskedVC") as! FrequentlyAskedQuestionsViewController
     }
     
-    func contactUsVC() -> ContactUsViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "contactUsVC") as! ContactUsViewController
-    }
-    
-    func privacyPolicyVC() -> PrivacyPolicyViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "privacyPolicyVC") as! PrivacyPolicyViewController
-    }
-    
     func helpCategoryVC() -> HelpCategoryViewController {
         return storyBoard.instantiateViewController(withIdentifier: "helpCategoryVC") as! HelpCategoryViewController
     }
