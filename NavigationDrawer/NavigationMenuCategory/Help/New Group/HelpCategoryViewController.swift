@@ -31,8 +31,8 @@ class HelpCategoryViewController: NANavigationViewController, UITableViewDelegat
             lbl_Title.text = NAString().terms_and_conditions()
         }
         
-         lbl_Title.font = NAFont().headerFont()
-        // Swift 4.1 and below
+         lbl_Title.font = NAFont().labelFont()
+        
         table_View.rowHeight = UITableViewAutomaticDimension
         table_View.estimatedRowHeight = UITableViewAutomaticDimension
         table_View.reloadData()
