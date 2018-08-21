@@ -360,26 +360,6 @@ class NAString : NSObject {
         return String("App Version 1.0")
     }
     
-    func what_Is_NA() -> String {
-        return String("What is Namma Apartments?")
-    }
-    
-    func why_NA() -> String {
-        return String("Why Namma Apartments?")
-    }
-    
-    func what_Are_SocietyServices() -> String {
-        return String("What are Society Services?")
-    }
-    
-    func what_Are_ApartmentServices() -> String {
-        return String("What are Apartment Services?")
-    }
-    
-    func what_Is_DigiGate() -> String {
-        return String("What is Digi Gate?")
-    }
-    
     func full_Address() -> String {
         return String("Full Address:")
     }
