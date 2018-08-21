@@ -460,8 +460,8 @@ class NAString : NSObject {
         return String("Digi Gate")
     }
     
-    func invite_visitors() -> String {
-        return String("Invite Visitors")
+    func invite_Guests() -> String {
+        return String("Invite Guests")
     }
     
     func my_visitors_list() -> String {
@@ -473,7 +473,7 @@ class NAString : NSObject {
     }
     
     func notify_digital_gate() -> String {
-        return String("Notify Digital Gate")
+        return String("Notify Digi Gate")
     }
     
     func my_sweet_home() -> String {
@@ -484,17 +484,12 @@ class NAString : NSObject {
         return String("Emergency")
     }
     
-    //Invite Visitor ViewController
-    func visitorNameViewTitle() -> String {
-        return String("Inviting Visitors")
-    }
-    
     func visitorName() -> String {
-        return String("Visitor Name")
+        return String("Guest Name")
     }
     
     func visitorMobile() -> String {
-        return String("Visitor Mobile")
+        return String("Guest Mobile")
     }
     
     func BtnselectFromContact() -> String {
@@ -514,7 +509,7 @@ class NAString : NSObject {
     }
     
     func inviteButtonAlertViewMessage() -> String {
-        return String("You have successfully invited your visitor")
+        return String("You have successfully invited your Guest")
     }
     
     func inviteButtonAlertViewTitle() -> String {
@@ -522,7 +517,7 @@ class NAString : NSObject {
     }
     
     func inviteButtonloadViewTitle() -> String {
-        return String("Inviting Your Visitor")
+        return String("Inviting Your Guest")
     }
     
     //MyVisitorList
