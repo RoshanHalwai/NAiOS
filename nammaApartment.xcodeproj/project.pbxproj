@@ -29,8 +29,6 @@
 		0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */; };
 		0865689521270C2C00E4CDE1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865689421270C2C00E4CDE1 /* SettingsViewController.swift */; };
 		0865689721270C3500E4CDE1 /* ExtensionsForSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865689621270C3400E4CDE1 /* ExtensionsForSettingView.swift */; };
-		0865689E2127D20200E4CDE1 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865689D2127D20200E4CDE1 /* ContactUsViewController.swift */; };
-		086568A02127D95700E4CDE1 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0865689F2127D95700E4CDE1 /* PrivacyPolicyViewController.swift */; };
 		086568A22127E63B00E4CDE1 /* HelpCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086568A12127E63B00E4CDE1 /* HelpCategoryViewController.swift */; };
 		086568A42127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086568A32127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift */; };
 		086568A6212AD34A00E4CDE1 /* FrequentlyAskedQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086568A5212AD34A00E4CDE1 /* FrequentlyAskedQuestionsViewController.swift */; };
@@ -191,8 +189,6 @@
 		0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAShodowEffect.swift; sourceTree = "<group>"; };
 		0865689421270C2C00E4CDE1 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0865689621270C3400E4CDE1 /* ExtensionsForSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsForSettingView.swift; sourceTree = "<group>"; };
-		0865689D2127D20200E4CDE1 /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
-		0865689F2127D95700E4CDE1 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		086568A12127E63B00E4CDE1 /* HelpCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoryViewController.swift; sourceTree = "<group>"; };
 		086568A32127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		086568A5212AD34A00E4CDE1 /* FrequentlyAskedQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequentlyAskedQuestionsViewController.swift; sourceTree = "<group>"; };
@@ -393,10 +389,8 @@
 		086568982127132600E4CDE1 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
-				0865689D2127D20200E4CDE1 /* ContactUsViewController.swift */,
 				086568A5212AD34A00E4CDE1 /* FrequentlyAskedQuestionsViewController.swift */,
 				086568A7212AD3A900E4CDE1 /* FrequentlyAskedTableViewCell.swift */,
-				0865689F2127D95700E4CDE1 /* PrivacyPolicyViewController.swift */,
 				086568A12127E63B00E4CDE1 /* HelpCategoryViewController.swift */,
 				086568A32127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift */,
 			);
@@ -1255,7 +1249,6 @@
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
 				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
 				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
-				086568A02127D95700E4CDE1 /* PrivacyPolicyViewController.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				422E7E062114619F00648D40 /* SocietyHistoryViewController.swift in Sources */,
@@ -1269,7 +1262,6 @@
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
-				0865689E2127D20200E4CDE1 /* ContactUsViewController.swift in Sources */,
 				42341BB5212165620005160B /* MyGuardsViewController.swift in Sources */,
 				0809B91C211DAB7100B30EE2 /* NASocietyServices.swift in Sources */,
 				86BF6A4120A0325200B175A1 /* MyGuestListCollectionViewCell.swift in Sources */,
