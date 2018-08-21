@@ -84,7 +84,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         img_Profile.clipsToBounds = true
         
         //Formatting & setting navigation bar
-        super.ConfigureNavBarTitle(title: NAString().visitorNameViewTitle())
+        super.ConfigureNavBarTitle(title: NAString().invite_Guests())
         self.navigationItem.title = ""
         
         //calling date picker function on view didload.
