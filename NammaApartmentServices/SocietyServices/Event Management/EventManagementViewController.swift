@@ -231,6 +231,7 @@ class EventManagementViewController: NANavigationViewController {
     @objc func gotoSocietyServiceHistoryVC() {
         let dv = NAViewPresenter().societyServiceHistoryVC()
         dv.titleName = NAString().history().capitalized
+        dv.navigationTitle = NAString().eventManagement()
         self.navigationController?.pushViewController(dv, animated: true)
     }
     

@@ -23,6 +23,8 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         //Showing Activity Indicator
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
+        print(navigationTitle)
+        
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         retrieveSocietyServiceHistoryData()
@@ -38,6 +40,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! SocietyHistoryCollectionViewCell
+      
         
         let societyServiceList : NASocietyServices
         societyServiceList = NASocietyServiceData[indexPath.row]
@@ -92,6 +95,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                 //Checking whether Service Person Accepted the User Request or not
                                 if (societyServiceData?[NASocietyServicesFBKeys.takenBy.key] != nil &&
                                     societyServiceData?[NASocietyServicesFBKeys.endOTP.key] != nil) {
+                                    
                                     let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
                                     let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                                     let societyServiceProblem: String = societyServiceData?[NASocietyServicesFBKeys.problem.key] as! String
