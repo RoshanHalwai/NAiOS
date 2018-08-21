@@ -71,7 +71,6 @@ class EventManagementCardViewController: NANavigationViewController {
     }
 }
 
-
 //Retrieving data to show event management list in card view
 extension EventManagementCardViewController {
     
