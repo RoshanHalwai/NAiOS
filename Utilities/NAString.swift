@@ -1317,7 +1317,7 @@ class NAString : NSObject {
     }
     
     func noon() -> String {
-        return ("2PM - 4PM")
+        return ("12PM - 4PM")
     }
     
     func evening() -> String {
@@ -1376,4 +1376,11 @@ class NAString : NSObject {
         return ("Waiting for OTP...")
     }
     
+    func eventManagementBottomDescription() -> String {
+        return ("You will be notified once the 'Status' of your request changes.")
+    }
+    
+    func eventManagementTopDescription() -> String {
+        return ("Your request for the below Event has been initiated.")
+    }
 }

@@ -78,4 +78,6 @@ struct Constants {
     static let FIREBASE_CHILD_GUESTS = "guests"
     static let FIREBASE_CHILD_NOTIFICATION_UID = "notification_uid"
     static let FIREBASE_CHILD_VISITOR_TYPE = "visitor_type"
+    static let FIREBASE_CHILD_EVENT_MANAGEMENT = "eventManagement"
+    static let FIREBASE_CHILD_IN_PROGRESS = "in progress"
 }
