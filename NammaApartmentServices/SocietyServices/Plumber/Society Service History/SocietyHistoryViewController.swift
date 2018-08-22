@@ -23,10 +23,9 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Showing Activity Indicator
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
-        print(navigationTitle)
         
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
@@ -53,7 +52,6 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! SocietyHistoryCollectionViewCell
         
         if navigationTitle == NAString().eventManagement() {
-            
             let eventServiceList : NAEventManagement
             eventServiceList = NAEventList[indexPath.row]
             cell.lbl_Name.text = NAString().title()
@@ -66,7 +64,6 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
             cell.lbl_ServiceProblem.text = eventServiceList.getTimeSlot()
             cell.lbl_ServiceSlotTime.text = eventServiceList.getStatus()
         } else {
-            
             let societyServiceList : NASocietyServices
             societyServiceList = NASocietyServiceData[indexPath.row]
             
@@ -113,7 +110,6 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                 //Checking whether Service Person Accepted the User Request or not
                                 if (societyServiceData?[NASocietyServicesFBKeys.takenBy.key] != nil &&
                                     societyServiceData?[NASocietyServicesFBKeys.endOTP.key] != nil) {
-                                    
                                     let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
                                     let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                                     let societyServiceProblem: String = societyServiceData?[NASocietyServicesFBKeys.problem.key] as! String

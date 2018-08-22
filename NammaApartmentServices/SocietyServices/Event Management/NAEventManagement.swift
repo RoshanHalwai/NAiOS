@@ -32,7 +32,7 @@ enum NAEventManagementFBKeys : String {
 }
 
 class NAEventManagement {
-    //defining strings according to firebase names which is inside the Daily Services Node.
+   
     var title: String?
     var date: String?
     var timeSlot: String?
