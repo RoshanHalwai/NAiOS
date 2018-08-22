@@ -50,6 +50,7 @@ class MyFlatDetailsViewController: NANavigationViewController {
     var newMobileNumber = String()
     var newEmail = String()
     var newFullName = String()
+    var fullName = String()
     
     //Firebase Database Reference
     var usersFlatDetailsRef : DatabaseReference?
@@ -144,6 +145,17 @@ class MyFlatDetailsViewController: NANavigationViewController {
         
         //set Title in Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().My_flat_Details_title())
+    }
+    
+    func flatDetailsAlertView() {
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().flat_AlertTitle() , message: NAString().flat_AlertMessage(admin:fullName), preferredStyle: .alert)
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+            OpacityView.shared.hidingOpacityView()
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
     //Action for Navigating Back to SignupVC 
@@ -292,89 +304,105 @@ extension MyFlatDetailsViewController {
         //Storing Data Under UsersData
         UsersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(txtCity.text!).child(txtSociety.text!).child(txtApartment.text!).child(txtFlat.text!)
         
-        //Storing Data into User Flat Details
-        let usersFlatData = [
-            UserFlatListFBKeys.apartmentName.key : self.txtApartment.text! as String?,
-            UserFlatListFBKeys.city.key : self.txtCity.text! as String?,
-            UserFlatListFBKeys.flatNumber.key : self.txtFlat.text! as String?,
-            UserFlatListFBKeys.societyName.key : self.txtSociety.text! as String?,
-            UserFlatListFBKeys.tenantType.key : self.selectedSegmentValue
-        ]
-        
-        //Storing Data into User Privileges
-        //TODO: Hardcoded values for UserPrivileges for storing data in Firebase undr Users/Private/UID/Privileges
-        let userPrivilegesData = [
-            UserPrivilegesListFBKeys.admin.key : NAString().gettrue(),
-            UserPrivilegesListFBKeys.grantedAccess.key : NAString().gettrue(),
-            UserPrivilegesListFBKeys.verified.key : NAString().getfalse()
-        ]
-        
-        //Maping UsersUID with admin
-        UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(userUID)
-        
-        //Adding usersFlatDetails data under Users/Private/UID
-        self.usersFlatDetailsRef?.setValue(usersFlatData)
-        
-        //Adding usersPrivilegesDetails data under Users/Private/UID
-        self.usersPrivilegeDetailsRef?.setValue(userPrivilegesData)
-        
-        //Storing Data into User Personal Details
-        //Storing users data along with their profile photo
-        var usersImageRef: StorageReference?
-        usersImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
-        
-        //Compressing profile image and assigning its content type.
-        guard let image = newProfileImage else { return }
-        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
-        
-        let metaDataContentType = StorageMetadata()
-        metaDataContentType.contentType = NAString().imageContentType()
-        
-        //Uploading Visitor image url along with Visitor UID
-        let uploadImageRef = usersImageRef?.child(userUID!)
-        
-        let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
-            
-            uploadImageRef?.downloadURL(completion: { (url, urlError) in
-                
-                if urlError == nil {
-                    
-                    let usersPersonalData = [
-                        UserPersonalListFBKeys.email.key : self.newEmail,
-                        UserPersonalListFBKeys.fullName.key : self.newFullName,
-                        UserPersonalListFBKeys.profilePhoto.key : url?.absoluteString,
-                        UserPersonalListFBKeys.phoneNumber.key : self.newMobileNumber
-                    ]
-                    
-                    //Adding users data under  Users/Private/UID & mapping UID
-                    self.usersPersonalDetailsRef?.setValue(usersPersonalData)
-                    
-                    //Storing UID under Users/Private/UID
-                    self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
-                    
-                    self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
-                    
-                    //Mapping Mobile Number with UID
-                    
-                    self.usersMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
-                    self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID)
-                    
-                    //Storing Flat Member UID
-                    self.userFlatMemberRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
-                    
-                    self.userFlatMemberRef?.child(userUID!).setValue(NAString().gettrue())
-                    
-                    //Navigate to Namma Apartment Home Screen After Storing all users data.
-                    let dest = NAViewPresenter().mainScreenVC()
-                    self.navigationController?.pushViewController(dest, animated: true)
-                    
-                    //Using else statement & printing error,so the other developers can know what is going on.
-                } else {
-                    print(urlError as Any)
+        UsersDataRef?.observeSingleEvent(of: .value) { (flatDetailsSnapshot) in
+            if flatDetailsSnapshot.exists() {
+                let adminUIDRef = self.UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN)
+                adminUIDRef?.observeSingleEvent(of: .value) { (adminUIDSnapshot) in
+                    let adminUID = adminUIDSnapshot.value
+                    let adminNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(adminUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+                    adminNameRef.observeSingleEvent(of: .value) { (adminNameSnapshot) in
+                        let usersData = adminNameSnapshot.value as? [String: AnyObject]
+                        self.fullName = (usersData?[UserPersonalListFBKeys.fullName.key] as? String)!
+                        OpacityView.shared.hidingPopupView()
+                        self.flatDetailsAlertView()
+                    }
                 }
-            })
-        })
-        uploadTask?.resume()
+            } else {
+                //Storing Data into User Flat Details
+                let usersFlatData = [
+                    UserFlatListFBKeys.apartmentName.key : self.txtApartment.text! as String?,
+                    UserFlatListFBKeys.city.key : self.txtCity.text! as String?,
+                    UserFlatListFBKeys.flatNumber.key : self.txtFlat.text! as String?,
+                    UserFlatListFBKeys.societyName.key : self.txtSociety.text! as String?,
+                    UserFlatListFBKeys.tenantType.key : self.selectedSegmentValue
+                ]
+                
+                //Storing Data into User Privileges
+                //TODO: Hardcoded values for UserPrivileges for storing data in Firebase undr Users/Private/UID/Privileges
+                let userPrivilegesData = [
+                    UserPrivilegesListFBKeys.admin.key : NAString().gettrue(),
+                    UserPrivilegesListFBKeys.grantedAccess.key : NAString().gettrue(),
+                    UserPrivilegesListFBKeys.verified.key : NAString().getfalse()
+                ]
+                
+                //Maping UsersUID with admin
+                self.UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(userUID)
+                
+                //Adding usersFlatDetails data under Users/Private/UID
+                self.usersFlatDetailsRef?.setValue(usersFlatData)
+                
+                //Adding usersPrivilegesDetails data under Users/Private/UID
+                self.usersPrivilegeDetailsRef?.setValue(userPrivilegesData)
+                
+                //Storing Data into User Personal Details
+                //Storing users data along with their profile photo
+                var usersImageRef: StorageReference?
+                usersImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+                
+                //Compressing profile image and assigning its content type.
+                guard let image = self.newProfileImage else { return }
+                guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
+                
+                let metaDataContentType = StorageMetadata()
+                metaDataContentType.contentType = NAString().imageContentType()
+                
+                //Uploading Visitor image url along with Visitor UID
+                let uploadImageRef = usersImageRef?.child(userUID!)
+                
+                let uploadTask = uploadImageRef?.putData(imageData, metadata: metaDataContentType, completion: { (metadata, error) in
+                    
+                    uploadImageRef?.downloadURL(completion: { (url, urlError) in
+                        
+                        if urlError == nil {
+                            
+                            let usersPersonalData = [
+                                UserPersonalListFBKeys.email.key : self.newEmail,
+                                UserPersonalListFBKeys.fullName.key : self.newFullName,
+                                UserPersonalListFBKeys.profilePhoto.key : url?.absoluteString,
+                                UserPersonalListFBKeys.phoneNumber.key : self.newMobileNumber
+                            ]
+                            
+                            //Adding users data under  Users/Private/UID & mapping UID
+                            self.usersPersonalDetailsRef?.setValue(usersPersonalData)
+                            
+                            //Storing UID under Users/Private/UID
+                            self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID!)
+                            self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
+                            
+                            //Mapping Mobile Number with UID
+                            
+                            self.usersMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+                            self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID)
+                            
+                            //Storing Flat Member UID
+                            self.userFlatMemberRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+                            
+                            self.userFlatMemberRef?.child(userUID!).setValue(NAString().gettrue())
+                            
+                            //Navigate to Namma Apartment Home Screen After Storing all users data.
+                            let dest = NAViewPresenter().mainScreenVC()
+                            self.navigationController?.pushViewController(dest, animated: true)
+                            
+                            //Using else statement & printing error,so the other developers can know what is going on.
+                        } else {
+                            print(urlError as Any)
+                        }
+                    })
+                })
+                uploadTask?.resume()
+            }
+            
+        }
     }
 }
 
