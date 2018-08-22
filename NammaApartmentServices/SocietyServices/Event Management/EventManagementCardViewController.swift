@@ -82,7 +82,7 @@ extension EventManagementCardViewController {
 
         var societyServiceNotificationsRef : DatabaseReference?
         
-        societyServiceNotificationsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(getEventUID)
+        societyServiceNotificationsRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(getEventUID)
         
         societyServiceNotificationsRef?.observe(.value, with: { (eventDataSnapshot) in
             

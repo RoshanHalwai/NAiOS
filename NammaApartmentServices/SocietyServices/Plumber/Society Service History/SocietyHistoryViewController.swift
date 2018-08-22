@@ -93,8 +93,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     
     //Retrieving Society Service Data in History Screen
     func retrieveSocietyServiceHistoryData() {
-        let userDataRef = GlobalUserData.shared.getUserDataReference()
-            .child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        let userDataRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
         
         userDataRef.observeSingleEvent(of: .value) { (snapshot) in
             if snapshot.exists() {
@@ -105,9 +104,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                         let notificationsUID = UIDSnapshot.value as! NSDictionary
                         for notifictionUID in notificationsUID.allKeys {
                             
-                            let societyServiceNotificationRef = Database.database().reference()
-                                .child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
-                                .child(Constants.FIREBASE_USER_CHILD_ALL)
+                            let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
                                 .child(notifictionUID as! String)
                             
                             societyServiceNotificationRef.observeSingleEvent(of: .value) { (snapshot) in
@@ -124,7 +121,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                     let societyServiceStatus: String = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
                                     let societyServiceEndOTP: String = societyServiceData?[NASocietyServicesFBKeys.endOTP.key] as! String
                                     
-                                    let societyServiceDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICE)
+                                    let societyServiceDataRef = Constants.FIREBASE_SOCIETY_SERVICES
                                         .child(societyServiceType)
                                         .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
                                         .child(Constants.FIREBASE_CHILD_DATA)
@@ -165,7 +162,7 @@ extension SocietyHistoryViewController {
         var eventManagementUIDRef : DatabaseReference?
         var societyServiceNotificationsRef : DatabaseReference?
         
-        eventManagementUIDRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
+        eventManagementUIDRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
         
         eventManagementUIDRef?.observeSingleEvent(of: .value, with: { (eventUIDSnapShot) in
             
@@ -174,7 +171,7 @@ extension SocietyHistoryViewController {
                 let eventUIDs = eventUIDSnapShot.value as? NSDictionary
                 for eventUID in (eventUIDs?.allKeys)! {
                     
-                    societyServiceNotificationsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(eventUID as! String)
+                    societyServiceNotificationsRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(eventUID as! String)
                     
                     societyServiceNotificationsRef?.observeSingleEvent(of: .value, with: { (eventDataSnapshot) in
                         
