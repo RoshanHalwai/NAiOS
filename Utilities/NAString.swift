@@ -297,7 +297,7 @@ class NAString : NSObject {
     
     //Navigation Menu
     func frequently_asked_questions() -> String {
-        return String("Frequently Asked Questions")
+        return String("FAQ")
     }
     
     func using_namma_apartments_app() -> String {
@@ -1563,6 +1563,32 @@ class NAString : NSObject {
     
     func timeSlot() -> String {
         return ("Time Slot:")
+    }
+    
+    func your_Guest() -> String {
+        return String("Your Guest ")
+    }
+    func your_Cab_Numbered() -> String {
+        return String("Your Cab Numbered ")
+    }
+    func your_package_vendor() -> String {
+        return String("Your Package vendor ")
+    }
+    
+    func wants_to_enter_Society() -> String {
+        return String(" wants to enter your society. Please confirm.")
+    }
+    
+    func _message_() -> String {
+        return String("message")
+    }
+    
+    func _profile_photo() -> String {
+        return String("profile_photo")
+    }
+    
+    func current_Date_Format() -> String {
+        return String("MMM dd, y\t\t HH:MM")
     }
 }
 

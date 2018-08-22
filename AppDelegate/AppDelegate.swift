@@ -107,12 +107,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
-    // Creating function to establishing channel for FCM
+    //Creating function to establishing channel for FCM
     func connectToFCM() {
         Messaging.messaging().shouldEstablishDirectChannel = true
     }
     
-    // This method will call when notification will recieved by the device.
+    //This method will call when notification will recieved by the device.
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -137,10 +137,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
         let guestType = userInfo[Constants.FIREBASE_CHILD_VISITOR_TYPE] as? String
         let guestUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
+        let profilePhoto = userInfo[NAString()._profile_photo()] as? String
+        let message = userInfo[NAString()._message_()] as? String
         
         //Here we are performing Action on Notification Buttons & We created this buttons in  "setActionCategories" function.
-        if response.notification.request.content.categoryIdentifier ==
-            NAString().notificationActionCategory() {
+        if response.notification.request.content.categoryIdentifier == NAString().notificationActionCategory() {
             
             //Created Firebase reference to get currently invited visitor by E-Intercom
             var gateNotificationRef : DatabaseReference?
@@ -152,6 +153,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             //If Accept button will pressed
             case NAString().notificationAcceptIdentifier():
                 gateNotificationRef?.child(NAString().status()).setValue(NAString().accepted())
+                var visitorType = String()
+                if guestType == Constants.FIREBASE_CHILD_GUESTS {
+                    visitorType = Constants.FIREBASE_CHILD_VISITORS
+                } else if guestType == Constants.FIREBASE_CHILD_CABS {
+                    visitorType = Constants.FIREBASE_CHILD_CABS
+                } else {
+                    visitorType = Constants.FIREBASE_CHILD_DELIVERIES
+                }
+                let postApprovedRef = Database.database().reference().child(visitorType).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(guestUID!)
+                let date = Date()
+                let formatter = DateFormatter()
+                formatter.dateFormat = NAString().current_Date_Format()
+                let currentDate = formatter.string(from: date)
+                
+                if visitorType == Constants.FIREBASE_CHILD_VISITORS {
+                    //Storing Post Approved Guests
+                    let replacedMessage = message?.replacingOccurrences(of: NAString().your_Guest(), with: "")
+                    let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
+                    let postApprovedGuestsData = [
+                        VisitorListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_POST_APPROVED,
+                        VisitorListFBKeys.uid.key : guestUID,
+                        VisitorListFBKeys.dateAndTimeOfVisit.key : currentDate,
+                        VisitorListFBKeys.status.key : NAString().entered(),
+                        VisitorListFBKeys.fullName.key : visitorRef,
+                        VisitorListFBKeys.inviterUID.key : userUID,
+                        VisitorListFBKeys.profilePhoto.key : profilePhoto
+                    ]
+                    postApprovedRef.setValue(postApprovedGuestsData)
+                } else if visitorType == Constants.FIREBASE_CHILD_CABS {
+                    //Storing PostApproved Cabs
+                    let replacedMessage = message?.replacingOccurrences(of: NAString().your_Cab_Numbered(), with: "")
+                    let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
+                    let postApprovedCabs = [
+                        ArrivalListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_POST_APPROVED,
+                        ArrivalListFBKeys.dateAndTimeOfArrival.key : currentDate,
+                        ArrivalListFBKeys.inviterUID.key : userUID,
+                        ArrivalListFBKeys.reference.key : visitorRef,
+                        ArrivalListFBKeys.status.key :NAString().entered(),
+                        ArrivalListFBKeys.validFor.key : NAString()._2_hrs()
+                    ]
+                    postApprovedRef.setValue(postApprovedCabs)
+                } else {
+                    //Storing PostApproved Packages
+                    let replacedMessage = message?.replacingOccurrences(of: NAString().your_package_vendor(), with: "")
+                    let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
+                    let postApprovedPackages = [
+                        ArrivalListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_POST_APPROVED,
+                        ArrivalListFBKeys.dateAndTimeOfArrival.key : currentDate,
+                        ArrivalListFBKeys.inviterUID.key : userUID,
+                        ArrivalListFBKeys.reference.key : visitorRef,
+                        ArrivalListFBKeys.status.key :NAString().entered(),
+                        ArrivalListFBKeys.validFor.key : NAString()._2_hrs()
+                    ]
+                    postApprovedRef.setValue(postApprovedPackages)
+                }
                 break
                 
             //If Reject button will pressed
