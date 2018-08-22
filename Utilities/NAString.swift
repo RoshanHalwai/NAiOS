@@ -360,6 +360,22 @@ class NAString : NSObject {
         return String("App Version 1.0")
     }
     
+    func full_Address() -> String {
+        return String("Full Address:")
+    }
+    
+    func address_Detail() -> String {
+        return String("For any queries, contact: \n\n Full Address: \n #59/2, \n Kirtan Labs, \n 9th Cross, \n Tulasi Theatre Road, \n Marathahalli, Bengaluru - 560037, \n Karanataka \n\n Landmark: Behind Innovative Multiplex \n\n Contact No: \n Ashish Jha \n Mob No: +91-9986553474 \n Email:iamashishjha@gmail.com")
+    }
+    
+    func privacy_policy_Detail() -> String {
+        return String("Namma Apartments respects the privacy of our users and has developed this Privacy Policy to demonstrate its commitment to protecting your privacy. \n\n These privacy policies (the 'Privacy Policy') are intended to describe for you, as an individual who is a user of Namma Apartments or any of our related sites, mobile and connected applications, or other online services, the information we collect, how that information may be used, with whom it may be shared, and your choices about such uses and disclosures. \n\n  We encourage you to read this Privacy Policy carefully when using our website or services or transacting business with us. By using our websites or any of our applications, you are accepting the practices described in this Privacy Policy.")
+    }
+    
+    func termsAndConditions_Detail() -> String {
+        return String(" Please read these terms and conditions carefully before using Namma Apartments Mobile Application, operated by Kirtan Labs. \n\n Conditions of Use: \n We will provide their services to you, which are subject to the conditions stated below in this document. Every time you visit this application, use its services or make a purchase, you accept the following conditions. This is why we urge you to read them carefully. \n\n Privacy Policy: \n Before you continue using our application, we advise you to read our privacy policy regarding our user data collection. It will help you better understand our practices. Copyright Content published on this website (digital downloads, images, texts, graphics, logos) is the property of Kirtan Labs and/or its content creators and protected by international copyright laws. The entire compilation of the content found on this website is the exclusive property of Kirtan Labs, with copyright authorship for this compilation by Kirtan Labs. \n\n Communications: \n The entire communication with us is electronic. Every time you send us an email or visit our application, you are going to be communicating with us. You hereby consent to receive communications from us. If you subscribe to the news on our website, you are going to receive regular emails from us. We will continue to communicate with you by posting news and notices on our application and by sending you emails. You also agree that all notices, disclosures, agreements and other communications we provide to you electronically meet the legal requirements that such communications be in writing. \n\n Law: \n By visiting this website, you agree that the laws of the Government of India, without regard to principles of conflict laws, will govern these terms and conditions, or any dispute of any sort that might come between Kirtan Labs and you, or its business partners and associates. \n\n Disputes: \n Any dispute related in any way to your visit to this website or to products you purchase from us shall be arbitrated by state or federal court of Government of India and you consent to exclusive jurisdiction and venue of such courts. Comments, Reviews, and Emails Visitors may post content as long as it is not obscene, illegal, defamatory, threatening, infringing. \n\n User Account: \n If you are an owner of an account on this application, you are solely responsible for maintaining the confidentiality of your private user details. You are responsible for all activities that occur under your account or password. We reserve all rights to terminate accounts, edit or remove content and cancel orders in their sole discretion. Create your own professional terms and conditions tailored to your website or app.")
+    }
+    
     //Particular ViewController Count
     func count_two() -> Int {
         return Int(2)
@@ -460,8 +476,8 @@ class NAString : NSObject {
         return String("Digi Gate")
     }
     
-    func invite_visitors() -> String {
-        return String("Invite Visitors")
+    func invite_Guests() -> String {
+        return String("Invite Guests")
     }
     
     func my_visitors_list() -> String {
@@ -473,7 +489,7 @@ class NAString : NSObject {
     }
     
     func notify_digital_gate() -> String {
-        return String("Notify Digital Gate")
+        return String("Notify Digi Gate")
     }
     
     func my_sweet_home() -> String {
@@ -484,17 +500,12 @@ class NAString : NSObject {
         return String("Emergency")
     }
     
-    //Invite Visitor ViewController
-    func visitorNameViewTitle() -> String {
-        return String("Inviting Visitors")
-    }
-    
     func visitorName() -> String {
-        return String("Visitor Name")
+        return String("Guest Name")
     }
     
     func visitorMobile() -> String {
-        return String("Visitor Mobile")
+        return String("Guest Mobile")
     }
     
     func BtnselectFromContact() -> String {
@@ -514,7 +525,7 @@ class NAString : NSObject {
     }
     
     func inviteButtonAlertViewMessage() -> String {
-        return String("You have successfully invited your visitor")
+        return String("You have successfully invited your Guest")
     }
     
     func inviteButtonAlertViewTitle() -> String {
@@ -522,7 +533,7 @@ class NAString : NSObject {
     }
     
     func inviteButtonloadViewTitle() -> String {
-        return String("Inviting Your Visitor")
+        return String("Inviting Your Guest")
     }
     
     //MyVisitorList
@@ -1210,6 +1221,10 @@ class NAString : NSObject {
         return String ("Wet Waste")
     }
     
+    func garbage_Collector() -> String {
+        return String("Garbage Collector")
+    }
+    
     func societyServiceMessage(name: String) -> String {
         return String ("Please wait \(name) has not Responded")
     }
@@ -1322,7 +1337,7 @@ class NAString : NSObject {
     }
     
     func noon() -> String {
-        return ("2PM - 4PM")
+        return ("12PM - 4PM")
     }
     
     func evening() -> String {
@@ -1380,5 +1395,174 @@ class NAString : NSObject {
     func waitingForOTP() -> String {
         return ("Waiting for OTP...")
     }
+
+    //Frequently Asked Questions
+    func account_Delete_Query() -> String {
+        return String("How do I delete My Account?")
+    }
     
+    func account_Deactivate_Query() -> String {
+        return String("I am moving out of my current place. How can I Deactivate my Account?")
+    }
+    
+    func visitors_Inviting_Query() -> String {
+        return String("I faced an issue during inviting my Visitor. How can I raise a complaint?")
+    }
+    
+    func visitors_UnexpectedNotifications() -> String {
+        return String("I am getting a notification for a Visitor(e.g.Cab, Package, Guest) that i did not expect. What should I do?")
+    }
+    
+    func visitors_Cancel_Query() -> String {
+        return String("How can I cancel Invited Visitor?")
+    }
+    
+    func visitors_Reschedule_Query() -> String {
+        return String("How can I change Visitor Arrival Date/Time?")
+    }
+    
+    func Valid_For_About() -> String {
+        return String("What is 'Valid For' about?")
+    }
+    
+    func dailyService_Adding_Query() -> String {
+        return String("I faced an issue during adding my Daily Service. How can I raise a Complaint?")
+    }
+    
+    func dailyService_Remove_Query() -> String {
+        return String("How can I remove my Daily Services?")
+    }
+    
+    func dailyService_Reschedule_Query() -> String {
+        return String("How can I change Daily Service arrival time?")
+    }
+    
+    func flatMembers_Delete_Query() -> String {
+        return String("One of my Present Flat Member is moving out from my flat. How can I delete his/her Data?")
+    }
+    
+    func flatMembers_Adding_Query() -> String {
+        return String("Unfortunately, I added Friend as my Family Member. What should I Do?")
+    }
+    
+    func flatMembers_AdminAccess_Query() -> String {
+        return String("I want to give my Admin Access to one of my Flat Member. What should I do?")
+    }
+    
+    func handedThings_Concept() -> String {
+        return String("What is the concept of handed things to Daily Service/Guest?")
+    }
+    
+    func handedThings_What_Things_can_be_Handed() -> String {
+        return String("What things can be handed to DailyService/Guest?")
+    }
+    
+    func handedThings_Guard_Notified_Query() -> String {
+        return String("How guard will get notified when I handed things to Daily Service/Guest?")
+    }
+    
+    func emergencyAlarm_raising_Query() -> String {
+        return String("How can I raise an Emergency Alarm?")
+    }
+    
+    func emergencyAlarm_Actions_Query() -> String {
+        return String("What actions will take place once an Emergency Alarm is raised?")
+    }
+    
+    func emergency_EstimatedTime_Query() -> String {
+        return String("How much estimated time will it take for the Guard to take necessary action?")
+    }
+    
+    func SocietyService_Approval_Query(Service: String) -> String {
+        return String("I requested for a \(Service) service, but I din't get any approval yet. What should I do?")
+    }
+    
+    func SocietyService_EstimatedTime_Query(Service: String) -> String {
+        return String("What should I do if the \(Service) doesn't arrive within the expected time slot?")
+    }
+    
+    func event_Reschedule_Query() -> String {
+        return String("I want to reschedule my Event. What should I do?")
+    }
+    
+    func notification_InternetConnection_Issue() -> String {
+        return String("Why is the app showing no internet connection?")
+    }
+    
+    func notification_Query() -> String {
+        return String("I am not getting any notifications?")
+    }
+    
+    func notification_InternetFine_But_NotificationIssue() -> String {
+        return String("My internet connectivity is fine, still I am not receiving any notifications, what could be the issue?")
+    }
+    
+    func notification_Setting_ON_But_Issue() -> String {
+        return String("My notification settings are ‘ON’, I’m still not getting any notifications?")
+    }
+    
+    func receiveNotifications_With_delay() -> String {
+        return String("I did receive notifications but they are delayed. What is the reason for delay?")
+    }
+    
+    func general_Updates() -> String {
+        return String("How frequently I would get updates?")
+    }
+    
+    func general_edit_userName() -> String {
+        return String("How do I change my Username?")
+    }
+    
+    func general_edit_emailAddress() -> String {
+        return String("How do I change my EmailAddress?")
+    }
+    
+    func general_edit_mobileNuber() -> String {
+        return String("How do I change my registered Mobile Number?")
+    }
+    
+    func general_Languages_Query() -> String {
+        return String("Does 'Namma Apartments' Support Different Languages?")
+    }
+    
+    func general() -> String {
+        return String("General")
+    }
+    
+    func account() -> String {
+        return String("Account")
+    }
+    
+    func Visitors() -> String {
+        return String("Visitors")
+    }
+    
+    func daily_Services() -> String {
+         return String("Daily Services")
+    }
+    
+    func flatMembers() -> String {
+        return String("Flat Members")
+    }
+    
+    func notification() -> String {
+        return String("Notifications")
+    }
+
+    func eventManagementBottomDescription() -> String {
+        return ("You will be notified once the 'Status' of your request changes.")
+    }
+    
+    func eventManagementTopDescription() -> String {
+        return ("Your request for the below Event has been initiated.")
+    }
+    
+    func title() -> String {
+        return ("Title:")
+    }
+    
+    func timeSlot() -> String {
+        return ("Time Slot:")
+    }
 }
+
