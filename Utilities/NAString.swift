@@ -1564,5 +1564,13 @@ class NAString : NSObject {
     func timeSlot() -> String {
         return ("Time Slot:")
     }
+    
+    func flat_AlertTitle() -> String {
+        return ("Registration unsuccessful")
+    }
+    
+    func flat_AlertMessage(admin: String) -> String {
+        return ("Sorry, we already have an Admin from your Flat. Please ask \(admin) to add you as a Family Member or Friend.")
+    }
 }
 
