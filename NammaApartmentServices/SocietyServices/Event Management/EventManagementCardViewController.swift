@@ -27,10 +27,11 @@ class EventManagementCardViewController: NANavigationViewController {
     @IBOutlet weak var lbl_BottomDescription: UILabel!
     
     var navTitle = String()
+    var getEventUID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         //Assigning Font to UILables
         lbl_Date.font = NAFont().textFieldFont()
         lbl_Date.font = NAFont().textFieldFont()
@@ -78,44 +79,31 @@ extension EventManagementCardViewController {
         
         self.cardView.isHidden = true
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
-        var eventManagementUIDRef : DatabaseReference?
+
         var societyServiceNotificationsRef : DatabaseReference?
         
-        eventManagementUIDRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
+        societyServiceNotificationsRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(getEventUID)
         
-        eventManagementUIDRef?.observeSingleEvent(of: .value, with: { (eventUIDSnapShot) in
+        societyServiceNotificationsRef?.observe(.value, with: { (eventDataSnapshot) in
             
-            if eventUIDSnapShot.exists() {
-                //Getting Event Management UIDs here
-                let eventUIDs = eventUIDSnapShot.value as? NSDictionary
-                for eventUID in (eventUIDs?.allKeys)! {
-                    
-                    societyServiceNotificationsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(eventUID as! String)
-                    
-                    societyServiceNotificationsRef?.observe(.value, with: { (eventDataSnapshot) in
-                        
-                        //Getting all the event management data & storing in model class
-                        let eventManagementData = eventDataSnapshot.value as? [String: AnyObject]
-                        
-                        let eventTitle = eventManagementData?[NAEventManagementFBKeys.eventTitle.key]
-                        let eventDate = eventManagementData?[NAEventManagementFBKeys.eventDate.key]
-                        let eventStatus = eventManagementData?[NAEventManagementFBKeys.status.key]
-                        let eventTimeSlot = eventManagementData?[NAEventManagementFBKeys.timeSlot.key]
-                        
-                        if eventStatus as! String == Constants.FIREBASE_CHILD_IN_PROGRESS {
-                            self.lbl_DateValue.text = eventDate as? String
-                            self.lbl_TitleValue.text = eventTitle as? String
-                            self.lbl_StatusValue.text = eventStatus as? String
-                            self.lbl_TimeSlotValue.text = eventTimeSlot as? String
-                            self.lbl_BottomDescription.text = NAString().eventManagementBottomDescription()
-                            self.lbl_TopDescription.text = NAString().eventManagementTopDescription()
-                            
-                            self.cardView.isHidden = false
-                            NAActivityIndicator.shared.hideActivityIndicator()
-                        }
-                    })
-                }
+            //Getting all the event management data & storing in model class
+            let eventManagementData = eventDataSnapshot.value as? [String: AnyObject]
+            
+            let eventTitle = eventManagementData?[NAEventManagementFBKeys.eventTitle.key]
+            let eventDate = eventManagementData?[NAEventManagementFBKeys.eventDate.key]
+            let eventStatus = eventManagementData?[NAEventManagementFBKeys.status.key]
+            let eventTimeSlot = eventManagementData?[NAEventManagementFBKeys.timeSlot.key]
+            
+            if eventStatus as! String == Constants.FIREBASE_CHILD_IN_PROGRESS {
+                self.lbl_DateValue.text = eventDate as? String
+                self.lbl_TitleValue.text = eventTitle as? String
+                self.lbl_StatusValue.text = eventStatus as? String
+                self.lbl_TimeSlotValue.text = eventTimeSlot as? String
+                self.lbl_BottomDescription.text = NAString().eventManagementBottomDescription()
+                self.lbl_TopDescription.text = NAString().eventManagementTopDescription()
+                
+                self.cardView.isHidden = false
+                NAActivityIndicator.shared.hideActivityIndicator()
             }
         })
     }

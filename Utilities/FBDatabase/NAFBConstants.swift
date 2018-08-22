@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 struct Constants {
     static let FIREBASE_CHILD_CLIENTS = "clients"
@@ -80,4 +81,7 @@ struct Constants {
     static let FIREBASE_CHILD_VISITOR_TYPE = "visitor_type"
     static let FIREBASE_CHILD_EVENT_MANAGEMENT = "eventManagement"
     static let FIREBASE_CHILD_IN_PROGRESS = "in progress"
+    static let FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
+    static let FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+    static let FIREBASE_SOCIETY_SERVICES = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICE)
 }
