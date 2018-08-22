@@ -1383,4 +1383,12 @@ class NAString : NSObject {
     func eventManagementTopDescription() -> String {
         return ("Your request for the below Event has been initiated.")
     }
+    
+    func title() -> String {
+        return ("Title:")
+    }
+    
+    func timeSlot() -> String {
+        return ("Time Slot:")
+    }
 }
