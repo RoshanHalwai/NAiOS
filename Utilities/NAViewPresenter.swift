@@ -218,7 +218,15 @@ class NAViewPresenter: NSObject {
     func addEventManagementVC() -> EventManagementViewController {
         return storyBoard.instantiateViewController(withIdentifier: "addEventManagementVC") as! EventManagementViewController
     }
+
+    func frequentlyAskedHelpVC() -> FrequentlyAskedQuestionsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "frequentlyAskedVC") as! FrequentlyAskedQuestionsViewController
+    }
     
+    func helpCategoryVC() -> HelpCategoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "helpCategoryVC") as! HelpCategoryViewController
+    }
+
 
     func showEventManagementVC() -> EventManagementCardViewController {
         return storyBoard.instantiateViewController(withIdentifier: "showEventManagementVC") as! EventManagementCardViewController
