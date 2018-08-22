@@ -162,6 +162,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     visitorType = Constants.FIREBASE_CHILD_DELIVERIES
                 }
                 let postApprovedRef = Database.database().reference().child(visitorType).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(guestUID!)
+                
+                //Getting Current Date and Time when User clicked on Accept
                 let date = Date()
                 let formatter = DateFormatter()
                 formatter.dateFormat = NAString().current_Date_Format()
