@@ -105,6 +105,7 @@
 		86270104209707BC004B28EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86270102209707BC004B28EB /* LaunchScreen.storyboard */; };
 		8627010F209707BC004B28EB /* namaApartmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627010E209707BC004B28EB /* namaApartmentTests.swift */; };
 		8627011A209707BC004B28EB /* namaApartmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86270119209707BC004B28EB /* namaApartmentUITests.swift */; };
+		8637B602212BD4CC00BACB0C /* EventManagementCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */; };
 		86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */; };
 		86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */; };
 		86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D81209C1FB500C700DA /* MainScreenViewController.swift */; };
@@ -274,6 +275,7 @@
 		86270115209707BC004B28EB /* nammaApartmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nammaApartmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86270119209707BC004B28EB /* namaApartmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = namaApartmentUITests.swift; sourceTree = "<group>"; };
 		8627011B209707BC004B28EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementCardViewController.swift; sourceTree = "<group>"; };
 		86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescheduleMyGuestListViewController.swift; sourceTree = "<group>"; };
 		86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewCell.swift; sourceTree = "<group>"; };
 		86548D81209C1FB500C700DA /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 			children = (
 				4235FB09212536B400965352 /* EventManagementViewController.swift */,
 				42914D9B2126872F00B3B57A /* NAEventManagement.swift */,
+				8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */,
 			);
 			path = "Event Management";
 			sourceTree = "<group>";
@@ -1233,6 +1236,7 @@
 				42341BB7212165A50005160B /* AddMyVehiclesViewController.swift in Sources */,
 				867FF1BA20FC737B00A6A4C9 /* NAExpectingArrival.swift in Sources */,
 				862700F7209707BB004B28EB /* AppDelegate.swift in Sources */,
+				8637B602212BD4CC00BACB0C /* EventManagementCardViewController.swift in Sources */,
 				86548D82209C1FB500C700DA /* MainScreenViewController.swift in Sources */,
 				868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */,
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,

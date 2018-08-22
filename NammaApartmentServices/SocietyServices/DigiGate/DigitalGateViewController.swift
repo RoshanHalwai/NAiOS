@@ -14,8 +14,7 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var DGimageList=["InviteVisitors","MyVisitorsList","MyDailyServices","NotifyDigitalGate","MySweetHome","Medical"]
-    var DGNameList=["Invite Visitors","My Visitors List","My Daily Services","Notify Digi Gate","My Sweet Home","Emergency"]
+    var digiGateArray = [NAString().invite_Guests(), NAString().my_visitors_list(), NAString().my_Daily_Services(), NAString().notify_digital_gate(), NAString().my_sweet_home(), NAString().emergency()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +25,14 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DGimageList.count
+        return digiGateArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! DigitalGateCollectionViewCell
         
-        cell.cellTitle.text = DGNameList[indexPath.row]
-        cell.cellImage.image = UIImage(named: DGimageList[indexPath.row])
+        cell.cellTitle.text = digiGateArray[indexPath.row]
+        cell.cellImage.image = UIImage(named: digiGateArray[indexPath.row])
         
         //Label formatting & Setting
         cell.cellTitle.font = NAFont().textFieldFont()
