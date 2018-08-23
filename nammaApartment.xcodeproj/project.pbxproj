@@ -65,6 +65,8 @@
 		42341BB7212165A50005160B /* AddMyVehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB6212165A50005160B /* AddMyVehiclesViewController.swift */; };
 		42341BB9212165CC0005160B /* MyVehiclesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB8212165CC0005160B /* MyVehiclesCollectionViewCell.swift */; };
 		42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BBA212165D90005160B /* MyGuardsCollectionViewCell.swift */; };
+		4234754B212EB87200A791AA /* MyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234754A212EB87200A791AA /* MyWalletViewController.swift */; };
+		4234754D212EDFD900A791AA /* MaintenanceServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234754C212EDFD900A791AA /* MaintenanceServicesViewController.swift */; };
 		42358A382122F99700186B1D /* NammaApartmentVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42358A372122F99700186B1D /* NammaApartmentVehicle.swift */; };
 		4235FB0A212536B400965352 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4235FB09212536B400965352 /* EventManagementViewController.swift */; };
 		42914D9C2126872F00B3B57A /* NAEventManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42914D9B2126872F00B3B57A /* NAEventManagement.swift */; };
@@ -227,6 +229,8 @@
 		42341BB6212165A50005160B /* AddMyVehiclesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyVehiclesViewController.swift; sourceTree = "<group>"; };
 		42341BB8212165CC0005160B /* MyVehiclesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVehiclesCollectionViewCell.swift; sourceTree = "<group>"; };
 		42341BBA212165D90005160B /* MyGuardsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGuardsCollectionViewCell.swift; sourceTree = "<group>"; };
+		4234754A212EB87200A791AA /* MyWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletViewController.swift; sourceTree = "<group>"; };
+		4234754C212EDFD900A791AA /* MaintenanceServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceServicesViewController.swift; sourceTree = "<group>"; };
 		42358A372122F99700186B1D /* NammaApartmentVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentVehicle.swift; sourceTree = "<group>"; };
 		4235FB09212536B400965352 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		42914D9B2126872F00B3B57A /* NAEventManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAEventManagement.swift; sourceTree = "<group>"; };
@@ -377,6 +381,7 @@
 		085646702101F9CC00C5FBF6 /* NavigationMenuCategory */ = {
 			isa = PBXGroup;
 			children = (
+				42347549212EB85000A791AA /* My Wallet */,
 				42341BB1212165320005160B /* My Vehicles */,
 				42341BB0212165220005160B /* My Guards */,
 				5D243EF7210DC14B00806091 /* My Profile */,
@@ -463,6 +468,15 @@
 				4235FB0B21255F3700965352 /* Add My Vehicles */,
 			);
 			path = "My Vehicles";
+			sourceTree = "<group>";
+		};
+		42347549212EB85000A791AA /* My Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				4234754A212EB87200A791AA /* MyWalletViewController.swift */,
+				4234754C212EDFD900A791AA /* MaintenanceServicesViewController.swift */,
+			);
+			path = "My Wallet";
 			sourceTree = "<group>";
 		};
 		4235FB082125368C00965352 /* Event Management */ = {
@@ -1242,6 +1256,7 @@
 				868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */,
 				86548D84209C343F00C700DA /* NAString.swift in Sources */,
 				86548D89209C662200C700DA /* DigitalGateCollectionViewCell.swift in Sources */,
+				4234754D212EDFD900A791AA /* MaintenanceServicesViewController.swift in Sources */,
 				085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */,
 				5D774296210DD49F0049344F /* SplashSocietyServices.swift in Sources */,
 				86114E5C20B56E4300656B56 /* EditMyServicesViewController.swift in Sources */,
@@ -1332,6 +1347,7 @@
 				086568A22127E63B00E4CDE1 /* HelpCategoryViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
 				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
+				4234754B212EB87200A791AA /* MyWalletViewController.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
 			);
