@@ -12,7 +12,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
     
     @IBOutlet weak var collection_View: UICollectionView!
     
-    var helpArray = [NAString().frequently_asked_questions(), NAString().using_namma_apartments_app(), NAString().contact_us(), NAString().terms_and_conditions(), NAString().privacy_policy()]
+    var helpArray = [NAString().frequently_asked_questions(), NAString().contact_us(), NAString().terms_and_conditions(), NAString().privacy_policy()]
     var navTitle = String()
     
     override func viewDidLoad() {

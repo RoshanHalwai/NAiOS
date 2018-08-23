@@ -37,7 +37,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! NavigationMenuTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! NavigationMenuTableViewCell
         cell.image_View.image = UIImage(named: sideMenuArray[indexPath.row])
         cell.labelView.text = sideMenuArray[indexPath.row]
         
@@ -81,7 +81,8 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
         } else if currentItem == NAString().rate_us() {
             /** calling 'showReviewView' method with desired launch counts needed. **/
             if #available(iOS 10.3, *) {
-                RateUs().showReviewView(afterMinimumLaunchCount: 2)
+                //TODO: Need to pass some functionality in future, when we upload our app in App Store.
+                RateUs().showReviewView(afterMinimumLaunchCount: 0)
             }
         } else if currentItem == NAString().notice_board() {
             let noticeBoardVC = NAViewPresenter().noticeBoardVC()
@@ -95,7 +96,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
     //To Logout the current user
     @objc func logoutAction() {
         //Logout Confirmation Alert
-        NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().logout_Confirmation_Title(), Message: NAString().logout_Confirmation_Message(), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+        NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().logout_Confirmation_Title(), Message: NAString().logout_Confirmation_Message(), CancelStyle: .default, OkStyle: .destructive, OK: { (action) in
             let preferences = UserDefaults.standard
             let currentLevelKey = "USERUID"
             preferences.removeObject(forKey: currentLevelKey)
