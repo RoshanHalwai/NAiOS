@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 import FirebaseDatabase
 
-class CookViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
+class ApartmentServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
@@ -75,7 +75,7 @@ class CookViewController: NANavigationViewController,UICollectionViewDelegate,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! CookCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! ApartmentServicesCollectionViewCell
         let dailyServicesData: NammaApartmentDailyServices
         dailyServicesData = allDailyServicesList[indexPath.row]
         

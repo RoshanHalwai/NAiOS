@@ -281,9 +281,9 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
         case 1 :
             switch indexPath.row {
             case 0:
-                let lv = NAViewPresenter().apartmentServiceCookVC()
-                lv.titleName = NAString().cook()
-                self.navigationController?.pushViewController(lv, animated: true)
+                let cookVC = NAViewPresenter().apartmentServiceCookVC()
+                cookVC.titleName = NAString().cook()
+                self.navigationController?.pushViewController(cookVC, animated: true)
             case 1:
                 let maidVC = NAViewPresenter().apartmentServiceCookVC()
                 maidVC.titleName = NAString().maid()

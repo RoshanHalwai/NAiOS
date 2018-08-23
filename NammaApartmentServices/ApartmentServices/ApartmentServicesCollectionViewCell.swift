@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CookCollectionViewCell: UICollectionViewCell {
+class ApartmentServicesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var myCookImage: UIImageView!
     @IBOutlet weak var lbl_MyCookName: UILabel!
@@ -26,7 +26,6 @@ class CookCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_Refer: UILabel!
     
     @IBOutlet weak var activity_Indicator: UIActivityIndicatorView!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
