@@ -1226,7 +1226,7 @@ class NAString : NSObject {
     }
     
     func societyServiceMessage(name: String) -> String {
-        return String ("Please wait \(name) has not Responded")
+        return String ("\(name) has not Responded Yet")
     }
     
     func approver() -> String {
@@ -1355,7 +1355,7 @@ class NAString : NSObject {
     func sendMessageToSocietyServives() -> String {
         return ("Hey there! I got the reference of this Service from Namma Apartments app. You can also avail this Service by downloading..")
     }
-
+    
     func sendMessageToSocietyServivesWhatsapp() -> String {
         return ("whatsapp://send?text=Hey%20there%20!%20I%20would%20like%20to%20have%20your%20Service%20at%20my%20Flat.%20Revert%20back%20so%20that%20we%20we%20can%20schedule%20and%20sort%20things%20out%20quickly.")
     }
@@ -1395,7 +1395,7 @@ class NAString : NSObject {
     func waitingForOTP() -> String {
         return ("Waiting for OTP...")
     }
-
+    
     //Frequently Asked Questions
     func account_Delete_Query() -> String {
         return String("How do I delete My Account?")
@@ -1538,7 +1538,7 @@ class NAString : NSObject {
     }
     
     func daily_Services() -> String {
-         return String("Daily Services")
+        return String("Daily Services")
     }
     
     func flatMembers() -> String {
@@ -1548,7 +1548,7 @@ class NAString : NSObject {
     func notification() -> String {
         return String("Notifications")
     }
-
+    
     func eventManagementBottomDescription() -> String {
         return ("You will be notified once the 'Status' of your request changes.")
     }
@@ -1571,6 +1571,18 @@ class NAString : NSObject {
     
     func flat_AlertMessage(admin: String) -> String {
         return ("Sorry, we already have an Admin from your Flat. Please ask \(admin) to add you as a Family Member or Friend.")
+    }
+    
+    func plumber_Service() -> String {
+        return String("plumber")
+    }
+    
+    func carpenter_Service() -> String {
+        return String("carpenter")
+    }
+    
+    func electrician_Service() -> String {
+        return String("electrician")
     }
 }
 
