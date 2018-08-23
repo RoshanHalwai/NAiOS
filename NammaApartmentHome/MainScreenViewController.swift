@@ -312,6 +312,10 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                 let driverVC = NAViewPresenter().apartmentServiceCookVC()
                 driverVC.titleName = NAString().driver()
                 self.navigationController?.pushViewController(driverVC, animated: true)
+            case 8:
+                let groceriesVC = NAViewPresenter().apartmentServiceCookVC()
+                groceriesVC.titleName = NAString().groceries()
+                self.navigationController?.pushViewController(groceriesVC, animated: true)
                 
             default:
                 break

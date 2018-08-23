@@ -1054,6 +1054,10 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no \(serviceType) service available at your Society.")
     }
     
+    func layoutFeatureErrorGroceriesServices() -> String {
+        return String("Sorry you cannot use this feature since this feature is yet to be implemented.")
+    }
+    
     func statusNotEntered() -> String {
         return String ("Not Entered")
     }

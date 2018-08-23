@@ -52,6 +52,10 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
             
         case NAString().driver():
             retrieveApartmentServicesData(serviceType: Constants.FIREBASE_DSTYPE_DRIVERS)
+        
+        case NAString().groceries():
+            NAActivityIndicator.shared.hideActivityIndicator()
+            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorGroceriesServices())
             
         default:
             break
@@ -183,9 +187,8 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                                         
                                         var servicesOwnerUIDKeys = [String]()
                                         servicesOwnerUIDKeys = Array(serviceOwnersUID.keys)
-                                        
-                                        let ownersUID = servicesOwnerUIDKeys.last
-                                        let serviceDataRef = serviceOwnerRef.child(ownersUID!)
+                                        let ownersUID = servicesOwnerUIDKeys[1]
+                                        let serviceDataRef = serviceOwnerRef.child(ownersUID)
                                         serviceDataRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
                                             
                                             let dailyServiceData = dataSnapshot.value as? [String: AnyObject]
