@@ -80,7 +80,10 @@ class CookViewController: NANavigationViewController,UICollectionViewDelegate,UI
         dailyServicesData = allDailyServicesList[indexPath.row]
         
         cell.lbl_MyCookName.text = dailyServicesData.getfullName()
+        
+        //TODO: Need to get Actual Rating of that particular service person.
         cell.lbl_MyCookRating.text = "\(dailyServicesData.getrating())"
+        //TODO: Need to Implement Time slot.
         cell.lbl_MyCookTimeSlot.text = dailyServicesData.gettimeOfVisit()
         cell.lbl_MyCookFlat.text = "\(dailyServicesData.getNumberOfFlats())"
         let queue = OperationQueue()
