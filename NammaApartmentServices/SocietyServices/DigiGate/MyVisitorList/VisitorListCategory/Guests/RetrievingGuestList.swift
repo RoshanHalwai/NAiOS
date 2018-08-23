@@ -127,7 +127,6 @@ class RetrievingGuestList {
         visitorDataRef.keepSynced(true)
         //Adding observe event to each of visitors UID
         visitorDataRef.observeSingleEvent(of: .value, with: { (guestDataSnapshot) in
-            print (guestDataSnapshot )
             let guestsData = guestDataSnapshot.value as? [String: AnyObject]
             
             //We check the status of the guest and add to entered guest list only when the guest status is entered
