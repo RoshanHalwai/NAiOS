@@ -12,7 +12,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
     
     @IBOutlet weak var collection_View: UICollectionView!
     
-    var helpArray = [NAString().frequently_asked_questions(), NAString().using_namma_apartments_app(), NAString().contact_us(), NAString().terms_and_conditions(), NAString().privacy_policy()]
+    var helpArray = [NAString().frequently_asked_questions(), NAString().contact_us(), NAString().terms_and_conditions(), NAString().privacy_policy()]
     var navTitle = String()
     
     override func viewDidLoad() {
@@ -44,20 +44,20 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
         switch indexPath.row {
         case 0:
             let dv = NAViewPresenter().frequentlyAskedHelpVC()
-            dv.navTitle = NAString().frequently_asked_questions().capitalized
+            dv.navTitle = NAString().frequently_asked_questions().uppercased()
             self.navigationController?.pushViewController(dv, animated: true)
             
-        case 2:
+        case 1:
             let helpCategoryVC = NAViewPresenter().helpCategoryVC()
             helpCategoryVC.navTitle = NAString().contact_us().capitalized
             self.navigationController?.pushViewController(helpCategoryVC, animated: true)
             
-        case 3:
+        case 2:
             let termsAndConditionsVC = NAViewPresenter().helpCategoryVC()
             termsAndConditionsVC.navTitle = NAString().terms_and_conditions().capitalized
             self.navigationController?.pushViewController(termsAndConditionsVC, animated: true)
             
-        case 4:
+        case 3:
             let privacyPolicyVC = NAViewPresenter().helpCategoryVC()
             privacyPolicyVC.navTitle = NAString().privacy_policy().capitalized
             self.navigationController?.pushViewController(privacyPolicyVC, animated: true)
