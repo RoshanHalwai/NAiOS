@@ -43,7 +43,7 @@ class HelpCategoryViewController: NANavigationViewController, UITableViewDelegat
         
         if navTitle == NAString().contact_us().capitalized {
             cell.lbl_View.text = NAString().address_Detail()
-           
+            
         } else if navTitle == NAString().privacy_policy().capitalized {
             cell.lbl_View.text = NAString().privacy_policy_Detail()
         } else if navTitle == NAString().terms_and_conditions().capitalized {

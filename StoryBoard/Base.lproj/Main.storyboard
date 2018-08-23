@@ -6438,84 +6438,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K0T-HG-W8d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2469.5999999999999" y="760.56971514242889"/>
-        </scene>
-        <!--Privacy Policy View Controller-->
-        <scene sceneID="ho8-RF-ASR">
-            <objects>
-                <viewController storyboardIdentifier="privacyPolicyVC" id="Owf-TA-4O6" customClass="PrivacyPolicyViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vMy-gx-8L8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="43" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqN-Je-ekQ">
-                                <rect key="frame" x="16" y="20" width="343" height="647"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="KqN-Je-ekQ" firstAttribute="top" secondItem="6aH-TA-h5u" secondAttribute="top" id="Hgu-sc-W0k"/>
-                            <constraint firstItem="6aH-TA-h5u" firstAttribute="trailing" secondItem="KqN-Je-ekQ" secondAttribute="trailing" constant="16" id="Usj-a4-z4n"/>
-                            <constraint firstItem="KqN-Je-ekQ" firstAttribute="leading" secondItem="6aH-TA-h5u" secondAttribute="leading" constant="16" id="bf5-5N-0SA"/>
-                            <constraint firstItem="KqN-Je-ekQ" firstAttribute="bottom" secondItem="6aH-TA-h5u" secondAttribute="bottom" id="nQo-Rs-Qry"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6aH-TA-h5u"/>
-                    </view>
-                    <connections>
-                        <outlet property="lbl_PolicyDetail" destination="KqN-Je-ekQ" id="Clw-rw-YWf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="897-kE-aED" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1514.4000000000001" y="760.56971514242889"/>
-        </scene>
-        <!--Contact Us View Controller-->
-        <scene sceneID="EOy-8J-dDA">
-            <objects>
-                <viewController storyboardIdentifier="contactUsVC" id="foN-jf-d8B" customClass="ContactUsViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Gyp-lb-SWF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvx-ns-3S8">
-                                <rect key="frame" x="16" y="34" width="343" height="406"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="18" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-4N-m3Y">
-                                        <rect key="frame" x="8" y="8" width="327" height="390"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="UmS-4N-m3Y" firstAttribute="leading" secondItem="zvx-ns-3S8" secondAttribute="leadingMargin" id="SI2-gd-xPs"/>
-                                    <constraint firstItem="UmS-4N-m3Y" firstAttribute="top" secondItem="zvx-ns-3S8" secondAttribute="topMargin" id="Tfg-Ku-J7Z"/>
-                                    <constraint firstItem="UmS-4N-m3Y" firstAttribute="trailing" secondItem="zvx-ns-3S8" secondAttribute="trailingMargin" id="fV6-Sr-8WY"/>
-                                    <constraint firstItem="UmS-4N-m3Y" firstAttribute="bottom" secondItem="zvx-ns-3S8" secondAttribute="bottomMargin" id="vLS-75-Txz"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="zvx-ns-3S8" firstAttribute="leading" secondItem="il1-lo-2hm" secondAttribute="leading" constant="16" id="5eC-52-Gwy"/>
-                            <constraint firstItem="zvx-ns-3S8" firstAttribute="top" secondItem="il1-lo-2hm" secondAttribute="top" constant="14" id="7bh-bl-1zS"/>
-                            <constraint firstItem="il1-lo-2hm" firstAttribute="bottom" secondItem="zvx-ns-3S8" secondAttribute="bottom" constant="227" id="7hN-Oo-ZN3"/>
-                            <constraint firstItem="il1-lo-2hm" firstAttribute="trailing" secondItem="zvx-ns-3S8" secondAttribute="trailing" constant="16" id="COK-4d-RIx"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="il1-lo-2hm"/>
-                    </view>
-                    <connections>
-                        <outlet property="content_View" destination="zvx-ns-3S8" id="v0J-xC-jz3"/>
-                        <outlet property="lbl_AddressDetail" destination="UmS-4N-m3Y" id="C9T-YD-swp"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XWz-mv-176" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-848.79999999999995" y="761.46926536731644"/>
+            <point key="canvasLocation" x="-1423" y="833"/>
         </scene>
         <!--Edit My Profile View Controller-->
         <scene sceneID="fRr-F5-XiH">
@@ -7464,7 +7387,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Awn-h4-UHa">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Awn-h4-UHa" userLabel="languages_Text_Field">
                                                 <rect key="frame" x="8" y="87" width="327" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="doo-rl-mFH"/>
@@ -7737,7 +7660,7 @@
                         <outlet property="general_Settings_Label" destination="YJs-tb-OkN" id="S3n-hV-FAD"/>
                         <outlet property="general_Settings_View" destination="RxH-Bk-xB3" id="vUv-Pu-nvN"/>
                         <outlet property="languages_PopUp_View" destination="Xgb-ER-YY6" id="XKL-5c-2tn"/>
-                        <outlet property="languages_Text_Field" destination="Awn-h4-UHa" id="Ffi-8x-gog"/>
+                        <outlet property="languages_Text_Field" destination="Awn-h4-UHa" id="JW7-YC-9Da"/>
                         <outlet property="location_Services_Label" destination="BMB-Ik-bNI" id="LMg-m3-YZJ"/>
                         <outlet property="new_Message_Notification_Label" destination="c64-LP-1Dv" id="XBw-JF-Rqk"/>
                         <outlet property="notification_Settings_Label" destination="6UF-3W-ANT" id="mGb-a0-7Dm"/>

@@ -158,6 +158,39 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         
         //Implemented to get data content size to change height based on data
         self.table_View.addObserver(self, forKeyPath: NAString().tableView_Content_size(), options: NSKeyValueObservingOptions.new, context: nil)
+        
+        //Change Admin TextField function
+         txt_Flat_Admin.addTarget(self, action: #selector(changeAdminTextField), for: UIControlEvents.touchDown)
+    }
+    
+     //Change Admin TextField function
+    @objc func changeAdminTextField(textField: UITextField) {
+        if textField == txt_Flat_Admin &&  GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
+            let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+            flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
+                if flatMembersUIDSnapshot.childrenCount == 1 {
+                    self.txt_Flat_Admin.resignFirstResponder()
+                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), OkStyle: .default, OK: { (action) in })
+                } else {
+                    self.flatMembersNameList.removeAll()
+                    let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
+                    for flatMemberUID in (flatMembersUIDMap?.allKeys)! {
+                        if flatMemberUID as! String != userUID {
+                            
+                            //Getting all Flat Members names.
+                            self.familyMemberNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
+                            self.allFlatMembersUID.append(flatMemberUID as! String)
+                            self.familyMemberNameRef?.observeSingleEvent(of: .value, with: { (nameSnapshot) in
+                                self.flatMembersNameList.append(nameSnapshot.value as! String)
+                                self.list_View.isHidden = false
+                                self.opacity_View.isHidden = false
+                                self.table_View.reloadData()
+                            })
+                        }
+                    }
+                }
+            }
+        }
     }
     
     //Create image Handle  Function
@@ -171,38 +204,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         table_View.layer.removeAllAnimations()
         list_View_Height_Constraint.constant = table_View.contentSize.height + 37
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        //On click of Flat Admin textField only Admin Can see the List of flat members.
-        if textField == txt_Flat_Admin &&  GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
-            let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
-            flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
-                if flatMembersUIDSnapshot.childrenCount == 1 {
-                    self.txt_Flat_Admin.resignFirstResponder()
-                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), OkStyle: .default, OK: { (action) in })
-                } else {
-                    let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
-                    
-                    for flatMemberUID in (flatMembersUIDMap?.allKeys)! {
-                        if flatMemberUID as! String != userUID {
-                            
-                            //Getting all Flat Members names.
-                            self.familyMemberNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
-                            print(flatMemberUID)
-                            self.allFlatMembersUID.append(flatMemberUID as! String)
-                            
-                            self.familyMemberNameRef?.observeSingleEvent(of: .value, with: { (nameSnapshot) in
-                                self.flatMembersNameList.append(nameSnapshot.value as! String)
-                                self.list_View.isHidden = false
-                                self.opacity_View.isHidden = false
-                                self.table_View.reloadData()
-                            })
-                        }
-                    }
-                }
-            }
-        }
     }
     
     //Create name textfield first letter capital function
