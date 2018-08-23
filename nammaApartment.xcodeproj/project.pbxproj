@@ -69,6 +69,7 @@
 		42358A382122F99700186B1D /* NammaApartmentVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42358A372122F99700186B1D /* NammaApartmentVehicle.swift */; };
 		4235FB0A212536B400965352 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4235FB09212536B400965352 /* EventManagementViewController.swift */; };
 		42914D9C2126872F00B3B57A /* NAEventManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42914D9B2126872F00B3B57A /* NAEventManagement.swift */; };
+		4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */; };
 		5D0A230692BD5675BDF1151F /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
 		5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427B210DD49F0049344F /* SearchViewController.swift */; };
@@ -231,6 +232,7 @@
 		42358A372122F99700186B1D /* NammaApartmentVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentVehicle.swift; sourceTree = "<group>"; };
 		4235FB09212536B400965352 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		42914D9B2126872F00B3B57A /* NAEventManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAEventManagement.swift; sourceTree = "<group>"; };
+		4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMyGuardsViewController.swift; sourceTree = "<group>"; };
 		57024B9AAB6FF7DBC02BCC40 /* Pods-nammaApartmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D77427B210DD49F0049344F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 			children = (
 				42341BB4212165620005160B /* MyGuardsViewController.swift */,
 				42341BBA212165D90005160B /* MyGuardsCollectionViewCell.swift */,
+				4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */,
 			);
 			path = "My Guards";
 			sourceTree = "<group>";
@@ -1264,6 +1267,7 @@
 				42329D1A20F9BF80000AA9AF /* OpacityView.swift in Sources */,
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
+				4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */,
 				5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
 				42341BB5212165620005160B /* MyGuardsViewController.swift in Sources */,

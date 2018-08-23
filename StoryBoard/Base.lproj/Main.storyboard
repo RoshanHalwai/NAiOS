@@ -2848,13 +2848,18 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="policeman" translatesAutoresizingMaskIntoConstraints="NO" id="Rh8-bl-XaL">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rh8-bl-XaL">
                                                     <rect key="frame" x="18" y="18" width="106" height="106"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="106" id="R5l-XD-I7N"/>
                                                         <constraint firstAttribute="height" constant="106" id="UEX-sZ-mnV"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NPz-bo-I9D">
+                                                    <rect key="frame" x="50" y="54" width="37" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2867,6 +2872,7 @@
                                             <constraint firstItem="Rh8-bl-XaL" firstAttribute="top" secondItem="cDL-Hl-gdW" secondAttribute="topMargin" constant="10" id="yyl-ph-KKL"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="NPz-bo-I9D" id="nGg-cy-Sdf"/>
                                             <outlet property="lbl_GuardGateNo" destination="m3n-hw-hgt" id="oaj-1d-a7Y"/>
                                             <outlet property="lbl_GuardName" destination="KPh-Hb-0fo" id="bAb-kc-fhi"/>
                                             <outlet property="lbl_GuardStatus" destination="tJ6-4c-Brf" id="DsV-l3-WWr"/>
@@ -7510,7 +7516,6 @@
         <image name="checked" width="64" height="64"/>
         <image name="event" width="512" height="512"/>
         <image name="motorCycle" width="256" height="256"/>
-        <image name="policeman" width="256" height="256"/>
         <image name="splashScreen" width="205" height="159"/>
         <image name="whatsapp" width="32" height="32"/>
     </resources>
