@@ -50,7 +50,7 @@ class HelpCategoryViewController: NANavigationViewController, UITableViewDelegat
             cell.lbl_View.text = NAString().termsAndConditions_Detail()
         }
         
-        cell.lbl_View.font = NAFont().layoutFeatureErrorFont()
+        cell.lbl_View.font = NAFont().textFieldFont()
         cell.lbl_View.sizeToFit()
         cell.lbl_View.layoutIfNeeded()
         cell.cardView.sizeToFit()
