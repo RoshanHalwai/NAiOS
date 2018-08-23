@@ -10,6 +10,8 @@ import UserNotifications
 import FirebaseCore
 import FirebaseMessaging
 import FirebaseDatabase
+import Crashlytics
+import Fabric
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -22,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //This method will call when application finished its launching state.
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         
         //Formatting Navigation Controller From Globally.
         UIApplication.shared.statusBarStyle = .lightContent
@@ -51,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //Firebase app Configuration & assigning delegate to messaging services.
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        
+        
         
         //Calling Notification action button function
         setActionCategories()
