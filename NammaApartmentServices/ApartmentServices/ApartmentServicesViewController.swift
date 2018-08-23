@@ -70,7 +70,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     
     //MARK : UICollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //TODO : Feature Added Firebase Cooks List
         return allDailyServicesList.count
     }
     
@@ -119,13 +118,11 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         cell.myCookImage.clipsToBounds = true
         
         //Implementing Calling Function here on Phone click
-        //TODO: Need remove hardcoded Number
         cell.actionCall = {
             UIApplication.shared.open(NSURL(string: dailyServicesData.getphoneNumber())! as URL, options: [:], completionHandler: nil)
         }
         
         //Implementing Message Function here on Message click
-        //TODO: Need remove hardcoded Number
         cell.actionMessage = {
             MFMessageComposeViewController.canSendText()
             let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
