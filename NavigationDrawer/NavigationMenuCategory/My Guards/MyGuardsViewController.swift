@@ -23,6 +23,9 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Show Progress indicator while we retrieve user guests
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
         
@@ -110,6 +113,9 @@ extension MyGuardsViewController {
                             let profilePhoto : String = (guardsData?[GuardsListFBKeys.profilePhoto.key])! as! String
                             let guardDetails = NAExpectingGuard(fullName: fullName, profilePhoto: profilePhoto, status: status)
                             self.myExpectedGuardsList.append(guardDetails)
+                            
+                            //Hiding Progress indicator after retrieving data.
+                            NAActivityIndicator.shared.hideActivityIndicator()
                             self.collectionView.reloadData()
                         })
                     }
