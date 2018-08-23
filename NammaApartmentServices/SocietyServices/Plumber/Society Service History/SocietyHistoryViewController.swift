@@ -51,38 +51,46 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! SocietyHistoryCollectionViewCell
         
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E,MMM d,HH:mm"
+        let currentDate = formatter.string(from: date)
+        
         if navigationTitle == NAString().eventManagement() {
             let eventServiceList : NAEventManagement
             eventServiceList = NAEventList[indexPath.row]
-            cell.lbl_Name.text = NAString().title()
-            cell.lbl_Number.text = NAString().date()
-            cell.lbl_Problem.text = NAString().timeSlot()
-            cell.lbl_SlotTime.text = NAString().status()
             
-            cell.lbl_ServiceName.text = eventServiceList.getTitle()
-            cell.lbl_ServiceNumber.text = eventServiceList.getDate()
-            cell.lbl_ServiceProblem.text = eventServiceList.getTimeSlot()
-            cell.lbl_ServiceSlotTime.text = eventServiceList.getStatus()
+            cell.cellImage.image = #imageLiteral(resourceName: "event")
+            cell.lbl_Problem.text = eventServiceList.getTimeSlot()
+            cell.lbl_Date.text = currentDate
         } else {
             let societyServiceList : NASocietyServices
             societyServiceList = NASocietyServiceData[indexPath.row]
             
-            cell.lbl_ServiceName.text = societyServiceList.getFullName()
-            cell.lbl_ServiceNumber.text = societyServiceList.getMobileNumber()
-            cell.lbl_ServiceProblem.text = societyServiceList.getProblem()
-            cell.lbl_ServiceSlotTime.text = societyServiceList.getTimeSlot()
+            switch societyServiceList.getSocietyServiceType() {
+            case NAString().plumber_Service() :
+                cell.cellImage.image = #imageLiteral(resourceName: "plumbing (1)")
+                break
+            case NAString().carpenter_Service() :
+                cell.cellImage.image = #imageLiteral(resourceName: "Carpenter Service")
+                break
+            case NAString().electrician_Service() :
+                cell.cellImage.image = #imageLiteral(resourceName: "electrician")
+                break
+            case NAString().garbageManagement() :
+                cell.cellImage.image = #imageLiteral(resourceName: "garbage-bin")
+                break
+            default:
+                break
+            }
+            
+            cell.lbl_Problem.text = societyServiceList.getProblem()
+            cell.lbl_Date.text = currentDate
         }
         
-        //assigning font & style to cell labels
-        cell.lbl_Name.font = NAFont().textFieldFont()
-        cell.lbl_Number.font = NAFont().textFieldFont()
-        cell.lbl_Problem.font = NAFont().textFieldFont()
-        cell.lbl_SlotTime.font = NAFont().textFieldFont()
-        
-        cell.lbl_ServiceName.font = NAFont().headerFont()
-        cell.lbl_ServiceNumber.font = NAFont().headerFont()
-        cell.lbl_ServiceProblem.font = NAFont().headerFont()
-        cell.lbl_ServiceSlotTime.font = NAFont().headerFont()
+        //Setting fonts for labels.
+        cell.lbl_Problem.font = NAFont().headerFont()
+        cell.lbl_Date.font = NAFont().headerFont()
         
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
@@ -193,5 +201,4 @@ extension SocietyHistoryViewController {
             }
         })
     }
-    
 }
