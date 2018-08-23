@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-//For Creating Shadow Effect for Collection View Cell
+//For Creating Shadow Effect for Collection View Cell and UIView
 class NAShadowEffect: NSObject {
     
     func shadowEffect(Cell: UICollectionViewCell) {
@@ -23,5 +23,13 @@ class NAShadowEffect: NSObject {
         Cell.layer.shadowOpacity = 1.0
         Cell.layer.masksToBounds = false
         Cell.layer.shadowPath = UIBezierPath(roundedRect: Cell.bounds, cornerRadius: Cell.contentView.layer.cornerRadius).cgPath
+    }
+    
+    func shadowEffectForView(view: UIView) {
+        view.layer.cornerRadius = 3
+        view.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        view.layer.shadowRadius = 1.7
+        view.layer.shadowOpacity = 0.45
     }
 }

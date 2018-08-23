@@ -162,8 +162,8 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "helpVC") as! HelpViewController
     }
     //Navigation Menu Settings Screen
-    func settingsVC() -> SettingsViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "settingsVC") as! SettingsViewController
+    func settingVC() -> SettingViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "settingVC") as! SettingViewController
     }
     //My Profile Screen
     func myProfileVC() -> EditMyProfileViewController {

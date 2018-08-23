@@ -73,7 +73,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             dv3.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv3, animated: true)
         } else if currentItem == NAString().settings() {
-            let dv4 = NAViewPresenter().settingsVC()
+            let dv4 = NAViewPresenter().settingVC()
             dv4.navTitle = NAString().settings()
             self.navigationController?.pushViewController(dv4, animated: true)
         } else if currentItem == NAString().logout() {

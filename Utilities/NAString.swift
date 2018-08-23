@@ -1590,5 +1590,13 @@ class NAString : NSObject {
     func current_Date_Format() -> String {
         return String("MMM dd, y\t\t HH:MM")
     }
+    
+    func flat_AlertTitle() -> String {
+        return ("Registration unsuccessful")
+    }
+    
+    func flat_AlertMessage(admin: String) -> String {
+        return ("Sorry, we already have an Admin from your Flat. Please ask \(admin) to add you as a Family Member or Friend.")
+    }
 }
 
