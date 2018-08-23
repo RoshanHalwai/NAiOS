@@ -1610,5 +1610,19 @@ class NAString : NSObject {
     func electrician_Service() -> String {
         return String("electrician")
     }
+    
+    //My Wallet Screen
+    func myWallet() -> String {
+        return String("My Wallet")
+    }
+    
+    //Maintenance Services Screen
+    func maintenanceServices() -> String {
+        return String("Maintenance Services")
+    }
+    
+    func payNow() -> String {
+        return String("PAY NOW")
+    }
 }
 

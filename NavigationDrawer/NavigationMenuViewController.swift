@@ -16,7 +16,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var lbl_Flat: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    var sideMenuArray = [NAString().my_profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
+    var sideMenuArray = [NAString().my_profile(),NAString().myWallet(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
     var mainScreen: MainScreenViewController!
     
     override func viewDidLoad() {
@@ -55,6 +55,10 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             let myProfileVC = NAViewPresenter().myProfileVC()
             myProfileVC.navTitle = NAString().My_Profile()
             self.navigationController?.pushViewController(myProfileVC, animated: true)
+        } else if currentItem == NAString().myWallet() {
+            let myWalletVC = NAViewPresenter().myWalletVC()
+            myWalletVC.navTitle = NAString().myWallet()
+            self.navigationController?.pushViewController(myWalletVC, animated: true)
         } else if currentItem == NAString().my_family_members() {
             let dv = NAViewPresenter().mySweetHomeVC()
             dv.navTitle = NAString().my_sweet_home()

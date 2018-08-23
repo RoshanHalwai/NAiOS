@@ -231,4 +231,14 @@ class NAViewPresenter: NSObject {
     func showEventManagementVC() -> EventManagementCardViewController {
         return storyBoard.instantiateViewController(withIdentifier: "showEventManagementVC") as! EventManagementCardViewController
     }
+    
+    //Create My Wallet screen
+    func myWalletVC() -> MyWalletViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController
+    }
+    
+    //Create Maintenance Services Screen
+    func maintenanceServicesVC() -> MaintenanceServicesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "maintenanceServicesVC") as! MaintenanceServicesViewController
+    }
 }
