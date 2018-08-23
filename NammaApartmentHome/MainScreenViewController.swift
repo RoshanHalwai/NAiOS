@@ -282,7 +282,36 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 let lv = NAViewPresenter().apartmentServiceCookVC()
+                lv.titleName = NAString().cook()
                 self.navigationController?.pushViewController(lv, animated: true)
+            case 1:
+                let maidVC = NAViewPresenter().apartmentServiceCookVC()
+                maidVC.titleName = NAString().maid()
+                self.navigationController?.pushViewController(maidVC, animated: true)
+            case 2:
+                let carBikeVC = NAViewPresenter().apartmentServiceCookVC()
+                carBikeVC.titleName = NAString().car_bike_cleaning()
+                self.navigationController?.pushViewController(carBikeVC, animated: true)
+            case 3:
+                let childDayCareVC = NAViewPresenter().apartmentServiceCookVC()
+                childDayCareVC.titleName = NAString().child_day_care()
+                self.navigationController?.pushViewController(childDayCareVC, animated: true)
+            case 4:
+                let dailyNewsPaperVC = NAViewPresenter().apartmentServiceCookVC()
+                dailyNewsPaperVC.titleName = NAString().daily_newspaper()
+                self.navigationController?.pushViewController(dailyNewsPaperVC, animated: true)
+            case 5:
+                let milkManVC = NAViewPresenter().apartmentServiceCookVC()
+                milkManVC.titleName = NAString().milk_man()
+                self.navigationController?.pushViewController(milkManVC, animated: true)
+            case 6:
+                let laundryVC = NAViewPresenter().apartmentServiceCookVC()
+                laundryVC.titleName = NAString().laundry()
+                self.navigationController?.pushViewController(laundryVC, animated: true)
+            case 7:
+                let driverVC = NAViewPresenter().apartmentServiceCookVC()
+                driverVC.titleName = NAString().driver()
+                self.navigationController?.pushViewController(driverVC, animated: true)
                 
             default:
                 break

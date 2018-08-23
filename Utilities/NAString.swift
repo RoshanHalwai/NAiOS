@@ -1050,6 +1050,10 @@ class NAString : NSObject {
         return String ("Please add your Flat Members to approve visitors on your behalf.")
     }
     
+    func layoutFeatureErrorApartmentServices(serviceType: String) -> String {
+        return String ("Sorry you cannot use this feature since currently there are no \(serviceType) service available at your Society.")
+    }
+    
     func statusNotEntered() -> String {
         return String ("Not Entered")
     }
