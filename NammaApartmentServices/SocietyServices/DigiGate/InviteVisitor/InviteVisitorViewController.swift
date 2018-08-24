@@ -49,7 +49,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         //Create Name textfield first letter capital
         txtInvitorName.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
@@ -130,7 +130,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         btnInviteVisitor.setTitle(NAString().btnInvite().uppercased(), for: .normal)
         btnSelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
     }
-    
+
     //Create name textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized

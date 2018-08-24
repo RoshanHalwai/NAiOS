@@ -53,7 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         
-        
+        //Setup firebase Crashlytics here
+        Fabric.with([Crashlytics.self])
+        Fabric.sharedSDK().debug = true
         
         //Calling Notification action button function
         setActionCategories()
