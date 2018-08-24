@@ -13,6 +13,8 @@ pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Messaging'
 pod 'FirebaseUI/Phone'
+pod 'Fabric'
+pod 'Crashlytics'
 
 
   target 'nammaApartmentTests' do
