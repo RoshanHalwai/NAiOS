@@ -123,7 +123,7 @@ class RetrievingGuestList {
         
         //Take each of the visitor UID and get their data from visitors -> preApprovedVisitors
         let visitorDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(visitorUID)
+            .child(Constants.FIREBASE_CHILD_PRIVATE).child(visitorUID)
         visitorDataRef.keepSynced(true)
         //Adding observe event to each of visitors UID
         visitorDataRef.observeSingleEvent(of: .value, with: { (guestDataSnapshot) in

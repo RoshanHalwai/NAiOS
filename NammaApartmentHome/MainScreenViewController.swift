@@ -328,7 +328,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     
     //Checking the user Request whether it is in-Progress or Completed
     func getInProgressUID(VC : UIViewController, titleName: String) {
-        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        let userDataReference = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
         
         userDataReference.observeSingleEvent(of: .value) { (serviceSnapshot) in
             if serviceSnapshot.exists() {
@@ -344,7 +344,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                             if count == allUIDMap.count {
                                 //getting last UID from the Array
                                 let lastUID = allUIDArray.last
-                                let serviceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(lastUID!)
+                                let serviceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(lastUID!)
                                 
                                 serviceNotificationRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
                                     let dataMap = dataSnapshot.value as! [String: AnyObject]
@@ -400,11 +400,11 @@ extension MainScreenViewController {
         let token = Messaging.messaging().fcmToken
         
         var usersTokenRef : DatabaseReference?
-        usersTokenRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
+        usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
         usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         //Checking Users UID in Firebase under Users ->Private
-        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
+        usersPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
         
         //Checking userData inside Users/Private
         self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in

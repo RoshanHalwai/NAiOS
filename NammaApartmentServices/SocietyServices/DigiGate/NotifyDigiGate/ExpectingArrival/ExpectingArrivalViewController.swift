@@ -554,15 +554,15 @@ extension ExpectingArrivalViewController {
         let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        cabPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        cabPrivateRef = Constants.FIREBASE_CABS_PRIVATE
         
         //Generating Cab UID
         let cabUID : String?
         cabUID = (cabPrivateRef?.childByAutoId().key)!
         
-        cabsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_ALL)
+        cabsPrivateRef = Constants.FIREBASE_CABS_ALL
         
-        userDataCabRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID)
+        userDataCabRef = Constants.FIREBASE_USERDATA_PRIVATE.child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID)
         
         
         //Mapping CabUID with true under UsersData -> Flat
@@ -596,15 +596,15 @@ extension ExpectingArrivalViewController {
         let flatValues = GlobalUserData.shared.flatDetails_Items
         let userFlatDetailValues = flatValues.first
         
-        packagesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        packagesPrivateRef = Constants.FIREBASE_DELIVERIES_PRIVATE
         
         //Generating Cab UID
         let packageUID : String?
         packageUID = (packagesPrivateRef?.childByAutoId().key)!
         
-        packagePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_ALL)
+        packagePrivateRef = Constants.FIREBASE_DELIVERIES_ALL
         
-        userDataPackageRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
+        userDataPackageRef = Constants.FIREBASE_USERDATA_PRIVATE.child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
         
         
         //Mapping PackageUID with true under UsersData -> Flat

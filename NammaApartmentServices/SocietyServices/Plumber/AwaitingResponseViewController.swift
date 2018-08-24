@@ -78,9 +78,7 @@ class AwaitingResponseViewController: NANavigationViewController {
     override func viewWillAppear(_ animated: Bool) {
         //Retrieving Society Service Accepted Data
         if !(notificationUID.isEmpty) {
-            let societyServiceReference = Database.database().reference()
-                .child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
-                .child(Constants.FIREBASE_USER_CHILD_ALL)
+            let societyServiceReference = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
                 .child(notificationUID)
             
             societyServiceReference.observe(DataEventType.value, with: { (snapshot) in
@@ -92,9 +90,9 @@ class AwaitingResponseViewController: NANavigationViewController {
                     let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
                     let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                     
-                    let societyServiceDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICE)
+                    let societyServiceDataRef = Constants.FIREBASE_SOCIETY_SERVICES
                         .child(societyServiceType)
-                        .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+                        .child(Constants.FIREBASE_CHILD_PRIVATE)
                         .child(Constants.FIREBASE_CHILD_DATA)
                         .child(societyServiceUID)
                     

@@ -69,7 +69,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         imagePickerController.delegate = self
         
         let userDataRef = Database.database().reference().child(Constants.FIREBASE_USER)
-            .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
+            .child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID)
         userDataRef.keepSynced(true)
         //Adding observe event to each of user UID
         userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
@@ -136,7 +136,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
                 self.txt_Flat_Admin.text = NAString().you_are_the_Administrator()
                 self.existedFlatAdmin = self.txt_Flat_Admin.text
             } else {
-                let adminNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.adminUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
+                let adminNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(self.adminUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
                 adminNameRef.keepSynced(true)
                 adminNameRef.observeSingleEvent(of: .value, with: { (nameSnapShot) in
                     self.txt_Flat_Admin.text = (nameSnapShot.value as! String)
@@ -160,10 +160,10 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         self.table_View.addObserver(self, forKeyPath: NAString().tableView_Content_size(), options: NSKeyValueObservingOptions.new, context: nil)
         
         //Change Admin TextField function
-         txt_Flat_Admin.addTarget(self, action: #selector(changeAdminTextField), for: UIControlEvents.touchDown)
+        txt_Flat_Admin.addTarget(self, action: #selector(changeAdminTextField), for: UIControlEvents.touchDown)
     }
     
-     //Change Admin TextField function
+    //Change Admin TextField function
     @objc func changeAdminTextField(textField: UITextField) {
         if textField == txt_Flat_Admin &&  GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
             let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
@@ -178,7 +178,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
                         if flatMemberUID as! String != userUID {
                             
                             //Getting all Flat Members names.
-                            self.familyMemberNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
+                            self.familyMemberNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
                             self.allFlatMembersUID.append(flatMemberUID as! String)
                             self.familyMemberNameRef?.observeSingleEvent(of: .value, with: { (nameSnapshot) in
                                 self.flatMembersNameList.append(nameSnapshot.value as! String)
@@ -266,7 +266,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().change_Admin_Message_Alert_Title(), Message: NAString().change_Admin_Message_Alert_Message(name: txt_Flat_Admin.text!), CancelStyle: .default, OkStyle: .default, OK: { (action) in
                 
                 //After Changing Admin Access Previous Admin user Admin Access changed to false.
-                let removedAdminRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.adminUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+                let removedAdminRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(self.adminUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
                 removedAdminRef.child(Constants.FIREBASE_CHILD_ADMIN).setValue(NAString().getfalse())
                 
                 //After Changing Admin Access new Admin UID will get Replaced with previous UID
@@ -274,11 +274,11 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
                 UpdatedUserDataAdminRef.child(Constants.FIREBASE_CHILD_ADMIN).setValue(self.updatedAdminUID)
                 
                 //After Changing Admin Access new Admin user Admin Access will be Chnaged to true
-                let updatedUserAdminRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.updatedAdminUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+                let updatedUserAdminRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(self.updatedAdminUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
                 updatedUserAdminRef.child(Constants.FIREBASE_CHILD_ADMIN).setValue(NAString().gettrue())
                 
                 //After Changing Admin Access new Admin user Grant Access will be Changes to true
-                let updatedUserGrantAccessRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(self.updatedAdminUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+                let updatedUserGrantAccessRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(self.updatedAdminUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
                 updatedUserGrantAccessRef.child(Constants.FIREBASE_CHILD_GRANTACCESS).setValue(NAString().gettrue())
                 
                 //Showing Successfully Updated PopUp after Data Replaced in firebase.
@@ -352,7 +352,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
 
 extension EditMyProfileViewController {
     func updateProfileChanges() {
-        self.updateUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        self.updateUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         if existedName != txt_Name.text {
             updateUserRef?.child(Constants.FIREBASE_CHILD_FULLNAME).setValue(txt_Name.text)
         }
@@ -361,7 +361,7 @@ extension EditMyProfileViewController {
         }
         
         if isImageChanged == true {
-            let updatedImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
+            let updatedImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID)
             
             //Compressing profile image and assigning its content type.
             guard let image = profile_Image.image else { return }
