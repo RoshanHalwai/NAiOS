@@ -38,6 +38,8 @@
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
 		08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
+		08F3ED9F212FC7AD0030DBEF /* SocietyServiceRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */; };
+		08F3EDA1212FD6B00030DBEF /* SocietyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */; };
 		422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */; };
 		422E7E062114619F00648D40 /* SocietyHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */; };
 		422E7E0D2114882700648D40 /* AwaitingResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E0C2114882700648D40 /* AwaitingResponseViewController.swift */; };
@@ -201,6 +203,8 @@
 		08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListCollectionViewCell.swift; sourceTree = "<group>"; };
 		08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAConfirmationAlert.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
+		08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocietyServiceRatingView.xib; sourceTree = "<group>"; };
+		08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyServiceRatingView.swift; sourceTree = "<group>"; };
 		0A57802A1AA1E8103BBFEF75 /* Pods-nammaApartment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.debug.xcconfig"; sourceTree = "<group>"; };
 		422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyHistoryViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +423,8 @@
 				42335F292115A49C006E52FB /* Society Service */,
 				422E7E07211472D700648D40 /* Society Service History */,
 				422E7E0C2114882700648D40 /* AwaitingResponseViewController.swift */,
+				08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */,
+				08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */,
 			);
 			path = Plumber;
 			sourceTree = "<group>";
@@ -1093,6 +1099,7 @@
 				861CC00B20B9AA99009EC0EF /* Lato-Black.ttf in Resources */,
 				861CC01120B9AA99009EC0EF /* Lato-Light.ttf in Resources */,
 				86270104209707BC004B28EB /* LaunchScreen.storyboard in Resources */,
+				08F3ED9F212FC7AD0030DBEF /* SocietyServiceRatingView.xib in Resources */,
 				861CC00C20B9AA99009EC0EF /* Lato-HairlineItalic.ttf in Resources */,
 				861CC01020B9AA99009EC0EF /* Lato-BoldItalic.ttf in Resources */,
 				861CC00A20B9AA99009EC0EF /* Lato-Bold.ttf in Resources */,
@@ -1208,6 +1215,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -1216,6 +1224,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -1302,6 +1311,7 @@
 				86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */,
 				42313795211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift in Sources */,
 				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
+				08F3EDA1212FD6B00030DBEF /* SocietyServiceRatingView.swift in Sources */,
 				083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
 				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				42341BB3212165510005160B /* MyVehiclesViewController.swift in Sources */,

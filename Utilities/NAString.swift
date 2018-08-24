@@ -1632,5 +1632,9 @@ class NAString : NSObject {
     func payNow() -> String {
         return String("PAY NOW")
     }
+    
+    func complete() -> String {
+        return String("Completed")
+    }
 }
 

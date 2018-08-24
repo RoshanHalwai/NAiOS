@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import HCSStarRatingView
 
 class AwaitingResponseViewController: NANavigationViewController {
     
@@ -21,6 +22,8 @@ class AwaitingResponseViewController: NANavigationViewController {
     @IBOutlet weak var lbl_ServiceNumber : UILabel?
     @IBOutlet weak var lbl_ServiceOTP: UILabel?
     
+    @IBOutlet weak var opacity_View: UIView!
+    @IBOutlet weak var rating_Parent_View: UIView!
     
     @IBOutlet weak var activityIndicator : UIActivityIndicatorView?
     @IBOutlet weak var img_Title : UIImageView?
@@ -30,6 +33,7 @@ class AwaitingResponseViewController: NANavigationViewController {
     var navTitle : String?
     var titleString : String?
     var notificationUID = String()
+    var societyServiceRating : SocietyServiceRatingView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +63,8 @@ class AwaitingResponseViewController: NANavigationViewController {
         
         //Hiding CardView
         cardView?.isHidden = true
-        
+        opacity_View.isHidden = true
+        rating_Parent_View.isHidden = true 
         //Calling Society Service Messages Function
         self.changingSocietyServiceMessages()
         
@@ -115,6 +120,34 @@ class AwaitingResponseViewController: NANavigationViewController {
                         self.lbl_ServiceOTP?.text = endOTP
                     })
                 }
+                let societyServiceStatus: String = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
+                let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
+                
+                //ensuring if the Status is Complete.
+                if societyServiceStatus == NAString().complete() {
+                    self.lbl_Title?.isHidden = true
+                    self.lbl_message?.isHidden = true
+                    self.activityIndicator?.isHidden = true
+                    self.cardView?.isHidden = true
+                    self.opacity_View.isHidden = false
+                    var serviceImage = UIImage()
+                    var servicesType = String()
+                    switch societyServiceType {
+                    case NAString().plumber().lowercased():
+                        serviceImage = #imageLiteral(resourceName: "plumbing")
+                        servicesType = NAString().plumber()
+                    case NAString().carpenter().lowercased():
+                        servicesType = NAString().carpenter()
+                        serviceImage = #imageLiteral(resourceName: "Carpenter Service")
+                    case NAString().electrician().lowercased():
+                        servicesType = NAString().carpenter().lowercased()
+                        serviceImage = #imageLiteral(resourceName: "switchBoard")
+                    default:
+                        break
+                        
+                    }
+                    self.showingRatingView(serviceTypeImage: serviceImage, serviceType: servicesType)
+                }
             })
         }
     }
@@ -130,5 +163,62 @@ class AwaitingResponseViewController: NANavigationViewController {
         } else {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_management())
         }
+    }
+    
+    //on Click of Submit Button
+    @objc func storeRating() {
+        
+        let serviceRating = self.societyServiceRating.ratingValue
+        self.opacity_View.isHidden = true
+        self.societyServiceRating.isHidden = true
+    
+        let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(notificationUID)
+        societyServiceNotificationRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
+        societyServiceNotificationRef.observeSingleEvent(of: .value) { (snapshot) in
+            let societyServiceData = snapshot.value as? [String: AnyObject]
+            let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
+            let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
+            
+            let societyServiceDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICE)
+                .child(societyServiceType)
+                .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+                .child(Constants.FIREBASE_CHILD_DATA)
+                .child(societyServiceUID)
+            societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
+            
+            let mainScreenVC = NAViewPresenter().mainScreenVC()
+            self.navigationController?.pushViewController(mainScreenVC, animated: true)
+        }
+    }
+    
+    //Function to show Rate Us View.
+    func showingRatingView(serviceTypeImage: UIImage, serviceType: String) {
+        societyServiceRating = SocietyServiceRatingView(frame: CGRect(x: 0, y: 0, width: 260, height: 350))
+        societyServiceRating.center.x = self.view.bounds.width/2
+        societyServiceRating.center.y = self.view.bounds.height/2
+        societyServiceRating.btn_Submit.titleLabel?.font = NAFont().buttonFont()
+        societyServiceRating.btn_Submit.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        societyServiceRating.btn_Submit.backgroundColor = NAColor().buttonBgColor()
+        societyServiceRating.lbl_Plumber.font = NAFont().headerFont()
+        societyServiceRating.plumber_ImageView.image = serviceTypeImage
+        societyServiceRating.lbl_Plumber.text = serviceType
+        societyServiceRating.lbl_RateYour_Service.font = NAFont().labelFont()
+        societyServiceRating.layer.cornerRadius = 10
+        societyServiceRating.layer.masksToBounds = true
+        societyServiceRating.btn_Submit.addTarget(self, action: #selector(storeRating), for: .touchUpInside)
+        
+        //Customized Code for Star rating
+        let starRatingView: HCSStarRatingView = HCSStarRatingView()
+        starRatingView.maximumValue = 5
+        starRatingView.minimumValue = 0
+        starRatingView.value = 1
+        starRatingView.tintColor = UIColor.yellow
+        starRatingView.allowsHalfStars = false
+        starRatingView.emptyStarImage = UIImage(named: "EmptyStar")?.withRenderingMode(.alwaysTemplate)
+        starRatingView.filledStarImage = UIImage(named: "FullStar")?.withRenderingMode(.alwaysTemplate)
+        starRatingView.center = self.view.center
+        societyServiceRating.view.addSubview(starRatingView)
+        starRatingView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(societyServiceRating)
     }
 }
