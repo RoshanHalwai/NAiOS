@@ -297,11 +297,11 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //Mapping Visitor's mobile number with their UID
         visitorsAllRef?.child(self.txtInvitorMobile.text!).setValue(visitorUID)
         visitorsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(visitorUID!)
+            .child(Constants.FIREBASE_CHILD_PRIVATE).child(visitorUID!)
         
         //Storing visitors data along with their profile photo
         var visitorImageRef: StorageReference?
-        visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        visitorImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRIVATE)
         
         //Compressing profile image and assigning its content type.
         guard let image = img_Profile.image else { return }

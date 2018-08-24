@@ -127,7 +127,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                     
                                     let societyServiceDataRef = Constants.FIREBASE_SOCIETY_SERVICES
                                         .child(societyServiceType)
-                                        .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+                                        .child(Constants.FIREBASE_CHILD_PRIVATE)
                                         .child(Constants.FIREBASE_CHILD_DATA)
                                         .child(societyServiceUID)
                                     

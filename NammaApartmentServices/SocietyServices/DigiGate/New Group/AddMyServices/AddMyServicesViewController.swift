@@ -455,11 +455,11 @@ extension AddMyServicesViewController {
         let userFlatDetailValues = flatValues.first
         let dailyServiceUID = Auth.auth().currentUser?.uid
         
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceKey)
+        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceKey)
         
         userDataRef?.child(dailyServiceUID!).setValue(NAString().gettrue())
         
-        dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_CHILD_PRIVATE)
         
         dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServiceUID)
         
@@ -473,7 +473,7 @@ extension AddMyServicesViewController {
         
         self.dailyServicesStatusRef?.child(NAString().status()).setValue(NAString().notEntered())
         
-        dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(dailyServiceKey).child(Constants.FIREBASE_CHILD_OWNERSUID).child(userUID)
+        dailyServicesImageRef = Storage.storage().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_CHILD_PRIVATE).child(dailyServiceKey).child(Constants.FIREBASE_CHILD_OWNERSUID).child(userUID)
         
         guard let image = self.img_Profile.image else { return }
         guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }

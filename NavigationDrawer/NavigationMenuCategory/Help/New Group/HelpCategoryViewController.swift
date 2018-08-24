@@ -43,14 +43,14 @@ class HelpCategoryViewController: NANavigationViewController, UITableViewDelegat
         
         if navTitle == NAString().contact_us().capitalized {
             cell.lbl_View.text = NAString().address_Detail()
-           
+            
         } else if navTitle == NAString().privacy_policy().capitalized {
             cell.lbl_View.text = NAString().privacy_policy_Detail()
         } else if navTitle == NAString().terms_and_conditions().capitalized {
             cell.lbl_View.text = NAString().termsAndConditions_Detail()
         }
         
-        cell.lbl_View.font = NAFont().layoutFeatureErrorFont()
+        cell.lbl_View.font = NAFont().textFieldFont()
         cell.lbl_View.sizeToFit()
         cell.lbl_View.layoutIfNeeded()
         cell.cardView.sizeToFit()

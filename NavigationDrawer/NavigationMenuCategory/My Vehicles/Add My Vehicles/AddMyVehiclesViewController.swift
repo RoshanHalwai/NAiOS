@@ -312,7 +312,7 @@ extension AddMyVehiclesViewController {
     func storeVehicleDetailsInFirebase() {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.dateFormat =  NAString().dateFormat()
         let currentDate = formatter.string(from: date)
         
         //Concatination of Vehicle textFields
@@ -323,7 +323,7 @@ extension AddMyVehiclesViewController {
         let hyphen = "-"
         self.finalVehicleString = vehicleStateCode + hyphen + vehicleRTOCode + hyphen + vehicleSerialOne + hyphen + vehicleSerialTwo
         
-        vehiclePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+        vehiclePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_CHILD_PRIVATE)
         
         //Generating Vehicle UID
         let vehicleUID : String?

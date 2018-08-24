@@ -281,8 +281,41 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
         case 1 :
             switch indexPath.row {
             case 0:
-                let lv = NAViewPresenter().apartmentServiceCookVC()
-                self.navigationController?.pushViewController(lv, animated: true)
+                let cookVC = NAViewPresenter().apartmentServiceCookVC()
+                cookVC.titleName = NAString().cook()
+                self.navigationController?.pushViewController(cookVC, animated: true)
+            case 1:
+                let maidVC = NAViewPresenter().apartmentServiceCookVC()
+                maidVC.titleName = NAString().maid()
+                self.navigationController?.pushViewController(maidVC, animated: true)
+            case 2:
+                let carBikeVC = NAViewPresenter().apartmentServiceCookVC()
+                carBikeVC.titleName = NAString().car_bike_cleaning()
+                self.navigationController?.pushViewController(carBikeVC, animated: true)
+            case 3:
+                let childDayCareVC = NAViewPresenter().apartmentServiceCookVC()
+                childDayCareVC.titleName = NAString().child_day_care()
+                self.navigationController?.pushViewController(childDayCareVC, animated: true)
+            case 4:
+                let dailyNewsPaperVC = NAViewPresenter().apartmentServiceCookVC()
+                dailyNewsPaperVC.titleName = NAString().daily_newspaper()
+                self.navigationController?.pushViewController(dailyNewsPaperVC, animated: true)
+            case 5:
+                let milkManVC = NAViewPresenter().apartmentServiceCookVC()
+                milkManVC.titleName = NAString().milk_man()
+                self.navigationController?.pushViewController(milkManVC, animated: true)
+            case 6:
+                let laundryVC = NAViewPresenter().apartmentServiceCookVC()
+                laundryVC.titleName = NAString().laundry()
+                self.navigationController?.pushViewController(laundryVC, animated: true)
+            case 7:
+                let driverVC = NAViewPresenter().apartmentServiceCookVC()
+                driverVC.titleName = NAString().driver()
+                self.navigationController?.pushViewController(driverVC, animated: true)
+            case 8:
+                let groceriesVC = NAViewPresenter().apartmentServiceCookVC()
+                groceriesVC.titleName = NAString().groceries()
+                self.navigationController?.pushViewController(groceriesVC, animated: true)
                 
             default:
                 break
@@ -295,7 +328,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     
     //Checking the user Request whether it is in-Progress or Completed
     func getInProgressUID(VC : UIViewController, titleName: String) {
-        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        let userDataReference = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
         
         userDataReference.observeSingleEvent(of: .value) { (serviceSnapshot) in
             if serviceSnapshot.exists() {
@@ -311,7 +344,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                             if count == allUIDMap.count {
                                 //getting last UID from the Array
                                 let lastUID = allUIDArray.last
-                                let serviceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL).child(lastUID!)
+                                let serviceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(lastUID!)
                                 
                                 serviceNotificationRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
                                     let dataMap = dataSnapshot.value as! [String: AnyObject]
@@ -367,11 +400,11 @@ extension MainScreenViewController {
         let token = Messaging.messaging().fcmToken
         
         var usersTokenRef : DatabaseReference?
-        usersTokenRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
+        usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
         usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         //Checking Users UID in Firebase under Users ->Private
-        usersPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(userUID)
+        usersPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
         
         //Checking userData inside Users/Private
         self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in

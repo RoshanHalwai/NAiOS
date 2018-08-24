@@ -29,6 +29,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.rightBarButtonItem = nil
         
         //Button Formatting & settings
         btn_AddVehicle.setTitle(NAString().addMyVehicles().capitalized, for: .normal)
@@ -104,14 +105,14 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
 extension MyVehiclesViewController {
     
     func retrieviedVehicleDataInFirebase() {
-        
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
         userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VEHICLES)
         userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let vehiclesUID = snapshot.value as? NSDictionary
                 for vehiclesUID in (vehiclesUID?.allKeys)! {
-                    self.vehiclesPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(vehiclesUID as! String)
+                    self.vehiclesPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_CHILD_PRIVATE).child(vehiclesUID as! String)
                     self.vehiclesPublicRef?.keepSynced(true)
                     self.vehiclesPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
@@ -119,9 +120,10 @@ extension MyVehiclesViewController {
                             let vehicleData = snapshot.value as?[String: AnyObject]
                             let vehicleType = (vehicleData?[VehicleListFBKeys.vehicleType.key] as? String)!
                             let addedDate = vehicleData?[VehicleListFBKeys.addedDate.key] as? String
-                            let ownerName = vehicleData?[VehicleListFBKeys.ownerName.key] as? String
+                            let ownerName = GlobalUserData.shared.personalDetails_Items.first?.getfullName()
                             let vehicleNumber = vehicleData?[VehicleListFBKeys.vehicleNumber.key] as? String
                             let vehicleDetails = NAExpectingVehicle(addedDate: addedDate,ownerName: ownerName, vehicleNumber: vehicleNumber!,vehicleType: vehicleType)
+                            
                             self.myExpectedVehicleList.append(vehicleDetails)
                             NAActivityIndicator.shared.hideActivityIndicator()
                             self.collectionView.reloadData()

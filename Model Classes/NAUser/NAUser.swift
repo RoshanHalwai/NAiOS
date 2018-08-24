@@ -24,7 +24,7 @@ class GlobalUserData {
         let userFlatDetails = GlobalUserData.shared.flatDetails_Items.first
         let userDataReference = Database.database().reference()
             .child(Constants.FIREBASE_USERDATA)
-            .child(Constants.FIREBASE_USER_CHILD_PRIVATE)
+            .child(Constants.FIREBASE_CHILD_PRIVATE)
             .child((userFlatDetails?.city)!)
             .child((userFlatDetails?.societyName)!)
             .child((userFlatDetails?.apartmentName)!)

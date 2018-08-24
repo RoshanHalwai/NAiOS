@@ -20,7 +20,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     
     //set title from previous page
     var titleName =  String()
-   
+    
     //Database References
     var userDataRef : DatabaseReference?
     var dailyServiceInUserRef : DatabaseReference?
@@ -200,7 +200,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
             formatter.dateFormat = "dd-MM-yyyy"
             let currentDate = formatter.string(from: date)
             
-            self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(DSList.getType()).child(DSList.getuid()).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
+            self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(DSList.getType()).child(DSList.getuid()).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
             
             //Implemented Completion block,becouse need to show AlertView after storing data in Firebase.
             self.dailyServicePublicRef?.child(currentDate).setValue(cell.txt_Description.text, withCompletionBlock: { (error,ref) in
@@ -304,10 +304,10 @@ extension HandedThingsToDailyServicesViewController {
                                 //If Value is true then we have to append data in model class
                                 if dailyServicesUID![dailyServiceUID] as! Bool == true {
                                     
-                                    self.dailyServiceCountRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String)
+                                    self.dailyServiceCountRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
                                     
                                     //Getting Daily Services Status (Like Entered or Not)
-                                    self.dailyServiceStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(NAString().status())
+                                    self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(NAString().status())
                                     
                                     self.dailyServiceStatusRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                         let dailyServiceStatus = snapshot.value
@@ -326,7 +326,7 @@ extension HandedThingsToDailyServicesViewController {
                                                     let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus)
                                                     dsInfo.append(servicetype)
                                                     
-                                                    self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
+                                                    self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC
                                                     self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
                                                         
                                                         //Getting Data Form Firebase & Adding into Model Class
