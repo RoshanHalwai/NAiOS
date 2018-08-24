@@ -1632,5 +1632,9 @@ class NAString : NSObject {
     func payNow() -> String {
         return String("PAY NOW")
     }
+    
+    func noticeBoardErrorLayoutMessage() -> String {
+        return String("Currently there is no notice for your Society.")
+    }
 }
 
