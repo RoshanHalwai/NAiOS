@@ -1633,13 +1633,12 @@ class NAString : NSObject {
         return String("PAY NOW")
     }
     
-<<<<<<< HEAD
     func complete() -> String {
         return String("Completed")
-=======
+    }
+    
     func noticeBoardErrorLayoutMessage() -> String {
         return String("Currently there is no notice for your Society.")
->>>>>>> RetrieveNoticeBoardDataInFirebase
     }
 }
 
