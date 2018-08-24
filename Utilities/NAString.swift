@@ -1636,5 +1636,9 @@ class NAString : NSObject {
     func complete() -> String {
         return String("Completed")
     }
+    
+    func noticeBoardErrorLayoutMessage() -> String {
+        return String("Currently there is no notice for your Society.")
+    }
 }
 

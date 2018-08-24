@@ -14,8 +14,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
     @IBOutlet weak var collectionView: UICollectionView!
     var navTitle = String()
     
-    //Database References
-    var userDataRef : DatabaseReference?
     var isActivityIndicatorRunning = false
     
     var myExpectedGuardsList = [NAExpectingGuard]()

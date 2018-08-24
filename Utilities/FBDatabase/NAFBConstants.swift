@@ -83,6 +83,7 @@ struct Constants {
     static let FIREBASE_CHILD_IN_PROGRESS = "in progress"
     static let FIREBASE_CHILD_GUARD = "guard"
     static let FIREBASE_CHILD_RATING = "rating"
+    static let FIREBASE_CHILD_NOTICEBOARD = "noticeBoard"
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     static let FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
     static let FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
