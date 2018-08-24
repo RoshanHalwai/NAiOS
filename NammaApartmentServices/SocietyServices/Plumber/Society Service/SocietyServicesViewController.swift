@@ -298,9 +298,9 @@ extension SocietyServicesViewController {
             problem = selectedProblem
             serviceType = (navTitle?.lowercased())!
         }
-        let societyServiceNotificationRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
+        let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
         notificationUID = societyServiceNotificationRef.childByAutoId().key
-        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        let userDataRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         
         let societyServiceNotificationData = [

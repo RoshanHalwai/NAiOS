@@ -31,7 +31,7 @@ class EventManagementCardViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         //Assigning Font to UILables
         lbl_Date.font = NAFont().textFieldFont()
         lbl_Date.font = NAFont().textFieldFont()
@@ -79,7 +79,7 @@ extension EventManagementCardViewController {
         
         self.cardView.isHidden = true
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-
+        
         var societyServiceNotificationsRef : DatabaseReference?
         
         societyServiceNotificationsRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(getEventUID)

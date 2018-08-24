@@ -184,7 +184,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                     queue.addOperation {
                                         dsType = dailyServiceType as! String
                                         
-                                        self.dailyServiceHandedThingsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
+                                        self.dailyServiceHandedThingsRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
                                         
                                         self.dailyServiceHandedThingsRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                             if snapshot.exists() {
@@ -208,7 +208,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                                 let servicetype = dailySericeTypeAndStatus.init(type: dsType, status: dsStatus, dateOfVisit: dsDateOfVisit, handedThings: dsHandedThings)
                                                 dsInfo.append(servicetype)
                                                 
-                                                self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
+                                                self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC
                                                 self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
                                                     
                                                     //Getting Data Form Firebase & Adding into Model Class

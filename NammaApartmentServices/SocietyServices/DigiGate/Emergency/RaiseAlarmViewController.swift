@@ -51,7 +51,7 @@ class RaiseAlarmViewController: NANavigationViewController {
             
             //Mapping UID's in Emergency Private
             self.privateEmergencyRef = Database.database().reference()
-            self.privateEmergencyRef?.child(Constants.FIREBASE_CHILD_EMERGENCY).child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL).child((userFlatDetails?.flatNumber)!).child(emergencyUID!).setValue(NAString().gettrue())
+            self.privateEmergencyRef?.child(Constants.FIREBASE_CHILD_EMERGENCY).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL).child((userFlatDetails?.flatNumber)!).child(emergencyUID!).setValue(NAString().gettrue())
             
             
             //Storing data in Emergency Public Reference
