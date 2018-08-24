@@ -383,6 +383,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
+                self.txt_Email.endEditing(true)
                 let destVC = NAViewPresenter().otpViewController()
                 var segmentType = String()
                 if familyType == familyMember {

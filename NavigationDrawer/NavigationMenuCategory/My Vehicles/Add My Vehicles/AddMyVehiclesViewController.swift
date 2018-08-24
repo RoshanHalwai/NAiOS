@@ -312,7 +312,7 @@ extension AddMyVehiclesViewController {
     func storeVehicleDetailsInFirebase() {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
+        formatter.dateFormat =  NAString().dateFormat()
         let currentDate = formatter.string(from: date)
         
         //Concatination of Vehicle textFields

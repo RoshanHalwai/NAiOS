@@ -365,7 +365,7 @@ class NAString : NSObject {
     }
     
     func address_Detail() -> String {
-        return String("For any queries, contact: \n\n Full Address: \n #59/2, \n Kirtan Labs, \n 9th Cross, \n Tulasi Theatre Road, \n Marathahalli, Bengaluru - 560037, \n Karanataka \n\n Landmark: Behind Innovative Multiplex \n\n Contact No: \n Ashish Jha \n Mob No: +91-9986553474 \n Email:iamashishjha@gmail.com")
+        return String("For any queries, contact: \n\n Full Address: \n #59/2, \n Kirtan Labs, \n 9th Cross, Tulasi Theatre Road, \n Marathahalli,\n Bengaluru - 560037, \n Karanataka \n\n Landmark: Behind Innovative Multiplex \n\n Contact No: \n Ashish Jha \n Mob No: +91-9986553474 \n Email:iamashishjha@gmail.com")
     }
     
     func privacy_policy_Detail() -> String {
@@ -1617,6 +1617,20 @@ class NAString : NSObject {
     
     func electrician_Service() -> String {
         return String("electrician")
+    }
+    
+    //My Wallet Screen
+    func myWallet() -> String {
+        return String("My Wallet")
+    }
+    
+    //Maintenance Services Screen
+    func maintenanceServices() -> String {
+        return String("Maintenance Services")
+    }
+    
+    func payNow() -> String {
+        return String("PAY NOW")
     }
 }
 
