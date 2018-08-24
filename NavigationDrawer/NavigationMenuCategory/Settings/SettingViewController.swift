@@ -83,9 +83,13 @@ class SettingViewController: NANavigationViewController, UITableViewDelegate, UI
         //Creating Shadow Effect for Views
         NAShadowEffect().shadowEffectForView(view: general_Settings_View)
         NAShadowEffect().shadowEffectForView(view: notification_settings_View)
+        
+        //Choose languages TextField function
+        languages_Text_Field.addTarget(self, action: #selector(chooseLanguagesTextField), for: UIControlEvents.touchDown)
     }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+ 
+    //Change Admin TextField function
+    @objc func chooseLanguagesTextField(textField: UITextField) {
         if textField == languages_Text_Field {
             opacity_View.isHidden = false
             languages_PopUp_View.isHidden = false
