@@ -46,8 +46,8 @@
 		42305D6A2113063D009FE3B6 /* SocietyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */; };
 		42305D6C211323AB009FE3B6 /* SocietyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */; };
 		4230EEB12108AB4F0037345D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4230EEAF2108AB4F0037345D /* Main.storyboard */; };
-		42313793211D8DEA00518147 /* CookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42313792211D8DEA00518147 /* CookViewController.swift */; };
-		42313795211D96FE00518147 /* CookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42313794211D96FE00518147 /* CookCollectionViewCell.swift */; };
+		42313793211D8DEA00518147 /* ApartmentServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42313792211D8DEA00518147 /* ApartmentServicesViewController.swift */; };
+		42313795211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42313794211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift */; };
 		423187D620F378E400F10A23 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D520F378E400F10A23 /* FirebaseAuth.framework */; };
 		423187D820F378E400F10A23 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D720F378E400F10A23 /* FirebaseCore.framework */; };
 		423187DA20F378E400F10A23 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D920F378E400F10A23 /* FirebaseDatabase.framework */; };
@@ -210,8 +210,8 @@
 		42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyServicesViewController.swift; sourceTree = "<group>"; };
 		42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyTableViewController.swift; sourceTree = "<group>"; };
 		4230EEB02108AB4F0037345D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		42313792211D8DEA00518147 /* CookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookViewController.swift; sourceTree = "<group>"; };
-		42313794211D96FE00518147 /* CookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookCollectionViewCell.swift; sourceTree = "<group>"; };
+		42313792211D8DEA00518147 /* ApartmentServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentServicesViewController.swift; sourceTree = "<group>"; };
+		42313794211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApartmentServicesCollectionViewCell.swift; sourceTree = "<group>"; };
 		423187D520F378E400F10A23 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187D720F378E400F10A23 /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423187D920F378E400F10A23 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -426,18 +426,10 @@
 		42313790211D8DAD00518147 /* ApartmentServices */ = {
 			isa = PBXGroup;
 			children = (
-				42313791211D8DD100518147 /* Cook */,
+				42313792211D8DEA00518147 /* ApartmentServicesViewController.swift */,
+				42313794211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift */,
 			);
 			path = ApartmentServices;
-			sourceTree = "<group>";
-		};
-		42313791211D8DD100518147 /* Cook */ = {
-			isa = PBXGroup;
-			children = (
-				42313792211D8DEA00518147 /* CookViewController.swift */,
-				42313794211D96FE00518147 /* CookCollectionViewCell.swift */,
-			);
-			path = Cook;
 			sourceTree = "<group>";
 		};
 		42335F292115A49C006E52FB /* Society Service */ = {
@@ -1273,7 +1265,7 @@
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				422E7E062114619F00648D40 /* SocietyHistoryViewController.swift in Sources */,
 				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
-				42313793211D8DEA00518147 /* CookViewController.swift in Sources */,
+				42313793211D8DEA00518147 /* ApartmentServicesViewController.swift in Sources */,
 				5D77429E210DD49F0049344F /* LoginViewController.swift in Sources */,
 				5D7742A2210E0ACB0049344F /* RetrieveFamilyMemberList.swift in Sources */,
 				4235FB0A212536B400965352 /* EventManagementViewController.swift in Sources */,
@@ -1308,7 +1300,7 @@
 				42305D6A2113063D009FE3B6 /* SocietyServicesViewController.swift in Sources */,
 				422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */,
 				86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */,
-				42313795211D96FE00518147 /* CookCollectionViewCell.swift in Sources */,
+				42313795211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift in Sources */,
 				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
 				083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
 				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,

@@ -195,8 +195,8 @@ class NAViewPresenter: NSObject {
     }
     
     //Create Apartment Service Cook Screen
-    func apartmentServiceCookVC() -> CookViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "apartmentServiceCookVC") as! CookViewController
+    func apartmentServiceCookVC() -> ApartmentServicesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "apartmentServiceCookVC") as! ApartmentServicesViewController
     }
     
     //Create My Vehicles Screen
