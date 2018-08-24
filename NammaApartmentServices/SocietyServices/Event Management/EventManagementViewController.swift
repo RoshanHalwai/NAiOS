@@ -46,7 +46,7 @@ class EventManagementViewController: NANavigationViewController {
     var eventNotificationUID = String()
     var getButtonHour_Text = String()
     var getButtonCategory_Text = String()
-
+    
     //created date picker programtically
     let picker = UIDatePicker()
     
@@ -324,7 +324,7 @@ extension EventManagementViewController {
         
         let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
         eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
-        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        let userDataRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
         userDataRef.child(serviceType).child(eventNotificationUID).setValue(NAString().gettrue())
         
         let eventManagementNotificationData = [

@@ -158,8 +158,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //calling HistoryVC button action on particular cell
         cell.objHistoryVC = {
             //Storing Data of Handed Things to Guest.
-            let visitorDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-                .child(Constants.FIREBASE_USER_CHILD_PRIVATE).child(nammaApartmentVisitor.getuid())
+            let visitorDataRef = Constants.FIREBASE_VISITORS_PRIVATE.child(nammaApartmentVisitor.getuid())
             visitorDataRef.child(Constants.FIREBASE_HANDEDTHINGS).setValue(cell.txt_Description.text, withCompletionBlock: { (error, ref) in
                 if error == nil {
                     print("Success")
