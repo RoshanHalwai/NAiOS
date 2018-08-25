@@ -16,7 +16,7 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
     var navTitle = String()
     
     var myExpectedNoticeBoardList = [NAExpectingNoticeBoard]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +29,7 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()
         
+        //Setting Label Font
         lbl_Date.font = NAFont().labelFont()
         
         var layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -37,6 +38,7 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: self.collectionView.frame.size.height/3)
     }
     
+    //MARK: CollectionView Delegate and DataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myExpectedNoticeBoardList.count
     }
