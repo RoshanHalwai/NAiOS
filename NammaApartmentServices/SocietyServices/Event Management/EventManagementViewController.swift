@@ -31,6 +31,8 @@ class EventManagementViewController: NANavigationViewController {
     @IBOutlet weak var lbl_description: UILabel!
     @IBOutlet weak var lbl_eventValidation: UILabel!
     @IBOutlet weak var lbl_eventDateValidation: UILabel!
+    @IBOutlet weak var lbl_partiesValidation: UILabel!
+    @IBOutlet weak var lbl_timeSlotValidation: UILabel!
     
     @IBOutlet weak var txt_EventTitle: UITextField!
     @IBOutlet weak var txt_EventDate: UITextField!
@@ -56,9 +58,6 @@ class EventManagementViewController: NANavigationViewController {
         //Create Event Title textfield first letter capital
         txt_EventTitle.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        getButtonHour_Text = NAString().morning()
-        getButtonCategory_Text = NAString().parties()
-        
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)    
         
@@ -70,6 +69,8 @@ class EventManagementViewController: NANavigationViewController {
         lbl_description.font = NAFont().descriptionFont()
         lbl_eventDateValidation.font = NAFont().descriptionFont()
         lbl_eventValidation.font = NAFont().descriptionFont()
+        lbl_partiesValidation.font = NAFont().descriptionFont()
+        lbl_timeSlotValidation.font = NAFont().descriptionFont()
         
         //Label formatting & setting
         lbl_EventTitle.text = NAString().event_title()
@@ -79,6 +80,8 @@ class EventManagementViewController: NANavigationViewController {
         lbl_description.text = NAString().query_time_slot()
         lbl_eventValidation.text = NAString().event_Validation_Message()
         lbl_eventDateValidation.text = NAString().event_Date()
+        lbl_partiesValidation.text = NAString().Please_select_expected_Hours()
+        lbl_timeSlotValidation.text = NAString().Please_select_expected_Hours()
         
         //TextField formatting & setting
         txt_EventTitle.font = NAFont().textFieldFont()
@@ -88,6 +91,8 @@ class EventManagementViewController: NANavigationViewController {
         
         lbl_eventValidation.isHidden = true
         lbl_eventDateValidation.isHidden = true
+        lbl_partiesValidation.isHidden = true
+        lbl_timeSlotValidation.isHidden = true
         
         //assigned delegate method on textFields
         txt_EventTitle.delegate = self
@@ -181,10 +186,6 @@ class EventManagementViewController: NANavigationViewController {
         //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
         
-        //Calling Button Color Function
-        self.selectedEventButtonsColor(tag: btn_Parties.tag)
-        self.selectedTimeSlotColor(tag: btn_8AMto12PM.tag)
-        
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
@@ -238,9 +239,10 @@ class EventManagementViewController: NANavigationViewController {
     //creating function to highlight select Event button color
     func selectedEventButtonsColor(tag: Int) {
         for button in selectEventbuttons as [UIButton] {
-            isValidSelectSlotButtonClicked = [true]
+            isValidSelectEventButtonClicked = [true]
             if button.tag == tag {
                 button.isSelected = true
+                lbl_partiesValidation.isHidden = true
             } else {
                 button.isSelected = false
             }
@@ -253,9 +255,10 @@ class EventManagementViewController: NANavigationViewController {
     //creating function to highlight Select Slot button color
     func selectedTimeSlotColor(tag: Int) {
         for button in selectSlotbuttons as [UIButton] {
-            isValidSelectEventButtonClicked = [true]
+            isValidSelectSlotButtonClicked = [true]
             if button.tag == tag {
                 button.isSelected = true
+                lbl_timeSlotValidation.isHidden = true
             } else {
                 button.isSelected = false
             }
@@ -279,6 +282,12 @@ class EventManagementViewController: NANavigationViewController {
     }
     //Calling Book Button Function
     @IBAction func btn_bookAction() {
+        if (isValidSelectSlotButtonClicked.index(of: true) == nil) {
+            lbl_timeSlotValidation.isHidden = false
+            lbl_timeSlotValidation.text = NAString().Please_select_expected_Hours()
+        } else {
+            lbl_timeSlotValidation.isHidden = true
+        }
         if (txt_EventTitle.text?.isEmpty)! {
             txt_EventTitle?.redunderlined()
             lbl_eventValidation.isHidden = false
@@ -293,7 +302,13 @@ class EventManagementViewController: NANavigationViewController {
             txt_EventDate?.underlined()
             lbl_eventDateValidation.isHidden = true
         }
-        if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! {
+        if (isValidSelectEventButtonClicked.index(of: true) == nil) {
+            lbl_partiesValidation.isHidden = false
+            lbl_partiesValidation.text = NAString().Please_select_expected_Hours()
+        } else {
+            lbl_partiesValidation.isHidden = true
+        }
+        if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! && (isValidSelectSlotButtonClicked.index(of: true) != nil) && (isValidSelectEventButtonClicked.index(of: true) != nil) {
             self.storeEventManagementDetails()
             self.inviteAlertView()
         }
