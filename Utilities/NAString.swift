@@ -300,7 +300,6 @@ class NAString : NSObject {
         return String("Frequently Asked Questions")
     }
     
-    //Navigation Menu
     func faqs() -> String {
         return String("FAQ's")
     }
