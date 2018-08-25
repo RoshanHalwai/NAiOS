@@ -14,7 +14,6 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var navTitle: UILabel!
     
-    
     //to get previous View Controller
     var societyServiceVC: SocietyServicesViewController!
     var searchActive : Bool = false
@@ -28,7 +27,6 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
     var carpenterProblemsList = ["Carpentry finish appears uneven","Split in the wood","Weak joints","Dents in wood","Glue stuck","Others"]
     var electricianProblemsList = ["Frequent Electrical Surge","Sags and Dips in Power","Light Switches not working properly","Circuit Overload","Circuit Breaker Tripping Frequently","Lights too Bright or Dim","Electrical Shocks","High Electrical Bill","Light Bulbs burning out too often","Recessed Light 'Goes Out' and comesback on","Others"]
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +39,6 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
         
         //Hiding NavigationBar RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
-        
     }
     
     @IBAction func btn_Back(_ sender: UIButton) {
@@ -49,7 +46,7 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
     }
     
     //Navigating back to Society Service Plumber screen on click of back button.
-     @objc func goBackToSocietyServicePlumberVC() {
+    @objc func goBackToSocietyServicePlumberVC() {
         self.navigationController?.dismiss(animated: true)
     }
     

@@ -1205,6 +1205,10 @@ class NAString : NSObject {
         return String ("Select Problem")
     }
     
+    func selectLanguage() -> String {
+        return String ("Select Language")
+    }
+    
     func addVehicle() -> String {
         return String ("ADD VEHICLE")
     }
