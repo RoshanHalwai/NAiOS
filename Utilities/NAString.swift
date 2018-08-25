@@ -297,7 +297,11 @@ class NAString : NSObject {
     
     //Navigation Menu
     func frequently_asked_questions() -> String {
-        return String("frequently Asked Questions")
+        return String("Frequently Asked Questions")
+    }
+    
+    func faqs() -> String {
+        return String("FAQ's")
     }
     
     func using_namma_apartments_app() -> String {
@@ -1201,6 +1205,10 @@ class NAString : NSObject {
         return String ("Select Problem")
     }
     
+    func selectLanguage() -> String {
+        return String ("Select Language")
+    }
+    
     func addVehicle() -> String {
         return String ("ADD VEHICLE")
     }
@@ -1643,6 +1651,34 @@ class NAString : NSObject {
     
     func noticeBoardErrorLayoutMessage() -> String {
         return String("Currently there is no notice for your Society.")
+    }
+    
+    func accountCreated() -> String {
+        return String("Account Created")
+    }
+    
+    func welcomeScreenDescription() -> String {
+        return String("Thank you for Registering with Namma Apartments. Your flat details has been sent to Society Admin. We will notify you once your account gets Activated.")
+    }
+    
+    func userDefault_USERUID() -> String {
+        return String("USERUID")
+    }
+    
+    func userDefault_Not_First_Time() -> String {
+        return String("Not_First_Time")
+    }
+    
+    func userDefault_Logged_In() -> String {
+        return String("Logged_In")
+    }
+    
+    func userDefault_Account_Created() -> String {
+        return String("Account_Created")
+    }
+    
+    func userDefault_Verified() -> String {
+        return String("Verified")
     }
 }
 

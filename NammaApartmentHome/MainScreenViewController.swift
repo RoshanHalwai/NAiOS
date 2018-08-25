@@ -385,23 +385,18 @@ extension MainScreenViewController {
     
     func retreiveUserUID() {
         let preferences = UserDefaults.standard
-        let currentLevelKey = "USERUID"
+        let currentLevelKey = NAString().userDefault_USERUID()
+        let loggedIn = NAString().userDefault_Logged_In()
         if preferences.object(forKey: currentLevelKey) == nil {
             preferences.set(Auth.auth().currentUser?.uid, forKey: currentLevelKey)
         }
         userUID = (preferences.object(forKey: currentLevelKey) as! String)
+        preferences.set(true, forKey: loggedIn)
         preferences.synchronize()
     }
     
     //Retrieving User's Data from firebase
     func retrieveUserData() {
-        
-        //Created Token ID & Storing in Firebase
-        let token = Messaging.messaging().fcmToken
-        
-        var usersTokenRef : DatabaseReference?
-        usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
-        usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         //Checking Users UID in Firebase under Users ->Private
         usersPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)

@@ -118,6 +118,14 @@ class NAViewPresenter: NSObject {
         return String("rootVC")
     }
     
+    func welcomeVC() -> String {
+        return String("activationVC")
+    }
+    
+    func welcomeRootVC() -> String {
+        return String("activationRootVC")
+    }
+    
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController
@@ -240,5 +248,14 @@ class NAViewPresenter: NSObject {
     //Create Maintenance Services Screen
     func maintenanceServicesVC() -> MaintenanceServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "maintenanceServicesVC") as! MaintenanceServicesViewController
+    }
+   
+    func activationRequiredVC() -> ActivationRequired {
+        return storyBoard.instantiateViewController(withIdentifier: "activationVC") as! ActivationRequired
+    }
+    
+    //Create Maintenance Services Screen
+    func languageVC() -> LanguagesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "languageVC") as! LanguagesViewController
     }
 }

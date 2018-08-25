@@ -9,7 +9,7 @@
 import UIKit
 
 class HelpCategoryViewController: NANavigationViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var lbl_Title: UILabel!
+    
     @IBOutlet weak var table_View: UITableView!
     
     var navTitle = String()
@@ -19,15 +19,6 @@ class HelpCategoryViewController: NANavigationViewController, UITableViewDelegat
         self.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.rightBarButtonItem = nil
         table_View.separatorStyle = .none
-        
-        if navTitle == NAString().contact_us().capitalized {
-            lbl_Title.text = NAString().full_Address()
-        } else if navTitle == NAString().privacy_policy().capitalized {
-            lbl_Title.text = NAString().privacy_policy()
-        } else if navTitle == NAString().terms_and_conditions().capitalized {
-            lbl_Title.text = NAString().terms_and_conditions()
-        }
-         lbl_Title.font = NAFont().labelFont()
         
         table_View.rowHeight = UITableViewAutomaticDimension
         table_View.estimatedRowHeight = UITableViewAutomaticDimension
