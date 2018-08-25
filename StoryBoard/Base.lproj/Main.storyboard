@@ -5369,9 +5369,22 @@
                                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select atleast one button" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqL-Bq-X5Z">
+                                                <rect key="frame" x="20" y="228" width="335" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select atleast one button" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0n-nS-LhY">
+                                                <rect key="frame" x="20" y="414.5" width="335" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="K0n-nS-LhY" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="04E-NE-w5N"/>
                                             <constraint firstAttribute="trailing" secondItem="ebg-Tc-f3J" secondAttribute="trailing" constant="10" id="1Vp-XQ-375"/>
                                             <constraint firstItem="gbv-iO-H1G" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="1tJ-Yh-Azt"/>
                                             <constraint firstItem="ebg-Tc-f3J" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="30q-Tk-dSv"/>
@@ -5387,6 +5400,7 @@
                                             <constraint firstAttribute="trailing" secondItem="LUg-Ap-6zi" secondAttribute="trailing" constant="20" id="L7Z-5D-D7o"/>
                                             <constraint firstItem="ebg-Tc-f3J" firstAttribute="top" secondItem="avH-wE-NWc" secondAttribute="bottom" constant="10" id="NXh-f2-idn"/>
                                             <constraint firstItem="gbv-iO-H1G" firstAttribute="top" secondItem="Gfe-bb-iUk" secondAttribute="top" constant="20" id="NmO-vj-T0V"/>
+                                            <constraint firstAttribute="trailing" secondItem="K0n-nS-LhY" secondAttribute="trailing" constant="20" id="O26-hq-JQD"/>
                                             <constraint firstItem="1vA-A7-t4S" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="OUo-Kh-Drt"/>
                                             <constraint firstAttribute="trailing" secondItem="2fC-UW-fbG" secondAttribute="trailing" constant="10" id="SwT-fq-ZIL"/>
                                             <constraint firstAttribute="trailing" secondItem="avH-wE-NWc" secondAttribute="trailing" constant="10" id="WLy-ep-75F"/>
@@ -5398,6 +5412,7 @@
                                             <constraint firstAttribute="trailing" secondItem="gbv-iO-H1G" secondAttribute="trailing" constant="10" id="b1m-Zn-y0m"/>
                                             <constraint firstItem="iLk-pW-LYu" firstAttribute="top" secondItem="1vA-A7-t4S" secondAttribute="bottom" constant="20" id="dpU-un-raD"/>
                                             <constraint firstAttribute="trailing" secondItem="eFM-vP-ggU" secondAttribute="trailing" constant="25" id="e13-xN-cxL"/>
+                                            <constraint firstAttribute="trailing" secondItem="wqL-Bq-X5Z" secondAttribute="trailing" constant="20" id="fwn-bk-bjW"/>
                                             <constraint firstItem="WWk-gT-F5B" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="g3U-qj-GFT"/>
                                             <constraint firstAttribute="trailing" secondItem="e5K-mu-Yho" secondAttribute="trailing" constant="10" id="gUD-uY-QTw"/>
                                             <constraint firstItem="xxW-oe-DhG" firstAttribute="top" secondItem="2fC-UW-fbG" secondAttribute="bottom" constant="10" id="i0S-XU-uHe"/>
@@ -5412,9 +5427,12 @@
                                             <constraint firstItem="eFM-vP-ggU" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="25" id="ql1-6J-eEg"/>
                                             <constraint firstItem="WWk-gT-F5B" firstAttribute="top" secondItem="wAi-FY-eLV" secondAttribute="bottom" constant="2.5" id="sxE-jf-SSk"/>
                                             <constraint firstAttribute="trailing" secondItem="xxW-oe-DhG" secondAttribute="trailing" constant="10" id="tKI-Gw-dX8"/>
+                                            <constraint firstItem="wqL-Bq-X5Z" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="vc5-Zz-lyi"/>
                                             <constraint firstAttribute="trailing" secondItem="1vA-A7-t4S" secondAttribute="trailing" constant="10" id="vdl-hx-dDx"/>
                                             <constraint firstAttribute="trailing" secondItem="iLk-pW-LYu" secondAttribute="trailing" constant="10" id="vv5-FF-U16"/>
+                                            <constraint firstItem="wqL-Bq-X5Z" firstAttribute="top" secondItem="2fC-UW-fbG" secondAttribute="bottom" constant="48" id="x2h-0V-I6A"/>
                                             <constraint firstItem="1vA-A7-t4S" firstAttribute="top" secondItem="gbv-iO-H1G" secondAttribute="bottom" constant="20" id="y76-2K-e4M"/>
+                                            <constraint firstItem="K0n-nS-LhY" firstAttribute="top" secondItem="avH-wE-NWc" secondAttribute="bottom" constant="46" id="zCz-4B-b3O"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -5454,6 +5472,8 @@
                         <outlet property="lbl_description" destination="eFM-vP-ggU" id="2kC-VN-8Dh"/>
                         <outlet property="lbl_eventDateValidation" destination="wAi-FY-eLV" id="k40-BM-UfY"/>
                         <outlet property="lbl_eventValidation" destination="LUg-Ap-6zi" id="QwY-dt-9N8"/>
+                        <outlet property="lbl_partiesValidation" destination="wqL-Bq-X5Z" id="nkX-kk-Bcp"/>
+                        <outlet property="lbl_timeSlotValidation" destination="K0n-nS-LhY" id="Rl2-xZ-GBG"/>
                         <outlet property="scrollView" destination="MZb-kh-bil" id="H3Y-VB-Klk"/>
                         <outlet property="txt_EventDate" destination="e5K-mu-Yho" id="thj-ib-CpN"/>
                         <outlet property="txt_EventTitle" destination="1vA-A7-t4S" id="ZBI-sg-Vu4"/>
@@ -5461,7 +5481,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJG-Yi-RAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8969" y="5139"/>
+            <point key="canvasLocation" x="8968.7999999999993" y="5138.6806596701654"/>
         </scene>
         <!--Event Management Card View Controller-->
         <scene sceneID="v0p-FD-FhV">
