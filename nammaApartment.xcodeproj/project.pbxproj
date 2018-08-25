@@ -104,6 +104,7 @@
 		861CC00F20B9AA99009EC0EF /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00520B9AA98009EC0EF /* Lato-BlackItalic.ttf */; };
 		861CC01020B9AA99009EC0EF /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00620B9AA98009EC0EF /* Lato-BoldItalic.ttf */; };
 		861CC01120B9AA99009EC0EF /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00720B9AA98009EC0EF /* Lato-Light.ttf */; };
+		861E8393213121D900E3A0A2 /* ActivationRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E8392213121D800E3A0A2 /* ActivationRequired.swift */; };
 		862700F7209707BB004B28EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F6209707BB004B28EB /* AppDelegate.swift */; };
 		862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */; };
 		86270101209707BC004B28EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86270100209707BC004B28EB /* Assets.xcassets */; };
@@ -273,6 +274,7 @@
 		861CC00520B9AA98009EC0EF /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		861CC00620B9AA98009EC0EF /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		861CC00720B9AA98009EC0EF /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		861E8392213121D800E3A0A2 /* ActivationRequired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationRequired.swift; sourceTree = "<group>"; };
 		862700F3209707BB004B28EB /* nammaApartment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862700F6209707BB004B28EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		862700FE209707BB004B28EB /* namaAppartment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = namaAppartment.xcdatamodel; sourceTree = "<group>"; };
@@ -637,6 +639,7 @@
 		5D774279210DD49F0049344F /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				861E83912131200600E3A0A2 /* WelcomeScreen */,
 				5D77427A210DD49F0049344F /* MyFlatDetails */,
 				5D77427F210DD49F0049344F /* SplashScreen */,
 				5D774286210DD49F0049344F /* Login */,
@@ -710,6 +713,14 @@
 				861CC00720B9AA98009EC0EF /* Lato-Light.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		861E83912131200600E3A0A2 /* WelcomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				861E8392213121D800E3A0A2 /* ActivationRequired.swift */,
+			);
+			path = WelcomeScreen;
 			sourceTree = "<group>";
 		};
 		862700EA209707BB004B28EB = {
@@ -1299,6 +1310,7 @@
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */,
+				861E8393213121D900E3A0A2 /* ActivationRequired.swift in Sources */,
 				5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
 				42341BB5212165620005160B /* MyGuardsViewController.swift in Sources */,

@@ -1640,5 +1640,33 @@ class NAString : NSObject {
     func noticeBoardErrorLayoutMessage() -> String {
         return String("Currently there is no notice for your Society.")
     }
+    
+    func accountCreated() -> String {
+        return String("Account Created")
+    }
+    
+    func welcomeScreenDescription() -> String {
+        return String("Thank you for Registering with Namma Apartments. Your flat details has been sent to Society Admin. We will notify you once your account gets Activated.")
+    }
+    
+    func userDefault_USERUID() -> String {
+        return String("USERUID")
+    }
+    
+    func userDefault_Not_First_Time() -> String {
+        return String("Not_First_Time")
+    }
+    
+    func userDefault_Logged_In() -> String {
+        return String("Logged_In")
+    }
+    
+    func userDefault_Account_Created() -> String {
+        return String("Account_Created")
+    }
+    
+    func userDefault_Verified() -> String {
+        return String("Verified")
+    }
 }
 

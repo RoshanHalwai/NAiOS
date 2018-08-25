@@ -6576,7 +6576,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYF-Ws-ZKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5631.1999999999998" y="689.5052473763119"/>
+            <point key="canvasLocation" x="5729" y="681"/>
         </scene>
         <!--Splash Society Services-->
         <scene sceneID="4T7-jy-ZUe">
@@ -7438,7 +7438,7 @@
                                 <rect key="frame" x="0.0" y="96" width="260" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -7446,7 +7446,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -7597,7 +7597,49 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="liv-Kt-EgT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6364" y="681"/>
+            <point key="canvasLocation" x="6570" y="681"/>
+        </scene>
+        <!--Account Created-->
+        <scene sceneID="2ev-Sk-2ln">
+            <objects>
+                <viewController storyboardIdentifier="activationVC" id="MQk-Az-1QF" customClass="ActivationRequired" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bJD-k2-PpV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgX-2V-GYk">
+                                <rect key="frame" x="20" y="245" width="335" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcomeImage" translatesAutoresizingMaskIntoConstraints="NO" id="Rrg-mJ-kv7">
+                                <rect key="frame" x="20" y="40" width="335" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="Ig2-IJ-CjY"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eDO-yS-yD6" firstAttribute="trailing" secondItem="Rrg-mJ-kv7" secondAttribute="trailing" constant="20" id="8bO-nx-VTS"/>
+                            <constraint firstItem="Rrg-mJ-kv7" firstAttribute="top" secondItem="eDO-yS-yD6" secondAttribute="top" constant="40" id="Ns4-Kk-hrm"/>
+                            <constraint firstItem="eDO-yS-yD6" firstAttribute="trailing" secondItem="VgX-2V-GYk" secondAttribute="trailing" constant="20" id="Qbf-yb-Vbb"/>
+                            <constraint firstItem="VgX-2V-GYk" firstAttribute="leading" secondItem="eDO-yS-yD6" secondAttribute="leading" constant="20" id="TM8-QL-dvx"/>
+                            <constraint firstItem="Rrg-mJ-kv7" firstAttribute="leading" secondItem="eDO-yS-yD6" secondAttribute="leading" constant="20" id="ccv-80-wYz"/>
+                            <constraint firstItem="VgX-2V-GYk" firstAttribute="top" secondItem="Rrg-mJ-kv7" secondAttribute="bottom" constant="30" id="qBM-el-ZU0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eDO-yS-yD6"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Account Created" id="l8W-2k-kgJ"/>
+                    <connections>
+                        <outlet property="welcomeDescription" destination="VgX-2V-GYk" id="15f-3t-kVE"/>
+                        <outlet property="welcomeImage" destination="Rrg-mJ-kv7" id="YIM-lw-Tu1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C2w-E8-EhR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5729" y="1361"/>
         </scene>
         <!--Awaiting Response View Controller-->
         <scene sceneID="iUH-nR-bzM">
@@ -8096,6 +8138,30 @@
             </objects>
             <point key="canvasLocation" x="-214" y="2270"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MNN-2j-VwZ">
+            <objects>
+                <navigationController storyboardIdentifier="activationRootVC" automaticallyAdjustsScrollViewInsets="NO" id="FPR-bc-gXC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Dk3-nE-bZD">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MQk-Az-1QF" kind="relationship" relationship="rootViewController" id="J0M-p0-zTc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aiJ-OM-KK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4692" y="1361"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Call" width="64" height="64"/>
@@ -8116,6 +8182,7 @@
         <image name="motorCycle" width="256" height="256"/>
         <image name="rupee-indian" width="32" height="32"/>
         <image name="splashScreen" width="205" height="159"/>
+        <image name="welcomeImage" width="512" height="512"/>
         <image name="whatsapp" width="32" height="32"/>
     </resources>
 </document>
