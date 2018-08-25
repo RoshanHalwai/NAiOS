@@ -52,7 +52,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
             
         case NAString().driver():
             retrieveApartmentServicesData(serviceType: Constants.FIREBASE_DSTYPE_DRIVERS)
-        
+            
         case NAString().groceries():
             NAActivityIndicator.shared.hideActivityIndicator()
             NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorGroceriesServices())
@@ -132,14 +132,14 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
             let messageSheet : MFMessageComposeViewController = MFMessageComposeViewController()
             messageSheet.messageComposeDelegate = self
             messageSheet.recipients = [dailyServicesData.getphoneNumber()]
-            messageSheet.body = NAString().sendMessageToSocietyServives()
+            messageSheet.body = NAString().sendMessageToSocietyServices()
             self.present(messageSheet, animated: true, completion: nil)
         }
         
         //Implementing Calling ShareUI here on Refer click
         //TODO: Need to remove hardcoded text
         cell.actionRefer = {
-            let shareUI = UIActivityViewController(activityItems: ["Hellow"], applicationActivities: nil)
+            let shareUI = UIActivityViewController(activityItems: [NAString().referToSocietyServives()], applicationActivities: nil)
             self.present(shareUI, animated: true, completion: nil)
         }
         

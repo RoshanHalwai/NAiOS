@@ -1360,8 +1360,12 @@ class NAString : NSObject {
         return ("For any queries related to time slot, Contact Admin.")
     }
     
-    func sendMessageToSocietyServives() -> String {
+    func referToSocietyServives() -> String {
         return ("Hey there! I got the reference of this Service from Namma Apartments app. You can also avail this Service by downloading..")
+    }
+    
+    func sendMessageToSocietyServices() -> String {
+        return("Hey there! I would like to have your Service at my Flat.Revert back so that we we can schedule and sort things out quickly.")
     }
     
     func sendMessageToSocietyServivesWhatsapp() -> String {
