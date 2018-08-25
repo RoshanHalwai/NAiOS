@@ -297,7 +297,12 @@ class NAString : NSObject {
     
     //Navigation Menu
     func frequently_asked_questions() -> String {
-        return String("frequently Asked Questions")
+        return String("Frequently Asked Questions")
+    }
+    
+    //Navigation Menu
+    func faqs() -> String {
+        return String("FAQ's")
     }
     
     func using_namma_apartments_app() -> String {
