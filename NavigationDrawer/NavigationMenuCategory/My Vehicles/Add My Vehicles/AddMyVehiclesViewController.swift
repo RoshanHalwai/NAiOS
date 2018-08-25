@@ -169,6 +169,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
         let alert = UIAlertController(title: NAString().addVehicle_AlertTitle() , message: NAString().addVehicle_AlertMessage(), preferredStyle: .alert)
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+            self.txt_VehicleSerialNumberTwo.resignFirstResponder()
             let lv = NAViewPresenter().myVehiclesVC()
             lv.fromHomeScreenVC = true
             lv.navTitle = NAString().my_vehicles()
@@ -348,6 +349,7 @@ extension AddMyVehiclesViewController {
         
         //Adding data in Firebase from dictionary
         self.vehiclePrivateRef?.child(vehicleUID!).setValue(expectingVehicleData)
+        self.txt_VehicleSerialNumberTwo.resignFirstResponder()
         //Calling Alert Function After Storing Data in Firebase
         inviteAlertView()
     }
