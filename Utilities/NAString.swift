@@ -324,10 +324,6 @@ class NAString : NSObject {
         return String("Notification Settings")
     }
     
-    func your_language() -> String {
-        return String("Your Language")
-    }
-    
     func new_Message_Notification() -> String {
         return String("New Message Notifications")
     }
