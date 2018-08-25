@@ -241,4 +241,9 @@ class NAViewPresenter: NSObject {
     func maintenanceServicesVC() -> MaintenanceServicesViewController {
         return storyBoard.instantiateViewController(withIdentifier: "maintenanceServicesVC") as! MaintenanceServicesViewController
     }
+    
+    //Create Maintenance Services Screen
+    func languageVC() -> LanguagesViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "languageVC") as! LanguagesViewController
+    }
 }

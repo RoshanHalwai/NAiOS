@@ -324,6 +324,10 @@ class NAString : NSObject {
         return String("Notification Settings")
     }
     
+    func your_language() -> String {
+        return String("Your Language")
+    }
+    
     func new_Message_Notification() -> String {
         return String("New Message Notifications")
     }
@@ -1199,6 +1203,10 @@ class NAString : NSObject {
     
     func selectAnyProblem() -> String {
         return String ("Select Problem")
+    }
+    
+    func selectLanguage() -> String {
+        return String ("Select Language")
     }
     
     func addVehicle() -> String {
