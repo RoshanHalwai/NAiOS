@@ -102,8 +102,11 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
         //Logout Confirmation Alert
         NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().logout_Confirmation_Title(), Message: NAString().logout_Confirmation_Message(), CancelStyle: .default, OkStyle: .destructive, OK: { (action) in
             let preferences = UserDefaults.standard
-            let currentLevelKey = "USERUID"
-            preferences.removeObject(forKey: currentLevelKey)
+            let userUID = NAString().userDefault_USERUID()
+            let loggedIn = NAString().userDefault_Logged_In()
+            preferences.removeObject(forKey: userUID)
+            preferences.set(false, forKey: loggedIn)
+            preferences.synchronize()
             if self.storyboard != nil {
                 let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
                 let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())

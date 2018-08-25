@@ -11,6 +11,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
+import FirebaseMessaging
 
 //Calling class & adding in singleton class to get values
 class SingletonFlatDetails {
@@ -329,7 +330,6 @@ extension MyFlatDetailsViewController {
                 ]
                 
                 //Storing Data into User Privileges
-                //TODO: Hardcoded values for UserPrivileges for storing data in Firebase undr Users/Private/UID/Privileges
                 let userPrivilegesData = [
                     UserPrivilegesListFBKeys.admin.key : NAString().gettrue(),
                     UserPrivilegesListFBKeys.grantedAccess.key : NAString().gettrue(),
@@ -376,6 +376,13 @@ extension MyFlatDetailsViewController {
                             //Adding users data under  Users/Private/UID & mapping UID
                             self.usersPersonalDetailsRef?.setValue(usersPersonalData)
                             
+                            //Created Token ID & Storing in Firebase
+                            let token = Messaging.messaging().fcmToken
+                            
+                            var usersTokenRef : DatabaseReference?
+                            usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID!)
+                            usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
+                            
                             //Storing UID under Users/Private/UID
                             self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID!)
                             self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
@@ -390,11 +397,19 @@ extension MyFlatDetailsViewController {
                             
                             self.userFlatMemberRef?.child(userUID!).setValue(NAString().gettrue())
                             
-                            //Navigate to Namma Apartment Home Screen After Storing all users data.
-                            let dest = NAViewPresenter().mainScreenVC()
+                            let preferences = UserDefaults.standard
+                            let accountCreated = NAString().userDefault_Account_Created()
+                            let UserUID = NAString().userDefault_USERUID()
+                            preferences.set(true, forKey: accountCreated)
+                            preferences.set(userUID, forKey: UserUID)
+                            preferences.synchronize()
+                            
+                            //Navigate to Namma Apartment Welcome Screen After Storing all users data.
+
+                            let dest = NAViewPresenter().activationRequiredVC()
                             self.navigationController?.pushViewController(dest, animated: true)
                             
-                            //Using else statement & printing error,so the other developers can know what is going on.
+                            //Using else statement & printing error,so the other developers can know what is going on.                            
                         } else {
                             print(urlError as Any)
                         }
@@ -402,8 +417,8 @@ extension MyFlatDetailsViewController {
                 })
                 uploadTask?.resume()
             }
-            
         }
     }
 }
+
 
