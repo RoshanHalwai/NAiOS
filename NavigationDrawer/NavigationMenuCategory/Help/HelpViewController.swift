@@ -44,7 +44,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
         switch indexPath.row {
         case 0:
             let dv = NAViewPresenter().frequentlyAskedHelpVC()
-            dv.navTitle = NAString().frequently_asked_questions().uppercased()
+            dv.navTitle = NAString().faqs()
             self.navigationController?.pushViewController(dv, animated: true)
             
         case 1:
