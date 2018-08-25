@@ -397,6 +397,8 @@ extension MainScreenViewController {
     
     //Retrieving User's Data from firebase
     func retrieveUserData() {
+        OpacityView.shared.showingOpacityView(view: self)
+        OpacityView.shared.showingPopupView(view: self)
         
         //Checking Users UID in Firebase under Users ->Private
         usersPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
@@ -463,7 +465,8 @@ extension MainScreenViewController {
                 
                 let nammaApartmentUser = NAUser.init(uid: userUID, flatDetails: userFlatDetails, personalDetails: userPersonalDetails, privileges: userPrivileges, familyMembers: familyMembersUIDList, friends:friendsUIDList)
                 GlobalUserData.shared.setNammaApartmentUser(nammaApartmentUser: nammaApartmentUser)
-                
+                OpacityView.shared.hidingOpacityView()
+                OpacityView.shared.hidingPopupView()
             }
         })
     }

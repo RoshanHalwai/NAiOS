@@ -43,6 +43,7 @@ class OpacityView {
     func popupViewTitle() {
         popupView.lbl_Title.font = NAFont().headerFont()
         popupView.lbl_Message.font = NAFont().popupViewFont()
+        popupView.lbl_Title.text = NAString().loadingProfile()
         if addButtonTagValue == NAString().inviteButtonTagValue() {
             popupView.lbl_Title.text = NAString().inviteButtonloadViewTitle()
         } else if addButtonTagValue == NAString().addMyFamilyMemberButtonTagValue() {

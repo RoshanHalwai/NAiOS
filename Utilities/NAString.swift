@@ -540,6 +540,10 @@ class NAString : NSObject {
         return String("Inviting Your Guest")
     }
     
+    func loadingProfile() -> String {
+        return String("Loading Profile")
+    }
+    
     //MyVisitorList
     func myVisitorViewTitle() -> String {
         return String("Guests")
