@@ -12,6 +12,7 @@ import FirebaseDatabase
 class NoticeBoardViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var lbl_Date: UILabel!
     var navTitle = String()
     
     var myExpectedNoticeBoardList = [NAExpectingNoticeBoard]()
@@ -27,14 +28,21 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()
+        
+        //Setting Label Font
+        lbl_Date.font = NAFont().labelFont()
+        
+        var layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
+        layout.minimumInteritemSpacing = 5
+        layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: self.collectionView.frame.size.height/3)
     }
     
-    //TODO: Need to get Committe Members Notice Board Data Count from Firebase.
+    //MARK: CollectionView Delegate and DataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myExpectedNoticeBoardList.count
     }
     
-    //TODO: Need to get Committe Members Notice Board Data from Firebase.
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! NoticeBoardCollectionViewCell
         
@@ -43,14 +51,13 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         
         cell.lbl_FestivalName.text = myNoticeBoardsList.gettitle()
         cell.lbl_FestivalDesription.text = myNoticeBoardsList.getdescription()
-        
-        //TODO: Feature Added Firebase Data
-        cell.lbl_Commitee.text = "commitee"
+        cell.lbl_AdminName.text = myNoticeBoardsList.getnameOfAdmin()
+        lbl_Date.text = myNoticeBoardsList.getdateAndTime()
         
         //assigning font & style to cell labels
         cell.lbl_FestivalName.font = NAFont().headerFont()
         cell.lbl_FestivalDesription.font = NAFont().headerFont()
-        cell.lbl_Commitee.font = NAFont().headerFont()
+        cell.lbl_AdminName.font = NAFont().headerFont()
         
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
@@ -71,7 +78,9 @@ extension NoticeBoardViewController {
                             let noticeBoardData = snapshot.value as? [String: AnyObject]
                             let title : String = (noticeBoardData?[NoticeBoardListFBKeys.title.key])! as! String
                             let description : String = (noticeBoardData?[NoticeBoardListFBKeys.description.key])! as! String
-                            let noticeBoardDetails = NAExpectingNoticeBoard(title: title, description: description)
+                            let nameOfAdmin : String = (noticeBoardData?[NoticeBoardListFBKeys.nameOfAdmin.key])! as! String
+                            let dateAndTime : String = (noticeBoardData?[NoticeBoardListFBKeys.dateAndTime.key])! as! String
+                            let noticeBoardDetails = NAExpectingNoticeBoard(title: title, description: description,nameOfAdmin : nameOfAdmin,dateAndTime : dateAndTime)
                             self.myExpectedNoticeBoardList.append(noticeBoardDetails)
                             NAActivityIndicator.shared.hideActivityIndicator()
                             self.collectionView.reloadData()

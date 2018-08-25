@@ -12,12 +12,16 @@ import UIKit
 enum NoticeBoardListFBKeys: String {
     case title
     case description
-    
+    case nameOfAdmin
+    case dateAndTime
+
     var key : String {
         switch self {
         // Use Internationalization, as appropriate.
         case .title: return "title"
         case .description: return "description"
+        case .nameOfAdmin: return "nameOfAdmin"
+        case .dateAndTime: return "dateAndTime"
         }
     }
 }
@@ -26,10 +30,14 @@ class NAExpectingNoticeBoard {
     
     var title : String?
     var description : String?
+    var nameOfAdmin : String?
+    var dateAndTime : String?
     
-    init(title : String?,description : String?) {
+    init(title : String?,description : String?,nameOfAdmin : String?,dateAndTime : String) {
         self.title = title
         self.description = description
+        self.nameOfAdmin = nameOfAdmin
+        self.dateAndTime = dateAndTime
     }
     
     func gettitle() -> String {
@@ -38,5 +46,13 @@ class NAExpectingNoticeBoard {
     
     func getdescription() -> String? {
         return description!
+    }
+    
+    func getnameOfAdmin() -> String {
+        return nameOfAdmin!
+    }
+    
+    func getdateAndTime() -> String {
+        return dateAndTime!
     }
 }
