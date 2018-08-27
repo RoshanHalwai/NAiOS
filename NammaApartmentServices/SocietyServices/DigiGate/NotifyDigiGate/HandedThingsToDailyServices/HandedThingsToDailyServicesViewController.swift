@@ -48,13 +48,12 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
-        historyButton.frame = CGRect(x: 0, y: 0, width: 34, height: 30)
         historyButton.addTarget(self, action: #selector(gotoHandedThingsServiceHistoryVC), for: .touchUpInside)
         let history = UIBarButtonItem(customView: historyButton)
         //Creating info icon on Navigation bar
         let infoButton = UIButton(type: .system)
         infoButton.setImage(#imageLiteral(resourceName: "information24"), for: .normal)
-        infoButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
         let info = UIBarButtonItem(customView: infoButton)
         //created Array for history and info button icons
         self.navigationItem.setRightBarButtonItems([info,history], animated: true)
@@ -63,6 +62,15 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
     }
+    
+    // Navigate to FAQ's VC
+    @objc func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.handedThingsScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
+    }
+    
     
     //TableView cell move up automatically, If when keyboard will appaer
     @objc func keyboardWillShow(_ notification:Notification) {

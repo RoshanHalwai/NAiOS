@@ -12,6 +12,16 @@ class FrequentlyAskedQuestionsViewController: NANavigationViewController, UITabl
     
     @IBOutlet weak var table_View: UITableView!
     var navTitle = String()
+    var visitorsScreen = false
+    var dailyServicesScreen = false
+    var flatMembersScreen = false
+    var handedThingsScreen = false
+    var emergencyScreen = false
+    var plumberScreen = false
+    var carpenterScreen = false
+    var electricianScreen = false
+    var garbageManagementScreen = false
+    var eventManagementScreen = false
     
     var generalRelatedArray = [NAString().general_Updates(),
                                NAString().general_edit_userName(),
@@ -75,6 +85,45 @@ class FrequentlyAskedQuestionsViewController: NANavigationViewController, UITabl
         table_View.rowHeight = UITableViewAutomaticDimension
         table_View.estimatedRowHeight = UITableViewAutomaticDimension
         table_View.reloadData()
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        
+        switch true {
+        case visitorsScreen :
+            let indexPath = IndexPath(row: 0, section: 2)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case dailyServicesScreen :
+            let indexPath = IndexPath(row: 0, section: 3)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case flatMembersScreen :
+            let indexPath = IndexPath(row: 0, section: 4)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case handedThingsScreen :
+            let indexPath = IndexPath(row: 0, section: 5)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case emergencyScreen :
+            let indexPath = IndexPath(row: 0, section: 6)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case plumberScreen :
+            let indexPath = IndexPath(row: 0, section: 7)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case carpenterScreen :
+            let indexPath = IndexPath(row: 0, section: 8)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case electricianScreen :
+            let indexPath = IndexPath(row: 0, section: 9)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case garbageManagementScreen :
+            let indexPath = IndexPath(row: 0, section: 10)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        case eventManagementScreen:
+            let indexPath = IndexPath(row: 0, section: 11)
+            table_View.scrollToRow(at: indexPath, at: .top, animated: true)
+        default :
+            break
+        }
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

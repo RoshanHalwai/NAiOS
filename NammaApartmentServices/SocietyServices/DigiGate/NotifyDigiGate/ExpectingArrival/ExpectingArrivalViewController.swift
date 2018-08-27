@@ -227,6 +227,20 @@ class ExpectingArrivalViewController: NANavigationViewController {
         cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
+        
+        let infoButton = UIButton(type: .system)
+        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
+        let info = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.setRightBarButton(info, animated: true)
+    }
+    
+    // Navigate to FAQ's VC
+    @objc func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.visitorsScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     //Hiding & Setting First Responder for Cab TextFields & Pacakge Vandor textFields According to Title

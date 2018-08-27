@@ -73,6 +73,20 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+    
+        let infoButton = UIButton(type: .system)
+        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
+        let info = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.setRightBarButton(info, animated: true)
+    }
+    
+    // Navigate to FAQ's VC
+    @objc func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.flatMembersScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     //Create image Handle  Function

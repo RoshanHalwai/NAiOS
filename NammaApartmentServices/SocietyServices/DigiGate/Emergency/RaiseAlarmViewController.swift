@@ -28,9 +28,20 @@ class RaiseAlarmViewController: NANavigationViewController {
         
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: titleName)
-        
-        //Hiding History NavigationBar  RightBarButtonItem
-        navigationItem.rightBarButtonItem = nil
+       
+        let infoButton = UIButton(type: .system)
+        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
+        let info = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.setRightBarButton(info, animated: true)
+    }
+    
+    // Navigate to FAQ's VC
+    @objc func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.emergencyScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     @IBAction func btnRaiseAlarm(_ sender: UIButton) {
