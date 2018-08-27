@@ -16,7 +16,6 @@ class MyWalletViewController: NANavigationViewController {
     
     @IBOutlet weak var lbl_nammaApartment: UILabel!
     @IBOutlet weak var lbl_payFor: UILabel!
-    @IBOutlet weak var lbl_myAccount: UILabel!
     @IBOutlet weak var lbl_description: UILabel!
     @IBOutlet weak var lbl_myTransactions: UILabel!
     
@@ -25,10 +24,6 @@ class MyWalletViewController: NANavigationViewController {
     
     @IBOutlet weak var btn_MaintenanceServices: UIButton!
     @IBOutlet weak var btn_ApartmentServices: UIButton!
-    @IBOutlet weak var btn_PartiesandGetTogether: UIButton!
-    @IBOutlet weak var btn_FestivalCelebrations: UIButton!
-    @IBOutlet weak var btn_FundraisingandDonations: UIButton!
-    @IBOutlet weak var btn_OtherSocietyServices: UIButton!
     
     var navTitle = String()
     
@@ -38,9 +33,15 @@ class MyWalletViewController: NANavigationViewController {
         //Setting label fonts
         lbl_nammaApartment.font = NAFont().headerFont()
         lbl_payFor.font = NAFont().headerFont()
-        lbl_myAccount.font = NAFont().headerFont()
-        lbl_description.font = NAFont().headerFont()
-        lbl_myTransactions.font = NAFont().headerFont()
+        lbl_description.font = NAFont().lato_Regular_16()
+        lbl_myTransactions.font = NAFont().lato_Regular_20()
+        btn_ApartmentServices.titleLabel?.font = NAFont().lato_Regular_16()
+        btn_MaintenanceServices.titleLabel?.font = NAFont().lato_Regular_16()
+        
+        
+        lbl_nammaApartment.text = NAString().nammaApartments_E_Payment()
+        lbl_description.text = NAString().wallet_Description()
+        lbl_payFor.text = NAString().make_payment_For()
         
         //Setting View Shadow Effect
         NAShadowEffect().shadowEffectForView(view: myAccount_CardView)
@@ -48,12 +49,8 @@ class MyWalletViewController: NANavigationViewController {
         NAShadowEffect().shadowEffectForView(view: nammaApartment_CardView)
         
         //Setting Button Shadow Effect
-        NAShadowEffect().shadowEffectForButton(button:btn_ApartmentServices)
-        NAShadowEffect().shadowEffectForButton(button:btn_MaintenanceServices)
-        NAShadowEffect().shadowEffectForButton(button:btn_PartiesandGetTogether)
-        NAShadowEffect().shadowEffectForButton(button:btn_FestivalCelebrations)
-        NAShadowEffect().shadowEffectForButton(button:btn_FundraisingandDonations)
-        NAShadowEffect().shadowEffectForButton(button:btn_OtherSocietyServices)
+    NAShadowEffect().shadowEffectForButton(button:btn_ApartmentServices)
+    NAShadowEffect().shadowEffectForButton(button:btn_MaintenanceServices)
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0)
@@ -64,7 +61,7 @@ class MyWalletViewController: NANavigationViewController {
     
     @IBAction func maintenanceServicesButtonAction() {
         let lv = NAViewPresenter().maintenanceServicesVC()
-        lv.navTitle = NAString().maintenanceServices()
+        lv.navTitle = NAString().SocietyServices()
         self.navigationController?.pushViewController(lv, animated: true)
     }
 }

@@ -25,9 +25,9 @@ class MaintenanceServicesViewController: NANavigationViewController {
         super.ConfigureNavBarTitle(title: navTitle)
         
         //Setting label fonts
-        lbl_TotalAmount.font = NAFont().headerFont()
-        lbl_Description.font = NAFont().headerFont()
-        lbl_Rupees.font = NAFont().headerFont()
+        lbl_TotalAmount.font = NAFont().lato_Regular_16()
+        lbl_Description.font = NAFont().lato_Regular_16()
+        lbl_Rupees.font = NAFont().lato_Regular_16()
         
         //Button Formatting & settings
         btn_payNow.setTitle(NAString().payNow(), for: .normal)
