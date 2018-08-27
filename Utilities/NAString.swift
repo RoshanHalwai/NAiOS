@@ -291,8 +291,8 @@ class NAString : NSObject {
         return String("Rate Us")
     }
     
-    func logout() -> String {
-        return String("Logout")
+    func signout() -> String {
+        return String("SIGN OUT")
     }
     
     //Navigation Menu
@@ -324,24 +324,40 @@ class NAString : NSObject {
         return String("General Settings")
     }
     
-    func notification_settings() -> String {
-        return String("Notification Settings")
+    func sound_settings() -> String {
+        return String("Sound Settings")
     }
     
-    func new_Message_Notification() -> String {
-        return String("New Message Notifications")
+    func language() -> String {
+        return String("Language")
     }
     
-    func email_Notification() -> String {
-        return String("Email Notifications")
+    func signOut() -> String {
+        return String("SIGN OUT")
+    }
+    
+    func eIntercom_Notification() -> String {
+        return String("E-Intercom Notifications")
+    }
+    
+    func guest_Notification() -> String {
+        return String("Guest Notifications")
+    }
+    
+    func cab_Notification() -> String {
+        return String("Cab Notifications")
+    }
+    
+    func package_Notification() -> String {
+        return String("Package Notifications")
     }
     
     func vibrate() -> String {
         return String("Vibrate")
     }
     
-    func enable_inApp_Sound_Notification() -> String {
-        return String("Enable in-app sound Notifications")
+    func dailyService_Notification() -> String {
+        return String("Daily Service Notifications")
     }
     
     func product_Updates() -> String {
