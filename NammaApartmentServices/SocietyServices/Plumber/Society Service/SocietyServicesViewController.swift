@@ -163,7 +163,7 @@ class SocietyServicesViewController: NANavigationViewController {
     }
     
     // Navigate to FAQ's VC
-    @objc func gotofrequentlyAskedQuestionsVC() {
+    @objc override func gotofrequentlyAskedQuestionsVC() {
         let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
         faqVC.navTitle = NAString().faqs()
         switch navTitle {

@@ -45,15 +45,12 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
         
-        let infoButton = UIButton(type: .system)
-        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
-        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
-        let info = UIBarButtonItem(customView: infoButton)
-        self.navigationItem.setRightBarButton(info, animated: true)
+        //info Button Action
+        infoButton()
     }
     
     // Navigate to FAQ's VC
-    @objc func gotofrequentlyAskedQuestionsVC() {
+    @objc override func gotofrequentlyAskedQuestionsVC() {
         let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
         faqVC.navTitle = NAString().faqs()
         faqVC.visitorsScreen = true
