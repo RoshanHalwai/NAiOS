@@ -10,7 +10,8 @@ import UIKit
 
 class NoticeBoardCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var lbl_Date: UILabel!
     @IBOutlet weak var lbl_FestivalName: UILabel!
-    @IBOutlet weak var lbl_FestivalDesription: UILabel!
+    @IBOutlet weak var lbl_FestivalDescription: UILabel!
     @IBOutlet weak var lbl_AdminName: UILabel!
 }

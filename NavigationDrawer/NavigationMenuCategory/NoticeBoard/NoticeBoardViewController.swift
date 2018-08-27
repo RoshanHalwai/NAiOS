@@ -12,7 +12,6 @@ import FirebaseDatabase
 class NoticeBoardViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var lbl_Date: UILabel!
     var navTitle = String()
     
     var myExpectedNoticeBoardList = [NAExpectingNoticeBoard]()
@@ -28,14 +27,6 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()
-        
-        //Setting Label Font
-        lbl_Date.font = NAFont().labelFont()
-        
-        var layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
-        layout.minimumInteritemSpacing = 5
-        layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: self.collectionView.frame.size.height/3)
     }
     
     //MARK: CollectionView Delegate and DataSource Methods
@@ -50,17 +41,22 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         myNoticeBoardsList = myExpectedNoticeBoardList[indexPath.row]
         
         cell.lbl_FestivalName.text = myNoticeBoardsList.gettitle()
-        cell.lbl_FestivalDesription.text = myNoticeBoardsList.getdescription()
+        cell.lbl_FestivalDescription.text = myNoticeBoardsList.getdescription()
         cell.lbl_AdminName.text = myNoticeBoardsList.getnameOfAdmin()
-        lbl_Date.text = myNoticeBoardsList.getdateAndTime()
+        cell.lbl_Date.text = myNoticeBoardsList.getdateAndTime()
         
         //assigning font & style to cell labels
         cell.lbl_FestivalName.font = NAFont().headerFont()
-        cell.lbl_FestivalDesription.font = NAFont().headerFont()
+        cell.lbl_FestivalDescription.font = NAFont().headerFont()
         cell.lbl_AdminName.font = NAFont().headerFont()
-        
+        cell.lbl_Date.font = NAFont().headerFont()
+
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int   {
+        return myExpectedNoticeBoardList.count
     }
 }
 
