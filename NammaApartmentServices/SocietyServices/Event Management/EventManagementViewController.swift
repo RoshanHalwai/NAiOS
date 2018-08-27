@@ -52,6 +52,8 @@ class EventManagementViewController: NANavigationViewController {
     //created date picker programtically
     let picker = UIDatePicker()
     
+    var eventSlot = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -269,7 +271,6 @@ class EventManagementViewController: NANavigationViewController {
     }
     
     //MARK : Create Button Actions
-    
     //Create Button SelectSlot Function
     @IBAction func btnSelectSlotFunction(_ sender: UIButton) {
         getButtonHour_Text = (sender.titleLabel?.text)!
@@ -310,23 +311,8 @@ class EventManagementViewController: NANavigationViewController {
         }
         if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! && (isValidSelectSlotButtonClicked.index(of: true) != nil) && (isValidSelectEventButtonClicked.index(of: true) != nil) {
             self.storeEventManagementDetails()
-            self.inviteAlertView()
+           
         }
-    }
-    
-    //AlertView For navigation
-    func inviteAlertView() {
-        //creating alert controller
-        let alert = UIAlertController(title: NAString().eventManagement_AlertTitle() , message: NAString().eventManagement_AlertMessage(), preferredStyle: .alert)
-        //creating Accept alert actions
-        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-            let lv = NAViewPresenter().showEventManagementVC()
-            lv.navTitle = NAString().event_management()
-            lv.getEventUID = self.eventNotificationUID
-            self.navigationController?.pushViewController(lv, animated: true)
-        }
-        alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -355,8 +341,12 @@ extension EventManagementViewController {
         eventManagementNotificationRef.child(eventNotificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
             //Storing Current System time in milli seconds for time stamp.
             eventManagementNotificationRef.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
-                //Calling Alert Function After Storing Data in Firebase
-                self.inviteAlertView()
+                
+                self.storeEventManagementSlot()
+                let lv = NAViewPresenter().showEventManagementVC()
+                lv.navTitle = NAString().event_management()
+                lv.getEventUID = self.eventNotificationUID
+                self.navigationController?.pushViewController(lv, animated: true)
             })
         }
     }
@@ -367,6 +357,32 @@ extension EventManagementViewController {
             txt_EventTitle.underlined()
         }
         return true
+    }
+    
+    func storeEventManagementSlot() {
+        
+        switch getButtonHour_Text {
+        case NAString().morning():
+            eventSlot = Constants.FIREBASE_CHILD_SLOT1
+        case NAString().noon():
+            eventSlot = Constants.FIREBASE_CHILD_SLOT2
+        case NAString().evening():
+            eventSlot = Constants.FIREBASE_CHILD_SLOT3
+        case NAString().night():
+            eventSlot = Constants.FIREBASE_CHILD_SLOT4
+        default:
+            break
+        }
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = NAString().convertedDateInFormat()
+        let showDate = inputFormatter.date(from: txt_EventDate.text!)
+        inputFormatter.dateFormat = NAString().dateInNumberFormat()
+        let newDate = inputFormatter.string(from: showDate!)
+
+        var eventSlotRef : DatabaseReference?
+        eventSlotRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT).child(newDate)
+        eventSlotRef?.child(eventSlot).setValue(NAString().gettrue())
     }
 }
 

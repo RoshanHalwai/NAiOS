@@ -947,6 +947,14 @@ class NAString : NSObject {
         return String("MMM d, YYYY")
     }
     
+    func dateInNumberFormat() -> String {
+        return("dd-MM-yyyy")
+    }
+    
+    func convertedDateInFormat() -> String {
+        return("MM/dd/yyyy")
+    }
+    
     func timeFormat() -> String {
         return String("HH:mm")
     }
