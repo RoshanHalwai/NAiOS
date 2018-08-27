@@ -9,9 +9,9 @@
 import UIKit
 import FirebaseDatabase
 
-class NoticeBoardViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     var navTitle = String()
     
     var myExpectedNoticeBoardList = [NAExpectingNoticeBoard]()
@@ -29,16 +29,13 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         self.retrieviedNoticeBoardDataInFirebase()
     }
     
-    //MARK: CollectionView Delegate and DataSource Methods
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //MARK: TableView Delegate and DataSource Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myExpectedNoticeBoardList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! NoticeBoardCollectionViewCell
-        
-        cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! NoticeBoardTableViewCell
         let myNoticeBoardsList : NAExpectingNoticeBoard
         myNoticeBoardsList = myExpectedNoticeBoardList[indexPath.row]
         
@@ -67,7 +64,6 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         cell.cardView.layer.shadowRadius = 1.7
         cell.cardView.layer.shadowOpacity = 0.45
         
-        NAShadowEffect().shadowEffect(Cell: cell)
         return cell
     }
 }
@@ -91,7 +87,7 @@ extension NoticeBoardViewController {
                             let noticeBoardDetails = NAExpectingNoticeBoard(title: title, description: description,nameOfAdmin : nameOfAdmin,dateAndTime : dateAndTime)
                             self.myExpectedNoticeBoardList.append(noticeBoardDetails)
                             NAActivityIndicator.shared.hideActivityIndicator()
-                            self.collectionView.reloadData()
+                            self.tableView.reloadData()
                         })
                     }
                 }
