@@ -65,7 +65,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         
         cell.lbl_MyVehicleNumber.text = myVehicleList.getvehicleNumber()
         cell.lbl_MyVehicleOwner.text = myVehicleList.getownerName()
-        cell.lbl_MyVehicleAddedNo.text = myVehicleList.getaddedDate()
+        cell.lbl_MyVehicleAddedOn.text = myVehicleList.getaddedDate()
         
         if  myVehicleList.getvehicleType() == NAString().car() {
             cell.myVehicleImage.image = #imageLiteral(resourceName: "car")
@@ -74,12 +74,12 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         }
         
         //assigning font & style to cell labels
-        cell.lbl_MyVehicleNumber.font = NAFont().headerFont()
+        cell.lbl_MyVehicleAddedOn.font = NAFont().headerFont()
         cell.lbl_MyVehicleOwner.font = NAFont().headerFont()
-        cell.lbl_MyVehicleAddedNo.font = NAFont().headerFont()
+        cell.lbl_MyVehicleNumber.font = NAFont().headerFont()
         cell.lbl_VehicleNumber.font = NAFont().textFieldFont()
         cell.lbl_VehicleOwner.font = NAFont().textFieldFont()
-        cell.lbl_VehicleAddedNo.font = NAFont().textFieldFont()
+        cell.lbl_VehicleAddedOn.font = NAFont().textFieldFont()
         
         NAShadowEffect().shadowEffect(Cell: cell)
         

@@ -3002,13 +3002,13 @@
                                             <constraint firstItem="tyR-bw-zdd" firstAttribute="leading" secondItem="YR5-zM-jzt" secondAttribute="trailing" constant="7" id="ySV-Et-czD"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="lbl_MyVehicleAddedNo" destination="94f-Da-BvB" id="KUN-Ke-881"/>
-                                            <outlet property="lbl_MyVehicleNumber" destination="YyS-Wj-40i" id="kap-8l-XZI"/>
-                                            <outlet property="lbl_MyVehicleOwner" destination="DBp-zz-MlW" id="qRY-Uh-uQy"/>
-                                            <outlet property="lbl_VehicleAddedNo" destination="H0a-jH-4sD" id="j2M-u4-eHk"/>
-                                            <outlet property="lbl_VehicleNumber" destination="1SX-mo-N3F" id="kER-A7-ejb"/>
-                                            <outlet property="lbl_VehicleOwner" destination="xmb-Dj-pfm" id="G61-k8-I0h"/>
-                                            <outlet property="myVehicleImage" destination="YR5-zM-jzt" id="jhS-cl-pxS"/>
+                                            <outlet property="lbl_MyVehicleAddedOn" destination="YyS-Wj-40i" id="41D-cj-pqI"/>
+                                            <outlet property="lbl_MyVehicleNumber" destination="94f-Da-BvB" id="KCJ-I5-BKQ"/>
+                                            <outlet property="lbl_MyVehicleOwner" destination="DBp-zz-MlW" id="PwR-KI-CUP"/>
+                                            <outlet property="lbl_VehicleAddedOn" destination="H0a-jH-4sD" id="WfT-kM-fgS"/>
+                                            <outlet property="lbl_VehicleNumber" destination="1SX-mo-N3F" id="rNx-EE-ms5"/>
+                                            <outlet property="lbl_VehicleOwner" destination="xmb-Dj-pfm" id="qyA-Ee-3XY"/>
+                                            <outlet property="myVehicleImage" destination="YR5-zM-jzt" id="wdF-e7-7wz"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -7552,7 +7552,7 @@
                                 <rect key="frame" x="0.0" y="96" width="260" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -7560,7 +7560,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
