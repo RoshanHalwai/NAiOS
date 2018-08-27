@@ -37,6 +37,8 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! NoticeBoardCollectionViewCell
         
+        cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        
         let myNoticeBoardsList : NAExpectingNoticeBoard
         myNoticeBoardsList = myExpectedNoticeBoardList[indexPath.row]
         
@@ -54,9 +56,16 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         
         //assigning font & style to cell labels
         cell.lbl_FestivalName.font = NAFont().headerFont()
-        cell.lbl_FestivalDescription.font = NAFont().headerFont()
-        cell.lbl_AdminName.font = NAFont().headerFont()
-        cell.lbl_Date.font = NAFont().headerFont()
+        cell.lbl_FestivalDescription.font = NAFont().textFieldFont()
+        cell.lbl_AdminName.font = NAFont().textFieldFont()
+        cell.lbl_Date.font = NAFont().textFieldFont()
+        
+        //cardUIView
+        cell.cardView.layer.cornerRadius = 3
+        cell.cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
+        cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        cell.cardView.layer.shadowRadius = 1.7
+        cell.cardView.layer.shadowOpacity = 0.45
         
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell

@@ -14,4 +14,5 @@ class NoticeBoardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_FestivalName: UILabel!
     @IBOutlet weak var lbl_FestivalDescription: UILabel!
     @IBOutlet weak var lbl_AdminName: UILabel!
+    @IBOutlet weak var cardView: UIView!
 }
