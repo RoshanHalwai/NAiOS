@@ -5850,7 +5850,7 @@
                     </view>
                     <connections>
                         <outlet property="btn_ApartmentServices" destination="CvD-Xz-AUp" id="TjB-mR-kIH"/>
-                        <outlet property="btn_MaintenanceServices" destination="A5f-u7-NdI" id="REH-e8-eYs"/>
+                        <outlet property="btn_SocietyServices" destination="A5f-u7-NdI" id="REH-e8-eYs"/>
                         <outlet property="img_indianRupee" destination="QUo-V0-WY3" id="7aR-el-azh"/>
                         <outlet property="lbl_description" destination="YgX-kd-MMu" id="m2H-Ai-D9H"/>
                         <outlet property="lbl_myTransactions" destination="j3P-hQ-HQT" id="Hu6-zR-DyH"/>

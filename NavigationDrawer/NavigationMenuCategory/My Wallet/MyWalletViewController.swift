@@ -22,7 +22,7 @@ class MyWalletViewController: NANavigationViewController {
     @IBOutlet weak var img_indianRupee: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    @IBOutlet weak var btn_MaintenanceServices: UIButton!
+    @IBOutlet weak var btn_SocietyServices: UIButton!
     @IBOutlet weak var btn_ApartmentServices: UIButton!
     
     var navTitle = String()
@@ -36,7 +36,7 @@ class MyWalletViewController: NANavigationViewController {
         lbl_description.font = NAFont().lato_Regular_16()
         lbl_myTransactions.font = NAFont().lato_Regular_20()
         btn_ApartmentServices.titleLabel?.font = NAFont().lato_Regular_16()
-        btn_MaintenanceServices.titleLabel?.font = NAFont().lato_Regular_16()
+        btn_SocietyServices.titleLabel?.font = NAFont().lato_Regular_16()
         
         
         lbl_nammaApartment.text = NAString().nammaApartments_E_Payment()
@@ -50,7 +50,7 @@ class MyWalletViewController: NANavigationViewController {
         
         //Setting Button Shadow Effect
     NAShadowEffect().shadowEffectForButton(button:btn_ApartmentServices)
-    NAShadowEffect().shadowEffectForButton(button:btn_MaintenanceServices)
+    NAShadowEffect().shadowEffectForButton(button:btn_SocietyServices)
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0)
