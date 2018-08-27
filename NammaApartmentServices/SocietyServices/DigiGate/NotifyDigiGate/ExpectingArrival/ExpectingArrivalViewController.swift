@@ -227,6 +227,17 @@ class ExpectingArrivalViewController: NANavigationViewController {
         cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
+        
+        //info Button Action
+        infoButton()
+    }
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.visitorsScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     //Hiding & Setting First Responder for Cab TextFields & Pacakge Vandor textFields According to Title

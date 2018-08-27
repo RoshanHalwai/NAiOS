@@ -44,6 +44,17 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigiGate))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        
+        //info Button Action
+        infoButton()
+    }
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.visitorsScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     //For navigating back to My Digi Gate VC

@@ -7360,12 +7360,12 @@
         <!--Frequently Asked Questions View Controller-->
         <scene sceneID="PZq-VB-FKH">
             <objects>
-                <viewController storyboardIdentifier="frequentlyAskedVC" id="3Lu-ES-nzW" customClass="FrequentlyAskedQuestionsViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="frequentlyAskedVC" wantsFullScreenLayout="YES" id="3Lu-ES-nzW" customClass="FrequentlyAskedQuestionsViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8lp-6J-Rn2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F7A-4Y-M2c">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="F7A-4Y-M2c">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>

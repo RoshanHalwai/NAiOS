@@ -72,6 +72,18 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+        
+        //info Button Action
+        infoButton()
+    }
+    
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.dailyServicesScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     //Create image Handle  Function

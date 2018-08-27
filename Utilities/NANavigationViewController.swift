@@ -25,7 +25,7 @@ class NANavigationViewController: UIViewController,UITextFieldDelegate {
     
     func configureInfoButton() {
         let infoButton = UIButton(type: .system)
-        infoButton.setImage(#imageLiteral(resourceName: "information24"), for: .normal)
+        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
         infoButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
     }

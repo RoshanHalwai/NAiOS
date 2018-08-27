@@ -149,10 +149,36 @@ class SocietyServicesViewController: NANavigationViewController {
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
-        historyButton.frame = CGRect(x: 0, y: 0, width: 34, height: 30)
         historyButton.addTarget(self, action: #selector(gotoSocietyServiceHistoryVC), for: .touchUpInside)
         let history = UIBarButtonItem(customView: historyButton)
-        self.navigationItem.setRightBarButtonItems([history], animated: true)
+        //Creating info icon on Navigation bar
+        let infoButton = UIButton(type: .system)
+        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
+        let info = UIBarButtonItem(customView: infoButton)
+        
+        //created Array for history and info button icons
+        self.navigationItem.setRightBarButtonItems([info,history], animated: true)
+
+    }
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        switch navTitle {
+        case NAString().plumber():
+            faqVC.plumberScreen = true
+        case NAString().carpenter():
+            faqVC.carpenterScreen = true
+        case NAString().electrician():
+            faqVC.electricianScreen = true
+        case NAString().garbage_management():
+            faqVC.garbageManagementScreen = true
+        default:
+            break
+        }
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     //To Navigate to Society Service History VC
