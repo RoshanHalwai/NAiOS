@@ -49,8 +49,8 @@ class MyWalletViewController: NANavigationViewController {
         NAShadowEffect().shadowEffectForView(view: nammaApartment_CardView)
         
         //Setting Button Shadow Effect
-    NAShadowEffect().shadowEffectForButton(button:btn_ApartmentServices)
-    NAShadowEffect().shadowEffectForButton(button:btn_SocietyServices)
+        NAShadowEffect().shadowEffectForButton(button:btn_ApartmentServices)
+        NAShadowEffect().shadowEffectForButton(button:btn_SocietyServices)
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0)
