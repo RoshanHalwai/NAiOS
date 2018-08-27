@@ -34,6 +34,10 @@ class NAFont: NSObject {
     func lato_Regular_16() -> UIFont {
         return UIFont(name: "Lato-Regular", size: 16)!
     }
+    
+    func lato_Bold_16() -> UIFont {
+        return UIFont(name: "Lato-Bold", size: 16)!
+    }
     func textFieldFont() -> UIFont {
         return UIFont(name: "Lato-Regular", size: 18)!
     }

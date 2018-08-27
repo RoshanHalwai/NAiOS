@@ -5874,63 +5874,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zY1-PZ-mnB">
-                                <rect key="frame" x="10" y="40" width="355" height="122"/>
-                                <string key="text">All the payments related to maintenance, repairs and reconstruction of the common infrastructure of your housing society is now in our hands. You can directly pay the fixed amount for Maintenance Services through your Name Apartments Mobile Wallet.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="AFw-Cs-tbl">
-                                <rect key="frame" x="20" y="232" width="335" height="30"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cu6-mz-hWx">
-                                        <rect key="frame" x="0.0" y="0.0" width="211.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="73T-qx-Shn"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rs 3500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wG5-dh-cdK">
-                                        <rect key="frame" x="211.5" y="0.0" width="123.5" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="sCE-0D-woH"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jn6-5V-aFt">
                                 <rect key="frame" x="0.0" y="628" width="375" height="39"/>
                                 <color key="backgroundColor" red="0.0" green="0.63419596349999996" blue="0.077067057290000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="QkS-ye-k7M"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <state key="normal" title="PAY NOW">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NPd-ZW-e2F">
+                                <rect key="frame" x="8" y="28" width="359" height="308"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zY1-PZ-mnB">
+                                        <rect key="frame" x="8" y="12" width="343" height="122"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="122" id="maI-Ci-7jV"/>
+                                        </constraints>
+                                        <string key="text">All the payments related to maintenance, repairs and reconstruction of the common infrastructure of your housing society is now in our hands. You can directly pay the fixed amount for Maintenance Services through your Name Apartments Mobile Wallet.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="AFw-Cs-tbl">
+                                        <rect key="frame" x="20" y="250" width="265" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Amount: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cu6-mz-hWx">
+                                                <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="73T-qx-Shn"/>
+                                                    <constraint firstAttribute="width" constant="140" id="YLs-za-Okf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rs 3500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wG5-dh-cdK">
+                                                <rect key="frame" x="165" y="0.0" width="100" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="sCE-0D-woH"/>
+                                                    <constraint firstAttribute="width" constant="100" id="xHL-eQ-dq0"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="308" id="9VA-yf-td1"/>
+                                    <constraint firstItem="zY1-PZ-mnB" firstAttribute="leading" secondItem="NPd-ZW-e2F" secondAttribute="leading" constant="8" id="JCX-vy-01M"/>
+                                    <constraint firstItem="AFw-Cs-tbl" firstAttribute="leading" secondItem="NPd-ZW-e2F" secondAttribute="leading" constant="20" id="OD7-Ea-dcx"/>
+                                    <constraint firstAttribute="trailing" secondItem="zY1-PZ-mnB" secondAttribute="trailing" constant="8" id="Ytr-17-xcH"/>
+                                    <constraint firstItem="AFw-Cs-tbl" firstAttribute="top" secondItem="zY1-PZ-mnB" secondAttribute="bottom" constant="116" id="bjJ-Yr-Gqv"/>
+                                    <constraint firstAttribute="bottom" secondItem="AFw-Cs-tbl" secondAttribute="bottom" constant="28" id="qzT-Am-TNT"/>
+                                    <constraint firstItem="zY1-PZ-mnB" firstAttribute="top" secondItem="NPd-ZW-e2F" secondAttribute="top" constant="12" id="xUm-dS-3j4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Jn6-5V-aFt" firstAttribute="leading" secondItem="g03-9O-lXr" secondAttribute="leading" id="07f-a9-e9p"/>
-                            <constraint firstItem="zY1-PZ-mnB" firstAttribute="top" secondItem="g03-9O-lXr" secondAttribute="top" constant="20" id="4Hd-hu-Ufz"/>
-                            <constraint firstItem="AFw-Cs-tbl" firstAttribute="top" secondItem="zY1-PZ-mnB" secondAttribute="bottom" constant="70" id="OkU-xj-YpC"/>
+                            <constraint firstItem="g03-9O-lXr" firstAttribute="trailing" secondItem="NPd-ZW-e2F" secondAttribute="trailing" constant="8" id="5Dz-Nd-BY3"/>
                             <constraint firstItem="Jn6-5V-aFt" firstAttribute="trailing" secondItem="g03-9O-lXr" secondAttribute="trailing" id="P35-uU-SnE"/>
-                            <constraint firstItem="AFw-Cs-tbl" firstAttribute="leading" secondItem="g03-9O-lXr" secondAttribute="leading" constant="20" id="SEL-a2-kfU"/>
-                            <constraint firstItem="g03-9O-lXr" firstAttribute="trailing" secondItem="zY1-PZ-mnB" secondAttribute="trailing" constant="10" id="bmv-Gb-wOw"/>
-                            <constraint firstItem="g03-9O-lXr" firstAttribute="trailing" secondItem="AFw-Cs-tbl" secondAttribute="trailing" constant="20" id="rmh-Zg-tFu"/>
-                            <constraint firstItem="zY1-PZ-mnB" firstAttribute="leading" secondItem="g03-9O-lXr" secondAttribute="leading" constant="10" id="z9X-eW-Qj3"/>
+                            <constraint firstItem="NPd-ZW-e2F" firstAttribute="top" secondItem="g03-9O-lXr" secondAttribute="top" constant="8" id="bdt-ot-hl8"/>
+                            <constraint firstItem="NPd-ZW-e2F" firstAttribute="leading" secondItem="g03-9O-lXr" secondAttribute="leading" constant="8" id="yk4-c7-Ry1"/>
                             <constraint firstItem="Jn6-5V-aFt" firstAttribute="bottom" secondItem="g03-9O-lXr" secondAttribute="bottom" id="zm8-Sc-6QS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="g03-9O-lXr"/>
                     </view>
                     <connections>
                         <outlet property="btn_payNow" destination="Jn6-5V-aFt" id="R9y-wK-ww8"/>
+                        <outlet property="cardView" destination="NPd-ZW-e2F" id="5LC-xk-NXt"/>
                         <outlet property="lbl_Description" destination="zY1-PZ-mnB" id="9Ry-3v-q1f"/>
                         <outlet property="lbl_Rupees" destination="wG5-dh-cdK" id="1Ys-MS-OHa"/>
                         <outlet property="lbl_TotalAmount" destination="cu6-mz-hWx" id="Guk-tZ-4IT"/>

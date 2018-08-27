@@ -1060,7 +1060,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorGroceriesServices() -> String {
-        return String("Sorry you cannot use this feature since this feature is yet to be implemented.")
+        return String("We are setting Up soon in your Society. We will notify you when once we are there.")
     }
     
     func statusNotEntered() -> String {
