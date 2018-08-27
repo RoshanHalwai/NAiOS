@@ -266,7 +266,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                 getInProgressUID(VC: lv4, titleName: NAString().garbageManagement())
                 
             case 5:
-                let lv5 = NAViewPresenter().raiseAlarmVC()
+                let lv5 = NAViewPresenter().emergencyVC()
                 lv5.titleName = NAString().medical_emergency()
                 self.navigationController?.pushViewController(lv5, animated: true)
                 

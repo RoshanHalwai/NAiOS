@@ -197,9 +197,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let queue = OperationQueue()
         
         queue.addOperation {
-        if let urlString = DSList.profilePhoto {
-            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
-        }
+            if let urlString = DSList.profilePhoto {
+                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
+            }
         }
         queue.waitUntilAllOperationsAreFinished()
         
@@ -478,7 +478,7 @@ extension MyDailyServicesViewController {
         userDataReference.observeSingleEvent(of: .value) { (dailyServiceSnapshot) in
             if !(dailyServiceSnapshot.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
                 let privateFlatReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
                 privateFlatReference.keepSynced(true)

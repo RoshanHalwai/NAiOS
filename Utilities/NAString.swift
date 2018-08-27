@@ -443,7 +443,7 @@ class NAString : NSObject {
     }
     
     func medical_emergency() -> String {
-        return String("Medical Emergency")
+        return String("Emergency")
     }
     
     func water_services() -> String {
