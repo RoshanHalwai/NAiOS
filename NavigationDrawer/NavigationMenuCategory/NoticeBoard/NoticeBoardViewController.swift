@@ -40,23 +40,26 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         let myNoticeBoardsList : NAExpectingNoticeBoard
         myNoticeBoardsList = myExpectedNoticeBoardList[indexPath.row]
         
+        //Created local variable to store Date & Time from firebase
+        var dateTimeString : String
+        dateTimeString = myNoticeBoardsList.getdateAndTime()
+        //Created array to spilt Date & time in separate variables
+        let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
+        let dateString: String = arrayOfDateTime[0]
+        
         cell.lbl_FestivalName.text = myNoticeBoardsList.gettitle()
         cell.lbl_FestivalDescription.text = myNoticeBoardsList.getdescription()
         cell.lbl_AdminName.text = myNoticeBoardsList.getnameOfAdmin()
-        cell.lbl_Date.text = myNoticeBoardsList.getdateAndTime()
+        cell.lbl_Date.text = dateString
         
         //assigning font & style to cell labels
         cell.lbl_FestivalName.font = NAFont().headerFont()
         cell.lbl_FestivalDescription.font = NAFont().headerFont()
         cell.lbl_AdminName.font = NAFont().headerFont()
         cell.lbl_Date.font = NAFont().headerFont()
-
+        
         NAShadowEffect().shadowEffect(Cell: cell)
         return cell
-    }
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int   {
-        return myExpectedNoticeBoardList.count
     }
 }
 
