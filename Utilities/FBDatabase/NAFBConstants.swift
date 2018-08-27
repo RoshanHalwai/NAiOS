@@ -84,6 +84,10 @@ struct Constants {
     static let FIREBASE_CHILD_GUARD = "guard"
     static let FIREBASE_CHILD_RATING = "rating"
     static let FIREBASE_CHILD_NOTICEBOARD = "noticeBoard"
+    static let FIREBASE_CHILD_SLOT1 = "Slot 1"
+    static let FIREBASE_CHILD_SLOT2 = "Slot 2"
+    static let FIREBASE_CHILD_SLOT3 = "Slot 3"
+    static let FIREBASE_CHILD_SLOT4 = "Slot 4"
     static let FIREBASE_CHILD_LONGITUDE = "longitude"
     static let FIREBASE_CHILD_LATITUDE = "latitude"
     
