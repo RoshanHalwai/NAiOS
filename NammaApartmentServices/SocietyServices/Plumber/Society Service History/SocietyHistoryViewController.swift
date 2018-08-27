@@ -53,7 +53,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "E,MMM d,HH:mm"
+        formatter.dateFormat = "E, MMM d, HH:mm"
         let currentDate = formatter.string(from: date)
         
         if navigationTitle == NAString().eventManagement() {
