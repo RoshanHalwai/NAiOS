@@ -438,7 +438,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         return true
     }
 }
-
+//made extension for Global use of info Button Action.
 extension UIViewController {
     func infoButton() {
         let infoButton = UIButton(type: .system)
@@ -452,7 +452,6 @@ extension UIViewController {
     @objc func gotofrequentlyAskedQuestionsVC() {
         let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
         faqVC.navTitle = NAString().faqs()
-        faqVC.visitorsScreen = true
         self.navigationController?.pushViewController(faqVC, animated: true)
     }
 }
