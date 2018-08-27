@@ -88,6 +88,9 @@ struct Constants {
     static let FIREBASE_CHILD_SLOT2 = "Slot 2"
     static let FIREBASE_CHILD_SLOT3 = "Slot 3"
     static let FIREBASE_CHILD_SLOT4 = "Slot 4"
+    static let FIREBASE_CHILD_LONGITUDE = "longitude"
+    static let FIREBASE_CHILD_LATITUDE = "latitude"
+    
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     static let FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
     static let FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
@@ -104,5 +107,6 @@ struct Constants {
     static let FIREBASE_DAILY_SERVICES_ALL_PUBLIC = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
     
     static let FIREBASE_USER_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_USER)
-    .child(FIREBASE_CHILD_PRIVATE)
+        .child(FIREBASE_CHILD_PRIVATE)
+    
 }

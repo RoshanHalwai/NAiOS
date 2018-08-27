@@ -35,13 +35,12 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
-        historyButton.frame = CGRect(x: 0, y: 0, width: 34, height: 30)
         historyButton.addTarget(self, action: #selector(gotoHandedThingsGuestHistoryVC), for: .touchUpInside)
         let history = UIBarButtonItem(customView: historyButton)
         //Creating info icon on Navigation bar
         let infoButton = UIButton(type: .system)
-        infoButton.setImage(#imageLiteral(resourceName: "information24"), for: .normal)
-        infoButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
         let info = UIBarButtonItem(customView: infoButton)
         
         //created Array for history and info button icons
@@ -50,6 +49,14 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
+    }
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.handedThingsScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     //To Navigate to Guest History VC

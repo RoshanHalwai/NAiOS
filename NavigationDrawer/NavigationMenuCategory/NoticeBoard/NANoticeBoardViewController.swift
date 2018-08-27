@@ -14,7 +14,7 @@ enum NoticeBoardListFBKeys: String {
     case description
     case nameOfAdmin
     case dateAndTime
-
+    
     var key : String {
         switch self {
         // Use Internationalization, as appropriate.
