@@ -9,8 +9,9 @@
 import UIKit
 import MessageUI
 import FirebaseDatabase
+import MapKit
 
-class ApartmentServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
+class ApartmentServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource, MFMessageComposeViewControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
@@ -19,8 +20,49 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     //Created Instance of Model Class To get data in card view
     var allDailyServicesList = [NammaApartmentDailyServices]()
     
+    //Location Related Variables
+    var locationManager = CLLocationManager()
+    var longitude = String()
+    var latitude = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Getting user's location Permissions on Load.
+        var currentLocation: CLLocation!
+        
+        if (CLLocationManager.locationServicesEnabled()) {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        //TODO: Need to disable Setting alert View after deny default location permissions.
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .denied, .notDetermined, .restricted:
+                //Denied Authorization
+                let alert = UIAlertController(title:NAString().location_Permission() , message: nil, preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title:NAString().cancel(), style: .cancel) { (action) in}
+                let settingAction = UIAlertAction(title:NAString().settings(), style: .default) { (action) in
+                    UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)}
+                alert.addAction(cancelAction)
+                alert.addAction(settingAction)
+                present(alert, animated: true, completion: nil)
+
+            case .authorizedAlways, .authorizedWhenInUse:
+                //Allowed Authorization
+                currentLocation = locationManager.location
+                let latitude = currentLocation.coordinate.latitude
+                let longitude = currentLocation.coordinate.longitude
+
+                var userLocation : DatabaseReference?
+                userLocation = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+                userLocation?.child(Constants.FIREBASE_CHILD_LONGITUDE).setValue(longitude)
+                userLocation?.child(Constants.FIREBASE_CHILD_LATITUDE).setValue(latitude)
+            }
+        }
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: titleName)

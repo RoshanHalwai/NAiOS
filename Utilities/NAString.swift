@@ -1684,5 +1684,9 @@ class NAString : NSObject {
     func userDefault_Verified() -> String {
         return String("Verified")
     }
+    
+    func location_Permission() -> String {
+        return String("Turn On Location Services to Allow 'Namma Apartments' to Determine Your Location")
+    }
 }
 
