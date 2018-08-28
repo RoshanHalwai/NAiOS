@@ -1,14 +1,14 @@
 //
-//  NoticeBoardCollectionViewCell.swift
+//  NoticeBoardTableViewCell.swift
 //  nammaApartment
 //
-//  Created by Sundir Talari on 25/07/18.
+//  Created by kalpana on 8/27/18.
 //  Copyright © 2018 Vikas Nayak. All rights reserved.
 //
 
 import UIKit
 
-class NoticeBoardCollectionViewCell: UICollectionViewCell {
+class NoticeBoardTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lbl_Date: UILabel!
     @IBOutlet weak var lbl_FestivalName: UILabel!

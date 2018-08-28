@@ -127,7 +127,7 @@ class SignupViewController: NANavigationViewController {
     @IBAction func signup_BtnSignup(_ sender: Any) {
         let providedEmailAddress = signup_TxtEmailId.text
         let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
-        if profileImage.image == #imageLiteral(resourceName: "ExpectingVisitor") {
+        if profileImage.image == #imageLiteral(resourceName: "add_member") {
             lbl_Image_Validation.isHidden = false
             lbl_Image_Validation.text = NAString().please_upload_Image()
         }
@@ -154,7 +154,7 @@ class SignupViewController: NANavigationViewController {
                 signup_TxtEmailId.redunderlined()
             }
         }
-        if profileImage.image != #imageLiteral(resourceName: "ExpectingVisitor") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
+        if profileImage.image != #imageLiteral(resourceName: "add_member") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
             
             //Navigation to MyFlatDetail Screen With Personal Details Data.
             let dest = NAViewPresenter().myFlatDEtailsVC()
