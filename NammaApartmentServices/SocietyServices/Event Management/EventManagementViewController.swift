@@ -37,6 +37,9 @@ class EventManagementViewController: NANavigationViewController {
     @IBOutlet weak var txt_EventTitle: UITextField!
     @IBOutlet weak var txt_EventDate: UITextField!
     
+    @IBOutlet weak var lbl_available: UILabel!
+    @IBOutlet weak var lbl_unAvailable: UILabel!
+    
     //Select slot array of buttons for color changing purpose
     var selectSlotbuttons : [UIButton] = []
     var isValidSelectSlotButtonClicked: [Bool] = []
@@ -50,10 +53,11 @@ class EventManagementViewController: NANavigationViewController {
     var getButtonHour_Text = String()
     var getButtonCategory_Text = String()
     var eventSlot = String()
+    var convertedDate = String()
     
     //created date picker programtically
     let picker = UIDatePicker()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,6 +77,8 @@ class EventManagementViewController: NANavigationViewController {
         lbl_eventValidation.font = NAFont().descriptionFont()
         lbl_partiesValidation.font = NAFont().descriptionFont()
         lbl_timeSlotValidation.font = NAFont().descriptionFont()
+        lbl_available.font = NAFont().descriptionFont()
+        lbl_unAvailable.font = NAFont().descriptionFont()
         
         //Label formatting & setting
         lbl_EventTitle.text = NAString().event_title()
@@ -84,6 +90,8 @@ class EventManagementViewController: NANavigationViewController {
         lbl_eventDateValidation.text = NAString().event_Date()
         lbl_partiesValidation.text = NAString().Please_select_expected_Hours()
         lbl_timeSlotValidation.text = NAString().Please_select_expected_Hours()
+        lbl_unAvailable.text = NAString().unavailable()
+        lbl_available.text = NAString().available()
         
         //TextField formatting & setting
         txt_EventTitle.font = NAFont().textFieldFont()
@@ -242,6 +250,15 @@ class EventManagementViewController: NANavigationViewController {
         self.view.endEditing(true)
         lbl_eventDateValidation.isHidden = true
         txt_EventDate.underlined()
+        
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = NAString().convertedDateInFormat()
+        let showDate = inputFormatter.date(from: txt_EventDate.text!)
+        inputFormatter.dateFormat = NAString().dateInNumberFormat()
+        convertedDate = inputFormatter.string(from: showDate!)
+        //Calling disable booked slot function here
+        disableBookedSlot()
+        
     }
     
     //To Navigate to Society Service History VC
@@ -325,7 +342,7 @@ class EventManagementViewController: NANavigationViewController {
         }
         if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! && (isValidSelectSlotButtonClicked.index(of: true) != nil) && (isValidSelectEventButtonClicked.index(of: true) != nil) {
             self.storeEventManagementDetails()
-           
+            
         }
     }
 }
@@ -392,15 +409,43 @@ extension EventManagementViewController {
             break
         }
         
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = NAString().convertedDateInFormat()
-        let showDate = inputFormatter.date(from: txt_EventDate.text!)
-        inputFormatter.dateFormat = NAString().dateInNumberFormat()
-        let newDate = inputFormatter.string(from: showDate!)
-
         var eventSlotRef : DatabaseReference?
-        eventSlotRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT).child(newDate)
+        eventSlotRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT).child(convertedDate)
         eventSlotRef?.child(eventSlot).setValue(NAString().gettrue())
+    }
+    
+    //Created Function to get booked slot for the selected date.
+    func disableBookedSlot() {
+        let bookedEventSlotRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT).child(convertedDate)
+        
+        bookedEventSlotRef.observeSingleEvent(of: .value) { (slotSnapshot) in
+            if slotSnapshot.exists() {
+                let slotNumbers = slotSnapshot.value as? NSDictionary
+                for slots in (slotNumbers?.allKeys)! {
+                    
+                    switch slots as! String {
+                    case Constants.FIREBASE_CHILD_SLOT1 :
+                        self.btn_8AMto12PM.isEnabled = false
+                        self.btn_8AMto12PM.setTitleColor(UIColor.gray, for: .normal)
+                        
+                    case Constants.FIREBASE_CHILD_SLOT2 :
+                        self.btn_12PMto4PM.isEnabled = false
+                        self.btn_12PMto4PM.setTitleColor(UIColor.gray, for: .normal)
+                        
+                    case Constants.FIREBASE_CHILD_SLOT3 :
+                        self.btn_4PMto8PM.isEnabled = false
+                        self.btn_4PMto8PM.setTitleColor(UIColor.gray, for: .normal)
+                        
+                    case Constants.FIREBASE_CHILD_SLOT4 :
+                        self.btn_8PMto12PM.isEnabled = false
+                        self.btn_8PMto12PM.setTitleColor(UIColor.gray, for: .normal)
+                        
+                    default:
+                        break
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -1712,5 +1712,13 @@ class NAString : NSObject {
     func location_Permission() -> String {
         return String("Turn On Location Services to Allow 'Namma Apartments' to Determine Your Location")
     }
+    
+    func available() -> String {
+        return String("Available")
+    }
+    
+    func unavailable() -> String {
+        return String("Unavailable")
+    }
 }
 
