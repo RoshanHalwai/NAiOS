@@ -13,9 +13,13 @@ import FirebaseStorage
 class EditMyProfileViewController: NANavigationViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var profile_Image: UIImageView!
+    @IBOutlet weak var cardView_Image: UIImageView!
     @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_EmailID: UILabel!
     @IBOutlet weak var lbl_Flat_Admin: UILabel!
+    @IBOutlet weak var lbl_EIntercom: UILabel!
+    @IBOutlet weak var lbl_EIntercomNumber: UILabel!
+    @IBOutlet weak var lbl_EIntercomSerialNo: UILabel!
     
     @IBOutlet weak var lbl_Picture_Validation: UILabel!
     @IBOutlet weak var lbl_Name_Validation: UILabel!
@@ -30,6 +34,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     @IBOutlet weak var opacity_View: UIView!
     @IBOutlet weak var list_View: UIView!
+    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var table_View: UITableView!
     
     @IBOutlet weak var list_View_Height_Constraint: NSLayoutConstraint!
@@ -57,6 +62,13 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //cardUIView
+        cardView.layer.cornerRadius = 3
+        cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
+        cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        cardView.layer.shadowRadius = 1.7
+        cardView.layer.shadowOpacity = 0.45
+        
         //Hiding History NavigationBar  RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
         
@@ -80,6 +92,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             
             self.txt_Name.text = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
             self.txt_EmailId.text = userPersonalDataMap?[UserPersonalListFBKeys.email.key] as? String
+            self.lbl_EIntercomNumber.text = userPersonalDataMap?[UserPersonalListFBKeys.phoneNumber.key] as? String
             self.existedName = self.txt_Name.text
             self.existedEmail = self.txt_EmailId.text
             let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
@@ -112,6 +125,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         table_View.dataSource = self
         self.table_View.separatorStyle = .none
         
+        lbl_EIntercom.text = NAString().eIntercom()
+        lbl_EIntercomSerialNo.text = NAString()._91()
+        
         lbl_Picture_Validation.isHidden = true
         lbl_Name_Validation.isHidden = true
         lbl_Email_Validation.isHidden = true
@@ -119,11 +135,14 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         lbl_Name.font = NAFont().headerFont()
         lbl_Flat_Admin.font = NAFont().headerFont()
         lbl_EmailID.font = NAFont().headerFont()
-        
+        lbl_EIntercom.font = NAFont().headerFont()
+
         txt_Name.font = NAFont().textFieldFont()
         txt_EmailId.font = NAFont().textFieldFont()
         txt_Flat_Admin.font = NAFont().textFieldFont()
-        
+        lbl_EIntercomSerialNo.font = NAFont().layoutFeatureErrorFont()
+        lbl_EIntercomNumber.font = NAFont().layoutFeatureErrorFont()
+
         update_btn.titleLabel?.font = NAFont().buttonFont()
         
         let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_ADMIN)

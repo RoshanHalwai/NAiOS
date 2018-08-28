@@ -333,6 +333,10 @@ class NAString : NSObject {
         return String("SIGN OUT")
     }
     
+    func eIntercom() -> String {
+        return String("E-Intercom")
+    }
+    
     func eIntercom_Notification() -> String {
         return String("E-Intercom Notifications")
     }
