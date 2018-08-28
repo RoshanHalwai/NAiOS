@@ -5340,13 +5340,13 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For any queries related to time slot, Contact Admin." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-vP-ggU">
-                                                <rect key="frame" x="25" y="437.5" width="325" height="41"/>
+                                                <rect key="frame" x="25" y="464.5" width="325" height="41"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hX-R7-k8j">
-                                                <rect key="frame" x="20" y="498.5" width="335" height="39"/>
+                                                <rect key="frame" x="20" y="525.5" width="335" height="39"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="39" id="Nek-6s-b2O"/>
                                                 </constraints>
@@ -5381,6 +5381,30 @@
                                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VJ-AW-IIa" userLabel="View_Unavailable">
+                                                <rect key="frame" x="135" y="443" width="10" height="10"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEw-Ki-5Oc">
+                                                <rect key="frame" x="153" y="437" width="88" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Opu-bv-x8c" userLabel="View_Unavailable">
+                                                <rect key="frame" x="20" y="444" width="10" height="10"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QT6-rB-EKo">
+                                                <rect key="frame" x="38" y="438" width="88" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -5406,7 +5430,7 @@
                                             <constraint firstAttribute="trailing" secondItem="avH-wE-NWc" secondAttribute="trailing" constant="10" id="WLy-ep-75F"/>
                                             <constraint firstItem="2fC-UW-fbG" firstAttribute="top" secondItem="LUg-Ap-6zi" secondAttribute="bottom" constant="29" id="Yjo-Ja-gZs"/>
                                             <constraint firstItem="LUg-Ap-6zi" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="Yw2-3B-iI5"/>
-                                            <constraint firstItem="eFM-vP-ggU" firstAttribute="top" secondItem="ebg-Tc-f3J" secondAttribute="bottom" constant="20" id="Z8O-gg-V8g"/>
+                                            <constraint firstItem="eFM-vP-ggU" firstAttribute="top" secondItem="ebg-Tc-f3J" secondAttribute="bottom" constant="47" id="Z8O-gg-V8g"/>
                                             <constraint firstItem="avH-wE-NWc" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="ZCJ-a4-PjU"/>
                                             <constraint firstItem="FHv-GM-O6M" firstAttribute="top" secondItem="xxW-oe-DhG" secondAttribute="bottom" constant="20" id="aqC-V6-9Xx"/>
                                             <constraint firstAttribute="trailing" secondItem="gbv-iO-H1G" secondAttribute="trailing" constant="10" id="b1m-Zn-y0m"/>
@@ -5469,11 +5493,13 @@
                         <outlet property="lbl_ChooseTimeSlot" destination="WWk-gT-F5B" id="8jR-kp-Ab7"/>
                         <outlet property="lbl_EventDate" destination="FHv-GM-O6M" id="nqI-Ay-fKg"/>
                         <outlet property="lbl_EventTitle" destination="gbv-iO-H1G" id="ZNG-Qm-LLH"/>
+                        <outlet property="lbl_available" destination="QT6-rB-EKo" id="Hbc-Ju-fI9"/>
                         <outlet property="lbl_description" destination="eFM-vP-ggU" id="2kC-VN-8Dh"/>
                         <outlet property="lbl_eventDateValidation" destination="wAi-FY-eLV" id="k40-BM-UfY"/>
                         <outlet property="lbl_eventValidation" destination="LUg-Ap-6zi" id="QwY-dt-9N8"/>
                         <outlet property="lbl_partiesValidation" destination="wqL-Bq-X5Z" id="nkX-kk-Bcp"/>
                         <outlet property="lbl_timeSlotValidation" destination="K0n-nS-LhY" id="Rl2-xZ-GBG"/>
+                        <outlet property="lbl_unAvailable" destination="wEw-Ki-5Oc" id="p4Y-U9-Xnt"/>
                         <outlet property="scrollView" destination="MZb-kh-bil" id="H3Y-VB-Klk"/>
                         <outlet property="txt_EventDate" destination="e5K-mu-Yho" id="thj-ib-CpN"/>
                         <outlet property="txt_EventTitle" destination="1vA-A7-t4S" id="ZBI-sg-Vu4"/>

@@ -108,5 +108,4 @@ struct Constants {
     
     static let FIREBASE_USER_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_USER)
         .child(FIREBASE_CHILD_PRIVATE)
-    
 }
