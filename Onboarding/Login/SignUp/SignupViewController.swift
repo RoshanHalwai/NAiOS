@@ -95,7 +95,7 @@ class SignupViewController: NANavigationViewController {
         btnSignup.titleLabel?.font = NAFont().buttonFont()
         
         //scrollView
-        signupScrollView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0)
+        signupScrollView.contentInset = UIEdgeInsetsMake(0, 0, 90, 0)
         
         //tapGasture for upload new image
         profileImage.isUserInteractionEnabled = true
