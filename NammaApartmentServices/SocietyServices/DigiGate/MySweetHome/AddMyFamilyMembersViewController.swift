@@ -154,6 +154,17 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+        
+        //info Button Action
+        infoButton()
+    }
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.flatMembersScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     @objc func keyboardWillShow(sender: NSNotification) {

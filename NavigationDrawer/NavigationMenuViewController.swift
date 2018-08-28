@@ -16,7 +16,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var lbl_Flat: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    var sideMenuArray = [NAString().My_Profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().payments(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us(), NAString().logout()]
+    var sideMenuArray = [NAString().My_Profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().payments(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us()]
     var mainScreen: MainScreenViewController!
     
     override func viewDidLoad() {
@@ -80,8 +80,6 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             let dv4 = NAViewPresenter().settingVC()
             dv4.navTitle = NAString().settings()
             self.navigationController?.pushViewController(dv4, animated: true)
-        } else if currentItem == NAString().logout() {
-            self.logoutAction()
         } else if currentItem == NAString().rate_us() {
             /** calling 'showReviewView' method with desired launch counts needed. **/
             if #available(iOS 10.3, *) {
@@ -96,22 +94,5 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
         mainScreen.opacity_View.isHidden = true
         mainScreen.closeNavigationMenu()
         tableView.deselectRow(at: indexPath!, animated: true)
-    }
-    //To Logout the current user
-    @objc func logoutAction() {
-        //Logout Confirmation Alert
-        NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().logout_Confirmation_Title(), Message: NAString().logout_Confirmation_Message(), CancelStyle: .default, OkStyle: .destructive, OK: { (action) in
-            let preferences = UserDefaults.standard
-            let userUID = NAString().userDefault_USERUID()
-            let loggedIn = NAString().userDefault_Logged_In()
-            preferences.removeObject(forKey: userUID)
-            preferences.set(false, forKey: loggedIn)
-            preferences.synchronize()
-            if self.storyboard != nil {
-                let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
-                let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-                self.present(NavLogin, animated: true)
-            }
-        }, Cancel: { (action) in}, cancelActionTitle: NAString().no(), okActionTitle: NAString().yes())
     }
 }

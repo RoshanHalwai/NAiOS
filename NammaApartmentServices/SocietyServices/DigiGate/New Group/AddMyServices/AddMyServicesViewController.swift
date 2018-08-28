@@ -180,6 +180,17 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         
         self.img_Profile.layer.cornerRadius = self.img_Profile.frame.size.width/2
         img_Profile.clipsToBounds = true
+        
+        //info Button Action
+        infoButton()
+    }
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.dailyServicesScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
     /* - Create name textfield first letter capital function.

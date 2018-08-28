@@ -9,10 +9,9 @@
 import UIKit
 import FirebaseDatabase
 
-class NoticeBoardViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var lbl_Date: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     var navTitle = String()
     
     var myExpectedNoticeBoardList = [NAExpectingNoticeBoard]()
@@ -28,38 +27,43 @@ class NoticeBoardViewController: NANavigationViewController, UICollectionViewDel
         
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()
-        
-        //Setting Label Font
-        lbl_Date.font = NAFont().labelFont()
-        
-        var layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
-        layout.minimumInteritemSpacing = 5
-        layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: self.collectionView.frame.size.height/3)
     }
     
-    //MARK: CollectionView Delegate and DataSource Methods
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //MARK: TableView Delegate and DataSource Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myExpectedNoticeBoardList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! NoticeBoardCollectionViewCell
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! NoticeBoardTableViewCell
         let myNoticeBoardsList : NAExpectingNoticeBoard
         myNoticeBoardsList = myExpectedNoticeBoardList[indexPath.row]
         
+        //Created local variable to store Date & Time from firebase
+        var dateTimeString : String
+        dateTimeString = myNoticeBoardsList.getdateAndTime()
+        //Created array to spilt Date & time in separate variables
+        let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
+        let dateString: String = arrayOfDateTime[0]
+        
         cell.lbl_FestivalName.text = myNoticeBoardsList.gettitle()
-        cell.lbl_FestivalDesription.text = myNoticeBoardsList.getdescription()
+        cell.lbl_FestivalDescription.text = myNoticeBoardsList.getdescription()
         cell.lbl_AdminName.text = myNoticeBoardsList.getnameOfAdmin()
-        lbl_Date.text = myNoticeBoardsList.getdateAndTime()
+        cell.lbl_Date.text = dateString
         
         //assigning font & style to cell labels
         cell.lbl_FestivalName.font = NAFont().headerFont()
-        cell.lbl_FestivalDesription.font = NAFont().headerFont()
-        cell.lbl_AdminName.font = NAFont().headerFont()
+        cell.lbl_FestivalDescription.font = NAFont().textFieldFont()
+        cell.lbl_AdminName.font = NAFont().textFieldFont()
+        cell.lbl_Date.font = NAFont().textFieldFont()
         
-        NAShadowEffect().shadowEffect(Cell: cell)
+        //cardUIView
+        cell.cardView.layer.cornerRadius = 3
+        cell.cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
+        cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        cell.cardView.layer.shadowRadius = 1.7
+        cell.cardView.layer.shadowOpacity = 0.45
+        
         return cell
     }
 }
@@ -83,7 +87,7 @@ extension NoticeBoardViewController {
                             let noticeBoardDetails = NAExpectingNoticeBoard(title: title, description: description,nameOfAdmin : nameOfAdmin,dateAndTime : dateAndTime)
                             self.myExpectedNoticeBoardList.append(noticeBoardDetails)
                             NAActivityIndicator.shared.hideActivityIndicator()
-                            self.collectionView.reloadData()
+                            self.tableView.reloadData()
                         })
                     }
                 }

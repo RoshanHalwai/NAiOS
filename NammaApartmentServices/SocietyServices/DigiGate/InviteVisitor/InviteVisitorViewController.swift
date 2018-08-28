@@ -129,6 +129,18 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         btnSelectContact.backgroundColor = NAColor().buttonBgColor()
         btnInviteVisitor.setTitle(NAString().btnInvite().uppercased(), for: .normal)
         btnSelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
+        
+        //info Button Action
+        infoButton()
+        
+    }
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.visitorsScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
 
     //Create name textfield first letter capital function
@@ -424,5 +436,22 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
             }
         }
         return true
+    }
+}
+//made extension for Global use of info Button Action.
+extension UIViewController {
+    func infoButton() {
+        let infoButton = UIButton(type: .system)
+        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
+        let info = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.setRightBarButton(info, animated: true)
+    }
+    
+    // Navigate to FAQ's VC
+    @objc func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        self.navigationController?.pushViewController(faqVC, animated: true)
     }
 }
