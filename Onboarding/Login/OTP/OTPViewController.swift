@@ -59,6 +59,7 @@ class OTPViewController: NANavigationViewController {
     //Created variables for timer functionality
     var countdownTimer: Timer!
     var totalTime = 120
+    var timeisOn = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,6 +111,7 @@ class OTPViewController: NANavigationViewController {
     
         //Start timer on View load
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        timeisOn = true
         
         //Performing action on Change Mobile Number Function
         let tapChangeMobile = UITapGestureRecognizer(target: self, action: #selector(tapChangeMobileNumber))
@@ -128,7 +130,11 @@ class OTPViewController: NANavigationViewController {
             //Generating OTP again & again changing Text of lables
             lbl_WaitingForOTP.text = NAString().waitingForOTP()
             
-            //TODO:Need to restart Timer
+            //resetting Time
+            totalTime = 120
+            lbl_ShowTimer.text = "\(timeFormatted(totalTime))"
+            timeisOn = true
+            countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
              triggerOTPFromFirebase()
         }
     }
@@ -142,11 +148,13 @@ class OTPViewController: NANavigationViewController {
             totalTime -= 1
         } else {
             endTimer()
+            timeisOn = false
         }
     }
     
     func endTimer() {
         countdownTimer.invalidate()
+        timeisOn = false
         lbl_WaitingForOTP.text = NAString().resendOTP()
         lbl_ShowTimer.text = NAString().changeMobileNumber()
     }
