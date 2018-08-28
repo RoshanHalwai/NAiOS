@@ -38,7 +38,6 @@ class MyWalletViewController: NANavigationViewController {
         btn_ApartmentServices.titleLabel?.font = NAFont().lato_Regular_16()
         btn_SocietyServices.titleLabel?.font = NAFont().lato_Regular_16()
         
-        
         lbl_nammaApartment.text = NAString().nammaApartments_E_Payment()
         lbl_description.text = NAString().wallet_Description()
         lbl_payFor.text = NAString().make_payment_For()
