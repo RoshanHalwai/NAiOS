@@ -45,15 +45,15 @@ class EventManagementViewController: NANavigationViewController {
     
     //To set navigation title
     var navTitle : String?
+    
     var eventNotificationUID = String()
     var getButtonHour_Text = String()
     var getButtonCategory_Text = String()
+    var eventSlot = String()
     
     //created date picker programtically
     let picker = UIDatePicker()
-    
-    var eventSlot = String()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -339,6 +339,10 @@ extension EventManagementViewController {
         
         let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
         eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
+        
+        let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
+        notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())
+        
         let userDataRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
         userDataRef.child(serviceType).child(eventNotificationUID).setValue(NAString().gettrue())
         
