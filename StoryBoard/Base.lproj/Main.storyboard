@@ -715,7 +715,6 @@
                             <constraint firstItem="smv-mZ-sRz" firstAttribute="trailing" secondItem="GJW-aW-uLt" secondAttribute="trailing" id="uZO-aF-GJv"/>
                             <constraint firstItem="cka-JB-TcY" firstAttribute="bottom" secondItem="GJW-aW-uLt" secondAttribute="bottom" id="ymH-yI-91a"/>
                             <constraint firstItem="9jL-U7-0z1" firstAttribute="top" secondItem="smv-mZ-sRz" secondAttribute="bottom" constant="5" id="z7x-D1-s4j"/>
-                            <constraint firstItem="9jL-U7-0z1" firstAttribute="leading" secondItem="cka-JB-TcY" secondAttribute="trailing" id="zun-uv-hie"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GJW-aW-uLt"/>
                     </view>
