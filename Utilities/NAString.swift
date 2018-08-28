@@ -254,9 +254,6 @@ class NAString : NSObject {
     }
     
     //Home Screen
-    func my_profile() -> String {
-        return String("MyProfile")
-    }
     func My_Profile() -> String {
         return String("My Profile")
     }
@@ -336,6 +333,10 @@ class NAString : NSObject {
         return String("SIGN OUT")
     }
     
+    func eIntercom() -> String {
+        return String("E-Intercom")
+    }
+    
     func eIntercom_Notification() -> String {
         return String("E-Intercom Notifications")
     }
@@ -385,7 +386,7 @@ class NAString : NSObject {
     }
     
     func address_Detail() -> String {
-        return String("For any queries, contact: \n\n Full Address: \n #59/2, \n Kirtan Labs, \n 9th Cross, Tulasi Theatre Road, \n Marathahalli,\n Bengaluru - 560037, \n Karanataka \n\n Landmark: Behind Innovative Multiplex \n\n Contact No: \n Ashish Jha \n Mob No: +91-9986553474 \n Email:iamashishjha@gmail.com")
+        return String("For any queries, contact: \n\n Full Address: \n #59/2, \n Kirtan Labs, \n 9th Cross, Tulasi Theatre Road, \n Marathahalli,\n Bengaluru - 560037, \n Karanataka \n\n Landmark: Behind Innovative Multiplex \n\n Contact No: \n Ashish Jha \n Mob No: +91-9986553474 \n E-mail: iamashishjha@gmail.com")
     }
     
     func privacy_policy_Detail() -> String {
@@ -1087,7 +1088,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorGroceriesServices() -> String {
-        return String("Sorry you cannot use this feature since this feature is yet to be implemented.")
+        return String("We are setting Up soon in your Society. We will notify you when once we are there.")
     }
     
     func statusNotEntered() -> String {
@@ -1659,14 +1660,9 @@ class NAString : NSObject {
         return String("electrician")
     }
     
-    //My Wallet Screen
-    func myWallet() -> String {
-        return String("My Wallet")
-    }
-    
     //Maintenance Services Screen
-    func maintenanceServices() -> String {
-        return String("Maintenance Services")
+    func SocietyServices() -> String {
+        return String("Society Services")
     }
     
     func payNow() -> String {
@@ -1709,8 +1705,49 @@ class NAString : NSObject {
         return String("Verified")
     }
     
+    //My Wallet
+    func nammaApartments_E_Payment() -> String {
+        return String("Namma Apartments E-Payment")
+    }
+    
+    func wallet_Description() -> String {
+        return String("Hola! Now we provide you an option to make online payments for your Society and Apartment Services.")
+    }
+    
+    func make_payment_For() -> String {
+        return String("Make Payment For")
+    }
+    
+    func societyServices() -> String {
+        return String("Society Services")
+    }
+    
+    func ApartmentServices() -> String {
+        return String("Apartment Services")
+    }
+    
+    func myTransactions() -> String {
+        return String("My Transaction")
+    }
+    
+    func myWallet() -> String {
+        return String("My Wallet")
+    }
+    
+    func payments() -> String {
+        return String("Payments")
+    }
+
     func location_Permission() -> String {
         return String("Turn On Location Services to Allow 'Namma Apartments' to Determine Your Location")
+    }
+    
+    func available() -> String {
+        return String("Available")
+    }
+    
+    func unavailable() -> String {
+        return String("Unavailable")
     }
 }
 
