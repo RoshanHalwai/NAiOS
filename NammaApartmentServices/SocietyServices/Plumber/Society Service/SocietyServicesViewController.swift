@@ -175,7 +175,6 @@ class SocietyServicesViewController: NANavigationViewController {
         
         //created Array for history and info button icons
         self.navigationItem.setRightBarButtonItems([info,history], animated: true)
-        
     }
     
     // Navigate to FAQ's VC
