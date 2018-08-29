@@ -132,7 +132,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         //info Button Action
         infoButton()
-        
     }
     
     // Navigate to FAQ's VC
@@ -438,6 +437,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         return true
     }
 }
+
 //made extension for Global use of info Button Action.
 extension UIViewController {
     func infoButton() {
