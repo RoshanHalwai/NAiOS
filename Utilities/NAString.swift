@@ -221,6 +221,14 @@ class NAString : NSObject {
         return String("Please Select Your Relation")
     }
     
+    func please_select_your_problem() -> String {
+        return String("Please Select Your Problem")
+    }
+    
+    func please_enter_your_problem() -> String {
+        return String("Please Enter Your Problem")
+    }
+    
     func please_enter_Valid_email() -> String {
         return String("Please enter a Valid Email address")
     }
@@ -1748,6 +1756,10 @@ class NAString : NSObject {
     
     func unavailable() -> String {
         return String("Unavailable")
+    }
+    
+    func others() -> String {
+        return String("Others")
     }
 }
 
