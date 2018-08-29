@@ -5288,88 +5288,153 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Time Slot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWk-gT-F5B">
-                                                <rect key="frame" x="10" y="299" width="355" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="avH-wE-NWc">
-                                                <rect key="frame" x="10" y="329.5" width="355" height="39"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zFy-JO-Xml">
+                                                <rect key="frame" x="20" y="311.5" width="335" height="296"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-fC-E5V">
-                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="39"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ltj-om-c3f">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="247"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Time Slot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWk-gT-F5B">
+                                                                <rect key="frame" x="0.0" y="0.0" width="335" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="avH-wE-NWc">
+                                                                <rect key="frame" x="0.0" y="35.5" width="335" height="39"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SmR-fC-E5V">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="165" height="39"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="39" id="5WH-Im-D5d"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="8AM - 12PM">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="btnSelectSlotFunction:" destination="vih-4W-IOG" eventType="touchUpInside" id="prc-ZH-lxb"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ksd-I4-ybd">
+                                                                        <rect key="frame" x="170" y="0.0" width="165" height="39"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="39" id="Nmx-B3-yhh"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="12PM - 4PM">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="btnSelectSlotFunction:" destination="vih-4W-IOG" eventType="touchUpInside" id="Wks-Hc-WnY"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ebg-Tc-f3J">
+                                                                <rect key="frame" x="0.0" y="89.5" width="335" height="39"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ml-hQ-IxS">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="165" height="39"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="39" id="JKA-PU-73s"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="4PM - 8PM">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="btnSelectSlotFunction:" destination="vih-4W-IOG" eventType="touchUpInside" id="We9-fw-lVP"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDb-Rv-y3V">
+                                                                        <rect key="frame" x="170" y="0.0" width="165" height="39"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="39" id="cbX-LG-JZr"/>
+                                                                        </constraints>
+                                                                        <state key="normal" title="8PM - 12PM">
+                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="btnSelectSlotFunction:" destination="vih-4W-IOG" eventType="touchUpInside" id="5Qi-z4-be5"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select atleast one button" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0n-nS-LhY">
+                                                                <rect key="frame" x="0.0" y="143.5" width="335" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="T2j-my-HM3">
+                                                                <rect key="frame" x="0.0" y="179" width="183.5" height="12"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Opu-bv-x8c" userLabel="View_Unavailable">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
+                                                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="12" id="Grc-b9-I5r"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avilable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QT6-rB-EKo">
+                                                                        <rect key="frame" x="22" y="0.0" width="50" height="12"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5VJ-AW-IIa" userLabel="View_Unavailable">
+                                                                        <rect key="frame" x="82" y="0.0" width="12" height="12"/>
+                                                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="12" id="hsQ-tJ-8tR"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Un Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEw-Ki-5Oc">
+                                                                        <rect key="frame" x="104" y="0.0" width="79.5" height="12"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="12" id="ulj-8A-Lma"/>
+                                                                </constraints>
+                                                            </stackView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For any queries related to time slot, Contact Admin." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-vP-ggU">
+                                                                <rect key="frame" x="0.0" y="206" width="335" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="39" id="5WH-Im-D5d"/>
+                                                            <constraint firstItem="WWk-gT-F5B" firstAttribute="leading" secondItem="ltj-om-c3f" secondAttribute="leading" id="7CX-Zt-2EP"/>
+                                                            <constraint firstAttribute="trailing" secondItem="eFM-vP-ggU" secondAttribute="trailing" id="8AT-AH-qIu"/>
+                                                            <constraint firstItem="avH-wE-NWc" firstAttribute="leading" secondItem="ltj-om-c3f" secondAttribute="leading" id="TLw-Mt-3D1"/>
+                                                            <constraint firstItem="eFM-vP-ggU" firstAttribute="top" secondItem="T2j-my-HM3" secondAttribute="bottom" constant="15" id="Ydc-XJ-nTj"/>
+                                                            <constraint firstItem="WWk-gT-F5B" firstAttribute="top" secondItem="ltj-om-c3f" secondAttribute="top" id="aee-Da-ZlL"/>
+                                                            <constraint firstItem="K0n-nS-LhY" firstAttribute="top" secondItem="ebg-Tc-f3J" secondAttribute="bottom" constant="15" id="czz-hR-dL7"/>
+                                                            <constraint firstAttribute="trailing" secondItem="avH-wE-NWc" secondAttribute="trailing" id="dTz-xy-Z6C"/>
+                                                            <constraint firstItem="T2j-my-HM3" firstAttribute="top" secondItem="K0n-nS-LhY" secondAttribute="bottom" constant="15" id="fj4-Uf-KqI"/>
+                                                            <constraint firstAttribute="trailing" secondItem="K0n-nS-LhY" secondAttribute="trailing" id="hAe-4Z-HVu"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ebg-Tc-f3J" secondAttribute="trailing" id="ks6-TZ-ptE"/>
+                                                            <constraint firstItem="ebg-Tc-f3J" firstAttribute="top" secondItem="avH-wE-NWc" secondAttribute="bottom" constant="15" id="lEj-d2-3kA"/>
+                                                            <constraint firstItem="avH-wE-NWc" firstAttribute="top" secondItem="WWk-gT-F5B" secondAttribute="bottom" constant="15" id="q3q-yJ-BLv"/>
+                                                            <constraint firstAttribute="trailing" secondItem="WWk-gT-F5B" secondAttribute="trailing" id="rpd-VU-GIj"/>
                                                         </constraints>
-                                                        <state key="normal" title="8AM - 12PM">
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hX-R7-k8j">
+                                                        <rect key="frame" x="0.0" y="257" width="335" height="39"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="39" id="Nek-6s-b2O"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="btnSelectSlotFunction:" destination="vih-4W-IOG" eventType="touchUpInside" id="prc-ZH-lxb"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ksd-I4-ybd">
-                                                        <rect key="frame" x="180" y="0.0" width="175" height="39"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="39" id="Nmx-B3-yhh"/>
-                                                        </constraints>
-                                                        <state key="normal" title="12PM - 4PM">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="btnSelectSlotFunction:" destination="vih-4W-IOG" eventType="touchUpInside" id="Wks-Hc-WnY"/>
+                                                            <action selector="btn_bookAction" destination="vih-4W-IOG" eventType="touchUpInside" id="ymV-ow-czM"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ebg-Tc-f3J">
-                                                <rect key="frame" x="10" y="378.5" width="355" height="39"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ml-hQ-IxS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="39"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="39" id="JKA-PU-73s"/>
-                                                        </constraints>
-                                                        <state key="normal" title="4PM - 8PM">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="btnSelectSlotFunction:" destination="vih-4W-IOG" eventType="touchUpInside" id="We9-fw-lVP"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDb-Rv-y3V">
-                                                        <rect key="frame" x="180" y="0.0" width="175" height="39"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="39" id="cbX-LG-JZr"/>
-                                                        </constraints>
-                                                        <state key="normal" title="8PM - 12PM">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="btnSelectSlotFunction:" destination="vih-4W-IOG" eventType="touchUpInside" id="5Qi-z4-be5"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For any queries related to time slot, Contact Admin." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFM-vP-ggU">
-                                                <rect key="frame" x="25" y="464.5" width="325" height="41"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hX-R7-k8j">
-                                                <rect key="frame" x="20" y="525.5" width="335" height="39"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="39" id="Nek-6s-b2O"/>
-                                                </constraints>
-                                                <state key="normal" title="Button">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btn_bookAction" destination="vih-4W-IOG" eventType="touchUpInside" id="ymV-ow-czM"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Your Event" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUg-Ap-6zi">
                                                 <rect key="frame" x="20" y="91" width="335" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -5388,88 +5453,42 @@
                                                 <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select atleast one button" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0n-nS-LhY">
-                                                <rect key="frame" x="20" y="414.5" width="335" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VJ-AW-IIa" userLabel="View_Unavailable">
-                                                <rect key="frame" x="135" y="443" width="10" height="10"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wEw-Ki-5Oc">
-                                                <rect key="frame" x="153" y="437" width="88" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Opu-bv-x8c" userLabel="View_Unavailable">
-                                                <rect key="frame" x="20" y="444" width="10" height="10"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QT6-rB-EKo">
-                                                <rect key="frame" x="38" y="438" width="88" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="K0n-nS-LhY" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="04E-NE-w5N"/>
-                                            <constraint firstAttribute="trailing" secondItem="ebg-Tc-f3J" secondAttribute="trailing" constant="10" id="1Vp-XQ-375"/>
                                             <constraint firstItem="gbv-iO-H1G" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="1tJ-Yh-Azt"/>
-                                            <constraint firstItem="ebg-Tc-f3J" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="30q-Tk-dSv"/>
                                             <constraint firstItem="e5K-mu-Yho" firstAttribute="leading" secondItem="FHv-GM-O6M" secondAttribute="trailing" constant="8" id="4p1-b0-TSb"/>
                                             <constraint firstItem="wAi-FY-eLV" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="4th-WT-1Ru"/>
                                             <constraint firstItem="wAi-FY-eLV" firstAttribute="top" secondItem="FHv-GM-O6M" secondAttribute="bottom" constant="6.5" id="5Zq-S1-Qay"/>
                                             <constraint firstItem="iLk-pW-LYu" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="6df-6t-CkF"/>
+                                            <constraint firstItem="zFy-JO-Xml" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="9bD-ue-eX1"/>
                                             <constraint firstItem="2fC-UW-fbG" firstAttribute="top" secondItem="iLk-pW-LYu" secondAttribute="bottom" constant="10" id="AGe-xe-9iv"/>
+                                            <constraint firstItem="zFy-JO-Xml" firstAttribute="top" secondItem="wAi-FY-eLV" secondAttribute="bottom" constant="15" id="CNj-bc-rYH"/>
                                             <constraint firstAttribute="trailing" secondItem="wAi-FY-eLV" secondAttribute="trailing" constant="20" id="CU1-oI-7ez"/>
-                                            <constraint firstAttribute="trailing" secondItem="5hX-R7-k8j" secondAttribute="trailing" constant="20" id="Ela-b2-ETr"/>
-                                            <constraint firstItem="5hX-R7-k8j" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="GQ7-Ae-mwk"/>
-                                            <constraint firstItem="avH-wE-NWc" firstAttribute="top" secondItem="WWk-gT-F5B" secondAttribute="bottom" constant="10" id="KlV-8s-PiE"/>
                                             <constraint firstAttribute="trailing" secondItem="LUg-Ap-6zi" secondAttribute="trailing" constant="20" id="L7Z-5D-D7o"/>
-                                            <constraint firstItem="ebg-Tc-f3J" firstAttribute="top" secondItem="avH-wE-NWc" secondAttribute="bottom" constant="10" id="NXh-f2-idn"/>
                                             <constraint firstItem="gbv-iO-H1G" firstAttribute="top" secondItem="Gfe-bb-iUk" secondAttribute="top" constant="20" id="NmO-vj-T0V"/>
-                                            <constraint firstAttribute="trailing" secondItem="K0n-nS-LhY" secondAttribute="trailing" constant="20" id="O26-hq-JQD"/>
                                             <constraint firstItem="1vA-A7-t4S" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="OUo-Kh-Drt"/>
                                             <constraint firstAttribute="trailing" secondItem="2fC-UW-fbG" secondAttribute="trailing" constant="10" id="SwT-fq-ZIL"/>
-                                            <constraint firstAttribute="trailing" secondItem="avH-wE-NWc" secondAttribute="trailing" constant="10" id="WLy-ep-75F"/>
                                             <constraint firstItem="2fC-UW-fbG" firstAttribute="top" secondItem="LUg-Ap-6zi" secondAttribute="bottom" constant="29" id="Yjo-Ja-gZs"/>
                                             <constraint firstItem="LUg-Ap-6zi" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="Yw2-3B-iI5"/>
-                                            <constraint firstItem="eFM-vP-ggU" firstAttribute="top" secondItem="ebg-Tc-f3J" secondAttribute="bottom" constant="47" id="Z8O-gg-V8g"/>
-                                            <constraint firstItem="avH-wE-NWc" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="ZCJ-a4-PjU"/>
                                             <constraint firstItem="FHv-GM-O6M" firstAttribute="top" secondItem="xxW-oe-DhG" secondAttribute="bottom" constant="20" id="aqC-V6-9Xx"/>
                                             <constraint firstAttribute="trailing" secondItem="gbv-iO-H1G" secondAttribute="trailing" constant="10" id="b1m-Zn-y0m"/>
                                             <constraint firstItem="iLk-pW-LYu" firstAttribute="top" secondItem="1vA-A7-t4S" secondAttribute="bottom" constant="20" id="dpU-un-raD"/>
-                                            <constraint firstAttribute="trailing" secondItem="eFM-vP-ggU" secondAttribute="trailing" constant="25" id="e13-xN-cxL"/>
                                             <constraint firstAttribute="trailing" secondItem="wqL-Bq-X5Z" secondAttribute="trailing" constant="20" id="fwn-bk-bjW"/>
-                                            <constraint firstItem="WWk-gT-F5B" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="g3U-qj-GFT"/>
                                             <constraint firstAttribute="trailing" secondItem="e5K-mu-Yho" secondAttribute="trailing" constant="10" id="gUD-uY-QTw"/>
                                             <constraint firstItem="xxW-oe-DhG" firstAttribute="top" secondItem="2fC-UW-fbG" secondAttribute="bottom" constant="10" id="i0S-XU-uHe"/>
+                                            <constraint firstAttribute="trailing" secondItem="zFy-JO-Xml" secondAttribute="trailing" constant="20" id="iJX-vj-6lB"/>
                                             <constraint firstItem="LUg-Ap-6zi" firstAttribute="top" secondItem="1vA-A7-t4S" secondAttribute="bottom" constant="0.5" id="kLE-bK-XNW"/>
                                             <constraint firstItem="2fC-UW-fbG" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="nTI-UL-TX5"/>
                                             <constraint firstItem="FHv-GM-O6M" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="nZH-8f-SGw"/>
-                                            <constraint firstItem="WWk-gT-F5B" firstAttribute="top" secondItem="e5K-mu-Yho" secondAttribute="bottom" constant="20" id="nc8-At-cLo"/>
-                                            <constraint firstItem="5hX-R7-k8j" firstAttribute="top" secondItem="eFM-vP-ggU" secondAttribute="bottom" constant="20" id="ncA-lm-Do5"/>
                                             <constraint firstItem="e5K-mu-Yho" firstAttribute="top" secondItem="xxW-oe-DhG" secondAttribute="bottom" constant="20" id="p9l-oa-OZd"/>
-                                            <constraint firstAttribute="trailing" secondItem="WWk-gT-F5B" secondAttribute="trailing" constant="10" id="pm7-c6-Pg4"/>
                                             <constraint firstItem="xxW-oe-DhG" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="10" id="qiY-q2-FNg"/>
-                                            <constraint firstItem="eFM-vP-ggU" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="25" id="ql1-6J-eEg"/>
-                                            <constraint firstItem="WWk-gT-F5B" firstAttribute="top" secondItem="wAi-FY-eLV" secondAttribute="bottom" constant="2.5" id="sxE-jf-SSk"/>
                                             <constraint firstAttribute="trailing" secondItem="xxW-oe-DhG" secondAttribute="trailing" constant="10" id="tKI-Gw-dX8"/>
                                             <constraint firstItem="wqL-Bq-X5Z" firstAttribute="leading" secondItem="Gfe-bb-iUk" secondAttribute="leading" constant="20" id="vc5-Zz-lyi"/>
                                             <constraint firstAttribute="trailing" secondItem="1vA-A7-t4S" secondAttribute="trailing" constant="10" id="vdl-hx-dDx"/>
                                             <constraint firstAttribute="trailing" secondItem="iLk-pW-LYu" secondAttribute="trailing" constant="10" id="vv5-FF-U16"/>
                                             <constraint firstItem="wqL-Bq-X5Z" firstAttribute="top" secondItem="2fC-UW-fbG" secondAttribute="bottom" constant="48" id="x2h-0V-I6A"/>
                                             <constraint firstItem="1vA-A7-t4S" firstAttribute="top" secondItem="gbv-iO-H1G" secondAttribute="bottom" constant="20" id="y76-2K-e4M"/>
-                                            <constraint firstItem="K0n-nS-LhY" firstAttribute="top" secondItem="avH-wE-NWc" secondAttribute="bottom" constant="46" id="zCz-4B-b3O"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -5502,6 +5521,7 @@
                         <outlet property="btn_Meetings" destination="7au-m1-Ymp" id="n6g-TP-R5A"/>
                         <outlet property="btn_Parties" destination="Oe7-VQ-0bj" id="I6j-1S-CUV"/>
                         <outlet property="btn_Seminars" destination="p3E-ec-YVs" id="zr1-Bk-xvp"/>
+                        <outlet property="btn_stackView" destination="zFy-JO-Xml" id="bub-Ta-Dwi"/>
                         <outlet property="lbl_ChooseCategory" destination="iLk-pW-LYu" id="bZc-WR-Sxo"/>
                         <outlet property="lbl_ChooseTimeSlot" destination="WWk-gT-F5B" id="8jR-kp-Ab7"/>
                         <outlet property="lbl_EventDate" destination="FHv-GM-O6M" id="nqI-Ay-fKg"/>
@@ -5514,6 +5534,7 @@
                         <outlet property="lbl_timeSlotValidation" destination="K0n-nS-LhY" id="Rl2-xZ-GBG"/>
                         <outlet property="lbl_unAvailable" destination="wEw-Ki-5Oc" id="p4Y-U9-Xnt"/>
                         <outlet property="scrollView" destination="MZb-kh-bil" id="H3Y-VB-Klk"/>
+                        <outlet property="timeSlot_stackView" destination="ltj-om-c3f" id="nFI-J4-8CN"/>
                         <outlet property="txt_EventDate" destination="e5K-mu-Yho" id="thj-ib-CpN"/>
                         <outlet property="txt_EventTitle" destination="1vA-A7-t4S" id="ZBI-sg-Vu4"/>
                     </connections>
