@@ -11,7 +11,6 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
-import FirebaseMessaging
 
 //Calling class & adding in singleton class to get values
 class SingletonFlatDetails {
@@ -375,13 +374,6 @@ extension MyFlatDetailsViewController {
                             
                             //Adding users data under  Users/Private/UID & mapping UID
                             self.usersPersonalDetailsRef?.setValue(usersPersonalData)
-                            
-                            //Created Token ID & Storing in Firebase
-                            let token = Messaging.messaging().fcmToken
-                            
-                            var usersTokenRef : DatabaseReference?
-                            usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID!)
-                            usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
                             
                             //Storing UID under Users/Private/UID
                             self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID!)

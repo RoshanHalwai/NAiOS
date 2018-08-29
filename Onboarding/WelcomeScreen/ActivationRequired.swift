@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseMessaging
 
 class ActivationRequired: NANavigationViewController {
     @IBOutlet weak var welcomeImage: UIImageView!
@@ -31,6 +32,13 @@ class ActivationRequired: NANavigationViewController {
     func userPrivileges() {
         var userUID = String()
         userUID = (Auth.auth().currentUser?.uid)!
+        
+        //Created Token ID & Storing in Firebase
+        let token = Messaging.messaging().fcmToken
+        
+        var usersTokenRef : DatabaseReference?
+        usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
+        usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         var usersVerifiedRef : DatabaseReference?
         usersVerifiedRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
