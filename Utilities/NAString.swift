@@ -314,7 +314,7 @@ class NAString : NSObject {
     }
     
     func faqs() -> String {
-        return String("FAQ's")
+        return String("FAQs")
     }
     
     func using_namma_apartments_app() -> String {
