@@ -12,6 +12,7 @@ import FirebaseDatabase
 class SocietyServicesViewController: NANavigationViewController {
     
     @IBOutlet weak var txt_SelectAny: UITextField!
+    @IBOutlet weak var txt_Others: UITextField!
     @IBOutlet weak var btn_Immediately : UIButton!
     @IBOutlet weak var btn_9AMto12PM : UIButton!
     @IBOutlet weak var btn_12PMto3PM : UIButton!
@@ -23,10 +24,14 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var lbl_SelectProblem: UILabel!
     @IBOutlet weak var lbl_SelectSlot: UILabel!
     @IBOutlet weak var lbl_ErrorValidation_Message: UILabel!
+    @IBOutlet weak var lbl_description: UILabel!
+    @IBOutlet weak var lbl_DescrptionErrorValidation_Message: UILabel!
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var garbageStackView: UIStackView!
+    @IBOutlet weak var othersStackView: UIStackView!
+    @IBOutlet weak var societyStackView: UIStackView!
     
     var nammaApartmentsSocietyServices = [NASocietyServices]()
     var notificationUID = String()
@@ -48,20 +53,31 @@ class SocietyServicesViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Create textfield first letter capital
+        txt_Others.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
+        
         getButtonHour_Text = NAString().immediately()
         getButtonGarbage_Problem_Text = NAString().dryWaste()
         
         self.txt_SelectAny.text = selectedProblem
         txt_SelectAny.underlined()
-        txt_SelectAny.inputView = UIView()
+        txt_Others.underlined()
         txt_SelectAny.delegate = self
+        txt_Others.delegate = self
         txt_SelectAny.font = NAFont().textFieldFont()
+        txt_Others.font = NAFont().textFieldFont()
+        
+        lbl_ErrorValidation_Message.text = NAString().please_select_your_problem()
+        lbl_DescrptionErrorValidation_Message.text = NAString().please_enter_your_problem()
         
         lbl_ErrorValidation_Message.font = NAFont().descriptionFont()
+        lbl_DescrptionErrorValidation_Message.font = NAFont().descriptionFont()
         lbl_ErrorValidation_Message.isHidden = true
+        lbl_DescrptionErrorValidation_Message.isHidden = true
         
         //Hiding the StackView
         garbageStackView.isHidden = true
+        othersStackView.isHidden = true
         
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)        
@@ -159,7 +175,6 @@ class SocietyServicesViewController: NANavigationViewController {
         
         //created Array for history and info button icons
         self.navigationItem.setRightBarButtonItems([info,history], animated: true)
-
     }
     
     // Navigate to FAQ's VC
@@ -261,6 +276,12 @@ class SocietyServicesViewController: NANavigationViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.txt_SelectAny.text = selectedProblem
+        
+        if (self.txt_SelectAny.text == NAString().others()) {
+            othersStackView.isHidden = false
+        } else {
+            othersStackView.isHidden = true
+        }
     }
     
     //MARK : Create Button Actions
@@ -277,21 +298,40 @@ class SocietyServicesViewController: NANavigationViewController {
     }
     //Calling SelectAny Button Function
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        lbl_ErrorValidation_Message.isHidden = true
-        txt_SelectAny.underlined()
-        let searchVC = NAViewPresenter().societyServiceTableVC()
-        let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
-        searchVC.navigationTitle = NAString().selectAnyProblem()
-        if (navTitle == NAString().plumber()) {
-            searchVC.titleString = NAString().plumber()
-        } else if (navTitle == NAString().carpenter()) {
-            searchVC.titleString = NAString().carpenter()
+        if othersStackView.isHidden == true {
+            lbl_ErrorValidation_Message.isHidden = true
+            txt_SelectAny.underlined()
+            let searchVC = NAViewPresenter().societyServiceTableVC()
+            let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
+            searchVC.navigationTitle = NAString().selectAnyProblem()
+            if (navTitle == NAString().plumber()) {
+                searchVC.titleString = NAString().plumber()
+            } else if (navTitle == NAString().carpenter()) {
+                searchVC.titleString = NAString().carpenter()
+            } else {
+                searchVC.titleString = NAString().electrician()
+            }
+            searchVC.societyServiceVC = self
+            self.navigationController?.present(nav, animated: true, completion: nil)
+            return true
         } else {
-            searchVC.titleString = NAString().electrician()
+            txt_Others.underlined()
+            lbl_DescrptionErrorValidation_Message.isHidden = true
         }
-        searchVC.societyServiceVC = self
-        self.navigationController?.present(nav, animated: true, completion: nil)
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == txt_Others {
+            txt_Others.underlined()
+            lbl_DescrptionErrorValidation_Message.isHidden = true
+        }
+        return true
+    }
+    
+    //Create textfield first letter capital function
+    @objc func valueChanged(sender: UITextField) {
+        sender.text = sender.text?.capitalized
     }
     
     //Create request Plumber Button Action
@@ -304,7 +344,24 @@ class SocietyServicesViewController: NANavigationViewController {
                 lbl_ErrorValidation_Message.isHidden = false
             } else {
                 lbl_ErrorValidation_Message.isHidden = true
-                storeSocietyServiceDetails()
+                txt_SelectAny.underlined()
+            }
+            if (txt_Others.text?.isEmpty)! {
+                txt_Others.redunderlined()
+                lbl_DescrptionErrorValidation_Message.isHidden = false
+            } else {
+                txt_Others.underlined()
+                lbl_DescrptionErrorValidation_Message.isHidden = true
+            }
+            
+            if othersStackView.isHidden == true {
+                if !(txt_SelectAny.text?.isEmpty)! {
+                    storeSocietyServiceDetails()
+                }
+            } else {
+                if !(txt_Others.text?.isEmpty)! && !(txt_SelectAny.text?.isEmpty)! {
+                    storeSocietyServiceDetails()
+                }
             }
         }
     }
@@ -321,7 +378,11 @@ extension SocietyServicesViewController {
             problem = getButtonGarbage_Problem_Text
             serviceType = NAString().garbageManagement()
         } else {
-            problem = selectedProblem
+            if (self.txt_SelectAny.text == NAString().others()) {
+                problem = self.txt_Others.text!
+            } else  {
+                problem = selectedProblem
+            }
             serviceType = (navTitle?.lowercased())!
         }
         let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
