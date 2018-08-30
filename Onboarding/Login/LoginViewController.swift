@@ -20,9 +20,14 @@ class LoginViewController: NANavigationViewController {
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var lbl_Validation: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var cardView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //scrollView
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
         
         //assigned delegate method on textFields
         txt_MobileNo.delegate = self
