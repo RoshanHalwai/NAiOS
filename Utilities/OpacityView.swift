@@ -58,11 +58,9 @@ class OpacityView {
             }
         } else if addButtonTagValue == NAString().addMyDailyServicesButtonTagValue() {
             popupView.lbl_Title.text = NAString().addButtonDailyServicesloadViewTitle()
-        }
-        else if addButtonTagValue == NAString().verifyOTPButtonTagValue() {
+        } else if addButtonTagValue == NAString().verifyOTPButtonTagValue() {
             popupView.lbl_Title.text = NAString().verifyingOTPDescription()
-        }
-        else if addButtonTagValue == NAString().continueButtonTagValue() {
+        } else if addButtonTagValue == NAString().continueButtonTagValue() {
             popupView.lbl_Title.text = NAString().verifyingAccountDescription()
         } else if addButtonTagValue == NAString().doneButtonTagValue() {
             popupView.lbl_Title.text = NAString().eventMessage()
