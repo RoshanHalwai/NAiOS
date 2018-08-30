@@ -242,7 +242,7 @@ class FrequentlyAskedQuestionsViewController: NANavigationViewController, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        UIApplication.shared.open(URL(string: NAString().nammaApartamentsWebsiteLink())!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
         table_View.deselectRow(at: indexPath, animated: true)
     }
 }

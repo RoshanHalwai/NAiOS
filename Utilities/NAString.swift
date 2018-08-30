@@ -1437,7 +1437,7 @@ class NAString : NSObject {
         return ("whatsapp://send?text=Hey%20there%20!%20I%20would%20like%20to%20have%20your%20Service%20at%20my%20Flat.%20Revert%20back%20so%20that%20we%20we%20can%20schedule%20and%20sort%20things%20out%20quickly.")
     }
     
-    func nammaApartamentsWebsiteLink() -> String {
+    func nammaApartmentsWebsiteLink() -> String {
         return ("http://www.nammaapartments.com/faq-template-master/index.html")
     }
     
