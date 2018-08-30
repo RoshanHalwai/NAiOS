@@ -242,9 +242,7 @@ class FrequentlyAskedQuestionsViewController: NANavigationViewController, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexpath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexpath!) as! FrequentlyAskedTableViewCell
-        print(currentCell.label_View.text as Any)
+        UIApplication.shared.open(URL(string: NAString().nammaApartamentsWebsiteLink())!, options: [:], completionHandler: nil)
         table_View.deselectRow(at: indexPath, animated: true)
     }
 }
