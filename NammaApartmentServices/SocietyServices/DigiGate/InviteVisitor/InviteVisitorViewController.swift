@@ -132,7 +132,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         //info Button Action
         infoButton()
-        
     }
     
     // Navigate to FAQ's VC
@@ -278,6 +277,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             
             btnInviteVisitor.tag = NAString().inviteButtonTagValue()
             OpacityView.shared.addButtonTagValue = btnInviteVisitor.tag
+            
             OpacityView.shared.showingOpacityView(view: self)
             OpacityView.shared.showingPopupView(view: self)
         }
