@@ -400,6 +400,13 @@ extension MainScreenViewController {
         OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
         
+        //Created Token ID & Storing in Firebase
+        let token = Messaging.messaging().fcmToken
+        
+        var usersTokenRef : DatabaseReference?
+        usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
+        usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
+        
         //Checking Users UID in Firebase under Users ->Private
         usersPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
         
