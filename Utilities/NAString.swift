@@ -1104,7 +1104,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorGroceriesServices() -> String {
-        return String("We are setting Up soon in your Society. We will notify you when once we are there.")
+        return String("We are setting up soon in your Society. We will notify you when once we are there.")
     }
     
     func statusNotEntered() -> String {
