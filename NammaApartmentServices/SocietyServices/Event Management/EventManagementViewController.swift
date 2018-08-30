@@ -23,6 +23,8 @@ class EventManagementViewController: NANavigationViewController {
     
     @IBOutlet weak var btn_Book : UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var timeSlot_stackView: UIStackView!
+    @IBOutlet weak var btn_stackView: UIStackView!
     
     @IBOutlet weak var lbl_EventTitle: UILabel!
     @IBOutlet weak var lbl_ChooseCategory: UILabel!
@@ -61,6 +63,9 @@ class EventManagementViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Hiding TimeSlot StackView
+        timeSlot_stackView.isHidden = true
+        
         //Create Event Title textfield first letter capital
         txt_EventTitle.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
@@ -72,7 +77,7 @@ class EventManagementViewController: NANavigationViewController {
         lbl_ChooseCategory.font = NAFont().headerFont()
         lbl_EventDate.font = NAFont().headerFont()
         lbl_ChooseTimeSlot.font = NAFont().headerFont()
-        lbl_description.font = NAFont().descriptionFont()
+        lbl_description.font = NAFont().headerFont()
         lbl_eventDateValidation.font = NAFont().descriptionFont()
         lbl_eventValidation.font = NAFont().descriptionFont()
         lbl_partiesValidation.font = NAFont().descriptionFont()
@@ -88,8 +93,8 @@ class EventManagementViewController: NANavigationViewController {
         lbl_description.text = NAString().query_time_slot()
         lbl_eventValidation.text = NAString().event_Validation_Message()
         lbl_eventDateValidation.text = NAString().event_Date()
-        lbl_partiesValidation.text = NAString().Please_select_expected_Hours()
-        lbl_timeSlotValidation.text = NAString().Please_select_expected_Hours()
+        lbl_partiesValidation.text = NAString().chooseCategory()
+        lbl_timeSlotValidation.text = NAString().chooseTimeSlot()
         lbl_unAvailable.text = NAString().unavailable()
         lbl_available.text = NAString().available()
         
@@ -233,6 +238,8 @@ class EventManagementViewController: NANavigationViewController {
         // done button for toolbar
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
         toolbar.setItems([done], animated: false)
+        done.tag = NAString().doneButtonTagValue()
+        OpacityView.shared.addButtonTagValue = done.tag
         dateTextField.inputAccessoryView = toolbar
         dateTextField.inputView = picker
         
@@ -250,6 +257,8 @@ class EventManagementViewController: NANavigationViewController {
         self.view.endEditing(true)
         lbl_eventDateValidation.isHidden = true
         txt_EventDate.underlined()
+        OpacityView.shared.showingOpacityView(view: self)
+        OpacityView.shared.showingPopupView(view: self)
         
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = NAString().convertedDateInFormat()
@@ -258,7 +267,6 @@ class EventManagementViewController: NANavigationViewController {
         convertedDate = inputFormatter.string(from: showDate!)
         //Calling disable booked slot function here
         disableBookedSlot()
-        
     }
     
     //To Navigate to Society Service History VC
@@ -316,7 +324,7 @@ class EventManagementViewController: NANavigationViewController {
     @IBAction func btn_bookAction() {
         if (isValidSelectSlotButtonClicked.index(of: true) == nil) {
             lbl_timeSlotValidation.isHidden = false
-            lbl_timeSlotValidation.text = NAString().Please_select_expected_Hours()
+            lbl_timeSlotValidation.text = NAString().chooseTimeSlot()
         } else {
             lbl_timeSlotValidation.isHidden = true
         }
@@ -336,13 +344,12 @@ class EventManagementViewController: NANavigationViewController {
         }
         if (isValidSelectEventButtonClicked.index(of: true) == nil) {
             lbl_partiesValidation.isHidden = false
-            lbl_partiesValidation.text = NAString().Please_select_expected_Hours()
+            lbl_partiesValidation.text = NAString().chooseCategory()
         } else {
             lbl_partiesValidation.isHidden = true
         }
         if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! && (isValidSelectSlotButtonClicked.index(of: true) != nil) && (isValidSelectEventButtonClicked.index(of: true) != nil) {
             self.storeEventManagementDetails()
-            
         }
     }
 }
@@ -394,6 +401,10 @@ extension EventManagementViewController {
         return true
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        timeSlot_stackView.isHidden = false
+    }
+    
     func storeEventManagementSlot() {
         
         switch getButtonHour_Text {
@@ -416,6 +427,7 @@ extension EventManagementViewController {
     
     //Created Function to get booked slot for the selected date.
     func disableBookedSlot() {
+        
         let bookedEventSlotRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT).child(convertedDate)
         
         bookedEventSlotRef.observeSingleEvent(of: .value) { (slotSnapshot) in
@@ -444,6 +456,8 @@ extension EventManagementViewController {
                         break
                     }
                 }
+                OpacityView.shared.hidingOpacityView()
+                OpacityView.shared.hidingPopupView()
             }
         }
     }

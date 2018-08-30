@@ -68,6 +68,14 @@ class NAString : NSObject {
         return String("Please check your Network Connection")
     }
     
+    func chooseCategory() -> String {
+        return String("Please choose Category")
+    }
+    
+    func chooseTimeSlot() -> String {
+        return String("Please choose Time Slot")
+    }
+    
     //Flat Details Screen
     func My_flat_Details_title() -> String {
         return String("My Flat Details")
@@ -1180,6 +1188,10 @@ class NAString : NSObject {
         return Int (107)
     }
     
+    func doneButtonTagValue() -> Int {
+        return Int (108)
+    }
+    
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)
@@ -1203,6 +1215,14 @@ class NAString : NSObject {
     
     func verifyingOTPDescription() -> String {
         return String ("Verifying Account")
+    }
+    
+    func eventMessage() -> String {
+        return String ("Event Message")
+    }
+    
+    func searchingForBook() -> String {
+        return String ("Searching for booked slots")
     }
     
     func verifyingAccountDescription() -> String {
@@ -1418,11 +1438,11 @@ class NAString : NSObject {
     }
     
     func your_Family_Member() -> String {
-        return "your Family Member"
+        return ("your Family Member")
     }
     
     func your_Friend() -> String {
-        return "your Friend"
+        return ("your Friend")
     }
     
     func their() -> String {
@@ -1430,11 +1450,11 @@ class NAString : NSObject {
     }
     
     func event_Validation_Message() -> String {
-        return "Please Enter Your Event"
+        return ("Please enter event title")
     }
     
     func event_Date() -> String {
-        return "Please Select Your Event Date"
+        return ("Please select date")
     }
     
     func mobileNumberAlreadyExists() -> String {

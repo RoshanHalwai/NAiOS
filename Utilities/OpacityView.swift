@@ -29,7 +29,7 @@ class OpacityView {
     
     //Create showing popup view
     func showingPopupView(view: UIViewController) {
-        popupView = PopupView(frame: CGRect(x: 0, y:0, width: 250, height: 150))
+        popupView = PopupView(frame: CGRect(x: 0, y:0, width: 280, height: 150))
         popupView.center.x = view.view.bounds.width/2
         popupView.center.y = view.view.bounds.height/2
         popupView.lbl_Message.text = NAString().addButtonloadViewMessage()
@@ -60,6 +60,9 @@ class OpacityView {
         }
         else if addButtonTagValue == NAString().continueButtonTagValue() {
             popupView.lbl_Title.text = NAString().verifyingAccountDescription()
+        } else if addButtonTagValue == NAString().doneButtonTagValue() {
+            popupView.lbl_Title.text = NAString().eventMessage()
+            popupView.lbl_Message.text = NAString().searchingForBook()
         }
     }
     

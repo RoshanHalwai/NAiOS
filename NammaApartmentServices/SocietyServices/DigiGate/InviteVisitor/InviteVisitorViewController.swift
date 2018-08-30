@@ -438,6 +438,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         return true
     }
 }
+
 //made extension for Global use of info Button Action.
 extension UIViewController {
     func infoButton() {

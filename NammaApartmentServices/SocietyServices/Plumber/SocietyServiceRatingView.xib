@@ -56,6 +56,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="image" keyPath="emptyStarImage" value="EmptyStar"/>
                         <userDefinedRuntimeAttribute type="image" keyPath="filledStarImage" value="FullStar"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="value">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="didValueChange:" destination="-1" eventType="valueChanged" id="ZUg-pO-v4h"/>
