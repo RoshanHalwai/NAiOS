@@ -19,6 +19,7 @@ class RaiseAlarmViewController: NANavigationViewController {
     var publicEmergencyRef : DatabaseReference?
     
     var titleName =  String()
+    var emergencyType = String()
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class RaiseAlarmViewController: NANavigationViewController {
         
         //Formatting & setting Navigation bar
         super.ConfigureNavBarTitle(title: titleName)
-       
+        
         //info Button Action
         infoButton()
     }
@@ -46,6 +47,23 @@ class RaiseAlarmViewController: NANavigationViewController {
         NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().emergency_alert_Title(), Message: NAString().emergency_Alert_Message(), CancelStyle: .default, OkStyle: .destructive, OK: {(action) in
             self.lbl_Description.isHidden = false
             
+            //Created switch for getting proper emergency type according to screen Title.
+            switch self.titleName {
+            case NAString().medicalEmergency_Title() :
+                self.emergencyType = NAString().medical()
+                
+            case NAString().raise_Fire_Alarm_Title() :
+                self.emergencyType = NAString().fire()
+                
+            case NAString().raise_Theft_Alarm_Title() :
+                self.emergencyType = NAString().theft()
+                
+            case NAString().raise_water_Alarm_Title() :
+                self.emergencyType = NAString().water()
+            default:
+                break
+            }
+           
             //Mapping Emergency UID's under UserData
             self.userDataEmergencyref = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_EMERGENCY)
             
@@ -61,21 +79,8 @@ class RaiseAlarmViewController: NANavigationViewController {
             self.privateEmergencyRef = Database.database().reference()
             self.privateEmergencyRef?.child(Constants.FIREBASE_CHILD_EMERGENCY).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL).child((userFlatDetails?.flatNumber)!).child(emergencyUID!).setValue(NAString().gettrue())
             
-            
             //Storing data in Emergency Public Reference
             self.publicEmergencyRef = Database.database().reference().child(Constants.FIREBASE_CHILD_EMERGENCY).child(Constants.FIREBASE_USER_PUBLIC).child(emergencyUID!)
-            
-            var emergencyType : String?
-            
-            if self.titleName == NAString().medical_emergency() {
-                emergencyType = NAString().medical()
-            } else if self.titleName == NAString().raise_Fire_Alarm_Title() {
-                emergencyType = NAString().fire()
-            } else if self.titleName == NAString().raise_Theft_Alarm_Title() {
-                emergencyType = NAString().theft()
-            } else {
-                emergencyType = NAString().water()
-            }
             
             //defining node with type of data in it.
             let dailyServicesData = [
@@ -83,7 +88,7 @@ class RaiseAlarmViewController: NANavigationViewController {
                 EmergencyFBKeys.apartmentName.key : GlobalUserData.shared.flatDetails_Items.first?.apartmentName as Any,
                 EmergencyFBKeys.fullName.key : GlobalUserData.shared.personalDetails_Items.first?.fullName as Any,
                 EmergencyFBKeys.phoneNumber.key : GlobalUserData.shared.personalDetails_Items.first?.phoneNumber as Any,
-                EmergencyFBKeys.emergencyType.key : emergencyType as Any] as [String : Any]
+                EmergencyFBKeys.emergencyType.key : self.emergencyType]
             
             self.publicEmergencyRef?.setValue(dailyServicesData)
             
