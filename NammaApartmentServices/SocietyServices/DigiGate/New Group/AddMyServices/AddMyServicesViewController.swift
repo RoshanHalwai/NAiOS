@@ -375,7 +375,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
-        if !(txt_Name.text?.isEmpty)! && !(txt_MobileNo.text?.isEmpty)! && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
+        if !(txt_Name.text?.isEmpty)! && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
                 let lv = NAViewPresenter().otpViewController()
                 let dailyServicesString = NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their")

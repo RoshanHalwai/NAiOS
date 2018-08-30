@@ -21,9 +21,13 @@ class OpacityView {
     
     //Create showing Opacity view
     func showingOpacityView(view: UIViewController) {
-        opacityView.frame = CGRect(x: 0, y:0, width:view.view.frame.width, height: view.view.frame.height)
-        opacityView.backgroundColor = UIColor.black
-        opacityView.alpha = 0.5
+        // get your window screen size
+        let screenSize = UIScreen.main.bounds
+        //create a new view with the same size
+        opacityView = UIView(frame: screenSize)
+        // change the background color to black and the opacity to 0.6
+        opacityView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        // add this new view to your main view
         view.view.addSubview(opacityView)
     }
     
@@ -54,11 +58,9 @@ class OpacityView {
             }
         } else if addButtonTagValue == NAString().addMyDailyServicesButtonTagValue() {
             popupView.lbl_Title.text = NAString().addButtonDailyServicesloadViewTitle()
-        }
-        else if addButtonTagValue == NAString().verifyOTPButtonTagValue() {
+        } else if addButtonTagValue == NAString().verifyOTPButtonTagValue() {
             popupView.lbl_Title.text = NAString().verifyingOTPDescription()
-        }
-        else if addButtonTagValue == NAString().continueButtonTagValue() {
+        } else if addButtonTagValue == NAString().continueButtonTagValue() {
             popupView.lbl_Title.text = NAString().verifyingAccountDescription()
         } else if addButtonTagValue == NAString().doneButtonTagValue() {
             popupView.lbl_Title.text = NAString().eventMessage()

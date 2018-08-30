@@ -456,9 +456,9 @@ extension EventManagementViewController {
                         break
                     }
                 }
-                OpacityView.shared.hidingOpacityView()
-                OpacityView.shared.hidingPopupView()
             }
+            OpacityView.shared.hidingOpacityView()
+            OpacityView.shared.hidingPopupView()
         }
     }
 }
