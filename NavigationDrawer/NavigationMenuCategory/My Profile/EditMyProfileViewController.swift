@@ -222,7 +222,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     //For Resizing TableView based on content
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         table_View.layer.removeAllAnimations()
-        list_View_Height_Constraint.constant = table_View.contentSize.height + 37
+//        list_View_Height_Constraint.constant = table_View.contentSize.height + 37
     }
     
     //Create name textfield first letter capital function

@@ -13,7 +13,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btn_AddVehicle: UIButton!
-    
+
     var navTitle = String()
     var expectedVehicleString = String()
     var fromHomeScreenVC = false
@@ -81,7 +81,12 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         cell.lbl_VehicleOwner.font = NAFont().textFieldFont()
         cell.lbl_VehicleAddedOn.font = NAFont().textFieldFont()
         
-        NAShadowEffect().shadowEffect(Cell: cell)
+        //cardUIView
+        cell.cardView.layer.cornerRadius = 3
+        cell.cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
+        cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        cell.cardView.layer.shadowRadius = 1.7
+        cell.cardView.layer.shadowOpacity = 0.45
         
         //setting image round
         cell.myVehicleImage.layer.cornerRadius = cell.myVehicleImage.frame.size.width/2

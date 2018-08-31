@@ -76,15 +76,20 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         cell.lbl_GuardName.font = NAFont().textFieldFont()
         cell.lbl_GuardGateNo.font = NAFont().textFieldFont()
         cell.lbl_GuardStatus.font = NAFont().textFieldFont()
-        
-        NAShadowEffect().shadowEffect(Cell: cell)
-        
+                
         if isActivityIndicatorRunning == false {
             cell.activityIndicator.startAnimating()
         } else if (isActivityIndicatorRunning == true) {
             cell.activityIndicator.stopAnimating()
             cell.activityIndicator.isHidden = true
         }
+        
+        //cardUIView
+        cell.cardView.layer.cornerRadius = 3
+        cell.cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
+        cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        cell.cardView.layer.shadowRadius = 1.7
+        cell.cardView.layer.shadowOpacity = 0.45
         
         //setting image round
         cell.myGuardImage.layer.cornerRadius = cell.myGuardImage.frame.size.width/2

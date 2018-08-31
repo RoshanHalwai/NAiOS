@@ -18,4 +18,6 @@ class MyVehiclesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_VehicleNumber: UILabel!
     @IBOutlet weak var lbl_VehicleOwner: UILabel!
     @IBOutlet weak var lbl_VehicleAddedOn: UILabel!
+    
+    @IBOutlet weak var cardView: UIView!
 }
