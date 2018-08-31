@@ -561,7 +561,7 @@ extension AddMyFamilyMembersViewController {
         let userPrivilegesData = [
             UserPrivilegesListFBKeys.admin.key : NAString().getfalse(),
             UserPrivilegesListFBKeys.grantedAccess.key : grantAccessValue as Any,
-            UserPrivilegesListFBKeys.verified.key : NAString().getVerifiedTrue()
+            UserPrivilegesListFBKeys.verified.key : Constants.FIREBASE_CHILD_VERIFIED_APPROVED
             ] as [String : Any]
         userPrivilegesRef?.setValue(userPrivilegesData)
         

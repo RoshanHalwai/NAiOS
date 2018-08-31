@@ -90,6 +90,8 @@ struct Constants {
     static let FIREBASE_CHILD_SLOT4 = "Slot 4"
     static let FIREBASE_CHILD_LONGITUDE = "longitude"
     static let FIREBASE_CHILD_LATITUDE = "latitude"
+    static let FIREBASE_CHILD_VERIFIED_PENDING = 0
+    static let FIREBASE_CHILD_VERIFIED_APPROVED = 1
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     static let FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
