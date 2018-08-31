@@ -560,9 +560,9 @@ extension AddMyFamilyMembersViewController {
         
         let userPrivilegesData = [
             UserPrivilegesListFBKeys.admin.key : NAString().getfalse(),
-            UserPrivilegesListFBKeys.grantedAccess.key : grantAccessValue,
-            UserPrivilegesListFBKeys.verified.key : NAString().gettrue()
-        ]
+            UserPrivilegesListFBKeys.grantedAccess.key : grantAccessValue as Any,
+            UserPrivilegesListFBKeys.verified.key : Constants.FIREBASE_CHILD_VERIFIED_APPROVED
+            ] as [String : Any]
         userPrivilegesRef?.setValue(userPrivilegesData)
         
         //Store family member's UID under users data structure for future use
