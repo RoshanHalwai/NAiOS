@@ -107,7 +107,7 @@ class RetrieveFamilyMemberList {
             let usersData = userDataSnapshot.value as? [String: AnyObject]
             
             //Creating instance of UserPersonalDetails
-            let userPersonalDataMap = usersData?["personalDetails"] as? [String: AnyObject]
+            let userPersonalDataMap = usersData?[Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String: AnyObject]
             let email = userPersonalDataMap?[UserPersonalListFBKeys.email.key] as? String
             let fullName = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
             let phoneNumber = userPersonalDataMap?[UserPersonalListFBKeys.phoneNumber.key] as? String
@@ -115,14 +115,14 @@ class RetrieveFamilyMemberList {
             let userPersonalDetails = UserPersonalDetails(email: email, fullName: fullName, phoneNumber: phoneNumber, profilePhoto: profilePhoto)
             
             //Creating instance of UserPrivileges
-            let userPrivilegesDataMap = usersData?["privileges"] as? [String: AnyObject]
+            let userPrivilegesDataMap = usersData?[Constants.FIREBASE_CHILD_PRIVILEGES] as? [String: AnyObject]
             let admin = userPrivilegesDataMap?[UserPrivilegesListFBKeys.admin.key] as? Bool
             let grantAccess = userPrivilegesDataMap?[UserPrivilegesListFBKeys.grantedAccess.key] as? Bool
-            let verified = userPrivilegesDataMap?[UserPrivilegesListFBKeys.verified.key] as? Bool
+            let verified = userPrivilegesDataMap?[UserPrivilegesListFBKeys.verified.key] as? Int
             let userPrivileges = UserPrivileges(admin: admin, grantAccess: grantAccess, verified: verified)
             
             //Creating instance of UserFlatDetails
-            var userFlatDataMap = usersData?["flatDetails"] as? [String: AnyObject]
+            var userFlatDataMap = usersData?[Constants.FIREBASE_CHILD_FLATDETAILS] as? [String: AnyObject]
             let apartmentName = userFlatDataMap?[UserFlatListFBKeys.apartmentName.key] as? String
             let city = userFlatDataMap?[UserFlatListFBKeys.city.key] as? String
             let flatNumber = userFlatDataMap?[UserFlatListFBKeys.flatNumber.key] as? String
@@ -131,7 +131,7 @@ class RetrieveFamilyMemberList {
             let userFlatDetails = UserFlatDetails(apartmentName: apartmentName, city: city, flatNumber: flatNumber, societyName: societyName, tenantType: tenantType)
             
             //Create instance of FamilyMembers
-            let userFamilyMembersDataMap:[String: AnyObject]? = usersData?["familyMembers"] as? [String: AnyObject]
+            let userFamilyMembersDataMap:[String: AnyObject]? = usersData?[Constants.FIREBASE_CHILD_FAMILY_MEMBERS] as? [String: AnyObject]
             var familyMembersUIDList = [String]()
             if userFamilyMembersDataMap != nil {
                 for familyMemberUID in (userFamilyMembersDataMap?.keys)! {
@@ -140,7 +140,7 @@ class RetrieveFamilyMemberList {
             }
             
             //Create instance of Friends
-            let userFriendsDataMap:[String: AnyObject]? = usersData?["friends"] as? [String: AnyObject]
+            let userFriendsDataMap:[String: AnyObject]? = usersData?[Constants.FIREBASE_CHILD_FRIENDS] as? [String: AnyObject]
             var friendsUIDList = [String]()
             if userFriendsDataMap != nil {
                 for friendUID in (userFriendsDataMap?.keys)! {

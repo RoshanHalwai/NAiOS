@@ -30,10 +30,10 @@ class UserPrivileges {
     //creatig string variables to get data from Firebase.
     var admin: Bool?
     var grantAccess: Bool?
-    var verified: Bool?
+    var verified: Int?
     
      //initiliazing variables
-    init(admin: Bool?,grantAccess: Bool?,verified: Bool?) {
+    init(admin: Bool?,grantAccess: Bool?,verified: Int?) {
         
         self.admin = admin
         self.grantAccess = grantAccess
@@ -46,7 +46,7 @@ class UserPrivileges {
     func getGrantAccess() -> Bool {
         return grantAccess!
     }
-    func getVerified() -> Bool {
+    func getVerified() -> Int {
         return verified!
     }
 }

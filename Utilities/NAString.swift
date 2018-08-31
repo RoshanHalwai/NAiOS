@@ -1152,6 +1152,14 @@ class NAString : NSObject {
         return Bool (false)
     }
     
+    func getVerifiedTrue() -> Int {
+        return Int (1)
+    }
+    
+    func getVerifiedFalse() -> Int {
+        return Int (0)
+    }
+    
     func notEntered() -> String {
         return String ("Not Entered")
     }

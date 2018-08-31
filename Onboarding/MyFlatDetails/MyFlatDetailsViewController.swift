@@ -332,8 +332,8 @@ extension MyFlatDetailsViewController {
                 let userPrivilegesData = [
                     UserPrivilegesListFBKeys.admin.key : NAString().gettrue(),
                     UserPrivilegesListFBKeys.grantedAccess.key : NAString().gettrue(),
-                    UserPrivilegesListFBKeys.verified.key : NAString().getfalse()
-                ]
+                    UserPrivilegesListFBKeys.verified.key : NAString().getVerifiedFalse()
+                    ] as [String : Any]
                 
                 //Maping UsersUID with admin
                 self.UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN).setValue(userUID)

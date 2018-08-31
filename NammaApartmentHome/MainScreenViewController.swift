@@ -448,7 +448,7 @@ extension MainScreenViewController {
                 
                 //Retriving & Adding data in Privileges
                 let privilage_data = userData![Constants.FIREBASE_CHILD_PRIVILEGES] as? [String : Any]
-                let userPrivileges = UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? Bool, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? Bool, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? Bool )
+                let userPrivileges = UserPrivileges.init(admin: privilage_data![Constants.FIREBASE_CHILD_ADMIN]as? Bool, grantAccess: privilage_data![Constants.FIREBASE_CHILD_GRANTACCESS] as? Bool, verified: privilage_data![Constants.FIREBASE_CHILD_VERIFIED] as? Int)
                 userprivileges.append(userPrivileges)
                 GlobalUserData.shared.privileges_Items = userprivileges
                 
