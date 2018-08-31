@@ -204,11 +204,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         let rejectAction = UIAlertAction(title:NAString().reject(), style: .cancel) { (action) in }
         
         let acceptAction = UIAlertAction(title:NAString().accept(), style: .default) { (action) in
-            
-            let lv = NAViewPresenter().otpViewController()
-            let familyString = NAString().enter_verification_code(first: NAString().your_Family_Member(), second: NAString().their())
-            lv.newOtpString = familyString
-            self.navigationController?.pushViewController(lv, animated: true)
+            self.OTPScreenNavigating()
         }
         alert.addAction(rejectAction)
         alert.addAction(acceptAction)
@@ -394,24 +390,29 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
                 //calling AlertBox on click of YES
                 grantAccessAlert()
             } else {
-                self.txt_Email.endEditing(true)
-                let destVC = NAViewPresenter().otpViewController()
-                var segmentType = String()
-                if familyType == familyMember {
-                    segmentType = NAString().enter_verification_code(first: NAString().your_Friend(), second: NAString().their())
-                } else {
-                    segmentType = NAString().enter_verification_code(first:NAString().your_Family_Member(), second: NAString().their())
-                }
-                destVC.newOtpString = segmentType
-                destVC.getCountryCodeString = self.txt_CountryCode.text!
-                destVC.getMobileString = self.txt_MobileNo.text!
-                //Assigning Delegate
-                destVC.familyDelegateData = self
-                destVC.familyMemberType = segmentType
-                destVC.delegate = self
-                familyMemberExistsOrNot(VC: destVC)
+                OTPScreenNavigating()
             }
         }
+    }
+    
+    //Navigating to OTP Screen 
+    func OTPScreenNavigating() {
+        self.txt_Email.endEditing(true)
+        let destVC = NAViewPresenter().otpViewController()
+        var segmentType = String()
+        if familyType == familyMember {
+            segmentType = NAString().enter_verification_code(first: NAString().your_Friend(), second: NAString().their())
+        } else {
+            segmentType = NAString().enter_verification_code(first:NAString().your_Family_Member(), second: NAString().their())
+        }
+        destVC.newOtpString = segmentType
+        destVC.getCountryCodeString = self.txt_CountryCode.text!
+        destVC.getMobileString = self.txt_MobileNo.text!
+        //Assigning Delegate
+        destVC.familyDelegateData = self
+        destVC.familyMemberType = segmentType
+        destVC.delegate = self
+        familyMemberExistsOrNot(VC: destVC)
     }
     
     func isValidEmailAddress(emailAddressString: String) -> Bool {
