@@ -565,6 +565,10 @@ extension AddMyFamilyMembersViewController {
             ] as [String : Any]
         userPrivilegesRef?.setValue(userPrivilegesData)
         
+        //storing Time stamp for flat members
+        let userOtherDetailsRef = Constants.FIREBASE_USER_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
+        userOtherDetailsRef.child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000))
+        
         //Store family member's UID under users data structure for future use
         userUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_UID)
         userUIDRef?.setValue(familyMemberUID!)
