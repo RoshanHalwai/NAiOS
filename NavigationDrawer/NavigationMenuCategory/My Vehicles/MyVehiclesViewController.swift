@@ -13,7 +13,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btn_AddVehicle: UIButton!
-
+    
     var navTitle = String()
     var expectedVehicleString = String()
     var fromHomeScreenVC = false

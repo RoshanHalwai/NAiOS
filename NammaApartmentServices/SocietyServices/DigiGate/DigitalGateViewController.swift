@@ -22,6 +22,25 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().digital_gate_title())
         self.navigationItem.title = ""
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width/2, height: height/4)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 0
+        
+        //set minimum vertical line spacing here between two lines in collectionview
+        layout.minimumLineSpacing = 0
+        
+        //apply defined layout to collectionview
+        collectionView!.collectionViewLayout = layout
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
