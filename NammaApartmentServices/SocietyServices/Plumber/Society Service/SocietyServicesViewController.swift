@@ -411,13 +411,13 @@ extension SocietyServicesViewController {
         lv.navTitle = NAString().societyService()
         lv.notificationUID = notificationUID
         if (navTitle == NAString().plumber()) {
-            lv.titleString = NAString().plumber()
+            lv.serviceType = NAString().plumber()
         } else if (navTitle == NAString().carpenter()) {
-            lv.titleString = NAString().carpenter()
+            lv.serviceType = NAString().carpenter()
         } else if (navTitle == NAString().electrician()) {
-            lv.titleString = NAString().electrician()
+            lv.serviceType = NAString().electrician()
         } else {
-            lv.titleString = NAString().garbage_management()
+            lv.serviceType = NAString().garbage_management()
         }
         self.navigationController?.pushViewController(lv, animated: true)
     }
