@@ -31,7 +31,7 @@ class AwaitingResponseViewController: NANavigationViewController {
     
     //To set navigation title
     var navTitle : String?
-    var titleString : String?
+    var serviceType : String?
     var notificationUID = String()
     var societyServiceRating : SocietyServiceRatingView!
     
@@ -152,11 +152,11 @@ class AwaitingResponseViewController: NANavigationViewController {
     
     //Create Changing the Society Service Messages Function
     func changingSocietyServiceMessages() {
-        if ( titleString == NAString().plumber()) {
+        if ( serviceType == NAString().plumber()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().plumber())
-        } else if (titleString == NAString().carpenter()) {
+        } else if (serviceType == NAString().carpenter()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().carpenter())
-        } else if (titleString == NAString().electrician()) {
+        } else if (serviceType == NAString().electrician()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().electrician())
         } else {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_management())
