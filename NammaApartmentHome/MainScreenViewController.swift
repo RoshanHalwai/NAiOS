@@ -86,7 +86,7 @@ class MainScreenViewController: NANavigationViewController {
         apartmentData = [
             apartmentServicesModel(cellTitle: NAString().cook(), cellImage: #imageLiteral(resourceName: "Cook")),
             apartmentServicesModel(cellTitle: NAString().maid(),cellImage: #imageLiteral(resourceName: "maid") ),
-            apartmentServicesModel(cellTitle: NAString().car_bike_cleaning(),cellImage:  #imageLiteral(resourceName: "car:Bike Cleaning")),
+            apartmentServicesModel(cellTitle: NAString().car_bike_cleaning(),cellImage:  #imageLiteral(resourceName: "carBike Cleaning")),
             apartmentServicesModel(cellTitle: NAString().child_day_care(),cellImage:  #imageLiteral(resourceName: "childDayCare")),
             apartmentServicesModel(cellTitle: NAString().daily_newspaper(),cellImage:  #imageLiteral(resourceName: "dailyNewsPaper")),
             apartmentServicesModel(cellTitle: NAString().milk_man(),cellImage:  #imageLiteral(resourceName: "milk")),
