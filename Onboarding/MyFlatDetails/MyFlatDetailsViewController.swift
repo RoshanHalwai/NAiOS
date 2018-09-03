@@ -302,6 +302,9 @@ extension MyFlatDetailsViewController {
         //Personal Details Firebase DB Reference
         usersPersonalDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
+        //Other Details Firebase DB Reference
+        let usersOtherDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
+        
         //Storing Data Under UsersData
         UsersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_CHILD_PRIVATE).child(txtCity.text!).child(txtSociety.text!).child(txtApartment.text!).child(txtFlat.text!)
         
@@ -343,6 +346,9 @@ extension MyFlatDetailsViewController {
                 
                 //Adding usersPrivilegesDetails data under Users/Private/UID
                 self.usersPrivilegeDetailsRef?.setValue(userPrivilegesData)
+                
+                //Adding Time Stamp in Other Details
+                usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000))
                 
                 //Storing Data into User Personal Details
                 //Storing users data along with their profile photo

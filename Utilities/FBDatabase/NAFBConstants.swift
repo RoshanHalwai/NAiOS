@@ -90,6 +90,8 @@ struct Constants {
     static let FIREBASE_CHILD_SLOT4 = "Slot 4"
     static let FIREBASE_CHILD_LONGITUDE = "longitude"
     static let FIREBASE_CHILD_LATITUDE = "latitude"
+    static let FIREBASE_CHILD_OTHER_DETAILS = "otherDetails"
+    static let FIREBASE_CHILD_DEVICE_VERSION = "deviceVersion"
     static let FIREBASE_CHILD_VERIFIED_PENDING = 0
     static let FIREBASE_CHILD_VERIFIED_APPROVED = 1
     static let FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD = "Notice_Board_Notification"
