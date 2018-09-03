@@ -132,14 +132,14 @@ class AwaitingResponseViewController: NANavigationViewController {
                     var servicesType = String()
                     switch societyServiceType {
                     case NAString().plumber().lowercased():
-                        serviceImage = #imageLiteral(resourceName: "plumbing")
+                        serviceImage = #imageLiteral(resourceName: "plumber")
                         servicesType = NAString().plumber()
                     case NAString().carpenter().lowercased():
                         servicesType = NAString().carpenter()
-                        serviceImage = #imageLiteral(resourceName: "Carpenter Service")
+                        serviceImage = #imageLiteral(resourceName: "carpenter")
                     case NAString().electrician().lowercased():
                         servicesType = NAString().carpenter().lowercased()
-                        serviceImage = #imageLiteral(resourceName: "switchBoard")
+                        serviceImage = #imageLiteral(resourceName: "electrician")
                     default:
                         break
                         
