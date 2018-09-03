@@ -28,9 +28,10 @@ class NAFirebase {
     }
     
     func layoutFeatureUnavailable(mainView : UIViewController, newText : String) {
+        
         let newSubView = UIView(frame: CGRect(x: 14, y: 50, width: 349, height: 255))
         newSubView.backgroundColor = UIColor.white
-        let newLabel = UILabel(frame: CGRect(x: 20, y: 170, width: 300, height: 70))
+        let newLabel = UILabel(frame: CGRect(x: 14, y: 170, width: 300, height: 70))
         newLabel.text = newText
         newLabel.numberOfLines = 3
         newLabel.textAlignment = NSTextAlignment.center
@@ -43,6 +44,7 @@ class NAFirebase {
         //Adding to SubView
         newSubView.addSubview(newImage)
         newSubView.addSubview(newLabel)
+        
         if newText.count == 0 {
             newSubView.removeFromSuperview()
             newLabel.removeFromSuperview()

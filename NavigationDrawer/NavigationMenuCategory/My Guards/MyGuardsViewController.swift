@@ -39,7 +39,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         }
     }
     
-    
     //MARK : UICollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //TODO : Feature Added Firebase Cooks List
@@ -76,8 +75,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         cell.lbl_GuardName.font = NAFont().textFieldFont()
         cell.lbl_GuardGateNo.font = NAFont().textFieldFont()
         cell.lbl_GuardStatus.font = NAFont().textFieldFont()
-        
-        NAShadowEffect().shadowEffect(Cell: cell)
         
         if isActivityIndicatorRunning == false {
             cell.activityIndicator.startAnimating()
