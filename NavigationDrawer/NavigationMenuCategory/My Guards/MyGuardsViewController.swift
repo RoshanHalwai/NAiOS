@@ -83,13 +83,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
             cell.activityIndicator.isHidden = true
         }
         
-        //cardUIView
-        cell.cardView.layer.cornerRadius = 3
-        cell.cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
-        cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-        cell.cardView.layer.shadowRadius = 1.7
-        cell.cardView.layer.shadowOpacity = 0.45
-        
         //setting image round
         cell.myGuardImage.layer.cornerRadius = cell.myGuardImage.frame.size.width/2
         cell.myGuardImage.clipsToBounds = true

@@ -136,13 +136,13 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         lbl_Flat_Admin.font = NAFont().headerFont()
         lbl_EmailID.font = NAFont().headerFont()
         lbl_EIntercom.font = NAFont().headerFont()
-
+        
         txt_Name.font = NAFont().textFieldFont()
         txt_EmailId.font = NAFont().textFieldFont()
         txt_Flat_Admin.font = NAFont().textFieldFont()
         lbl_EIntercomSerialNo.font = NAFont().layoutFeatureErrorFont()
         lbl_EIntercomNumber.font = NAFont().layoutFeatureErrorFont()
-
+        
         update_btn.titleLabel?.font = NAFont().buttonFont()
         
         let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_ADMIN)
@@ -222,7 +222,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     //For Resizing TableView based on content
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         table_View.layer.removeAllAnimations()
-//        list_View_Height_Constraint.constant = table_View.contentSize.height + 37
+        list_View_Height_Constraint.constant = table_View.contentSize.height + 37
     }
     
     //Create name textfield first letter capital function
