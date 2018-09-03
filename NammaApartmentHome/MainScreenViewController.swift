@@ -355,6 +355,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                                     if status == NAString().in_Progress() {
                                         let awaitingResponseVC = NAViewPresenter().societyServiceDataVC()
                                         awaitingResponseVC.navTitle = NAString().societyService()
+                                        awaitingResponseVC.titleString = titleName.capitalized
                                         awaitingResponseVC.notificationUID = lastUID!
                                         if titleName == NAString().eventManagement() {
                                             let lv = NAViewPresenter().showEventManagementVC()

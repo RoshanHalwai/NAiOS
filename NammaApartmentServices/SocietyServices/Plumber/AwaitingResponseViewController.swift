@@ -183,9 +183,7 @@ class AwaitingResponseViewController: NANavigationViewController {
                 .child(Constants.FIREBASE_CHILD_DATA)
                 .child(societyServiceUID)
             societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
-            
-            let mainScreenVC = NAViewPresenter().mainScreenVC()
-            self.navigationController?.pushViewController(mainScreenVC, animated: true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
