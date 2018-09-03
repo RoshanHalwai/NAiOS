@@ -88,7 +88,6 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             }
         } else if currentItem == NAString().notice_board() {
             let noticeBoardVC = NAViewPresenter().noticeBoardVC()
-            noticeBoardVC.navTitle = NAString().notice_board()
             self.navigationController?.pushViewController(noticeBoardVC, animated: true)
         }
         mainScreen.opacity_View.isHidden = true
