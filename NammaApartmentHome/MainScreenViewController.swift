@@ -106,6 +106,13 @@ class MainScreenViewController: NANavigationViewController {
         opacity_View.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         self.opacity_View.addGestureRecognizer(tapGesture)
+        
+        //Getting Device Version
+        let systemVersion = UIDevice.current.systemVersion
+        
+        //Storing Device Version under Other Details
+        let usersOtherDetailsRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
+        usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_VERSION).setValue(systemVersion)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -248,22 +255,22 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             case 1:
                 let lv1 = NAViewPresenter().societyServiceVC()
                 lv1.navTitle = NAString().plumber()
-                getInProgressUID(VC: lv1, titleName: NAString().plumber().lowercased())
+                getInProgressUID(VC: lv1, serviceName: NAString().plumber().lowercased())
                 
             case 2:
                 let lv2 = NAViewPresenter().societyServiceVC()
                 lv2.navTitle = NAString().carpenter()
-                getInProgressUID(VC: lv2, titleName: NAString().carpenter().lowercased())
+                getInProgressUID(VC: lv2, serviceName: NAString().carpenter().lowercased())
                 
             case 3:
                 let lv3 = NAViewPresenter().societyServiceVC()
                 lv3.navTitle = NAString().electrician()
-                getInProgressUID(VC: lv3, titleName: NAString().electrician().lowercased())
+                getInProgressUID(VC: lv3, serviceName: NAString().electrician().lowercased())
                 
             case 4:
                 let lv4 = NAViewPresenter().societyServiceVC()
                 lv4.navTitle = NAString().garbage_management()
-                getInProgressUID(VC: lv4, titleName: NAString().garbageManagement())
+                getInProgressUID(VC: lv4, serviceName: NAString().garbageManagement())
                 
             case 5:
                 let lv5 = NAViewPresenter().emergencyVC()
@@ -273,7 +280,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             case 6:
                 let lv6 = NAViewPresenter().addEventManagementVC()
                 lv6.navTitle = NAString().event_management()
-                getInProgressUID(VC: lv6, titleName: NAString().eventManagement())
+                getInProgressUID(VC: lv6, serviceName: NAString().eventManagement())
             default:
                 break
             }
@@ -327,12 +334,12 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     //Checking the user Request whether it is in-Progress or Completed
-    func getInProgressUID(VC : UIViewController, titleName: String) {
+    func getInProgressUID(VC : UIViewController, serviceName: String) {
         let userDataReference = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
         
         userDataReference.observeSingleEvent(of: .value) { (serviceSnapshot) in
             if serviceSnapshot.exists() {
-                userDataReference.child(titleName).observeSingleEvent(of: .value, with: { (snapshot) in
+                userDataReference.child(serviceName).observeSingleEvent(of: .value, with: { (snapshot) in
                     if snapshot.exists() {
                         var count = 0
                         let allUIDMap = snapshot.value as! NSDictionary
@@ -355,8 +362,9 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                                     if status == NAString().in_Progress() {
                                         let awaitingResponseVC = NAViewPresenter().societyServiceDataVC()
                                         awaitingResponseVC.navTitle = NAString().societyService()
+                                        awaitingResponseVC.serviceType = serviceName.capitalized
                                         awaitingResponseVC.notificationUID = lastUID!
-                                        if titleName == NAString().eventManagement() {
+                                        if serviceName == NAString().eventManagement() {
                                             let lv = NAViewPresenter().showEventManagementVC()
                                             lv.getEventUID = lastUID!
                                             lv.navTitle = NAString().event_management()
