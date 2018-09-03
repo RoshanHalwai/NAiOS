@@ -47,7 +47,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData(notification:)), name: Notification.Name("refreshRescheduledData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-    
+        
         //info Button Action
         infoButton()
     }
@@ -133,10 +133,10 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         let queue = OperationQueue()
         
         queue.addOperation {
-        //Calling function to get Profile Image from Firebase.
-        if let urlString = nammaApartmentVisitor.getprofilePhoto() {
-            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
-        }
+            //Calling function to get Profile Image from Firebase.
+            if let urlString = nammaApartmentVisitor.getprofilePhoto() {
+                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
+            }
         }
         queue.waitUntilAllOperationsAreFinished()
         
