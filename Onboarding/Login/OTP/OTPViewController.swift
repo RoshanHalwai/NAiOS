@@ -214,8 +214,6 @@ class OTPViewController: NANavigationViewController {
                     self.navigationController?.popViewController(animated: true)
                     self.delegate?.activityIndicator_function(withData: (Any).self)              }
             }
-            self.navigationController?.popViewController(animated: true)
-            self.delegate?.activityIndicator_function(withData: (Any).self)
         }
         //Back to My Daily Services Screen
         if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {

@@ -314,7 +314,7 @@ class NAString : NSObject {
     }
     
     func faqs() -> String {
-        return String("FAQ's")
+        return String("FAQs")
     }
     
     func using_namma_apartments_app() -> String {
@@ -1435,6 +1435,10 @@ class NAString : NSObject {
     
     func sendMessageToSocietyServivesWhatsapp() -> String {
         return ("whatsapp://send?text=Hey%20there%20!%20I%20would%20like%20to%20have%20your%20Service%20at%20my%20Flat.%20Revert%20back%20so%20that%20we%20we%20can%20schedule%20and%20sort%20things%20out%20quickly.")
+    }
+    
+    func nammaApartmentsWebsiteLink() -> String {
+        return ("http://www.nammaapartments.com/faq-template-master/index.html")
     }
     
     func your_Family_Member() -> String {
