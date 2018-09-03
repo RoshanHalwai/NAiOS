@@ -58,7 +58,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                 let longitude = currentLocation.coordinate.longitude
 
                 var userLocation : DatabaseReference?
-                userLocation = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+                userLocation = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
                 userLocation?.child(Constants.FIREBASE_CHILD_LONGITUDE).setValue(longitude)
                 userLocation?.child(Constants.FIREBASE_CHILD_LATITUDE).setValue(latitude)
             }
