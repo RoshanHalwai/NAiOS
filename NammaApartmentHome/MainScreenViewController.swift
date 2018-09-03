@@ -106,6 +106,13 @@ class MainScreenViewController: NANavigationViewController {
         opacity_View.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
         self.opacity_View.addGestureRecognizer(tapGesture)
+        
+        //Getting Device Version
+        let systemVersion = UIDevice.current.systemVersion
+        
+        //Storing Device Version under Other Details
+        let usersOtherDetailsRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
+        usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_VERSION).setValue(systemVersion)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
