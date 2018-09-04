@@ -87,6 +87,7 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         cell.myGuardImage.layer.cornerRadius = cell.myGuardImage.frame.size.width/2
         cell.myGuardImage.clipsToBounds = true
         
+        NAShadowEffect().shadowEffectForView(view: cell.cardView)
         return cell
     }
 }
@@ -97,8 +98,7 @@ extension MyGuardsViewController {
         
         let societyServiceGuardRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_GUARD).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_DATA)
         societyServiceGuardRef.observeSingleEvent(of: .value) { (societyServiceGuardSnapshot) in
-            if societyServiceGuardSnapshot.exists() {
-                if let guardsUID = societyServiceGuardSnapshot.value as? [String: Any] {
+                    if let guardsUID = societyServiceGuardSnapshot.value as? [String: Any] {
                     let guardsUIDKeys = Array(guardsUID.keys)
                     for guardUID in guardsUIDKeys {
                         societyServiceGuardRef.child(guardUID).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -115,7 +115,7 @@ extension MyGuardsViewController {
                         })
                     }
                 }
-            }
+            
         }
     }
 }

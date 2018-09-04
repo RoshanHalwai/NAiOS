@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class SettingViewController: NANavigationViewController {
     
@@ -25,11 +26,20 @@ class SettingViewController: NANavigationViewController {
     @IBOutlet weak var cab_Notification_Label: UILabel!
     @IBOutlet weak var package_Notification_Label: UILabel!
     
+    @IBOutlet weak var switch_EIntercom: UISwitch!
+    @IBOutlet weak var switch_Guest: UISwitch!
+    @IBOutlet weak var switch_DailyServices: UISwitch!
+    
     var navTitle = String()
     var selectLanguage = String()
+    var userNotificationRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        retrieveNotificationSoundFromFirebase()
+        
+          userNotificationRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS).child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
         
         self.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.rightBarButtonItem = nil
@@ -71,6 +81,46 @@ class SettingViewController: NANavigationViewController {
         btn_signOut.layer.borderWidth = CGFloat(NAString().two())
     }
     
+    @IBAction func switch_EIntercom(_ sender: UISwitch) {
+        if (sender.isOn ==  true) {
+           userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
+        } else {
+             userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().getfalse())
+        }
+     }
+    
+    @IBAction func switch_Guest(_ sender: UISwitch) {
+        if (sender.isOn ==  true) {
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_GUEST_SOUND).setValue(NAString().gettrue())
+        } else {
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_GUEST_SOUND).setValue(NAString().getfalse())
+        }
+    }
+    
+    @IBAction func switch_DailyServices(_ sender: UISwitch) {
+        if (sender.isOn ==  true) {
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND).setValue(NAString().gettrue())
+        } else {
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND).setValue(NAString().getfalse())
+        }
+    }
+    
+    @IBAction func switch_Cab(_ sender: UISwitch) {
+        if (sender.isOn ==  true) {
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_CAB_SOUND).setValue(NAString().gettrue())
+        } else {
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_CAB_SOUND).setValue(NAString().getfalse())
+        }
+    }
+    
+    @IBAction func switch_Package(_ sender: UISwitch) {
+        if (sender.isOn ==  true) {
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_PACKAGE_SOUND).setValue(NAString().gettrue())
+        } else {
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_PACKAGE_SOUND).setValue(NAString().getfalse())
+        }
+    }
+    
     //Create Button Actions
     @IBAction func languageButtonAction() {
         let vc = NAViewPresenter().languageVC()
@@ -106,3 +156,29 @@ class SettingViewController: NANavigationViewController {
         self.btn_Language.titleLabel?.text = selectLanguage
     }
 }
+
+extension SettingViewController {
+    
+    func retrieveNotificationSoundFromFirebase() {
+        
+        let notificationSoundRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
+            .child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
+            .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
+        
+        notificationSoundRef.observeSingleEvent(of: .value) { (soundSnapshot) in
+            print(soundSnapshot as Any)
+            let notificationSoundData = soundSnapshot.value as! [String: Any]
+            
+            let cabValue = notificationSoundData["cab"] as! Bool
+            let PackageValue = notificationSoundData["package"] as! Bool
+            let dailyServiceValue = notificationSoundData["dailyService"] as! Bool
+            let guestValue = notificationSoundData["guest"] as! Bool
+            let eIntercomValue = notificationSoundData["eIntercom"] as! Bool
+            
+            
+            
+            
+        }
+    }
+}
+

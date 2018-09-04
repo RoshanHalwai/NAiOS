@@ -28,25 +28,25 @@ enum GuardsListFBKeys: String {
 
 class NAExpectingGuard {
     
-    var fullName : String?
-    var profilePhoto : String?
-    var status : String?
+    var fullName : String
+    var profilePhoto : String
+    var status : String
     
-    init(fullName : String?,profilePhoto : String?, status: String?) {
+    init(fullName : String,profilePhoto : String, status: String) {
         self.fullName = fullName
         self.profilePhoto = profilePhoto
         self.status = status
     }
     
     func getfullName() -> String {
-        return fullName!
+        return fullName
     }
     
     func getprofilePhoto() -> String? {
-        return profilePhoto!
+        return profilePhoto
     }
     
     func getstatus() -> String {
-        return status!
+        return status
     }
 }

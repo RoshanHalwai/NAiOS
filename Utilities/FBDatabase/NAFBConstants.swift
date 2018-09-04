@@ -94,6 +94,12 @@ struct Constants {
     static let FIREBASE_CHILD_DEVICE_VERSION = "deviceVersion"
     static let FIREBASE_CHILD_VERIFIED_PENDING = 0
     static let FIREBASE_CHILD_VERIFIED_APPROVED = 1
+    static let FIREBASE_CHILD_NOTIFICATION_SOUND = "notificationSound"
+    static let FIREBASE_CHILD_EINTERCOM_SOUND = "eIntercom"
+    static let FIREBASE_CHILD_GUEST_SOUND = "guest"
+    static let FIREBASE_CHILD_DAILYSERVICE_SOUND = "dailyService"
+    static let FIREBASE_CHILD_CAB_SOUND = "cab"
+    static let FIREBASE_CHILD_PACKAGE_SOUND = "package"
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     static let FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
@@ -112,4 +118,5 @@ struct Constants {
     
     static let FIREBASE_USER_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_USER)
         .child(FIREBASE_CHILD_PRIVATE)
+    
 }
