@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //GCM is stands fro Google Cloud Messaging
     let gcmMessageIDKey = "gcm.message_id"
     
+    let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
+    
     //Implementing Launch Screen
     private func launchScreen() {
         let launchScreenVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
@@ -32,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     @objc func dismissLaunchScreen() {
         //Using userDefaults here we are checking conditions & navigation to particular view according to userDefault values.
-        let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
         let preferences = UserDefaults.standard
         let UserUID = NAString().userDefault_USERUID()
         let notFirstTime =  NAString().userDefault_Not_First_Time()
@@ -68,11 +69,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             preferences.set(true, forKey: verified)
                             preferences.synchronize()
                             
-                            let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+                            let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
                             self.window?.rootViewController = NavMain
                             self.window?.makeKeyAndVisible()
                         } else {
-                            let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().welcomeRootVC())
+                            let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().welcomeRootVC())
                             self.window?.rootViewController = NavMain
                             self.window?.makeKeyAndVisible()
                         }
@@ -161,13 +162,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         //Calling establishing channel for FCM function
         connectToFCM()
-        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         //Calling establishing channel for FCM function
         connectToFCM()
-        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     //Creating function to establishing channel for FCM
@@ -193,6 +192,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        
+        //On click of particular Notification it will navigate to that particular screen.
+        //Created varibale to get Notification Type from UserInfo
+        let notificationType = userInfo[Constants.FIREBASE_NOTIFICATION_TYPE] as? String
+        
+        switch notificationType {
+        case Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD :
+            let dest = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
+            self.window?.rootViewController = dest
+            self.window?.makeKeyAndVisible()
+            UIApplication.shared.applicationIconBadgeNumber = 0
+        default:
+            break
+        }
+        
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }

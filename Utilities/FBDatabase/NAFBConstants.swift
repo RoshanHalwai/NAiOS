@@ -94,6 +94,8 @@ struct Constants {
     static let FIREBASE_CHILD_DEVICE_VERSION = "deviceVersion"
     static let FIREBASE_CHILD_VERIFIED_PENDING = 0
     static let FIREBASE_CHILD_VERIFIED_APPROVED = 1
+    static let FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD = "Notice_Board_Notification"
+    static let FIREBASE_NOTIFICATION_TYPE = "type"
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     static let FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
