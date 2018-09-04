@@ -24,6 +24,28 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
         
         //Hiding History NavigationBar  RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+//
+//        //set section inset as per your requirement.
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 15, height: height/9)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //set minimum vertical line spacing here between two lines in collectionview
+        layout.minimumLineSpacing = 10
+        
+        //apply defined layout to collectionview
+        collection_View!.collectionViewLayout = layout
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
