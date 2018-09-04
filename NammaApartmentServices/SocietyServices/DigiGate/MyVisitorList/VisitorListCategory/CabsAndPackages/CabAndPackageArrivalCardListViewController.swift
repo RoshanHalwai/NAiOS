@@ -47,6 +47,22 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         
         //info Button Action
         infoButton()
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 10, height: height/4)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //apply defined layout to collectionview
+        collection_View!.collectionViewLayout = layout
     }
     
     // Navigate to FAQ's VC
