@@ -29,6 +29,22 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedMyGuardsDataInFirebase()
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 10, height: height/4)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //apply defined layout to collectionview
+        collectionView!.collectionViewLayout = layout
     }
     
     //Create image Handle  Function
@@ -82,6 +98,8 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
             cell.activityIndicator.stopAnimating()
             cell.activityIndicator.isHidden = true
         }
+        
+        NAShadowEffect().shadowEffect(Cell: cell)
         
         //setting image round
         cell.myGuardImage.layer.cornerRadius = cell.myGuardImage.frame.size.width/2
