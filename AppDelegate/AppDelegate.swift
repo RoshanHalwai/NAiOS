@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //GCM is stands fro Google Cloud Messaging
     let gcmMessageIDKey = "gcm.message_id"
     
+    //Implementing Launch Screen
     private func launchScreen() {
         let launchScreenVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
         let rootVC = launchScreenVC.instantiateViewController(withIdentifier: "launchScreen")
@@ -30,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     @objc func dismissLaunchScreen() {
+        //Using userDefaults here we are checking conditions & navigation to particular view according to userDefault values.
         let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
         let preferences = UserDefaults.standard
         let UserUID = NAString().userDefault_USERUID()
@@ -39,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let verified = NAString().userDefault_Verified()
         
         if preferences.bool(forKey: notFirstTime) == true {
+            /* Checking Both Conditions to make sure that user is still able to Navigate to main Screen after once he LoggedIn even though if it is different device */
             if preferences.bool(forKey: accountCreated) == true || preferences.bool(forKey: loggedIn) == true {
                 if preferences.bool(forKey: verified) == true {
                     if preferences.bool(forKey: loggedIn) == true {
@@ -86,7 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().splashScreenRootVC())
             self.window?.rootViewController = NavLogin
             self.window?.makeKeyAndVisible()
-
         }
     }
     
@@ -94,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        //Calling Launch Screen Method
         self.launchScreen()
         //Formatting Navigation Controller From Globally.
         UIApplication.shared.statusBarStyle = .lightContent
@@ -129,69 +132,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         //Calling Notification action button function
         setActionCategories()
-        
-        //Using userDefaults here we are checking conditions & navigation to particular view according to userDefault values.
-//        let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
-//        let preferences = UserDefaults.standard
-//        let UserUID = NAString().userDefault_USERUID()
-//        let notFirstTime =  NAString().userDefault_Not_First_Time()
-//        let loggedIn = NAString().userDefault_Logged_In()
-//        let accountCreated = NAString().userDefault_Account_Created()
-//        let verified = NAString().userDefault_Verified()
-//
-//        if preferences.bool(forKey: notFirstTime) == true {
-//            if preferences.bool(forKey: accountCreated) == true {
-//                if preferences.bool(forKey: verified) == true {
-//                    if preferences.bool(forKey: loggedIn) == true {
-//                        let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
-//                        self.window?.rootViewController = NavMain
-//                        self.window?.makeKeyAndVisible()
-//                        return true
-//                    } else {
-//                        let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-//                        self.window?.rootViewController = NavLogin
-//                        self.window?.makeKeyAndVisible()
-//                        return true
-//                    }
-//                } else {
-//                    var userUID = String()
-//                    userUID = preferences.object(forKey: UserUID) as! String
-//                    preferences.synchronize()
-//
-//                    var usersVerifiedRef : DatabaseReference?
-//                    usersVerifiedRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
-//                        .child(Constants.FIREBASE_CHILD_PRIVILEGES)
-//                        .child(Constants.FIREBASE_CHILD_VERIFIED)
-//
-//                    usersVerifiedRef?.observeSingleEvent(of: .value, with: { (verifiedSnapshot) in
-//                        if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
-//                            preferences.set(true, forKey: verified)
-//                            preferences.synchronize()
-//
-//                            let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
-//                            self.window?.rootViewController = NavMain
-//                            self.window?.makeKeyAndVisible()
-//                        } else {
-//                            let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().welcomeRootVC())
-//                            self.window?.rootViewController = NavMain
-//                            self.window?.makeKeyAndVisible()
-//                        }
-//                    })
-//                }
-//            } else {
-//                let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-//                self.window?.rootViewController = NavLogin
-//                self.window?.makeKeyAndVisible()
-//                return true
-//            }
-//        } else {
-//            preferences.set(true, forKey: notFirstTime)
-//            preferences.synchronize()
-//            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().splashScreenRootVC())
-//            self.window?.rootViewController = NavLogin
-//            self.window?.makeKeyAndVisible()
-//            return true
-//        }
         return true
     }
     
