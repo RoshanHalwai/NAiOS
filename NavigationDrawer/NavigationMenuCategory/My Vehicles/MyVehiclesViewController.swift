@@ -81,8 +81,6 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         cell.lbl_VehicleOwner.font = NAFont().textFieldFont()
         cell.lbl_VehicleAddedOn.font = NAFont().textFieldFont()
         
-        NAShadowEffect().shadowEffect(Cell: cell)
-        
         //setting image round
         cell.myVehicleImage.layer.cornerRadius = cell.myVehicleImage.frame.size.width/2
         cell.myVehicleImage.clipsToBounds = true
