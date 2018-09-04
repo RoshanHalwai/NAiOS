@@ -196,7 +196,7 @@ extension CabAndPackageArrivalCardListViewController {
     
     func expectingCabArrival(userUID : String) {
         
-        userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_CABS.child(userUID)
+        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS).child(userUID)
         userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
@@ -229,7 +229,7 @@ extension CabAndPackageArrivalCardListViewController {
     func checkAndRetrieveCabArrivals() {
         var friend = [String]()
         friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
-        let cabRef = Constants.FIREBASE_GLOBAL_USERDATA_CABS
+        let cabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS)
         cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
             var isFlatMemberKeys = false
             if !(snapshotCab.exists()) {
@@ -282,7 +282,7 @@ extension CabAndPackageArrivalCardListViewController {
     //Creating Function to get Expecting Package Arrival Data from Firebase.
     func expectingPackageArrival(userUID : String)  {
         
-        userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_DELIVERIES.child(userUID)
+        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
         userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
@@ -316,7 +316,7 @@ extension CabAndPackageArrivalCardListViewController {
     func checkAndRetrievePackageArrivals() {
         var friend = [String]()
         friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
-        let cabRef = Constants.FIREBASE_GLOBAL_USERDATA_DELIVERIES
+        let cabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES)
         cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
             var isFlatMemberKeys = false
             if !(snapshotCab.exists()) {

@@ -474,7 +474,7 @@ extension AddMyFamilyMembersViewController {
         let familyMemberUID = Auth.auth().currentUser?.uid
         
         //Map flat Members UID to true in UserData
-        userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_FLAT_MEMBERS
+        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
         userDataRef?.child(familyMemberUID!).setValue(NAString().gettrue())
         
         //Map family member's mobile number with uid in users->all

@@ -464,7 +464,9 @@ extension AddMyServicesViewController {
     func storingDailyServicesInFirebase()  {
         let dailyServiceUID = Auth.auth().currentUser?.uid
         
-        userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_DAILY_SERVICES.child(dailyServiceKey)
+        userDataRef = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+            .child(dailyServiceKey)
         
         userDataRef?.child(dailyServiceUID!).setValue(NAString().gettrue())
         

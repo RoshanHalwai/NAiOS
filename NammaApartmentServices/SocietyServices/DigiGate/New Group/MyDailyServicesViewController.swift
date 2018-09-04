@@ -333,7 +333,8 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
         
         let dailyService = NADailyServicesList[indx]
         
-        self.dailyServiceInUserRef = Constants.FIREBASE_GLOBAL_USERDATA_DAILY_SERVICES
+        self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         
         let alert = UIAlertController(title: NAString().remove_myDailyService_alertView_Title(), message: NAString().remove_myDailyService_alertView_Message(), preferredStyle: .alert)
         
@@ -372,7 +373,8 @@ extension MyDailyServicesViewController {
         var dsInfo: [dailySericeTypeAndNumberOfFlat] = []
         
         //To check that Any daily service is available or not inside user's flat
-        userDataRef =  Constants.FIREBASE_GLOBAL_USERDATA_DAILY_SERVICES
+        userDataRef =  GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         userDataRef?.keepSynced(true)
         //To Daily Service UID in dailyServive child -> Public
         userDataRef?.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -382,7 +384,8 @@ extension MyDailyServicesViewController {
                 
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
-                self.dailyServiceInUserRef = Constants.FIREBASE_GLOBAL_USERDATA_DAILY_SERVICES
+                self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference()
+                    .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
                 self.dailyServiceInUserRef?.keepSynced(true)
                 self.dailyServiceInUserRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                     
@@ -472,14 +475,15 @@ extension MyDailyServicesViewController {
     /* - Check if the flat has any daily service. If it does not have any Daily services added, we show daily service unavailable message
      - Else, we Display the cardView of all daily services of the current user. */
     func checkAndRetrieveDailyService() {
-        let userDataReference = Constants.FIREBASE_GLOBAL_USERDATA_DAILY_SERVICES
+        let userDataReference = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         userDataReference.keepSynced(true)
         userDataReference.observeSingleEvent(of: .value) { (dailyServiceSnapshot) in
             if !(dailyServiceSnapshot.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
-                let privateFlatReference = Constants.FIREBASE_GLOBAL_USERDATA_FLAT_MEMBERS
+                let privateFlatReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
                 privateFlatReference.keepSynced(true)
                 privateFlatReference.observeSingleEvent(of: .value, with: { (flatSnapshot) in
                     let flatMembers = flatSnapshot.value as? NSDictionary

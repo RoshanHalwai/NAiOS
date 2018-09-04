@@ -335,7 +335,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     
     //Checking the user Request whether it is in-Progress or Completed
     func getInProgressUID(VC : UIViewController, serviceName: String) {
-        let userDataReference = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
+        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         
         userDataReference.observeSingleEvent(of: .value) { (serviceSnapshot) in
             if serviceSnapshot.exists() {

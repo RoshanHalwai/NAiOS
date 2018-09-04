@@ -347,7 +347,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
                     self.visitorsPrivateRef?.setValue(visitorData)
                     
                     //Storing Visitor UID under UsersData -> UsersFlat
-                    self.userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_VISITORS
+                    self.userDataRef = GlobalUserData.shared.getUserDataReference()
+                        .child(Constants.FIREBASE_CHILD_VISITORS)
                         .child(userUID)
                     self.userDataRef?.child(visitorUID!).setValue(NAString().gettrue())
                     

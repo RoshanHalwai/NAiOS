@@ -234,7 +234,9 @@ extension MyGuestListViewController : dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         let visitor_UId =  myVisitorList[indx]
         
-        self.userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_VISITORS.child(userUID)
+        self.userDataRef = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_VISITORS)
+            .child(userUID)
             .child(visitor_UId.getuid())
         
         var removeButtonTitle: String?

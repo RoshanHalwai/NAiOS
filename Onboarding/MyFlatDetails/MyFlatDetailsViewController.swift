@@ -291,7 +291,7 @@ extension MyFlatDetailsViewController {
         let userUID = Auth.auth().currentUser?.uid
         
         //User Private Reference
-        userPrivateRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID!)
+        userPrivateRef = Constants.FIREBASE_USER_PRIVATE.child(userUID!)
         
         //Flat Details Firebase DB Reference
         usersFlatDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_FLATDETAILS)
@@ -306,14 +306,14 @@ extension MyFlatDetailsViewController {
         let usersOtherDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
         
         //Storing Data Under UsersData
-        UsersDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_CHILD_PRIVATE).child(txtCity.text!).child(txtSociety.text!).child(txtApartment.text!).child(txtFlat.text!)
+        UsersDataRef = Constants.FIREBASE_USERDATA_PRIVATE.child(txtCity.text!).child(txtSociety.text!).child(txtApartment.text!).child(txtFlat.text!)
         
         UsersDataRef?.observeSingleEvent(of: .value) { (flatDetailsSnapshot) in
             if flatDetailsSnapshot.exists() {
                 let adminUIDRef = self.UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN)
                 adminUIDRef?.observeSingleEvent(of: .value) { (adminUIDSnapshot) in
                     let adminUID = adminUIDSnapshot.value
-                    let adminNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(adminUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+                    let adminNameRef = Constants.FIREBASE_USER_PRIVATE.child(adminUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
                     adminNameRef.observeSingleEvent(of: .value) { (adminNameSnapshot) in
                         let usersData = adminNameSnapshot.value as? [String: AnyObject]
                         self.fullName = (usersData?[UserPersonalListFBKeys.fullName.key] as? String)!
@@ -382,16 +382,16 @@ extension MyFlatDetailsViewController {
                             self.usersPersonalDetailsRef?.setValue(usersPersonalData)
                             
                             //Storing UID under Users/Private/UID
-                            self.usersUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID!)
+                            self.usersUIDRef = Constants.FIREBASE_USER_PRIVATE.child(userUID!)
                             self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
                             
                             //Mapping Mobile Number with UID
                             
-                            self.usersMobileNumberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+                            self.usersMobileNumberRef = Constants.FIREBASE_USER_ALL
                             self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID)
                             
                             //Storing Flat Member UID
-                            self.userFlatMemberRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_CHILD_PRIVATE).child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+                            self.userFlatMemberRef = Constants.FIREBASE_USERDATA_PRIVATE.child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
                             
                             self.userFlatMemberRef?.child(userUID!).setValue(NAString().gettrue())
                             

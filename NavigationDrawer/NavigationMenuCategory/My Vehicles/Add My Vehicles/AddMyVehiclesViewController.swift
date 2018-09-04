@@ -324,13 +324,13 @@ extension AddMyVehiclesViewController {
         let hyphen = "-"
         self.finalVehicleString = vehicleStateCode + hyphen + vehicleRTOCode + hyphen + vehicleSerialOne + hyphen + vehicleSerialTwo
         
-        vehiclePrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_CHILD_PRIVATE)
+        vehiclePrivateRef = Constants.FIREBASE_VEHICLES_PRIVATE
         
         //Generating Vehicle UID
         let vehicleUID : String?
         vehicleUID = (vehiclePrivateRef?.childByAutoId().key)!
         
-        vehiclesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_USER_CHILD_ALL)
+        vehiclesPrivateRef = Constants.FIREBASE_VEHICLES_ALL 
         
         userDataVehicleRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VEHICLES)
         
