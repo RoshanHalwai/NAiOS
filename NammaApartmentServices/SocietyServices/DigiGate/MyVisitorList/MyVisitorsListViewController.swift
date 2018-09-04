@@ -21,6 +21,25 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         collectionView.dataSource = self
         
         super.ConfigureNavBarTitle(title: NAString().my_visitors_list())
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 5, height: height/6)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //set minimum vertical line spacing here between two lines in collectionview
+        layout.minimumLineSpacing = 10
+        
+        //apply defined layout to collectionview
+        collectionView!.collectionViewLayout = layout
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

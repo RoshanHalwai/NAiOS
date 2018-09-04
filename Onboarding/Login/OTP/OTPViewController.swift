@@ -375,8 +375,21 @@ extension OTPViewController {
                 
                 if snapshot.exists() {
                     
-                    let dest = NAViewPresenter().mainScreenVC()
-                    self.navigationController?.pushViewController(dest, animated: true)
+                    let userUID = Auth.auth().currentUser?.uid
+                    let userActivationRef = Constants.FIREBASE_USER_PRIVATE.child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_VERIFIED)
+                    
+                    //Navigate to NAHome or Activation Requried Screen According to verified value.
+                    userActivationRef.observeSingleEvent(of: .value, with: { (activationSnapshot) in
+                        let verified = activationSnapshot.value as! Int
+                        
+                        if verified == 0 {
+                            let dest = NAViewPresenter().activationRequiredVC()
+                            self.navigationController?.pushViewController(dest, animated: true)
+                        } else {
+                            let dest = NAViewPresenter().mainScreenVC()
+                            self.navigationController?.pushViewController(dest, animated: true)
+                        }
+                    })
                 } else {
                     let dest = NAViewPresenter().signupVC()
                     dest.getNewMobileString = self.getMobileString
