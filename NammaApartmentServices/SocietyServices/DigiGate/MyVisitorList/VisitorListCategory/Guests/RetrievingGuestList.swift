@@ -122,8 +122,7 @@ class RetrievingGuestList {
     private func getGuestDataByUID(visitorUID : String, callback: @escaping (_ enteredGuestData : NammaApartmentVisitor) -> Void) {
         
         //Take each of the visitor UID and get their data from visitors -> preApprovedVisitors
-        let visitorDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(Constants.FIREBASE_CHILD_PRIVATE).child(visitorUID)
+        let visitorDataRef = Constants.FIREBASE_VISITORS_PRIVATE.child(visitorUID)
         visitorDataRef.keepSynced(true)
         //Adding observe event to each of visitors UID
         visitorDataRef.observeSingleEvent(of: .value, with: { (guestDataSnapshot) in

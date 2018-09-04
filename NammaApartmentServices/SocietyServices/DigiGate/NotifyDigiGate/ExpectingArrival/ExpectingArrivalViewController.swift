@@ -561,10 +561,6 @@ extension ExpectingArrivalViewController {
         let hyphen = "-"
         self.finalCabString = cabStateCode + hyphen + cabRTOCode + hyphen + cabSerialOne + hyphen + cabSerialTwo
         
-        //getting users Flat Details Form Singaltone class
-        let flatValues = GlobalUserData.shared.flatDetails_Items
-        let userFlatDetailValues = flatValues.first
-        
         cabPrivateRef = Constants.FIREBASE_CABS_PRIVATE
         
         //Generating Cab UID
@@ -573,8 +569,7 @@ extension ExpectingArrivalViewController {
         
         cabsPrivateRef = Constants.FIREBASE_CABS_ALL
         
-        userDataCabRef = Constants.FIREBASE_USERDATA_PRIVATE.child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_CABS).child(userUID)
-        
+        userDataCabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS).child(userUID)
         
         //Mapping CabUID with true under UsersData -> Flat
         userDataCabRef?.child(cabUID!).setValue(NAString().gettrue())
@@ -603,10 +598,6 @@ extension ExpectingArrivalViewController {
         let personalValue = GlobalUserData.shared.personalDetails_Items
         let userPersonalValues = personalValue.first
         
-        //getting users Flat Details Form Singaltone class
-        let flatValues = GlobalUserData.shared.flatDetails_Items
-        let userFlatDetailValues = flatValues.first
-        
         packagesPrivateRef = Constants.FIREBASE_DELIVERIES_PRIVATE
         
         //Generating Cab UID
@@ -615,7 +606,7 @@ extension ExpectingArrivalViewController {
         
         packagePrivateRef = Constants.FIREBASE_DELIVERIES_ALL
         
-        userDataPackageRef = Constants.FIREBASE_USERDATA_PRIVATE.child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
+        userDataPackageRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
         
         
         //Mapping PackageUID with true under UsersData -> Flat

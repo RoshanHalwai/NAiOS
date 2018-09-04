@@ -110,7 +110,7 @@ extension MyVehiclesViewController {
             if snapshot.exists() {
                 let vehiclesUID = snapshot.value as? NSDictionary
                 for vehiclesUID in (vehiclesUID?.allKeys)! {
-                    self.vehiclesPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_CHILD_PRIVATE).child(vehiclesUID as! String)
+                    self.vehiclesPublicRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehiclesUID as! String)
                     self.vehiclesPublicRef?.keepSynced(true)
                     self.vehiclesPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
