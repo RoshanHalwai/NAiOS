@@ -39,7 +39,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         }
     }
     
-    
     //MARK : UICollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //TODO : Feature Added Firebase Cooks List
@@ -77,8 +76,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         cell.lbl_GuardGateNo.font = NAFont().textFieldFont()
         cell.lbl_GuardStatus.font = NAFont().textFieldFont()
         
-        NAShadowEffect().shadowEffect(Cell: cell)
-        
         if isActivityIndicatorRunning == false {
             cell.activityIndicator.startAnimating()
         } else if (isActivityIndicatorRunning == true) {
@@ -98,7 +95,7 @@ extension MyGuardsViewController {
     
     func retrieviedMyGuardsDataInFirebase() {
         
-        let societyServiceGuardRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICE).child(Constants.FIREBASE_CHILD_GUARD).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_DATA)
+        let societyServiceGuardRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_GUARD).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_DATA)
         societyServiceGuardRef.observeSingleEvent(of: .value) { (societyServiceGuardSnapshot) in
             if societyServiceGuardSnapshot.exists() {
                 if let guardsUID = societyServiceGuardSnapshot.value as? [String: Any] {

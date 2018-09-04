@@ -10,6 +10,8 @@ import UIKit
 
 class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var ImageList = [#imageLiteral(resourceName: "ExpectingCabs"),#imageLiteral(resourceName: "ExpectingPackage"),#imageLiteral(resourceName: "ExpectingVisitor"),#imageLiteral(resourceName: "HandedThings256"),#imageLiteral(resourceName: "HandedDailyServices256")]
     var ExpectingList = ["Expecting Cab Arrival","Expecting Package Arrival","Expecting Guest","Handed Things To My Guest","Handed Things To My Daily Services"]
     
@@ -20,6 +22,25 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
         super.ConfigureNavBarTitle(title: NAString().notifyDigiGateHeader())
         self.navigationItem.title = ""
         navigationItem.rightBarButtonItem = nil
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 5, height: height/6)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //set minimum vertical line spacing here between two lines in collectionview
+        layout.minimumLineSpacing = 10
+        
+        //apply defined layout to collectionview
+        collectionView!.collectionViewLayout = layout
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

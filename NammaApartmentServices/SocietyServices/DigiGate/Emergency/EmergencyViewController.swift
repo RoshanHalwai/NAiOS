@@ -10,8 +10,10 @@ import UIKit
 
 class EmergencyViewController: NANavigationViewController, UICollectionViewDelegate,UICollectionViewDataSource{
     
-    var ImageList = [#imageLiteral(resourceName: "Medical Alarm"), #imageLiteral(resourceName: "Fire Alarm"), #imageLiteral(resourceName: "Theft Alarm"), #imageLiteral(resourceName: "waterEmergency")]
+    var ImageList = [#imageLiteral(resourceName: "medicalEmergency"), #imageLiteral(resourceName: "RaiseFireAlarm"), #imageLiteral(resourceName: "RaiseTheftAlarm"), #imageLiteral(resourceName: "RaiseWaterAlarm")]
     var EmergencyList = [NAString().medicalEmergency_Title(), NAString().raise_Fire_Alarm_Title(), NAString().raise_Theft_Alarm_Title(), NAString().raise_water_Alarm_Title()]
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var titleName = String()
     
@@ -21,6 +23,25 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         //Setting Title of the screen
         super.ConfigureNavBarTitle(title: NAString().emergency())
         self.navigationItem.rightBarButtonItem = nil
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 5, height: height/6)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //set minimum vertical line spacing here between two lines in collectionview
+        layout.minimumLineSpacing = 10
+        
+        //apply defined layout to collectionview
+        collectionView!.collectionViewLayout = layout
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
