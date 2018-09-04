@@ -65,7 +65,7 @@ class RetrieveFamilyMemberList {
     private func getFlatMembersUIDList(userUID : String, callback: @escaping (_ flatMembersUIDList : [String]) -> Void) {
         var flatMembersUIDList = [String]()
         
-        let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+        let flatMembersReference = Constants.FIREBASE_GLOBAL_USERDATA_FLAT_MEMBERS
         flatMembersReference.keepSynced(true)
         flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
             if flatMembersUIDSnapshot.childrenCount == 1 {
@@ -99,8 +99,7 @@ class RetrieveFamilyMemberList {
     //User UID whose data is to be retrieved from firebase
     private func getUserDataByUID(userUID : String, callback: @escaping (_ userData : NAUser) -> Void) {
         //Take each of the user UID and get their data from users -> all
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USER)
-            .child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID)
+        userDataRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
         userDataRef.keepSynced(true)
         //Adding observe event to each of user UID
         userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in

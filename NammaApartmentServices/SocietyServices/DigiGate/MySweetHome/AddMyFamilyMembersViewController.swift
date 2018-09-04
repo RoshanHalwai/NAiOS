@@ -474,15 +474,15 @@ extension AddMyFamilyMembersViewController {
         let familyMemberUID = Auth.auth().currentUser?.uid
         
         //Map flat Members UID to true in UserData
-        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+        userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_FLAT_MEMBERS
         userDataRef?.child(familyMemberUID!).setValue(NAString().gettrue())
         
         //Map family member's mobile number with uid in users->all
-        userAllRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+        userAllRef = Constants.FIREBASE_USER_ALL
         userAllRef?.child(self.txt_MobileNo.text!).setValue(familyMemberUID)
         
         //Storing Flat details in firebase under users->private->family member uid
-        userFlatDetailsRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        userFlatDetailsRef =  Constants.FIREBASE_USER_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FLATDETAILS)
         
         let usersFlatData = [
             UserFlatListFBKeys.apartmentName.key : GlobalUserData.shared.flatDetails_Items.first?.apartmentName,
@@ -493,7 +493,7 @@ extension AddMyFamilyMembersViewController {
         ]
         userFlatDetailsRef?.setValue(usersFlatData)
         //Storing new flat member Personal details in firebase under users->private->family member uid
-        userPersonalDetailsRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+        userPersonalDetailsRef = Constants.FIREBASE_USER_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         
         //Storing FlatMembers data along with their profile photo
         var familyImageRef: StorageReference?
@@ -535,21 +535,21 @@ extension AddMyFamilyMembersViewController {
         
         //Checking Relation Status
         if Relation_Segment.selectedSegmentIndex == 0 {
-            currentUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(familyMemberUID!)
+            currentUserRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(familyMemberUID!)
             currentUserRef?.setValue(NAString().gettrue())
             
-            userFamilyMemberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(userUID)
+            userFamilyMemberRef = Constants.FIREBASE_USER_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS).child(userUID)
             userFamilyMemberRef?.setValue(NAString().gettrue())
         } else {
-            currentUserRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FRIENDS).child(familyMemberUID!)
+            currentUserRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FRIENDS).child(familyMemberUID!)
             currentUserRef?.setValue(NAString().gettrue())
             
-            userFamilyMemberRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FRIENDS).child(userUID)
+            userFamilyMemberRef = Constants.FIREBASE_USER_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_FRIENDS).child(userUID)
             userFamilyMemberRef?.setValue(NAString().gettrue())
         }
         
         //Storing new flat member Privileges in firebase under users->private->family member uid
-        userPrivilegesRef =  Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
+        userPrivilegesRef = Constants.FIREBASE_USER_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
         
         var grantAccessValue: Bool?
         if grantAcess_Segment.selectedSegmentIndex == 0 {
@@ -570,7 +570,7 @@ extension AddMyFamilyMembersViewController {
         userOtherDetailsRef.child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000))
         
         //Store family member's UID under users data structure for future use
-        userUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(familyMemberUID!).child(Constants.FIREBASE_CHILD_UID)
+        userUIDRef = Constants.FIREBASE_USER_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_UID)
         userUIDRef?.setValue(familyMemberUID!)
     }
 }
@@ -579,7 +579,7 @@ extension AddMyFamilyMembersViewController {
     
     func familyMemberExistsOrNot(VC: UIViewController)  {
         
-        let familyMemberMobileRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+        let familyMemberMobileRef = Constants.FIREBASE_USER_ALL
         familyMemberMobileRef.observeSingleEvent(of: .value) { (mobileSnapshot) in
             
             var count = 0

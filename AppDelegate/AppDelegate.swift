@@ -208,7 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             //Created Firebase reference to get currently invited visitor by E-Intercom
             var gateNotificationRef : DatabaseReference?
-            gateNotificationRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID).child(guestType!).child(guestUID!)
+            gateNotificationRef = Constants.FIREBASE_GLOBAL_USERDATA_GATE_NOTIFICATIONS.child(userUID).child(guestType!).child(guestUID!)
             
             //Performing accept & reject on click of recently invited visitor by E-Intercom from Notification view.
             switch response.actionIdentifier {
