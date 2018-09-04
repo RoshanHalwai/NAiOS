@@ -291,7 +291,7 @@ extension MyFlatDetailsViewController {
         let userUID = Auth.auth().currentUser?.uid
         
         //User Private Reference
-        userPrivateRef = Constants.FIREBASE_USER_PRIVATE.child(userUID!)
+        userPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID!)
         
         //Flat Details Firebase DB Reference
         usersFlatDetailsRef = userPrivateRef.child(Constants.FIREBASE_CHILD_FLATDETAILS)
@@ -313,7 +313,7 @@ extension MyFlatDetailsViewController {
                 let adminUIDRef = self.UsersDataRef?.child(Constants.FIREBASE_CHILD_ADMIN)
                 adminUIDRef?.observeSingleEvent(of: .value) { (adminUIDSnapshot) in
                     let adminUID = adminUIDSnapshot.value
-                    let adminNameRef = Constants.FIREBASE_USER_PRIVATE.child(adminUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
+                    let adminNameRef = Constants.FIREBASE_USERS_PRIVATE.child(adminUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
                     adminNameRef.observeSingleEvent(of: .value) { (adminNameSnapshot) in
                         let usersData = adminNameSnapshot.value as? [String: AnyObject]
                         self.fullName = (usersData?[UserPersonalListFBKeys.fullName.key] as? String)!
@@ -382,12 +382,12 @@ extension MyFlatDetailsViewController {
                             self.usersPersonalDetailsRef?.setValue(usersPersonalData)
                             
                             //Storing UID under Users/Private/UID
-                            self.usersUIDRef = Constants.FIREBASE_USER_PRIVATE.child(userUID!)
+                            self.usersUIDRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID!)
                             self.usersUIDRef?.child(NAUser.NAUserStruct.uid).setValue(userUID)
                             
                             //Mapping Mobile Number with UID
                             
-                            self.usersMobileNumberRef = Constants.FIREBASE_USER_ALL
+                            self.usersMobileNumberRef = Constants.FIREBASE_USERS_ALL
                             self.usersMobileNumberRef?.child(self.newMobileNumber).setValue(userUID)
                             
                             //Storing Flat Member UID

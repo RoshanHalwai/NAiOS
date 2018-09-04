@@ -376,7 +376,7 @@ extension OTPViewController {
                 if snapshot.exists() {
                     
                     let userUID = Auth.auth().currentUser?.uid
-                    let userActivationRef = Constants.FIREBASE_USER_PRIVATE.child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_VERIFIED)
+                    let userActivationRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_VERIFIED)
                     
                     //Navigate to NAHome or Activation Requried Screen According to verified value.
                     userActivationRef.observeSingleEvent(of: .value, with: { (activationSnapshot) in

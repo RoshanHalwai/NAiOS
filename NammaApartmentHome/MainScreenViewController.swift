@@ -111,7 +111,7 @@ class MainScreenViewController: NANavigationViewController {
         let systemVersion = UIDevice.current.systemVersion
         
         //Storing Device Version under Other Details
-        let usersOtherDetailsRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
+        let usersOtherDetailsRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
         usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_VERSION).setValue(systemVersion)
     }
     
@@ -412,11 +412,11 @@ extension MainScreenViewController {
         let token = Messaging.messaging().fcmToken
         
         var usersTokenRef : DatabaseReference?
-        usersTokenRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
+        usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
         usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         //Checking Users UID in Firebase under Users ->Private
-        usersPrivateRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
+        usersPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
         
         //Checking userData inside Users/Private
         self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
