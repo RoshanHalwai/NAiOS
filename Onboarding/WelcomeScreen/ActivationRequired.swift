@@ -37,7 +37,7 @@ class ActivationRequired: NANavigationViewController {
         let token = Messaging.messaging().fcmToken
         
         var usersTokenRef : DatabaseReference?
-        usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
+        usersTokenRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
         usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         var usersVerifiedRef : DatabaseReference?

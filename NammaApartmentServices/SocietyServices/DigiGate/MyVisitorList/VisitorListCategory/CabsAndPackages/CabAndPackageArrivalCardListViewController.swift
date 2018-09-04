@@ -116,7 +116,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
             if(myCabList.getInviterUID() == userUID) {
                 cell.lbl_Inviter_Detail.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
             } else {
-                let inviterNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(myCabList.getInviterUID())
+                let inviterNameRef = Constants.FIREBASE_USER_PRIVATE.child(myCabList.getInviterUID())
                 
                 inviterNameRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
                     let usersData = userDataSnapshot.value as? [String: AnyObject]
@@ -148,7 +148,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
             if(myPackageList.getInviterUID() == userUID) {
                 cell.lbl_Inviter_Detail.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
             } else {
-                let inviterNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(myPackageList.getInviterUID())
+                let inviterNameRef = Constants.FIREBASE_USER_PRIVATE.child(myPackageList.getInviterUID())
                 
                 inviterNameRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
                     let usersData = userDataSnapshot.value as? [String: AnyObject]
@@ -196,13 +196,13 @@ extension CabAndPackageArrivalCardListViewController {
     
     func expectingCabArrival(userUID : String) {
         
-        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS).child(userUID)
+        userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_CABS.child(userUID)
         userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let cabsUID = snapshot.value as? NSDictionary
                 for cabsUID in (cabsUID?.allKeys)! {
-                    self.cabsPublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_CHILD_PRIVATE).child(cabsUID as! String)
+                    self.cabsPublicRef = Constants.FIREBASE_CABS_PRIVATE.child(cabsUID as! String)
                     self.cabsPublicRef?.keepSynced(true)
                     self.cabsPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
@@ -229,14 +229,14 @@ extension CabAndPackageArrivalCardListViewController {
     func checkAndRetrieveCabArrivals() {
         var friend = [String]()
         friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
-        let cabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS)
+        let cabRef = Constants.FIREBASE_GLOBAL_USERDATA_CABS
         cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
             var isFlatMemberKeys = false
             if !(snapshotCab.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
             } else {
-                let userUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
+                let userUIDRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
                 userUIDRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     if snapshot.exists() {
                         self.expectingCabArrival(userUID: userUID)
@@ -282,13 +282,13 @@ extension CabAndPackageArrivalCardListViewController {
     //Creating Function to get Expecting Package Arrival Data from Firebase.
     func expectingPackageArrival(userUID : String)  {
         
-        userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
+        userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_DELIVERIES.child(userUID)
         userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let packageUID = snapshot.value as? NSDictionary
                 for vendorUID in (packageUID?.allKeys)! {
-                    self.packagePublicRef =  Database.database().reference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_CHILD_PRIVATE).child(vendorUID as! String)
+                    self.packagePublicRef = Constants.FIREBASE_DELIVERIES_PRIVATE.child(vendorUID as! String)
                     self.packagePublicRef?.keepSynced(true)
                     self.packagePublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
@@ -316,14 +316,14 @@ extension CabAndPackageArrivalCardListViewController {
     func checkAndRetrievePackageArrivals() {
         var friend = [String]()
         friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
-        let cabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES)
+        let cabRef = Constants.FIREBASE_GLOBAL_USERDATA_DELIVERIES
         cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
             var isFlatMemberKeys = false
             if !(snapshotCab.exists()) {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
             } else {
-                let userUIDRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
+                let userUIDRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
                 userUIDRef.observeSingleEvent(of: .value, with: { (snapshot) in
                     if snapshot.exists() {
                         self.expectingPackageArrival(userUID: userUID)

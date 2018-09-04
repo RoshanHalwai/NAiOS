@@ -145,7 +145,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_InvitedName.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
         } else {
-            let inviterNameRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(nammaApartmentVisitor.getinviterUID())
+            let inviterNameRef = Constants.FIREBASE_USER_PRIVATE.child(nammaApartmentVisitor.getinviterUID())
             
             inviterNameRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
                 let usersData = userDataSnapshot.value as? [String: AnyObject]
@@ -234,8 +234,7 @@ extension MyGuestListViewController : dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         let visitor_UId =  myVisitorList[indx]
         
-        self.userDataRef = GlobalUserData.shared.getUserDataReference()
-            .child(Constants.FIREBASE_CHILD_VISITORS).child(userUID)
+        self.userDataRef = Constants.FIREBASE_GLOBAL_USERDATA_VISITORS.child(userUID)
             .child(visitor_UId.getuid())
         
         var removeButtonTitle: String?
