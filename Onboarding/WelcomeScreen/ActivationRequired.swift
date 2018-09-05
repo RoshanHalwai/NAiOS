@@ -41,7 +41,7 @@ class ActivationRequired: NANavigationViewController {
         usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
         
         var usersVerifiedRef : DatabaseReference?
-        usersVerifiedRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
+        usersVerifiedRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
             .child(Constants.FIREBASE_CHILD_PRIVILEGES)
             .child(Constants.FIREBASE_CHILD_VERIFIED)
         

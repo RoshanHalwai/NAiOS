@@ -111,7 +111,7 @@ class MainScreenViewController: NANavigationViewController {
         let systemVersion = UIDevice.current.systemVersion
         
         //Storing Device Version under Other Details
-        let usersOtherDetailsRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
+        let usersOtherDetailsRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
         usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_VERSION).setValue(systemVersion)
     }
     
@@ -335,7 +335,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
     
     //Checking the user Request whether it is in-Progress or Completed
     func getInProgressUID(VC : UIViewController, serviceName: String) {
-        let userDataReference = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
+        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         
         userDataReference.observeSingleEvent(of: .value) { (serviceSnapshot) in
             if serviceSnapshot.exists() {

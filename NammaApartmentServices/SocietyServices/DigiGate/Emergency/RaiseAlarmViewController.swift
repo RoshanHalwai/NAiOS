@@ -76,11 +76,11 @@ class RaiseAlarmViewController: NANavigationViewController {
             let userFlatDetails = GlobalUserData.shared.flatDetails_Items.first
             
             //Mapping UID's in Emergency Private
-            self.privateEmergencyRef = Database.database().reference()
-            self.privateEmergencyRef?.child(Constants.FIREBASE_CHILD_EMERGENCY).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL).child((userFlatDetails?.flatNumber)!).child(emergencyUID!).setValue(NAString().gettrue())
+            self.privateEmergencyRef = Constants.FIREBASE_EMERGENCY_PRIVATE_ALL
+            self.privateEmergencyRef?.child((userFlatDetails?.flatNumber)!).child(emergencyUID!).setValue(NAString().gettrue())
             
             //Storing data in Emergency Public Reference
-            self.publicEmergencyRef = Database.database().reference().child(Constants.FIREBASE_CHILD_EMERGENCY).child(Constants.FIREBASE_USER_PUBLIC).child(emergencyUID!)
+            self.publicEmergencyRef = Constants.FIREBASE_EMERGENCY_PUBLIC.child(emergencyUID!)
             
             //defining node with type of data in it.
             let dailyServicesData = [

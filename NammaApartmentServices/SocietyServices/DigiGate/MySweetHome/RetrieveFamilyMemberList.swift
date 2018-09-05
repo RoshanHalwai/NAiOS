@@ -99,8 +99,7 @@ class RetrieveFamilyMemberList {
     //User UID whose data is to be retrieved from firebase
     private func getUserDataByUID(userUID : String, callback: @escaping (_ userData : NAUser) -> Void) {
         //Take each of the user UID and get their data from users -> all
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USER)
-            .child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID)
+        userDataRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
         userDataRef.keepSynced(true)
         //Adding observe event to each of user UID
         userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in

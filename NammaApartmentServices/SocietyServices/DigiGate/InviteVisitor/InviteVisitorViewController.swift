@@ -301,15 +301,13 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     //Created Function for inviting visitor with the help of firebase.
     func storeVisitorDetailsInFirebase() {
         //Creating visitors UID
-        visitorsAllRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(Constants.FIREBASE_USER_CHILD_ALL)
+        visitorsAllRef = Constants.FIREBASE_VISITORS_ALL
         let visitorUID : String?
         visitorUID = (visitorsAllRef?.childByAutoId().key)!
         
         //Mapping Visitor's mobile number with their UID
         visitorsAllRef?.child(self.txtInvitorMobile.text!).setValue(visitorUID)
-        visitorsPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(Constants.FIREBASE_CHILD_PRIVATE).child(visitorUID!)
+        visitorsPrivateRef = Constants.FIREBASE_VISITORS_PRIVATE.child(visitorUID!)
         
         //Storing visitors data along with their profile photo
         var visitorImageRef: StorageReference?

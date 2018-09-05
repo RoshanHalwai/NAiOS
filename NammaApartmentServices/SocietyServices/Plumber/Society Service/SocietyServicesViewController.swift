@@ -387,7 +387,7 @@ extension SocietyServicesViewController {
         }
         let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
         notificationUID = societyServiceNotificationRef.childByAutoId().key
-        let userDataRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
+        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         
         let societyServiceNotificationData = [

@@ -114,7 +114,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     
     //Retrieving Society Service Data in History Screen
     func retrieveSocietyServiceHistoryData() {
-        let userDataRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
+        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         
         userDataRef.observeSingleEvent(of: .value) { (snapshot) in
             if snapshot.exists() {
@@ -182,7 +182,7 @@ extension SocietyHistoryViewController {
         var eventManagementUIDRef : DatabaseReference?
         var societyServiceNotificationsRef : DatabaseReference?
         
-        eventManagementUIDRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
+        eventManagementUIDRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
         
         eventManagementUIDRef?.observeSingleEvent(of: .value, with: { (eventUIDSnapShot) in
             

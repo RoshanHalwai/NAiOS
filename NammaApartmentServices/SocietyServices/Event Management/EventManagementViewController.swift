@@ -367,7 +367,7 @@ extension EventManagementViewController {
         let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
         notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())
         
-        let userDataRef = Constants.FIREBASE_USERDATA_SOCIETY_SERVICES_NOTIFICATION
+        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(eventNotificationUID).setValue(NAString().gettrue())
         
         let eventManagementNotificationData = [
@@ -421,14 +421,14 @@ extension EventManagementViewController {
         }
         
         var eventSlotRef : DatabaseReference?
-        eventSlotRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT).child(convertedDate)
+        eventSlotRef = Constants.FIREBASE_EVENT_MANAGEMENT.child(convertedDate)
         eventSlotRef?.child(eventSlot).setValue(NAString().gettrue())
     }
     
     //Created Function to get booked slot for the selected date.
     func disableBookedSlot() {
         
-        let bookedEventSlotRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT).child(convertedDate)
+        let bookedEventSlotRef = Constants.FIREBASE_EVENT_MANAGEMENT.child(convertedDate)
         
         bookedEventSlotRef.observeSingleEvent(of: .value) { (slotSnapshot) in
             if slotSnapshot.exists() {
