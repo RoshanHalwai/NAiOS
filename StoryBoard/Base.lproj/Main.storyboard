@@ -2939,7 +2939,7 @@
                                         <size key="customSize" width="307" height="185"/>
                                         <connections>
                                             <outlet property="activityIndicator" destination="NPz-bo-I9D" id="nGg-cy-Sdf"/>
-                                            <outlet property="cardView" destination="WA2-dd-QXJ" id="2V8-V7-JwT"/>
+                                            <outlet property="cardView" destination="WA2-dd-QXJ" id="Jas-g8-6gd"/>
                                             <outlet property="lbl_GuardGateNo" destination="m3n-hw-hgt" id="oaj-1d-a7Y"/>
                                             <outlet property="lbl_GuardName" destination="KPh-Hb-0fo" id="bAb-kc-fhi"/>
                                             <outlet property="lbl_GuardStatus" destination="tJ6-4c-Brf" id="DsV-l3-WWr"/>
