@@ -26,6 +26,7 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var lbl_ErrorValidation_Message: UILabel!
     @IBOutlet weak var lbl_description: UILabel!
     @IBOutlet weak var lbl_DescrptionErrorValidation_Message: UILabel!
+    @IBOutlet weak var checkList_CardView: UIView!
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var stackView: UIStackView!
@@ -52,6 +53,8 @@ class SocietyServicesViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NAShadowEffect().shadowEffectForView(view: checkList_CardView)
         
         //Create textfield first letter capital
         txt_Others.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
