@@ -20,4 +20,5 @@ class MyGuardsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_GuardStatus: UILabel!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
 }
