@@ -166,7 +166,14 @@ class AwaitingResponseViewController: NANavigationViewController {
     //on Click of Submit Button
     @objc func storeRating() {
         
-        let serviceRating = self.societyServiceRating.ratingValue
+        let rating = self.societyServiceRating.ratingValue
+        var serviceRating = Int()
+        if rating == 0 {
+            serviceRating = 5
+        } else {
+            serviceRating = rating
+        }
+        
         self.opacity_View.isHidden = true
         self.societyServiceRating.isHidden = true
     
