@@ -169,15 +169,11 @@ extension SettingViewController {
             print(soundSnapshot as Any)
             let notificationSoundData = soundSnapshot.value as! [String: Any]
             
-            let cabValue = notificationSoundData["cab"] as! Bool
-            let PackageValue = notificationSoundData["package"] as! Bool
-            let dailyServiceValue = notificationSoundData["dailyService"] as! Bool
-            let guestValue = notificationSoundData["guest"] as! Bool
-            let eIntercomValue = notificationSoundData["eIntercom"] as! Bool
-            
-            
-            
-            
+            let cabValue = notificationSoundData[Constants.FIREBASE_CHILD_CAB_SOUND] as! Bool
+            let PackageValue = notificationSoundData[Constants.FIREBASE_CHILD_PACKAGE_SOUND] as! Bool
+            let dailyServiceValue = notificationSoundData[Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND] as! Bool
+            let guestValue = notificationSoundData[Constants.FIREBASE_CHILD_GUEST_SOUND] as! Bool
+            let eIntercomValue = notificationSoundData[Constants.FIREBASE_CHILD_EINTERCOM_SOUND] as! Bool
         }
     }
 }
