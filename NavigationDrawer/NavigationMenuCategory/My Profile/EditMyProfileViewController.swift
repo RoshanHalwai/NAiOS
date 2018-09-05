@@ -179,6 +179,19 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         
         //Change Admin TextField function
         txt_Flat_Admin.addTarget(self, action: #selector(changeAdminTextField), for: UIControlEvents.touchDown)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        if self.view.frame.origin.y >= 0 {
+            self.view.frame.origin.y -= 100
+        }
+    }
+    
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += 100
     }
     
     //Change Admin TextField function
