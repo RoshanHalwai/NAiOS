@@ -40,6 +40,22 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 10, height: height/5)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //apply defined layout to collectionview
+        collectionView!.collectionViewLayout = layout
     }
     
     //Navigating Back to Home Screen according to Screen coming from
@@ -80,6 +96,8 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         cell.lbl_VehicleNumber.font = NAFont().textFieldFont()
         cell.lbl_VehicleOwner.font = NAFont().textFieldFont()
         cell.lbl_VehicleAddedOn.font = NAFont().textFieldFont()
+        
+        NAShadowEffect().shadowEffect(Cell: cell)
         
         //setting image round
         cell.myVehicleImage.layer.cornerRadius = cell.myVehicleImage.frame.size.width/2

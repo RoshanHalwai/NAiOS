@@ -106,7 +106,10 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
             let timeString = time.string(from: datePicker.date)
             txt_ReTime.text = timeString
             //Minimum Time
-            datePicker.minimumDate = NSDate() as Date
+            
+            if hideDateFromDailyServicesVC != NAString().yes() {
+                datePicker.minimumDate = NSDate() as Date
+            }
         }
     }
     

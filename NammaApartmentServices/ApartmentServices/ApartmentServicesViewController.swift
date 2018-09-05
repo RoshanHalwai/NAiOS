@@ -165,7 +165,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         
         //Implementing Calling Function here on Phone click
         cell.actionCall = {
-            UIApplication.shared.open(NSURL(string: dailyServicesData.getphoneNumber())! as URL, options: [:], completionHandler: nil)
+             UIApplication.shared.open(NSURL(string: "tel://\(dailyServicesData.getphoneNumber())")! as URL, options: [:], completionHandler: nil)
         }
         
         //Implementing Message Function here on Message click

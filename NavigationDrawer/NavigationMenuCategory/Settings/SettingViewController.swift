@@ -29,6 +29,8 @@ class SettingViewController: NANavigationViewController {
     @IBOutlet weak var switch_EIntercom: UISwitch!
     @IBOutlet weak var switch_Guest: UISwitch!
     @IBOutlet weak var switch_DailyServices: UISwitch!
+    @IBOutlet weak var switch_Cab: UISwitch!
+    @IBOutlet weak var switch_Package: UISwitch!
     
     var navTitle = String()
     var selectLanguage = String()
@@ -83,11 +85,11 @@ class SettingViewController: NANavigationViewController {
     
     @IBAction func switch_EIntercom(_ sender: UISwitch) {
         if (sender.isOn ==  true) {
-           userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
         } else {
-             userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().getfalse())
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().getfalse())
         }
-     }
+    }
     
     @IBAction func switch_Guest(_ sender: UISwitch) {
         if (sender.isOn ==  true) {
@@ -166,7 +168,6 @@ extension SettingViewController {
             .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
         
         notificationSoundRef.observeSingleEvent(of: .value) { (soundSnapshot) in
-            print(soundSnapshot as Any)
             let notificationSoundData = soundSnapshot.value as! [String: Any]
             
             let cabValue = notificationSoundData[Constants.FIREBASE_CHILD_CAB_SOUND] as! Bool
@@ -174,7 +175,39 @@ extension SettingViewController {
             let dailyServiceValue = notificationSoundData[Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND] as! Bool
             let guestValue = notificationSoundData[Constants.FIREBASE_CHILD_GUEST_SOUND] as! Bool
             let eIntercomValue = notificationSoundData[Constants.FIREBASE_CHILD_EINTERCOM_SOUND] as! Bool
+            
+            //Setting UISwitches isOn accroding to firebase values
+            if cabValue == true {
+                self.switch_Cab.isOn = true
+            } else {
+                self.switch_Cab.isOn = false
+            }
+            
+            if PackageValue == true {
+                self.switch_Package.isOn = true
+            } else {
+                self.switch_Package.isOn = false
+            }
+            
+            if dailyServiceValue == true {
+                self.switch_DailyServices.isOn = true
+            } else {
+                self.switch_DailyServices.isOn = false
+            }
+            
+            if guestValue == true {
+                self.switch_Guest.isOn = true
+            } else {
+                self.switch_Guest.isOn = false
+            }
+            
+            if eIntercomValue == true {
+                self.switch_EIntercom.isOn = true
+            } else {
+                self.switch_EIntercom.isOn = false
+            }
         }
     }
 }
+
 
