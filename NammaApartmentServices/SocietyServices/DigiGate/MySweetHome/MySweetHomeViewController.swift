@@ -212,7 +212,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         cell.objEdit = {
             
-            self.userPrivilegesRef =  Constants.FIREBASE_USER_PRIVATE.child(flatMember.flatMembersUID()).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
+            self.userPrivilegesRef =  Constants.FIREBASE_USERS_PRIVATE.child(flatMember.flatMembersUID()).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_GRANTACCESS)
             
             if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
                 

@@ -145,7 +145,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_InvitedName.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
         } else {
-            let inviterNameRef = Constants.FIREBASE_USER_PRIVATE.child(nammaApartmentVisitor.getinviterUID())
+            let inviterNameRef = Constants.FIREBASE_USERS_PRIVATE.child(nammaApartmentVisitor.getinviterUID())
             
             inviterNameRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
                 let usersData = userDataSnapshot.value as? [String: AnyObject]
