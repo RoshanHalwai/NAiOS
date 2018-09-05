@@ -28,6 +28,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Asking permissions for Location
         let status  = CLLocationManager.authorizationStatus()
         if status == .notDetermined {
             if (CLLocationManager.locationServicesEnabled()) {
@@ -99,7 +100,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
             let latitude = currentLocation.coordinate.latitude
             let longitude = currentLocation.coordinate.longitude
             
-            //Storing latitude & longidute
+            //Storing latitude & longitute in Firebase
             var userLocation : DatabaseReference?
             userLocation = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
             userLocation?.child(Constants.FIREBASE_CHILD_LONGITUDE).setValue(longitude)
