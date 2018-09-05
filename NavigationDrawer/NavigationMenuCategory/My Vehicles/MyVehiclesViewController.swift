@@ -49,7 +49,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         let height = UIScreen.main.bounds.height
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: height/4)
+        layout.itemSize = CGSize(width: width - 10, height: height/5)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -96,6 +96,8 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         cell.lbl_VehicleNumber.font = NAFont().textFieldFont()
         cell.lbl_VehicleOwner.font = NAFont().textFieldFont()
         cell.lbl_VehicleAddedOn.font = NAFont().textFieldFont()
+        
+        NAShadowEffect().shadowEffect(Cell: cell)
         
         //setting image round
         cell.myVehicleImage.layer.cornerRadius = cell.myVehicleImage.frame.size.width/2
