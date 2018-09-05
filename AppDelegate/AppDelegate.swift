@@ -216,6 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let guestUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
         let profilePhoto = userInfo[NAString()._profile_photo()] as? String
         let message = userInfo[NAString()._message_()] as? String
+        let mobileNumber = userInfo[NAString().mobile_Number()] as? String
         
         //Here we are performing Action on Notification Buttons & We created this buttons in  "setActionCategories" function.
         if response.notification.request.content.categoryIdentifier == NAString().notificationActionCategory() {
@@ -247,6 +248,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let currentDate = formatter.string(from: date)
                 
                 if visitorType == Constants.FIREBASE_CHILD_VISITORS {
+                    
+                    let guestMobileRef = Constants.FIREBASE_VISITORS_ALL.child(mobileNumber!)
+                        guestMobileRef.setValue(guestUID)
                     //Storing Post Approved Guests
                     let replacedMessage = message?.replacingOccurrences(of: NAString().your_Guest(), with: "")
                     let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
@@ -257,13 +261,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         VisitorListFBKeys.status.key : NAString().entered(),
                         VisitorListFBKeys.fullName.key : visitorRef,
                         VisitorListFBKeys.inviterUID.key : userUID,
-                        VisitorListFBKeys.profilePhoto.key : profilePhoto
+                        VisitorListFBKeys.profilePhoto.key : profilePhoto,
+                        VisitorListFBKeys.mobileNumber.key : mobileNumber
                     ]
                     postApprovedRef.setValue(postApprovedGuestsData)
                 } else if visitorType == Constants.FIREBASE_CHILD_CABS {
+                    
+                    
                     //Storing PostApproved Cabs
                     let replacedMessage = message?.replacingOccurrences(of: NAString().your_Cab_Numbered(), with: "")
                     let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
+                    let cabNUmberRef = Constants.FIREBASE_CABS_ALL.child(visitorRef!)
+                    cabNUmberRef.setValue(guestUID)
                     let postApprovedCabs = [
                         ArrivalListFBKeys.approvalType.key : Constants.FIREBASE_CHILD_POST_APPROVED,
                         ArrivalListFBKeys.dateAndTimeOfArrival.key : currentDate,

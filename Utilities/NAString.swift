@@ -1664,6 +1664,10 @@ class NAString : NSObject {
         return String("message")
     }
     
+    func mobile_Number() -> String {
+        return String("mobile_number")
+    }
+    
     func _profile_photo() -> String {
         return String("profile_photo")
     }
