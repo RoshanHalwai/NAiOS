@@ -29,6 +29,8 @@ class SettingViewController: NANavigationViewController {
     @IBOutlet weak var switch_EIntercom: UISwitch!
     @IBOutlet weak var switch_Guest: UISwitch!
     @IBOutlet weak var switch_DailyServices: UISwitch!
+    @IBOutlet weak var switch_Cab: UISwitch!
+    @IBOutlet weak var switch_Package: UISwitch!
     
     var navTitle = String()
     var selectLanguage = String()
@@ -174,7 +176,20 @@ extension SettingViewController {
             let dailyServiceValue = notificationSoundData[Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND] as! Bool
             let guestValue = notificationSoundData[Constants.FIREBASE_CHILD_GUEST_SOUND] as! Bool
             let eIntercomValue = notificationSoundData[Constants.FIREBASE_CHILD_EINTERCOM_SOUND] as! Bool
+            
+            print(cabValue as Any)
+            print(PackageValue as Any)
+            print(dailyServiceValue as Any)
+            print(guestValue as Any)
+            print(eIntercomValue as Any)
+            
+            if cabValue == false {
+                self.switch_Cab.isOn = false
+            } else {
+                     self.switch_Cab.isOn = true
+                }
+            }
         }
     }
-}
+
 
