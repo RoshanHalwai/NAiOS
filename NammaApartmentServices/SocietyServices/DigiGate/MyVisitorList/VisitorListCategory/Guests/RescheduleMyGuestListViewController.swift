@@ -176,7 +176,7 @@ extension RescheduleMyGuestListViewController {
     
     //Created function to reschedule date & time of visitor
     func reschedulingVisitorTimeInFirebase() {
-        preApprovedVisitorsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_CHILD_PRIVATE).child(self.getVisitorUID)
+        preApprovedVisitorsRef = Constants.FIREBASE_VISITORS_PRIVATE.child(self.getVisitorUID)
         
         var  newDateAndTimeOfVisit = String()
         newDateAndTimeOfVisit = (self.txt_ReDate.text!) + "\t\t" + (txt_ReTime.text!)
@@ -193,7 +193,7 @@ extension RescheduleMyGuestListViewController {
     //Created function to reschedule time of Daily service.
     func reschedulingDailyServicesTimeInFirebase() {
         
-        dailyServicesTimeOfVisitRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(self.getDailyServiceType).child(self.getDailyServiceUID).child(userUID)
+        dailyServicesTimeOfVisitRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(self.getDailyServiceType).child(self.getDailyServiceUID).child(userUID)
         
         var newTimeOfVisit = String()
         newTimeOfVisit  = self.txt_ReTime.text!

@@ -333,7 +333,8 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
         
         let dailyService = NADailyServicesList[indx]
         
-        self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+        self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         
         let alert = UIAlertController(title: NAString().remove_myDailyService_alertView_Title(), message: NAString().remove_myDailyService_alertView_Message(), preferredStyle: .alert)
         
@@ -383,7 +384,8 @@ extension MyDailyServicesViewController {
                 
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
-                self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+                self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference()
+                    .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
                 self.dailyServiceInUserRef?.keepSynced(true)
                 self.dailyServiceInUserRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                     
@@ -407,9 +409,9 @@ extension MyDailyServicesViewController {
                                 for dailyServiceUID in (dailyServicesUID?.allKeys)! {
                                     
                                     if dailyServicesUID![dailyServiceUID] as! Bool == true {
-                                        self.dailyServiceCountRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String)
+                                        self.dailyServiceCountRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
                                         //Getting Daily Services Status (Like Entered or Not)
-                                        self.dailyServiceStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceType as! String).child(dailyServiceUID as! String).child(NAString().status())
+                                        self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(NAString().status())
                                         self.dailyServiceStatusRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                             let dailyServiceStatus = snapshot.value
                                             
@@ -423,7 +425,7 @@ extension MyDailyServicesViewController {
                                                     let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus)
                                                     dsInfo.append(servicetype)
                                                     
-                                                    self.dailyServicePublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
+                                                    self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC
                                                     self.dailyServicePublicRef?.keepSynced(true)
                                                     self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
                                                         if snapshot.exists() {
@@ -473,7 +475,8 @@ extension MyDailyServicesViewController {
     /* - Check if the flat has any daily service. If it does not have any Daily services added, we show daily service unavailable message
      - Else, we Display the cardView of all daily services of the current user. */
     func checkAndRetrieveDailyService() {
-        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+        let userDataReference = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         userDataReference.keepSynced(true)
         userDataReference.observeSingleEvent(of: .value) { (dailyServiceSnapshot) in
             if !(dailyServiceSnapshot.exists()) {

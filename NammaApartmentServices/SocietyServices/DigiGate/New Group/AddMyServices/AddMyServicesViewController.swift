@@ -462,25 +462,25 @@ extension AddMyServicesViewController {
     }
     
     func storingDailyServicesInFirebase()  {
-        let flatValues = GlobalUserData.shared.flatDetails_Items
-        let userFlatDetailValues = flatValues.first
         let dailyServiceUID = Auth.auth().currentUser?.uid
         
-        userDataRef = Database.database().reference().child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_CHILD_PRIVATE).child((userFlatDetailValues?.city)!).child((userFlatDetailValues?.societyName)!).child((userFlatDetailValues?.apartmentName)!).child((userFlatDetailValues?.flatNumber)!).child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceKey)
+        userDataRef = GlobalUserData.shared.getUserDataReference()
+            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+            .child(dailyServiceKey)
         
         userDataRef?.child(dailyServiceUID!).setValue(NAString().gettrue())
         
-        dailyServicesPrivateRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_CHILD_PRIVATE)
+        dailyServicesPrivateRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PRIVATE
         
         dailyServicesPrivateRef?.child(txt_MobileNo.text!).setValue(dailyServiceUID)
         
-        dailyServicesTypeRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE)
+        dailyServicesTypeRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(Constants.FIREBASE_CHILD_DAILY_SERVICES_TYPE)
         
         dailyServicesTypeRef?.child(dailyServiceUID!).setValue(dailyServiceKey)
         
-        dailyServicesPublicRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServiceUID!).child(userUID)
+        dailyServicesPublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceKey).child(dailyServiceUID!).child(userUID)
         
-        dailyServicesStatusRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC).child(dailyServiceKey).child(dailyServiceUID!)
+        dailyServicesStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceKey).child(dailyServiceUID!)
         
         dailyServicesStatusRef?.observeSingleEvent(of: .value, with: { (dsAvailableSnapshot) in
             

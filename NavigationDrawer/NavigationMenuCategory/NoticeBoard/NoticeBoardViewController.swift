@@ -11,9 +11,7 @@ import FirebaseDatabase
 
 class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var tableView: UITableView!
-    var navTitle = String()
-    
+    @IBOutlet weak var tableView: UITableView!    
     var myExpectedNoticeBoardList = [NAExpectingNoticeBoard]()
     
     override func viewDidLoad() {
@@ -23,10 +21,20 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
         //Setting & Formatting Navigation bar
-        super.ConfigureNavBarTitle(title: navTitle)
-        
+        super.ConfigureNavBarTitle(title: NAString().notice_board())
+       
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()
+    }
+   
+    @IBAction func btn_BackAction(_ sender: Any) {
+        goBackToMyFlatDetails()
+    }
+    
+    //Navigating back to NAHome screen on click of back button.
+    @objc func goBackToMyFlatDetails() {
+        let dest = NAViewPresenter().mainScreenVC()
+        self.navigationController?.pushViewController(dest, animated: true)
     }
     
     //MARK: TableView Delegate and DataSource Methods

@@ -39,7 +39,7 @@ class SettingViewController: NANavigationViewController {
         
         retrieveNotificationSoundFromFirebase()
         
-          userNotificationRef = Constants.FIREBASE_USER_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS).child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
+        userNotificationRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS).child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
         
         self.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.rightBarButtonItem = nil
@@ -161,7 +161,7 @@ extension SettingViewController {
     
     func retrieveNotificationSoundFromFirebase() {
         
-        let notificationSoundRef = Constants.FIREBASE_USER_PRIVATE.child(userUID)
+        let notificationSoundRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
             .child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
             .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
         
