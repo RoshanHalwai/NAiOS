@@ -7666,9 +7666,11 @@
                         <outlet property="package_Notification_Label" destination="7Kc-Sv-tsK" id="OWU-5C-04U"/>
                         <outlet property="sound_Settings_Label" destination="mOI-ar-EfE" id="Rn6-DA-z8g"/>
                         <outlet property="sound_settings_View" destination="aW6-DC-MmH" id="9Zg-0z-0XQ"/>
+                        <outlet property="switch_Cab" destination="QU8-z6-1SO" id="alU-Rm-XKn"/>
                         <outlet property="switch_DailyServices" destination="oca-4n-NfA" id="LIl-7R-Rb6"/>
                         <outlet property="switch_EIntercom" destination="lZ4-aB-KcT" id="2ar-b2-ZZP"/>
                         <outlet property="switch_Guest" destination="qtV-CY-pM9" id="apj-dr-VV8"/>
+                        <outlet property="switch_Package" destination="74f-25-D09" id="rsd-rD-MAX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buU-3R-kVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
