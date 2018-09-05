@@ -39,14 +39,6 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Condition for assigning DatePicker Format to Date & Time According to View
-        if hideDateFromDailyServicesVC == NAString().yes() {
-            datePicker.datePickerMode = UIDatePickerMode.time
-            date_StackView.isHidden = true
-        } else {
-            datePicker.datePickerMode = UIDatePickerMode.date
-        }
-        
         //Handling Action on TextField Click
         txt_ReTime.addTarget(self, action: #selector(timeFunction), for: UIControlEvents.touchDown)
         txt_ReDate.addTarget(self, action: #selector(dateFunction), for: UIControlEvents.touchDown)
@@ -89,6 +81,14 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         //assigned delegate method on textFields
         txt_ReTime.delegate = self
         txt_ReDate.delegate = self
+        
+        //Condition for assigning DatePicker Format to Date & Time According to View
+        if hideDateFromDailyServicesVC == NAString().yes() {
+            datePicker.datePickerMode = UIDatePickerMode.time
+            txt_ReDate.isHidden = true
+        } else {
+            datePicker.datePickerMode = UIDatePickerMode.date
+        }
     }
     
     //Create MyGuest Date Picker Action
