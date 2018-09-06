@@ -31,6 +31,9 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     //created varible for razorPay
     var razorpay: Razorpay!
     var paymentDescription = String()
+    var getUserMobileNumebr = String()
+    var getUserEmailID = String()
+    var getUserPendingAmount = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,12 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         //Payment Gateway test API KEY
         razorpay = Razorpay.initWithKey("rzp_test_GCFVAY6RGbNWyb", andDelegate: self)
         
+        getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
+        getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getfullName())!
+        
+        //TODO: Hardcoded Amount,but will change it later after completing Amount UI in My wallet Screen
+        getUserPendingAmount = "100"
+       
         //Setting label fonts
         lbl_nammaApartment.font = NAFont().headerFont()
         lbl_payFor.font = NAFont().headerFont()
@@ -87,15 +96,14 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     }
     
     //This will show the default UI of RazorPay with some user's informations.
-    //TODO: Need to set user's details instead of hardcoded data.
     func showPaymentUI() {
         let options: [String:Any] = [
-            "amount" : "100",
+            "amount" : getUserPendingAmount,
             "description": paymentDescription,
-            "name": "Namma Apartments",
+            "name": NAString().splash_NammaHeader_Title(),
             "prefill": [
-            "contact": "8866993029",
-            "email": "thevikasnayak@gmail.com"
+            "contact": getUserMobileNumebr,
+            "email": getUserEmailID
             ],
             "theme": [
                 "color": "#F37254"
