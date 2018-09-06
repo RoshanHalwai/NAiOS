@@ -301,7 +301,7 @@ class SocietyServicesViewController: NANavigationViewController {
     }
     //Calling SelectAny Button Function
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if othersStackView.isHidden == true {
+        if othersStackView.isHidden == true || txt_SelectAny.text == NAString().others(){
             lbl_ErrorValidation_Message.isHidden = true
             txt_SelectAny.underlined()
             let searchVC = NAViewPresenter().societyServiceTableVC()
