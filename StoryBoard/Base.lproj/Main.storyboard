@@ -1665,15 +1665,13 @@
                         <outlet property="btn_Cancel" destination="WAM-dN-QXZ" id="1ez-fS-2ND"/>
                         <outlet property="btn_Reschedule" destination="e28-iQ-3Qx" id="aAB-DO-uz8"/>
                         <outlet property="datePicker" destination="bFG-Wu-gHu" id="S5c-Sg-zsT"/>
-                        <outlet property="date_StackView" destination="myU-at-DbC" id="TsA-kE-z88"/>
-                        <outlet property="time_StackView" destination="gTf-U4-7aq" id="kX8-pj-XAl"/>
                         <outlet property="txt_ReDate" destination="Fcr-zk-5wL" id="Lxp-ZE-UEu"/>
                         <outlet property="txt_ReTime" destination="XqN-EP-30D" id="TN6-Ye-3HG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EkG-59-5Id" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3213.5999999999999" y="2721.5892053973016"/>
+            <point key="canvasLocation" x="3211.875" y="2721.1267605633802"/>
         </scene>
         <!--Notify Digi Gate View Controller-->
         <scene sceneID="5ng-nd-fxE">
