@@ -301,22 +301,25 @@ class SocietyServicesViewController: NANavigationViewController {
     }
     //Calling SelectAny Button Function
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if othersStackView.isHidden == true || txt_SelectAny.text == NAString().others(){
-            lbl_ErrorValidation_Message.isHidden = true
-            txt_SelectAny.underlined()
-            let searchVC = NAViewPresenter().societyServiceTableVC()
-            let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
-            searchVC.navigationTitle = NAString().selectAnyProblem()
-            if (navTitle == NAString().plumber()) {
-                searchVC.titleString = NAString().plumber()
-            } else if (navTitle == NAString().carpenter()) {
-                searchVC.titleString = NAString().carpenter()
-            } else {
-                searchVC.titleString = NAString().electrician()
+        if othersStackView.isHidden == true || !(txt_SelectAny.text?.isEmpty)! {
+            if textField == txt_SelectAny {
+                txt_SelectAny.inputView = UIView()
+                lbl_ErrorValidation_Message.isHidden = true
+                txt_SelectAny.underlined()
+                let searchVC = NAViewPresenter().societyServiceTableVC()
+                let nav : UINavigationController = UINavigationController(rootViewController: searchVC)
+                searchVC.navigationTitle = NAString().selectAnyProblem()
+                if (navTitle == NAString().plumber()) {
+                    searchVC.titleString = NAString().plumber()
+                } else if (navTitle == NAString().carpenter()) {
+                    searchVC.titleString = NAString().carpenter()
+                } else {
+                    searchVC.titleString = NAString().electrician()
+                }
+                searchVC.societyServiceVC = self
+                self.navigationController?.present(nav, animated: true, completion: nil)
+                return true
             }
-            searchVC.societyServiceVC = self
-            self.navigationController?.present(nav, animated: true, completion: nil)
-            return true
         } else {
             txt_Others.underlined()
             lbl_DescrptionErrorValidation_Message.isHidden = true
