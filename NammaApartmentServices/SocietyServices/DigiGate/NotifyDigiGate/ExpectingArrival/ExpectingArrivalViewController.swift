@@ -52,9 +52,6 @@ class ExpectingArrivalViewController: NANavigationViewController {
     //for card view
     @IBOutlet weak var cardView: UIView!
     
-    // for scroll view
-    @IBOutlet weak var scrollView: UIScrollView!
-    
     //created date picker programtically
     var picker: UIDatePicker?
     
@@ -102,19 +99,11 @@ class ExpectingArrivalViewController: NANavigationViewController {
         imageView.image = image
         txt_DateTime.rightView = imageView
         
-        // become first responder
-        self.txt_CabRtoNumber.becomeFirstResponder()
-        self.txt_CabSerialNumberOne.becomeFirstResponder()
-        self.txt_CabSerialNumberTwo.becomeFirstResponder()
-        
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: navTitle!)
         
         //Assigning Strings to the label tile according to title
         self.lbl_cabNumber.text = vendorCabNameString
-        
-        //scrollView
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0)
         
         //calling datePicker On ViewLoad
         createDatePicker()
@@ -240,13 +229,11 @@ class ExpectingArrivalViewController: NANavigationViewController {
         self.navigationController?.pushViewController(faqVC, animated: true)
     }
     
-    //Hiding & Setting First Responder for Cab TextFields & Pacakge Vandor textFields According to Title
+    //Hiding Cab TextFields & Pacakge Vandor textFields According to Title
     func hidingTextFiledAccordingToTitle() {
         if (navTitle == NAString().expecting_cab_arrival()) {
-            self.txt_CabStateCode.becomeFirstResponder()
             self.txt_PackageVendor.isHidden = true
         } else {
-            self.txt_PackageVendor.becomeFirstResponder()
             cabNumber_stack.isHidden = true
         }
     }
