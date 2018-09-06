@@ -11,12 +11,8 @@ import FirebaseDatabase
 
 class SettingViewController: NANavigationViewController {
     
-    @IBOutlet weak var general_Settings_View: UIView!
     @IBOutlet weak var sound_settings_View: UIView!
     
-    @IBOutlet weak var general_Settings_Label: UILabel!
-    @IBOutlet weak var language_Label: UILabel!
-    @IBOutlet weak var btn_Language: UIButton!
     @IBOutlet weak var btn_signOut: UIButton!
     
     @IBOutlet weak var sound_Settings_Label: UILabel!
@@ -47,20 +43,15 @@ class SettingViewController: NANavigationViewController {
         self.navigationItem.rightBarButtonItem = nil
         
         //Label Formatting and Setting
-        general_Settings_Label.font = NAFont().headerFont()
         sound_Settings_Label.font = NAFont().headerFont()
-        language_Label.font = NAFont().textFieldFont()
         eIntercom_Notification_Label.font = NAFont().textFieldFont()
         guest_Notification_Label.font = NAFont().textFieldFont()
         dailyService_Notification_Label.font = NAFont().textFieldFont()
         cab_Notification_Label.font = NAFont().textFieldFont()
         package_Notification_Label.font = NAFont().textFieldFont()
-        btn_Language.titleLabel?.font = NAFont().textFieldFont()
         
         //Setting Label Text 
-        general_Settings_Label.text = NAString().general_settings()
         sound_Settings_Label.text = NAString().sound_settings()
-        language_Label.text = NAString().language()
         eIntercom_Notification_Label.text = NAString().eIntercom_Notification()
         guest_Notification_Label.text = NAString().guest_Notification()
         dailyService_Notification_Label.text = NAString().dailyService_Notification()
@@ -68,7 +59,6 @@ class SettingViewController: NANavigationViewController {
         package_Notification_Label.text = NAString().package_Notification()
         
         //Creating Shadow Effect for Views
-        NAShadowEffect().shadowEffectForView(view: general_Settings_View)
         NAShadowEffect().shadowEffectForView(view: sound_settings_View)
         
         //Button Formatting & settings
@@ -123,15 +113,6 @@ class SettingViewController: NANavigationViewController {
         }
     }
     
-    //Create Button Actions
-    @IBAction func languageButtonAction() {
-        let vc = NAViewPresenter().languageVC()
-        let nav : UINavigationController = UINavigationController(rootViewController: vc)
-        vc.navigationTitle = NAString().selectLanguage()
-        vc.settingVC = self
-        self.navigationController?.present(nav, animated: true, completion: nil)
-    }
-    
     @IBAction func signoutButtonAction() {
         self.signoutAction()
     }
@@ -152,10 +133,6 @@ class SettingViewController: NANavigationViewController {
                 self.present(NavLogin, animated: true)
             }
         }, Cancel: { (action) in}, cancelActionTitle: NAString().no(), okActionTitle: NAString().yes())
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.btn_Language.titleLabel?.text = selectLanguage
     }
 }
 
