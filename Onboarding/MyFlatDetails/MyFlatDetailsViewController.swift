@@ -112,11 +112,6 @@ class MyFlatDetailsViewController: NANavigationViewController {
         lbl_ResidentType.font = NAFont().headerFont()
         lbl_Description.font = NAFont().popupViewFont()
         
-        txtCity.font = NAFont().textFieldFont()
-        txtSociety.font = NAFont().textFieldFont()
-        txtApartment.font = NAFont().textFieldFont()
-        txtFlat.font = NAFont().textFieldFont()
-        
         lbl_City.text = NAString().city()
         lbl_Society.text = NAString().society()
         lbl_Flat.text = NAString().flat()
@@ -129,6 +124,9 @@ class MyFlatDetailsViewController: NANavigationViewController {
         btnContinue.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btnContinue.titleLabel?.font = NAFont().buttonFont()
         btnContinue.setTitle(NAString().continue_button(), for: .normal)
+        
+        scrollView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
         
         //Set Textfield bottom border line
         txtCity.underlined()
