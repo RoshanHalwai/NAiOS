@@ -178,6 +178,24 @@ class SocietyServicesViewController: NANavigationViewController {
         
         //created Array for history and info button icons
         self.navigationItem.setRightBarButtonItems([info,history], animated: true)
+        
+        //Checking current time and Disabling time slot buttons based on Current time.
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        
+        if hour >= 12 {
+            btn_9AMto12PM.isUserInteractionEnabled = false
+            btn_9AMto12PM.setTitleColor(UIColor.lightGray, for: .normal)
+        }
+        if hour >= 15 {
+            btn_12PMto3PM.isUserInteractionEnabled = false
+            btn_12PMto3PM.setTitleColor(UIColor.lightGray, for: .normal)
+        }
+        if hour >= 18 {
+            btn_3PMto5PM.isUserInteractionEnabled = false
+            btn_3PMto5PM.setTitleColor(UIColor.lightGray, for: .normal)
+        }
     }
     
     // Navigate to FAQ's VC
