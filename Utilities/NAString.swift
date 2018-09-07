@@ -442,12 +442,12 @@ class NAString : NSObject {
         return String("Garbage")
     }
     
-    func garbage_management() -> String {
-        return String("Garbage Management")
+    func garbage_Collection() -> String {
+        return String("Garbage Collection")
     }
     
-    func garbageManagement() -> String {
-        return String("garbageManagement")
+    func garbageCollection() -> String {
+        return String("garbageCollection")
     }
     
     func event_management() -> String

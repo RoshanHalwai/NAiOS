@@ -159,7 +159,7 @@ class AwaitingResponseViewController: NANavigationViewController {
         } else if (serviceType == NAString().electrician()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().electrician())
         } else {
-            lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_management())
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_Collection())
         }
     }
     
@@ -173,6 +173,7 @@ class AwaitingResponseViewController: NANavigationViewController {
         } else {
             serviceRating = rating
         }
+        
         
         self.opacity_View.isHidden = true
         self.societyServiceRating.isHidden = true
@@ -189,8 +190,15 @@ class AwaitingResponseViewController: NANavigationViewController {
                 .child(Constants.FIREBASE_CHILD_PRIVATE)
                 .child(Constants.FIREBASE_CHILD_DATA)
                 .child(societyServiceUID)
-            societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
-            self.navigationController?.popViewController(animated: true)
+            let presentRating = societyServiceDataRef.value(forKey: Constants.FIREBASE_CHILD_RATING)
+            let ratingCountRef = societyServiceDataRef.child(Constants.FIREBASE_NOTIFICATIONS).child(Constants.FIREBASE_HISTORY)
+            ratingCountRef.observeSingleEvent(of: .value, with: { (ratingSnapshot) in
+                
+                let noOfRatingsGiven = ratingSnapshot.childrenCount
+                
+                societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
+                self.navigationController?.popViewController(animated: true)
+            })
         }
     }
     

@@ -191,7 +191,7 @@ class SocietyServicesViewController: NANavigationViewController {
             faqVC.carpenterScreen = true
         case NAString().electrician():
             faqVC.electricianScreen = true
-        case NAString().garbage_management():
+        case NAString().garbage_Collection():
             faqVC.garbageManagementScreen = true
         default:
             break
@@ -203,8 +203,8 @@ class SocietyServicesViewController: NANavigationViewController {
     @objc func gotoSocietyServiceHistoryVC() {
         let dv = NAViewPresenter().societyServiceHistoryVC()
         dv.titleName = NAString().history().capitalized
-        if navTitle == NAString().garbage_management() {
-            dv.navigationTitle = NAString().garbageManagement()
+        if navTitle == NAString().garbage_Collection() {
+            dv.navigationTitle = NAString().garbageCollection()
         } else {
             dv.navigationTitle = navTitle!.lowercased()
         }
@@ -226,7 +226,7 @@ class SocietyServicesViewController: NANavigationViewController {
     
     //Create Changing the SelectAny Button Titles Function
     func changingSelectAnyButtonTitles() {
-        if (navTitle == NAString().garbage_management()) {
+        if (navTitle == NAString().garbage_Collection()) {
             txt_SelectAny.isHidden = true
             lbl_ErrorValidation_Message.isHidden = true
             garbageStackView.isHidden = false
@@ -342,7 +342,7 @@ class SocietyServicesViewController: NANavigationViewController {
     
     //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
-        if navTitle == NAString().garbage_management() {
+        if navTitle == NAString().garbage_Collection() {
             storeSocietyServiceDetails()
         } else {
             if (txt_SelectAny.text?.isEmpty)! {
@@ -380,9 +380,9 @@ extension SocietyServicesViewController {
         
         var problem = String()
         var serviceType = String()
-        if (navTitle == NAString().garbage_management()) {
+        if (navTitle == NAString().garbage_Collection()) {
             problem = getButtonGarbage_Problem_Text
-            serviceType = NAString().garbageManagement()
+            serviceType = NAString().garbageCollection()
         } else {
             if (self.txt_SelectAny.text == NAString().others()) {
                 problem = self.txt_Others.text!
@@ -423,7 +423,7 @@ extension SocietyServicesViewController {
         } else if (navTitle == NAString().electrician()) {
             lv.serviceType = NAString().electrician()
         } else {
-            lv.serviceType = NAString().garbage_management()
+            lv.serviceType = NAString().garbage_Collection()
         }
         self.navigationController?.pushViewController(lv, animated: true)
     }
