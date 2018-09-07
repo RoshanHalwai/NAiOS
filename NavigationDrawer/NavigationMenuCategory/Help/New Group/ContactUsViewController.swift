@@ -21,13 +21,13 @@ enum SupportDetailsFBKeys: String {
     
     var key : String {
         switch self {
-        case .problemDescription : return "problemDescription"
-        case .serviceCategory : return "serviceCategory"
-        case .serviceType : return "serviceType"
-        case .status : return "status"
-        case .timestamp : return "timestamp"
-        case .uid : return "uid"
-        case .userUID : return "userUID"
+        case .problemDescription : return Constants.FIREBASE_PROBLEM_DESCRIPTION
+        case .serviceCategory : return Constants.FIREBASE_SERVICE_CATEGORY
+        case .serviceType : return Constants.FIREBASE_SERVICE_TYPE
+        case .status : return Constants.FIREBASE_STATUS
+        case .timestamp : return Constants.FIREBASE_CHILD_TIMESTAMP
+        case .uid : return Constants.FIREBASE_CHILD_UID
+        case .userUID : return Constants.FIREBASE_USERUID
         }
     }
 }
