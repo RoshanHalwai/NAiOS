@@ -43,7 +43,8 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+
         //Get device width
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
@@ -97,11 +98,11 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         cell.lbl_VehicleOwner.font = NAFont().textFieldFont()
         cell.lbl_VehicleAddedOn.font = NAFont().textFieldFont()
         
-        NAShadowEffect().shadowEffect(Cell: cell)
-        
         //setting image round
         cell.myVehicleImage.layer.cornerRadius = cell.myVehicleImage.frame.size.width/2
         cell.myVehicleImage.clipsToBounds = true
+        
+        NAShadowEffect().shadowEffect(Cell: cell)
         
         return cell
     }

@@ -21,4 +21,11 @@ class HandedThingsDailyServicesHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_Date_Detail: UILabel!
     @IBOutlet weak var lbl_InTime_Detail: UILabel!
     @IBOutlet weak var lbl_Things_Detail: UILabel!
+    
+    override func layoutSubviews() {
+        super .layoutSubviews()
+        //setting image round
+        self.image_View.layer.cornerRadius = self.image_View.frame.size.width/2
+        self.image_View.clipsToBounds = true
+    }
 }

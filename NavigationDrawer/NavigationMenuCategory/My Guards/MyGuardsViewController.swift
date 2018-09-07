@@ -32,13 +32,14 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+
         //Get device width
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: height/4)
+        layout.itemSize = CGSize(width: width - 10, height: height/5)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -101,10 +102,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         
         NAShadowEffect().shadowEffect(Cell: cell)
         
-        //setting image round
-        cell.myGuardImage.layer.cornerRadius = cell.myGuardImage.frame.size.width/2
-        cell.myGuardImage.clipsToBounds = true
-    
         return cell
     }
 }
@@ -115,23 +112,23 @@ extension MyGuardsViewController {
         
         let societyServiceGuardRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_GUARD).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_DATA)
         societyServiceGuardRef.observeSingleEvent(of: .value) { (societyServiceGuardSnapshot) in
-                    if let guardsUID = societyServiceGuardSnapshot.value as? [String: Any] {
-                    let guardsUIDKeys = Array(guardsUID.keys)
-                    for guardUID in guardsUIDKeys {
-                        societyServiceGuardRef.child(guardUID).observeSingleEvent(of: .value, with: { (snapshot) in
-                            let guardsData = snapshot.value as? [String: AnyObject]
-                            let fullName : String = (guardsData?[GuardsListFBKeys.fullName.key])! as! String
-                            let status : String = (guardsData?[GuardsListFBKeys.status.key])! as! String
-                            let profilePhoto : String = (guardsData?[GuardsListFBKeys.profilePhoto.key])! as! String
-                            let guardDetails = NAExpectingGuard(fullName: fullName, profilePhoto: profilePhoto, status: status)
-                            self.myExpectedGuardsList.append(guardDetails)
-                            
-                            //Hiding Progress indicator after retrieving data.
-                            NAActivityIndicator.shared.hideActivityIndicator()
-                            self.collectionView.reloadData()
-                        })
-                    }
+            if let guardsUID = societyServiceGuardSnapshot.value as? [String: Any] {
+                let guardsUIDKeys = Array(guardsUID.keys)
+                for guardUID in guardsUIDKeys {
+                    societyServiceGuardRef.child(guardUID).observeSingleEvent(of: .value, with: { (snapshot) in
+                        let guardsData = snapshot.value as? [String: AnyObject]
+                        let fullName : String = (guardsData?[GuardsListFBKeys.fullName.key])! as! String
+                        let status : String = (guardsData?[GuardsListFBKeys.status.key])! as! String
+                        let profilePhoto : String = (guardsData?[GuardsListFBKeys.profilePhoto.key])! as! String
+                        let guardDetails = NAExpectingGuard(fullName: fullName, profilePhoto: profilePhoto, status: status)
+                        self.myExpectedGuardsList.append(guardDetails)
+                        
+                        //Hiding Progress indicator after retrieving data.
+                        NAActivityIndicator.shared.hideActivityIndicator()
+                        self.collectionView.reloadData()
+                    })
                 }
+            }
             
         }
     }
