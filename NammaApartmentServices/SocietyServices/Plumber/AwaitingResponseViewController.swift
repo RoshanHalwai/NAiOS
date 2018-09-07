@@ -159,7 +159,7 @@ class AwaitingResponseViewController: NANavigationViewController {
         } else if (serviceType == NAString().electrician()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().electrician())
         } else {
-            lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_management())
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_Collection())
         }
     }
     
@@ -167,16 +167,16 @@ class AwaitingResponseViewController: NANavigationViewController {
     @objc func storeRating() {
         
         let rating = self.societyServiceRating.ratingValue
-        var serviceRating = Int()
+        var serviceRating = Double()
         if rating == 0 {
             serviceRating = 5
         } else {
-            serviceRating = rating
+            serviceRating = Double(rating)
         }
         
         self.opacity_View.isHidden = true
         self.societyServiceRating.isHidden = true
-    
+        
         let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(notificationUID)
         societyServiceNotificationRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
         societyServiceNotificationRef.observeSingleEvent(of: .value) { (snapshot) in
@@ -189,8 +189,26 @@ class AwaitingResponseViewController: NANavigationViewController {
                 .child(Constants.FIREBASE_CHILD_PRIVATE)
                 .child(Constants.FIREBASE_CHILD_DATA)
                 .child(societyServiceUID)
-            societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
-            self.navigationController?.popViewController(animated: true)
+            societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).observeSingleEvent(of: .value, with: { (presentRatingSnapshot) in
+                if presentRatingSnapshot.exists() {
+                    let presentRating = presentRatingSnapshot.value
+                    let rating = presentRating as! Double
+                    
+                    let ratingCountRef = societyServiceDataRef.child(Constants.FIREBASE_NOTIFICATIONS).child(Constants.FIREBASE_HISTORY)
+                    ratingCountRef.observeSingleEvent(of: .value, with: { (ratingSnapshot) in
+                        
+                        let noOfRatingsGiven = Double(ratingSnapshot.childrenCount)
+                        let presentAveragerating = rating * (noOfRatingsGiven - 1)
+                        let averageServiceRating = (presentAveragerating + serviceRating)/noOfRatingsGiven
+                        
+                        societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).setValue(averageServiceRating)
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                } else {
+                    societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
+                    self.navigationController?.popViewController(animated: true)
+                }
+            })
         }
     }
     
