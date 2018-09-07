@@ -19,7 +19,7 @@ class NAString : NSObject {
     }
     
     func Apartment_Services_Title() -> String {
-        return String("Apartment  Services")
+        return String("Apartment Services")
     }
     
     func splash_NammaApartements_Description() -> String {
@@ -1788,6 +1788,14 @@ class NAString : NSObject {
     
     func others() -> String {
         return String("Others")
+    }
+    
+    func failure() -> String {
+        return String("FAILURE")
+    }
+    
+    func success() -> String {
+        return String("SUCCESS")
     }
 }
 

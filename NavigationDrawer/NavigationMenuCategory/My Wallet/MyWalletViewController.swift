@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Razorpay
 
-class MyWalletViewController: NANavigationViewController {
+class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompletionProtocol {
     
     @IBOutlet weak var nammaApartment_CardView: UIView!
     @IBOutlet weak var payFor_CardView: UIView!
@@ -27,9 +28,25 @@ class MyWalletViewController: NANavigationViewController {
     
     var navTitle = String()
     
+    //created varible for razorPay
+    var razorpay: Razorpay!
+    var paymentDescription = String()
+    var getUserMobileNumebr = String()
+    var getUserEmailID = String()
+    var getUserPendingAmount = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Payment Gateway test API KEY
+        razorpay = Razorpay.initWithKey("rzp_test_GCFVAY6RGbNWyb", andDelegate: self)
+        
+        getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
+        getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getfullName())!
+        
+        //TODO: Hardcoded Amount,but will change it later after completing Amount UI in My wallet Screen
+        getUserPendingAmount = "100"
+       
         //Setting label fonts
         lbl_nammaApartment.font = NAFont().headerFont()
         lbl_payFor.font = NAFont().headerFont()
@@ -58,9 +75,40 @@ class MyWalletViewController: NANavigationViewController {
         super.ConfigureNavBarTitle(title: navTitle)
     }
     
-    @IBAction func maintenanceServicesButtonAction() {
-        let lv = NAViewPresenter().maintenanceServicesVC()
-        lv.navTitle = NAString().SocietyServices()
-        self.navigationController?.pushViewController(lv, animated: true)
+    @IBAction func apartmentServicesAction(_ sender: Any) {
+        paymentDescription = NAString().Apartment_Services_Title()
+        showPaymentUI()
+    }
+    
+    @IBAction func societyServicesAction(_ sender: Any) {
+        paymentDescription = NAString().society_Services_Title()
+        showPaymentUI()
+    }
+    
+    //This will call when any error occurred during transaction
+    func onPaymentError(_ code: Int32, description str: String) {
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, OkStyle: .default, OK: nil)
+    }
+    
+     //This will call when transaction succeed
+    func onPaymentSuccess(_ payment_id: String) {
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", OkStyle: .default, OK: nil)
+    }
+    
+    //This will show the default UI of RazorPay with some user's informations.
+    func showPaymentUI() {
+        let options: [String:Any] = [
+            "amount" : getUserPendingAmount,
+            "description": paymentDescription,
+            "name": NAString().splash_NammaHeader_Title(),
+            "prefill": [
+            "contact": getUserMobileNumebr,
+            "email": getUserEmailID
+            ],
+            "theme": [
+                "color": "#F37254"
+            ]
+        ]
+        razorpay.open(options)
     }
 }

@@ -86,8 +86,7 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         //setting image round
         cell.myGuardImage.layer.cornerRadius = cell.myGuardImage.frame.size.width/2
         cell.myGuardImage.clipsToBounds = true
-        
-        NAShadowEffect().shadowEffectForView(view: cell.cardView)
+    
         return cell
     }
 }

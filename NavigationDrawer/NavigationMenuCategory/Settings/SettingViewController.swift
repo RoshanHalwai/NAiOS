@@ -11,12 +11,8 @@ import FirebaseDatabase
 
 class SettingViewController: NANavigationViewController {
     
-    @IBOutlet weak var general_Settings_View: UIView!
     @IBOutlet weak var sound_settings_View: UIView!
     
-    @IBOutlet weak var general_Settings_Label: UILabel!
-    @IBOutlet weak var language_Label: UILabel!
-    @IBOutlet weak var btn_Language: UIButton!
     @IBOutlet weak var btn_signOut: UIButton!
     
     @IBOutlet weak var sound_Settings_Label: UILabel!
@@ -29,6 +25,8 @@ class SettingViewController: NANavigationViewController {
     @IBOutlet weak var switch_EIntercom: UISwitch!
     @IBOutlet weak var switch_Guest: UISwitch!
     @IBOutlet weak var switch_DailyServices: UISwitch!
+    @IBOutlet weak var switch_Cab: UISwitch!
+    @IBOutlet weak var switch_Package: UISwitch!
     
     var navTitle = String()
     var selectLanguage = String()
@@ -45,20 +43,15 @@ class SettingViewController: NANavigationViewController {
         self.navigationItem.rightBarButtonItem = nil
         
         //Label Formatting and Setting
-        general_Settings_Label.font = NAFont().headerFont()
         sound_Settings_Label.font = NAFont().headerFont()
-        language_Label.font = NAFont().textFieldFont()
         eIntercom_Notification_Label.font = NAFont().textFieldFont()
         guest_Notification_Label.font = NAFont().textFieldFont()
         dailyService_Notification_Label.font = NAFont().textFieldFont()
         cab_Notification_Label.font = NAFont().textFieldFont()
         package_Notification_Label.font = NAFont().textFieldFont()
-        btn_Language.titleLabel?.font = NAFont().textFieldFont()
         
         //Setting Label Text 
-        general_Settings_Label.text = NAString().general_settings()
         sound_Settings_Label.text = NAString().sound_settings()
-        language_Label.text = NAString().language()
         eIntercom_Notification_Label.text = NAString().eIntercom_Notification()
         guest_Notification_Label.text = NAString().guest_Notification()
         dailyService_Notification_Label.text = NAString().dailyService_Notification()
@@ -66,7 +59,6 @@ class SettingViewController: NANavigationViewController {
         package_Notification_Label.text = NAString().package_Notification()
         
         //Creating Shadow Effect for Views
-        NAShadowEffect().shadowEffectForView(view: general_Settings_View)
         NAShadowEffect().shadowEffectForView(view: sound_settings_View)
         
         //Button Formatting & settings
@@ -83,11 +75,11 @@ class SettingViewController: NANavigationViewController {
     
     @IBAction func switch_EIntercom(_ sender: UISwitch) {
         if (sender.isOn ==  true) {
-           userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
         } else {
-             userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().getfalse())
+            userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().getfalse())
         }
-     }
+    }
     
     @IBAction func switch_Guest(_ sender: UISwitch) {
         if (sender.isOn ==  true) {
@@ -121,15 +113,6 @@ class SettingViewController: NANavigationViewController {
         }
     }
     
-    //Create Button Actions
-    @IBAction func languageButtonAction() {
-        let vc = NAViewPresenter().languageVC()
-        let nav : UINavigationController = UINavigationController(rootViewController: vc)
-        vc.navigationTitle = NAString().selectLanguage()
-        vc.settingVC = self
-        self.navigationController?.present(nav, animated: true, completion: nil)
-    }
-    
     @IBAction func signoutButtonAction() {
         self.signoutAction()
     }
@@ -151,10 +134,6 @@ class SettingViewController: NANavigationViewController {
             }
         }, Cancel: { (action) in}, cancelActionTitle: NAString().no(), okActionTitle: NAString().yes())
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.btn_Language.titleLabel?.text = selectLanguage
-    }
 }
 
 extension SettingViewController {
@@ -166,7 +145,6 @@ extension SettingViewController {
             .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
         
         notificationSoundRef.observeSingleEvent(of: .value) { (soundSnapshot) in
-            print(soundSnapshot as Any)
             let notificationSoundData = soundSnapshot.value as! [String: Any]
             
             let cabValue = notificationSoundData[Constants.FIREBASE_CHILD_CAB_SOUND] as! Bool
@@ -174,7 +152,39 @@ extension SettingViewController {
             let dailyServiceValue = notificationSoundData[Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND] as! Bool
             let guestValue = notificationSoundData[Constants.FIREBASE_CHILD_GUEST_SOUND] as! Bool
             let eIntercomValue = notificationSoundData[Constants.FIREBASE_CHILD_EINTERCOM_SOUND] as! Bool
+            
+            //Setting UISwitches isOn accroding to firebase values
+            if cabValue == true {
+                self.switch_Cab.isOn = true
+            } else {
+                self.switch_Cab.isOn = false
+            }
+            
+            if PackageValue == true {
+                self.switch_Package.isOn = true
+            } else {
+                self.switch_Package.isOn = false
+            }
+            
+            if dailyServiceValue == true {
+                self.switch_DailyServices.isOn = true
+            } else {
+                self.switch_DailyServices.isOn = false
+            }
+            
+            if guestValue == true {
+                self.switch_Guest.isOn = true
+            } else {
+                self.switch_Guest.isOn = false
+            }
+            
+            if eIntercomValue == true {
+                self.switch_EIntercom.isOn = true
+            } else {
+                self.switch_EIntercom.isOn = false
+            }
         }
     }
 }
+
 

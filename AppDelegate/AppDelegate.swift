@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let rootVC = launchScreenVC.instantiateViewController(withIdentifier: "launchScreen")
         self.window?.rootViewController = rootVC
         self.window?.makeKeyAndVisible()
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(dismissLaunchScreen), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(dismissLaunchScreen), userInfo: nil, repeats: false)
     }
     
     @objc func dismissLaunchScreen() {
@@ -249,6 +249,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 if visitorType == Constants.FIREBASE_CHILD_VISITORS {
                     
+                    //Mapping GuestUID with true
+                    let userDataGuestRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VISITORS).child(userUID)
+                    userDataGuestRef.child(guestUID!).setValue(NAString().gettrue())
+                    
                     let guestMobileRef = Constants.FIREBASE_VISITORS_ALL.child(mobileNumber!)
                         guestMobileRef.setValue(guestUID)
                     //Storing Post Approved Guests
@@ -267,6 +271,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     postApprovedRef.setValue(postApprovedGuestsData)
                 } else if visitorType == Constants.FIREBASE_CHILD_CABS {
                     
+                     //Mapping CabUID with true
+                    let userDataCabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS).child(userUID)
+                    userDataCabRef.child(guestUID!).setValue(NAString().gettrue())
                     
                     //Storing PostApproved Cabs
                     let replacedMessage = message?.replacingOccurrences(of: NAString().your_Cab_Numbered(), with: "")
@@ -283,6 +290,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     ]
                     postApprovedRef.setValue(postApprovedCabs)
                 } else {
+                    
+                    //Mapping PackageUID with true
+                    let userDataPackageRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
+                    userDataPackageRef.child(guestUID!).setValue(NAString().gettrue())
+                    
                     //Storing PostApproved Packages
                     let replacedMessage = message?.replacingOccurrences(of: NAString().your_package_vendor(), with: "")
                     let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
