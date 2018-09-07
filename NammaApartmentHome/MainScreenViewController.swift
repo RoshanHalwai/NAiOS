@@ -75,12 +75,12 @@ class MainScreenViewController: NANavigationViewController {
         super.navigationItem.hidesBackButton = true
         
         societyData = [
-            societyServicesModel(cellTitle: NAString().digital_gate(),cellImage:  #imageLiteral(resourceName: "digiGate")),
+            societyServicesModel(cellTitle: NAString().digi_gate(),cellImage:  #imageLiteral(resourceName: "digiGate")),
             societyServicesModel(cellTitle: NAString().plumber(),cellImage:  #imageLiteral(resourceName: "plumber")),
             societyServicesModel(cellTitle: NAString().carpenter(),cellImage:  #imageLiteral(resourceName: "carpenter")),
             societyServicesModel(cellTitle: NAString().electrician(),cellImage:  #imageLiteral(resourceName: "electrician")),
             societyServicesModel(cellTitle: NAString().garbage_management(),cellImage:  #imageLiteral(resourceName: "garbage")),
-            societyServicesModel(cellTitle: NAString().medical_emergency(),cellImage:  #imageLiteral(resourceName: "Emergency")),
+            societyServicesModel(cellTitle: NAString().emergency(),cellImage:  #imageLiteral(resourceName: "Emergency")),
             societyServicesModel(cellTitle: NAString().event_management(),cellImage: #imageLiteral(resourceName: "eventManagement"))
         ]
         apartmentData = [
@@ -274,7 +274,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                 
             case 5:
                 let lv5 = NAViewPresenter().emergencyVC()
-                lv5.titleName = NAString().medical_emergency()
+                lv5.titleName = NAString().emergency()
                 self.navigationController?.pushViewController(lv5, animated: true)
                 
             case 6:

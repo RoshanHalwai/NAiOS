@@ -8,31 +8,36 @@
 
 import UIKit
 
-class LanguagesViewController: NANavigationViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class ContactUsListViewController: NANavigationViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView?
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var navTitle: UILabel!
     
-    //TODO: Need to Add more Languages in future.
-    var languagesList = ["English","Hindi","Tamil","Kannada","Telugu"]
+   var societyServiceArray = [NAString().digi_gate(), NAString().plumber(), NAString().carpenter(), NAString().electrician(), NAString().garbage_management(), NAString().emergency(), NAString().event_management()]
     
-    //to get previous View Controller
-    var settingVC: SettingViewController!
+    var apartmentServiceArray = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(), NAString().daily_newspaper(), NAString().milk_man(), NAString().laundry(), NAString().driver(), NAString().groceries()]
+    
     var searchActive : Bool = false
     
     var navigationTitle = String()
+    var gettingArray = [String]()
     var filteredArray = [String]()
+    var contactUsVC : ContactUsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navTitle?.text = navigationTitle
         
+        if contactUsVC.getServiceButton_Text == NAString().societyService() {
+            gettingArray = societyServiceArray
+        } else {
+            gettingArray = apartmentServiceArray
+        }
+        
         //Hiding Navigation Bar
         navigationController?.isNavigationBarHidden = true
-        
-        //Setting SearchBar Delegate
         searchBar.delegate = self
         
         //Hiding NavigationBar RightBarButtonItem
@@ -40,17 +45,16 @@ class LanguagesViewController: NANavigationViewController, UITableViewDelegate, 
     }
     
     @IBAction func btn_Back(_ sender: UIButton) {
-        goBackToSettingsVC()
+        goBackToContactUsVC()
     }
     
-    //Navigating back to Settings screen on click of back button.
-    @objc func goBackToSettingsVC() {
+    @objc func goBackToContactUsVC() {
         self.navigationController?.dismiss(animated: true)
     }
     
     //MARK : SearchBar Delegate Methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredArray = languagesList.filter({ (text) -> Bool in
+        filteredArray = gettingArray.filter({ (text) -> Bool in
             let string: NSString = text as NSString
             let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
             return range.location != NSNotFound
@@ -68,7 +72,7 @@ class LanguagesViewController: NANavigationViewController, UITableViewDelegate, 
         if(searchActive) {
             return filteredArray.count
         } else {
-            return languagesList.count
+            return gettingArray.count
         }
     }
     
@@ -78,8 +82,7 @@ class LanguagesViewController: NANavigationViewController, UITableViewDelegate, 
             filteredArray = filteredArray.sorted()
             cell.textLabel?.text = filteredArray[indexPath.row]
         } else {
-            languagesList = languagesList.sorted()
-            cell.textLabel?.text = languagesList[indexPath.row]
+            cell.textLabel?.text = gettingArray[indexPath.row]
         }
         
         //Label formatting & setting
@@ -99,7 +102,7 @@ class LanguagesViewController: NANavigationViewController, UITableViewDelegate, 
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell;()
         let currentItem = currentCell.textLabel?.text
-        settingVC.selectLanguage = currentItem!
+        contactUsVC.selectedItem = currentItem!
         tableView.deselectRow(at: indexPath!, animated: true)
         self.navigationController?.dismiss(animated: true)
     }

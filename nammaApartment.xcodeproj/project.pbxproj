@@ -17,6 +17,7 @@
 		081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */; };
 		081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */; };
 		081F25D1210C8EB60065F90E /* RetrievingGuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */; };
+		0834B394214249F000516C9C /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0834B393214249F000516C9C /* ContactUsViewController.swift */; };
 		08355B0D210E2CB700F671D2 /* NammaApartmentEmergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08355B0C210E2CB700F671D2 /* NammaApartmentEmergency.swift */; };
 		083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */; };
 		083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */; };
@@ -44,7 +45,7 @@
 		422E7E0D2114882700648D40 /* AwaitingResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E0C2114882700648D40 /* AwaitingResponseViewController.swift */; };
 		422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
 		422FF98920F8A9DA004089C2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FF98820F8A9DA004089C2 /* PopupView.swift */; };
-		423033A12131436B00DBF109 /* LanguagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423033A02131436B00DBF109 /* LanguagesViewController.swift */; };
+		423033A12131436B00DBF109 /* ContactUsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423033A02131436B00DBF109 /* ContactUsListViewController.swift */; };
 		42305D6A2113063D009FE3B6 /* SocietyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */; };
 		42305D6C211323AB009FE3B6 /* SocietyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */; };
 		4230EEB12108AB4F0037345D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4230EEAF2108AB4F0037345D /* Main.storyboard */; };
@@ -184,6 +185,7 @@
 		081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryViewController.swift; sourceTree = "<group>"; };
 		081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingGuestList.swift; sourceTree = "<group>"; };
+		0834B393214249F000516C9C /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		08355B0C210E2CB700F671D2 /* NammaApartmentEmergency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentEmergency.swift; sourceTree = "<group>"; };
 		083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryViewController.swift; sourceTree = "<group>"; };
 		083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -212,7 +214,7 @@
 		422E7E0C2114882700648D40 /* AwaitingResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitingResponseViewController.swift; sourceTree = "<group>"; };
 		422FF98620F8A9C8004089C2 /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		422FF98820F8A9DA004089C2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
-		423033A02131436B00DBF109 /* LanguagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewController.swift; sourceTree = "<group>"; };
+		423033A02131436B00DBF109 /* ContactUsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsListViewController.swift; sourceTree = "<group>"; };
 		42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyServicesViewController.swift; sourceTree = "<group>"; };
 		42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyTableViewController.swift; sourceTree = "<group>"; };
 		4230EEB02108AB4F0037345D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -408,6 +410,8 @@
 				086568A7212AD3A900E4CDE1 /* FrequentlyAskedTableViewCell.swift */,
 				086568A12127E63B00E4CDE1 /* HelpCategoryViewController.swift */,
 				086568A32127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift */,
+				0834B393214249F000516C9C /* ContactUsViewController.swift */,
+				423033A02131436B00DBF109 /* ContactUsListViewController.swift */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
@@ -596,7 +600,6 @@
 			isa = PBXGroup;
 			children = (
 				086568AB212D447600E4CDE1 /* SettingViewController.swift */,
-				423033A02131436B00DBF109 /* LanguagesViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1300,7 +1303,7 @@
 				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
 				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
-				423033A12131436B00DBF109 /* LanguagesViewController.swift in Sources */,
+				423033A12131436B00DBF109 /* ContactUsListViewController.swift in Sources */,
 				8672B3BB20A97F5D0040A5E2 /* MyDailyServicesViewController.swift in Sources */,
 				422E7E062114619F00648D40 /* SocietyHistoryViewController.swift in Sources */,
 				868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */,
@@ -1372,6 +1375,7 @@
 				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
 				42358A382122F99700186B1D /* NammaApartmentVehicle.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
+				0834B394214249F000516C9C /* ContactUsViewController.swift in Sources */,
 				086568A8212AD3A900E4CDE1 /* FrequentlyAskedTableViewCell.swift in Sources */,
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,

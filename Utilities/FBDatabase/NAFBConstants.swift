@@ -102,6 +102,7 @@ struct Constants {
     static let FIREBASE_CHILD_PACKAGE_SOUND = "package"
     static let FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD = "Notice_Board_Notification"
     static let FIREBASE_NOTIFICATION_TYPE = "type"
+    static let FIREBASE_CHILD_SUPPORT = "support"
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     
