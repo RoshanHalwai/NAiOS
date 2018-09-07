@@ -181,21 +181,27 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         
         //calling Reschedule action to rechedule visitor date
         cell.actionRescheduling = {
-            let dv = NAViewPresenter().rescheduleMyVisitorVC()
             
-            cell.btn_Reschedule.tag = NAString().rescheduleButtonTagValue()
-            dv.buttonTagValue = cell.btn_Reschedule.tag
-            
-            //passing cell date & time to Reschedule VC
-            dv.getTime = cell.lbl_MyVisitorTime.text!
-            dv.getDate = cell.lbl_MyVisitorDate.text!
-            dv.getVisitorUID = nammaApartmentVisitor.getuid()
-            
-            dv.providesPresentationContextTransitionStyle = true
-            dv.definesPresentationContext = true
-            dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
-            dv.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
-            self.present(dv, animated: true, completion: nil)
+            //Checking if the visitor is Entered/Left/Not Entered. So that User can Reschedule his Visitor who is Not entered.
+            if nammaApartmentVisitor.getstatus() ==  NAString().notEntered() {
+                let dv = NAViewPresenter().rescheduleMyVisitorVC()
+                
+                cell.btn_Reschedule.tag = NAString().rescheduleButtonTagValue()
+                dv.buttonTagValue = cell.btn_Reschedule.tag
+                
+                //passing cell date & time to Reschedule VC
+                dv.getTime = cell.lbl_MyVisitorTime.text!
+                dv.getDate = cell.lbl_MyVisitorDate.text!
+                dv.getVisitorUID = nammaApartmentVisitor.getuid()
+                
+                dv.providesPresentationContextTransitionStyle = true
+                dv.definesPresentationContext = true
+                dv.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext;
+                dv.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
+                self.present(dv, animated: true, completion: nil)
+            } else {
+                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().reschedule_Title(), Message: NAString().reschedule_Alert_Message(), OkStyle: .default, OK: nil)
+            }
         }
         
         //Calling call action to call Visitor

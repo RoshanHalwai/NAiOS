@@ -1797,5 +1797,13 @@ class NAString : NSObject {
     func success() -> String {
         return String("SUCCESS")
     }
+    
+    func reschedule_Title() -> String {
+        return String("Reschedule Message")
+    }
+    
+    func reschedule_Alert_Message() -> String {
+        return String("Sorry, you cannot reschedule, as the Visitor has already entered/left the Society.")
+    }
 }
 
