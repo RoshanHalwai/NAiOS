@@ -32,7 +32,6 @@ enum SupportDetailsFBKeys: String {
     }
 }
 
-
 class ContactUsViewController: NANavigationViewController {
     
     @IBOutlet weak var lbl_Select_Service_Category: UILabel!
