@@ -50,6 +50,23 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
                 self.collectionView.reloadData()
             }
         }
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 10, height: height/4)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //apply defined layout to collectionview
+        collectionView!.collectionViewLayout = layout
     }
     
     //CollectionView Reload with Background Thread
@@ -106,9 +123,6 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         cell.lbl_Inviter_Detail.font = NAFont().headerFont()
         cell.lbl_Things_Detail.font = NAFont().headerFont()
         
-        //setting image round
-        cell.image_View.layer.cornerRadius = cell.image_View.frame.size.width/2
-        cell.image_View.clipsToBounds = true
         return cell
     }
 }
