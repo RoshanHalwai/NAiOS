@@ -253,8 +253,7 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "activationVC") as! ActivationRequired
     }
     
-    //Create Maintenance Services Screen
-    func languageVC() -> LanguagesViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "languageVC") as! LanguagesViewController
+    func contactUs() -> ContactUsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "ContactUs") as! ContactUsViewController
     }
 }

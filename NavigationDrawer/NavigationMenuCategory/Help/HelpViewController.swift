@@ -70,7 +70,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
             self.navigationController?.pushViewController(dv, animated: true)
             
         case 1:
-            let helpCategoryVC = NAViewPresenter().helpCategoryVC()
+            let helpCategoryVC = NAViewPresenter().contactUs()
             helpCategoryVC.navTitle = NAString().contact_us().capitalized
             self.navigationController?.pushViewController(helpCategoryVC, animated: true)
             
