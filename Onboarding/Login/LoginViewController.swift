@@ -28,6 +28,7 @@ class LoginViewController: NANavigationViewController {
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
+        scrollView.layoutIfNeeded()
         
         //assigned delegate method on textFields
         txt_MobileNo.delegate = self

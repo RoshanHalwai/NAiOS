@@ -24,7 +24,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     
     @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_MobileNo: UILabel!
-    @IBOutlet weak var lbl_OR: UILabel!
     @IBOutlet weak var lbl_OTPDescription: UILabel!
     @IBOutlet weak var lbl_Relation: UILabel!
     @IBOutlet weak var lbl_GrantAccess: UILabel!
@@ -109,13 +108,15 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         self.img_Profile.addGestureRecognizer(tapGesture)
         
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 120, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 40, 0)
+        
+        scrollView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
         
         txt_Name.underlined()
         txt_MobileNo.underlined()
         txt_Email.underlined()
         
-        self.lbl_OR.font = NAFont().headerFont()
         self.lbl_MobileNo.font = NAFont().headerFont()
         self.lbl_Name.font = NAFont().headerFont()
         self.lbl_OTPDescription.font = NAFont().popupViewFont()
