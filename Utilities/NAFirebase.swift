@@ -29,24 +29,42 @@ class NAFirebase {
     
     func layoutFeatureUnavailable(mainView : UIViewController, newText : String) {
         
-        let newSubView = UIView(frame: CGRect(x: 14, y: 50, width: 349, height: 255))
-        newSubView.backgroundColor = UIColor.white
-        let newLabel = UILabel(frame: CGRect(x: 14, y: 170, width: 300, height: 70))
-        newLabel.text = newText
-        newLabel.numberOfLines = 3
-        newLabel.textAlignment = NSTextAlignment.center
-        newLabel.font = NAFont().layoutFeatureErrorFont()
-        newLabel.textColor = UIColor.black
-        let newImage = UIImageView(frame: CGRect(x: (newSubView.frame.size.width/2)-80, y: 15, width: 150, height: 150))
+        //Image View
+        let newImage = UIImageView()
+        newImage.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
+        newImage.widthAnchor.constraint(equalToConstant: 120.0).isActive = true
         newImage.image = UIImage(named: "exclamation256")
-        mainView.view.addSubview(newSubView)
         
-        //Adding to SubView
-        newSubView.addSubview(newImage)
-        newSubView.addSubview(newLabel)
+        //Text Label
+        let newLabel = UILabel()
+        newLabel.textColor = UIColor.black
+        newLabel.numberOfLines = 3
+        newLabel.font = NAFont().layoutFeatureErrorFont()
+        newLabel.text  = newText
+        newLabel.textAlignment = .center
+        
+        //Stack View
+        let stackView = UIStackView()
+        stackView.axis = UILayoutConstraintAxis.vertical
+        stackView.distribution = UIStackViewDistribution.equalCentering
+        stackView.alignment = UIStackViewAlignment.center
+        stackView.spacing = CGFloat(NAString().fifteen())
+        
+        stackView.addArrangedSubview(newImage)
+        stackView.addArrangedSubview(newLabel)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        mainView.view.addSubview(stackView)
+        
+        //Constraints
+        stackView.centerXAnchor.constraint(equalTo: mainView.view.centerXAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: mainView.view.topAnchor).isActive = true
+        
+        stackView.leadingAnchor.constraint(equalTo: mainView.view.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: mainView.view.trailingAnchor).isActive = true
         
         if newText.count == 0 {
-            newSubView.removeFromSuperview()
+            stackView.removeFromSuperview()
             newLabel.removeFromSuperview()
             newImage.removeFromSuperview()
         }

@@ -225,7 +225,7 @@ class NAViewPresenter: NSObject {
     func addEventManagementVC() -> EventManagementViewController {
         return storyBoard.instantiateViewController(withIdentifier: "addEventManagementVC") as! EventManagementViewController
     }
-
+    
     func frequentlyAskedHelpVC() -> FrequentlyAskedQuestionsViewController {
         return storyBoard.instantiateViewController(withIdentifier: "frequentlyAskedVC") as! FrequentlyAskedQuestionsViewController
     }
@@ -233,8 +233,8 @@ class NAViewPresenter: NSObject {
     func helpCategoryVC() -> HelpCategoryViewController {
         return storyBoard.instantiateViewController(withIdentifier: "helpCategoryVC") as! HelpCategoryViewController
     }
-
-
+    
+    
     func showEventManagementVC() -> EventManagementCardViewController {
         return storyBoard.instantiateViewController(withIdentifier: "showEventManagementVC") as! EventManagementCardViewController
     }
@@ -244,11 +244,6 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "myWalletVC") as! MyWalletViewController
     }
     
-    //Create Maintenance Services Screen
-    func maintenanceServicesVC() -> MaintenanceServicesViewController {
-        return storyBoard.instantiateViewController(withIdentifier: "maintenanceServicesVC") as! MaintenanceServicesViewController
-    }
-   
     func activationRequiredVC() -> ActivationRequired {
         return storyBoard.instantiateViewController(withIdentifier: "activationVC") as! ActivationRequired
     }

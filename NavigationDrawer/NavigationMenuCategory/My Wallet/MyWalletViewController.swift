@@ -14,6 +14,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     @IBOutlet weak var nammaApartment_CardView: UIView!
     @IBOutlet weak var payFor_CardView: UIView!
     @IBOutlet weak var myAccount_CardView: UIView!
+    @IBOutlet weak var buttonBackGroundView: UIView!
     
     @IBOutlet weak var lbl_nammaApartment: UILabel!
     @IBOutlet weak var lbl_payFor: UILabel!
@@ -46,7 +47,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         //TODO: Hardcoded Amount,but will change it later after completing Amount UI in My wallet Screen
         getUserPendingAmount = "100"
-       
+        
         //Setting label fonts
         lbl_nammaApartment.font = NAFont().headerFont()
         lbl_payFor.font = NAFont().headerFont()
@@ -90,7 +91,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, OkStyle: .default, OK: nil)
     }
     
-     //This will call when transaction succeed
+    //This will call when transaction succeed
     func onPaymentSuccess(_ payment_id: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", OkStyle: .default, OK: nil)
     }
@@ -102,8 +103,8 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             "description": paymentDescription,
             "name": NAString().splash_NammaHeader_Title(),
             "prefill": [
-            "contact": getUserMobileNumebr,
-            "email": getUserEmailID
+                "contact": getUserMobileNumebr,
+                "email": getUserEmailID
             ],
             "theme": [
                 "color": "#F37254"
