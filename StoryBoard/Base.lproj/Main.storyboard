@@ -7560,54 +7560,23 @@
                                         <rect key="frame" x="5" y="10" width="347" height="286"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Sound Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOI-ar-EfE">
-                                                <rect key="frame" x="0.0" y="0.0" width="347" height="41"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="347" height="51"/>
                                                 <color key="backgroundColor" red="0.88235294119999996" green="0.87450980389999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HIc-ld-FVm">
-                                                <rect key="frame" x="0.0" y="49" width="347" height="41"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-Intercom Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAa-WR-aY1">
-                                                        <rect key="frame" x="0.0" y="5" width="282" height="30"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akD-0x-xHT">
-                                                        <rect key="frame" x="290" y="5" width="51" height="31"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="thumbTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <connections>
-                                                            <action selector="switch_EIntercom:" destination="5JO-4G-nuo" eventType="valueChanged" id="daB-zp-yUN"/>
-                                                        </connections>
-                                                    </switch>
-                                                </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="eAa-WR-aY1" secondAttribute="bottom" constant="6" id="12g-xE-NIa"/>
-                                                    <constraint firstItem="akD-0x-xHT" firstAttribute="leading" secondItem="eAa-WR-aY1" secondAttribute="trailing" constant="8" id="9TE-Tf-SBC"/>
-                                                    <constraint firstAttribute="bottom" secondItem="akD-0x-xHT" secondAttribute="bottom" constant="5" id="Bdk-wT-Mf3"/>
-                                                    <constraint firstItem="akD-0x-xHT" firstAttribute="top" secondItem="HIc-ld-FVm" secondAttribute="top" constant="5" id="MRP-Gz-UKu"/>
-                                                    <constraint firstItem="eAa-WR-aY1" firstAttribute="leading" secondItem="HIc-ld-FVm" secondAttribute="leading" id="Vb3-rM-FQI"/>
-                                                    <constraint firstItem="eAa-WR-aY1" firstAttribute="top" secondItem="HIc-ld-FVm" secondAttribute="top" constant="5" id="rDl-FK-Ye0"/>
-                                                    <constraint firstAttribute="trailing" secondItem="akD-0x-xHT" secondAttribute="trailing" constant="8" id="yYo-yR-jCS"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHj-S3-xWT">
-                                                <rect key="frame" x="0.0" y="98" width="347" height="41"/>
+                                                <rect key="frame" x="0.0" y="59" width="347" height="50.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8X-Oi-Ug1">
-                                                        <rect key="frame" x="0.0" y="5" width="282" height="30"/>
+                                                        <rect key="frame" x="0.0" y="5" width="282" height="39.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XL1-kB-oPw">
-                                                        <rect key="frame" x="290" y="5" width="51" height="31"/>
+                                                        <rect key="frame" x="290" y="5" width="51" height="40.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -7629,16 +7598,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ww-Kb-PHF">
-                                                <rect key="frame" x="0.0" y="147" width="347" height="41"/>
+                                                <rect key="frame" x="0.0" y="117.5" width="347" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Service Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wks-gX-xrH">
-                                                        <rect key="frame" x="0.0" y="5" width="282" height="30"/>
+                                                        <rect key="frame" x="0.0" y="5" width="282" height="40"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V3N-hZ-JRD">
-                                                        <rect key="frame" x="290" y="5" width="51" height="31"/>
+                                                        <rect key="frame" x="290" y="5" width="51" height="41"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -7660,16 +7629,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mp8-51-hDt">
-                                                <rect key="frame" x="0.0" y="196" width="347" height="41"/>
+                                                <rect key="frame" x="0.0" y="176.5" width="347" height="50.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cab Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ET5-OU-RP9">
-                                                        <rect key="frame" x="0.0" y="5" width="282" height="30"/>
+                                                        <rect key="frame" x="0.0" y="5" width="282" height="39.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9le-FL-cex">
-                                                        <rect key="frame" x="290" y="5" width="51" height="31"/>
+                                                        <rect key="frame" x="290" y="5" width="51" height="40.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -7691,16 +7660,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBS-5R-WWW">
-                                                <rect key="frame" x="0.0" y="245" width="347" height="41"/>
+                                                <rect key="frame" x="0.0" y="235" width="347" height="51"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Package Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Kc-Sv-tsK">
-                                                        <rect key="frame" x="0.0" y="5" width="282" height="30"/>
+                                                        <rect key="frame" x="0.0" y="5" width="282" height="40"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="74f-25-D09">
-                                                        <rect key="frame" x="290" y="5" width="51" height="31"/>
+                                                        <rect key="frame" x="290" y="5" width="51" height="41"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="onTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -7762,14 +7731,12 @@
                         <outlet property="btn_signOut" destination="0GR-8f-bMx" id="ugY-EF-FFD"/>
                         <outlet property="cab_Notification_Label" destination="ET5-OU-RP9" id="rTL-BM-7Xa"/>
                         <outlet property="dailyService_Notification_Label" destination="wks-gX-xrH" id="rdx-W8-pGr"/>
-                        <outlet property="eIntercom_Notification_Label" destination="eAa-WR-aY1" id="iwv-Qj-tdG"/>
                         <outlet property="guest_Notification_Label" destination="b8X-Oi-Ug1" id="Xz8-gW-seU"/>
                         <outlet property="package_Notification_Label" destination="7Kc-Sv-tsK" id="WaR-xQ-SPG"/>
                         <outlet property="sound_Settings_Label" destination="mOI-ar-EfE" id="Rn6-DA-z8g"/>
                         <outlet property="sound_settings_View" destination="aW6-DC-MmH" id="9Zg-0z-0XQ"/>
                         <outlet property="switch_Cab" destination="9le-FL-cex" id="8Tj-XY-uYe"/>
                         <outlet property="switch_DailyServices" destination="V3N-hZ-JRD" id="BTz-Om-2I5"/>
-                        <outlet property="switch_EIntercom" destination="akD-0x-xHT" id="fIO-3f-4cr"/>
                         <outlet property="switch_Guest" destination="XL1-kB-oPw" id="0L2-xn-CV2"/>
                         <outlet property="switch_Package" destination="74f-25-D09" id="rsd-rD-MAX"/>
                     </connections>
