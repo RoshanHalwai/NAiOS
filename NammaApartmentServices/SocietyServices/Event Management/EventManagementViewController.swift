@@ -101,6 +101,9 @@ class EventManagementViewController: NANavigationViewController {
         //TextField formatting & setting
         txt_EventTitle.font = NAFont().textFieldFont()
         txt_EventDate.font = NAFont().textFieldFont()
+        
+        scrollView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
         txt_EventTitle.underlined()
         txt_EventDate.underlined()
         
