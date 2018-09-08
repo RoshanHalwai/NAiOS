@@ -108,6 +108,8 @@ struct Constants {
     static let FIREBASE_SERVICE_TYPE = "serviceType"
     static let FIREBASE_STATUS = "status"
     static let FIREBASE_USERUID = "userUID"
+    static let FIREBASE_NOTIFICATIONS = "notifications"
+    static let FIREBASE_HISTORY = "history"
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     

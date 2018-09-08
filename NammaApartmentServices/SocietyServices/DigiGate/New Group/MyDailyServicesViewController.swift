@@ -75,6 +75,22 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         //info Button Action
         infoButton()
+        
+        //Define Layout here
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        
+        //Get device width
+        let width = UIScreen.main.bounds.width
+        
+        //set cell item size here
+        layout.itemSize = CGSize(width: width - 10, height: 220)
+        
+        //set Minimum spacing between 2 items
+        layout.minimumInteritemSpacing = 10
+        
+        //apply defined layout to collectionview
+        collectionView!.collectionViewLayout = layout
     }
     
     
