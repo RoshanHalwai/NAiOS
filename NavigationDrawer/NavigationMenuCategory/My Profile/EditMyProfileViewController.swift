@@ -342,6 +342,10 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         return true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        txt_Flat_Admin.text = selectedMember
+    }
+    
     //To Logout the current user
     func logoutAction() {
         let preferences = UserDefaults.standard
