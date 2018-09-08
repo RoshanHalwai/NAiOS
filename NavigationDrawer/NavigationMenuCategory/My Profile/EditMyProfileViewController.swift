@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 
-class EditMyProfileViewController: NANavigationViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class EditMyProfileViewController: NANavigationViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var profile_Image: UIImageView!
     @IBOutlet weak var cardView_Image: UIImageView!
@@ -29,20 +29,16 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     @IBOutlet weak var txt_EmailId: UITextField!
     @IBOutlet weak var txt_Flat_Admin: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var update_btn: UIButton!
-    
-    @IBOutlet weak var opacity_View: UIView!
-    @IBOutlet weak var list_View: UIView!
     @IBOutlet weak var cardView: UIView!
-    @IBOutlet weak var table_View: UITableView!
-    
-    @IBOutlet weak var list_View_Height_Constraint: NSLayoutConstraint!
     
     var updateUserRef : DatabaseReference?
     var familyMemberNameRef : DatabaseReference?
     
     var navTitle = String()
+    var selectedMember = String()
     var flatMembersNameList = [String]()
     var allFlatMembersUID = [String]()
     
@@ -61,13 +57,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //cardUIView
-        cardView.layer.cornerRadius = 3
-        cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
-        cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-        cardView.layer.shadowRadius = 1.7
-        cardView.layer.shadowOpacity = 0.45
+        NAShadowEffect().shadowEffectForView(view: cardView)
         
         //Hiding History NavigationBar  RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
@@ -106,6 +96,10 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             }
             queue.waitUntilAllOperationsAreFinished()
         })
+        
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
+        scrollView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
         txt_Name.underlined()
         txt_EmailId.underlined()
         txt_Flat_Admin.underlined()
@@ -114,15 +108,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        opacity_View.isHidden = true
-        list_View.isHidden = true
-        
         txt_Name.delegate = self
         txt_EmailId.delegate = self
         txt_Flat_Admin.delegate = self
-        table_View.delegate = self
-        table_View.dataSource = self
-        self.table_View.separatorStyle = .none
         
         lbl_EIntercom.text = NAString().eIntercom()
         lbl_EIntercomSerialNo.text = NAString()._91()
@@ -170,16 +158,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         self.profile_Image.addGestureRecognizer(tapGesture)
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        opacity_View.addGestureRecognizer(tap)
-        
-        
-        //Implemented to get data content size to change height based on data
-        self.table_View.addObserver(self, forKeyPath: NAString().tableView_Content_size(), options: NSKeyValueObservingOptions.new, context: nil)
-        
-        //Change Admin TextField function
-        txt_Flat_Admin.addTarget(self, action: #selector(changeAdminTextField), for: UIControlEvents.touchDown)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
     }
@@ -194,35 +172,32 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         self.view.frame.origin.y += 100
     }
     
-    //Change Admin TextField function
-    @objc func changeAdminTextField(textField: UITextField) {
-        if textField == txt_Flat_Admin &&  GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
-            let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
-            flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
-                if flatMembersUIDSnapshot.childrenCount == 1 {
-                    self.txt_Flat_Admin.resignFirstResponder()
-                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), OkStyle: .default, OK: { (action) in })
-                } else {
-                    self.flatMembersNameList.removeAll()
-                    let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
-                    for flatMemberUID in (flatMembersUIDMap?.allKeys)! {
-                        if flatMemberUID as! String != userUID {
-                            
-                            //Getting all Flat Members names.
-                            self.familyMemberNameRef = Constants.FIREBASE_USERS_PRIVATE.child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
-                            self.allFlatMembersUID.append(flatMemberUID as! String)
-                            self.familyMemberNameRef?.observeSingleEvent(of: .value, with: { (nameSnapshot) in
-                                self.flatMembersNameList.append(nameSnapshot.value as! String)
-                                self.list_View.isHidden = false
-                                self.opacity_View.isHidden = false
-                                self.table_View.reloadData()
-                            })
-                        }
-                    }
-                }
-            }
-        }
-    }
+    //    //Change Admin TextField function
+    //    @objc func changeAdminTextField(textField: UITextField) {
+    //        if textField == txt_Flat_Admin &&  GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
+    //            let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+    //            flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
+    //                if flatMembersUIDSnapshot.childrenCount == 1 {
+    //                    self.txt_Flat_Admin.resignFirstResponder()
+    //                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), OkStyle: .default, OK: { (action) in })
+    //                } else {
+    //                    self.flatMembersNameList.removeAll()
+    //                    let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
+    //                    for flatMemberUID in (flatMembersUIDMap?.allKeys)! {
+    //                        if flatMemberUID as! String != userUID {
+    //
+    //                            //Getting all Flat Members names.
+    //                            self.familyMemberNameRef = Constants.FIREBASE_USERS_PRIVATE.child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
+    //                            self.allFlatMembersUID.append(flatMemberUID as! String)
+    //                            self.familyMemberNameRef?.observeSingleEvent(of: .value, with: { (nameSnapshot) in
+    //                                self.flatMembersNameList.append(nameSnapshot.value as! String)
+    //                            })
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
     
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
@@ -231,23 +206,11 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         }
     }
     
-    //For Resizing TableView based on content
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        table_View.layer.removeAllAnimations()
-        list_View_Height_Constraint.constant = table_View.contentSize.height + 37
-    }
-    
     //Create name textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
     
-    //tap Gesture method
-    @objc func handleTap(sender: UITapGestureRecognizer? = nil) {
-        list_View.isHidden = true
-        opacity_View.isHidden = true
-        self.view.endEditing(true)
-    }
     
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
@@ -344,28 +307,43 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         return  returnValue
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return flatMembersNameList.count
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        if textField == txt_Flat_Admin &&  GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
+            let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
+            flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
+                if flatMembersUIDSnapshot.childrenCount == 1 {
+                    self.txt_Flat_Admin.resignFirstResponder()
+                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), OkStyle: .default, OK: { (action) in })
+                } else {
+                    self.flatMembersNameList.removeAll()
+                    let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
+                    for flatMemberUID in (flatMembersUIDMap?.allKeys)! {
+                        if flatMemberUID as! String != userUID {
+                            
+                            //Getting all Flat Members names.
+                            self.familyMemberNameRef = Constants.FIREBASE_USERS_PRIVATE.child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
+                            self.allFlatMembersUID.append(flatMemberUID as! String)
+                            self.familyMemberNameRef?.observeSingleEvent(of: .value, with: { (nameSnapshot) in
+                                self.flatMembersNameList.append(nameSnapshot.value as! String)
+                                
+                                let listVC = self.storyboard!.instantiateViewController(withIdentifier: "MyProfileListVC") as! EditMyProfileFlatMembersListViewController
+                                let nav : UINavigationController = UINavigationController(rootViewController: listVC)
+                                listVC.navigationTitle = "Flat Members"
+                                listVC.myProfileVC = self
+                                self.navigationController?.present(nav, animated: true, completion: nil)
+                                
+                            })
+                        }
+                    }
+                }
+            }
+        }
+        return true
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! EditMyProfileTableViewCell
-        
-        cell.lbl_Family_Members_List.text = flatMembersNameList[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!)! as! EditMyProfileTableViewCell
-        let currentItem = currentCell.lbl_Family_Members_List.text
-        updatedAdminUID = allFlatMembersUID[(indexPath?.row)!]
-        
-        txt_Flat_Admin.text = currentItem
-        
-        list_View.isHidden = true
-        tableView.deselectRow(at: indexPath!, animated: true)
-        opacity_View.isHidden = true
+    override func viewWillAppear(_ animated: Bool) {
+        txt_Flat_Admin.text = selectedMember
     }
     
     //To Logout the current user
