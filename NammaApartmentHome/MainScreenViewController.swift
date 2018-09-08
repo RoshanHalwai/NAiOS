@@ -79,7 +79,7 @@ class MainScreenViewController: NANavigationViewController {
             societyServicesModel(cellTitle: NAString().plumber(),cellImage:  #imageLiteral(resourceName: "plumber")),
             societyServicesModel(cellTitle: NAString().carpenter(),cellImage:  #imageLiteral(resourceName: "carpenter")),
             societyServicesModel(cellTitle: NAString().electrician(),cellImage:  #imageLiteral(resourceName: "electrician")),
-            societyServicesModel(cellTitle: NAString().garbage_management(),cellImage:  #imageLiteral(resourceName: "garbage")),
+            societyServicesModel(cellTitle: NAString().garbage_Collection(),cellImage:  #imageLiteral(resourceName: "garbage")),
             societyServicesModel(cellTitle: NAString().medical_emergency(),cellImage:  #imageLiteral(resourceName: "Emergency")),
             societyServicesModel(cellTitle: NAString().event_management(),cellImage: #imageLiteral(resourceName: "eventManagement"))
         ]
@@ -269,8 +269,8 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                 
             case 4:
                 let lv4 = NAViewPresenter().societyServiceVC()
-                lv4.navTitle = NAString().garbage_management()
-                getInProgressUID(VC: lv4, serviceName: NAString().garbageManagement())
+                lv4.navTitle = NAString().garbage_Collection()
+                getInProgressUID(VC: lv4, serviceName: NAString().garbageCollection())
                 
             case 5:
                 let lv5 = NAViewPresenter().emergencyVC()

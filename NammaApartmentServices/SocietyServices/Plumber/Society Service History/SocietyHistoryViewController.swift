@@ -94,7 +94,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
             case NAString().electrician_Service() :
                 cell.cellImage.image = #imageLiteral(resourceName: "electrician")
                 break
-            case NAString().garbageManagement() :
+            case NAString().garbageCollection() :
                 cell.cellImage.image = #imageLiteral(resourceName: "garbage-bin")
                 break
             default:

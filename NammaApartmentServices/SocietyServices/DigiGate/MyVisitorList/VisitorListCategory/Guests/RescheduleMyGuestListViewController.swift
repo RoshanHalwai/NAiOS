@@ -58,6 +58,7 @@ class RescheduleMyGuestListViewController: NANavigationViewController {
         txt_ReTime.inputView = UIView()
         txt_ReDate.inputView = UIView()
         
+        self.view.layoutIfNeeded()
         //TextField formatting & Settings
         txt_ReDate.underlined()
         txt_ReTime.underlined()
