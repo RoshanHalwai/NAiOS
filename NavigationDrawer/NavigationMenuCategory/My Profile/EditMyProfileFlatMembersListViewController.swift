@@ -15,7 +15,6 @@ class EditMyProfileFlatMembersListViewController: NANavigationViewController, UI
     @IBOutlet weak var navTitle: UILabel!
     
     var searchActive : Bool = false
-    
     var myProfileVC : EditMyProfileViewController!
     
     var navigationTitle = String()

@@ -172,33 +172,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         self.view.frame.origin.y += 100
     }
     
-    //    //Change Admin TextField function
-    //    @objc func changeAdminTextField(textField: UITextField) {
-    //        if textField == txt_Flat_Admin &&  GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
-    //            let flatMembersReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
-    //            flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
-    //                if flatMembersUIDSnapshot.childrenCount == 1 {
-    //                    self.txt_Flat_Admin.resignFirstResponder()
-    //                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), OkStyle: .default, OK: { (action) in })
-    //                } else {
-    //                    self.flatMembersNameList.removeAll()
-    //                    let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
-    //                    for flatMemberUID in (flatMembersUIDMap?.allKeys)! {
-    //                        if flatMemberUID as! String != userUID {
-    //
-    //                            //Getting all Flat Members names.
-    //                            self.familyMemberNameRef = Constants.FIREBASE_USERS_PRIVATE.child(flatMemberUID as! String).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
-    //                            self.allFlatMembersUID.append(flatMemberUID as! String)
-    //                            self.familyMemberNameRef?.observeSingleEvent(of: .value, with: { (nameSnapshot) in
-    //                                self.flatMembersNameList.append(nameSnapshot.value as! String)
-    //                            })
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
         DispatchQueue.main.async {
@@ -210,7 +183,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
     }
-    
     
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
@@ -329,10 +301,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
                                 
                                 let listVC = self.storyboard!.instantiateViewController(withIdentifier: "MyProfileListVC") as! EditMyProfileFlatMembersListViewController
                                 let nav : UINavigationController = UINavigationController(rootViewController: listVC)
-                                listVC.navigationTitle = "Flat Members"
+                                listVC.navigationTitle = NAString().flatMembers()
                                 listVC.myProfileVC = self
                                 self.navigationController?.present(nav, animated: true, completion: nil)
-                                
                             })
                         }
                     }
@@ -396,7 +367,6 @@ extension EditMyProfileViewController {
             })
             uploadTask.resume()
         }
-        
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), OkStyle: .default) { (action) in
             self.navigationController?.popViewController(animated: true)
         }
