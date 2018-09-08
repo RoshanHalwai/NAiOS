@@ -24,6 +24,7 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         
         //Get device width
         let width = UIScreen.main.bounds.width
