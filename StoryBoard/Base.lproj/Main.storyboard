@@ -5962,7 +5962,6 @@
         <!--My Wallet View Controller-->
         <scene sceneID="q2Y-Iz-Nk0">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nJR-28-B6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="myWalletVC" id="kAm-js-640" customClass="MyWalletViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MEy-LR-6xc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -6212,6 +6211,7 @@
                         <outlet property="scrollView" destination="eqK-LM-ty0" id="vPW-7g-M0B"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nJR-28-B6J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10597.6" y="5695.5022488755631"/>
         </scene>
