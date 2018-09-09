@@ -53,9 +53,15 @@ class MainScreenViewController: NANavigationViewController {
         menuButton.addTarget(self, action: #selector(NavigationMenuVC), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: menuButton)
         
-        /* Retrieve current Users UID*/
+        /* Retrieve current Users UID & Its Flat Details for Navigation Drawer*/
         self.retreiveUserUID()
-        self.retrieveUserData()
+        
+        let societyName = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
+        let apartmentName = GlobalUserData.shared.flatDetails_Items.first?.getapartmentName()
+        let flatNumber = GlobalUserData.shared.flatDetails_Items.first?.getflatNumber()
+        
+        self.navigationMenuVC.lbl_Apartment.text = societyName
+        self.navigationMenuVC.lbl_Flat.text = apartmentName! + "," + " " + flatNumber!
         
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
@@ -119,7 +125,6 @@ class MainScreenViewController: NANavigationViewController {
         if let embeddedVC = segue.destination as? NavigationMenuViewController {
             navigationMenuVC = embeddedVC
         }
-        
     }
     
     /* - For switching the tableview data in between society & apartment services.
@@ -401,34 +406,5 @@ extension MainScreenViewController {
         userUID = (preferences.object(forKey: currentLevelKey) as! String)
         preferences.set(true, forKey: loggedIn)
         preferences.synchronize()
-    }
-    
-    //Retrieving User's Data from firebase
-    func retrieveUserData() {
-        
-        //Created Token ID & Storing in Firebase
-        let token = Messaging.messaging().fcmToken
-        
-        var usersTokenRef : DatabaseReference?
-        usersTokenRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
-        usersTokenRef?.child(NAUser.NAUserStruct.tokenId).setValue(token)
-        
-        //Checking Users UID in Firebase under Users ->Private
-        usersPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
-        
-        //Checking userData inside Users/Private
-        self.usersPrivateRef?.observeSingleEvent(of: .value, with: { snapshot in
-            
-            //If usersUID is Exists then retrievd all the data of user.
-            if snapshot.exists() {
-                //Retrieving Navigation Data in Header
-                let societyName = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
-                let apartmentName = GlobalUserData.shared.flatDetails_Items.first?.getapartmentName()
-                let flatNumber = GlobalUserData.shared.flatDetails_Items.first?.getflatNumber()
-                
-                self.navigationMenuVC.lbl_Apartment.text = societyName
-                self.navigationMenuVC.lbl_Flat.text = apartmentName! + "," + " " + flatNumber!
-            }
-        })
     }
 }
