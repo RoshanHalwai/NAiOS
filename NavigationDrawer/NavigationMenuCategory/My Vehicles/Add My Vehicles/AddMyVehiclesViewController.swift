@@ -114,6 +114,9 @@ class AddMyVehiclesViewController: NANavigationViewController {
         cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
         cardView.layer.shadowRadius = 1.7
         cardView.layer.shadowOpacity = 0.45
+        
+        //Calling function from NANavigationViewController class to hide numberPad on done pressed
+        hideNumberPad(numberTextField: txt_VehicleSerialNumberTwo)
     }
     
     @IBAction func btnSelectVehicles(_ sender: UIButton) {

@@ -220,6 +220,9 @@ class ExpectingArrivalViewController: NANavigationViewController {
         
         //info Button Action
         infoButton()
+        
+        //Calling function from NANavigationViewController class to hide numberPad on done pressed
+        hideNumberPad(numberTextField: txt_CabSerialNumberTwo)
     }
     
     // Navigate to FAQ's VC

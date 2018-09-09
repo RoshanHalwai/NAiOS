@@ -159,6 +159,9 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         //info Button Action
         infoButton()
+        
+        //Calling function NANavigationViewController class to hide numberPad on done pressed
+        hideNumberPad(numberTextField: txt_MobileNo)
     }
     
     // Navigate to FAQ's VC
