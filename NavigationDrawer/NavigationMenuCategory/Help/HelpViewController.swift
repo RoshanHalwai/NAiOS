@@ -31,12 +31,12 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
         //Get device width
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
-//
-//        //set section inset as per your requirement.
-//        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        
+        //set section inset as per your requirement.
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 15, height: height/9)
+        layout.itemSize = CGSize(width: width - 10, height: height/9)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -70,7 +70,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
             self.navigationController?.pushViewController(dv, animated: true)
             
         case 1:
-            let helpCategoryVC = NAViewPresenter().helpCategoryVC()
+            let helpCategoryVC = NAViewPresenter().contactUs()
             helpCategoryVC.navTitle = NAString().contact_us().capitalized
             self.navigationController?.pushViewController(helpCategoryVC, animated: true)
             

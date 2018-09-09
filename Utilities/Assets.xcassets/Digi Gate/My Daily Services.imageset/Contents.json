@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "My Daily Services.png",
+      "idiom" : "iphone",
+      "filename" : "24-hours.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "24-hours-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "24-hours-2.png",
       "scale" : "3x"
     }
   ],

@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "history-clock-button (2).png",
+      "idiom" : "iphone",
+      "filename" : "history.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "history-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "history-2.png",
       "scale" : "3x"
     }
   ],

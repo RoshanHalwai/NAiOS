@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "RaiseTheftAlarm.png",
+      "idiom" : "iphone",
+      "filename" : "police-car.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "police-car-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "police-car-2.png",
       "scale" : "3x"
     }
   ],

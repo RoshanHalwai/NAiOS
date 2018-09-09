@@ -16,13 +16,11 @@ class SettingViewController: NANavigationViewController {
     @IBOutlet weak var btn_signOut: UIButton!
     
     @IBOutlet weak var sound_Settings_Label: UILabel!
-    @IBOutlet weak var eIntercom_Notification_Label: UILabel!
     @IBOutlet weak var guest_Notification_Label: UILabel!
     @IBOutlet weak var dailyService_Notification_Label: UILabel!
     @IBOutlet weak var cab_Notification_Label: UILabel!
     @IBOutlet weak var package_Notification_Label: UILabel!
     
-    @IBOutlet weak var switch_EIntercom: UISwitch!
     @IBOutlet weak var switch_Guest: UISwitch!
     @IBOutlet weak var switch_DailyServices: UISwitch!
     @IBOutlet weak var switch_Cab: UISwitch!
@@ -44,7 +42,6 @@ class SettingViewController: NANavigationViewController {
         
         //Label Formatting and Setting
         sound_Settings_Label.font = NAFont().headerFont()
-        eIntercom_Notification_Label.font = NAFont().textFieldFont()
         guest_Notification_Label.font = NAFont().textFieldFont()
         dailyService_Notification_Label.font = NAFont().textFieldFont()
         cab_Notification_Label.font = NAFont().textFieldFont()
@@ -52,7 +49,6 @@ class SettingViewController: NANavigationViewController {
         
         //Setting Label Text 
         sound_Settings_Label.text = NAString().sound_settings()
-        eIntercom_Notification_Label.text = NAString().eIntercom_Notification()
         guest_Notification_Label.text = NAString().guest_Notification()
         dailyService_Notification_Label.text = NAString().dailyService_Notification()
         cab_Notification_Label.text = NAString().cab_Notification()
@@ -71,14 +67,6 @@ class SettingViewController: NANavigationViewController {
         
         //setting border width for button
         btn_signOut.layer.borderWidth = CGFloat(NAString().two())
-    }
-    
-    @IBAction func switch_EIntercom(_ sender: UISwitch) {
-        if (sender.isOn ==  true) {
-            userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
-        } else {
-            userNotificationRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().getfalse())
-        }
     }
     
     @IBAction func switch_Guest(_ sender: UISwitch) {
@@ -151,7 +139,6 @@ extension SettingViewController {
             let PackageValue = notificationSoundData[Constants.FIREBASE_CHILD_PACKAGE_SOUND] as! Bool
             let dailyServiceValue = notificationSoundData[Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND] as! Bool
             let guestValue = notificationSoundData[Constants.FIREBASE_CHILD_GUEST_SOUND] as! Bool
-            let eIntercomValue = notificationSoundData[Constants.FIREBASE_CHILD_EINTERCOM_SOUND] as! Bool
             
             //Setting UISwitches isOn accroding to firebase values
             if cabValue == true {
@@ -176,12 +163,6 @@ extension SettingViewController {
                 self.switch_Guest.isOn = true
             } else {
                 self.switch_Guest.isOn = false
-            }
-            
-            if eIntercomValue == true {
-                self.switch_EIntercom.isOn = true
-            } else {
-                self.switch_EIntercom.isOn = false
             }
         }
     }

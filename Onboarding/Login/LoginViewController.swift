@@ -28,6 +28,7 @@ class LoginViewController: NANavigationViewController {
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
+        scrollView.layoutIfNeeded()
         
         //assigned delegate method on textFields
         txt_MobileNo.delegate = self
@@ -52,6 +53,8 @@ class LoginViewController: NANavigationViewController {
         txt_CountryCode.font = NAFont().textFieldFont()
         txt_CountryCode.text = NAString()._91()
         
+        scrollView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
         //Set Textfield bottom border line
         txt_MobileNo.underlined()
         

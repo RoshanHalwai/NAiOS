@@ -83,13 +83,56 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
             
         case NAString().groceries():
             NAActivityIndicator.shared.hideActivityIndicator()
-            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorGroceriesServices())
+            self.layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorGroceriesServices())
             
         default:
             break
         }
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+    }
+    
+    func layoutFeatureUnavailable(mainView : UIViewController, newText : String) {
+        
+        //Image View
+        let newImage = UIImageView()
+        newImage.heightAnchor.constraint(equalToConstant: 120.0).isActive = true
+        newImage.widthAnchor.constraint(equalToConstant: 120.0).isActive = true
+        newImage.image = UIImage(named: "Groceries")
+        
+        //Text Label
+        let newLabel = UILabel()
+        newLabel.textColor = UIColor.black
+        newLabel.numberOfLines = 2
+        newLabel.font = NAFont().layoutFeatureErrorFont()
+        newLabel.text  = newText
+        newLabel.textAlignment = .center
+        
+        //Stack View
+        let stackView = UIStackView()
+        stackView.axis = UILayoutConstraintAxis.vertical
+        stackView.distribution = UIStackViewDistribution.equalCentering
+        stackView.alignment = UIStackViewAlignment.center
+        stackView.spacing = CGFloat(NAString().fifteen())
+        
+        stackView.addArrangedSubview(newImage)
+        stackView.addArrangedSubview(newLabel)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        mainView.view.addSubview(stackView)
+        
+        //Constraints
+        stackView.centerXAnchor.constraint(equalTo: mainView.view.centerXAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: mainView.view.topAnchor).isActive = true
+        
+        stackView.leadingAnchor.constraint(equalTo: mainView.view.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: mainView.view.trailingAnchor).isActive = true
+        
+        if newText.count == 0 {
+            stackView.removeFromSuperview()
+            newLabel.removeFromSuperview()
+            newImage.removeFromSuperview()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -167,7 +210,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         
         //Implementing Calling Function here on Phone click
         cell.actionCall = {
-             UIApplication.shared.open(NSURL(string: "tel://\(dailyServicesData.getphoneNumber())")! as URL, options: [:], completionHandler: nil)
+            UIApplication.shared.open(NSURL(string: "tel://\(dailyServicesData.getphoneNumber())")! as URL, options: [:], completionHandler: nil)
         }
         
         //Implementing Message Function here on Message click

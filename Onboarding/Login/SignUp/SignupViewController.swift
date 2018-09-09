@@ -60,9 +60,6 @@ class SignupViewController: NANavigationViewController {
         //Create Name textfield first letter capital
         signup_TxtFullName.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        //Add border color on profile imageview
-        profileImage.layer.borderColor = UIColor.black.cgColor
-        
         //Hide Error Labels
         lbl_FullName_Validation.isHidden = true
         lbl_Email_Validation.isHidden = true
@@ -106,6 +103,9 @@ class SignupViewController: NANavigationViewController {
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
         
+        signupScrollView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
+        
         //Set Textfield bottom border line
         signup_TxtFullName.underlined()
         signup_TxtEmailId.underlined()
@@ -127,7 +127,7 @@ class SignupViewController: NANavigationViewController {
     @IBAction func signup_BtnSignup(_ sender: Any) {
         let providedEmailAddress = signup_TxtEmailId.text
         let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
-        if profileImage.image == #imageLiteral(resourceName: "add_member") {
+        if profileImage.image == #imageLiteral(resourceName: "imageIcon") {
             lbl_Image_Validation.isHidden = false
             lbl_Image_Validation.text = NAString().please_upload_Image()
         }
@@ -154,7 +154,7 @@ class SignupViewController: NANavigationViewController {
                 signup_TxtEmailId.redunderlined()
             }
         }
-        if profileImage.image != #imageLiteral(resourceName: "add_member") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
+        if profileImage.image != #imageLiteral(resourceName: "imageIcon") && !(signup_TxtFullName.text?.isEmpty)! && isEmailAddressIsValid == true {
             
             //Navigation to MyFlatDetail Screen With Personal Details Data.
             let dest = NAViewPresenter().myFlatDEtailsVC()

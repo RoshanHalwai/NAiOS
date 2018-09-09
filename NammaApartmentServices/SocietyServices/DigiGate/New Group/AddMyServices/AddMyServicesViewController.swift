@@ -144,6 +144,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         
         picker.locale = Locale(identifier: "en_GB")
         
+        scrollView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
         txt_Date.underlined()
         txt_Name.underlined()
         txt_MobileNo.underlined()

@@ -422,7 +422,7 @@ class NAString : NSObject {
     }
     
     //Society Services Activity
-    func digital_gate() -> String {
+    func digi_gate() -> String {
         return String("Digi Gate")
     }
     
@@ -459,7 +459,7 @@ class NAString : NSObject {
         return String("eventManagement")
     }
     
-    func medical_emergency() -> String {
+    func emergency() -> String {
         return String("Emergency")
     }
     
@@ -531,10 +531,6 @@ class NAString : NSObject {
     
     func my_sweet_home() -> String {
         return String("My Sweet Home")
-    }
-    
-    func emergency() -> String {
-        return String("Emergency")
     }
     
     func visitorName() -> String {
@@ -1405,6 +1401,10 @@ class NAString : NSObject {
         return ("BOOK")
     }
     
+    func submit_request() -> String {
+        return ("Submit Request")
+    }
+    
     func morning() -> String {
         return ("8AM - 12PM")
     }
@@ -1796,6 +1796,38 @@ class NAString : NSObject {
     
     func success() -> String {
         return String("SUCCESS")
+    }
+    
+    func pending() -> String {
+        return String("Pending")
+    }
+    
+    func requestRaised() -> String {
+        return String("Request Raised")
+    }
+    
+    func successfull_Support_request_Message() -> String {
+        return String("Thank you for writing to us. Our Support team will get back to you regarding this request.")
+    }
+    
+    func selectServiceCategory() -> String {
+        return String("Select Service Category")
+    }
+    
+    func selectServiceType() -> String {
+        return String("Select Service Type")
+    }
+    
+    func describeYourProblem() -> String {
+        return String("Describe Your Problem")
+    }
+    
+    func reschedule_Title() -> String {
+        return String("Reschedule Message")
+    }
+    
+    func reschedule_Alert_Message() -> String {
+        return String("Sorry, you cannot reschedule, as the Visitor has already entered/left the Society.")
     }
 }
 

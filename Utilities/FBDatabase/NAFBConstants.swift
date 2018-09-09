@@ -102,6 +102,12 @@ struct Constants {
     static let FIREBASE_CHILD_PACKAGE_SOUND = "package"
     static let FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD = "Notice_Board_Notification"
     static let FIREBASE_NOTIFICATION_TYPE = "type"
+    static let FIREBASE_CHILD_SUPPORT = "support"
+    static let FIREBASE_PROBLEM_DESCRIPTION = "problemDescription"
+    static let FIREBASE_SERVICE_CATEGORY = "serviceCategory"
+    static let FIREBASE_SERVICE_TYPE = "serviceType"
+    static let FIREBASE_STATUS = "status"
+    static let FIREBASE_USERUID = "userUID"
     static let FIREBASE_NOTIFICATIONS = "notifications"
     static let FIREBASE_HISTORY = "history"
     
@@ -147,5 +153,4 @@ struct Constants {
     static let FIREBASE_VEHICLES_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_VEHICLES).child(FIREBASE_USER_CHILD_ALL)
     
     static let FIREBASE_GUARD_PRIVATE_DATA = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_GUARD).child(FIREBASE_CHILD_PRIVATE).child(FIREBASE_CHILD_DATA)
-
 }
