@@ -63,6 +63,9 @@ class LoginViewController: NANavigationViewController {
         super.ConfigureNavBarTitle(title: NAString().login_button())
         navigationItem.rightBarButtonItem = nil
         self.navigationItem.hidesBackButton = true
+        
+        //Calling function from NANavigationViewController class to hide numberPad on done pressed
+        hideNumberPad(numberTextField: txt_MobileNo)
     }
     
     //Accept only 10 digit mobile number in MobileNumber TextField

@@ -132,6 +132,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         //info Button Action
         infoButton()
+        
+        //Calling function from NANavigationViewController class to hide numberPad on done pressed
+        hideNumberPad(numberTextField: txtInvitorMobile)
     }
     
     // Navigate to FAQ's VC

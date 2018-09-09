@@ -46,4 +46,20 @@ class NANavigationViewController: UIViewController,UITextFieldDelegate {
         name.font = NAFont().viewTitleFont()
         navigationItem.titleView = name
     }
+    
+    //For Hiding NumberPad when done pressed
+    func hideNumberPad(numberTextField : UITextField) {
+        //Created toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // done button for toolbar
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(hideNumberKeyboard))
+        toolbar.setItems([done], animated: false)
+        numberTextField.inputAccessoryView = toolbar
+    }
+    
+    @objc func hideNumberKeyboard() {
+        self.view.endEditing(true)
+    }
 }
