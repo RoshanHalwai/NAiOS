@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     //GCM is stands fro Google Cloud Messaging
     let gcmMessageIDKey = "gcm.message_id"
+    var loadingUserData = retrieveUserData()
     
     let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
     
@@ -46,7 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if preferences.bool(forKey: accountCreated) == true || preferences.bool(forKey: loggedIn) == true {
                 if preferences.bool(forKey: verified) == true {
                     if preferences.bool(forKey: loggedIn) == true {
+                        var userUID = String()
+                        userUID = preferences.object(forKey: UserUID) as! String
+                        preferences.synchronize()
                         let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+                        self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
                         self.window?.rootViewController = NavMain
                         self.window?.makeKeyAndVisible()
                     } else {
@@ -68,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
                             preferences.set(true, forKey: verified)
                             preferences.synchronize()
-                            
+                            self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
                             let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
                             self.window?.rootViewController = NavMain
                             self.window?.makeKeyAndVisible()
@@ -99,6 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         //Calling Launch Screen Method
         self.launchScreen()
+     
         //Formatting Navigation Controller From Globally.
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().clipsToBounds = true
