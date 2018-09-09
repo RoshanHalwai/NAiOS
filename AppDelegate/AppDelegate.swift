@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     //GCM is stands fro Google Cloud Messaging
     let gcmMessageIDKey = "gcm.message_id"
+    
+    //Created instance for calling retrieveUserData class function
     var loadingUserData = retrieveUserData()
     
     let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)

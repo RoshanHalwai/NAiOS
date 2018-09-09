@@ -52,12 +52,12 @@ class ActivationRequired: NANavigationViewController {
             if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
                 let queue = OperationQueue()
                 queue.addOperation {
-                 self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                //Navigating to main screen
-                let dest = NAViewPresenter().mainScreenVC()
-                self.navigationController?.pushViewController(dest, animated: true)
-            }
-            queue.waitUntilAllOperationsAreFinished()
+                    self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                    //Navigating to main screen
+                    let dest = NAViewPresenter().mainScreenVC()
+                    self.navigationController?.pushViewController(dest, animated: true)
+                }
+                queue.waitUntilAllOperationsAreFinished()
             }
         })
     }

@@ -14,11 +14,11 @@ import FirebaseMessaging
 
 class retrieveUserData {
     
-     var usersPrivateRef: DatabaseReference?
-     var navigationMenuVC: NavigationMenuViewController!
+    var usersPrivateRef: DatabaseReference?
+    var navigationMenuVC: NavigationMenuViewController!
     
     func retrieveUserDataFromFirebase(userId: String) {
-     
+        
         //Created Token ID & Storing in Firebase
         let token = Messaging.messaging().fcmToken
         
@@ -50,7 +50,7 @@ class retrieveUserData {
                 flatDetailsFB.append(userFlatDetails)
                 
                 GlobalUserData.shared.flatDetails_Items = flatDetailsFB
-
+                
                 //Retrieving & Adding Data in UserPersonalDetails class
                 let userPersonal_data = userData![Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String :Any]
                 let userPersonalDetails = UserPersonalDetails.init(email: userPersonal_data![Constants.FIREBASE_CHILD_EMAIL] as? String, fullName:userPersonal_data![Constants.FIREBASE_CHILD_FULLNAME] as? String , phoneNumber:userPersonal_data![Constants.FIREBASE_CHILD_PHONENUMBER] as? String, profilePhoto: userPersonal_data![Constants.FIREBASE_CHILD_PERSONALDETAILS_PROFILEIMAGE] as? String)
@@ -85,6 +85,6 @@ class retrieveUserData {
                 GlobalUserData.shared.setNammaApartmentUser(nammaApartmentUser: nammaApartmentUser)
             }
         })
-        }
     }
+}
 
