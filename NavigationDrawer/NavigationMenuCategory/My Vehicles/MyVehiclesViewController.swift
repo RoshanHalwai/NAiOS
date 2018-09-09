@@ -44,7 +44,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-
+        
         //Get device width
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
@@ -133,7 +133,7 @@ extension MyVehiclesViewController {
                     self.vehiclesPublicRef?.keepSynced(true)
                     self.vehiclesPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
-                            
+                            self.myExpectedVehicleList.removeAll()
                             let vehicleData = snapshot.value as?[String: AnyObject]
                             let vehicleType = (vehicleData?[VehicleListFBKeys.vehicleType.key] as? String)!
                             let addedDate = vehicleData?[VehicleListFBKeys.addedDate.key] as? String
