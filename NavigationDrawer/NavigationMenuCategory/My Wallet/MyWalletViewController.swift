@@ -8,6 +8,7 @@
 
 import UIKit
 import Razorpay
+import FirebaseDatabase
 
 class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompletionProtocol {
     
@@ -25,7 +26,8 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var btn_SocietyServices: UIButton!
-    @IBOutlet weak var btn_ApartmentServices: UIButton!
+    @IBOutlet weak var lbl_Cost: UILabel!
+    @IBOutlet weak var lbl_Maintenance: UILabel!
     
     var navTitle = String()
     
@@ -44,17 +46,17 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
         getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getfullName())!
-        
-        //TODO: Hardcoded Amount,but will change it later after completing Amount UI in My wallet Screen
-        getUserPendingAmount = "100"
-        
+    
         //Setting label fonts
         lbl_nammaApartment.font = NAFont().headerFont()
         lbl_payFor.font = NAFont().headerFont()
         lbl_description.font = NAFont().lato_Regular_16()
         lbl_myTransactions.font = NAFont().lato_Regular_20()
-        btn_ApartmentServices.titleLabel?.font = NAFont().lato_Regular_16()
         btn_SocietyServices.titleLabel?.font = NAFont().lato_Regular_16()
+        
+        lbl_Maintenance.text = NAString().maintanceCost()
+        lbl_Maintenance.font = NAFont().lato_Regular_16()
+        lbl_Cost.font = NAFont().labelFont()
         
         lbl_nammaApartment.text = NAString().nammaApartments_E_Payment()
         lbl_description.text = NAString().wallet_Description()
@@ -66,7 +68,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         NAShadowEffect().shadowEffectForView(view: nammaApartment_CardView)
         
         //Setting Button Shadow Effect
-        NAShadowEffect().shadowEffectForButton(button:btn_ApartmentServices)
         NAShadowEffect().shadowEffectForButton(button:btn_SocietyServices)
         
         //scrollView
@@ -106,9 +107,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
                 "contact": getUserMobileNumebr,
                 "email": getUserEmailID
             ],
-            "theme": [
-                "color": "#F37254"
-            ]
         ]
         razorpay.open(options)
     }

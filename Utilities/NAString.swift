@@ -1829,5 +1829,9 @@ class NAString : NSObject {
     func reschedule_Alert_Message() -> String {
         return String("Sorry, you cannot reschedule, as the Visitor has already entered/left the Society.")
     }
+    
+    func maintanceCost() -> String {
+        return String("Maintenance cost")
+    }
 }
 
