@@ -46,7 +46,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         razorpay = Razorpay.initWithKey("rzp_test_GCFVAY6RGbNWyb", andDelegate: self)
         
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
-        getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getfullName())!
         getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
         
         //Setting label fonts

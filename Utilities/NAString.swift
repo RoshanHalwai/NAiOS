@@ -1854,7 +1854,7 @@ class NAString : NSObject {
         return String("Sorry, you cannot reschedule, as the Visitor has already entered/left the Society.")
     }
     
-    func maintanceCost() -> String {
+    func maintenanceCost() -> String {
         return String("Maintenance cost")
     }
     
