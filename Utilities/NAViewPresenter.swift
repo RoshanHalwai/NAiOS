@@ -251,4 +251,12 @@ class NAViewPresenter: NSObject {
     func contactUs() -> ContactUsViewController {
         return storyBoard.instantiateViewController(withIdentifier: "ContactUs") as! ContactUsViewController
     }
+    
+    func myTransactionVC() -> MyTransactionsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "MyTransactionsVC") as! MyTransactionsViewController
+    }
+    
+    func contactUsHistoryVC() -> ContactUsHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "contactUsHistoryVC") as! ContactUsHistoryViewController
+    }
 }

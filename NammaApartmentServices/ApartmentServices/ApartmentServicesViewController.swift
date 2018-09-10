@@ -274,7 +274,9 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                                         
                                         var servicesOwnerUIDKeys = [String]()
                                         servicesOwnerUIDKeys = Array(serviceOwnersUID.keys)
-                                        let ownersUID = servicesOwnerUIDKeys[1]
+                                        let index = servicesOwnerUIDKeys.index(of : NAString().status())
+                                        servicesOwnerUIDKeys.remove(at: index!)
+                                        let ownersUID = servicesOwnerUIDKeys[0]
                                         let serviceDataRef = serviceOwnerRef.child(ownersUID)
                                         serviceDataRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
                                             

@@ -1079,8 +1079,16 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
     }
     
+    func layoutFeatureErrorTransactionsList() -> String {
+        return String("You have not performed any transactions yet.")
+    }
+    
     func layoutFeatureErrorCabArrivalList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no cab arrivals scheduled for your flat.")
+    }
+    
+    func layoutFeatureErrorUserSupport() -> String {
+        return String("Currently there are no support requests raised by the user.")
     }
     
     func layoutFeatureErrorpackageArrivalList() -> String {
@@ -1770,6 +1778,14 @@ class NAString : NSObject {
         return String("My Wallet")
     }
     
+    func userProblemTimeStampFormat() -> String {
+        return String("yyyy-MM-dd HH:mm:ss ZZZ")
+    }
+    
+    func convertedUserProblemTimeStampFormat() -> String {
+        return String("MMM dd, YYYY")
+    }
+    
     func payments() -> String {
         return String("Payments")
     }
@@ -1796,6 +1812,14 @@ class NAString : NSObject {
     
     func success() -> String {
         return String("SUCCESS")
+    }
+    
+    func successful() -> String {
+        return String("Successful")
+    }
+    
+    func paymentFailure() -> String {
+        return String("Failure")
     }
     
     func pending() -> String {
@@ -1828,6 +1852,22 @@ class NAString : NSObject {
     
     func reschedule_Alert_Message() -> String {
         return String("Sorry, you cannot reschedule, as the Visitor has already entered/left the Society.")
+    }
+    
+    func transactions() -> String {
+        return String("Transactions")
+    }
+    
+    func rs(amount: Int) -> String {
+        return String ("Rs.\(amount)")
+    }
+    
+    func transactionTimeStampFormat() -> String {
+        return String("yyyy-MM-dd HH:mm:ss ZZZ")
+    }
+    
+    func convertedTimeStampFormat() -> String {
+        return String("E, MMM dd, hh:mm")
     }
 }
 

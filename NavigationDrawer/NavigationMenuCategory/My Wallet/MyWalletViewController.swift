@@ -35,6 +35,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var getUserMobileNumebr = String()
     var getUserEmailID = String()
     var getUserPendingAmount = String()
+    var userPendingAmount = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +44,12 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         razorpay = Razorpay.initWithKey("rzp_test_GCFVAY6RGbNWyb", andDelegate: self)
         
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
-        getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getfullName())!
+        getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
         
         //TODO: Hardcoded Amount,but will change it later after completing Amount UI in My wallet Screen
         getUserPendingAmount = "100"
+        let amount = Int(getUserPendingAmount)
+        userPendingAmount = amount!/100
         
         //Setting label fonts
         lbl_nammaApartment.font = NAFont().headerFont()
@@ -74,6 +77,16 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        myAccount_CardView.isUserInteractionEnabled = true
+        myAccount_CardView.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        let transactionsVC = NAViewPresenter().myTransactionVC()
+        transactionsVC.navTitle = NAString().transactions()
+        self.navigationController?.pushViewController(transactionsVC, animated: true)
     }
     
     @IBAction func apartmentServicesAction(_ sender: Any) {
@@ -89,11 +102,34 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     //This will call when any error occurred during transaction
     func onPaymentError(_ code: Int32, description str: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, OkStyle: .default, OK: nil)
+        if code != 2 {
+            storePaymentDetails(paymentId: "", result: NAString().failure().capitalized)
+        }
     }
     
     //This will call when transaction succeed
     func onPaymentSuccess(_ payment_id: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", OkStyle: .default, OK: nil)
+        storePaymentDetails(paymentId: payment_id, result: NAString().successful())
+    }
+    
+    func storePaymentDetails(paymentId: String, result: String) {
+        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_TRANSACTIONS)
+        let transactionUID : String?
+        transactionUID = (userDataRef.childByAutoId().key)
+        userDataRef.child(transactionUID!).setValue(NAString().gettrue())
+        
+        let transactionRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_TRANSACTIONS).child(Constants.FIREBASE_CHILD_PRIVATE).child(transactionUID!)
+        
+        let transactionDetails = [
+            NAUserTransactionFBKeys.amount.key : userPendingAmount,
+            NAUserTransactionFBKeys.paymentId.key : paymentId,
+            NAUserTransactionFBKeys.result.key : result,
+            NAUserTransactionFBKeys.serviceCategory.key : paymentDescription,
+            NAUserTransactionFBKeys.timestamp.key : (Int64(Date().timeIntervalSince1970 * 1000)),
+            NAUserTransactionFBKeys.uid.key : transactionUID as Any,
+            NAUserTransactionFBKeys.userUID.key : userUID]
+        transactionRef.setValue(transactionDetails)
     }
     
     //This will show the default UI of RazorPay with some user's informations.

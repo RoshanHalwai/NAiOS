@@ -10,28 +10,6 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-enum SupportDetailsFBKeys: String {
-    case problemDescription
-    case serviceCategory
-    case serviceType
-    case status
-    case timestamp
-    case uid
-    case userUID
-    
-    var key : String {
-        switch self {
-        case .problemDescription : return Constants.FIREBASE_PROBLEM_DESCRIPTION
-        case .serviceCategory : return Constants.FIREBASE_SERVICE_CATEGORY
-        case .serviceType : return Constants.FIREBASE_SERVICE_TYPE
-        case .status : return Constants.FIREBASE_STATUS
-        case .timestamp : return Constants.FIREBASE_CHILD_TIMESTAMP
-        case .uid : return Constants.FIREBASE_CHILD_UID
-        case .userUID : return Constants.FIREBASE_USERUID
-        }
-    }
-}
-
 class ContactUsViewController: NANavigationViewController {
     
     @IBOutlet weak var lbl_Select_Service_Category: UILabel!
@@ -82,6 +60,20 @@ class ContactUsViewController: NANavigationViewController {
         self.view.layoutIfNeeded()
         txt_Choose_One.underlined()
         
+        //Creating History icon on Navigation bar
+        let historyButton = UIButton(type: .system)
+        historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
+        historyButton.addTarget(self, action: #selector(gotoContactUsHistoryVC), for: .touchUpInside)
+        let history = UIBarButtonItem(customView: historyButton)
+        //Creating info icon on Navigation bar
+        let infoButton = UIButton(type: .system)
+        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
+        let info = UIBarButtonItem(customView: infoButton)
+        
+        //created Array for history and info button icons
+        self.navigationItem.setRightBarButtonItems([info,history], animated: true)
+        
         self.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.rightBarButtonItem = nil
         
@@ -113,6 +105,19 @@ class ContactUsViewController: NANavigationViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+    }
+    
+    // Navigate to FAQ's VC
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
+        faqVC.navTitle = NAString().faqs()
+        faqVC.handedThingsScreen = true
+        self.navigationController?.pushViewController(faqVC, animated: true)
+    }
+    
+    @objc func gotoContactUsHistoryVC() {
+        let dv = NAViewPresenter().contactUsHistoryVC()
+        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     @objc func keyboardWillShow(sender: NSNotification) {
@@ -147,6 +152,8 @@ class ContactUsViewController: NANavigationViewController {
     @IBAction func btn_ServiceAction(_ sender: UIButton) {
         getServiceButton_Text = (sender.titleLabel?.text)!
         selectedServiceColor(tag: sender.tag)
+        txt_Choose_One.text = ""
+        txt_Describe_Your_Problem.text = ""
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -192,6 +199,7 @@ class ContactUsViewController: NANavigationViewController {
         
         supportRef.setValue(problemDetails, withCompletionBlock: { (error, snapshot) in
             NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().requestRaised(), Message: NAString().successfull_Support_request_Message(), OkStyle: .default, OK: nil)
+            self.navigationController?.popViewController(animated: true)
         })
     }
 }
