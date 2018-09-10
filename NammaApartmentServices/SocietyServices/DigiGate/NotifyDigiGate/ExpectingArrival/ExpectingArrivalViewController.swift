@@ -225,12 +225,9 @@ class ExpectingArrivalViewController: NANavigationViewController {
         hideNumberPad(numberTextField: txt_CabSerialNumberTwo)
     }
     
-    // Navigate to FAQ's VC
+    // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.visitorsScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
+        UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     //Hiding Cab TextFields & Pacakge Vandor textFields According to Title

@@ -46,6 +46,9 @@ class AddMyVehiclesViewController: NANavigationViewController {
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
         
+        //Calling Info Button Method
+        infoButton()
+        
         self.view.layoutIfNeeded()
         //putting black bottom line on textFields
         txt_VehicleStateCode.underlined()
@@ -117,6 +120,11 @@ class AddMyVehiclesViewController: NANavigationViewController {
         
         //Calling function from NANavigationViewController class to hide numberPad on done pressed
         hideNumberPad(numberTextField: txt_VehicleSerialNumberTwo)
+    }
+    
+    //Navigate to FAQ's WebSite
+    @objc override func gotofrequentlyAskedQuestionsVC() {
+        UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     @IBAction func btnSelectVehicles(_ sender: UIButton) {

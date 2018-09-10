@@ -34,14 +34,6 @@ class RaiseAlarmViewController: NANavigationViewController {
         infoButton()
     }
     
-    // Navigate to FAQ's VC
-    @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.emergencyScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
-    }
-    
     @IBAction func btnRaiseAlarm(_ sender: UIButton) {
         
         NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().emergency_alert_Title(), Message: NAString().emergency_Alert_Message(), CancelStyle: .default, OkStyle: .destructive, OK: {(action) in

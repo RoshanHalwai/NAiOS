@@ -20,6 +20,7 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
         super.viewDidLoad()
         
         self.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.rightBarButtonItem = nil
         
         retrievingUserTransactions()
         collectionView.reloadData()
@@ -51,7 +52,7 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
         if transactionDetails.getResult() == NAString().successful() {
             cell.success_Failure_Image.image = #imageLiteral(resourceName: "checked")
         } else {
-            cell.success_Failure_Image.image = #imageLiteral(resourceName: "remove64")
+            cell.success_Failure_Image.image = #imageLiteral(resourceName: "Cancel")
         }
         NAShadowEffect().shadowEffect(Cell: cell)
         cell.lbl_rupees.font = NAFont().lato_Bold_16()

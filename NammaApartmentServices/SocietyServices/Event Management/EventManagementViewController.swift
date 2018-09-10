@@ -219,12 +219,9 @@ class EventManagementViewController: NANavigationViewController {
         self.navigationItem.setRightBarButtonItems([info,history], animated: true)
     }
     
-    // Navigate to FAQ's VC
+    // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.eventManagementScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
+        UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     //Create Event Title textfield first letter capital function

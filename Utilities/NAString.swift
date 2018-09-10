@@ -1446,7 +1446,7 @@ class NAString : NSObject {
     }
     
     func nammaApartmentsWebsiteLink() -> String {
-        return ("http://www.nammaapartments.com/faq-template-master/index.html")
+        return ("https://www.nammaapartments.com/faq")
     }
     
     func your_Family_Member() -> String {
@@ -1789,7 +1789,7 @@ class NAString : NSObject {
     func payments() -> String {
         return String("Payments")
     }
-
+    
     func location_Permission() -> String {
         return String("Turn On Location Services to Allow 'Namma Apartments' to Determine Your Location")
     }
@@ -1854,6 +1854,10 @@ class NAString : NSObject {
         return String("Sorry, you cannot reschedule, as the Visitor has already entered/left the Society.")
     }
     
+    func maintenanceCost() -> String {
+        return String("Maintenance cost")
+    }
+    
     func transactions() -> String {
         return String("Transactions")
     }
@@ -1882,4 +1886,3 @@ class NAString : NSObject {
         return String("A new version of Namma Apartments is available. Please update.")
     }
 }
-

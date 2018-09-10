@@ -164,14 +164,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         hideNumberPad(numberTextField: txt_MobileNo)
     }
     
-    // Navigate to FAQ's VC
-    @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.flatMembersScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
-    }
-    
     @objc func keyboardWillShow(sender: NSNotification) {
         if self.view.frame.origin.y >= 0 {
             self.view.frame.origin.y -= 150
