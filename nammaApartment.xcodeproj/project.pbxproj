@@ -37,6 +37,12 @@
 		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
 		08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */; };
+		08EA577F214649DB00A0574D /* MyTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA577E214649DB00A0574D /* MyTransactionsViewController.swift */; };
+		08EA5781214649E400A0574D /* MyTransactionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */; };
+		08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA5782214649EB00A0574D /* NAUserTransactions.swift */; };
+		08EA578521464A0B00A0574D /* ContactUsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578421464A0A00A0574D /* ContactUsHistoryViewController.swift */; };
+		08EA578721464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */; };
+		08EA578921464A2000A0574D /* NAUserProblems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578821464A1F00A0574D /* NAUserProblems.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		08F3ED9F212FC7AD0030DBEF /* SocietyServiceRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */; };
 		08F3EDA1212FD6B00030DBEF /* SocietyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */; };
@@ -205,6 +211,12 @@
 		08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListViewController.swift; sourceTree = "<group>"; };
 		08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListCollectionViewCell.swift; sourceTree = "<group>"; };
 		08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAConfirmationAlert.swift; sourceTree = "<group>"; };
+		08EA577E214649DB00A0574D /* MyTransactionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTransactionsViewController.swift; sourceTree = "<group>"; };
+		08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTransactionsCollectionViewCell.swift; sourceTree = "<group>"; };
+		08EA5782214649EB00A0574D /* NAUserTransactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAUserTransactions.swift; sourceTree = "<group>"; };
+		08EA578421464A0A00A0574D /* ContactUsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsHistoryViewController.swift; sourceTree = "<group>"; };
+		08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		08EA578821464A1F00A0574D /* NAUserProblems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAUserProblems.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
 		08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocietyServiceRatingView.xib; sourceTree = "<group>"; };
 		08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyServiceRatingView.swift; sourceTree = "<group>"; };
@@ -411,6 +423,9 @@
 				086568A12127E63B00E4CDE1 /* HelpCategoryViewController.swift */,
 				086568A32127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift */,
 				0834B393214249F000516C9C /* ContactUsViewController.swift */,
+				08EA578421464A0A00A0574D /* ContactUsHistoryViewController.swift */,
+				08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */,
+				08EA578821464A1F00A0574D /* NAUserProblems.swift */,
 				423033A02131436B00DBF109 /* ContactUsListViewController.swift */,
 			);
 			path = "New Group";
@@ -480,6 +495,9 @@
 			isa = PBXGroup;
 			children = (
 				4234754A212EB87200A791AA /* MyWalletViewController.swift */,
+				08EA577E214649DB00A0574D /* MyTransactionsViewController.swift */,
+				08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */,
+				08EA5782214649EB00A0574D /* NAUserTransactions.swift */,
 			);
 			path = "My Wallet";
 			sourceTree = "<group>";
@@ -1315,6 +1333,7 @@
 				8672B3BF20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift in Sources */,
 				865C7BCC209D838200443C75 /* InviteVisitorViewController.swift in Sources */,
 				4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */,
+				08EA578921464A2000A0574D /* NAUserProblems.swift in Sources */,
 				861E8393213121D900E3A0A2 /* ActivationRequired.swift in Sources */,
 				862CF63321452999007D2A5F /* retrieveUserData.swift in Sources */,
 				5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */,
@@ -1337,6 +1356,8 @@
 				081156822125866B002386D9 /* RateUs.swift in Sources */,
 				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
 				42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */,
+				08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */,
+				08EA578521464A0B00A0574D /* ContactUsHistoryViewController.swift in Sources */,
 				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
 				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
 				081F25D1210C8EB60065F90E /* RetrievingGuestList.swift in Sources */,
@@ -1347,6 +1368,7 @@
 				42313795211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift in Sources */,
 				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
 				08F3EDA1212FD6B00030DBEF /* SocietyServiceRatingView.swift in Sources */,
+				08EA578721464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift in Sources */,
 				083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
 				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				42341BB3212165510005160B /* MyVehiclesViewController.swift in Sources */,
@@ -1379,11 +1401,13 @@
 				086568A8212AD3A900E4CDE1 /* FrequentlyAskedTableViewCell.swift in Sources */,
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
+				08EA577F214649DB00A0574D /* MyTransactionsViewController.swift in Sources */,
 				5D774299210DD49F0049344F /* DataModel.swift in Sources */,
 				422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
 				086568A22127E63B00E4CDE1 /* HelpCategoryViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
+				08EA5781214649E400A0574D /* MyTransactionsCollectionViewCell.swift in Sources */,
 				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
 				4234754B212EB87200A791AA /* MyWalletViewController.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */,
