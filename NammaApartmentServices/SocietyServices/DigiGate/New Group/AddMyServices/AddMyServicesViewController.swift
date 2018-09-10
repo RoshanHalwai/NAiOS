@@ -190,14 +190,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         hideNumberPad(numberTextField: txt_MobileNo)
     }
     
-    // Navigate to FAQ's VC
-    @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.dailyServicesScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
-    }
-    
     /* - Create name textfield first letter capital function.
      - Alert Popup when user give  grant access & try to add details.
      - Showing alert controller while giving Grant Access to family members.

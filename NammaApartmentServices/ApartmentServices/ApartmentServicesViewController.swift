@@ -52,6 +52,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: titleName)
+        infoButton()
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         

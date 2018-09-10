@@ -200,23 +200,9 @@ class SocietyServicesViewController: NANavigationViewController {
         }
     }
     
-    // Navigate to FAQ's VC
+    // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        switch navTitle {
-        case NAString().plumber():
-            faqVC.plumberScreen = true
-        case NAString().carpenter():
-            faqVC.carpenterScreen = true
-        case NAString().electrician():
-            faqVC.electricianScreen = true
-        case NAString().garbage_Collection():
-            faqVC.garbageManagementScreen = true
-        default:
-            break
-        }
-        self.navigationController?.pushViewController(faqVC, animated: true)
+       UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     //To Navigate to Society Service History VC

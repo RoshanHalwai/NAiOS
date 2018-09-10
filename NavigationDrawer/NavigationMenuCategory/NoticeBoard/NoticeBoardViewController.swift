@@ -22,6 +22,7 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().notice_board())
+        infoButton()
        
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()

@@ -139,14 +139,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         hideNumberPad(numberTextField: txtInvitorMobile)
     }
     
-    // Navigate to FAQ's VC
-    @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.visitorsScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
-    }
-    
     //Create name textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
         sender.text = sender.text?.capitalized
@@ -452,10 +444,8 @@ extension UIViewController {
         self.navigationItem.setRightBarButton(info, animated: true)
     }
     
-    // Navigate to FAQ's VC
+   //Navigate to FAQ's WebSite
     @objc func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        self.navigationController?.pushViewController(faqVC, animated: true)
+        UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
     }
 }

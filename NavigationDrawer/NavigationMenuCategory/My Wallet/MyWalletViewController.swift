@@ -55,7 +55,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         lbl_myTransactions.font = NAFont().lato_Regular_20()
         btn_SocietyServices.titleLabel?.font = NAFont().lato_Regular_16()
         
-        lbl_Maintenance.text = NAString().maintanceCost()
+        lbl_Maintenance.text = NAString().maintenanceCost()
         lbl_Maintenance.font = NAFont().lato_Regular_16()
         lbl_Cost.font = NAFont().labelFont()
         
@@ -76,6 +76,17 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.rightBarButtonItem = nil
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        myAccount_CardView.isUserInteractionEnabled = true
+        myAccount_CardView.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        let transactionsVC = NAViewPresenter().myTransactionVC()
+        transactionsVC.navTitle = NAString().transactions()
+        self.navigationController?.pushViewController(transactionsVC, animated: true)
     }
     
     @IBAction func apartmentServicesAction(_ sender: Any) {

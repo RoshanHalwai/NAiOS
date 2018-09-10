@@ -1446,7 +1446,7 @@ class NAString : NSObject {
     }
     
     func nammaApartmentsWebsiteLink() -> String {
-        return ("http://www.nammaapartments.com/faq-template-master/index.html")
+        return ("https://www.nammaapartments.com/faq")
     }
     
     func your_Family_Member() -> String {
