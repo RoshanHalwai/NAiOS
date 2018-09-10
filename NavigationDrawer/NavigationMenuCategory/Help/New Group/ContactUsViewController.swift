@@ -39,6 +39,7 @@ class ContactUsViewController: NANavigationViewController {
         
         getServiceButton_Text = NAString().societyService()
         txt_Choose_One.inputView = UIView()
+        txt_Choose_One.placeholder = NAString().chooseOne()
         
         btn_Society_Services.tag = 1
         btn_Apartment_Services.tag = 2

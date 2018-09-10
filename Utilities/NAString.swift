@@ -1869,5 +1869,9 @@ class NAString : NSObject {
     func convertedTimeStampFormat() -> String {
         return String("E, MMM dd, hh:mm")
     }
+    
+    func chooseOne() -> String {
+        return String("Choose One...")
+    }
 }
 
