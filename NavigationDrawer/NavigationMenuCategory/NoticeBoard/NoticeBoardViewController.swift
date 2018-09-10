@@ -54,11 +54,12 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         //Created array to spilt Date & time in separate variables
         let arrayOfDateTime = dateTimeString.components(separatedBy: "\t\t")
         let dateString: String = arrayOfDateTime[0]
+        let timeString: String = arrayOfDateTime[1]
         
         cell.lbl_FestivalName.text = myNoticeBoardsList.gettitle()
         cell.lbl_FestivalDescription.text = myNoticeBoardsList.getdescription()
         cell.lbl_AdminName.text = myNoticeBoardsList.getnameOfAdmin()
-        cell.lbl_Date.text = dateString
+        cell.lbl_Date.text = dateString + " " + timeString
         
         //assigning font & style to cell labels
         cell.lbl_FestivalName.font = NAFont().headerFont()

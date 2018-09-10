@@ -44,72 +44,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let accountCreated = NAString().userDefault_Account_Created()
         let verified = NAString().userDefault_Verified()
         
-        if preferences.bool(forKey: notFirstTime) == true {
-            /* Checking Both Conditions to make sure that user is still able to Navigate to main Screen after once he LoggedIn even though if it is different device */
-            if preferences.bool(forKey: accountCreated) == true || preferences.bool(forKey: loggedIn) == true {
-                if preferences.bool(forKey: verified) == true {
-                    if preferences.bool(forKey: loggedIn) == true {
-                        var userUID = String()
-                        userUID = preferences.object(forKey: UserUID) as! String
-                        preferences.synchronize()
-                        let queue = OperationQueue()
-                        queue.addOperation {
-                            self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                            let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+        let versionRef = Constants.FIREBASE_DATABASE_REFERENCE.child("versionName")
+        versionRef.observe(.value) { (versionSnapshot) in
+            let version = versionSnapshot.value as? String
+            let presentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"]! as! String
+            if version != presentVersion {
+                let alert = UIAlertController(title: NAString().new_Version_Title() , message: NAString().new_version_message(), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NAString().update().capitalized, style: .default, handler: nil))
+                alert.view.backgroundColor = UIColor.white
+                alert.view.layer.cornerRadius = 10
+                self.window?.rootViewController?.present(alert, animated: true)
+            } else {
+                if preferences.bool(forKey: notFirstTime) == true {
+                    /* Checking Both Conditions to make sure that user is still able to Navigate to main Screen after once he LoggedIn even though if it is different device */
+                    if preferences.bool(forKey: accountCreated) == true || preferences.bool(forKey: loggedIn) == true {
+                        if preferences.bool(forKey: verified) == true {
+                            if preferences.bool(forKey: loggedIn) == true {
+                                var userUID = String()
+                                userUID = preferences.object(forKey: UserUID) as! String
+                                preferences.synchronize()
+                                let queue = OperationQueue()
+                                queue.addOperation {
+                                    self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                                    let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+                                    
+                                    self.window?.rootViewController = NavMain
+                                    self.window?.makeKeyAndVisible()
+                                }
+                                queue.waitUntilAllOperationsAreFinished()
+                            } else {
+                                let NavLogin = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
+                                self.window?.rootViewController = NavLogin
+                                self.window?.makeKeyAndVisible()
+                            }
+                        } else {
+                            var userUID = String()
+                            userUID = preferences.object(forKey: UserUID) as! String
+                            preferences.synchronize()
                             
-                            self.window?.rootViewController = NavMain
-                            self.window?.makeKeyAndVisible()
+                            var usersVerifiedRef : DatabaseReference?
+                            usersVerifiedRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
+                                .child(Constants.FIREBASE_CHILD_PRIVILEGES)
+                                .child(Constants.FIREBASE_CHILD_VERIFIED)
+                            
+                            usersVerifiedRef?.observeSingleEvent(of: .value, with: { (verifiedSnapshot) in
+                                if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
+                                    preferences.set(true, forKey: verified)
+                                    preferences.synchronize()
+                                    let queue = OperationQueue()
+                                    queue.addOperation {
+                                        self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                                        let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+                                        self.window?.rootViewController = NavMain
+                                        self.window?.makeKeyAndVisible()
+                                    }
+                                    queue.waitUntilAllOperationsAreFinished()
+                                } else {
+                                    let queue = OperationQueue()
+                                    queue.addOperation {
+                                        self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                                        let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().welcomeRootVC())
+                                        self.window?.rootViewController = NavMain
+                                        self.window?.makeKeyAndVisible()
+                                    }
+                                }
+                            })
                         }
-                        queue.waitUntilAllOperationsAreFinished()
                     } else {
-                        let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
+                        let NavLogin = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
                         self.window?.rootViewController = NavLogin
                         self.window?.makeKeyAndVisible()
                     }
                 } else {
-                    var userUID = String()
-                    userUID = preferences.object(forKey: UserUID) as! String
+                    preferences.set(true, forKey: notFirstTime)
                     preferences.synchronize()
-                    
-                    var usersVerifiedRef : DatabaseReference?
-                    usersVerifiedRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
-                        .child(Constants.FIREBASE_CHILD_PRIVILEGES)
-                        .child(Constants.FIREBASE_CHILD_VERIFIED)
-                    
-                    usersVerifiedRef?.observeSingleEvent(of: .value, with: { (verifiedSnapshot) in
-                        if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
-                            preferences.set(true, forKey: verified)
-                            preferences.synchronize()
-                            let queue = OperationQueue()
-                            queue.addOperation {
-                                self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                                let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
-                                self.window?.rootViewController = NavMain
-                                self.window?.makeKeyAndVisible()
-                            }
-                            queue.waitUntilAllOperationsAreFinished()
-                        } else {
-                            let queue = OperationQueue()
-                            queue.addOperation {
-                                self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                                let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().welcomeRootVC())
-                                self.window?.rootViewController = NavMain
-                                self.window?.makeKeyAndVisible()
-                            }
-                        }
-                    })
+                    let NavLogin = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().splashScreenRootVC())
+                    self.window?.rootViewController = NavLogin
+                    self.window?.makeKeyAndVisible()
                 }
-            } else {
-                let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-                self.window?.rootViewController = NavLogin
-                self.window?.makeKeyAndVisible()
             }
-        } else {
-            preferences.set(true, forKey: notFirstTime)
-            preferences.synchronize()
-            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().splashScreenRootVC())
-            self.window?.rootViewController = NavLogin
-            self.window?.makeKeyAndVisible()
         }
     }
     
