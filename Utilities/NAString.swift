@@ -1789,7 +1789,7 @@ class NAString : NSObject {
     func payments() -> String {
         return String("Payments")
     }
-
+    
     func location_Permission() -> String {
         return String("Turn On Location Services to Allow 'Namma Apartments' to Determine Your Location")
     }
@@ -1854,6 +1854,10 @@ class NAString : NSObject {
         return String("Sorry, you cannot reschedule, as the Visitor has already entered/left the Society.")
     }
     
+    func maintenanceCost() -> String {
+        return String("Maintenance cost")
+    }
+    
     func transactions() -> String {
         return String("Transactions")
     }
@@ -1874,4 +1878,3 @@ class NAString : NSObject {
         return String("Choose One...")
     }
 }
-
