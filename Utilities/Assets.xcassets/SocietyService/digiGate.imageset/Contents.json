@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "digiGate.png",
+      "idiom" : "iphone",
+      "filename" : "digi_gate_na.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "digi_gate_na-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "digi_gate_na-2.png",
       "scale" : "3x"
     }
   ],

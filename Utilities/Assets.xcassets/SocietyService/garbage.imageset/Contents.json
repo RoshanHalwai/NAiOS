@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "garbage.png",
+      "idiom" : "iphone",
+      "filename" : "recycling-bag.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "recycling-bag-1.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "recycling-bag-2.png",
       "scale" : "3x"
     }
   ],

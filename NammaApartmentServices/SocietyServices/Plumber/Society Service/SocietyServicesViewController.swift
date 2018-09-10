@@ -63,6 +63,8 @@ class SocietyServicesViewController: NANavigationViewController {
         getButtonGarbage_Problem_Text = NAString().dryWaste()
         
         self.txt_SelectAny.text = selectedProblem
+        
+        self.view.layoutIfNeeded()
         txt_SelectAny.underlined()
         txt_Others.underlined()
         txt_SelectAny.delegate = self

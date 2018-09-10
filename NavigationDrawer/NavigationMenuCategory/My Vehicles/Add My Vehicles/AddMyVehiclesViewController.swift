@@ -46,6 +46,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
         
+        self.view.layoutIfNeeded()
         //putting black bottom line on textFields
         txt_VehicleStateCode.underlined()
         txt_VehicleRtoNumber.underlined()

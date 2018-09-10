@@ -108,6 +108,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         //calling datePicker On ViewLoad
         createDatePicker()
         
+        self.view.layoutIfNeeded()
         //putting black bottom line on textFields
         txt_CabStateCode.underlined()
         txt_CabRtoNumber.underlined()

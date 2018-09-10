@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "filename" : "water-tank.png",
+      "idiom" : "iphone",
+      "filename" : "water-tank (1).png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "water-tank (2).png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "water-tank.png",
       "scale" : "3x"
     }
   ],

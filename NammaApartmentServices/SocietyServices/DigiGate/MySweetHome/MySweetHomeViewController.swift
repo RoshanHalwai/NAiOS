@@ -24,12 +24,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var btn_ChangeAccess: UIButton!
     
     var userPrivilegesRef : DatabaseReference?
-    
-    var mysweethomeImages = [#imageLiteral(resourceName: "splashScreen"),#imageLiteral(resourceName: "splashScreen")]
-    var MySweetHomeName =  ["Preeti","Vikas"]
-    var MySweetHomeRelation = ["Sister","Brother"]
-    var MySweetHomeGrantAccess = ["Yes","No"]
-    
+   
     //A boolean variable to indicate if previous screen was Home Screen and My Sweet Home Screen.
     var fromHomeScreenVC = false
     var fromMySweetHomeScreenVC = false
