@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //GCM is stands fro Google Cloud Messaging
     let gcmMessageIDKey = "gcm.message_id"
     
+    //Created instance for calling retrieveUserData class function
+    var loadingUserData = retrieveUserData()
+    
     let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
     
     //Implementing Launch Screen
@@ -46,9 +49,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if preferences.bool(forKey: accountCreated) == true || preferences.bool(forKey: loggedIn) == true {
                 if preferences.bool(forKey: verified) == true {
                     if preferences.bool(forKey: loggedIn) == true {
-                        let NavMain = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
-                        self.window?.rootViewController = NavMain
-                        self.window?.makeKeyAndVisible()
+                        var userUID = String()
+                        userUID = preferences.object(forKey: UserUID) as! String
+                        preferences.synchronize()
+                        let queue = OperationQueue()
+                        queue.addOperation {
+                            self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                            let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+                            
+                            self.window?.rootViewController = NavMain
+                            self.window?.makeKeyAndVisible()
+                        }
+                        queue.waitUntilAllOperationsAreFinished()
                     } else {
                         let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
                         self.window?.rootViewController = NavLogin
@@ -68,14 +80,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
                             preferences.set(true, forKey: verified)
                             preferences.synchronize()
-                            
-                            let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
-                            self.window?.rootViewController = NavMain
-                            self.window?.makeKeyAndVisible()
+                            let queue = OperationQueue()
+                            queue.addOperation {
+                                self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                                let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+                                self.window?.rootViewController = NavMain
+                                self.window?.makeKeyAndVisible()
+                            }
+                            queue.waitUntilAllOperationsAreFinished()
                         } else {
-                            let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().welcomeRootVC())
-                            self.window?.rootViewController = NavMain
-                            self.window?.makeKeyAndVisible()
+                            let queue = OperationQueue()
+                            queue.addOperation {
+                                self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                                let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().welcomeRootVC())
+                                self.window?.rootViewController = NavMain
+                                self.window?.makeKeyAndVisible()
+                            }
                         }
                     })
                 }
@@ -99,6 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         //Calling Launch Screen Method
         self.launchScreen()
+        
         //Formatting Navigation Controller From Globally.
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().clipsToBounds = true
@@ -254,7 +275,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     userDataGuestRef.child(guestUID!).setValue(NAString().gettrue())
                     
                     let guestMobileRef = Constants.FIREBASE_VISITORS_ALL.child(mobileNumber!)
-                        guestMobileRef.setValue(guestUID)
+                    guestMobileRef.setValue(guestUID)
                     //Storing Post Approved Guests
                     let replacedMessage = message?.replacingOccurrences(of: NAString().your_Guest(), with: "")
                     let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
@@ -271,7 +292,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     postApprovedRef.setValue(postApprovedGuestsData)
                 } else if visitorType == Constants.FIREBASE_CHILD_CABS {
                     
-                     //Mapping CabUID with true
+                    //Mapping CabUID with true
                     let userDataCabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS).child(userUID)
                     userDataCabRef.child(guestUID!).setValue(NAString().gettrue())
                     
