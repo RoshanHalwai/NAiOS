@@ -26,6 +26,7 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.rightBarButtonItem = nil
         
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedMyGuardsDataInFirebase()

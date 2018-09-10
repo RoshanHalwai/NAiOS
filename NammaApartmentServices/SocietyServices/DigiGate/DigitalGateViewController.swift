@@ -19,6 +19,8 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.rightBarButtonItem = nil
+        
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().digital_gate_title())
         self.navigationItem.title = ""

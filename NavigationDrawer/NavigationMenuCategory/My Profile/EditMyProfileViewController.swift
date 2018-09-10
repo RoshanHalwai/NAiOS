@@ -59,8 +59,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         super.viewDidLoad()
         NAShadowEffect().shadowEffectForView(view: cardView)
         
-        //Hiding History NavigationBar  RightBarButtonItem
-        navigationItem.rightBarButtonItem = nil
+        
         
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
@@ -157,6 +156,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         profile_Image.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         self.profile_Image.addGestureRecognizer(tapGesture)
+        
+        //Calling Info Button Method
+        infoButton()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);

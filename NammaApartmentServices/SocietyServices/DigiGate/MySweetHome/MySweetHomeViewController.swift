@@ -89,14 +89,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         collectionView!.collectionViewLayout = layout
     }
     
-    // Navigate to FAQ's VC
-    @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.flatMembersScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
-    }
-    
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
         DispatchQueue.main.async {

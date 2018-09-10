@@ -65,14 +65,6 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         collection_View!.collectionViewLayout = layout
     }
     
-    // Navigate to FAQ's VC
-    @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.visitorsScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
-    }
-    
     //For navigating back to My Digi Gate VC
     @objc func goBackToDigiGate() {
         if fromExpectingArrivalVC {

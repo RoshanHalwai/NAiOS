@@ -77,6 +77,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.rightBarButtonItem = nil
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
         myAccount_CardView.isUserInteractionEnabled = true

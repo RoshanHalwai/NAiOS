@@ -65,9 +65,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let dv = NAViewPresenter().frequentlyAskedHelpVC()
-            dv.navTitle = NAString().faqs()
-            self.navigationController?.pushViewController(dv, animated: true)
+            UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
             
         case 1:
             let helpCategoryVC = NAViewPresenter().contactUs()

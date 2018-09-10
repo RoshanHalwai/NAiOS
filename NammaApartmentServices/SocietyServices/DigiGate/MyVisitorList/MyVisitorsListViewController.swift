@@ -20,6 +20,8 @@ class MyVisitorsListViewController: NANavigationViewController, UICollectionView
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        self.navigationItem.rightBarButtonItem = nil
+        
         super.ConfigureNavBarTitle(title: NAString().my_visitors_list())
         
         //Define Layout here

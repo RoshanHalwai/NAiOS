@@ -63,12 +63,9 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         self.navigationItem.title = ""
     }
     
-    // Navigate to FAQ's VC
+    // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-        let faqVC = NAViewPresenter().frequentlyAskedHelpVC()
-        faqVC.navTitle = NAString().faqs()
-        faqVC.handedThingsScreen = true
-        self.navigationController?.pushViewController(faqVC, animated: true)
+        UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     
