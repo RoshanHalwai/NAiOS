@@ -1873,5 +1873,13 @@ class NAString : NSObject {
     func chooseOne() -> String {
         return String("Choose One...")
     }
+    
+    func new_Version_Title() -> String {
+        return String("New Version Available")
+    }
+    
+    func new_version_message() -> String {
+        return String("A new version of Namma Apartments is available. Please update.")
+    }
 }
 

@@ -48,6 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         versionRef.observe(.value) { (versionSnapshot) in
             let version = versionSnapshot.value as? String
             if version != "1.0" {
+                let alert = UIAlertController(title: NAString().new_Version_Title() , message: NAString().new_version_message(), preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NAString().update().capitalized, style: .default, handler: nil))
+                alert.view.backgroundColor = UIColor.white
+                alert.view.layer.cornerRadius = 10
+                self.window?.rootViewController?.present(alert, animated: true)
+            } else {
                 if preferences.bool(forKey: notFirstTime) == true {
                     /* Checking Both Conditions to make sure that user is still able to Navigate to main Screen after once he LoggedIn even though if it is different device */
                     if preferences.bool(forKey: accountCreated) == true || preferences.bool(forKey: loggedIn) == true {
@@ -115,16 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     self.window?.rootViewController = NavLogin
                     self.window?.makeKeyAndVisible()
                 }
-            } else {
-                let alert = UIAlertController(title: "Updates Available" , message: "A New Version is Available", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "No", style: .default, handler: {action in
-                    UIControl().sendAction(#selector(NSXPCConnection.suspend),
-                                           to: UIApplication.shared, for: nil)
-                }))
-                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: nil))
-                alert.view.backgroundColor = UIColor.white
-                alert.view.layer.cornerRadius = 10
-                self.window?.rootViewController?.present(alert, animated: true)
             }
         }
     }

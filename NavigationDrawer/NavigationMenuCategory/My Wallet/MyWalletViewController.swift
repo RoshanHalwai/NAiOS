@@ -102,7 +102,9 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     //This will call when any error occurred during transaction
     func onPaymentError(_ code: Int32, description str: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, OkStyle: .default, OK: nil)
-        if code != 2 {
+        print(str)
+        print(code)
+        if code != 2 || str != "Payment cancelled by user" {
             storePaymentDetails(paymentId: "", result: NAString().failure().capitalized)
         }
     }

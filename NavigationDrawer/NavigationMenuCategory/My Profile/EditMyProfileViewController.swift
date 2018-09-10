@@ -33,6 +33,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     @IBOutlet weak var update_btn: UIButton!
     @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var parentView: UIView!
     
     var updateUserRef : DatabaseReference?
     var familyMemberNameRef : DatabaseReference?
@@ -57,6 +58,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.parentView.layoutIfNeeded()
+        self.parentView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 40)
         NAShadowEffect().shadowEffectForView(view: cardView)
         
         //Hiding History NavigationBar  RightBarButtonItem
@@ -152,6 +156,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         }
         
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.width/2
+        self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.height/2
         profile_Image.clipsToBounds = true
         
         profile_Image.isUserInteractionEnabled = true

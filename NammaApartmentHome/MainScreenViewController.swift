@@ -115,11 +115,12 @@ class MainScreenViewController: NANavigationViewController {
         
         //Getting Device Version
         let systemVersion = UIDevice.current.systemVersion
+        let systemModel = UIDevice.current.model
         
         //Storing Device Version under Other Details
         let usersOtherDetailsRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
         usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_VERSION).setValue(systemVersion)
-    }
+        usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_TYPE).setValue(systemModel)    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let embeddedVC = segue.destination as? NavigationMenuViewController {
