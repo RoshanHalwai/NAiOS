@@ -47,7 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let versionRef = Constants.FIREBASE_DATABASE_REFERENCE.child("versionName")
         versionRef.observe(.value) { (versionSnapshot) in
             let version = versionSnapshot.value as? String
-            if version != "1.0" {
+            let presentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"]! as! String
+            if version != presentVersion {
                 let alert = UIAlertController(title: NAString().new_Version_Title() , message: NAString().new_version_message(), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: NAString().update().capitalized, style: .default, handler: nil))
                 alert.view.backgroundColor = UIColor.white

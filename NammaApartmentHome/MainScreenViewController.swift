@@ -55,14 +55,7 @@ class MainScreenViewController: NANavigationViewController {
         
         /* Retrieve current Users UID & Its Flat Details for Navigation Drawer*/
         self.retreiveUserUID()
-        
-        let societyName = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
-        let apartmentName = GlobalUserData.shared.flatDetails_Items.first?.getapartmentName()
-        let flatNumber = GlobalUserData.shared.flatDetails_Items.first?.getflatNumber()
-        
-        self.navigationMenuVC.lbl_Apartment.text = societyName
-        self.navigationMenuVC.lbl_Flat.text = apartmentName! + "," + " " + flatNumber!
-        
+     
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
         let normalTextAttributes: [NSObject : AnyObject] = [
@@ -120,7 +113,42 @@ class MainScreenViewController: NANavigationViewController {
         //Storing Device Version under Other Details
         let usersOtherDetailsRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
         usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_VERSION).setValue(systemVersion)
-        usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_TYPE).setValue(systemModel)    }
+        usersOtherDetailsRef.child(Constants.FIREBASE_CHILD_DEVICE_TYPE).setValue(systemModel)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //Checking Users UID in Firebase under Users ->Private
+        usersPrivateRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
+        //Checking userData inside Users/Private
+        self.usersPrivateRef?.observe(.value, with: { (snapshot) in
+            //If usersUID is Exists then retrievd all the data of user.
+            if snapshot.exists() {
+                
+                let userData = snapshot.value as? NSDictionary
+                print("UserData:",userData as Any)
+                
+                //Retrieving & Adding data in Flat Detail Class
+                let flatdetails_data = userData![Constants.FIREBASE_CHILD_FLATDETAILS] as? [String :Any]
+                let userFlatDetails = UserFlatDetails.init(
+                    apartmentName: flatdetails_data![Constants.FIREBASE_CHILD_APARTMENT_NAME] as? String,
+                    city: (flatdetails_data![Constants.FIREBASE_CHILD_CITY] as! String),
+                    flatNumber: flatdetails_data![Constants.FIREBASE_CHILD_FLATNUMBER] as? String,
+                    societyName: flatdetails_data![Constants.FIREBASE_CHILD_SOCIETY_NAME] as? String,
+                    tenantType: flatdetails_data![Constants.FIREBASE_CHILD_TENANT_TYPE] as? String)
+                
+                flatDetailsFB.append(userFlatDetails)
+                
+                GlobalUserData.shared.flatDetails_Items = flatDetailsFB
+
+                let societyName = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
+                let apartmentName = GlobalUserData.shared.flatDetails_Items.first?.getapartmentName()
+                let flatNumber = GlobalUserData.shared.flatDetails_Items.first?.getflatNumber()
+                
+                self.navigationMenuVC.lbl_Apartment.text = societyName
+                self.navigationMenuVC.lbl_Flat.text = apartmentName! + "," + " " + flatNumber!
+            }
+        })
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let embeddedVC = segue.destination as? NavigationMenuViewController {
