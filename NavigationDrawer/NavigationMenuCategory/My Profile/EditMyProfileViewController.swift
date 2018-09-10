@@ -97,7 +97,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             queue.waitUntilAllOperationsAreFinished()
         })
         
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
         scrollView.layoutIfNeeded()
         self.view.layoutIfNeeded()
         txt_Name.underlined()
