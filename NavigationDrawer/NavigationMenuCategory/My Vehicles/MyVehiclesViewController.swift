@@ -48,9 +48,9 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         //Get device width
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
-        
+
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: height/5)
+        layout.itemSize = CGSize(width: width - 10, height: height/6)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -127,13 +127,13 @@ extension MyVehiclesViewController {
         userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
+                self.myExpectedVehicleList.removeAll()
                 let vehiclesUID = snapshot.value as? NSDictionary
                 for vehiclesUID in (vehiclesUID?.allKeys)! {
                     self.vehiclesPublicRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehiclesUID as! String)
                     self.vehiclesPublicRef?.keepSynced(true)
                     self.vehiclesPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
-                            self.myExpectedVehicleList.removeAll()
                             let vehicleData = snapshot.value as?[String: AnyObject]
                             let vehicleType = (vehicleData?[VehicleListFBKeys.vehicleType.key] as? String)!
                             let addedDate = vehicleData?[VehicleListFBKeys.addedDate.key] as? String
