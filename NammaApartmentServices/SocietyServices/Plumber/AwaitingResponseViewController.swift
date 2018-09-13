@@ -37,7 +37,7 @@ class AwaitingResponseViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)
         
