@@ -87,14 +87,6 @@ class AwaitingResponseViewController: NANavigationViewController {
         self.navigationItem.hidesBackButton = true
     }
     
-    @IBAction func Cancel_Action(_ sender: UIButton) {
-
-    }
-    
-    @IBAction func Call_Action(_ sender: UIButton) {
-
-    }
-    
     //Navigating Back to Main Screen View Controller.
     @objc func goBackToMainScreenVC() {
         let mainScreenVC = NAViewPresenter().mainScreenVC()
