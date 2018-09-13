@@ -65,7 +65,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
             
         case 1:
             let helpCategoryVC = NAViewPresenter().contactUs()
@@ -73,14 +73,10 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
             self.navigationController?.pushViewController(helpCategoryVC, animated: true)
             
         case 2:
-            let termsAndConditionsVC = NAViewPresenter().helpCategoryVC()
-            termsAndConditionsVC.navTitle = NAString().terms_and_conditions().capitalized
-            self.navigationController?.pushViewController(termsAndConditionsVC, animated: true)
+            UIApplication.shared.open(URL(string: NAString().termsAndConditionsWebsiteLink())!, options: [:], completionHandler: nil)
             
         case 3:
-            let privacyPolicyVC = NAViewPresenter().helpCategoryVC()
-            privacyPolicyVC.navTitle = NAString().privacy_policy().capitalized
-            self.navigationController?.pushViewController(privacyPolicyVC, animated: true)
+            UIApplication.shared.open(URL(string: NAString().privacyPolicyWebsiteLink())!, options: [:], completionHandler: nil)
             
         default:
             break

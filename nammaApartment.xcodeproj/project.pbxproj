@@ -29,8 +29,6 @@
 		085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646712101FA0C00C5FBF6 /* HelpViewController.swift */; };
 		085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */; };
 		0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */; };
-		086568A22127E63B00E4CDE1 /* HelpCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086568A12127E63B00E4CDE1 /* HelpCategoryViewController.swift */; };
-		086568A42127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086568A32127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift */; };
 		086568AC212D447700E4CDE1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086568AB212D447600E4CDE1 /* SettingViewController.swift */; };
 		089A94B8210836940088F519 /* NoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A94B7210836940088F519 /* NoticeBoardViewController.swift */; };
 		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
@@ -202,8 +200,6 @@
 		085646712101FA0C00C5FBF6 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCollectionViewCell.swift; sourceTree = "<group>"; };
 		0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAShodowEffect.swift; sourceTree = "<group>"; };
-		086568A12127E63B00E4CDE1 /* HelpCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoryViewController.swift; sourceTree = "<group>"; };
-		086568A32127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		086568AB212D447600E4CDE1 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		089A94B7210836940088F519 /* NoticeBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardViewController.swift; sourceTree = "<group>"; };
 		08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CabAndPackageArrivalCardListViewController.swift; sourceTree = "<group>"; };
@@ -416,8 +412,6 @@
 		086568982127132600E4CDE1 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
-				086568A12127E63B00E4CDE1 /* HelpCategoryViewController.swift */,
-				086568A32127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift */,
 				0834B393214249F000516C9C /* ContactUsViewController.swift */,
 				08EA578421464A0A00A0574D /* ContactUsHistoryViewController.swift */,
 				08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */,
@@ -1339,7 +1333,6 @@
 				0809B91C211DAB7100B30EE2 /* NASocietyServices.swift in Sources */,
 				86BF6A4120A0325200B175A1 /* MyGuestListCollectionViewCell.swift in Sources */,
 				5D774298210DD49F0049344F /* SplashNammaApartments.swift in Sources */,
-				086568A42127EF4300E4CDE1 /* HelpCategoryTableViewCell.swift in Sources */,
 				5D774291210DD49F0049344F /* SearchTableViewCell.swift in Sources */,
 				08355B0D210E2CB700F671D2 /* NammaApartmentEmergency.swift in Sources */,
 				86646BC220AB1530002A92B8 /* RaiseAlarmViewController.swift in Sources */,
@@ -1400,7 +1393,6 @@
 				5D774299210DD49F0049344F /* DataModel.swift in Sources */,
 				422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
-				086568A22127E63B00E4CDE1 /* HelpCategoryViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
 				08EA5781214649E400A0574D /* MyTransactionsCollectionViewCell.swift in Sources */,
 				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
