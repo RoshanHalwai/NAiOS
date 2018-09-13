@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "080-social-media.png",
+      "filename" : "add-contacts.png",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "080-social-media-1.png",
+      "filename" : "add-contacts-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "080-social-media-2.png",
+      "filename" : "add-contacts-2.png",
       "scale" : "3x"
     }
   ],

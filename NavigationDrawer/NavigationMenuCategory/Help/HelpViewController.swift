@@ -33,7 +33,7 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
         let height = UIScreen.main.bounds.height
         
         //set section inset as per your requirement.
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         
         //set cell item size here
         layout.itemSize = CGSize(width: width - 10, height: height/9)

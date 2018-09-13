@@ -26,14 +26,13 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
         
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         
         //Get device width
         let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 5, height: height/6)
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        layout.itemSize = CGSize(width: width - 10, height: 100)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
