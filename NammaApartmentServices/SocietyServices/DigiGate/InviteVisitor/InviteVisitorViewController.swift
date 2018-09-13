@@ -189,14 +189,11 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         }
             //Open App Setting if user cannot able to access Contacts
         else if authStatus == CNAuthorizationStatus.denied {
-            //creating alert controller
-            let alert = UIAlertController(title:NAString().setting_Permission_AlertBox() , message: nil, preferredStyle: .alert)
-            let cancelAction = UIAlertAction(title:NAString().cancel(), style: .cancel) { (action) in}
-            let settingAction = UIAlertAction(title:NAString().settings(), style: .default) { (action) in
-                UIApplication.shared.open(URL(string: "App-prefs:root=Privacy")!)}
-            alert.addAction(cancelAction)
-            alert.addAction(settingAction)
-            present(alert, animated: true, completion: nil)
+            NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().setting_Permission_AlertBox(), Message: "", CancelStyle: .cancel, OkStyle: .default, OK: { (action) in
+                let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)!
+                UIApplication.shared.open(settingsUrl)
+            }, Cancel: { (action) in
+            }, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().settings())
         }
     }
     
@@ -223,7 +220,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         var mobileNumber = mobileNo.replacingOccurrences( of:"[^0-9]", with: "", options: .regularExpression)
         
         if mobileNumber.count > NAString().required_mobileNo_Length() {
-            let range1 = mobileNumber.characters.index(mobileNumber.startIndex, offsetBy: 2)..<mobileNumber.endIndex
+            let range1 = mobileNumber.index(mobileNumber.startIndex, offsetBy: 2)..<mobileNumber.endIndex
             mobileNumber = String(mobileNumber[range1])
         }
         self.txtInvitorMobile.text = mobileNumber
