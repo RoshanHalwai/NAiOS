@@ -90,7 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        
         //Calling establishing channel for FCM function
         connectToFCM()
     }

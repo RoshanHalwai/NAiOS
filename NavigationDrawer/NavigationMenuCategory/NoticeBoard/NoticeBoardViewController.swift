@@ -73,6 +73,7 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         cell.cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
         cell.cardView.layer.shadowRadius = 1.7
         cell.cardView.layer.shadowOpacity = 0.45
+        cell.isUserInteractionEnabled = false
         
         return cell
     }

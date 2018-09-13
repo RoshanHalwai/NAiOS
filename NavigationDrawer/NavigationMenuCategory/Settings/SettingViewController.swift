@@ -116,9 +116,8 @@ class SettingViewController: NANavigationViewController {
             preferences.set(false, forKey: loggedIn)
             preferences.synchronize()
             if self.storyboard != nil {
-                let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
-                let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-                self.present(NavLogin, animated: true)
+                let NavLogin = NAViewPresenter().loginVC()
+                self.navigationController?.pushViewController(NavLogin, animated: true)
             }
         }, Cancel: { (action) in}, cancelActionTitle: NAString().no(), okActionTitle: NAString().yes())
     }

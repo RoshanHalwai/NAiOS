@@ -48,50 +48,52 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
     
     //Getting Data on Selecting Particular data of cell from the Index path.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let indexPath = tableView.indexPathForSelectedRow
-        let currentCell = tableView.cellForRow(at: indexPath!)! as! NavigationMenuTableViewCell
-        let currentItem = currentCell.labelView.text
-        if currentItem == NAString().My_Profile() {
+        
+        switch indexPath.row {
+            
+        case 0 :
             let myProfileVC = NAViewPresenter().myProfileVC()
             myProfileVC.navTitle = NAString().My_Profile()
             self.navigationController?.pushViewController(myProfileVC, animated: true)
-        } else if currentItem == NAString().payments() {
-            let myWalletVC = NAViewPresenter().myWalletVC()
-            myWalletVC.navTitle = NAString().payments()
-            self.navigationController?.pushViewController(myWalletVC, animated: true)
-        } else if currentItem == NAString().my_family_members() {
+        case 1 :
             let dv = NAViewPresenter().mySweetHomeVC()
             dv.navTitle = NAString().my_sweet_home()
             dv.fromHomeScreenVC = true
             self.navigationController?.pushViewController(dv, animated: true)
-        } else if currentItem == NAString().my_vehicles() {
+        case 2 :
             let dv1 = NAViewPresenter().myVehiclesVC()
             dv1.navTitle = NAString().my_vehicles()
             self.navigationController?.pushViewController(dv1, animated: true)
-        } else if currentItem == NAString().my_guards() {
+        case 3 :
             let dv2 = NAViewPresenter().myGuardsVC()
             dv2.navTitle = NAString().my_guards()
             self.navigationController?.pushViewController(dv2, animated: true)
-        } else if currentItem == NAString().help() {
-            let dv3 = NAViewPresenter().helpVC()
-            dv3.navTitle = NAString().help()
-            self.navigationController?.pushViewController(dv3, animated: true)
-        } else if currentItem == NAString().settings() {
+        case 4 :
+            let myWalletVC = NAViewPresenter().myWalletVC()
+            myWalletVC.navTitle = NAString().payments()
+            self.navigationController?.pushViewController(myWalletVC, animated: true)
+        case 5 :
+            let noticeBoardVC = NAViewPresenter().noticeBoardVC()
+            self.navigationController?.pushViewController(noticeBoardVC, animated: true)
+        case 6 :
             let dv4 = NAViewPresenter().settingVC()
             dv4.navTitle = NAString().settings()
             self.navigationController?.pushViewController(dv4, animated: true)
-        } else if currentItem == NAString().rate_us() {
+        case 7 :
+            let dv3 = NAViewPresenter().helpVC()
+            dv3.navTitle = NAString().help()
+            self.navigationController?.pushViewController(dv3, animated: true)
+        case 8 :
             /** calling 'showReviewView' method with desired launch counts needed. **/
             if #available(iOS 10.3, *) {
                 //TODO: Need to pass some functionality in future, when we upload our app in App Store.
                 RateUs().showReviewView(afterMinimumLaunchCount: 0)
             }
-        } else if currentItem == NAString().notice_board() {
-            let noticeBoardVC = NAViewPresenter().noticeBoardVC()
-            self.navigationController?.pushViewController(noticeBoardVC, animated: true)
+        default:
+            break
         }
         mainScreen.opacity_View.isHidden = true
         mainScreen.closeNavigationMenu()
-        tableView.deselectRow(at: indexPath!, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
