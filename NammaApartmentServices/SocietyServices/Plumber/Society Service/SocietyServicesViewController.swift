@@ -34,6 +34,9 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var othersStackView: UIStackView!
     @IBOutlet weak var societyStackView: UIStackView!
     
+    @IBOutlet weak var lbl_available: UILabel!
+    @IBOutlet weak var lbl_unAvailable: UILabel!
+    
     var nammaApartmentsSocietyServices = [NASocietyServices]()
     var notificationUID = String()
     
@@ -74,7 +77,11 @@ class SocietyServicesViewController: NANavigationViewController {
         
         lbl_ErrorValidation_Message.text = NAString().please_select_your_problem()
         lbl_DescrptionErrorValidation_Message.text = NAString().please_enter_your_problem()
+        lbl_unAvailable.text = NAString().unavailable()
+        lbl_available.text = NAString().available()
         
+        lbl_available.font = NAFont().descriptionFont()
+        lbl_unAvailable.font = NAFont().descriptionFont()
         lbl_ErrorValidation_Message.font = NAFont().descriptionFont()
         lbl_DescrptionErrorValidation_Message.font = NAFont().descriptionFont()
         lbl_ErrorValidation_Message.isHidden = true
