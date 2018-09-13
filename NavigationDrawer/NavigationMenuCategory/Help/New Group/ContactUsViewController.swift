@@ -110,7 +110,7 @@ class ContactUsViewController: NANavigationViewController {
     
    // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-         UIApplication.shared.open(URL(string: NAString().nammaApartmentsWebsiteLink())!, options: [:], completionHandler: nil)
+         UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     @objc func gotoContactUsHistoryVC() {
