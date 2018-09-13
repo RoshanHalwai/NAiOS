@@ -21,117 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //GCM is stands fro Google Cloud Messaging
     let gcmMessageIDKey = "gcm.message_id"
     
-    //Created instance for calling retrieveUserData class function
-    var loadingUserData = retrieveUserData()
-    
     let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
-    
-    //Implementing Launch Screen
-    private func launchScreen() {
-        let launchScreenVC = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
-        let rootVC = launchScreenVC.instantiateViewController(withIdentifier: "launchScreen")
-        self.window?.rootViewController = rootVC
-        self.window?.makeKeyAndVisible()
-        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(dismissLaunchScreen), userInfo: nil, repeats: false)
-    }
-    
-    @objc func dismissLaunchScreen() {
-        //Using userDefaults here we are checking conditions & navigation to particular view according to userDefault values.
-        let preferences = UserDefaults.standard
-        let UserUID = NAString().userDefault_USERUID()
-        let notFirstTime =  NAString().userDefault_Not_First_Time()
-        let loggedIn = NAString().userDefault_Logged_In()
-        let accountCreated = NAString().userDefault_Account_Created()
-        let verified = NAString().userDefault_Verified()
-        
-        let versionRef = Constants.FIREBASE_DATABASE_REFERENCE.child("versionName")
-        versionRef.observe(.value) { (versionSnapshot) in
-            let version = versionSnapshot.value as? String
-            let presentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"]! as! String
-            if version != presentVersion {
-                let alert = UIAlertController(title: NAString().new_Version_Title() , message: NAString().new_version_message(), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NAString().update().capitalized, style: .default, handler: nil))
-                alert.view.backgroundColor = UIColor.white
-                alert.view.layer.cornerRadius = 10
-                self.window?.rootViewController?.present(alert, animated: true)
-            } else {
-                if preferences.bool(forKey: notFirstTime) == true {
-                    /* Checking Both Conditions to make sure that user is still able to Navigate to main Screen after once he LoggedIn even though if it is different device */
-                    if preferences.bool(forKey: accountCreated) == true || preferences.bool(forKey: loggedIn) == true {
-                        if preferences.bool(forKey: verified) == true {
-                            if preferences.bool(forKey: loggedIn) == true {
-                                var userUID = String()
-                                userUID = preferences.object(forKey: UserUID) as! String
-                                preferences.synchronize()
-                                let queue = OperationQueue()
-                                queue.addOperation {
-                                    self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                                    let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
-                                    
-                                    self.window?.rootViewController = NavMain
-                                    self.window?.makeKeyAndVisible()
-                                }
-                                queue.waitUntilAllOperationsAreFinished()
-                            } else {
-                                let NavLogin = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-                                self.window?.rootViewController = NavLogin
-                                self.window?.makeKeyAndVisible()
-                            }
-                        } else {
-                            var userUID = String()
-                            userUID = preferences.object(forKey: UserUID) as! String
-                            preferences.synchronize()
-                            
-                            var usersVerifiedRef : DatabaseReference?
-                            usersVerifiedRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
-                                .child(Constants.FIREBASE_CHILD_PRIVILEGES)
-                                .child(Constants.FIREBASE_CHILD_VERIFIED)
-                            
-                            usersVerifiedRef?.observeSingleEvent(of: .value, with: { (verifiedSnapshot) in
-                                if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
-                                    preferences.set(true, forKey: verified)
-                                    preferences.synchronize()
-                                    let queue = OperationQueue()
-                                    queue.addOperation {
-                                        self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                                        let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
-                                        self.window?.rootViewController = NavMain
-                                        self.window?.makeKeyAndVisible()
-                                    }
-                                    queue.waitUntilAllOperationsAreFinished()
-                                } else {
-                                    let queue = OperationQueue()
-                                    queue.addOperation {
-                                        self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                                        let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().welcomeRootVC())
-                                        self.window?.rootViewController = NavMain
-                                        self.window?.makeKeyAndVisible()
-                                    }
-                                }
-                            })
-                        }
-                    } else {
-                        let NavLogin = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-                        self.window?.rootViewController = NavLogin
-                        self.window?.makeKeyAndVisible()
-                    }
-                } else {
-                    preferences.set(true, forKey: notFirstTime)
-                    preferences.synchronize()
-                    let NavLogin = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().splashScreenRootVC())
-                    self.window?.rootViewController = NavLogin
-                    self.window?.makeKeyAndVisible()
-                }
-            }
-        }
-    }
     
     //This method will call when application finished its launching state.
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        //Calling Launch Screen Method
-        self.launchScreen()
+        let launchVC = self.storyboard.instantiateViewController(withIdentifier: "RootVC")
+        self.window?.rootViewController = launchVC
+        self.window?.makeKeyAndVisible()
         
         //Formatting Navigation Controller From Globally.
         UIApplication.shared.statusBarStyle = .lightContent

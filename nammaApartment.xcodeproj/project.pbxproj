@@ -16,6 +16,7 @@
 		081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */; };
 		081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */; };
 		081F25D1210C8EB60065F90E /* RetrievingGuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */; };
+		082CAAA8214A431200FA0E8E /* CustomLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CAAA7214A431100FA0E8E /* CustomLaunchScreenViewController.swift */; };
 		0834B394214249F000516C9C /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0834B393214249F000516C9C /* ContactUsViewController.swift */; };
 		08355B0D210E2CB700F671D2 /* NammaApartmentEmergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08355B0C210E2CB700F671D2 /* NammaApartmentEmergency.swift */; };
 		083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */; };
@@ -186,6 +187,7 @@
 		081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryViewController.swift; sourceTree = "<group>"; };
 		081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsGuestHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingGuestList.swift; sourceTree = "<group>"; };
+		082CAAA7214A431100FA0E8E /* CustomLaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLaunchScreenViewController.swift; sourceTree = "<group>"; };
 		0834B393214249F000516C9C /* ContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
 		08355B0C210E2CB700F671D2 /* NammaApartmentEmergency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentEmergency.swift; sourceTree = "<group>"; };
 		083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsDailyServicesHistoryViewController.swift; sourceTree = "<group>"; };
@@ -739,6 +741,7 @@
 				86A8B933209EC9FE00EA1C35 /* Frameworks */,
 				86270105209707BC004B28EB /* Info.plist */,
 				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
+				082CAAA7214A431100FA0E8E /* CustomLaunchScreenViewController.swift */,
 				5D243EFA210DC23B00806091 /* ModelClasses */,
 				862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */,
 				8627010D209707BC004B28EB /* namaApartmentTests */,
@@ -1394,6 +1397,7 @@
 				08EA5781214649E400A0574D /* MyTransactionsCollectionViewCell.swift in Sources */,
 				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
 				4234754B212EB87200A791AA /* MyWalletViewController.swift in Sources */,
+				082CAAA8214A431200FA0E8E /* CustomLaunchScreenViewController.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
 			);
