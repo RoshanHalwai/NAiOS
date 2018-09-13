@@ -29,9 +29,6 @@ class AwaitingResponseViewController: NANavigationViewController {
     @IBOutlet weak var img_Title : UIImageView?
     @IBOutlet weak var cardView : UIView?
     
-    @IBOutlet weak var btn_Call: UIButton!
-    @IBOutlet weak var btn_Cancel: UIButton!
-    
     //To set navigation title
     var navTitle : String?
     var serviceType : String?
@@ -40,17 +37,7 @@ class AwaitingResponseViewController: NANavigationViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.btn_Call.setTitle(NAString().call().capitalized, for: .normal)
-        self.btn_Call.backgroundColor = NAColor().buttonBgColor()
-        self.btn_Call.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        self.btn_Call.titleLabel?.font = NAFont().buttonFont()
-        
-        self.btn_Cancel.setTitle(NAString().cancel().capitalized, for: .normal)
-        self.btn_Cancel.backgroundColor = NAColor().buttonBgColor()
-        self.btn_Cancel.setTitleColor(NAColor().buttonFontColor(), for: .normal)
-        self.btn_Cancel.titleLabel?.font = NAFont().buttonFont()
-        
+    
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)
         
