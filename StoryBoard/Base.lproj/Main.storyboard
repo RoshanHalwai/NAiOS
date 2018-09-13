@@ -34,7 +34,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bB0-YC-Raq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="809" y="52"/>
+            <point key="canvasLocation" x="1805.625" y="51.760563380281688"/>
         </scene>
         <!--Splash Namma Apartments-->
         <scene sceneID="y0f-aL-NgD">
@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZC-p4-SmM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1573.5999999999999" y="51.724137931034484"/>
+            <point key="canvasLocation" x="2570.625" y="50.70422535211268"/>
         </scene>
         <!--SIGN UP-->
         <scene sceneID="Zxr-io-Ofk">
@@ -315,17 +315,17 @@
             <objects>
                 <viewController storyboardIdentifier="loginVC" id="KCb-mF-yj2" customClass="LoginViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="26k-Kc-der">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r7V-rj-JBp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cpB-c3-mD8">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cis-3E-MId">
-                                                <rect key="frame" x="20" y="171.5" width="280" height="161"/>
+                                                <rect key="frame" x="20" y="193.5" width="280" height="161"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOBILE NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBO-6A-9ZX">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
@@ -648,7 +648,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="217" id="fEc-tf-xFr" customClass="HomeTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="217" id="fEc-tf-xFr" customClass="HomeTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="217"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fEc-tf-xFr" id="SfY-XT-q0A">
@@ -747,7 +747,7 @@
                                 <rect key="frame" x="0.0" y="59" width="320" height="445"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="8Di-yR-KZq" customClass="MainScreenTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="8Di-yR-KZq" customClass="MainScreenTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Di-yR-KZq" id="MJ4-Ev-fAp">
@@ -866,7 +866,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEt-6Y-N2o">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pds-gN-GMd">
                                                 <rect key="frame" x="20" y="163" width="334" height="56"/>
@@ -1117,12 +1117,12 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="EEt-6Y-N2o" firstAttribute="centerY" secondItem="Qw0-Bg-cFm" secondAttribute="centerY" id="2et-jp-rjt"/>
+                                    <constraint firstItem="EEt-6Y-N2o" firstAttribute="centerY" secondItem="Qw0-Bg-cFm" secondAttribute="centerY" constant="26.5" id="2et-jp-rjt"/>
                                     <constraint firstItem="EEt-6Y-N2o" firstAttribute="leading" secondItem="Qw0-Bg-cFm" secondAttribute="leading" id="443-tx-lsy"/>
                                     <constraint firstItem="EEt-6Y-N2o" firstAttribute="top" secondItem="Qw0-Bg-cFm" secondAttribute="top" id="B44-MJ-pH8"/>
                                     <constraint firstItem="EEt-6Y-N2o" firstAttribute="centerX" secondItem="Qw0-Bg-cFm" secondAttribute="centerX" id="alT-YY-7OU"/>
                                     <constraint firstAttribute="trailing" secondItem="kVl-8V-kAl" secondAttribute="trailing" constant="20" id="erw-Oi-kCE"/>
-                                    <constraint firstAttribute="bottom" secondItem="EEt-6Y-N2o" secondAttribute="bottom" id="jpQ-He-q6c"/>
+                                    <constraint firstAttribute="bottom" secondItem="EEt-6Y-N2o" secondAttribute="bottom" constant="-53" id="jpQ-He-q6c"/>
                                     <constraint firstItem="kVl-8V-kAl" firstAttribute="centerX" secondItem="Qw0-Bg-cFm" secondAttribute="centerX" id="omn-li-zbt"/>
                                     <constraint firstItem="kVl-8V-kAl" firstAttribute="leading" secondItem="Qw0-Bg-cFm" secondAttribute="leading" constant="20" id="qRs-zP-ZPZ"/>
                                     <constraint firstAttribute="trailing" secondItem="EEt-6Y-N2o" secondAttribute="trailing" id="w5o-QR-nZ7"/>
@@ -1443,7 +1443,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TBS-RZ-CFz">
-                                                    <rect key="frame" x="13.5" y="131" width="275" height="55"/>
+                                                    <rect key="frame" x="14" y="131" width="275" height="55"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="575-rB-C9m">
                                                             <rect key="frame" x="0.0" y="0.0" width="32.5" height="55"/>
@@ -2586,7 +2586,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="335" id="vMU-Ba-VlU" customClass="HandedThingsToDailyServicesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="335" id="vMU-Ba-VlU" customClass="HandedThingsToDailyServicesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="335"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vMU-Ba-VlU" id="2Fa-Q3-01f">
@@ -3302,7 +3302,7 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="335" id="JVb-Dm-Mre" customClass="HandedThingsToGuestTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="335" id="JVb-Dm-Mre" customClass="HandedThingsToGuestTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="335"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JVb-Dm-Mre" id="DDS-7N-3We">
@@ -4308,7 +4308,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emergency alarm raised" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRL-7O-hI7">
-                                <rect key="frame" x="64" y="344" width="192.5" height="22"/>
+                                <rect key="frame" x="64.5" y="344" width="192.5" height="22"/>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -6279,7 +6279,7 @@
                                 <rect key="frame" x="0.0" y="120" width="320" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="67" id="xEW-4z-DDM" customClass="LanguagesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="67" id="xEW-4z-DDM" customClass="LanguagesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xEW-4z-DDM" id="mtv-38-deX">
@@ -6596,7 +6596,7 @@
                                 <rect key="frame" x="0.0" y="134" width="320" height="434"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="72" id="lt3-DL-eAK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="72" id="lt3-DL-eAK">
                                         <rect key="frame" x="0.0" y="28" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lt3-DL-eAK" id="fGU-O3-ZAK">
@@ -7015,7 +7015,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfs-fr-4hj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2263.1999999999998" y="47.226386806596707"/>
+            <point key="canvasLocation" x="3260.625" y="46.478873239436624"/>
         </scene>
         <!--Splash Apartment Services-->
         <scene sceneID="fvQ-Mm-dmB">
@@ -7079,12 +7079,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xZq-Bu-IHD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2900" y="47.226386806596707"/>
+            <point key="canvasLocation" x="3896.25" y="46.478873239436624"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sPH-rm-p0K">
             <objects>
-                <navigationController storyboardIdentifier="rootVC" automaticallyAdjustsScrollViewInsets="NO" id="xpH-eD-j9k" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="splashNavID" automaticallyAdjustsScrollViewInsets="NO" id="xpH-eD-j9k" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" backIndicatorImage="backBarButton" backIndicatorTransitionMaskImage="backBarButton" id="iVe-wS-tiN">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -7105,7 +7105,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5I-IX-av9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39" y="-53"/>
+            <point key="canvasLocation" x="1035" y="-53.87323943661972"/>
         </scene>
         <!--Help Category View Controller-->
         <scene sceneID="N4C-Bx-evx">
@@ -7119,7 +7119,7 @@
                                 <rect key="frame" x="5" y="25" width="310" height="538"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="96" id="kT7-2Y-vCA" customClass="HelpCategoryTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="96" id="kT7-2Y-vCA" customClass="HelpCategoryTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="310" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kT7-2Y-vCA" id="MTT-TG-lWH">
@@ -7213,7 +7213,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="250" id="qUf-My-lmU" customClass="NoticeBoardTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="250" id="qUf-My-lmU" customClass="NoticeBoardTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qUf-My-lmU" id="lw7-A7-jUn">
@@ -7378,7 +7378,7 @@
                                 <rect key="frame" x="5" y="25" width="310" height="538"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="53" id="0Vd-sK-m2r" customClass="FrequentlyAskedTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="53" id="0Vd-sK-m2r" customClass="FrequentlyAskedTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="310" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Vd-sK-m2r" id="n3e-fJ-epK">
@@ -7512,32 +7512,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cU-FK-UTD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2788" y="1396.5517241379312"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="FJY-Fh-8k3">
-            <objects>
-                <navigationController storyboardIdentifier="NavLogin" automaticallyAdjustsScrollViewInsets="NO" id="vad-cj-PT0" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" backIndicatorImage="backBarButton" backIndicatorTransitionMaskImage="backBarButton" id="AFX-tT-kQ7">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="KCb-mF-yj2" kind="relationship" relationship="rootViewController" id="FWS-Ns-sra"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nYY-EJ-KmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="289" y="768"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="noi-0o-7vB">
@@ -7867,7 +7841,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9am-70-889" customClass="SearchTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9am-70-889" customClass="SearchTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="84" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9am-70-889" id="U0u-Uf-1MF">
@@ -8366,7 +8340,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0uV-BR-w56">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="860"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cxg-zx-0Nn">
                                                 <rect key="frame" x="124" y="20" width="126" height="126"/>
@@ -8609,7 +8583,7 @@
                                             <constraint firstItem="a5e-fl-Eah" firstAttribute="centerX" secondItem="0uV-BR-w56" secondAttribute="centerX" id="aUW-cb-bma"/>
                                             <constraint firstItem="EP5-lv-f4P" firstAttribute="top" secondItem="a5e-fl-Eah" secondAttribute="bottom" constant="81" id="dbg-ik-6Ke"/>
                                             <constraint firstAttribute="trailing" secondItem="Y3i-Rg-iQO" secondAttribute="trailing" constant="20" id="eRL-S8-cTD"/>
-                                            <constraint firstAttribute="height" constant="800" id="fCu-pf-hOS"/>
+                                            <constraint firstAttribute="height" constant="860" id="fCu-pf-hOS"/>
                                             <constraint firstAttribute="trailing" secondItem="EP5-lv-f4P" secondAttribute="trailing" constant="8" id="tHo-nB-E06"/>
                                             <constraint firstItem="a5e-fl-Eah" firstAttribute="centerX" secondItem="0uV-BR-w56" secondAttribute="centerX" id="z8g-1Z-cQv"/>
                                             <constraint firstItem="rI1-g2-H2U" firstAttribute="leading" secondItem="0uV-BR-w56" secondAttribute="leading" constant="170" id="zgF-4Y-KUG"/>
@@ -8617,14 +8591,14 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="0uV-BR-w56" firstAttribute="centerY" secondItem="qef-GX-dbv" secondAttribute="centerY" id="1rb-aG-Qdn"/>
-                                    <constraint firstItem="0uV-BR-w56" firstAttribute="height" secondItem="qef-GX-dbv" secondAttribute="height" id="9pW-rI-wJx"/>
+                                    <constraint firstItem="0uV-BR-w56" firstAttribute="centerY" secondItem="qef-GX-dbv" secondAttribute="centerY" constant="30" id="1rb-aG-Qdn"/>
+                                    <constraint firstItem="0uV-BR-w56" firstAttribute="height" secondItem="qef-GX-dbv" secondAttribute="height" constant="60" id="9pW-rI-wJx"/>
                                     <constraint firstItem="0uV-BR-w56" firstAttribute="leading" secondItem="qef-GX-dbv" secondAttribute="leading" id="CCR-yy-qdl"/>
                                     <constraint firstItem="0uV-BR-w56" firstAttribute="width" secondItem="qef-GX-dbv" secondAttribute="width" id="Hkn-Nt-55o"/>
                                     <constraint firstItem="0uV-BR-w56" firstAttribute="top" secondItem="qef-GX-dbv" secondAttribute="top" id="NEv-wr-yUS"/>
                                     <constraint firstItem="0uV-BR-w56" firstAttribute="centerX" secondItem="qef-GX-dbv" secondAttribute="centerX" id="QhX-wz-3gz"/>
                                     <constraint firstAttribute="trailing" secondItem="0uV-BR-w56" secondAttribute="trailing" id="UM1-pd-iBH"/>
-                                    <constraint firstAttribute="bottom" secondItem="0uV-BR-w56" secondAttribute="bottom" id="Z6f-H9-K0i"/>
+                                    <constraint firstAttribute="bottom" secondItem="0uV-BR-w56" secondAttribute="bottom" constant="-60" id="Z6f-H9-K0i"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -8715,7 +8689,7 @@
                                 <rect key="frame" x="0.0" y="120" width="320" height="448"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="67" id="W7d-Xq-tX5" customClass="LanguagesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="67" id="W7d-Xq-tX5" customClass="LanguagesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W7d-Xq-tX5" id="0A1-3c-xAm">
@@ -9025,8 +8999,61 @@
             </objects>
             <point key="canvasLocation" x="11306" y="5696"/>
         </scene>
+        <!--Custom Launch Screen View Controller-->
+        <scene sceneID="i4x-Eo-9qe">
+            <objects>
+                <viewController storyboardIdentifier="CustomLaunchVC" id="ImU-GR-8rr" customClass="CustomLaunchScreenViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" alpha="0.94999998807907104" contentMode="scaleToFill" id="2qp-Vj-neJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qrc-Sc-gk0">
+                                <rect key="frame" x="100" y="192" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="M9v-nD-TBP"/>
+                                    <constraint firstAttribute="height" constant="120" id="VBZ-Rh-u64"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qrc-Sc-gk0" firstAttribute="centerY" secondItem="2qp-Vj-neJ" secondAttribute="centerY" id="9ZD-Aa-QUV"/>
+                            <constraint firstItem="qrc-Sc-gk0" firstAttribute="centerX" secondItem="2qp-Vj-neJ" secondAttribute="centerX" id="Nz0-dx-QDR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="K1M-HU-lkV"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6W8-px-kVM"/>
+                    <connections>
+                        <outlet property="launch_ImageView" destination="qrc-Sc-gk0" id="NT5-2c-12c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egN-L5-KeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-288.75" y="-54.929577464788736"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iBA-Gt-bYY">
+            <objects>
+                <navigationController storyboardIdentifier="RootVC" automaticallyAdjustsScrollViewInsets="NO" id="gw8-5I-iBr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="srs-ke-qkt">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ImU-GR-8rr" kind="relationship" relationship="rootViewController" id="kYj-dB-wQ7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EIV-FO-IfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1286.25" y="-54.929577464788736"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="AppLogo" width="147" height="147"/>
         <image name="Call" width="128" height="128"/>
         <image name="Cancel" width="128" height="128"/>
         <image name="Edit" width="128" height="128"/>

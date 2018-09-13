@@ -17,22 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="launchScreen" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="4Hf-Hn-d9q">
-                                <rect key="frame" x="127" y="258" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="GbB-ld-agD"/>
-                                    <constraint firstAttribute="height" constant="120" id="XNS-RO-Vyz"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="4Hf-Hn-d9q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="127" id="Fjd-Us-rMx"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4Hf-Hn-d9q" secondAttribute="trailing" constant="128" id="UL9-MI-LzJ"/>
-                            <constraint firstItem="4Hf-Hn-d9q" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="UTG-vs-gCR"/>
-                            <constraint firstItem="4Hf-Hn-d9q" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="238" id="wjk-MQ-2nc"/>
-                        </constraints>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -41,7 +26,4 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="AppLogo" width="147" height="147"/>
-    </resources>
 </document>
