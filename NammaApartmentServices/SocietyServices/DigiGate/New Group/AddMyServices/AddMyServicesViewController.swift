@@ -378,7 +378,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
                 //Assigning Delegate
                 lv.delegateData = self
                 lv.delegate = self
-                self.navigationController?.pushViewController(lv, animated: true)
+                addMyDailyServiceExistsOrNot(VC: lv)
             }
         }
     }
@@ -518,5 +518,28 @@ extension AddMyServicesViewController {
             })
         })
         uploadTask?.resume()
+    }
+}
+
+extension AddMyServicesViewController {
+    
+    func addMyDailyServiceExistsOrNot(VC: UIViewController)  {
+        
+        let addMyDailyServiceMobileRef = Constants.FIREBASE_USERS_ALL
+        addMyDailyServiceMobileRef.observeSingleEvent(of: .value) { (mobileSnapshot) in
+            
+            var count = 0
+            let mobileNumbers = mobileSnapshot.value as! NSDictionary
+            for mobileNumber in mobileNumbers.allKeys {
+                count = count + 1
+                if (mobileNumber as? String == self.txt_MobileNo.text)  {
+                    self.lbl_Mobile_Validation.isHidden = false
+                    self.lbl_Mobile_Validation.text = NAString().mobileNumberAlreadyExists()
+                }
+                if count == mobileNumbers.count && self.lbl_Mobile_Validation.isHidden == true {
+                    self.navigationController?.pushViewController(VC, animated: true)
+                }
+            }
+        }
     }
 }
