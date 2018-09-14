@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "filename" : "baseline_arrow_back_ios_white_36pt_1x.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "filename" : "baseline_arrow_back_ios_white_36pt_2x.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "filename" : "baseline_arrow_back_ios_white_36pt_3x.png",
       "scale" : "3x"
     }
