@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "baseline_menu_black_36pt_3x.png",
+      "filename" : "baseline_menu_white_36pt_1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "baseline_menu_black_36pt_3x-1.png",
+      "filename" : "baseline_menu_white_36pt_2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "baseline_menu_black_36pt_3x-2.png",
+      "filename" : "baseline_menu_white_36pt_3x.png",
       "scale" : "3x"
     }
   ],
