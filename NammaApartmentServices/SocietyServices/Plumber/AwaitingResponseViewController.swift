@@ -29,11 +29,15 @@ class AwaitingResponseViewController: NANavigationViewController {
     @IBOutlet weak var img_Title : UIImageView?
     @IBOutlet weak var cardView : UIView?
     
+    @IBOutlet weak var btn_Call: UIButton!
+    @IBOutlet weak var btn_Cancel: UIButton!
+
     //To set navigation title
     var navTitle : String?
     var serviceType : String?
     var notificationUID = String()
     var societyServiceRating : SocietyServiceRatingView!
+    var societyServiceNumber = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +76,26 @@ class AwaitingResponseViewController: NANavigationViewController {
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToMainScreenVC))
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
+        
+        //Formatting & setting UIBUTTONS
+        btn_Call.setTitle(NAString().call().uppercased(), for: .normal)
+        btn_Call.titleLabel?.font = NAFont().buttonFont()
+        btn_Call.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        btn_Call.backgroundColor = NAColor().buttonBgColor()
+        
+        btn_Cancel.setTitle(NAString().cancel().uppercased(), for: .normal)
+        btn_Cancel.titleLabel?.font = NAFont().buttonFont()
+        btn_Cancel.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        btn_Cancel.backgroundColor = NAColor().buttonBgColor()
+    }
+    
+    @IBAction func btnCall(_ sender: UIButton) {
+        UIApplication.shared.open(NSURL(string: "tel://\(societyServiceNumber)")! as URL, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func btnCancel(_ sender: UIButton) {
+        let societyServicesStatusRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(notificationUID)
+        societyServicesStatusRef.child(Constants.FIREBASE_STATUS).setValue(NAString().cancelled())
     }
     
     //Navigating Back to Main Screen View Controller.
@@ -110,10 +134,10 @@ class AwaitingResponseViewController: NANavigationViewController {
                         
                         let serviceData = snapshot.value as? [String: AnyObject]
                         let societyServiceName: String = serviceData?[NASocietyServicesFBKeys.fullName.key] as! String
-                        let societyServiceNumber: String = serviceData?[NASocietyServicesFBKeys.mobileNumber.key] as! String
+                        self.societyServiceNumber = serviceData?[NASocietyServicesFBKeys.mobileNumber.key] as! String
                         
                         self.lbl_ServiceName?.text = societyServiceName
-                        self.lbl_ServiceNumber?.text = societyServiceNumber
+                        self.lbl_ServiceNumber?.text = self.societyServiceNumber
                         let endOTP: String = societyServiceData?[NASocietyServicesFBKeys.endOTP.key] as! String
                         self.lbl_ServiceOTP?.text = endOTP
                     })

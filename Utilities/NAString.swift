@@ -1881,4 +1881,8 @@ class NAString : NSObject {
     func new_version_message() -> String {
         return String("A new version of Namma Apartments is available. Please update.")
     }
+    
+    func cancelled() -> String {
+        return String("cancelled")
+    }
 }
