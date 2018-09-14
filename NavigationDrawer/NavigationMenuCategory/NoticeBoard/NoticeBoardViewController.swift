@@ -64,7 +64,7 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         //assigning font & style to cell labels
         cell.lbl_FestivalName.font = NAFont().headerFont()
         cell.lbl_FestivalDescription.font = NAFont().textFieldFont()
-        cell.lbl_AdminName.font = NAFont().textFieldFont()
+        cell.lbl_AdminName.font = NAFont().headerFont()
         cell.lbl_Date.font = NAFont().textFieldFont()
         
         //cardUIView
