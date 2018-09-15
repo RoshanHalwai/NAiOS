@@ -1885,4 +1885,8 @@ class NAString : NSObject {
     func cancelled() -> String {
         return String("cancelled")
     }
+    
+    func cancelRequest() -> String {
+        return String("Are you sure you want to cancel this request?")
+    }
 }
