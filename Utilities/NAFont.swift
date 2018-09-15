@@ -69,4 +69,8 @@ class NAFont: NSObject {
     func cellButtonFont() -> UIFont {
         return UIFont(name: "Lato-BoldItalic", size: 14)!
     }
+    
+    func launchScreenLabelFont() -> UIFont {
+        return UIFont(name: "Lato-Bold", size: 40)!
+    }
 }

@@ -1885,4 +1885,12 @@ class NAString : NSObject {
     func cancelled() -> String {
         return String("cancelled")
     }
+    
+    func namma() -> String {
+        return String("Namma")
+    }
+    
+    func apartments() -> String {
+        return String("Apartments")
+    }
 }
