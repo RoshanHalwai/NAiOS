@@ -1348,6 +1348,14 @@ class NAString : NSObject {
         return ("Vehicle Added Message")
     }
     
+    func addFood_AlertTitle() -> String {
+        return ("Food Request Message")
+    }
+    
+    func addFood_AlertMessage() -> String {
+        return ("Thank you for rasing request.Our Representative will arrive at your flat to collect food.")
+    }
+    
     func add_your_vehicle_message() -> String {
         return ("Please add your vehicles for Hassle Free entry into the society.")
     }
@@ -1884,5 +1892,33 @@ class NAString : NSObject {
     
     func cancelled() -> String {
         return String("cancelled")
+    }
+    
+    func foodType() -> String {
+        return String("Food Type")
+    }
+    
+    func foodQuantity() -> String {
+        return String("Food Quantity")
+    }
+    
+    func less() -> String {
+        return String("Less")
+    }
+    
+    func more() -> String {
+        return String("More")
+    }
+    
+    func collectFood() -> String {
+        return String("COLLECT FOOD")
+    }
+    
+    func myFood() -> String {
+        return String("My Food")
+    }
+    
+    func foodTypeErrorMessage() -> String {
+        return String("Please Enter Food Type")
     }
 }

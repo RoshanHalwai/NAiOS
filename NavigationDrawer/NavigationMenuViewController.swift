@@ -14,9 +14,10 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var lbl_Apartment: UILabel!
     @IBOutlet weak var lbl_Flat: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
-    var sideMenuArray = [NAString().My_Profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().payments(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us()]
+    
+    var sideMenuArray = [NAString().My_Profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().payments(),NAString().myFood(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us()]
+    
     var mainScreen: MainScreenViewController!
     
     override func viewDidLoad() {
@@ -73,13 +74,17 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             myWalletVC.navTitle = NAString().payments()
             self.navigationController?.pushViewController(myWalletVC, animated: true)
         case 5 :
+            let myFoodVC = NAViewPresenter().myFoodVC()
+            myFoodVC.navTitle = NAString().myFood()
+            self.navigationController?.pushViewController(myFoodVC, animated: true)
+        case 6 :
             let noticeBoardVC = NAViewPresenter().noticeBoardVC()
             self.navigationController?.pushViewController(noticeBoardVC, animated: true)
-        case 6 :
+        case 7 :
             let dv4 = NAViewPresenter().settingVC()
             dv4.navTitle = NAString().settings()
             self.navigationController?.pushViewController(dv4, animated: true)
-        case 7 :
+        case 8 :
             let dv3 = NAViewPresenter().helpVC()
             dv3.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv3, animated: true)
