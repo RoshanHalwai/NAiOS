@@ -151,7 +151,7 @@ class AwaitingResponseViewController: NANavigationViewController {
                 futureRef.child(self.notificationUID).observeSingleEvent(of: .value) { (futureSnapshot) in
                     if futureSnapshot.exists() {
                         
-                        futureRef.removeValue()
+                        futureRef.child(self.notificationUID).removeValue()
                         historyRef.child(self.notificationUID).setValue(NAString().cancelled())
                     }
                 }
