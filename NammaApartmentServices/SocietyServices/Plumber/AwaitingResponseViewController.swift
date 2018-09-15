@@ -38,6 +38,8 @@ class AwaitingResponseViewController: NANavigationViewController {
     var notificationUID = String()
     var societyServiceRating : SocietyServiceRatingView!
     var societyServiceNumber = String()
+    var societyServiceType = String()
+    var societyServiceUID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +98,18 @@ class AwaitingResponseViewController: NANavigationViewController {
     @IBAction func btnCancel(_ sender: UIButton) {
         let societyServicesStatusRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(notificationUID)
         societyServicesStatusRef.child(Constants.FIREBASE_STATUS).setValue(NAString().cancelled())
+        
+        let societyServicesNotificationRef = Constants.FIREBASE_SOCIETY_SERVICES.child(societyServiceType).child(societyServiceUID).child(Constants.FIREBASE_NOTIFICATIONS)
+        
+        societyServicesStatusRef.observeSingleEvent(of: .value) { (servingSnapshot) in
+            if servingSnapshot.exists() {
+                
+            } else {
+                
+            }
+        }
+           
+        
     }
     
     //Navigating Back to Main Screen View Controller.
@@ -116,14 +130,14 @@ class AwaitingResponseViewController: NANavigationViewController {
                 //Checking whether Service Person Accepted the User Request or not
                 if (societyServiceData?[NASocietyServicesFBKeys.takenBy.key] != nil &&
                     societyServiceData?[NASocietyServicesFBKeys.endOTP.key] != nil) {
-                    let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
-                    let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
+                    self.societyServiceUID = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
+                    self.societyServiceType = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                     
                     let societyServiceDataRef = Constants.FIREBASE_SOCIETY_SERVICES
-                        .child(societyServiceType)
+                        .child(self.societyServiceType)
                         .child(Constants.FIREBASE_CHILD_PRIVATE)
                         .child(Constants.FIREBASE_CHILD_DATA)
-                        .child(societyServiceUID)
+                        .child(self.societyServiceUID)
                     
                     //Getting Service Person Name and Mobile Number
                     societyServiceDataRef.observeSingleEvent(of: .value, with: { (snapshot) in
