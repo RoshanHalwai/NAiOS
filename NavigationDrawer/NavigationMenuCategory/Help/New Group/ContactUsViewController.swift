@@ -71,6 +71,14 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         lbl_SelectServiceType_Validation.isHidden = true
         lbl_DescribeYourProblem_Validation.isHidden = true
         
+        //Apply Button Text
+        btn_Society_Services.setTitle(NAString().societyService(), for: .normal)
+        btn_Apartment_Services.setTitle(NAString().ApartmentServices(), for: .normal)
+        
+        //color set on selected
+        btn_Society_Services.setTitleColor(UIColor.black, for: .selected)
+        btn_Apartment_Services.setTitleColor(UIColor.black, for: .selected)
+        
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
@@ -87,11 +95,6 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         
         self.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.rightBarButtonItem = nil
-        
-        btn_Society_Services.setTitle(NAString().societyService(), for: .normal)
-        btn_Society_Services.setTitleColor(UIColor.black, for: .selected)
-        btn_Apartment_Services.setTitle(NAString().ApartmentServices(), for: .normal)
-        btn_Apartment_Services.setTitleColor(UIColor.black, for: .selected)
         
         btn_Society_Services.layer.cornerRadius = CGFloat(NAString().fifteen())
         btn_Society_Services.layer.borderWidth = CGFloat(NAString().two())
@@ -118,9 +121,9 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
     }
     
-   // Navigate to FAQ's WebSite
+    // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-         UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     @objc func gotoContactUsHistoryVC() {
@@ -184,15 +187,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         lbl_DescribeYourProblem_Validation.isHidden = true
-         return true
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        return true
     }
     
     @IBAction func btn_Submit_request_Action(_ sender: UIButton) {
@@ -211,6 +206,9 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         if !(txt_Choose_One.text?.isEmpty)! && !(txt_Describe_Your_Problem.text.isEmpty) {
             
             storingSupportDetails()
+            
+            self.txt_Choose_One.text = ""
+            self.txt_Describe_Your_Problem.text = ""
             
             btn_Submit_Request.tag = NAString().submittRequestButtonTagValue()
             OpacityView.shared.addButtonTagValue = btn_Submit_Request.tag
@@ -262,13 +260,17 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            txt_Choose_One.underlined()
-            lbl_SelectServiceType_Validation.isHidden = true
+        txt_Choose_One.underlined()
+        lbl_SelectServiceType_Validation.isHidden = true
         return true
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            lbl_DescribeYourProblem_Validation.isHidden = true
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        lbl_DescribeYourProblem_Validation.isHidden = true
         return true
     }
 }
