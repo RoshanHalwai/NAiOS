@@ -1184,6 +1184,10 @@ class NAString : NSObject {
         return Int (108)
     }
     
+    func submittRequestButtonTagValue() -> Int {
+        return Int (109)
+    }
+    
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)

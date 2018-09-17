@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class ContactUsViewController: NANavigationViewController {
+class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     
     @IBOutlet weak var lbl_Select_Service_Category: UILabel!
     @IBOutlet weak var lbl_Select_Service_Type: UILabel!
@@ -63,7 +63,7 @@ class ContactUsViewController: NANavigationViewController {
         txt_Describe_Your_Problem.font = NAFont().textFieldFont()
         
         txt_Choose_One.delegate = self
-        txt_Describe_Your_Problem.delegate = self as? UITextViewDelegate
+        txt_Describe_Your_Problem.delegate = self
         
         self.view.layoutIfNeeded()
         txt_Choose_One.underlined()
@@ -176,8 +176,23 @@ class ContactUsViewController: NANavigationViewController {
             listVC.navigationTitle = NAString().selectProblem()
             listVC.contactUsVC = self
             self.navigationController?.present(nav, animated: true, completion: nil)
+            lbl_SelectServiceType_Validation.isHidden = true
+            txt_Choose_One.underlined()
         }
         return true
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        lbl_DescribeYourProblem_Validation.isHidden = true
+         return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
     }
     
     @IBAction func btn_Submit_request_Action(_ sender: UIButton) {
@@ -185,8 +200,8 @@ class ContactUsViewController: NANavigationViewController {
             lbl_SelectServiceType_Validation.isHidden = false
             txt_Choose_One.redunderlined()
         } else {
-            lbl_SelectServiceType_Validation.isHidden = true
             txt_Choose_One.underlined()
+            lbl_SelectServiceType_Validation.isHidden = true
         }
         if (txt_Describe_Your_Problem.text?.isEmpty)! {
             lbl_DescribeYourProblem_Validation.isHidden = false
@@ -194,8 +209,29 @@ class ContactUsViewController: NANavigationViewController {
             lbl_DescribeYourProblem_Validation.isHidden = true
         }
         if !(txt_Choose_One.text?.isEmpty)! && !(txt_Describe_Your_Problem.text.isEmpty) {
+            
             storingSupportDetails()
+            
+            btn_Submit_Request.tag = NAString().submittRequestButtonTagValue()
+            OpacityView.shared.addButtonTagValue = btn_Submit_Request.tag
+            
+            OpacityView.shared.showingOpacityView(view: self)
+            OpacityView.shared.showingPopupView(view: self)
         }
+    }
+    
+    //AlertView For navigation
+    func inviteAlertView() {
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().requestRaised() , message: NAString().successfull_Support_request_Message(), preferredStyle: .alert)
+        
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+            let dv = NAViewPresenter().contactUsHistoryVC()
+            self.navigationController?.pushViewController(dv, animated: true)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
     //Storing User problems in Firebase
@@ -218,8 +254,21 @@ class ContactUsViewController: NANavigationViewController {
             SupportDetailsFBKeys.userUID.key : userUID]
         
         supportRef.setValue(problemDetails, withCompletionBlock: { (error, snapshot) in
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().requestRaised(), Message: NAString().successfull_Support_request_Message(), OkStyle: .default, OK: nil)
-            self.navigationController?.popViewController(animated: true)
+            //Hiding popView & Showing AlertView after adding all the data in firebase.
+            OpacityView.shared.hidingOpacityView()
+            OpacityView.shared.hidingPopupView()
+            self.inviteAlertView()
         })
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+            txt_Choose_One.underlined()
+            lbl_SelectServiceType_Validation.isHidden = true
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            lbl_DescribeYourProblem_Validation.isHidden = true
+        return true
     }
 }
