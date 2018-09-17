@@ -60,7 +60,7 @@ class OTPViewController: NANavigationViewController {
     var countdownTimer: Timer!
     var totalTime = 120
     var timeisOn = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -108,7 +108,7 @@ class OTPViewController: NANavigationViewController {
         txtOTP4.underlined()
         txtOTP5.underlined()
         txtOTP6.underlined()
-    
+        
         //Start timer on View load
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         timeisOn = true
@@ -118,7 +118,7 @@ class OTPViewController: NANavigationViewController {
         lbl_ShowTimer.isUserInteractionEnabled = true
         lbl_ShowTimer.addGestureRecognizer(tapChangeMobile)
         
-         //Performing action on Resend OTP Function
+        //Performing action on Resend OTP Function
         let tapResendOTP = UITapGestureRecognizer(target: self, action: #selector(tapResend))
         lbl_WaitingForOTP.isUserInteractionEnabled = true
         lbl_WaitingForOTP.addGestureRecognizer(tapResendOTP)
@@ -135,7 +135,7 @@ class OTPViewController: NANavigationViewController {
             lbl_ShowTimer.text = "\(timeFormatted(totalTime))"
             timeisOn = true
             countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-             triggerOTPFromFirebase()
+            triggerOTPFromFirebase()
         }
     }
     
@@ -168,7 +168,7 @@ class OTPViewController: NANavigationViewController {
     //Change Mobile number Action (navigating back to Login Screen)
     @objc func tapChangeMobileNumber(sender:UITapGestureRecognizer) {
         if lbl_ShowTimer.text == NAString().changeMobileNumber() {
-                self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
