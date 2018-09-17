@@ -1933,4 +1933,8 @@ class NAString : NSObject {
     func apartments() -> String {
         return String("Apartments")
     }
+    
+    func paymentCancelledByUser() -> String {
+        return String("Payment cancelled by user")
+    }
 }
