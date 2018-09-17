@@ -26,6 +26,9 @@ class ContactUsViewController: NANavigationViewController {
     
     @IBOutlet weak var card_View: UIView!
     
+    @IBOutlet weak var lbl_SelectServiceType_Validation: UILabel!
+    @IBOutlet weak var lbl_DescribeYourProblem_Validation: UILabel!
+    
     var navTitle = String()
     var selectedItem = String()
     
@@ -48,9 +51,13 @@ class ContactUsViewController: NANavigationViewController {
         lbl_Select_Service_Category.text = NAString().selectServiceCategory()
         lbl_Select_Service_Type.text = NAString().selectServiceType()
         lbl_Describe_Your_Problem.text = NAString().describeYourProblem()
+        lbl_SelectServiceType_Validation.text = NAString().contactUsServiceProblemValidationErrorMessage()
+        lbl_DescribeYourProblem_Validation.text = NAString().contactUsServiceValidationErrorMessage()
         lbl_Select_Service_Category.font = NAFont().headerFont()
         lbl_Select_Service_Type.font = NAFont().headerFont()
         lbl_Describe_Your_Problem.font = NAFont().headerFont()
+        lbl_SelectServiceType_Validation.font = NAFont().descriptionFont()
+        lbl_DescribeYourProblem_Validation.font = NAFont().descriptionFont()
         
         txt_Choose_One.font = NAFont().textFieldFont()
         txt_Describe_Your_Problem.font = NAFont().textFieldFont()
@@ -60,6 +67,9 @@ class ContactUsViewController: NANavigationViewController {
         
         self.view.layoutIfNeeded()
         txt_Choose_One.underlined()
+        
+        lbl_SelectServiceType_Validation.isHidden = true
+        lbl_DescribeYourProblem_Validation.isHidden = true
         
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
@@ -171,6 +181,18 @@ class ContactUsViewController: NANavigationViewController {
     }
     
     @IBAction func btn_Submit_request_Action(_ sender: UIButton) {
+        if (txt_Choose_One.text?.isEmpty)! {
+            lbl_SelectServiceType_Validation.isHidden = false
+            txt_Choose_One.redunderlined()
+        } else {
+            lbl_SelectServiceType_Validation.isHidden = true
+            txt_Choose_One.underlined()
+        }
+        if (txt_Describe_Your_Problem.text?.isEmpty)! {
+            lbl_DescribeYourProblem_Validation.isHidden = false
+        } else {
+            lbl_DescribeYourProblem_Validation.isHidden = true
+        }
         if !(txt_Choose_One.text?.isEmpty)! && !(txt_Describe_Your_Problem.text.isEmpty) {
             storingSupportDetails()
         }

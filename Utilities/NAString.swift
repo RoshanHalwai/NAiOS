@@ -1897,4 +1897,16 @@ class NAString : NSObject {
     func apartments() -> String {
         return String("Apartments")
     }
+    
+    func contactUsProgressDialogTitle() -> String {
+        return String("Raising Request")
+    }
+    
+    func contactUsServiceValidationErrorMessage() -> String {
+        return String("Please enter problem")
+    }
+    
+    func contactUsServiceProblemValidationErrorMessage() -> String {
+        return String("Please select service type")
+    }
 }
