@@ -16,7 +16,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var lbl_Flat: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var sideMenuArray = [NAString().My_Profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().payments(),NAString().myFood(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us()]
+    var sideMenuArray = [NAString().My_Profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(), NAString().payments(),NAString().donateFood(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us()]
     
     var mainScreen: MainScreenViewController!
     
@@ -75,7 +75,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             self.navigationController?.pushViewController(myWalletVC, animated: true)
         case 5 :
             let myFoodVC = NAViewPresenter().myFoodVC()
-            myFoodVC.navTitle = NAString().myFood()
+            myFoodVC.navTitle = NAString().donateFood()
             self.navigationController?.pushViewController(myFoodVC, animated: true)
         case 6 :
             let noticeBoardVC = NAViewPresenter().noticeBoardVC()
@@ -88,7 +88,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             let dv3 = NAViewPresenter().helpVC()
             dv3.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv3, animated: true)
-        case 8 :
+        case 9 :
             /** calling 'showReviewView' method with desired launch counts needed. **/
             if #available(iOS 10.3, *) {
                 //TODO: Need to pass some functionality in future, when we upload our app in App Store.

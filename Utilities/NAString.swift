@@ -1911,14 +1911,22 @@ class NAString : NSObject {
     }
     
     func collectFood() -> String {
-        return String("COLLECT FOOD")
+        return String("DONATE  FOOD")
     }
     
-    func myFood() -> String {
-        return String("My Food")
+    func donateFood() -> String {
+        return String("Donate Food")
     }
     
     func foodTypeErrorMessage() -> String {
-        return String("Please Enter Food Type")
+        return String("Please enter food type")
+    }
+    
+    func namma() -> String {
+        return String("Namma")
+    }
+    
+    func apartments() -> String {
+        return String("Apartments")
     }
 }

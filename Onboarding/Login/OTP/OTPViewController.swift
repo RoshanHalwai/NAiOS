@@ -90,7 +90,7 @@ class OTPViewController: NANavigationViewController {
         txtOTP5.font = NAFont().textFieldFont()
         
         self.btnVerify.isHidden =  true
-        
+
         txtOTP1.delegate = self
         txtOTP2.delegate = self
         txtOTP3.delegate = self

@@ -55,7 +55,7 @@ class MainScreenViewController: NANavigationViewController {
         
         /* Retrieve current Users UID & Its Flat Details for Navigation Drawer*/
         self.retreiveUserUID()
-     
+        
         segmentSelection.layer.borderWidth = CGFloat(NAString().one())
         segmentSelection.layer.borderColor = UIColor.black.cgColor
         let normalTextAttributes: [NSObject : AnyObject] = [
@@ -139,7 +139,7 @@ class MainScreenViewController: NANavigationViewController {
                 flatDetailsFB.append(userFlatDetails)
                 
                 GlobalUserData.shared.flatDetails_Items = flatDetailsFB
-
+                
                 let societyName = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
                 let apartmentName = GlobalUserData.shared.flatDetails_Items.first?.getapartmentName()
                 let flatNumber = GlobalUserData.shared.flatDetails_Items.first?.getflatNumber()

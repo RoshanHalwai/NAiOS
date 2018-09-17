@@ -34,6 +34,7 @@ class MyFoodViewController: NANavigationViewController {
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.rightBarButtonItem = nil
         
         //Button Formatting & settings
         btn_CollectFood.setTitle(NAString().collectFood(), for: .normal)

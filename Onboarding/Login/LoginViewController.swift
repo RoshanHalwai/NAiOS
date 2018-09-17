@@ -26,6 +26,8 @@ class LoginViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isHidden = false
+        
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
         scrollView.layoutIfNeeded()
@@ -53,7 +55,6 @@ class LoginViewController: NANavigationViewController {
         txt_CountryCode.font = NAFont().textFieldFont()
         txt_CountryCode.text = NAString()._91()
         
-        scrollView.layoutIfNeeded()
         self.view.layoutIfNeeded()
         //Set Textfield bottom border line
         txt_MobileNo.underlined()
@@ -64,7 +65,6 @@ class LoginViewController: NANavigationViewController {
         //set Title to Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().login_button())
         navigationItem.rightBarButtonItem = nil
-        self.navigationItem.hidesBackButton = true
         
         //Calling function from NANavigationViewController class to hide numberPad on done pressed
         hideNumberPad(numberTextField: txt_MobileNo)
