@@ -16,14 +16,20 @@ class CustomLaunchScreenViewController: NANavigationViewController {
     var loadingUserData = retrieveUserData()
     
     @IBOutlet weak var launch_ImageView: UIImageView!
+    @IBOutlet weak var lbl_Namma: UILabel!
+    @IBOutlet weak var lbl_Apartment: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.layoutIfNeeded()
-        launch_ImageView.clipsToBounds = true
-        launch_ImageView.layer.cornerRadius = 30
+        //Setting & Formatting Label Text & Font
+        lbl_Namma.text = NAString().namma()
+        lbl_Apartment.text = NAString().apartments()
         
+        lbl_Namma.font = NAFont().launchScreenLabelFont()
+        lbl_Apartment.font = NAFont().launchScreenLabelFont()
+        
+        self.navigationController?.navigationBar.isHidden = true
         self.navigationItem.rightBarButtonItem = nil
         dismissLaunchScreen()
     }

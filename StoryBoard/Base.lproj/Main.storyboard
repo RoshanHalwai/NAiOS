@@ -8977,24 +8977,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qrc-Sc-gk0">
-                                <rect key="frame" x="127.5" y="241.5" width="120" height="120"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="M9v-nD-TBP"/>
-                                    <constraint firstAttribute="height" constant="120" id="VBZ-Rh-u64"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="COe-yE-69F">
+                                <rect key="frame" x="87" y="186" width="200" height="231"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="qrc-Sc-gk0">
+                                        <rect key="frame" x="40" y="0.0" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="M9v-nD-TBP"/>
+                                            <constraint firstAttribute="height" constant="120" id="VBZ-Rh-u64"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="TG1-Fs-fzo">
+                                        <rect key="frame" x="0.0" y="130" width="200" height="101"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Namma" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPd-uA-iSf">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apartments" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVe-4h-QgQ">
+                                                <rect key="frame" x="0.0" y="53" width="200" height="48"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="xPd-uA-iSf" secondAttribute="trailing" id="F6O-ID-leu"/>
+                                            <constraint firstAttribute="trailing" secondItem="AVe-4h-QgQ" secondAttribute="trailing" id="xs5-in-sCm"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="qrc-Sc-gk0" firstAttribute="centerY" secondItem="2qp-Vj-neJ" secondAttribute="centerY" id="9ZD-Aa-QUV"/>
-                            <constraint firstItem="qrc-Sc-gk0" firstAttribute="centerX" secondItem="2qp-Vj-neJ" secondAttribute="centerX" id="Nz0-dx-QDR"/>
+                            <constraint firstItem="COe-yE-69F" firstAttribute="centerX" secondItem="2qp-Vj-neJ" secondAttribute="centerX" id="TrW-P0-ezF"/>
+                            <constraint firstItem="COe-yE-69F" firstAttribute="centerY" secondItem="2qp-Vj-neJ" secondAttribute="centerY" id="WRB-kw-cnL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K1M-HU-lkV"/>
                     </view>
                     <navigationItem key="navigationItem" id="6W8-px-kVM"/>
                     <connections>
                         <outlet property="launch_ImageView" destination="qrc-Sc-gk0" id="NT5-2c-12c"/>
+                        <outlet property="lbl_Apartment" destination="AVe-4h-QgQ" id="U5E-qF-zEc"/>
+                        <outlet property="lbl_Namma" destination="xPd-uA-iSf" id="moj-73-btb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egN-L5-KeF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -9035,7 +9063,7 @@
         <image name="Refer" width="128" height="128"/>
         <image name="Reschedule" width="128" height="128"/>
         <image name="apartment_services_na" width="250" height="250"/>
-        <image name="backBarButton" width="32" height="32"/>
+        <image name="backBarButton" width="36" height="36"/>
         <image name="checked" width="128" height="128"/>
         <image name="customer-support" width="256" height="256"/>
         <image name="event" width="64" height="64"/>

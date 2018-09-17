@@ -1889,4 +1889,12 @@ class NAString : NSObject {
     func cancelRequest() -> String {
         return String("Are you sure you want to cancel this request?")
     }
+    
+    func namma() -> String {
+        return String("Namma")
+    }
+    
+    func apartments() -> String {
+        return String("Apartments")
+    }
 }
