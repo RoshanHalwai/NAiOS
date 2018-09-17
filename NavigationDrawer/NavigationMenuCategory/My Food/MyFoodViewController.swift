@@ -35,7 +35,6 @@ class MyFoodViewController: NANavigationViewController {
     //Database References
     var userDataDonateFoodRef : DatabaseReference?
     var donateFoodsPrivateRef : DatabaseReference?
-    var donateFoodPrivateRef : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +114,7 @@ class MyFoodViewController: NANavigationViewController {
         return true
     }
     
-    //creating function to highlight select Event button color
+    //creating function to highlight select Donate Food button color
     func selectedFoodButtonColor(tag: Int) {
         for button in selectDonateFoodbuttons as [UIButton] {
             isValidSelectDonateFoodButtonClicked = [true]
