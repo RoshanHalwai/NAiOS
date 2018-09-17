@@ -1922,6 +1922,10 @@ class NAString : NSObject {
         return String("Please enter food type")
     }
     
+    func cancelRequest() -> String {
+        return String("Are you sure you want to cancel this request?")
+    }
+    
     func namma() -> String {
         return String("Namma")
     }

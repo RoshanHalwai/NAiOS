@@ -31,17 +31,19 @@ class AwaitingResponseViewController: NANavigationViewController {
     
     @IBOutlet weak var btn_Call: UIButton!
     @IBOutlet weak var btn_Cancel: UIButton!
-
+    
     //To set navigation title
     var navTitle : String?
     var serviceType : String?
     var notificationUID = String()
     var societyServiceRating : SocietyServiceRatingView!
     var societyServiceNumber = String()
+    var societyServiceType = String()
+    var societyServiceUID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)
         
@@ -94,8 +96,70 @@ class AwaitingResponseViewController: NANavigationViewController {
     }
     
     @IBAction func btnCancel(_ sender: UIButton) {
+        
+        NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().cancelRequest(), Message: "", CancelStyle: .cancel, OkStyle: .destructive, OK: { (action) in
+            self.cancelRequestedService()
+        }, Cancel: nil, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().ok())
+    }
+    
+    func cancelRequestedService() {
+        
         let societyServicesStatusRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(notificationUID)
         societyServicesStatusRef.child(Constants.FIREBASE_STATUS).setValue(NAString().cancelled())
+        
+        let societyServicesNotificationRef = Constants.FIREBASE_SOCIETY_SERVICES
+            .child(societyServiceType)
+            .child(Constants.FIREBASE_CHILD_PRIVATE)
+            .child(Constants.FIREBASE_CHILD_DATA)
+            .child(societyServiceUID)
+            .child(Constants.FIREBASE_NOTIFICATIONS)
+        
+        let historyRef = societyServicesNotificationRef
+            .child(Constants.FIREBASE_HISTORY)
+        
+        //Taking first UID from Future Node & Setting under -> Serving
+        let futureRef = societyServicesNotificationRef
+            .child(Constants.FIREBASE_CHILD_FUTURE)
+        
+        let servingRef = societyServicesNotificationRef
+            .child(Constants.FIREBASE_CHILD_SERVING)
+        servingRef.child(notificationUID).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                servingRef.removeValue()
+                
+                //Mapping NotificationUID with value cancelled under -> History
+                historyRef.child(self.notificationUID).setValue(NAString().cancelled())
+                
+                futureRef.observeSingleEvent(of: .value) { (futureSnapshot) in
+                    if futureSnapshot.exists() {
+                        //Getting Future Services UID here
+                        let futureServicesUID = futureSnapshot.value as? NSDictionary
+                        var futureServicUID = [String]()
+                        futureServicUID = futureServicesUID?.allKeys as! [String]
+                        let serviceUID = futureServicUID[0]
+                        
+                        //Deteting Value & Key from Future ref
+                        futureRef.child(serviceUID).removeValue()
+                        
+                        //Taking UID from Future & Mapping under -> Serving with value Accepted
+                        servingRef.child(serviceUID).setValue(NAString().accepted())
+                    }
+                }
+            } else {
+                
+                //If Request is exists in Future node then delete from Future & Insert in history with value cancelled
+                futureRef.child(self.notificationUID).observeSingleEvent(of: .value) { (futureSnapshot) in
+                    if futureSnapshot.exists() {
+                        
+                        futureRef.child(self.notificationUID).removeValue()
+                        historyRef.child(self.notificationUID).setValue(NAString().cancelled())
+                    }
+                }
+            }
+        }
+        
+        //Navigating back to previous screen
+        self.navigationController?.popViewController(animated: true)
     }
     
     //Navigating Back to Main Screen View Controller.
@@ -116,14 +180,14 @@ class AwaitingResponseViewController: NANavigationViewController {
                 //Checking whether Service Person Accepted the User Request or not
                 if (societyServiceData?[NASocietyServicesFBKeys.takenBy.key] != nil &&
                     societyServiceData?[NASocietyServicesFBKeys.endOTP.key] != nil) {
-                    let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
-                    let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
+                    self.societyServiceUID = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
+                    self.societyServiceType = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                     
                     let societyServiceDataRef = Constants.FIREBASE_SOCIETY_SERVICES
-                        .child(societyServiceType)
+                        .child(self.societyServiceType)
                         .child(Constants.FIREBASE_CHILD_PRIVATE)
                         .child(Constants.FIREBASE_CHILD_DATA)
-                        .child(societyServiceUID)
+                        .child(self.societyServiceUID)
                     
                     //Getting Service Person Name and Mobile Number
                     societyServiceDataRef.observeSingleEvent(of: .value, with: { (snapshot) in
