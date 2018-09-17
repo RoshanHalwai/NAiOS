@@ -116,6 +116,8 @@ struct Constants {
     static let FIREBASE_PAYMENT_ID = "paymentId"
     static let FIREBASE_RESULT = "result"
     static let FIREBASE_TRANSACTIONS = "transactions"
+    static let FIREBASE_CHILD_SERVING = "serving"
+    static let FIREBASE_CHILD_FUTURE = "future"
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     
