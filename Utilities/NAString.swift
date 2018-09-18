@@ -1949,4 +1949,8 @@ class NAString : NSObject {
     func contactUsServiceProblemValidationErrorMessage() -> String {
         return String("Please select service type")
     }
+    
+    func paymentCancelledByUser() -> String {
+        return String("Payment cancelled by user")
+    }
 }

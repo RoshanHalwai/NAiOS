@@ -37,13 +37,13 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var getUserMobileNumebr = String()
     var getUserEmailID = String()
     var getUserPendingAmount = String()
-    var userPendingAmount = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Payment Gateway test API KEY
-        razorpay = Razorpay.initWithKey("rzp_test_GCFVAY6RGbNWyb", andDelegate: self)
+        //Payment Gateway Namma Apartment API KEY for Transactions
+        razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
+        retrievingMaintenanceCostFromFirebase()
         
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
         getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
@@ -102,7 +102,9 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     //This will call when any error occurred during transaction
     func onPaymentError(_ code: Int32, description str: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, OkStyle: .default, OK: nil)
-        if code != 2 || str != "Payment cancelled by user" {
+        
+        //Storing data in firebase in case of Transaction fail & after getting error code 0
+        if code != 2 || str != NAString().paymentCancelledByUser() {
             storePaymentDetails(paymentId: "", result: NAString().failure().capitalized)
         }
     }
@@ -122,7 +124,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         let transactionRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_TRANSACTIONS).child(Constants.FIREBASE_CHILD_PRIVATE).child(transactionUID!)
         
         let transactionDetails = [
-            NAUserTransactionFBKeys.amount.key : userPendingAmount,
+            NAUserTransactionFBKeys.amount.key :lbl_Cost.text as Any,
             NAUserTransactionFBKeys.paymentId.key : paymentId,
             NAUserTransactionFBKeys.result.key : result,
             NAUserTransactionFBKeys.serviceCategory.key : paymentDescription,
@@ -144,5 +146,16 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             ],
         ]
         razorpay.open(options)
+    }
+    
+    func retrievingMaintenanceCostFromFirebase() {
+        let maintenanceCostRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_MAINTENANCE_COST)
+        maintenanceCostRef.observeSingleEvent(of: .value) { (costSnapshot) in
+            let maintenanceCost = costSnapshot.value as! Int
+            let amountString:Int? = maintenanceCost
+            let totalAmountInPaisa: Int = amountString! * 100
+            self.lbl_Cost.text = "\(maintenanceCost)"
+            self.getUserPendingAmount = "\(totalAmountInPaisa)"
+        }
     }
 }
