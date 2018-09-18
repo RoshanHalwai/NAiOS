@@ -25,6 +25,10 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var lbl_SelectSlot: UILabel!
     @IBOutlet weak var lbl_ErrorValidation_Message: UILabel!
     @IBOutlet weak var lbl_description: UILabel!
+    @IBOutlet weak var lbl_CheckList_SelectProblem: UILabel!
+    @IBOutlet weak var lbl_CheckList_SelectSlot: UILabel!
+    @IBOutlet weak var lbl_CheckList_RequestService: UILabel!
+    @IBOutlet weak var lbl_CheckList_FreeService: UILabel!
     @IBOutlet weak var lbl_DescrptionErrorValidation_Message: UILabel!
     @IBOutlet weak var checkList_CardView: UIView!
     
@@ -33,6 +37,7 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var garbageStackView: UIStackView!
     @IBOutlet weak var othersStackView: UIStackView!
     @IBOutlet weak var societyStackView: UIStackView!
+    @IBOutlet weak var availableStackView: UIStackView!
     
     @IBOutlet weak var lbl_available: UILabel!
     @IBOutlet weak var lbl_unAvailable: UILabel!
@@ -75,7 +80,6 @@ class SocietyServicesViewController: NANavigationViewController {
         txt_SelectAny.font = NAFont().textFieldFont()
         txt_Others.font = NAFont().textFieldFont()
         
-        lbl_ErrorValidation_Message.text = NAString().please_select_your_problem()
         lbl_DescrptionErrorValidation_Message.text = NAString().please_enter_your_problem()
         lbl_unAvailable.text = NAString().unavailable()
         lbl_available.text = NAString().available()
@@ -94,9 +98,6 @@ class SocietyServicesViewController: NANavigationViewController {
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)        
         
-        //Label formatting & setting
-        lbl_SelectSlot.text = NAString().selectSlot()
-        
         //lbl_Title.font = NAFont().headerFont()
         lbl_SelectProblem.font = NAFont().headerFont()
         lbl_SelectSlot.font = NAFont().headerFont()
@@ -113,11 +114,6 @@ class SocietyServicesViewController: NANavigationViewController {
         garbageButtons.append(btn_DryWaste)
         garbageButtons.append(btn_WetWaste)
         
-        //button Formatting & setting
-        btn_Immediately.setTitle(NAString().immediately(), for: .normal)
-        btn_9AMto12PM.setTitle(NAString()._9AM_12PM(), for: .normal)
-        btn_12PMto3PM.setTitle(NAString()._12PM_3PM(), for: .normal)
-        btn_3PMto5PM.setTitle(NAString()._3PM_5PM(), for: .normal)
         btn_DryWaste.setTitle(NAString().dryWaste(), for: .normal)
         btn_WetWaste.setTitle(NAString().wetWaste(), for: .normal)
         
@@ -174,6 +170,12 @@ class SocietyServicesViewController: NANavigationViewController {
         self.changingSelectAnyButtonTitles()
         self.changingLabelSelectProblemTitles()
         
+        //Calling Label Titles Functions
+        self.changingButtonsText()
+        self.changingSelectLabelText()
+        self.changingChecklistLabelText()
+        self.changingLabelValidationMessageText()
+        
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
@@ -209,7 +211,7 @@ class SocietyServicesViewController: NANavigationViewController {
     
     // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-       UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     //To Navigate to Society Service History VC
@@ -222,6 +224,54 @@ class SocietyServicesViewController: NANavigationViewController {
             dv.navigationTitle = navTitle!.lowercased()
         }
         self.navigationController?.pushViewController(dv, animated: true)
+    }
+    
+    //Create Changing the Label Validation Message Text Function
+    func changingLabelValidationMessageText() {
+        if (navTitle == NAString().scrapCollection()) {
+            lbl_ErrorValidation_Message.text = NAString().please_enter_your_scrapType()
+        } else {
+            lbl_ErrorValidation_Message.text = NAString().please_select_your_problem()
+        }
+    }
+    
+    //Create Changing the Checklist Label Text Function
+    func changingChecklistLabelText() {
+        if (navTitle == NAString().scrapCollection()) {
+            lbl_CheckList_SelectProblem.text = NAString().selectScrapType()
+            lbl_CheckList_SelectSlot.text = NAString().selectQuantity()
+        } else {
+            lbl_CheckList_SelectProblem.text = NAString().selectProblem()
+            lbl_CheckList_SelectSlot.text = NAString().selectSlot()
+            lbl_CheckList_RequestService.text = NAString().requestService()
+            lbl_CheckList_FreeService.text = NAString().enjoyService()
+        }
+        
+    }
+    
+    //Create Changing the Label Text Function
+    func changingSelectLabelText() {
+        if (navTitle == NAString().scrapCollection()) {
+            availableStackView.isHidden = true
+            lbl_SelectSlot.text = NAString().totalQuantity()
+        } else {
+            lbl_SelectSlot.text = NAString().selectSlot()
+        }
+    }
+    
+    //Create Changing the Buttons Text Function
+    func changingButtonsText() {
+        if (navTitle == NAString().scrapCollection()) {
+            btn_Immediately.setTitle(NAString()._0_5Kg(), for: .normal)
+            btn_9AMto12PM.setTitle(NAString()._5_10Kg(), for: .normal)
+            btn_12PMto3PM.setTitle(NAString()._10_15Kg(), for: .normal)
+            btn_3PMto5PM.setTitle(NAString()._15Plus(), for: .normal)
+        } else {
+            btn_Immediately.setTitle(NAString().immediately(), for: .normal)
+            btn_9AMto12PM.setTitle(NAString()._9AM_12PM(), for: .normal)
+            btn_12PMto3PM.setTitle(NAString()._12PM_3PM(), for: .normal)
+            btn_3PMto5PM.setTitle(NAString()._3PM_5PM(), for: .normal)
+        }
     }
     
     //Create Changing the Button Titles Function
@@ -256,8 +306,10 @@ class SocietyServicesViewController: NANavigationViewController {
             lbl_SelectProblem.text = NAString().selectProblem()
         } else if (navTitle == NAString().electrician()) {
             lbl_SelectProblem.text = NAString().selectProblem()
-        } else {
+        } else if (navTitle == NAString().garbage_Collection()) {
             lbl_SelectProblem.text = NAString().collectGarbage()
+        } else {
+            lbl_SelectProblem.text = NAString().selectScrapType()
         }
     }
     
