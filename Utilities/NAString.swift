@@ -237,6 +237,10 @@ class NAString : NSObject {
         return String("Please Enter Your Problem")
     }
     
+    func please_enter_your_scrapType() -> String {
+        return String("Please select your scrap type")
+    }
+    
     func please_enter_Valid_email() -> String {
         return String("Please enter a Valid Email address")
     }
@@ -445,6 +449,10 @@ class NAString : NSObject {
     
     func eventManagement() -> String {
         return String("eventManagement")
+    }
+    
+    func scrapCollection() -> String {
+        return String("Scrap Collection")
     }
     
     func emergency() -> String {
@@ -1226,8 +1234,16 @@ class NAString : NSObject {
         return String ("Select Slot")
     }
     
+    func totalQuantity() -> String {
+        return String ("Total Quantity (Rough Estimate in Kg's) ")
+    }
+    
     func selectProblem() -> String {
         return String ("Select Problem")
+    }
+    
+    func selectQuantity() -> String {
+        return String ("Select Quantity")
     }
     
     func immediately() -> String {
@@ -1240,6 +1256,22 @@ class NAString : NSObject {
     
     func _12PM_3PM() -> String {
         return String ("12PM - 3PM")
+    }
+    
+    func _0_5Kg() -> String {
+        return String ("0 - 5 Kg")
+    }
+    
+    func _5_10Kg() -> String {
+        return String ("5 - 10 Kg")
+    }
+    
+    func _10_15Kg() -> String {
+        return String ("10 - 15 Kg")
+    }
+    
+    func _15Plus() -> String {
+        return String ("15+ Kg")
     }
     
     func _3PM_5PM() -> String {
@@ -1272,6 +1304,10 @@ class NAString : NSObject {
     
     func collectGarbage() -> String {
         return String ("Select Garbage")
+    }
+    
+    func selectScrapType() -> String {
+        return String ("Select Scrap Type")
     }
     
     func selectAnyOne() -> String {
@@ -1804,6 +1840,14 @@ class NAString : NSObject {
     
     func unavailable() -> String {
         return String("Unavailable")
+    }
+    
+    func requestService() -> String {
+        return String("Request Service")
+    }
+    
+    func enjoyService() -> String {
+        return String("Enjoy the free service")
     }
     
     func others() -> String {
