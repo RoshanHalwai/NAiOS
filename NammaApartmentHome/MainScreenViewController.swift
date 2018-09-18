@@ -80,8 +80,10 @@ class MainScreenViewController: NANavigationViewController {
             societyServicesModel(cellTitle: NAString().electrician(),cellImage:  #imageLiteral(resourceName: "electrician")),
             societyServicesModel(cellTitle: NAString().garbage_Collection(),cellImage:  #imageLiteral(resourceName: "garbage")),
             societyServicesModel(cellTitle: NAString().emergency(),cellImage:  #imageLiteral(resourceName: "Emergency")),
-            societyServicesModel(cellTitle: NAString().event_management(),cellImage: #imageLiteral(resourceName: "eventManagement")),     societyServicesModel(cellTitle: NAString().scrapCollection(),cellImage: #imageLiteral(resourceName: "garbage"))
-
+            societyServicesModel(cellTitle: NAString().event_management(),cellImage: #imageLiteral(resourceName: "eventManagement")),
+            //TODO: Feature Added Scrap Collcetion Image
+            societyServicesModel(cellTitle: NAString().scrapCollection(),cellImage: #imageLiteral(resourceName: "garbage"))
+            
         ]
         apartmentData = [
             apartmentServicesModel(cellTitle: NAString().cook(), cellImage: #imageLiteral(resourceName: "Cook")),
