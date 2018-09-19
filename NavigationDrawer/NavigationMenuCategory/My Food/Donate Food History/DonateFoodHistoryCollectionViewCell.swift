@@ -13,12 +13,10 @@ class DonateFoodHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_FoodType: UILabel!
     @IBOutlet weak var lbl_FoodQuantity_Type: UILabel!
     @IBOutlet weak var lbl_Date_Type: UILabel!
-    @IBOutlet weak var lbl_Status_Type: UILabel!
     
     @IBOutlet weak var img_Profile: UIImageView!
     
     @IBOutlet weak var lbl_FoodType_Detail: UILabel!
     @IBOutlet weak var lbl_FoodQuantity_Detail: UILabel!
     @IBOutlet weak var lbl_Date_Detail: UILabel!
-    @IBOutlet weak var lbl_Status_Detail: UILabel!
 }

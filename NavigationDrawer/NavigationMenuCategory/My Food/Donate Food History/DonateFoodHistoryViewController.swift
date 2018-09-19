@@ -28,7 +28,7 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         let width = UIScreen.main.bounds.width
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: 260)
+        layout.itemSize = CGSize(width: width - 10, height: 240)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -58,7 +58,6 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         
         cell?.lbl_FoodType_Detail.text = foodDonationDetails.getFoodType()
         cell?.lbl_FoodQuantity_Detail.text = foodDonationDetails.getFoodQuantity()
-        cell?.lbl_Status_Detail.text = foodDonationDetails.getStatus()
         cell?.lbl_Date_Detail.text = userRequestTime
         
         //TODO : Feature Added Donate Food Image
@@ -67,12 +66,10 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         cell?.lbl_FoodType.font = NAFont().textFieldFont()
         cell?.lbl_FoodQuantity_Type.font = NAFont().textFieldFont()
         cell?.lbl_Date_Type.font = NAFont().textFieldFont()
-        cell?.lbl_Status_Type.font = NAFont().textFieldFont()
         
         cell?.lbl_FoodType_Detail.font = NAFont().headerFont()
         cell?.lbl_FoodQuantity_Detail.font = NAFont().headerFont()
         cell?.lbl_Date_Detail.font = NAFont().headerFont()
-        cell?.lbl_Status_Detail.font = NAFont().headerFont()
         
         //setting image round
         cell?.img_Profile.layer.cornerRadius = (cell?.img_Profile.frame.size.width)!/2
@@ -98,10 +95,8 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
                         let foodType = userfoodDonationsData![DonateFoodListFBKeys.foodType.key]
                         let foodQuantity = userfoodDonationsData![DonateFoodListFBKeys.foodQuantity.key]
                         let timestamp = (userfoodDonationsData![DonateFoodListFBKeys.timeStamp.key])
-                        let status = userfoodDonationsData![DonateFoodListFBKeys.status.key]
                         
-                        let foodDonationsData = NAUserFoodDonations(foodQuantity: foodQuantity as! String, foodType: foodType as! String, status: status as! String, timeStamp: Int(truncating: timestamp! as! NSNumber))
-                        print(foodDonationsData)
+                        let foodDonationsData = NAUserFoodDonations(foodQuantity: foodQuantity as! String, foodType: foodType as! String, timeStamp: Int(truncating: timestamp! as! NSNumber))
                         
                         self.userFoodDonationDetails.append(foodDonationsData)
                         NAActivityIndicator.shared.hideActivityIndicator()

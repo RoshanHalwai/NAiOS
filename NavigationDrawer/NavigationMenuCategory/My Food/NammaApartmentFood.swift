@@ -34,13 +34,11 @@ enum DonateFoodListFBKeys: String {
 class NAUserFoodDonations {
     private var foodQuantity: String
     private var foodType: String
-    private var status: String
     private var timeStamp = Int()
     
-    init(foodQuantity: String, foodType: String, status: String, timeStamp: Int) {
+    init(foodQuantity: String, foodType: String, timeStamp: Int) {
         self.foodQuantity = foodQuantity
         self.foodType = foodType
-        self.status = status
         self.timeStamp = timeStamp
     }
     
@@ -56,9 +54,6 @@ class NAUserFoodDonations {
         return timeStamp
     }
     
-    func getStatus() -> String {
-        return status
-    }
 }
 
 
