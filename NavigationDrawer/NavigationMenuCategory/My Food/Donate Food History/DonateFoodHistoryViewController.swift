@@ -12,10 +12,10 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
     @IBOutlet weak var collectionView: UICollectionView!
     
     var userFoodDonationDetails = [NAUserFoodDonations]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.ConfigureNavBarTitle(title: NAString().history().capitalized)
         self.navigationItem.rightBarButtonItem = nil
         retrievingFoodDonationsData()
@@ -61,6 +61,9 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         cell?.lbl_Status_Detail.text = foodDonationDetails.getStatus()
         cell?.lbl_Date_Detail.text = userRequestTime
         
+        //TODO : Feature Added Donate Food Image
+        cell?.img_Profile.image = UIImage(named: "customer-support")
+        
         cell?.lbl_FoodType.font = NAFont().textFieldFont()
         cell?.lbl_FoodQuantity_Type.font = NAFont().textFieldFont()
         cell?.lbl_Date_Type.font = NAFont().textFieldFont()
@@ -70,6 +73,10 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         cell?.lbl_FoodQuantity_Detail.font = NAFont().headerFont()
         cell?.lbl_Date_Detail.font = NAFont().headerFont()
         cell?.lbl_Status_Detail.font = NAFont().headerFont()
+        
+        //setting image round
+        cell?.img_Profile.layer.cornerRadius = (cell?.img_Profile.frame.size.width)!/2
+        cell?.img_Profile.clipsToBounds = true
         
         NAShadowEffect().shadowEffect(Cell: cell!)
         return cell!
@@ -92,7 +99,7 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
                         let foodQuantity = userfoodDonationsData![DonateFoodListFBKeys.foodQuantity.key]
                         let timestamp = (userfoodDonationsData![DonateFoodListFBKeys.timeStamp.key])
                         let status = userfoodDonationsData![DonateFoodListFBKeys.status.key]
-
+                        
                         let foodDonationsData = NAUserFoodDonations(foodQuantity: foodQuantity as! String, foodType: foodType as! String, status: status as! String, timeStamp: Int(truncating: timestamp! as! NSNumber))
                         print(foodDonationsData)
                         
@@ -107,5 +114,4 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
             }
         }
     }
-    
 }

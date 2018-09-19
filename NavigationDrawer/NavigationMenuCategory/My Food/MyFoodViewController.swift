@@ -161,7 +161,6 @@ class MyFoodViewController: NANavigationViewController {
         }
         if !(txt_FoodType.text?.isEmpty)! && (isValidSelectDonateFoodButtonClicked.index(of: true) != nil) {
             storeDonateFoodDetailsInFirebase()
-            
         }
     }
     
@@ -178,6 +177,8 @@ class MyFoodViewController: NANavigationViewController {
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             let dv = NAViewPresenter().donateFoodHistoryVC()
+            self.txt_FoodType.text = ""
+            self.selectedFoodButtonColor(tag: 0)
             self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)
