@@ -1196,6 +1196,10 @@ class NAString : NSObject {
         return Int (108)
     }
     
+    func submittRequestButtonTagValue() -> Int {
+        return Int (109)
+    }
+    
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)
@@ -1980,6 +1984,18 @@ class NAString : NSObject {
     
     func apartments() -> String {
         return String("Apartments")
+    }
+    
+    func contactUsProgressDialogTitle() -> String {
+        return String("Raising Request")
+    }
+    
+    func contactUsServiceValidationErrorMessage() -> String {
+        return String("Please enter problem")
+    }
+    
+    func contactUsServiceProblemValidationErrorMessage() -> String {
+        return String("Please select service type")
     }
     
     func paymentCancelledByUser() -> String {

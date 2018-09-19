@@ -59,7 +59,7 @@ struct Constants {
     static let FIREBASE_FLAT = "D-101"
     static let FIREBASE_CHILD_CABS = "cabs"
     static let FIREBASE_CHILD_VEHICLES = "vehicles"
-    static let FIREBASE_CHILD_DONATEFOOD = "donateFood"
+    static let FIREBASE_CHILD_DONATEFOOD = "foodDonations"
     static let FIREBASE_CHILD_DELIVERIES = "deliveries"
     static let FIREBASE_CHILD_CITIES = "cities"
     static let FIREBASE_CHILD_SOCIETIES = "societies"

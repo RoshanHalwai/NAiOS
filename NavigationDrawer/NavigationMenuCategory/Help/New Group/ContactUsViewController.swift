@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class ContactUsViewController: NANavigationViewController {
+class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     
     @IBOutlet weak var lbl_Select_Service_Category: UILabel!
     @IBOutlet weak var lbl_Select_Service_Type: UILabel!
@@ -25,6 +25,9 @@ class ContactUsViewController: NANavigationViewController {
     @IBOutlet weak var txt_Describe_Your_Problem: UITextView!
     
     @IBOutlet weak var card_View: UIView!
+    
+    @IBOutlet weak var lbl_SelectServiceType_Validation: UILabel!
+    @IBOutlet weak var lbl_DescribeYourProblem_Validation: UILabel!
     
     var navTitle = String()
     var selectedItem = String()
@@ -48,18 +51,33 @@ class ContactUsViewController: NANavigationViewController {
         lbl_Select_Service_Category.text = NAString().selectServiceCategory()
         lbl_Select_Service_Type.text = NAString().selectServiceType()
         lbl_Describe_Your_Problem.text = NAString().describeYourProblem()
+        lbl_SelectServiceType_Validation.text = NAString().contactUsServiceProblemValidationErrorMessage()
+        lbl_DescribeYourProblem_Validation.text = NAString().contactUsServiceValidationErrorMessage()
         lbl_Select_Service_Category.font = NAFont().headerFont()
         lbl_Select_Service_Type.font = NAFont().headerFont()
         lbl_Describe_Your_Problem.font = NAFont().headerFont()
+        lbl_SelectServiceType_Validation.font = NAFont().descriptionFont()
+        lbl_DescribeYourProblem_Validation.font = NAFont().descriptionFont()
         
         txt_Choose_One.font = NAFont().textFieldFont()
         txt_Describe_Your_Problem.font = NAFont().textFieldFont()
         
         txt_Choose_One.delegate = self
-        txt_Describe_Your_Problem.delegate = self as? UITextViewDelegate
+        txt_Describe_Your_Problem.delegate = self
         
         self.view.layoutIfNeeded()
         txt_Choose_One.underlined()
+        
+        lbl_SelectServiceType_Validation.isHidden = true
+        lbl_DescribeYourProblem_Validation.isHidden = true
+        
+        //Apply Button Text
+        btn_Society_Services.setTitle(NAString().societyService(), for: .normal)
+        btn_Apartment_Services.setTitle(NAString().ApartmentServices(), for: .normal)
+        
+        //color set on selected
+        btn_Society_Services.setTitleColor(UIColor.black, for: .selected)
+        btn_Apartment_Services.setTitleColor(UIColor.black, for: .selected)
         
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
@@ -77,11 +95,6 @@ class ContactUsViewController: NANavigationViewController {
         
         self.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.rightBarButtonItem = nil
-        
-        btn_Society_Services.setTitle(NAString().societyService(), for: .normal)
-        btn_Society_Services.setTitleColor(UIColor.black, for: .selected)
-        btn_Apartment_Services.setTitle(NAString().ApartmentServices(), for: .normal)
-        btn_Apartment_Services.setTitleColor(UIColor.black, for: .selected)
         
         btn_Society_Services.layer.cornerRadius = CGFloat(NAString().fifteen())
         btn_Society_Services.layer.borderWidth = CGFloat(NAString().two())
@@ -108,9 +121,9 @@ class ContactUsViewController: NANavigationViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
     }
     
-   // Navigate to FAQ's WebSite
+    // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-         UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     @objc func gotoContactUsHistoryVC() {
@@ -166,14 +179,57 @@ class ContactUsViewController: NANavigationViewController {
             listVC.navigationTitle = NAString().selectProblem()
             listVC.contactUsVC = self
             self.navigationController?.present(nav, animated: true, completion: nil)
+            lbl_SelectServiceType_Validation.isHidden = true
+            txt_Choose_One.underlined()
         }
         return true
     }
     
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        lbl_DescribeYourProblem_Validation.isHidden = true
+        return true
+    }
+    
     @IBAction func btn_Submit_request_Action(_ sender: UIButton) {
-        if !(txt_Choose_One.text?.isEmpty)! && !(txt_Describe_Your_Problem.text.isEmpty) {
-            storingSupportDetails()
+        if (txt_Choose_One.text?.isEmpty)! {
+            lbl_SelectServiceType_Validation.isHidden = false
+            txt_Choose_One.redunderlined()
+        } else {
+            txt_Choose_One.underlined()
+            lbl_SelectServiceType_Validation.isHidden = true
         }
+        if (txt_Describe_Your_Problem.text?.isEmpty)! {
+            lbl_DescribeYourProblem_Validation.isHidden = false
+        } else {
+            lbl_DescribeYourProblem_Validation.isHidden = true
+        }
+        if !(txt_Choose_One.text?.isEmpty)! && !(txt_Describe_Your_Problem.text.isEmpty) {
+            
+            storingSupportDetails()
+            
+            self.txt_Choose_One.text = ""
+            self.txt_Describe_Your_Problem.text = ""
+            
+            btn_Submit_Request.tag = NAString().submittRequestButtonTagValue()
+            OpacityView.shared.addButtonTagValue = btn_Submit_Request.tag
+            
+            OpacityView.shared.showingOpacityView(view: self)
+            OpacityView.shared.showingPopupView(view: self)
+        }
+    }
+    
+    //AlertView For navigation
+    func inviteAlertView() {
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().requestRaised() , message: NAString().successfull_Support_request_Message(), preferredStyle: .alert)
+        
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+            let dv = NAViewPresenter().contactUsHistoryVC()
+            self.navigationController?.pushViewController(dv, animated: true)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
     //Storing User problems in Firebase
@@ -196,8 +252,25 @@ class ContactUsViewController: NANavigationViewController {
             SupportDetailsFBKeys.userUID.key : userUID]
         
         supportRef.setValue(problemDetails, withCompletionBlock: { (error, snapshot) in
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().requestRaised(), Message: NAString().successfull_Support_request_Message(), OkStyle: .default, OK: nil)
-            self.navigationController?.popViewController(animated: true)
+            //Hiding popView & Showing AlertView after adding all the data in firebase.
+            OpacityView.shared.hidingOpacityView()
+            OpacityView.shared.hidingPopupView()
+            self.inviteAlertView()
         })
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        txt_Choose_One.underlined()
+        lbl_SelectServiceType_Validation.isHidden = true
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        lbl_DescribeYourProblem_Validation.isHidden = true
+        return true
     }
 }

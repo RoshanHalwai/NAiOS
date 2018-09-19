@@ -153,6 +153,7 @@ class MyFoodViewController: NANavigationViewController {
     @IBAction func btnSelectFood(_ sender: UIButton) {
         getFoodQuantityButton_Text = (sender.titleLabel?.text)!
         selectedFoodButtonColor(tag: sender.tag)
+        txt_FoodType.resignFirstResponder()
     }
     
     //AlertView For navigation
