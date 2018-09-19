@@ -67,7 +67,11 @@ class SocietyServicesViewController: NANavigationViewController {
         //Create textfield first letter capital
         txt_Others.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        getButtonHour_Text = NAString().immediately()
+        if (navTitle == NAString().scrapCollection()) {
+            getButtonHour_Text = NAString()._0_5Kg()
+        } else {
+            getButtonHour_Text = NAString().immediately()
+        }
         getButtonGarbage_Problem_Text = NAString().dryWaste()
         
         self.txt_SelectAny.text = selectedProblem
@@ -378,8 +382,10 @@ class SocietyServicesViewController: NANavigationViewController {
                     searchVC.titleString = NAString().plumber()
                 } else if (navTitle == NAString().carpenter()) {
                     searchVC.titleString = NAString().carpenter()
-                } else {
+                } else if (navTitle == NAString().electrician()) {
                     searchVC.titleString = NAString().electrician()
+                } else {
+                    searchVC.titleString = NAString().scrapCollection()
                 }
                 searchVC.societyServiceVC = self
                 self.navigationController?.present(nav, animated: true, completion: nil)
@@ -448,6 +454,9 @@ extension SocietyServicesViewController {
         if (navTitle == NAString().garbage_Collection()) {
             problem = getButtonGarbage_Problem_Text
             serviceType = NAString().garbageCollection()
+        } else if (navTitle == NAString().scrapCollection()) {
+            problem = selectedProblem
+            serviceType = NAString().scrap_Collection()
         } else {
             if (self.txt_SelectAny.text == NAString().others()) {
                 problem = self.txt_Others.text!
@@ -461,12 +470,26 @@ extension SocietyServicesViewController {
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         
+        var problemOrScrapType = String()
+        var timeSlotOrQuantity = String()
+        var uidOrNotificationUID = String()
+        
+        if navTitle == NAString().scrapCollection() {
+            problemOrScrapType = NASocietyServicesFBKeys.scrapType.key
+            timeSlotOrQuantity = NASocietyServicesFBKeys.quantity.key
+            uidOrNotificationUID = NASocietyServicesFBKeys.uid.key
+        } else {
+            problemOrScrapType = NASocietyServicesFBKeys.problem.key
+            timeSlotOrQuantity = NASocietyServicesFBKeys.timeSlot.key
+            uidOrNotificationUID = NASocietyServicesFBKeys.notificationUID.key
+        }
+        
         let societyServiceNotificationData = [
-            NASocietyServicesFBKeys.problem.key : problem,
-            NASocietyServicesFBKeys.timeSlot.key : getButtonHour_Text,
+            problemOrScrapType : problem,
+            timeSlotOrQuantity : getButtonHour_Text,
             NASocietyServicesFBKeys.userUID.key: userUID,
             NASocietyServicesFBKeys.societyServiceType.key : serviceType,
-            NASocietyServicesFBKeys.notificationUID.key : notificationUID,
+            uidOrNotificationUID : notificationUID,
             NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
         
         societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData) { (error, snapshot) in
@@ -475,6 +498,7 @@ extension SocietyServicesViewController {
                 self.callAwaitingResponseViewController()
             })
         }
+        
     }
     
     func callAwaitingResponseViewController() {
@@ -487,8 +511,10 @@ extension SocietyServicesViewController {
             lv.serviceType = NAString().carpenter()
         } else if (navTitle == NAString().electrician()) {
             lv.serviceType = NAString().electrician()
-        } else {
+        } else if (navTitle == NAString().garbage_Collection()) {
             lv.serviceType = NAString().garbage_Collection()
+        } else {
+            lv.serviceType = NAString().scrapCollection()
         }
         self.navigationController?.pushViewController(lv, animated: true)
     }

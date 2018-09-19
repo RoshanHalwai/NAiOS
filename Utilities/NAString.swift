@@ -455,6 +455,10 @@ class NAString : NSObject {
         return String("Scrap Collection")
     }
     
+    func scrap_Collection() -> String {
+        return String("scrapCollection")
+    }
+    
     func emergency() -> String {
         return String("Emergency")
     }
