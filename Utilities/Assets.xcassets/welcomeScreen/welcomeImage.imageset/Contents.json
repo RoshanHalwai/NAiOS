@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "doormat.png",
+      "filename" : "traffic-sign-6.png",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "doormat-1.png",
+      "filename" : "traffic-sign-7.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "doormat-2.png",
+      "filename" : "traffic-sign-8.png",
       "scale" : "3x"
     }
   ],
