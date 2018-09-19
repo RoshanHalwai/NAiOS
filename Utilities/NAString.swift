@@ -1939,7 +1939,7 @@ class NAString : NSObject {
     }
     
     func cancelled() -> String {
-        return String("cancelled")
+        return String("Cancelled")
     }
     
     func foodType() -> String {
