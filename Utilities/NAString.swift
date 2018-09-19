@@ -1087,6 +1087,10 @@ class NAString : NSObject {
         return String("Currently there are no support requests raised by the user.")
     }
     
+    func layoutFeatureErrorUserFoodDonations() -> String {
+        return String("Currently there are no foodDonation requests raised by the user.")
+    }
+    
     func layoutFeatureErrorpackageArrivalList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
     }

@@ -47,6 +47,15 @@ class MyFoodViewController: NANavigationViewController {
         super.ConfigureNavBarTitle(title: navTitle)
         self.navigationItem.rightBarButtonItem = nil
         
+        //Creating History icon on Navigation bar
+        let historyButton = UIButton(type: .system)
+        historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
+        historyButton.addTarget(self, action: #selector(gotoDonateFoodHistoryVC), for: .touchUpInside)
+        let history = UIBarButtonItem(customView: historyButton)
+        
+        //created Array for history and info button icons
+        self.navigationItem.setRightBarButtonItems([history], animated: true)
+        
         //Button Formatting & settings
         btn_CollectFood.setTitle(NAString().collectFood(), for: .normal)
         btn_CollectFood.setTitleColor(NAColor().buttonFontColor(), for: .normal)
@@ -100,6 +109,12 @@ class MyFoodViewController: NANavigationViewController {
         NAShadowEffect().shadowEffectForView(view: checkList_CardView)
         NAShadowEffect().shadowEffectForView(view: cardView)
     }
+    
+    @objc func gotoDonateFoodHistoryVC() {
+        let dv = NAViewPresenter().donateFoodHistoryVC()
+        self.navigationController?.pushViewController(dv, animated: true)
+    }
+    
     
     //Create Food Type textfield first letter capital function
     @objc func valueChanged(sender: UITextField) {
@@ -162,7 +177,7 @@ class MyFoodViewController: NANavigationViewController {
         let alert = UIAlertController(title: NAString().addFood_AlertTitle() , message: NAString().addFood_AlertMessage(), preferredStyle: .alert)
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-            let dv = NAViewPresenter().mainScreenVC()
+            let dv = NAViewPresenter().donateFoodHistoryVC()
             self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)
@@ -183,21 +198,18 @@ extension MyFoodViewController {
         //Mapping donateFoodUID with true under UsersData -> Flat
         userDataDonateFoodRef?.child(donateFoodUID!).setValue(NAString().gettrue())
         
-        donateFoodsPrivateRef  = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_DONATEFOOD)
+        donateFoodsPrivateRef  = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_DONATEFOOD).child(donateFoodUID!)
         
         let expectingDonateFoodData = [
             DonateFoodListFBKeys.foodQuantity.key : getFoodQuantityButton_Text,
             DonateFoodListFBKeys.foodType.key : txt_FoodType.text as Any,
-            DonateFoodListFBKeys.status.key : NAString().pending(),
+            DonateFoodListFBKeys.status.key : NAString().pending(),           DonateFoodListFBKeys.timeStamp.key : (Int64(Date().timeIntervalSince1970 * 1000)),
             DonateFoodListFBKeys.uid.key : donateFoodUID as Any,
             DonateFoodListFBKeys.userUID.key : userUID
-            ] as [String : Any]
-        donateFoodsPrivateRef?.child(donateFoodUID!).setValue(expectingDonateFoodData) { (error, snapshot) in
-            //Storing Current System time in milli seconds for time stamp.
-            self.donateFoodsPrivateRef?.child(donateFoodUID!).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
-                self.inviteAlertView()
-            })
-        }
+        ]
+        donateFoodsPrivateRef?.setValue(expectingDonateFoodData, withCompletionBlock: { (error, snapshot) in
+            self.inviteAlertView()
+        })
     }
 }
 

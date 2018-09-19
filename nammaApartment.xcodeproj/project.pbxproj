@@ -76,6 +76,8 @@
 		42358A382122F99700186B1D /* NammaApartmentVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42358A372122F99700186B1D /* NammaApartmentVehicle.swift */; };
 		4235FB0A212536B400965352 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4235FB09212536B400965352 /* EventManagementViewController.swift */; };
 		423633D22133F74600637F5F /* NoticeBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */; };
+		423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */; };
+		423D477621522BB4001DA4C1 /* DonateFoodHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477521522BB4001DA4C1 /* DonateFoodHistoryViewController.swift */; };
 		426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */; };
 		42914D9C2126872F00B3B57A /* NAEventManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42914D9B2126872F00B3B57A /* NAEventManagement.swift */; };
 		4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */; };
@@ -250,6 +252,8 @@
 		42358A372122F99700186B1D /* NammaApartmentVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentVehicle.swift; sourceTree = "<group>"; };
 		4235FB09212536B400965352 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardTableViewCell.swift; sourceTree = "<group>"; };
+		423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		423D477521522BB4001DA4C1 /* DonateFoodHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonateFoodHistoryViewController.swift; path = "/Users/kalrohi/Desktop/nammaapartmentsios/NavigationDrawer/NavigationMenuCategory/My Food/Donate Food History/DonateFoodHistoryViewController.swift"; sourceTree = "<absolute>"; };
 		426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoodViewController.swift; sourceTree = "<group>"; };
 		42914D9B2126872F00B3B57A /* NAEventManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAEventManagement.swift; sourceTree = "<group>"; };
 		4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMyGuardsViewController.swift; sourceTree = "<group>"; };
@@ -516,9 +520,19 @@
 			path = "Add My Vehicles";
 			sourceTree = "<group>";
 		};
+		423D477221522B6C001DA4C1 /* Donate Food History */ = {
+			isa = PBXGroup;
+			children = (
+				423D477521522BB4001DA4C1 /* DonateFoodHistoryViewController.swift */,
+				423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */,
+			);
+			path = "Donate Food History";
+			sourceTree = "<group>";
+		};
 		426A1F2E214D340D0003ED01 /* My Food */ = {
 			isa = PBXGroup;
 			children = (
+				423D477221522B6C001DA4C1 /* Donate Food History */,
 				426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */,
 				42245145214FBDE600CD2C0E /* NammaApartmentFood.swift */,
 			);
@@ -1301,6 +1315,7 @@
 				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
 				5D77429D210DD49F0049344F /* SignupViewController.swift in Sources */,
+				423D477621522BB4001DA4C1 /* DonateFoodHistoryViewController.swift in Sources */,
 				8679B78021022C0C0020B004 /* NADailyServices.swift in Sources */,
 				5D774295210DD49F0049344F /* SplashApartmentServices.swift in Sources */,
 				5D77429B210DD49F0049344F /* Reachability.swift in Sources */,
@@ -1361,6 +1376,7 @@
 				42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */,
 				426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */,
 				08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */,
+				423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */,
 				08EA578521464A0B00A0574D /* ContactUsHistoryViewController.swift in Sources */,
 				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
 				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,

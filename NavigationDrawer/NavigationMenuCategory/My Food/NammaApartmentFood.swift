@@ -31,3 +31,34 @@ enum DonateFoodListFBKeys: String {
     }
 }
 
+class NAUserFoodDonations {
+    private var foodQuantity: String
+    private var foodType: String
+    private var status: String
+    private var timeStamp = Int()
+    
+    init(foodQuantity: String, foodType: String, status: String, timeStamp: Int) {
+        self.foodQuantity = foodQuantity
+        self.foodType = foodType
+        self.status = status
+        self.timeStamp = timeStamp
+    }
+    
+    func getFoodQuantity() -> String {
+        return foodQuantity
+    }
+    
+    func getFoodType() -> String {
+        return foodType
+    }
+    
+    func getTimeStamp() -> Int {
+        return timeStamp
+    }
+    
+    func getStatus() -> String {
+        return status
+    }
+}
+
+

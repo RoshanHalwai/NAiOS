@@ -255,4 +255,9 @@ class NAViewPresenter: NSObject {
     func myFoodVC() -> MyFoodViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myFoodVC") as! MyFoodViewController
     }
+    
+    //Create Donate Food History screen
+    func donateFoodHistoryVC() -> DonateFoodHistoryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "donateFoodHistoryVC") as! DonateFoodHistoryViewController
+    }
 }
