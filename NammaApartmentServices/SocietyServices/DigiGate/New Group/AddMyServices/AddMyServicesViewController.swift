@@ -59,7 +59,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     var dailyServiceKey = String()
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
-    
     var countryCodeArray = [NAString().unitedStateCode(),NAString().indianStateCode()]
     
     //Database References

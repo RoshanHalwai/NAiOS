@@ -24,10 +24,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet weak var txtInvitorMobile: UITextField!
     @IBOutlet weak var btnSelectContact: UIButton!
-    
+    @IBOutlet weak var lbl_CountryCode: UILabel!
     @IBOutlet weak var btnInviteVisitor: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var lbl_Picture_Validation: UILabel!
     @IBOutlet weak var lbl_Name_Validation: UILabel!
     @IBOutlet weak var lbl_Mob_Validation: UILabel!
@@ -46,6 +45,8 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     //data recieve purpose from getContactView Controller
     var dataName : String!
     var dataMobile : String!
+    
+    var countryCodeArray = [NAString().unitedStateCode(),NAString().indianStateCode()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,6 +115,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         lbl_Date.font = NAFont().headerFont()
         lbl_InvitorName.text = NAString().visitorName()
         lbl_InvitorMobile.text = NAString().visitorMobile()
+        self.lbl_CountryCode.font = NAFont().headerFont()
         
         lbl_Name_Validation.font = NAFont().descriptionFont()
         lbl_Mob_Validation.font = NAFont().descriptionFont()
@@ -137,6 +139,44 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         //Calling function from NANavigationViewController class to hide numberPad on done pressed
         hideNumberPad(numberTextField: txtInvitorMobile)
+        
+        let countryCodePlaceHolder: String = NAString().stateCodePlaceHolder()
+        lbl_CountryCode.textColor = UIColor.darkGray
+        lbl_CountryCode.text = countryCodePlaceHolder
+        
+        let selectCountryCode = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        lbl_CountryCode.isUserInteractionEnabled = true
+        lbl_CountryCode.addGestureRecognizer(selectCountryCode)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        let actionSheet = UIAlertController(title:NAString().selectCountryCode(), message: nil, preferredStyle: .actionSheet)
+        
+        let action1 = UIAlertAction(title: countryCodeArray[0], style: .default, handler: countryCodeSelected)
+        let action2 = UIAlertAction(title: countryCodeArray[1], style: .default, handler: countryCodeSelected)
+        
+        let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        actionSheet.addAction(action1)
+        actionSheet.addAction(action2)
+        
+        actionSheet.addAction(cancel)
+        actionSheet.view.tintColor = UIColor.black
+        self.present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    func countryCodeSelected(alert: UIAlertAction!) {
+        if alert.title == NAString().unitedStateCode() {
+            lbl_CountryCode.text = NAString()._1()
+            lbl_CountryCode.textColor = UIColor.black
+            lbl_Mob_Validation.isHidden = true
+        } else {
+            lbl_CountryCode.text = NAString()._91()
+            lbl_CountryCode.textColor = UIColor.black
+            lbl_Mob_Validation.isHidden = true
+        }
     }
     
     //Create name textfield first letter capital function
