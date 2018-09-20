@@ -79,6 +79,8 @@
 		423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */; };
 		423D477621522BB4001DA4C1 /* DonateFoodHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477521522BB4001DA4C1 /* DonateFoodHistoryViewController.swift */; };
 		426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */; };
+		427599C02153D63000ACC5AF /* EventManagementHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427599BF2153D63000ACC5AF /* EventManagementHistoryViewController.swift */; };
+		427599C22153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427599C12153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift */; };
 		42914D9C2126872F00B3B57A /* NAEventManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42914D9B2126872F00B3B57A /* NAEventManagement.swift */; };
 		4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */; };
 		42D208422130324400D3AF3E /* NANoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D208412130324400D3AF3E /* NANoticeBoardViewController.swift */; };
@@ -255,6 +257,8 @@
 		423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		423D477521522BB4001DA4C1 /* DonateFoodHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonateFoodHistoryViewController.swift; path = "/Users/kalrohi/Desktop/nammaapartmentsios/NavigationDrawer/NavigationMenuCategory/My Food/Donate Food History/DonateFoodHistoryViewController.swift"; sourceTree = "<absolute>"; };
 		426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoodViewController.swift; sourceTree = "<group>"; };
+		427599BF2153D63000ACC5AF /* EventManagementHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryViewController.swift; sourceTree = "<group>"; };
+		427599C12153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		42914D9B2126872F00B3B57A /* NAEventManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAEventManagement.swift; sourceTree = "<group>"; };
 		4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMyGuardsViewController.swift; sourceTree = "<group>"; };
 		42D208412130324400D3AF3E /* NANoticeBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANoticeBoardViewController.swift; sourceTree = "<group>"; };
@@ -505,6 +509,8 @@
 			isa = PBXGroup;
 			children = (
 				4235FB09212536B400965352 /* EventManagementViewController.swift */,
+				427599BF2153D63000ACC5AF /* EventManagementHistoryViewController.swift */,
+				427599C12153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift */,
 				42914D9B2126872F00B3B57A /* NAEventManagement.swift */,
 				8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */,
 			);
@@ -1336,8 +1342,10 @@
 				083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
+				427599C02153D63000ACC5AF /* EventManagementHistoryViewController.swift in Sources */,
 				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
 				084BBB5B2143C55E00289B38 /* EditMyProfileFlatMembersListViewController.swift in Sources */,
+				427599C22153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift in Sources */,
 				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				423033A12131436B00DBF109 /* ContactUsListViewController.swift in Sources */,
