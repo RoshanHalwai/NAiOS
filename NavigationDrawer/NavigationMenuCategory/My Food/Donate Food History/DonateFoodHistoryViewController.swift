@@ -28,7 +28,7 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         let width = UIScreen.main.bounds.width
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: 240)
+        layout.itemSize = CGSize(width: width - 10, height: 140)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -60,9 +60,6 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         cell?.lbl_FoodQuantity_Detail.text = foodDonationDetails.getFoodQuantity()
         cell?.lbl_Date_Detail.text = userRequestTime
         
-        //TODO : Feature Added Donate Food Image
-        cell?.img_Profile.image = UIImage(named: "customer-support")
-        
         cell?.lbl_FoodType.font = NAFont().textFieldFont()
         cell?.lbl_FoodQuantity_Type.font = NAFont().textFieldFont()
         cell?.lbl_Date_Type.font = NAFont().textFieldFont()
@@ -70,10 +67,6 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         cell?.lbl_FoodType_Detail.font = NAFont().headerFont()
         cell?.lbl_FoodQuantity_Detail.font = NAFont().headerFont()
         cell?.lbl_Date_Detail.font = NAFont().headerFont()
-        
-        //setting image round
-        cell?.img_Profile.layer.cornerRadius = (cell?.img_Profile.frame.size.width)!/2
-        cell?.img_Profile.clipsToBounds = true
         
         NAShadowEffect().shadowEffect(Cell: cell!)
         return cell!
