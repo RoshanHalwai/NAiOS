@@ -78,7 +78,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
             eventServiceList = NAEventList[indexPath.row]
             
             cell.cellImage.image = #imageLiteral(resourceName: "event")
-            cell.lbl_Problem.text = eventServiceList.getTimeSlot()
+           // cell.lbl_Problem.text = eventServiceList.getTimeSlot()
             cell.lbl_Date.text = currentDate
         } else {
             let societyServiceList : NASocietyServices
@@ -205,9 +205,9 @@ extension SocietyHistoryViewController {
                         let eventStatus : String = eventManagementData?[NAEventManagementFBKeys.status.key] as! String
                         let eventTimeSlot : String = eventManagementData?[NAEventManagementFBKeys.timeSlot.key] as! String
                         
-                        let eventManagementsData = NAEventManagement(title: eventTitle as String?, date: eventDate as String?, timeSlot: eventTimeSlot as String?, status: eventStatus as String?)
+//                        let eventManagementsData = NAEventManagement(title: eventTitle as String?, date: eventDate as String?, timeSlot: eventTimeSlot as String?, status: eventStatus as String?)
                         
-                        self.NAEventList.append(eventManagementsData)
+                        //self.NAEventList.append(eventManagementData)
                         self.collectionView.reloadData()
                         NAActivityIndicator.shared.hideActivityIndicator()
                     })

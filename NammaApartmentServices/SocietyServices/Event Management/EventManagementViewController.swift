@@ -16,14 +16,10 @@ class EventManagementViewController: NANavigationViewController {
     @IBOutlet weak var btn_Meetings : UIButton!
     @IBOutlet weak var btn_Seminars : UIButton!
     
-    @IBOutlet weak var btn_8AMto12PM : UIButton!
-    @IBOutlet weak var btn_12PMto4PM : UIButton!
-    @IBOutlet weak var btn_4PMto8PM : UIButton!
-    @IBOutlet weak var btn_8PMto12PM : UIButton!
+    @IBOutlet var btn_EventHours : [UIButton]!
     
     @IBOutlet weak var btn_Book : UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var timeSlot_stackView: UIStackView!
     @IBOutlet weak var btn_stackView: UIStackView!
     
     @IBOutlet weak var lbl_EventTitle: UILabel!
@@ -56,6 +52,8 @@ class EventManagementViewController: NANavigationViewController {
     var getButtonCategory_Text = String()
     var eventSlot = String()
     var convertedDate = String()
+    var selectedMutipleSlotsArray = [String]()
+    
     
     //created date picker programtically
     let picker = UIDatePicker()
@@ -63,8 +61,11 @@ class EventManagementViewController: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Hiding TimeSlot StackView
-        timeSlot_stackView.isHidden = true
+        for button in btn_EventHours {
+            button.setTitleColor(UIColor.black, for: .selected)
+            button.layer.cornerRadius = CGFloat(NAString().fifteen())
+            button.layer.borderWidth = CGFloat(NAString().one())
+        }
         
         //Create Event Title textfield first letter capital
         txt_EventTitle.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
@@ -116,13 +117,6 @@ class EventManagementViewController: NANavigationViewController {
         txt_EventTitle.delegate = self
         txt_EventDate.delegate = self
         
-        //for changing Select Slot buttons color
-        selectSlotbuttons.removeAll()
-        selectSlotbuttons.append(btn_8AMto12PM)
-        selectSlotbuttons.append(btn_12PMto4PM)
-        selectSlotbuttons.append(btn_4PMto8PM)
-        selectSlotbuttons.append(btn_8PMto12PM)
-        
         //for changing Event buttons color
         selectEventbuttons.removeAll()
         selectEventbuttons.append(btn_Parties)
@@ -131,20 +125,12 @@ class EventManagementViewController: NANavigationViewController {
         selectEventbuttons.append(btn_Seminars)
         
         //Apply Button Text
-        btn_8AMto12PM.setTitle(NAString().morning(), for: .normal)
-        btn_12PMto4PM.setTitle(NAString().noon(), for: .normal)
-        btn_4PMto8PM.setTitle(NAString().evening(), for: .normal)
-        btn_8PMto12PM.setTitle(NAString().night(), for: .normal)
         btn_Parties.setTitle(NAString().parties(), for: .normal)
         btn_Concerts.setTitle(NAString().concerts(), for: .normal)
         btn_Meetings.setTitle(NAString().meetings(), for: .normal)
         btn_Seminars.setTitle(NAString().seminar_workshops(), for: .normal)
         
         //color set on selected
-        btn_8AMto12PM.setTitleColor(UIColor.black, for: .selected)
-        btn_12PMto4PM.setTitleColor(UIColor.black, for: .selected)
-        btn_4PMto8PM.setTitleColor(UIColor.black, for: .selected)
-        btn_8PMto12PM.setTitleColor(UIColor.black, for: .selected)
         btn_Parties.setTitleColor(UIColor.black, for: .selected)
         btn_Concerts.setTitleColor(UIColor.black, for: .selected)
         btn_Meetings.setTitleColor(UIColor.black, for: .selected)
@@ -156,12 +142,6 @@ class EventManagementViewController: NANavigationViewController {
         btn_Book.backgroundColor = NAColor().buttonBgColor()
         btn_Book.titleLabel?.font = NAFont().buttonFont()
         
-        //set tag values to Select Event buttons
-        btn_8AMto12PM.tag = NAString().one()
-        btn_12PMto4PM.tag = NAString().two()
-        btn_4PMto8PM.tag = NAString().three()
-        btn_8PMto12PM.tag = NAString().four()
-        
         //set tag values to Select Slot buttons
         btn_Parties.tag = NAString().one()
         btn_Concerts.tag = NAString().two()
@@ -169,20 +149,12 @@ class EventManagementViewController: NANavigationViewController {
         btn_Seminars.tag = NAString().four()
         
         //make buttons rounded corner
-        btn_8AMto12PM.layer.cornerRadius = CGFloat(NAString().fifteen())
-        btn_12PMto4PM.layer.cornerRadius = CGFloat(NAString().fifteen())
-        btn_4PMto8PM.layer.cornerRadius = CGFloat(NAString().fifteen())
-        btn_8PMto12PM.layer.cornerRadius = CGFloat(NAString().fifteen())
         btn_Parties.layer.cornerRadius = CGFloat(NAString().fifteen())
         btn_Concerts.layer.cornerRadius = CGFloat(NAString().fifteen())
         btn_Meetings.layer.cornerRadius = CGFloat(NAString().fifteen())
         btn_Seminars.layer.cornerRadius = CGFloat(NAString().fifteen())
         
         //setting border width for buttons
-        btn_8AMto12PM.layer.borderWidth = CGFloat(NAString().one())
-        btn_12PMto4PM.layer.borderWidth = CGFloat(NAString().one())
-        btn_4PMto8PM.layer.borderWidth = CGFloat(NAString().one())
-        btn_8PMto12PM.layer.borderWidth = CGFloat(NAString().one())
         btn_Parties.layer.borderWidth = CGFloat(NAString().one())
         btn_Concerts.layer.borderWidth = CGFloat(NAString().one())
         btn_Meetings.layer.borderWidth = CGFloat(NAString().one())
@@ -271,9 +243,7 @@ class EventManagementViewController: NANavigationViewController {
     
     //To Navigate to Society Service History VC
     @objc func gotoSocietyServiceHistoryVC() {
-        let dv = NAViewPresenter().societyServiceHistoryVC()
-        dv.titleName = NAString().history().capitalized
-        dv.navigationTitle = NAString().eventManagement()
+        let dv = NAViewPresenter().eventManagementHistoryVC()
         self.navigationController?.pushViewController(dv, animated: true)
     }
     
@@ -309,11 +279,54 @@ class EventManagementViewController: NANavigationViewController {
         }
     }
     
+    //creating function to highlight Select Slot button color
+    func selectedMultipleTimeSlotColor(sender: UIButton) {
+        let button = sender
+        isValidSelectSlotButtonClicked = [true]
+        if sender.isSelected {
+            button.isSelected = false
+            button.setTitleColor(UIColor.black, for: .selected)
+        } else {
+            button.isSelected = true
+            //lbl_Validation_Message_Event_Slots.isHidden = true
+            button.setTitleColor(UIColor.black, for: .normal)
+        }
+        let color = button.isSelected ? NAColor().buttonFontColor() : UIColor.white
+        button.backgroundColor = color
+        button.tintColor = UIColor.clear
+    }
+    
     //MARK : Create Button Actions
     //Create Button SelectSlot Function
     @IBAction func btnSelectSlotFunction(_ sender: UIButton) {
-        getButtonHour_Text = (sender.titleLabel?.text)!
-        selectedTimeSlotColor(tag: sender.tag)
+        selectedMultipleTimeSlotColor(sender: sender)
+        sender.setTitleColor(UIColor.black, for: .selected)
+        
+        if sender.backgroundColor == NAColor().buttonFontColor() {
+            selectedMutipleSlotsArray.append((sender.titleLabel?.text)!)
+        } else {
+            if selectedMutipleSlotsArray.contains((sender.titleLabel?.text)!) {
+                let index = selectedMutipleSlotsArray.index(of: (sender.titleLabel?.text)!)
+                selectedMutipleSlotsArray.remove(at: index!)
+            }
+        }
+        
+        if sender.titleLabel?.text == "Full Day(8AM - 10PM)" {
+            if sender.backgroundColor == NAColor().buttonFontColor() {
+                for button in btn_EventHours {
+                    if button.titleLabel?.text != "Full Day(8AM - 10PM)" {
+                        selectedMutipleSlotsArray.append((button.titleLabel?.text)!)
+                    }
+                    if selectedMutipleSlotsArray.contains((sender.titleLabel?.text)!) {
+                        let index = selectedMutipleSlotsArray.index(of: (sender.titleLabel?.text)!)
+                        selectedMutipleSlotsArray.remove(at: index!)
+                    }
+                }
+            } else {
+                selectedMutipleSlotsArray.removeAll()
+            }
+        }
+        print(selectedMutipleSlotsArray)
     }
     //Create Button SelectEvent Function
     @IBAction func btnSelectEventFunction(_ sender: UIButton) {
@@ -349,7 +362,8 @@ class EventManagementViewController: NANavigationViewController {
             lbl_partiesValidation.isHidden = true
         }
         if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! && (isValidSelectSlotButtonClicked.index(of: true) != nil) && (isValidSelectEventButtonClicked.index(of: true) != nil) {
-            self.storeEventManagementDetails()
+             storeEventManagements()
+            //self.storeEventManagementDetails()
         }
     }
 }
@@ -384,7 +398,7 @@ extension EventManagementViewController {
             //Storing Current System time in milli seconds for time stamp.
             eventManagementNotificationRef.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
                 
-                self.storeEventManagementSlot()
+                //self.storeEventManagementSlot()
                 let lv = NAViewPresenter().showEventManagementVC()
                 lv.navTitle = NAString().event_management()
                 lv.getEventUID = self.eventNotificationUID
@@ -401,30 +415,6 @@ extension EventManagementViewController {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        timeSlot_stackView.isHidden = false
-    }
-    
-    func storeEventManagementSlot() {
-        
-        switch getButtonHour_Text {
-        case NAString().morning():
-            eventSlot = Constants.FIREBASE_CHILD_SLOT1
-        case NAString().noon():
-            eventSlot = Constants.FIREBASE_CHILD_SLOT2
-        case NAString().evening():
-            eventSlot = Constants.FIREBASE_CHILD_SLOT3
-        case NAString().night():
-            eventSlot = Constants.FIREBASE_CHILD_SLOT4
-        default:
-            break
-        }
-        
-        var eventSlotRef : DatabaseReference?
-        eventSlotRef = Constants.FIREBASE_EVENT_MANAGEMENT.child(convertedDate)
-        eventSlotRef?.child(eventSlot).setValue(NAString().gettrue())
-    }
-    
     //Created Function to get booked slot for the selected date.
     func disableBookedSlot() {
         
@@ -437,21 +427,13 @@ extension EventManagementViewController {
                     
                     switch slots as! String {
                     case Constants.FIREBASE_CHILD_SLOT1 :
-                        self.btn_8AMto12PM.isEnabled = false
-                        self.btn_8AMto12PM.setTitleColor(UIColor.gray, for: .normal)
-                        
+                        break
                     case Constants.FIREBASE_CHILD_SLOT2 :
-                        self.btn_12PMto4PM.isEnabled = false
-                        self.btn_12PMto4PM.setTitleColor(UIColor.gray, for: .normal)
-                        
+                        break
                     case Constants.FIREBASE_CHILD_SLOT3 :
-                        self.btn_4PMto8PM.isEnabled = false
-                        self.btn_4PMto8PM.setTitleColor(UIColor.gray, for: .normal)
-                        
+                        break
                     case Constants.FIREBASE_CHILD_SLOT4 :
-                        self.btn_8PMto12PM.isEnabled = false
-                        self.btn_8PMto12PM.setTitleColor(UIColor.gray, for: .normal)
-                        
+                        break
                     default:
                         break
                     }
@@ -460,6 +442,44 @@ extension EventManagementViewController {
             OpacityView.shared.hidingOpacityView()
             OpacityView.shared.hidingPopupView()
         }
+    }
+    
+    func storeEventManagements() {
+        let eventManagementRef = Constants.FIREBASE_EVENT_MANAGEMENT.child(Constants.FIREBASE_CHILD_PRIVATE).child(convertedDate)
+        for slots in selectedMutipleSlotsArray {
+            eventManagementRef.child(slots).setValue(NAString().gettrue())
+        }
+        
+        let serviceType = NAString().eventManagement()
+        
+        let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
+        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
+        
+        let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
+        notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())
+        
+        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
+        userDataRef.child(serviceType).child(eventNotificationUID).setValue(NAString().gettrue())
+        
+        let eventManagementNotificationData = [
+            NAEventManagementFBKeys.eventTitle.key : self.txt_EventTitle.text! as String,
+            NAEventManagementFBKeys.eventDate.key : self.txt_EventDate.text! as String,
+            NAEventManagementFBKeys.category.key : getButtonCategory_Text,
+            NAEventManagementFBKeys.userUID.key: userUID,
+            NAEventManagementFBKeys.societyServiceType.key : serviceType,
+            NAEventManagementFBKeys.notificationUID.key : eventNotificationUID,
+            NAEventManagementFBKeys.status.key : NAString().in_Progress()]
+        
+        eventManagementNotificationRef.child(eventNotificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
+            //Storing Current System time in milli seconds for time stamp.
+            
+            for slots in self.selectedMutipleSlotsArray {
+                eventManagementNotificationRef.child(self.eventNotificationUID).child(NAEventManagementFBKeys.timeSlot.key).child(slots).setValue(NAString().gettrue())
+            }
+            eventManagementNotificationRef.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
+            })
+        }
+    
     }
 }
 
