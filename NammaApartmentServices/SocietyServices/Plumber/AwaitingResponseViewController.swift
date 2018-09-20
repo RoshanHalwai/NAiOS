@@ -250,8 +250,10 @@ class AwaitingResponseViewController: NANavigationViewController {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().carpenter())
         } else if (serviceType == NAString().electrician()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().electrician())
-        } else {
+        } else if (serviceType == NAString().garbage_Collection()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_Collection())
+        } else {
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().scrapCollection())
         }
     }
     

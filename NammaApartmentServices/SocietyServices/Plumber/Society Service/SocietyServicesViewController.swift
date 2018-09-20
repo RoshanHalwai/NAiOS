@@ -224,6 +224,8 @@ class SocietyServicesViewController: NANavigationViewController {
         dv.titleName = NAString().history().capitalized
         if navTitle == NAString().garbage_Collection() {
             dv.navigationTitle = NAString().garbageCollection()
+        } else if navTitle == NAString().scrapCollection() {
+            dv.navigationTitle = NAString().scrap_Collection()
         } else {
             dv.navigationTitle = navTitle!.lowercased()
         }
@@ -442,6 +444,21 @@ class SocietyServicesViewController: NANavigationViewController {
             }
         }
     }
+    
+    //AlertView For navigation
+    func inviteAlertView() {
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().requestRaised() , message: NAString().scrapCollectionHistoryAlertTitle(), preferredStyle: .alert)
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+                let scrapHistoryVC = NAViewPresenter().societyServiceHistoryVC()
+                  scrapHistoryVC.titleName = NAString().history()
+                 scrapHistoryVC.navigationTitle = NAString().scrap_Collection()
+                self.navigationController?.pushViewController(scrapHistoryVC, animated: true)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension SocietyServicesViewController {
@@ -507,15 +524,19 @@ extension SocietyServicesViewController {
         lv.notificationUID = notificationUID
         if (navTitle == NAString().plumber()) {
             lv.serviceType = NAString().plumber()
+            self.navigationController?.pushViewController(lv, animated: true)
         } else if (navTitle == NAString().carpenter()) {
             lv.serviceType = NAString().carpenter()
+            self.navigationController?.pushViewController(lv, animated: true)
         } else if (navTitle == NAString().electrician()) {
             lv.serviceType = NAString().electrician()
+            self.navigationController?.pushViewController(lv, animated: true)
         } else if (navTitle == NAString().garbage_Collection()) {
             lv.serviceType = NAString().garbage_Collection()
+            self.navigationController?.pushViewController(lv, animated: true)
         } else {
+            self.inviteAlertView()
             lv.serviceType = NAString().scrapCollection()
         }
-        self.navigationController?.pushViewController(lv, animated: true)
     }
 }

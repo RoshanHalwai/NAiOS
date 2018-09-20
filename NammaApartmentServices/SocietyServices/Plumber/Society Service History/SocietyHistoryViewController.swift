@@ -45,10 +45,9 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         
         //Get device width
         let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: height/8)
+        layout.itemSize = CGSize(width: width - 10, height: 80)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -84,25 +83,37 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
             let societyServiceList : NASocietyServices
             societyServiceList = NASocietyServiceData[indexPath.row]
             
+            let timeStamp = societyServiceList.getTimeStamp()
+            let date = (NSDate(timeIntervalSince1970: TimeInterval(timeStamp/1000)))
+            let dateString = String(describing: date)
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = NAString().userProblemTimeStampFormat()
+            let dateAndTime = dateFormatterGet.date(from: dateString)
+            dateFormatterGet.dateFormat = NAString().convertedUserProblemTimeStampFormat()
+            let userRequestTime = (dateFormatterGet.string(from: dateAndTime!))
+            
             switch societyServiceList.getSocietyServiceType() {
             case NAString().plumber_Service() :
-                cell.cellImage.image = #imageLiteral(resourceName: "plumbing (1)")
+                cell.cellImage.image = #imageLiteral(resourceName: "plumber")
                 break
             case NAString().carpenter_Service() :
-                cell.cellImage.image = #imageLiteral(resourceName: "Carpenter Service")
+                cell.cellImage.image = #imageLiteral(resourceName: "carpenter")
                 break
             case NAString().electrician_Service() :
                 cell.cellImage.image = #imageLiteral(resourceName: "electrician")
                 break
             case NAString().garbageCollection() :
-                cell.cellImage.image = #imageLiteral(resourceName: "garbage-bin")
+                cell.cellImage.image = #imageLiteral(resourceName: "garbage")
+                break
+            case NAString().scrap_Collection() :
+                cell.cellImage.image = #imageLiteral(resourceName: "scrapCollection")
                 break
             default:
                 break
             }
             
             cell.lbl_Problem.text = societyServiceList.getProblem()
-            cell.lbl_Date.text = currentDate
+            cell.lbl_Date.text = userRequestTime
         }
         
         //Setting fonts for labels.
@@ -130,6 +141,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                 .child(notifictionUID as! String)
                             
                             societyServiceNotificationRef.observeSingleEvent(of: .value) { (snapshot) in
+                                
                                 let societyServiceData = snapshot.value as? [String: AnyObject]
                                 
                                 //Checking whether Service Person Accepted the User Request or not
@@ -137,7 +149,8 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                     societyServiceData?[NASocietyServicesFBKeys.endOTP.key] != nil) {
                                     let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
                                     let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
-                                    let societyServiceProblem: String = societyServiceData?[NASocietyServicesFBKeys.problem.key] as! String
+                                    let societyServiceProblem = societyServiceData?[NASocietyServicesFBKeys.problem.key] as! String
+                                    print(societyServiceProblem)
                                     let societyServiceTimeSlot: String = societyServiceData?[NASocietyServicesFBKeys.timeSlot.key] as! String
                                     let societyServiceStatus: String = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
                                     let societyServiceEndOTP: String = societyServiceData?[NASocietyServicesFBKeys.endOTP.key] as! String
@@ -154,12 +167,22 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                         let serviceData = snapshot.value as? [String: AnyObject]
                                         let societyServiceName: String = serviceData?[NASocietyServicesFBKeys.fullName.key] as! String
                                         let societyServiceNumber: String = serviceData?[NASocietyServicesFBKeys.mobileNumber.key] as! String
+                                        let societyServiceTimeStamp = serviceData?[Constants.FIREBASE_CHILD_TIMESTAMP]
                                         
-                                        let societyServiceDataList = NASocietyServices(problem: societyServiceProblem, timeSlot: societyServiceTimeSlot, userUID: userUID, societyServiceType: societyServiceType, notificationUID: notifictionUID as! String, status: societyServiceUID, takenBy: societyServiceStatus, endOTP: societyServiceEndOTP, fullName: societyServiceName, mobileNumber: societyServiceNumber)
+                                        let societyServiceDataList = NASocietyServices(problem: societyServiceProblem, timeSlot: societyServiceTimeSlot, userUID: userUID, societyServiceType: societyServiceType, notificationUID: notifictionUID as! String, status: societyServiceUID, takenBy: societyServiceStatus, endOTP: societyServiceEndOTP, fullName: societyServiceName, mobileNumber: societyServiceNumber, timeStamp:societyServiceTimeStamp as! Int )
                                         self.NASocietyServiceData.append(societyServiceDataList)
                                         NAActivityIndicator.shared.hideActivityIndicator()
                                         self.collectionView.reloadData()
                                     })
+                                } else {
+                                    let societyServiceScrapType: String = societyServiceData?[NASocietyServicesFBKeys.scrapType.key] as! String
+                                    let societyServiceTimeStamp = (societyServiceData?[Constants.FIREBASE_CHILD_TIMESTAMP])
+                                    let societyServiceType = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
+                                    
+                                    let societyServiceDataList = NASocietyServices(problem: societyServiceScrapType, timeSlot: "", userUID: "", societyServiceType: societyServiceType, notificationUID: "", status: "", takenBy: "", endOTP: "", fullName: "", mobileNumber: "", timeStamp:societyServiceTimeStamp as! Int)
+                                    self.NASocietyServiceData.append(societyServiceDataList)
+                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                    self.collectionView.reloadData()
                                 }
                             }
                         }

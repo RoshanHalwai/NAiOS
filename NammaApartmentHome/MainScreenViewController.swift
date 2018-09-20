@@ -81,8 +81,7 @@ class MainScreenViewController: NANavigationViewController {
             societyServicesModel(cellTitle: NAString().garbage_Collection(),cellImage:  #imageLiteral(resourceName: "garbage")),
             societyServicesModel(cellTitle: NAString().emergency(),cellImage:  #imageLiteral(resourceName: "Emergency")),
             societyServicesModel(cellTitle: NAString().event_management(),cellImage: #imageLiteral(resourceName: "eventManagement")),
-            //TODO: Feature Added Scrap Collcetion Image
-            societyServicesModel(cellTitle: NAString().scrapCollection(),cellImage: #imageLiteral(resourceName: "garbage"))
+            societyServicesModel(cellTitle: NAString().scrapCollection(),cellImage: #imageLiteral(resourceName: "scrapCollection"))
             
         ]
         apartmentData = [
