@@ -38,7 +38,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_MobileNo: UITextField!
-    @IBOutlet weak var txt_CountryCode: UITextField!
+    @IBOutlet weak var lbl_CountryCode: UILabel!
     @IBOutlet weak var txt_Email: UITextField!
     
     @IBOutlet weak var btn_SelectContact: UIButton!
@@ -73,6 +73,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     var friend = String()
     var familyType = String()
     
+    var countryCodeArray = ["United State (USA) \t +1","India (IND) \t\t\t\t +91"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -85,6 +87,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
+        let countryCodePlaceHolder: String = "▼+91"
+        lbl_CountryCode.textColor = UIColor.darkGray
+        lbl_CountryCode.text = countryCodePlaceHolder
+        
         img_Profile.layer.borderColor = UIColor.black.cgColor
         
         lbl_Name_Validation.isHidden = true
@@ -94,7 +100,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         lbl_Relation_Validation.isHidden = true
         
         txt_Name.delegate = self
-        txt_CountryCode.delegate = self
         txt_MobileNo.delegate = self
         txt_Email.delegate = self
         
@@ -137,8 +142,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         self.txt_MobileNo.font = NAFont().textFieldFont()
         self.txt_Name.font = NAFont().textFieldFont()
         self.txt_Email.font = NAFont().textFieldFont()
-        self.txt_CountryCode.font = NAFont().headerFont()
-        self.txt_CountryCode.text = NAString()._91()
+        self.lbl_CountryCode.font = NAFont().headerFont()
         
         self.btn_SelectContact.backgroundColor = NAColor().buttonBgColor()
         self.btn_SelectContact.setTitleColor(NAColor().buttonFontColor(), for: .normal)
@@ -162,6 +166,39 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         //Calling function NANavigationViewController class to hide numberPad on done pressed
         hideNumberPad(numberTextField: txt_MobileNo)
+        
+        let selectCountryCode = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        lbl_CountryCode.isUserInteractionEnabled = true
+        lbl_CountryCode.addGestureRecognizer(selectCountryCode)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        let actionSheet = UIAlertController(title:NAString().selectCountryCode(), message: nil, preferredStyle: .actionSheet)
+        
+        let action1 = UIAlertAction(title: countryCodeArray[0], style: .default, handler: countryCodeSelected)
+        let action2 = UIAlertAction(title: countryCodeArray[1], style: .default, handler: countryCodeSelected)
+        
+        let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        actionSheet.addAction(action1)
+        actionSheet.addAction(action2)
+        
+        actionSheet.addAction(cancel)
+        actionSheet.view.tintColor = UIColor.black
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func countryCodeSelected(alert: UIAlertAction!) {
+        if alert.title == "United State (USA) \t +1" {
+            lbl_CountryCode.text = "+1"
+            lbl_CountryCode.textColor = UIColor.black
+            lbl_Mobile_Validation.isHidden = true
+        } else {
+            lbl_CountryCode.text = "+91"
+            lbl_CountryCode.textColor = UIColor.black
+            lbl_Mobile_Validation.isHidden = true
+        }
     }
     
     @objc func keyboardWillShow(sender: NSNotification) {
@@ -378,6 +415,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
+        if self.lbl_CountryCode.text == "▼+91" {
+            lbl_Mobile_Validation.isHidden = false
+            lbl_Mobile_Validation.text =  NAString().please_select_country_code()
+        }
         if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if(grantAcess_Segment.selectedSegmentIndex == 0) {
                 //calling AlertBox on click of YES
@@ -399,7 +440,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             segmentType = NAString().enter_verification_code(first:NAString().your_Family_Member(), second: NAString().their())
         }
         destVC.newOtpString = segmentType
-        destVC.getCountryCodeString = self.txt_CountryCode.text!
+        destVC.getCountryCodeString = self.lbl_CountryCode.text!
         destVC.getMobileString = self.txt_MobileNo.text!
         //Assigning Delegate
         destVC.familyDelegateData = self

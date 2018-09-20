@@ -72,6 +72,7 @@ class LoginViewController: NANavigationViewController {
         
         //Calling function from NANavigationViewController class to hide numberPad on done pressed
         hideNumberPad(numberTextField: txt_MobileNo)
+        
         let selectCountryCode = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
         lbl_CountryCode.isUserInteractionEnabled = true
         lbl_CountryCode.addGestureRecognizer(selectCountryCode)
