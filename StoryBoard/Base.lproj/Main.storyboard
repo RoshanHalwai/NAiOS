@@ -7025,22 +7025,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zJu-th-qQN">
-                                                    <rect key="frame" x="13" y="13" width="43" height="53"/>
+                                                    <rect key="frame" x="13" y="7.5" width="64" height="64"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="zJu-th-qQN" secondAttribute="height" multiplier="1:1" constant="-10" id="7M3-Dg-k0i"/>
+                                                        <constraint firstAttribute="height" constant="64" id="VRH-nE-myn"/>
+                                                        <constraint firstAttribute="width" constant="64" id="ujj-w0-pjr"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qDi-NO-cCz">
-                                                    <rect key="frame" x="66" y="16.5" width="175" height="46"/>
+                                                    <rect key="frame" x="92" y="16.5" width="144" height="46"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="545-TV-5E2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="175" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="144" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbt-fL-ev9">
-                                                            <rect key="frame" x="0.0" y="25.5" width="175" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="25.5" width="144" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -7048,24 +7049,23 @@
                                                     </subviews>
                                                 </stackView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="lIa-NK-3hF">
-                                                    <rect key="frame" x="251" y="26" width="27" height="27"/>
+                                                    <rect key="frame" x="246" y="23.5" width="32" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="lIa-NK-3hF" secondAttribute="height" multiplier="1:1" id="vjJ-do-RjQ"/>
+                                                        <constraint firstAttribute="width" constant="32" id="8Lv-7H-FFi"/>
+                                                        <constraint firstAttribute="height" constant="32" id="d90-uT-HME"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="zJu-th-qQN" firstAttribute="top" secondItem="nlZ-v5-YYK" secondAttribute="topMargin" constant="5" id="7Cb-Ca-dwu"/>
-                                            <constraint firstItem="qDi-NO-cCz" firstAttribute="leading" secondItem="zJu-th-qQN" secondAttribute="trailing" constant="10" id="Gcd-T3-xb1"/>
+                                            <constraint firstItem="lIa-NK-3hF" firstAttribute="centerY" secondItem="nlZ-v5-YYK" secondAttribute="centerY" id="1ZC-s9-Kim"/>
                                             <constraint firstItem="lIa-NK-3hF" firstAttribute="leading" secondItem="qDi-NO-cCz" secondAttribute="trailing" constant="10" id="Hdl-4o-CNG"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="lIa-NK-3hF" secondAttribute="bottom" constant="18" id="YiJ-tn-PjC"/>
+                                            <constraint firstItem="zJu-th-qQN" firstAttribute="leading" secondItem="nlZ-v5-YYK" secondAttribute="leadingMargin" constant="5" id="RpL-cZ-paY"/>
                                             <constraint firstItem="qDi-NO-cCz" firstAttribute="centerY" secondItem="nlZ-v5-YYK" secondAttribute="centerY" id="aaD-vd-55T"/>
-                                            <constraint firstItem="lIa-NK-3hF" firstAttribute="top" secondItem="nlZ-v5-YYK" secondAttribute="topMargin" constant="18" id="hLs-EA-NwG"/>
-                                            <constraint firstItem="zJu-th-qQN" firstAttribute="leading" secondItem="nlZ-v5-YYK" secondAttribute="leadingMargin" constant="5" id="tpV-NC-5UX"/>
+                                            <constraint firstItem="zJu-th-qQN" firstAttribute="centerY" secondItem="nlZ-v5-YYK" secondAttribute="centerY" id="nu1-0T-zUq"/>
+                                            <constraint firstItem="qDi-NO-cCz" firstAttribute="leading" secondItem="zJu-th-qQN" secondAttribute="trailing" constant="15" id="r77-TU-9yU"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="lIa-NK-3hF" secondAttribute="trailing" constant="10" id="wI9-nw-CUm"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="zJu-th-qQN" secondAttribute="bottom" constant="5" id="x8r-AV-sB4"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="cellImage" destination="zJu-th-qQN" id="MHa-Kv-x38"/>
@@ -9516,7 +9516,7 @@
         <image name="rupee-indian" width="128" height="128"/>
         <image name="society_services_na" width="250" height="250"/>
         <image name="splashScreen" width="205" height="159"/>
-        <image name="welcomeImage" width="256" height="256"/>
+        <image name="welcomeImage" width="32" height="32"/>
         <image name="whatsapp" width="128" height="128"/>
     </resources>
 </document>

@@ -1322,6 +1322,10 @@ class NAString : NSObject {
         return String ("Select Scrap Type")
     }
     
+    func scrapType() -> String {
+        return String ("scrapType")
+    }
+    
     func selectAnyOne() -> String {
         return String ("Select Any One")
     }
@@ -2004,5 +2008,9 @@ class NAString : NSObject {
     
     func paymentCancelledByUser() -> String {
         return String("Payment cancelled by user")
+    }
+    
+    func scrapCollectionHistoryAlertTitle() -> String {
+        return String("A Scrap collection request has been raised")
     }
 }

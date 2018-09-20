@@ -53,8 +53,9 @@ class NASocietyServices {
     var endOTP : String
     var fullName : String
     var mobileNumber : String
+    var timeStamp : Int
     
-    init(problem: String, timeSlot : String, userUID: String, societyServiceType: String, notificationUID: String, status: String, takenBy: String, endOTP: String, fullName : String, mobileNumber : String) {
+    init(problem: String, timeSlot : String, userUID: String, societyServiceType: String, notificationUID: String, status: String, takenBy: String, endOTP: String, fullName : String, mobileNumber : String, timeStamp: Int) {
         self.problem = problem
         self.timeSlot = timeSlot
         self.userUID = userUID
@@ -65,6 +66,7 @@ class NASocietyServices {
         self.endOTP = endOTP
         self.fullName = fullName
         self.mobileNumber = mobileNumber
+        self.timeStamp = timeStamp
         
     }
     
@@ -97,5 +99,9 @@ class NASocietyServices {
     }
     func getMobileNumber() -> String {
         return mobileNumber
+    }
+    
+    func getTimeStamp() -> Int {
+        return timeStamp
     }
 }
