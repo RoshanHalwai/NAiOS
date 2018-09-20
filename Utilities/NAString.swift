@@ -146,6 +146,14 @@ class NAString : NSObject {
         return String("+91")
     }
     
+    func _1() -> String {
+        return String("+1")
+    }
+    
+    func selectCountryCode() -> String {
+        return String("Select your country code")
+    }
+    
     func phone_numbe() -> String {
         return String("MOBILE NUMBER")
     }
@@ -211,6 +219,10 @@ class NAString : NSObject {
     
     func please_enter_10_digit_no() -> String{
         return String("Please enter a valid 10 digit mobile number")
+    }
+    
+    func please_select_country_code() -> String{
+        return String("Please select your country code")
     }
     
     func please_enter_name() -> String{

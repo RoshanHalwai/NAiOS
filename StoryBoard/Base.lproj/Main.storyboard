@@ -284,13 +284,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="170" y="0.0" width="55.5" height="53"/>
+                                                <rect key="frame" x="172.5" y="0.0" width="53" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -607,18 +607,17 @@
                                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qYC-CK-E3H">
                                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
                                                                         <subviews>
-                                                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="eEo-Un-MP8">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmF-8V-Bkx">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="height" constant="30" id="OZI-A6-3Jp"/>
-                                                                                    <constraint firstAttribute="width" constant="50" id="mXD-jP-slg"/>
+                                                                                    <constraint firstAttribute="width" constant="60" id="1Bx-Wd-YRA"/>
                                                                                 </constraints>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
-                                                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
-                                                                                <textInputTraits key="textInputTraits"/>
-                                                                            </textField>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
                                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r53-Fl-MeY">
-                                                                                <rect key="frame" x="60" y="0.0" width="275" height="30"/>
+                                                                                <rect key="frame" x="70" y="0.0" width="265" height="30"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="30" id="D6x-at-ldl"/>
                                                                                 </constraints>
@@ -691,10 +690,10 @@
                     <connections>
                         <outlet property="btnLogin" destination="Qdd-A9-Hot" id="6IO-rg-9FZ"/>
                         <outlet property="cardView" destination="cpB-c3-mD8" id="MIf-wV-KNZ"/>
+                        <outlet property="lbl_CountryCode" destination="PmF-8V-Bkx" id="X1x-1C-xtz"/>
                         <outlet property="lbl_MobileNo" destination="bBO-6A-9ZX" id="4FJ-lm-qti"/>
                         <outlet property="lbl_Validation" destination="jKK-8K-MyL" id="VtA-L6-UO4"/>
                         <outlet property="scrollView" destination="r7V-rj-JBp" id="Ybm-AR-GqN"/>
-                        <outlet property="txt_CountryCode" destination="eEo-Un-MP8" id="Aee-wX-wlY"/>
                         <outlet property="txt_MobileNo" destination="r53-Fl-MeY" id="5Q7-KM-NK7"/>
                     </connections>
                 </viewController>
