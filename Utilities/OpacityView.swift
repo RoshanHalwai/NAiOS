@@ -65,6 +65,9 @@ class OpacityView {
         } else if addButtonTagValue == NAString().doneButtonTagValue() {
             popupView.lbl_Title.text = NAString().eventMessage()
             popupView.lbl_Message.text = NAString().searchingForBook()
+        } else if addButtonTagValue == NAString().submittRequestButtonTagValue() {
+            popupView.lbl_Title.text = NAString().contactUsProgressDialogTitle()
+            popupView.lbl_Message.text = NAString().addButtonloadViewMessage()
         }
     }
     

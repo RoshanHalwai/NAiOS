@@ -13,6 +13,7 @@ class ContactUsHistoryViewController: NANavigationViewController, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     
     var userSupportDetails = [NAUserProblems]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.ConfigureNavBarTitle(title: NAString().history().capitalized)
@@ -63,7 +64,7 @@ class ContactUsHistoryViewController: NANavigationViewController, UICollectionVi
     
     func retrievingUserProblemData() {
         
-         NAActivityIndicator.shared.showActivityIndicator(view: self)
+        NAActivityIndicator.shared.showActivityIndicator(view: self)
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SUPPORT)
         
         userDataRef.observeSingleEvent(of: .value) { (snapshot) in
@@ -93,5 +94,5 @@ class ContactUsHistoryViewController: NANavigationViewController, UICollectionVi
             }
         }
     }
-
+    
 }

@@ -25,6 +25,10 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var lbl_SelectSlot: UILabel!
     @IBOutlet weak var lbl_ErrorValidation_Message: UILabel!
     @IBOutlet weak var lbl_description: UILabel!
+    @IBOutlet weak var lbl_CheckList_SelectProblem: UILabel!
+    @IBOutlet weak var lbl_CheckList_SelectSlot: UILabel!
+    @IBOutlet weak var lbl_CheckList_RequestService: UILabel!
+    @IBOutlet weak var lbl_CheckList_FreeService: UILabel!
     @IBOutlet weak var lbl_DescrptionErrorValidation_Message: UILabel!
     @IBOutlet weak var checkList_CardView: UIView!
     
@@ -33,6 +37,7 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var garbageStackView: UIStackView!
     @IBOutlet weak var othersStackView: UIStackView!
     @IBOutlet weak var societyStackView: UIStackView!
+    @IBOutlet weak var availableStackView: UIStackView!
     
     @IBOutlet weak var lbl_available: UILabel!
     @IBOutlet weak var lbl_unAvailable: UILabel!
@@ -62,7 +67,11 @@ class SocietyServicesViewController: NANavigationViewController {
         //Create textfield first letter capital
         txt_Others.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        getButtonHour_Text = NAString().immediately()
+        if (navTitle == NAString().scrapCollection()) {
+            getButtonHour_Text = NAString()._0_5Kg()
+        } else {
+            getButtonHour_Text = NAString().immediately()
+        }
         getButtonGarbage_Problem_Text = NAString().dryWaste()
         
         self.txt_SelectAny.text = selectedProblem
@@ -75,7 +84,6 @@ class SocietyServicesViewController: NANavigationViewController {
         txt_SelectAny.font = NAFont().textFieldFont()
         txt_Others.font = NAFont().textFieldFont()
         
-        lbl_ErrorValidation_Message.text = NAString().please_select_your_problem()
         lbl_DescrptionErrorValidation_Message.text = NAString().please_enter_your_problem()
         lbl_unAvailable.text = NAString().unavailable()
         lbl_available.text = NAString().available()
@@ -94,9 +102,6 @@ class SocietyServicesViewController: NANavigationViewController {
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)        
         
-        //Label formatting & setting
-        lbl_SelectSlot.text = NAString().selectSlot()
-        
         //lbl_Title.font = NAFont().headerFont()
         lbl_SelectProblem.font = NAFont().headerFont()
         lbl_SelectSlot.font = NAFont().headerFont()
@@ -113,11 +118,6 @@ class SocietyServicesViewController: NANavigationViewController {
         garbageButtons.append(btn_DryWaste)
         garbageButtons.append(btn_WetWaste)
         
-        //button Formatting & setting
-        btn_Immediately.setTitle(NAString().immediately(), for: .normal)
-        btn_9AMto12PM.setTitle(NAString()._9AM_12PM(), for: .normal)
-        btn_12PMto3PM.setTitle(NAString()._12PM_3PM(), for: .normal)
-        btn_3PMto5PM.setTitle(NAString()._3PM_5PM(), for: .normal)
         btn_DryWaste.setTitle(NAString().dryWaste(), for: .normal)
         btn_WetWaste.setTitle(NAString().wetWaste(), for: .normal)
         
@@ -174,6 +174,12 @@ class SocietyServicesViewController: NANavigationViewController {
         self.changingSelectAnyButtonTitles()
         self.changingLabelSelectProblemTitles()
         
+        //Calling Label Titles Functions
+        self.changingButtonsText()
+        self.changingSelectLabelText()
+        self.changingChecklistLabelText()
+        self.changingLabelValidationMessageText()
+        
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
         historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
@@ -209,7 +215,7 @@ class SocietyServicesViewController: NANavigationViewController {
     
     // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
-       UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
     }
     
     //To Navigate to Society Service History VC
@@ -218,10 +224,60 @@ class SocietyServicesViewController: NANavigationViewController {
         dv.titleName = NAString().history().capitalized
         if navTitle == NAString().garbage_Collection() {
             dv.navigationTitle = NAString().garbageCollection()
+        } else if navTitle == NAString().scrapCollection() {
+            dv.navigationTitle = NAString().scrap_Collection()
         } else {
             dv.navigationTitle = navTitle!.lowercased()
         }
         self.navigationController?.pushViewController(dv, animated: true)
+    }
+    
+    //Create Changing the Label Validation Message Text Function
+    func changingLabelValidationMessageText() {
+        if (navTitle == NAString().scrapCollection()) {
+            lbl_ErrorValidation_Message.text = NAString().please_enter_your_scrapType()
+        } else {
+            lbl_ErrorValidation_Message.text = NAString().please_select_your_problem()
+        }
+    }
+    
+    //Create Changing the Checklist Label Text Function
+    func changingChecklistLabelText() {
+        if (navTitle == NAString().scrapCollection()) {
+            lbl_CheckList_SelectProblem.text = NAString().selectScrapType()
+            lbl_CheckList_SelectSlot.text = NAString().selectQuantity()
+        } else {
+            lbl_CheckList_SelectProblem.text = NAString().selectProblem()
+            lbl_CheckList_SelectSlot.text = NAString().selectSlot()
+            lbl_CheckList_RequestService.text = NAString().requestService()
+            lbl_CheckList_FreeService.text = NAString().enjoyService()
+        }
+        
+    }
+    
+    //Create Changing the Label Text Function
+    func changingSelectLabelText() {
+        if (navTitle == NAString().scrapCollection()) {
+            availableStackView.isHidden = true
+            lbl_SelectSlot.text = NAString().totalQuantity()
+        } else {
+            lbl_SelectSlot.text = NAString().selectSlot()
+        }
+    }
+    
+    //Create Changing the Buttons Text Function
+    func changingButtonsText() {
+        if (navTitle == NAString().scrapCollection()) {
+            btn_Immediately.setTitle(NAString()._0_5Kg(), for: .normal)
+            btn_9AMto12PM.setTitle(NAString()._5_10Kg(), for: .normal)
+            btn_12PMto3PM.setTitle(NAString()._10_15Kg(), for: .normal)
+            btn_3PMto5PM.setTitle(NAString()._15Plus(), for: .normal)
+        } else {
+            btn_Immediately.setTitle(NAString().immediately(), for: .normal)
+            btn_9AMto12PM.setTitle(NAString()._9AM_12PM(), for: .normal)
+            btn_12PMto3PM.setTitle(NAString()._12PM_3PM(), for: .normal)
+            btn_3PMto5PM.setTitle(NAString()._3PM_5PM(), for: .normal)
+        }
     }
     
     //Create Changing the Button Titles Function
@@ -256,8 +312,10 @@ class SocietyServicesViewController: NANavigationViewController {
             lbl_SelectProblem.text = NAString().selectProblem()
         } else if (navTitle == NAString().electrician()) {
             lbl_SelectProblem.text = NAString().selectProblem()
-        } else {
+        } else if (navTitle == NAString().garbage_Collection()) {
             lbl_SelectProblem.text = NAString().collectGarbage()
+        } else {
+            lbl_SelectProblem.text = NAString().selectScrapType()
         }
     }
     
@@ -326,8 +384,10 @@ class SocietyServicesViewController: NANavigationViewController {
                     searchVC.titleString = NAString().plumber()
                 } else if (navTitle == NAString().carpenter()) {
                     searchVC.titleString = NAString().carpenter()
-                } else {
+                } else if (navTitle == NAString().electrician()) {
                     searchVC.titleString = NAString().electrician()
+                } else {
+                    searchVC.titleString = NAString().scrapCollection()
                 }
                 searchVC.societyServiceVC = self
                 self.navigationController?.present(nav, animated: true, completion: nil)
@@ -384,6 +444,21 @@ class SocietyServicesViewController: NANavigationViewController {
             }
         }
     }
+    
+    //AlertView For navigation
+    func inviteAlertView() {
+        //creating alert controller
+        let alert = UIAlertController(title: NAString().requestRaised() , message: NAString().scrapCollectionHistoryAlertTitle(), preferredStyle: .alert)
+        //creating Accept alert actions
+        let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
+                let scrapHistoryVC = NAViewPresenter().societyServiceHistoryVC()
+                  scrapHistoryVC.titleName = NAString().history()
+                 scrapHistoryVC.navigationTitle = NAString().scrap_Collection()
+                self.navigationController?.pushViewController(scrapHistoryVC, animated: true)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension SocietyServicesViewController {
@@ -396,6 +471,9 @@ extension SocietyServicesViewController {
         if (navTitle == NAString().garbage_Collection()) {
             problem = getButtonGarbage_Problem_Text
             serviceType = NAString().garbageCollection()
+        } else if (navTitle == NAString().scrapCollection()) {
+            problem = selectedProblem
+            serviceType = NAString().scrap_Collection()
         } else {
             if (self.txt_SelectAny.text == NAString().others()) {
                 problem = self.txt_Others.text!
@@ -409,12 +487,26 @@ extension SocietyServicesViewController {
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         
+        var problemOrScrapType = String()
+        var timeSlotOrQuantity = String()
+        var uidOrNotificationUID = String()
+        
+        if navTitle == NAString().scrapCollection() {
+            problemOrScrapType = NASocietyServicesFBKeys.scrapType.key
+            timeSlotOrQuantity = NASocietyServicesFBKeys.quantity.key
+            uidOrNotificationUID = NASocietyServicesFBKeys.uid.key
+        } else {
+            problemOrScrapType = NASocietyServicesFBKeys.problem.key
+            timeSlotOrQuantity = NASocietyServicesFBKeys.timeSlot.key
+            uidOrNotificationUID = NASocietyServicesFBKeys.notificationUID.key
+        }
+        
         let societyServiceNotificationData = [
-            NASocietyServicesFBKeys.problem.key : problem,
-            NASocietyServicesFBKeys.timeSlot.key : getButtonHour_Text,
+            problemOrScrapType : problem,
+            timeSlotOrQuantity : getButtonHour_Text,
             NASocietyServicesFBKeys.userUID.key: userUID,
             NASocietyServicesFBKeys.societyServiceType.key : serviceType,
-            NASocietyServicesFBKeys.notificationUID.key : notificationUID,
+            uidOrNotificationUID : notificationUID,
             NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
         
         societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData) { (error, snapshot) in
@@ -423,6 +515,7 @@ extension SocietyServicesViewController {
                 self.callAwaitingResponseViewController()
             })
         }
+        
     }
     
     func callAwaitingResponseViewController() {
@@ -431,13 +524,19 @@ extension SocietyServicesViewController {
         lv.notificationUID = notificationUID
         if (navTitle == NAString().plumber()) {
             lv.serviceType = NAString().plumber()
+            self.navigationController?.pushViewController(lv, animated: true)
         } else if (navTitle == NAString().carpenter()) {
             lv.serviceType = NAString().carpenter()
+            self.navigationController?.pushViewController(lv, animated: true)
         } else if (navTitle == NAString().electrician()) {
             lv.serviceType = NAString().electrician()
-        } else {
+            self.navigationController?.pushViewController(lv, animated: true)
+        } else if (navTitle == NAString().garbage_Collection()) {
             lv.serviceType = NAString().garbage_Collection()
+            self.navigationController?.pushViewController(lv, animated: true)
+        } else {
+            self.inviteAlertView()
+            lv.serviceType = NAString().scrapCollection()
         }
-        self.navigationController?.pushViewController(lv, animated: true)
     }
 }

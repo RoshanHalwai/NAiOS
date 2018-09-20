@@ -35,11 +35,11 @@ class NAEventManagement {
    
     var title: String?
     var date: String?
-    var timeSlot: String?
+    var timeSlot = [String]()
     var status: String?
     
     //initilaize the variables
-    init(title: String?,date: String?,timeSlot: String?,status: String?) {
+    init(title: String?,date: String?,timeSlot: [String],status: String?) {
         self.title = title
         self.date = date
         self.timeSlot = timeSlot
@@ -54,8 +54,8 @@ class NAEventManagement {
         return date!
     }
     
-    func getTimeSlot() -> String {
-        return timeSlot!
+    func getTimeSlot() -> [String] {
+        return timeSlot
     }
     
     func getStatus() -> String {

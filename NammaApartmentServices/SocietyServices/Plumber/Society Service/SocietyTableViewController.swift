@@ -26,6 +26,7 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
     var plumberProblemsList = ["Dripping faucets","Slow draining sink","Clogged bath or shower drain","Clogged toilet","Running toilet","Faulty water heater","Low water pressure","Jammed garbage disposal","Leaky pipes","Sewer system backup","Others"]
     var carpenterProblemsList = ["Carpentry finish appears uneven","Split in the wood","Weak joints","Dents in wood","Glue stuck","Others"]
     var electricianProblemsList = ["Frequent Electrical Surge","Sags and Dips in Power","Light Switches not working properly","Circuit Overload","Circuit Breaker Tripping Frequently","Lights too Bright or Dim","Electrical Shocks","High Electrical Bill","Light Bulbs burning out too often","Recessed Light 'Goes Out' and comesback on","Others"]
+    var scrapCollectionTypeList = ["Paper Scrap","Metal Waste","Plastic","Bottles","Clothes","Utensils","Electronic Waste","Mix Waste","Others"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +65,14 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
                 let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
                 return range.location != NSNotFound
             })
-        } else {
+        } else if (NAString().electrician() == titleString) {
             filteredArray = electricianProblemsList.filter({ (text) -> Bool in
+                let string: NSString = text as NSString
+                let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return range.location != NSNotFound
+            })
+        } else {
+            filteredArray = scrapCollectionTypeList.filter({ (text) -> Bool in
                 let string: NSString = text as NSString
                 let range = string.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
                 return range.location != NSNotFound
@@ -87,8 +94,10 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
             return plumberProblemsList.count
         } else if (NAString().carpenter() == titleString) {
             return carpenterProblemsList.count
-        } else {
+        } else if (NAString().electrician() == titleString) {
             return electricianProblemsList.count
+        } else {
+            return scrapCollectionTypeList.count
         }
     }
     
@@ -103,9 +112,12 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
         } else if (NAString().carpenter() == titleString) {
             carpenterProblemsList = carpenterProblemsList.sorted()
             cell.textLabel?.text = carpenterProblemsList[indexPath.row]
-        } else {
+        } else if (NAString().electrician() == titleString) {
             electricianProblemsList = electricianProblemsList.sorted()
             cell.textLabel?.text = electricianProblemsList[indexPath.row]
+        } else {
+            scrapCollectionTypeList = scrapCollectionTypeList.sorted()
+            cell.textLabel?.text = scrapCollectionTypeList[indexPath.row]
         }
         
         //Label formatting & setting

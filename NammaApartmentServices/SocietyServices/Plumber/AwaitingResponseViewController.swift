@@ -132,14 +132,18 @@ class AwaitingResponseViewController: NANavigationViewController {
                 
                 futureRef.observeSingleEvent(of: .value) { (futureSnapshot) in
                     if futureSnapshot.exists() {
-                        //Getting Future Services UID here
+                        //Getting Future Services UID & timeStamp
                         let futureServicesUID = futureSnapshot.value as? NSDictionary
-                        var futureServicUID = [String]()
-                        futureServicUID = futureServicesUID?.allKeys as! [String]
-                        let serviceUID = futureServicUID[0]
+                        var futureServiceUID = [String]()
+                        var futureTimeStamp = [String]()
+                        futureServiceUID = futureServicesUID?.allValues as! [String]
+                        futureTimeStamp = futureServicesUID?.allKeys as! [String]
+                        
+                        let serviceUID = futureServiceUID[0]
+                        let timeStamp = futureTimeStamp[0]
                         
                         //Deteting Value & Key from Future ref
-                        futureRef.child(serviceUID).removeValue()
+                        futureRef.child(timeStamp).removeValue()
                         
                         //Taking UID from Future & Mapping under -> Serving with value Accepted
                         servingRef.child(serviceUID).setValue(NAString().accepted())
@@ -246,8 +250,10 @@ class AwaitingResponseViewController: NANavigationViewController {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().carpenter())
         } else if (serviceType == NAString().electrician()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().electrician())
-        } else {
+        } else if (serviceType == NAString().garbage_Collection()) {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_Collection())
+        } else {
+            lbl_message?.text = NAString().societyServiceMessage(name: NAString().scrapCollection())
         }
     }
     

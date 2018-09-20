@@ -249,6 +249,10 @@ class NAString : NSObject {
         return String("Please Enter Your Problem")
     }
     
+    func please_enter_your_scrapType() -> String {
+        return String("Please select your scrap type")
+    }
+    
     func please_enter_Valid_email() -> String {
         return String("Please enter a Valid Email address")
     }
@@ -457,6 +461,14 @@ class NAString : NSObject {
     
     func eventManagement() -> String {
         return String("eventManagement")
+    }
+    
+    func scrapCollection() -> String {
+        return String("Scrap Collection")
+    }
+    
+    func scrap_Collection() -> String {
+        return String("scrapCollection")
     }
     
     func emergency() -> String {
@@ -1091,6 +1103,10 @@ class NAString : NSObject {
         return String("Currently there are no support requests raised by the user.")
     }
     
+    func layoutFeatureErrorUserFoodDonations() -> String {
+        return String("Currently there are no foodDonation requests raised by the user.")
+    }
+    
     func layoutFeatureErrorpackageArrivalList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
     }
@@ -1196,6 +1212,10 @@ class NAString : NSObject {
         return Int (108)
     }
     
+    func submittRequestButtonTagValue() -> Int {
+        return Int (109)
+    }
+    
     //Create Popup View Corner Radius
     func popupViewCornerRadius() -> Int {
         return Int (10)
@@ -1238,8 +1258,16 @@ class NAString : NSObject {
         return String ("Select Slot")
     }
     
+    func totalQuantity() -> String {
+        return String ("Total Quantity (Rough Estimate in Kg's) ")
+    }
+    
     func selectProblem() -> String {
         return String ("Select Problem")
+    }
+    
+    func selectQuantity() -> String {
+        return String ("Select Quantity")
     }
     
     func immediately() -> String {
@@ -1252,6 +1280,22 @@ class NAString : NSObject {
     
     func _12PM_3PM() -> String {
         return String ("12PM - 3PM")
+    }
+    
+    func _0_5Kg() -> String {
+        return String ("0 - 5 Kg")
+    }
+    
+    func _5_10Kg() -> String {
+        return String ("5 - 10 Kg")
+    }
+    
+    func _10_15Kg() -> String {
+        return String ("10 - 15 Kg")
+    }
+    
+    func _15Plus() -> String {
+        return String ("15+ Kg")
     }
     
     func _3PM_5PM() -> String {
@@ -1284,6 +1328,14 @@ class NAString : NSObject {
     
     func collectGarbage() -> String {
         return String ("Select Garbage")
+    }
+    
+    func selectScrapType() -> String {
+        return String ("Select Scrap Type")
+    }
+    
+    func scrapType() -> String {
+        return String ("scrapType")
     }
     
     func selectAnyOne() -> String {
@@ -1818,6 +1870,14 @@ class NAString : NSObject {
         return String("Unavailable")
     }
     
+    func requestService() -> String {
+        return String("Request Service")
+    }
+    
+    func enjoyService() -> String {
+        return String("Enjoy the free service")
+    }
+    
     func others() -> String {
         return String("Others")
     }
@@ -1903,7 +1963,7 @@ class NAString : NSObject {
     }
     
     func cancelled() -> String {
-        return String("cancelled")
+        return String("Cancelled")
     }
     
     func foodType() -> String {
@@ -1946,6 +2006,18 @@ class NAString : NSObject {
         return String("Apartments")
     }
     
+    func contactUsProgressDialogTitle() -> String {
+        return String("Raising Request")
+    }
+    
+    func contactUsServiceValidationErrorMessage() -> String {
+        return String("Please enter problem")
+    }
+    
+    func contactUsServiceProblemValidationErrorMessage() -> String {
+        return String("Please select service type")
+    }
+    
     func paymentCancelledByUser() -> String {
         return String("Payment cancelled by user")
     }
@@ -1960,5 +2032,9 @@ class NAString : NSObject {
     
     func stateCodePlaceHolder() -> String {
         return String("▼+91")
+    }
+    
+    func scrapCollectionHistoryAlertTitle() -> String {
+        return String("A Scrap collection request has been raised")
     }
 }

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "traffic-sign-6.png",
+      "filename" : "supermarket.png",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "traffic-sign-7.png",
+      "filename" : "supermarket-2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "traffic-sign-8.png",
+      "filename" : "supermarket-3.png",
       "scale" : "3x"
     }
   ],

@@ -76,7 +76,10 @@
 		42358A382122F99700186B1D /* NammaApartmentVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42358A372122F99700186B1D /* NammaApartmentVehicle.swift */; };
 		4235FB0A212536B400965352 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4235FB09212536B400965352 /* EventManagementViewController.swift */; };
 		423633D22133F74600637F5F /* NoticeBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */; };
+		423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */; };
 		426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */; };
+		427599C02153D63000ACC5AF /* EventManagementHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427599BF2153D63000ACC5AF /* EventManagementHistoryViewController.swift */; };
+		427599C22153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427599C12153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift */; };
 		42914D9C2126872F00B3B57A /* NAEventManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42914D9B2126872F00B3B57A /* NAEventManagement.swift */; };
 		4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */; };
 		42D208422130324400D3AF3E /* NANoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D208412130324400D3AF3E /* NANoticeBoardViewController.swift */; };
@@ -157,6 +160,7 @@
 		86C4E7E62111B17B00BE1AFD /* NADailyServiceHandedThingsHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4E7E52111B17A00BE1AFD /* NADailyServiceHandedThingsHistory.swift */; };
 		86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
+		86F13F002154229400AF3EE6 /* DonateFoodHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */; };
 		86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */; };
 		AE89B264571E0E8BB68725DE /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E236AF21BBE4186258696358 /* Pods_nammaApartmentTests.framework */; };
 		DD38302D57353FCCC56D30E5 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9E4FA99AFC6477243245A6 /* Pods_nammaApartmentUITests.framework */; };
@@ -250,7 +254,10 @@
 		42358A372122F99700186B1D /* NammaApartmentVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentVehicle.swift; sourceTree = "<group>"; };
 		4235FB09212536B400965352 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardTableViewCell.swift; sourceTree = "<group>"; };
+		423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoodViewController.swift; sourceTree = "<group>"; };
+		427599BF2153D63000ACC5AF /* EventManagementHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryViewController.swift; sourceTree = "<group>"; };
+		427599C12153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		42914D9B2126872F00B3B57A /* NAEventManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAEventManagement.swift; sourceTree = "<group>"; };
 		4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMyGuardsViewController.swift; sourceTree = "<group>"; };
 		42D208412130324400D3AF3E /* NANoticeBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANoticeBoardViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +347,7 @@
 		86C4E7E52111B17A00BE1AFD /* NADailyServiceHandedThingsHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NADailyServiceHandedThingsHistory.swift; sourceTree = "<group>"; };
 		86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingArrivalViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
+		86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryViewController.swift; sourceTree = "<group>"; };
 		86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentDailyServices.swift; sourceTree = "<group>"; };
 		8E9E4FA99AFC6477243245A6 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		932EC8C8A9BD03466DB6D6CF /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -501,6 +509,8 @@
 			isa = PBXGroup;
 			children = (
 				4235FB09212536B400965352 /* EventManagementViewController.swift */,
+				427599BF2153D63000ACC5AF /* EventManagementHistoryViewController.swift */,
+				427599C12153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift */,
 				42914D9B2126872F00B3B57A /* NAEventManagement.swift */,
 				8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */,
 			);
@@ -516,9 +526,19 @@
 			path = "Add My Vehicles";
 			sourceTree = "<group>";
 		};
+		423D477221522B6C001DA4C1 /* Donate Food History */ = {
+			isa = PBXGroup;
+			children = (
+				86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */,
+				423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */,
+			);
+			path = "Donate Food History";
+			sourceTree = "<group>";
+		};
 		426A1F2E214D340D0003ED01 /* My Food */ = {
 			isa = PBXGroup;
 			children = (
+				423D477221522B6C001DA4C1 /* Donate Food History */,
 				426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */,
 				42245145214FBDE600CD2C0E /* NammaApartmentFood.swift */,
 			);
@@ -1321,8 +1341,10 @@
 				083D5C8920F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift in Sources */,
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
+				427599C02153D63000ACC5AF /* EventManagementHistoryViewController.swift in Sources */,
 				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
 				084BBB5B2143C55E00289B38 /* EditMyProfileFlatMembersListViewController.swift in Sources */,
+				427599C22153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift in Sources */,
 				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
 				423033A12131436B00DBF109 /* ContactUsListViewController.swift in Sources */,
@@ -1361,6 +1383,7 @@
 				42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */,
 				426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */,
 				08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */,
+				423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */,
 				08EA578521464A0B00A0574D /* ContactUsHistoryViewController.swift in Sources */,
 				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
 				08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
@@ -1377,6 +1400,7 @@
 				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				42341BB3212165510005160B /* MyVehiclesViewController.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
+				86F13F002154229400AF3EE6 /* DonateFoodHistoryViewController.swift in Sources */,
 				422E7E0D2114882700648D40 /* AwaitingResponseViewController.swift in Sources */,
 				8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */,
 				42D208422130324400D3AF3E /* NANoticeBoardViewController.swift in Sources */,

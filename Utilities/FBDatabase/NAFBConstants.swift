@@ -59,7 +59,7 @@ struct Constants {
     static let FIREBASE_FLAT = "D-101"
     static let FIREBASE_CHILD_CABS = "cabs"
     static let FIREBASE_CHILD_VEHICLES = "vehicles"
-    static let FIREBASE_CHILD_DONATEFOOD = "donateFood"
+    static let FIREBASE_CHILD_DONATEFOOD = "foodDonations"
     static let FIREBASE_CHILD_DELIVERIES = "deliveries"
     static let FIREBASE_CHILD_CITIES = "cities"
     static let FIREBASE_CHILD_SOCIETIES = "societies"
@@ -119,6 +119,7 @@ struct Constants {
     static let FIREBASE_TRANSACTIONS = "transactions"
     static let FIREBASE_CHILD_SERVING = "serving"
     static let FIREBASE_CHILD_FUTURE = "future"
+    static let FIREBASE_CHILD_SCRAP_COLLECTION = "scrapCollection"
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     
