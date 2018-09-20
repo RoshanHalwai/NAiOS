@@ -77,7 +77,6 @@
 		4235FB0A212536B400965352 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4235FB09212536B400965352 /* EventManagementViewController.swift */; };
 		423633D22133F74600637F5F /* NoticeBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */; };
 		423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */; };
-		423D477621522BB4001DA4C1 /* DonateFoodHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477521522BB4001DA4C1 /* DonateFoodHistoryViewController.swift */; };
 		426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */; };
 		427599C02153D63000ACC5AF /* EventManagementHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427599BF2153D63000ACC5AF /* EventManagementHistoryViewController.swift */; };
 		427599C22153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427599C12153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift */; };
@@ -161,6 +160,7 @@
 		86C4E7E62111B17B00BE1AFD /* NADailyServiceHandedThingsHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4E7E52111B17A00BE1AFD /* NADailyServiceHandedThingsHistory.swift */; };
 		86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
+		86F13F002154229400AF3EE6 /* DonateFoodHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */; };
 		86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */; };
 		AE89B264571E0E8BB68725DE /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E236AF21BBE4186258696358 /* Pods_nammaApartmentTests.framework */; };
 		DD38302D57353FCCC56D30E5 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9E4FA99AFC6477243245A6 /* Pods_nammaApartmentUITests.framework */; };
@@ -255,7 +255,6 @@
 		4235FB09212536B400965352 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardTableViewCell.swift; sourceTree = "<group>"; };
 		423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		423D477521522BB4001DA4C1 /* DonateFoodHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DonateFoodHistoryViewController.swift; path = "/Users/kalrohi/Desktop/nammaapartmentsios/NavigationDrawer/NavigationMenuCategory/My Food/Donate Food History/DonateFoodHistoryViewController.swift"; sourceTree = "<absolute>"; };
 		426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoodViewController.swift; sourceTree = "<group>"; };
 		427599BF2153D63000ACC5AF /* EventManagementHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryViewController.swift; sourceTree = "<group>"; };
 		427599C12153DB6100ACC5AF /* EventManagementHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -348,6 +347,7 @@
 		86C4E7E52111B17A00BE1AFD /* NADailyServiceHandedThingsHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NADailyServiceHandedThingsHistory.swift; sourceTree = "<group>"; };
 		86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingArrivalViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
+		86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryViewController.swift; sourceTree = "<group>"; };
 		86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentDailyServices.swift; sourceTree = "<group>"; };
 		8E9E4FA99AFC6477243245A6 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		932EC8C8A9BD03466DB6D6CF /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -529,7 +529,7 @@
 		423D477221522B6C001DA4C1 /* Donate Food History */ = {
 			isa = PBXGroup;
 			children = (
-				423D477521522BB4001DA4C1 /* DonateFoodHistoryViewController.swift */,
+				86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */,
 				423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */,
 			);
 			path = "Donate Food History";
@@ -1321,7 +1321,6 @@
 				86BD74EC209A2E7000B159A3 /* NAFont.swift in Sources */,
 				08EF759020D240620031FA66 /* NAValidation.swift in Sources */,
 				5D77429D210DD49F0049344F /* SignupViewController.swift in Sources */,
-				423D477621522BB4001DA4C1 /* DonateFoodHistoryViewController.swift in Sources */,
 				8679B78021022C0C0020B004 /* NADailyServices.swift in Sources */,
 				5D774295210DD49F0049344F /* SplashApartmentServices.swift in Sources */,
 				5D77429B210DD49F0049344F /* Reachability.swift in Sources */,
@@ -1401,6 +1400,7 @@
 				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				42341BB3212165510005160B /* MyVehiclesViewController.swift in Sources */,
 				86548D80209C1FA300C700DA /* MainScreenTableViewCell.swift in Sources */,
+				86F13F002154229400AF3EE6 /* DonateFoodHistoryViewController.swift in Sources */,
 				422E7E0D2114882700648D40 /* AwaitingResponseViewController.swift in Sources */,
 				8672B3BD20A97FD40040A5E2 /* NANavigationViewController.swift in Sources */,
 				42D208422130324400D3AF3E /* NANoticeBoardViewController.swift in Sources */,
