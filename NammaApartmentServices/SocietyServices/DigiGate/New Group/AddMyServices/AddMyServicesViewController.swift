@@ -60,7 +60,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     //scrollview
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var countryCodeArray = ["United State (USA) \t +1","India (IND) \t\t\t\t +91"]
+    var countryCodeArray = [NAString().unitedStateCode(),NAString().indianStateCode()]
     
     //Database References
     var userDataRef : DatabaseReference?
@@ -111,7 +111,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             break
         }
         
-        let countryCodePlaceHolder: String = "▼+91"
+        let countryCodePlaceHolder: String = NAString().stateCodePlaceHolder()
         lbl_CountryCode.textColor = UIColor.darkGray
         lbl_CountryCode.text = countryCodePlaceHolder
         
@@ -228,12 +228,12 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     }
     
     func countryCodeSelected(alert: UIAlertAction!) {
-        if alert.title == "United State (USA) \t +1" {
-            lbl_CountryCode.text = "+1"
+        if alert.title == NAString().unitedStateCode() {
+            lbl_CountryCode.text = NAString()._1()
             lbl_CountryCode.textColor = UIColor.black
             lbl_Mobile_Validation.isHidden = true
         } else {
-            lbl_CountryCode.text = "+91"
+            lbl_CountryCode.text = NAString()._91()
             lbl_CountryCode.textColor = UIColor.black
             lbl_Mobile_Validation.isHidden = true
         }
@@ -405,7 +405,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
-        if self.lbl_CountryCode.text == "▼+91" {
+        if self.lbl_CountryCode.text == NAString().stateCodePlaceHolder() {
             lbl_Mobile_Validation.isHidden = false
             lbl_Mobile_Validation.text =  NAString().please_select_country_code()
         }

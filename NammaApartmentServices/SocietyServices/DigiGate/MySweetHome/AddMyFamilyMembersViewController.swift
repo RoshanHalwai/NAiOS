@@ -73,7 +73,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     var friend = String()
     var familyType = String()
     
-    var countryCodeArray = ["United State (USA) \t +1","India (IND) \t\t\t\t +91"]
+    var countryCodeArray = [NAString().unitedStateCode(), NAString().indianStateCode()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        let countryCodePlaceHolder: String = "▼+91"
+        let countryCodePlaceHolder: String = NAString().stateCodePlaceHolder()
         lbl_CountryCode.textColor = UIColor.darkGray
         lbl_CountryCode.text = countryCodePlaceHolder
         
@@ -190,12 +190,12 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     func countryCodeSelected(alert: UIAlertAction!) {
-        if alert.title == "United State (USA) \t +1" {
-            lbl_CountryCode.text = "+1"
+        if alert.title == NAString().unitedStateCode() {
+            lbl_CountryCode.text = NAString()._1()
             lbl_CountryCode.textColor = UIColor.black
             lbl_Mobile_Validation.isHidden = true
         } else {
-            lbl_CountryCode.text = "+91"
+            lbl_CountryCode.text = NAString()._91()
             lbl_CountryCode.textColor = UIColor.black
             lbl_Mobile_Validation.isHidden = true
         }
@@ -415,7 +415,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
         }
-        if self.lbl_CountryCode.text == "▼+91" {
+        if self.lbl_CountryCode.text == NAString().stateCodePlaceHolder() {
             lbl_Mobile_Validation.isHidden = false
             lbl_Mobile_Validation.text =  NAString().please_select_country_code()
         }

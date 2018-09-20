@@ -1949,4 +1949,16 @@ class NAString : NSObject {
     func paymentCancelledByUser() -> String {
         return String("Payment cancelled by user")
     }
+    
+    func unitedStateCode() -> String {
+        return String("United State (USA) \t +1")
+    }
+    
+    func indianStateCode() -> String {
+        return String("India (IND) \t\t\t\t +91")
+    }
+    
+    func stateCodePlaceHolder() -> String {
+        return String("▼+91")
+    }
 }

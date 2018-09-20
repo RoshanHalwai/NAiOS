@@ -23,14 +23,14 @@ class LoginViewController: NANavigationViewController {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var lbl_CountryCode: UILabel!
     
-    var countryCodeArray = ["United State (USA) \t +1","India (IND) \t\t\t\t +91"]
+    var countryCodeArray = [NAString().unitedStateCode(),NAString().indianStateCode()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.navigationBar.isHidden = false
         
-        let countryCodePlaceHolder: String = "▼+91"
+        let countryCodePlaceHolder: String = NAString().stateCodePlaceHolder()
         lbl_CountryCode.textColor = UIColor.darkGray
         lbl_CountryCode.text = countryCodePlaceHolder
         
@@ -96,12 +96,12 @@ class LoginViewController: NANavigationViewController {
         }
     
     func countryCodeSelected(alert: UIAlertAction!) {
-        if alert.title == "United State (USA) \t +1" {
-            lbl_CountryCode.text = "+1"
+        if alert.title == NAString().unitedStateCode() {
+            lbl_CountryCode.text = NAString()._1()
             lbl_CountryCode.textColor = UIColor.black
             lbl_Validation.isHidden = true
         } else {
-            lbl_CountryCode.text = "+91"
+            lbl_CountryCode.text = NAString()._91()
             lbl_CountryCode.textColor = UIColor.black
             lbl_Validation.isHidden = true
         }
@@ -129,7 +129,7 @@ class LoginViewController: NANavigationViewController {
             lbl_Validation.isHidden = false
             lbl_Validation.text =  NAString().please_enter_10_digit_no()
             txt_MobileNo.redunderlined()
-        } else if self.lbl_CountryCode.text == "▼+91" {
+        } else if self.lbl_CountryCode.text == NAString().stateCodePlaceHolder() {
             lbl_Validation.isHidden = false
               lbl_Validation.text =  NAString().please_select_country_code()
         } else if ((txt_MobileNo.text?.count)! == NAString().required_mobileNo_Length()) {
