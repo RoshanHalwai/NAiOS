@@ -30,11 +30,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         
-        if navigationTitle == NAString().eventManagement() {
-            retrieveEventManagement()
-        } else {
-            retrieveSocietyServiceHistoryData()
-        }
+        retrieveSocietyServiceHistoryData()
         
         //Hiding History NavigationBar  RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
@@ -77,7 +73,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
             eventServiceList = NAEventList[indexPath.row]
             
             cell.cellImage.image = #imageLiteral(resourceName: "event")
-           // cell.lbl_Problem.text = eventServiceList.getTimeSlot()
+            // cell.lbl_Problem.text = eventServiceList.getTimeSlot()
             cell.lbl_Date.text = currentDate
         } else {
             let societyServiceList : NASocietyServices
@@ -196,49 +192,5 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.navigationTitle.capitalized))
             }
         }
-    }
-}
-
-extension SocietyHistoryViewController {
-    
-    func retrieveEventManagement() {
-        
-        var eventManagementUIDRef : DatabaseReference?
-        var societyServiceNotificationsRef : DatabaseReference?
-        
-        eventManagementUIDRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
-        
-        eventManagementUIDRef?.observeSingleEvent(of: .value, with: { (eventUIDSnapShot) in
-            
-            if eventUIDSnapShot.exists() {
-                //Getting Event Management UIDs here
-                let eventUIDs = eventUIDSnapShot.value as? NSDictionary
-                for eventUID in (eventUIDs?.allKeys)! {
-                    
-                    societyServiceNotificationsRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(eventUID as! String)
-                    
-                    societyServiceNotificationsRef?.observeSingleEvent(of: .value, with: { (eventDataSnapshot) in
-                        
-                        //Getting all the event management data & storing in model class
-                        let eventManagementData = eventDataSnapshot.value as? [String: AnyObject]
-                        
-                        let eventTitle : String = eventManagementData?[NAEventManagementFBKeys.eventTitle.key] as! String
-                        print(eventTitle as Any)
-                        let eventDate : String = eventManagementData?[NAEventManagementFBKeys.eventDate.key] as! String
-                        let eventStatus : String = eventManagementData?[NAEventManagementFBKeys.status.key] as! String
-                        let eventTimeSlot : String = eventManagementData?[NAEventManagementFBKeys.timeSlot.key] as! String
-                        
-//                        let eventManagementsData = NAEventManagement(title: eventTitle as String?, date: eventDate as String?, timeSlot: eventTimeSlot as String?, status: eventStatus as String?)
-                        
-                        //self.NAEventList.append(eventManagementData)
-                        self.collectionView.reloadData()
-                        NAActivityIndicator.shared.hideActivityIndicator()
-                    })
-                }
-            } else {
-                NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.navigationTitle.capitalized))
-            }
-        })
     }
 }

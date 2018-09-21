@@ -92,7 +92,7 @@ extension EventManagementCardViewController {
             let eventTitle = eventManagementData?[NAEventManagementFBKeys.eventTitle.key]
             let eventDate = eventManagementData?[NAEventManagementFBKeys.eventDate.key]
             let eventStatus = eventManagementData?[NAEventManagementFBKeys.status.key]
-            let eventTimeSlot = eventManagementData?[NAEventManagementFBKeys.timeSlot.key]
+            let eventTimeSlot = eventManagementData?[NAEventManagementFBKeys.timeSlots.key]
             
             if eventStatus as! String == Constants.FIREBASE_CHILD_IN_PROGRESS {
                 self.lbl_DateValue.text = eventDate as? String

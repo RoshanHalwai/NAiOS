@@ -13,7 +13,7 @@ enum NAEventManagementFBKeys : String {
     case societyServiceType
     case notificationUID
     case status
-    case timeSlot
+    case timeSlots
     case eventDate
     
     var key : String {
@@ -25,7 +25,7 @@ enum NAEventManagementFBKeys : String {
         case .societyServiceType: return "societyServiceType"
         case .notificationUID: return "notificationUID"
         case .status: return "status"
-        case .timeSlot: return "timeSlot"
+        case .timeSlots: return "timeSlots"
         case .eventDate: return "eventDate"
         }
     }
