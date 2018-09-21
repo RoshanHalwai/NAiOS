@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseDatabase
+import Razorpay
 
-class EventManagementViewController: NANavigationViewController {
+class EventManagementViewController: NANavigationViewController, RazorpayPaymentCompletionProtocol {
     
     @IBOutlet weak var btn_Parties : UIButton!
     @IBOutlet weak var btn_Concerts : UIButton!
@@ -53,13 +54,31 @@ class EventManagementViewController: NANavigationViewController {
     var eventSlot = String()
     var convertedDate = String()
     var selectedMutipleSlotsArray = [String]()
+    var bookedSlotsArray = [String]()
     
+    //created varible for razorPay
+    var razorpay: Razorpay!
+    var paymentDescription = String()
+    var getUserMobileNumebr = String()
+    var getUserEmailID = String()
+    var getUserPendingAmount = String()
+    
+    var slotsCount = Int()
+    var totalAmount = Int()
+    var amountPerEachSlot = 100
     
     //created date picker programtically
     let picker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        //Payment Gateway Namma Apartment API KEY for Transactions
+        razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
+        
+        getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
+        getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
         
         for button in btn_EventHours {
             button.setTitleColor(UIColor.black, for: .selected)
@@ -71,7 +90,7 @@ class EventManagementViewController: NANavigationViewController {
         txt_EventTitle.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
         //Passing NavigationBar Title
-        super.ConfigureNavBarTitle(title: navTitle!)    
+        super.ConfigureNavBarTitle(title: navTitle!)
         
         //Apply Label Fonts
         lbl_EventTitle.font = NAFont().headerFont()
@@ -237,14 +256,47 @@ class EventManagementViewController: NANavigationViewController {
         let showDate = inputFormatter.date(from: txt_EventDate.text!)
         inputFormatter.dateFormat = NAString().dateInNumberFormat()
         convertedDate = inputFormatter.string(from: showDate!)
-        //Calling disable booked slot function here
-        disableBookedSlot()
+        
+        for button in btn_EventHours {
+            button.isEnabled = true
+            button.setTitleColor(UIColor.black, for: .normal)
+        }
+        disableSlots()
     }
     
     //To Navigate to Society Service History VC
     @objc func gotoSocietyServiceHistoryVC() {
         let dv = NAViewPresenter().eventManagementHistoryVC()
         self.navigationController?.pushViewController(dv, animated: true)
+    }
+    
+    //This will call when any error occurred during transaction
+    func onPaymentError(_ code: Int32, description str: String) {
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, OkStyle: .default, OK: nil)
+    }
+    
+    //This will call when transaction succeed
+    func onPaymentSuccess(_ payment_id: String) {
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", OkStyle: .default, OK: {action in
+            let dv = NAViewPresenter().eventManagementHistoryVC()
+            self.navigationController?.pushViewController(dv, animated: true)
+        })
+        self.storeEventManagements()
+    }
+    
+    //This will show the default UI of RazorPay with some user’s informations.
+    func showPaymentUI() {
+        let options: [String:Any] = [
+            //TODO: Need to give Actual Total Amount of event Slots before App Update.
+            "amount" : "100",
+            "description": paymentDescription,
+            "name": NAString().splash_NammaHeader_Title(),
+            "prefill": [
+                "contact": getUserMobileNumebr,
+                "email": getUserEmailID
+            ],
+            ]
+        razorpay.open(options)
     }
     
     //creating function to highlight select Event button color
@@ -311,28 +363,32 @@ class EventManagementViewController: NANavigationViewController {
             }
         }
         
-        if sender.titleLabel?.text == "Full Day(8AM - 10PM)" {
+        if sender.titleLabel?.text == NAString().fullDaySlot() {
             if sender.backgroundColor == NAColor().buttonFontColor() {
                 for button in btn_EventHours {
-                    if button.titleLabel?.text != "Full Day(8AM - 10PM)" {
-                        selectedMutipleSlotsArray.append((button.titleLabel?.text)!)
-                    }
-                    if selectedMutipleSlotsArray.contains((sender.titleLabel?.text)!) {
-                        let index = selectedMutipleSlotsArray.index(of: (sender.titleLabel?.text)!)
-                        selectedMutipleSlotsArray.remove(at: index!)
+                    if button.titleLabel?.text != NAString().fullDaySlot() {
+                        button.isEnabled = false
+                        button.setTitleColor(UIColor.lightGray, for: .normal)
+                        button.backgroundColor = UIColor.white
                     }
                 }
             } else {
-                selectedMutipleSlotsArray.removeAll()
+                disableSlots()
+                for button in btn_EventHours {
+                    button.isEnabled = true
+                    button.setTitleColor(UIColor.black, for: .normal)
+                }
             }
         }
         print(selectedMutipleSlotsArray)
     }
+    
     //Create Button SelectEvent Function
     @IBAction func btnSelectEventFunction(_ sender: UIButton) {
         getButtonCategory_Text = (sender.titleLabel?.text)!
         selectedEventButtonsColor(tag: sender.tag)
     }
+    
     //Calling Book Button Function
     @IBAction func btn_bookAction() {
         if (isValidSelectSlotButtonClicked.index(of: true) == nil) {
@@ -362,50 +418,48 @@ class EventManagementViewController: NANavigationViewController {
             lbl_partiesValidation.isHidden = true
         }
         if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! && (isValidSelectSlotButtonClicked.index(of: true) != nil) && (isValidSelectEventButtonClicked.index(of: true) != nil) {
-             storeEventManagements()
-            //self.storeEventManagementDetails()
+            
+            if selectedMutipleSlotsArray.contains(NAString().fullDaySlot()) {
+                totalAmount = 1400
+                slotsCount = 14
+            } else {
+                totalAmount = selectedMutipleSlotsArray.count * amountPerEachSlot
+                slotsCount = selectedMutipleSlotsArray.count
+            }
+            
+            NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().eventBill(), Message: NAString().eventSlotsAmountAlert_Message(slotsCount: slotsCount, totalAmount: totalAmount), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+                self.showPaymentUI()
+            }, Cancel: nil, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().payNow().capitalized)
         }
+    }
+    
+    func disableSlots() {
+        let evenManagementRef = Constants.FIREBASE_EVENT_MANAGEMENT.child(Constants.FIREBASE_CHILD_PRIVATE).child(convertedDate)
+        evenManagementRef.observe(.value) { (snapshot) in
+            if snapshot.exists() {
+                let bookedSlots = snapshot.value as! NSDictionary
+                self.bookedSlotsArray = bookedSlots.allKeys as! [String]
+                
+                for button in self.btn_EventHours {
+                    if button.titleLabel?.text == NAString().fullDaySlot()  {
+                        button.isEnabled = false
+                        button.setTitleColor(UIColor.lightGray, for: .normal)
+                        button.backgroundColor = UIColor.white
+                    }
+                    if self.bookedSlotsArray.contains((button.titleLabel?.text)!) {
+                        button.isEnabled = false
+                        button.setTitleColor(UIColor.lightGray, for: .normal)
+                        button.backgroundColor = UIColor.white
+                    }
+                }
+            }
+        }
+        OpacityView.shared.hidingPopupView()
+        OpacityView.shared.hidingOpacityView()
     }
 }
 
 extension EventManagementViewController {
-    
-    //Storing User requests of Society service Problems
-    func storeEventManagementDetails() {
-        
-        let serviceType = NAString().eventManagement()
-        
-        let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
-        
-        let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
-        notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())
-        
-        let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
-        userDataRef.child(serviceType).child(eventNotificationUID).setValue(NAString().gettrue())
-        
-        let eventManagementNotificationData = [
-            NAEventManagementFBKeys.eventTitle.key : self.txt_EventTitle.text! as String,
-            NAEventManagementFBKeys.eventDate.key : self.txt_EventDate.text! as String,
-            NAEventManagementFBKeys.category.key : getButtonCategory_Text,
-            NAEventManagementFBKeys.timeSlot.key : getButtonHour_Text,
-            NAEventManagementFBKeys.userUID.key: userUID,
-            NAEventManagementFBKeys.societyServiceType.key : serviceType,
-            NAEventManagementFBKeys.notificationUID.key : eventNotificationUID,
-            NAEventManagementFBKeys.status.key : NAString().in_Progress()]
-        
-        eventManagementNotificationRef.child(eventNotificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
-            //Storing Current System time in milli seconds for time stamp.
-            eventManagementNotificationRef.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
-                
-                //self.storeEventManagementSlot()
-                let lv = NAViewPresenter().showEventManagementVC()
-                lv.navTitle = NAString().event_management()
-                lv.getEventUID = self.eventNotificationUID
-                self.navigationController?.pushViewController(lv, animated: true)
-            })
-        }
-    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == txt_EventTitle {
@@ -413,35 +467,6 @@ extension EventManagementViewController {
             txt_EventTitle.underlined()
         }
         return true
-    }
-    
-    //Created Function to get booked slot for the selected date.
-    func disableBookedSlot() {
-        
-        let bookedEventSlotRef = Constants.FIREBASE_EVENT_MANAGEMENT.child(convertedDate)
-        
-        bookedEventSlotRef.observeSingleEvent(of: .value) { (slotSnapshot) in
-            if slotSnapshot.exists() {
-                let slotNumbers = slotSnapshot.value as? NSDictionary
-                for slots in (slotNumbers?.allKeys)! {
-                    
-                    switch slots as! String {
-                    case Constants.FIREBASE_CHILD_SLOT1 :
-                        break
-                    case Constants.FIREBASE_CHILD_SLOT2 :
-                        break
-                    case Constants.FIREBASE_CHILD_SLOT3 :
-                        break
-                    case Constants.FIREBASE_CHILD_SLOT4 :
-                        break
-                    default:
-                        break
-                    }
-                }
-            }
-            OpacityView.shared.hidingOpacityView()
-            OpacityView.shared.hidingPopupView()
-        }
     }
     
     func storeEventManagements() {
@@ -469,17 +494,14 @@ extension EventManagementViewController {
             NAEventManagementFBKeys.societyServiceType.key : serviceType,
             NAEventManagementFBKeys.notificationUID.key : eventNotificationUID,
             NAEventManagementFBKeys.status.key : NAString().in_Progress()]
-        
         eventManagementNotificationRef.child(eventNotificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
-            //Storing Current System time in milli seconds for time stamp.
             
             for slots in self.selectedMutipleSlotsArray {
-                eventManagementNotificationRef.child(self.eventNotificationUID).child(NAEventManagementFBKeys.timeSlot.key).child(slots).setValue(NAString().gettrue())
+                eventManagementNotificationRef.child(self.eventNotificationUID).child(NAEventManagementFBKeys.timeSlots.key).child(slots).setValue(NAString().gettrue())
             }
             eventManagementNotificationRef.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
             })
         }
-    
     }
 }
 
