@@ -75,14 +75,12 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //Payment Gateway Namma Apartment API KEY for Transactions
         razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
         
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
         getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
         
-       
         for button in btn_EventHours {
             button.setTitleColor(UIColor.black, for: .selected)
             button.layer.cornerRadius = CGFloat(NAString().fifteen())
@@ -211,8 +209,6 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         
         //created Array for history and info button icons
         self.navigationItem.setRightBarButtonItems([info,history], animated: true)
-        
-       
     }
     
     func disabling_Slots() {
@@ -277,7 +273,6 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                 button_disabling(button: button)
             }
         }
-        
     }
     
     func button_disabling(button : UIButton) {
