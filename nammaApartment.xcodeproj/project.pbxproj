@@ -119,6 +119,11 @@
 		86270104209707BC004B28EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86270102209707BC004B28EB /* LaunchScreen.storyboard */; };
 		8627010F209707BC004B28EB /* namaApartmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8627010E209707BC004B28EB /* namaApartmentTests.swift */; };
 		8627011A209707BC004B28EB /* namaApartmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86270119209707BC004B28EB /* namaApartmentUITests.swift */; };
+		8628855E2158E64E00CC540B /* UNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628855D2158E64E00CC540B /* UNService.swift */; };
+		8628857621590A0F00CC540B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628857521590A0F00CC540B /* NotificationService.swift */; };
+		8628857A21590A0F00CC540B /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8628857321590A0F00CC540B /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8628857F2159129900CC540B /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628857E2159129900CC540B /* DownloadService.swift */; };
+		8628858021591BB700CC540B /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628857E2159129900CC540B /* DownloadService.swift */; };
 		862CF63321452999007D2A5F /* retrieveUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CF63221452999007D2A5F /* retrieveUserData.swift */; };
 		8637B602212BD4CC00BACB0C /* EventManagementCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */; };
 		86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */; };
@@ -181,7 +186,28 @@
 			remoteGlobalIDString = 862700F2209707BB004B28EB;
 			remoteInfo = namaAppartment;
 		};
+		8628857821590A0F00CC540B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 862700EB209707BB004B28EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8628857221590A0F00CC540B;
+			remoteInfo = NotificationServiceExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8628856E215909DA00CC540B /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8628857A21590A0F00CC540B /* NotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0809B91B211DAB7100B30EE2 /* NASocietyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NASocietyServices.swift; sourceTree = "<group>"; };
@@ -305,6 +331,11 @@
 		86270115209707BC004B28EB /* nammaApartmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nammaApartmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86270119209707BC004B28EB /* namaApartmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = namaApartmentUITests.swift; sourceTree = "<group>"; };
 		8627011B209707BC004B28EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8628855D2158E64E00CC540B /* UNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNService.swift; sourceTree = "<group>"; };
+		8628857321590A0F00CC540B /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8628857521590A0F00CC540B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8628857721590A0F00CC540B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8628857E2159129900CC540B /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		862CF63221452999007D2A5F /* retrieveUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = retrieveUserData.swift; sourceTree = "<group>"; };
 		8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementCardViewController.swift; sourceTree = "<group>"; };
 		86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescheduleMyGuestListViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +422,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD38302D57353FCCC56D30E5 /* Pods_nammaApartmentUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8628857021590A0F00CC540B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,7 +809,9 @@
 		862700EA209707BB004B28EB = {
 			isa = PBXGroup;
 			children = (
+				8628855C2158E62400CC540B /* Service */,
 				86C1A137209AF3C000D75D0F /* AppDelegate */,
+				8628857421590A0F00CC540B /* NotificationServiceExtension */,
 				86A8B933209EC9FE00EA1C35 /* Frameworks */,
 				86270105209707BC004B28EB /* Info.plist */,
 				86270102209707BC004B28EB /* LaunchScreen.storyboard */,
@@ -798,6 +838,7 @@
 				862700F3209707BB004B28EB /* nammaApartment.app */,
 				8627010A209707BC004B28EB /* nammaApartmentTests.xctest */,
 				86270115209707BC004B28EB /* nammaApartmentUITests.xctest */,
+				8628857321590A0F00CC540B /* NotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -818,6 +859,24 @@
 				8627011B209707BC004B28EB /* Info.plist */,
 			);
 			path = namaApartmentUITests;
+			sourceTree = "<group>";
+		};
+		8628855C2158E62400CC540B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8628855D2158E64E00CC540B /* UNService.swift */,
+				8628857E2159129900CC540B /* DownloadService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		8628857421590A0F00CC540B /* NotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				8628857521590A0F00CC540B /* NotificationService.swift */,
+				8628857721590A0F00CC540B /* Info.plist */,
+			);
+			path = NotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		86548D85209C621F00C700DA /* DigiGate */ = {
@@ -1053,10 +1112,12 @@
 				F10FDD6FA1A4AC71A21F9FC6 /* [CP] Embed Pods Frameworks */,
 				C7E83722EC44FC27E66CAA03 /* [CP] Copy Pods Resources */,
 				861E838C212FD79B00E3A0A2 /* ShellScript */,
+				8628856E215909DA00CC540B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8628857921590A0F00CC540B /* PBXTargetDependency */,
 			);
 			name = nammaApartment;
 			productName = namaAppartment;
@@ -1101,13 +1162,30 @@
 			productReference = 86270115209707BC004B28EB /* nammaApartmentUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		8628857221590A0F00CC540B /* NotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8628857B21590A0F00CC540B /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */;
+			buildPhases = (
+				8628856F21590A0F00CC540B /* Sources */,
+				8628857021590A0F00CC540B /* Frameworks */,
+				8628857121590A0F00CC540B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationServiceExtension;
+			productName = NotificationServiceExtension;
+			productReference = 8628857321590A0F00CC540B /* NotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		862700EB209707BB004B28EB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Vikas Nayak";
 				TargetAttributes = {
@@ -1130,6 +1208,9 @@
 						CreatedOnToolsVersion = 9.3;
 						TestTargetID = 862700F2209707BB004B28EB;
 					};
+					8628857221590A0F00CC540B = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 				};
 			};
 			buildConfigurationList = 862700EE209707BB004B28EB /* Build configuration list for PBXProject "nammaApartment" */;
@@ -1148,6 +1229,7 @@
 				862700F2209707BB004B28EB /* nammaApartment */,
 				86270109209707BC004B28EB /* nammaApartmentTests */,
 				86270114209707BC004B28EB /* nammaApartmentUITests */,
+				8628857221590A0F00CC540B /* NotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1184,6 +1266,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		86270113209707BC004B28EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8628857121590A0F00CC540B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1382,6 +1471,7 @@
 				42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */,
 				426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */,
 				08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */,
+				8628857F2159129900CC540B /* DownloadService.swift in Sources */,
 				423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */,
 				08EA578521464A0B00A0574D /* ContactUsHistoryViewController.swift in Sources */,
 				084D963D2100C92900BE9D3D /* NavigationMenuViewController.swift in Sources */,
@@ -1395,6 +1485,7 @@
 				42313795211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift in Sources */,
 				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
 				08F3EDA1212FD6B00030DBEF /* SocietyServiceRatingView.swift in Sources */,
+				8628855E2158E64E00CC540B /* UNService.swift in Sources */,
 				08EA578721464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift in Sources */,
 				083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
 				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
@@ -1459,6 +1550,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8628856F21590A0F00CC540B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8628857621590A0F00CC540B /* NotificationService.swift in Sources */,
+				8628858021591BB700CC540B /* DownloadService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1471,6 +1571,11 @@
 			isa = PBXTargetDependency;
 			target = 862700F2209707BB004B28EB /* nammaApartment */;
 			targetProxy = 86270116209707BC004B28EB /* PBXContainerItemProxy */;
+		};
+		8628857921590A0F00CC540B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8628857221590A0F00CC540B /* NotificationServiceExtension */;
+			targetProxy = 8628857821590A0F00CC540B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1612,6 +1717,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A57802A1AA1E8103BBFEF75 /* Pods-nammaApartment.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = nammaApartment.entitlements;
@@ -1637,6 +1743,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C39585696205478FE4CEF756 /* Pods-nammaApartment.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = nammaApartment.entitlements;
@@ -1743,6 +1850,49 @@
 			};
 			name = Release;
 		};
+		8628857C21590A0F00CC540B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PUZKL58568;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments.NotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8628857D21590A0F00CC540B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PUZKL58568;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments.NotificationServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1778,6 +1928,15 @@
 			buildConfigurations = (
 				86270125209707BC004B28EB /* Debug */,
 				86270126209707BC004B28EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8628857B21590A0F00CC540B /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8628857C21590A0F00CC540B /* Debug */,
+				8628857D21590A0F00CC540B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
