@@ -98,7 +98,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         let currentCalendar = Calendar.current
         currentComponents = currentCalendar.dateComponents([.year, .month, .day], from: currentDate as Date)
-        print(currentComponents)
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
@@ -175,7 +174,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     func storingPendingDues() {
         let maintenanceCostRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_MAINTENANCE_COST)
         maintenanceCostRef.observeSingleEvent(of: .value) { (costSnapshot) in
-            print(costSnapshot.value as Any)
             self.maintenanceCost = costSnapshot.value as! Int
             
             let pendingDueRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
@@ -187,7 +185,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             let calendar = Calendar.current
             var components = calendar.dateComponents([.year, .month, .day], from: date as Date)
             components.setValue(1, for: .day)
-            print(components)
             
             if components == self.currentComponents {
                 let firstDayOfMonth = calendar.date(from: components)

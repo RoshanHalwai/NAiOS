@@ -127,14 +127,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //Created varibale to get Notification Type from UserInfo
         let notificationType = userInfo[Constants.FIREBASE_NOTIFICATION_TYPE] as? String
         
-        switch notificationType {
-        case Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD :
+        if notificationType == Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD {
             let dest = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
             self.window?.rootViewController = dest
             self.window?.makeKeyAndVisible()
             UIApplication.shared.applicationIconBadgeNumber = 0
-        default:
-            break
+        } else {
+            let launchVC = self.storyboard.instantiateViewController(withIdentifier: "RootVC")
+            self.window?.rootViewController = launchVC
+            self.window?.makeKeyAndVisible()
         }
         
         if let messageID = userInfo[gcmMessageIDKey] {

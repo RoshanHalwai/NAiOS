@@ -1111,6 +1111,10 @@ class NAString : NSObject {
         return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
     }
     
+    func layoutFeatureErrorEventManagementHistory() -> String {
+        return String("Sorry you cannot use this feature since you have not raised any Event requests from your flat yet.")
+    }
+    
     func layoutFeatureErrorHandedThingsList() -> String {
         return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
     }
@@ -1933,7 +1937,7 @@ class NAString : NSObject {
     func maintenanceCost() -> String {
         return String("Amount Due")
     }
-   
+    
     func transactions() -> String {
         return String("Transactions")
     }
@@ -2040,5 +2044,17 @@ class NAString : NSObject {
     
     func noPendingDues() -> String {
         return String("No Pending Dues")
+    }
+    
+    func fullDaySlot() -> String {
+        return String("Full Day(8AM - 10PM)")
+    }
+    
+    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Int) -> String {
+        return String("\nNo. of Booked Slots :    \(slotsCount) \n\n Amount per Slot :    Rs 100 \n\n Total Amount :    Rs \(totalAmount)")
+    }
+    
+    func eventBill() -> String {
+        return String("Event Bill")
     }
 }
