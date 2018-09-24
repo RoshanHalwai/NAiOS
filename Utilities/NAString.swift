@@ -1773,6 +1773,14 @@ class NAString : NSObject {
         return String("Failure")
     }
     
+    func event_Payment_Successfull_Title() -> String {
+        return String("Payment Success Message")
+    }
+    
+    func event_Payment_Successfull_Message() -> String {
+        return String("Payment successfully done. Your Event has been booked")
+    }
+    
     func pending() -> String {
         return String("Pending")
     }

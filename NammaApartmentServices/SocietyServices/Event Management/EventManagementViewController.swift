@@ -312,7 +312,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     
     //This will call when transaction succeed
     func onPaymentSuccess(_ payment_id: String) {
-        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", OkStyle: .default, OK: {action in
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().event_Payment_Successfull_Title(), Message: NAString().event_Payment_Successfull_Message(), OkStyle: .default, OK: {action in
             let dv = NAViewPresenter().eventManagementHistoryVC()
             self.navigationController?.pushViewController(dv, animated: true)
         })
