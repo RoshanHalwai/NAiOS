@@ -217,62 +217,41 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
-         for button in btn_EventHours {
-            if button.titleLabel?.text == NAString().get_8AM_9AM() && hour >= 9 {
-                 button_disabling(button: button)
-                 button_disabling(button: btn_FullDay)
-            }
+        for button in btn_EventHours {
             
-            if button.titleLabel?.text == NAString().get_9AM_10AM() && hour >= 10 {
+            switch (button.titleLabel?.text, hour) {
+                
+            case (NAString().get_9PM_10PM(), 22) :  button_disabling(button: button)
+                
+            case (NAString().get_8PM_9PM(), 21) :  button_disabling(button: button)
+                
+            case (NAString().get_7PM_8PM(), 20) : button_disabling(button: button)
+                
+            case (NAString().get_6PM_7PM(), 19) :  button_disabling(button: button)
+                
+            case (NAString().get_5PM_6PM(), 18) :  button_disabling(button: button)
+                
+            case (NAString().get_4PM_5PM(), 17) :  button_disabling(button: button)
+                
+            case (NAString().get_3PM_4PM(), 16) :  button_disabling(button: button)
+                
+            case (NAString().get_2PM_3PM(), 15) : button_disabling(button: button)
+                
+            case (NAString().get_1PM_2PM(), 14) :  button_disabling(button: button)
+                
+            case (NAString().get_12PM_1PM(), 13) :  button_disabling(button: button)
+                
+            case (NAString().get_11AM_12PM(), 12) : button_disabling(button: button)
+                
+            case (NAString().get_10AM_11AM(), 11) : button_disabling(button: button)
+                
+            case (NAString().get_9AM_10AM(), 10) :  button_disabling(button: button)
+                
+            case (NAString().get_8AM_9AM(), 9) :
                 button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_10AM_11AM() && hour >= 11 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_11AM_12PM() && hour >= 12 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_12PM_1PM() && hour >= 13 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_1PM_2PM() && hour >= 14 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_2PM_3PM() && hour >= 15 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_3PM_4PM() && hour >= 16 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_4PM_5PM() && hour >= 17 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_5PM_6PM() && hour >= 18 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_6PM_7PM() && hour >= 19 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_7PM_8PM() && hour >= 20 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_8PM_9PM() && hour >= 21 {
-                button_disabling(button: button)
-            }
-            
-            if button.titleLabel?.text == NAString().get_9PM_10PM() && hour >= 22 {
-                button_disabling(button: button)
+                button_disabling(button: btn_FullDay)
+            default:
+                break
             }
         }
     }
