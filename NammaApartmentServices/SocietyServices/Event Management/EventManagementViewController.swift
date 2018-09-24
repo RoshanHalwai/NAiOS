@@ -81,6 +81,8 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
         getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
         
+        btn_stackView.isHidden = true
+        
         for button in btn_EventHours {
             button.setTitleColor(UIColor.black, for: .selected)
             button.layer.cornerRadius = CGFloat(NAString().fifteen())
@@ -539,6 +541,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                 }
             }
         }
+        btn_stackView.isHidden = false
         OpacityView.shared.hidingPopupView()
         OpacityView.shared.hidingOpacityView()
     }
