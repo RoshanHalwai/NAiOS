@@ -13,7 +13,7 @@ enum GuardsListFBKeys: String {
     case fullName
     case profilePhoto
     case status
-    case gateNo
+    case gateNumber
     
     var key : String {
         switch self {
@@ -21,7 +21,7 @@ enum GuardsListFBKeys: String {
         case .fullName: return "fullName"
         case .profilePhoto: return "profilePhoto"
         case .status: return "status"
-        case .gateNo:return "gateNo"
+        case .gateNumber:return "gateNumber"
         }
     }
 }
@@ -31,11 +31,13 @@ class NAExpectingGuard {
     var fullName : String
     var profilePhoto : String
     var status : String
+    var gateNumber : Int
     
-    init(fullName : String,profilePhoto : String, status: String) {
+    init(fullName : String,profilePhoto : String, status: String, gateNumber: Int) {
         self.fullName = fullName
         self.profilePhoto = profilePhoto
         self.status = status
+        self.gateNumber = gateNumber
     }
     
     func getfullName() -> String {
@@ -48,5 +50,9 @@ class NAExpectingGuard {
     
     func getstatus() -> String {
         return status
+    }
+    
+    func getgateNumber() -> Int {
+        return gateNumber
     }
 }

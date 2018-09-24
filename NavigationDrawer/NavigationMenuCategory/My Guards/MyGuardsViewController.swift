@@ -34,7 +34,7 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-
+        
         //Get device width
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
@@ -72,8 +72,9 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         cell.lbl_MyGuardName.text = myGuardsList.getfullName()
         cell.lbl_MyGuardStatus.text = myGuardsList.getstatus()
         
-        //TODO: Feature Added Firebase Data
-        cell.lbl_MyGuardGateNo.text = "5"
+        let gateNumber : Int = myGuardsList.getgateNumber()
+        let gateNoString = String(gateNumber)
+        cell.lbl_MyGuardGateNo.text = gateNoString
         
         let queue = OperationQueue()
         
@@ -121,7 +122,8 @@ extension MyGuardsViewController {
                         let fullName : String = (guardsData?[GuardsListFBKeys.fullName.key])! as! String
                         let status : String = (guardsData?[GuardsListFBKeys.status.key])! as! String
                         let profilePhoto : String = (guardsData?[GuardsListFBKeys.profilePhoto.key])! as! String
-                        let guardDetails = NAExpectingGuard(fullName: fullName, profilePhoto: profilePhoto, status: status)
+                        let gateNo = (guardsData![GuardsListFBKeys.gateNumber.key])?.floatValue
+                        let guardDetails = NAExpectingGuard(fullName: fullName, profilePhoto: profilePhoto, status: status, gateNumber: Int((gateNo)!))
                         self.myExpectedGuardsList.append(guardDetails)
                         
                         //Hiding Progress indicator after retrieving data.
