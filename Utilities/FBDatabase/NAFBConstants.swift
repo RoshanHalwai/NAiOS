@@ -96,6 +96,7 @@ struct Constants {
     static let FIREBASE_CHILD_DEVICE_TYPE = "deviceType"
     static let FIREBASE_CHILD_VERIFIED_PENDING = 0
     static let FIREBASE_CHILD_VERIFIED_APPROVED = 1
+    static let FIREBASE_CHILD_PENDINGDUES = "pendingDues"
     static let FIREBASE_CHILD_NOTIFICATION_SOUND = "notificationSound"
     static let FIREBASE_CHILD_EINTERCOM_SOUND = "eIntercom"
     static let FIREBASE_CHILD_GUEST_SOUND = "guest"

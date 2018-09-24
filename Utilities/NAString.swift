@@ -1806,7 +1806,7 @@ class NAString : NSObject {
     }
     
     func maintenanceCost() -> String {
-        return String("Maintenance cost")
+        return String("Amount Due")
     }
     
     func transactions() -> String {
@@ -1911,6 +1911,10 @@ class NAString : NSObject {
     
     func scrapCollectionHistoryAlertTitle() -> String {
         return String("A Scrap collection request has been raised")
+    }
+    
+    func noPendingDues() -> String {
+        return String("No Pending Dues")
     }
     
     func fullDaySlot() -> String {
