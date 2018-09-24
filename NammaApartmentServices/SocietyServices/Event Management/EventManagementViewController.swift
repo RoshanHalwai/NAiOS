@@ -39,6 +39,8 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     @IBOutlet weak var lbl_available: UILabel!
     @IBOutlet weak var lbl_unAvailable: UILabel!
     
+    @IBOutlet weak var btn_FullDay: UIButton!
+    
     //Select slot array of buttons for color changing purpose
     var selectSlotbuttons : [UIButton] = []
     var isValidSelectSlotButtonClicked: [Bool] = []
@@ -80,6 +82,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
         getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
         
+       
         for button in btn_EventHours {
             button.setTitleColor(UIColor.black, for: .selected)
             button.layer.cornerRadius = CGFloat(NAString().fifteen())
@@ -208,6 +211,78 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         
         //created Array for history and info button icons
         self.navigationItem.setRightBarButtonItems([info,history], animated: true)
+        
+       
+    }
+    
+    func disabling_Slots() {
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+         for button in btn_EventHours {
+            if button.titleLabel?.text == NAString().get_8AM_9AM() && hour >= 9 {
+                 button_disabling(button: button)
+                 button_disabling(button: btn_FullDay)
+            }
+            
+            if button.titleLabel?.text == NAString().get_9AM_10AM() && hour >= 10 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_10AM_11AM() && hour >= 11 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_11AM_12PM() && hour >= 12 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_12PM_1PM() && hour >= 13 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_1PM_2PM() && hour >= 14 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_2PM_3PM() && hour >= 15 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_3PM_4PM() && hour >= 16 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_4PM_5PM() && hour >= 17 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_5PM_6PM() && hour >= 18 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_6PM_7PM() && hour >= 19 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_7PM_8PM() && hour >= 20 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_8PM_9PM() && hour >= 21 {
+                button_disabling(button: button)
+            }
+            
+            if button.titleLabel?.text == NAString().get_9PM_10PM() && hour >= 22 {
+                button_disabling(button: button)
+            }
+        }
+        
+    }
+    
+    func button_disabling(button : UIButton) {
+        button.isEnabled = false
+        button.setTitleColor(UIColor.lightGray, for: .normal)
     }
     
     // Navigate to FAQ's WebSite
@@ -251,6 +326,15 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
         
+        let getDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = NAString().dateInNumberFormat()
+        let presentDate = dateFormatter.string(from: getDate)
+        let dateArray = presentDate.split(separator: "-")
+        let currentDay = dateArray[0]
+        let currentMonth = dateArray[1]
+        let currentYear = dateArray[2]
+        
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = NAString().convertedDateInFormat()
         let showDate = inputFormatter.date(from: txt_EventDate.text!)
@@ -261,6 +345,12 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
             button.isEnabled = true
             button.setTitleColor(UIColor.black, for: .normal)
         }
+        let currentDate = currentDay + "-" + currentMonth + "-" + currentYear
+        if convertedDate == currentDate {
+            //Disabling Slots based on Current Date and Time
+            disabling_Slots()
+        }
+        //Disabling Slots based on Firebase Retrieval
         disableSlots()
     }
     

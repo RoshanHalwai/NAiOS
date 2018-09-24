@@ -1557,135 +1557,6 @@ class NAString : NSObject {
         return ("Waiting for OTP...")
     }
     
-    //Frequently Asked Questions
-    func account_Delete_Query() -> String {
-        return String("How do I delete My Account?")
-    }
-    
-    func account_Deactivate_Query() -> String {
-        return String("I am moving out of my current place. How can I Deactivate my Account?")
-    }
-    
-    func visitors_Inviting_Query() -> String {
-        return String("I faced an issue during inviting my Visitor. How can I raise a complaint?")
-    }
-    
-    func visitors_UnexpectedNotifications() -> String {
-        return String("I am getting a notification for a Visitor(e.g.Cab, Package, Guest) that i did not expect. What should I do?")
-    }
-    
-    func visitors_Cancel_Query() -> String {
-        return String("How can I cancel Invited Visitor?")
-    }
-    
-    func visitors_Reschedule_Query() -> String {
-        return String("How can I change Visitor Arrival Date/Time?")
-    }
-    
-    func Valid_For_About() -> String {
-        return String("What is 'Valid For' about?")
-    }
-    
-    func dailyService_Adding_Query() -> String {
-        return String("I faced an issue during adding my Daily Service. How can I raise a Complaint?")
-    }
-    
-    func dailyService_Remove_Query() -> String {
-        return String("How can I remove my Daily Services?")
-    }
-    
-    func dailyService_Reschedule_Query() -> String {
-        return String("How can I change Daily Service arrival time?")
-    }
-    
-    func flatMembers_Delete_Query() -> String {
-        return String("One of my Present Flat Member is moving out from my flat. How can I delete his/her Data?")
-    }
-    
-    func flatMembers_Adding_Query() -> String {
-        return String("Unfortunately, I added Friend as my Family Member. What should I Do?")
-    }
-    
-    func flatMembers_AdminAccess_Query() -> String {
-        return String("I want to give my Admin Access to one of my Flat Member. What should I do?")
-    }
-    
-    func handedThings_Concept() -> String {
-        return String("What is the concept of handed things to Daily Service/Guest?")
-    }
-    
-    func handedThings_What_Things_can_be_Handed() -> String {
-        return String("What things can be handed to DailyService/Guest?")
-    }
-    
-    func handedThings_Guard_Notified_Query() -> String {
-        return String("How guard will get notified when I handed things to Daily Service/Guest?")
-    }
-    
-    func emergencyAlarm_raising_Query() -> String {
-        return String("How can I raise an Emergency Alarm?")
-    }
-    
-    func emergencyAlarm_Actions_Query() -> String {
-        return String("What actions will take place once an Emergency Alarm is raised?")
-    }
-    
-    func emergency_EstimatedTime_Query() -> String {
-        return String("How much estimated time will it take for the Guard to take necessary action?")
-    }
-    
-    func SocietyService_Approval_Query(Service: String) -> String {
-        return String("I requested for a \(Service) service, but I din't get any approval yet. What should I do?")
-    }
-    
-    func SocietyService_EstimatedTime_Query(Service: String) -> String {
-        return String("What should I do if the \(Service) doesn't arrive within the expected time slot?")
-    }
-    
-    func event_Reschedule_Query() -> String {
-        return String("I want to reschedule my Event. What should I do?")
-    }
-    
-    func notification_InternetConnection_Issue() -> String {
-        return String("Why is the app showing no internet connection?")
-    }
-    
-    func notification_Query() -> String {
-        return String("I am not getting any notifications?")
-    }
-    
-    func notification_InternetFine_But_NotificationIssue() -> String {
-        return String("My internet connectivity is fine, still I am not receiving any notifications, what could be the issue?")
-    }
-    
-    func notification_Setting_ON_But_Issue() -> String {
-        return String("My notification settings are ‘ON’, I’m still not getting any notifications?")
-    }
-    
-    func receiveNotifications_With_delay() -> String {
-        return String("I did receive notifications but they are delayed. What is the reason for delay?")
-    }
-    
-    func general_Updates() -> String {
-        return String("How frequently I would get updates?")
-    }
-    
-    func general_edit_userName() -> String {
-        return String("How do I change my Username?")
-    }
-    
-    func general_edit_emailAddress() -> String {
-        return String("How do I change my EmailAddress?")
-    }
-    
-    func general_edit_mobileNuber() -> String {
-        return String("How do I change my registered Mobile Number?")
-    }
-    
-    func general_Languages_Query() -> String {
-        return String("Does 'Namma Apartments' Support Different Languages?")
-    }
-    
     func general() -> String {
         return String("General")
     }
@@ -2052,5 +1923,62 @@ class NAString : NSObject {
     
     func eventBill() -> String {
         return String("Event Bill")
+    }
+    
+    //Event Management
+    func get_8AM_9AM() -> String {
+        return String("8AM - 9AM")
+    }
+    
+    func get_9AM_10AM() -> String {
+        return String("9AM - 10AM")
+    }
+    
+    func get_10AM_11AM() -> String {
+        return String("10AM - 11AM")
+    }
+    
+    func get_11AM_12PM() -> String {
+        return String("11AM - 12PM")
+    }
+    
+    func get_12PM_1PM() -> String {
+        return String("12PM - 1PM")
+    }
+    
+    func get_1PM_2PM() -> String {
+        return String("1PM - 2PM")
+    }
+    
+    func get_2PM_3PM() -> String {
+        return String("2PM - 3PM")
+    }
+    
+    func get_3PM_4PM() -> String {
+        return String("3PM - 4PM")
+    }
+    
+    func get_4PM_5PM() -> String {
+        return String("4PM - 5PM")
+    }
+    
+    func get_5PM_6PM() -> String {
+        return String("5PM - 6PM")
+    }
+    
+    func get_6PM_7PM() -> String {
+        return String("6PM - 7PM")
+    }
+    
+    func get_7PM_8PM() -> String {
+        return String("7PM - 8PM")
+    }
+    
+    func get_8PM_9PM() -> String {
+        return String("8PM - 9PM")
+    }
+    
+    func get_9PM_10PM() -> String {
+        return String("9PM - 10PM")
     }
 }
