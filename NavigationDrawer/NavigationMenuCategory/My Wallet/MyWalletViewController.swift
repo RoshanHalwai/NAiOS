@@ -24,12 +24,19 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     
     @IBOutlet weak var img_indianRupee: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var stackView_AmountDue: UIStackView!
     
     @IBOutlet weak var btn_SocietyServices: UIButton!
     @IBOutlet weak var lbl_Cost: UILabel!
+    @IBOutlet weak var lbl_AmoutDue: UILabel!
+    @IBOutlet weak var lbl_Rs: UILabel!
     @IBOutlet weak var lbl_Maintenance: UILabel!
     
     var navTitle = String()
+    var pendingAmount = 0
+    var pendingDueAmount = String()
+    var maintenanceCost = Int()
+    var currentComponents = DateComponents()
     
     //created varible for razorPay
     var razorpay: Razorpay!
@@ -43,7 +50,10 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         //Payment Gateway Namma Apartment API KEY for Transactions
         razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
-        retrievingMaintenanceCostFromFirebase()
+        storingPendingDues()
+        
+        //Retrieving Firebase Data in Pending Dues
+        retrievingPendingDues()
         
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
         getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
@@ -55,9 +65,9 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         lbl_myTransactions.font = NAFont().lato_Regular_20()
         btn_SocietyServices.titleLabel?.font = NAFont().lato_Regular_16()
         
-        lbl_Maintenance.text = NAString().maintenanceCost()
         lbl_Maintenance.font = NAFont().lato_Regular_16()
         lbl_Cost.font = NAFont().labelFont()
+        lbl_Rs.font = NAFont().labelFont()
         
         lbl_nammaApartment.text = NAString().nammaApartments_E_Payment()
         lbl_description.text = NAString().wallet_Description()
@@ -81,6 +91,13 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
         myAccount_CardView.isUserInteractionEnabled = true
         myAccount_CardView.addGestureRecognizer(tap)
+        
+        let currentDate = NSDate()
+        let currentDateFormatter = DateFormatter()
+        currentDateFormatter.dateFormat = "MM-dd-yyyy"
+        
+        let currentCalendar = Calendar.current
+        currentComponents = currentCalendar.dateComponents([.year, .month, .day], from: currentDate as Date)
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
@@ -113,6 +130,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     func onPaymentSuccess(_ payment_id: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", OkStyle: .default, OK: nil)
         storePaymentDetails(paymentId: payment_id, result: NAString().successful())
+        let pendingRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES).removeValue()
     }
     
     func storePaymentDetails(paymentId: String, result: String) {
@@ -144,18 +162,58 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
                 "contact": getUserMobileNumebr,
                 "email": getUserEmailID
             ],
-        ]
+            ]
         razorpay.open(options)
     }
     
-    func retrievingMaintenanceCostFromFirebase() {
+    override func viewWillAppear(_ animated: Bool) {
+        storingPendingDues()
+    }
+    
+    //Storing Pending Dues in Firebase
+    func storingPendingDues() {
         let maintenanceCostRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_MAINTENANCE_COST)
         maintenanceCostRef.observeSingleEvent(of: .value) { (costSnapshot) in
-            let maintenanceCost = costSnapshot.value as! Int
-            let amountString:Int? = maintenanceCost
-            let totalAmountInPaisa: Int = amountString! * 100
-            self.lbl_Cost.text = "\(maintenanceCost)"
-            self.getUserPendingAmount = "\(totalAmountInPaisa)"
+            self.maintenanceCost = costSnapshot.value as! Int
+            
+            let pendingDueRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
+            
+            let date = NSDate()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMyyyy"
+            
+            let calendar = Calendar.current
+            var components = calendar.dateComponents([.year, .month, .day], from: date as Date)
+            components.setValue(1, for: .day)
+            
+            if components == self.currentComponents {
+                let firstDayOfMonth = calendar.date(from: components)
+                let currentDueMonth = dateFormatter.string(from: firstDayOfMonth!)
+                pendingDueRef.child(currentDueMonth).setValue(self.maintenanceCost)
+            } 
+        }
+    }
+    
+    //Retrieving Pending Dues in Firebase
+    func retrievingPendingDues() {
+        let pendingDueRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
+        pendingDueRef.observeSingleEvent(of: .value) { (pendingDueSnapshot) in
+            if pendingDueSnapshot.exists() {
+                let pendingDues = pendingDueSnapshot.value as? NSDictionary
+                for pendingDue in pendingDues! {
+                    let amount = pendingDue.value as! Int
+                    self.pendingAmount = self.pendingAmount + amount
+                    let totalAmountInPaisa: Int = self.pendingAmount * 100
+                    self.pendingDueAmount = String(self.pendingAmount)
+                    self.lbl_Maintenance.text = NAString().maintenanceCost()
+                    self.lbl_Cost.text = self.pendingDueAmount
+                    self.getUserPendingAmount = "\(totalAmountInPaisa)"
+                }
+            } else {
+                self.stackView_AmountDue.isHidden = true
+                self.lbl_AmoutDue.isHidden = true
+                self.lbl_Maintenance.text = NAString().noPendingDues()
+            }
         }
     }
 }
