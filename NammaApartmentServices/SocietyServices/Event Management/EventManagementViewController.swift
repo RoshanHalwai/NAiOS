@@ -64,6 +64,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     var getUserMobileNumebr = String()
     var getUserEmailID = String()
     var getUserPendingAmount = String()
+    var currentDate = String()
     
     var slotsCount = Int()
     var totalAmount = Int()
@@ -217,42 +218,10 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
-        for button in btn_EventHours {
-            
-            switch (button.titleLabel?.text, hour) {
-                
-            case (NAString().get_9PM_10PM(), 22) :  button_disabling(button: button)
-                
-            case (NAString().get_8PM_9PM(), 21) :  button_disabling(button: button)
-                
-            case (NAString().get_7PM_8PM(), 20) : button_disabling(button: button)
-                
-            case (NAString().get_6PM_7PM(), 19) :  button_disabling(button: button)
-                
-            case (NAString().get_5PM_6PM(), 18) :  button_disabling(button: button)
-                
-            case (NAString().get_4PM_5PM(), 17) :  button_disabling(button: button)
-                
-            case (NAString().get_3PM_4PM(), 16) :  button_disabling(button: button)
-                
-            case (NAString().get_2PM_3PM(), 15) : button_disabling(button: button)
-                
-            case (NAString().get_1PM_2PM(), 14) :  button_disabling(button: button)
-                
-            case (NAString().get_12PM_1PM(), 13) :  button_disabling(button: button)
-                
-            case (NAString().get_11AM_12PM(), 12) : button_disabling(button: button)
-                
-            case (NAString().get_10AM_11AM(), 11) : button_disabling(button: button)
-                
-            case (NAString().get_9AM_10AM(), 10) :  button_disabling(button: button)
-                
-            case (NAString().get_8AM_9AM(), 9) :
-                button_disabling(button: button)
-                button_disabling(button: btn_FullDay)
-            default:
-                break
-            }
+        
+        for n in 9...hour {
+            button_disabling(button: btn_EventHours[n-9])
+            button_disabling(button: btn_FullDay)
         }
     }
     
@@ -321,7 +290,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
             button.isEnabled = true
             button.setTitleColor(UIColor.black, for: .normal)
         }
-        let currentDate = currentDay + "-" + currentMonth + "-" + currentYear
+        currentDate = currentDay + "-" + currentMonth + "-" + currentYear
         if convertedDate == currentDate {
             //Disabling Slots based on Current Date and Time
             disabling_Slots()
@@ -443,6 +412,9 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                 for button in btn_EventHours {
                     button.isEnabled = true
                     button.setTitleColor(UIColor.black, for: .normal)
+                }
+                if convertedDate == currentDate {
+                    disabling_Slots()
                 }
             }
         }
