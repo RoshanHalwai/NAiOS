@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "supermarket.png",
+      "filename" : "supermarket-4.png",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "supermarket-2.png",
+      "filename" : "supermarket-5.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "supermarket-3.png",
+      "filename" : "supermarket-6.png",
       "scale" : "3x"
     }
   ],
