@@ -15,7 +15,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
-    var isActivityIndicatorRunning = false
     
     //Created Instance of Model Class To get data in card view
     var allDailyServicesList = [NammaApartmentDailyServices]()
@@ -171,7 +170,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
         DispatchQueue.main.async {
-            self.isActivityIndicatorRunning = true
+            self.collectionView.performBatchUpdates(nil, completion: nil)
             self.collectionView.reloadData()
         }
     }
@@ -198,16 +197,13 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         queue.addOperation {
             if let urlString = dailyServicesData.getprofilePhoto() {
                 NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myCookImage)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    cell.activity_Indicator.isHidden = true
+                    cell.activity_Indicator.stopAnimating()
+                }
             }
         }
         queue.waitUntilAllOperationsAreFinished()
-        
-        if isActivityIndicatorRunning == false {
-            cell.activity_Indicator.startAnimating()
-        } else if (isActivityIndicatorRunning == true) {
-            cell.activity_Indicator.stopAnimating()
-            cell.activity_Indicator.isHidden = true
-        }
         
         cell.lbl_CookName.font = NAFont().textFieldFont()
         cell.lbl_CookRating.font = NAFont().textFieldFont()
