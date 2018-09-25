@@ -39,6 +39,8 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     @IBOutlet weak var lbl_available: UILabel!
     @IBOutlet weak var lbl_unAvailable: UILabel!
     
+    @IBOutlet weak var btn_FullDay: UIButton!
+    
     //Select slot array of buttons for color changing purpose
     var selectSlotbuttons : [UIButton] = []
     var isValidSelectSlotButtonClicked: [Bool] = []
@@ -62,6 +64,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     var getUserMobileNumebr = String()
     var getUserEmailID = String()
     var getUserPendingAmount = String()
+    var currentDate = String()
     
     var slotsCount = Int()
     var totalAmount = Int()
@@ -73,12 +76,13 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //Payment Gateway Namma Apartment API KEY for Transactions
         razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
         
         getUserMobileNumebr = (GlobalUserData.shared.personalDetails_Items.first?.getphoneNumber())!
         getUserEmailID = (GlobalUserData.shared.personalDetails_Items.first?.getemail())!
+        
+        btn_stackView.isHidden = true
         
         for button in btn_EventHours {
             button.setTitleColor(UIColor.black, for: .selected)
@@ -210,6 +214,22 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         self.navigationItem.setRightBarButtonItems([info,history], animated: true)
     }
     
+    func disabling_Slots() {
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        
+        for n in 9...hour {
+            button_disabling(button: btn_EventHours[n-9])
+            button_disabling(button: btn_FullDay)
+        }
+    }
+    
+    func button_disabling(button : UIButton) {
+        button.isEnabled = false
+        button.setTitleColor(UIColor.lightGray, for: .normal)
+    }
+    
     // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
         UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
@@ -251,6 +271,15 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
         
+        let getDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = NAString().dateInNumberFormat()
+        let presentDate = dateFormatter.string(from: getDate)
+        let dateArray = presentDate.split(separator: "-")
+        let currentDay = dateArray[0]
+        let currentMonth = dateArray[1]
+        let currentYear = dateArray[2]
+        
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = NAString().convertedDateInFormat()
         let showDate = inputFormatter.date(from: txt_EventDate.text!)
@@ -261,6 +290,12 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
             button.isEnabled = true
             button.setTitleColor(UIColor.black, for: .normal)
         }
+        currentDate = currentDay + "-" + currentMonth + "-" + currentYear
+        if convertedDate == currentDate {
+            //Disabling Slots based on Current Date and Time
+            disabling_Slots()
+        }
+        //Disabling Slots based on Firebase Retrieval
         disableSlots()
     }
     
@@ -378,6 +413,9 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                     button.isEnabled = true
                     button.setTitleColor(UIColor.black, for: .normal)
                 }
+                if convertedDate == currentDate {
+                    disabling_Slots()
+                }
             }
         }
         print(selectedMutipleSlotsArray)
@@ -454,6 +492,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                 }
             }
         }
+        btn_stackView.isHidden = false
         OpacityView.shared.hidingPopupView()
         OpacityView.shared.hidingOpacityView()
     }

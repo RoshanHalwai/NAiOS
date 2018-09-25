@@ -7749,7 +7749,7 @@
                                 <rect key="frame" x="0.0" y="96" width="260" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -7757,7 +7757,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -9289,331 +9289,333 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Time Slot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfm-8e-vic">
-                                                <rect key="frame" x="10" y="339.5" width="355" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="61g-jF-b3C"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ku7-qi-6qn">
-                                                <rect key="frame" x="10" y="379.5" width="355" height="335.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="9Vx-td-gOC">
+                                                <rect key="frame" x="10" y="339.5" width="355" height="524.5"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="do3-Uk-saU">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="310"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="wQh-IW-UrM">
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="405.5"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gZv-Uc-Bc0">
-                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Time Slot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pfm-8e-vic">
+                                                                <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="30" id="61g-jF-b3C"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ku7-qi-6qn">
+                                                                <rect key="frame" x="0.0" y="44" width="355" height="335.5"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uyd-S2-dnb">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="8AM - 9AM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="dcx-eF-rd0"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpV-Xa-6cX">
-                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="9AM - 10AM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="znT-6d-Kgb"/>
-                                                                        </connections>
-                                                                    </button>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="do3-Uk-saU">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="310"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gZv-Uc-Bc0">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uyd-S2-dnb">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="8AM - 9AM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="dcx-eF-rd0"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpV-Xa-6cX">
+                                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="9AM - 10AM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="znT-6d-Kgb"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="gZv-Uc-Bc0" secondAttribute="height" multiplier="355:30" id="EvL-7p-ZYC"/>
+                                                                                </constraints>
+                                                                            </stackView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="V5u-aW-2W4">
+                                                                                <rect key="frame" x="0.0" y="40" width="355" height="30"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixo-Hd-gEr">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="10AM - 11AM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="i2h-jL-Yeq"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnN-V2-uS2">
+                                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="11AM - 12PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="glm-q3-NZ0"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="V5u-aW-2W4" secondAttribute="height" multiplier="355:30" id="NkA-Er-49y"/>
+                                                                                </constraints>
+                                                                            </stackView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nLf-R4-KkU">
+                                                                                <rect key="frame" x="0.0" y="80" width="355" height="30"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNS-gK-s8d">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="12PM - 1PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="t30-iE-AeK"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0M-PB-ITX">
+                                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="1PM - 2PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="zof-dl-Z2A"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="nLf-R4-KkU" secondAttribute="height" multiplier="355:30" id="Abn-Xz-3Os"/>
+                                                                                </constraints>
+                                                                            </stackView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4dU-fY-JE4">
+                                                                                <rect key="frame" x="0.0" y="120" width="355" height="30"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VST-fG-2qP">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="2PM - 3PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="TBp-WF-mAE"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MG-zG-KMT">
+                                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="3PM - 4PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="FV0-7A-uum"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="4dU-fY-JE4" secondAttribute="height" multiplier="355:30" id="NsQ-45-56K"/>
+                                                                                </constraints>
+                                                                            </stackView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m6d-ey-Fxc">
+                                                                                <rect key="frame" x="0.0" y="160" width="355" height="30"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzU-U0-0wM">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="4PM - 5PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="I8C-GL-iPw"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFv-kc-2Lg">
+                                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="5PM - 6PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="pX9-Tl-m1f"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="m6d-ey-Fxc" secondAttribute="height" multiplier="355:30" id="3Jb-DA-lZC"/>
+                                                                                </constraints>
+                                                                            </stackView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BaP-kS-hHW">
+                                                                                <rect key="frame" x="0.0" y="200" width="355" height="30"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyZ-s8-Sv3">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="6PM - 7PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="tR6-Hj-wmI"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FF6-4g-U2H">
+                                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="7PM - 8PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="Fsc-e3-ZLf"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="BaP-kS-hHW" secondAttribute="height" multiplier="355:30" id="Wv4-nu-Pgs"/>
+                                                                                </constraints>
+                                                                            </stackView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6uf-N7-vpQ">
+                                                                                <rect key="frame" x="0.0" y="240" width="355" height="30"/>
+                                                                                <subviews>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew3-ig-DI0">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="8PM - 9PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="3We-bE-mR2"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3q-zh-dI1">
+                                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
+                                                                                        <state key="normal" title="9PM - 10PM">
+                                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="ZOM-t7-LLc"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="6uf-N7-vpQ" secondAttribute="height" multiplier="355:30" id="iVq-SO-ZH4"/>
+                                                                                </constraints>
+                                                                            </stackView>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6x-70-LHa">
+                                                                                <rect key="frame" x="0.0" y="280" width="355" height="30"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" secondItem="V6x-70-LHa" secondAttribute="height" multiplier="355:30" id="zAS-hx-BV9"/>
+                                                                                </constraints>
+                                                                                <state key="normal" title="Full Day(8AM - 10PM)">
+                                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
+                                                                                <connections>
+                                                                                    <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="hUU-xL-vYb"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="trailing" secondItem="V6x-70-LHa" secondAttribute="trailing" id="9D5-kX-bAC"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="gZv-Uc-Bc0" secondAttribute="trailing" id="9xa-l2-JrS"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="nLf-R4-KkU" secondAttribute="trailing" id="D1F-kf-YAH"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="BaP-kS-hHW" secondAttribute="trailing" id="Hx1-l8-gKr"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="V5u-aW-2W4" secondAttribute="trailing" id="XSf-6F-YR5"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="m6d-ey-Fxc" secondAttribute="trailing" id="eWC-5Y-e0j"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="6uf-N7-vpQ" secondAttribute="trailing" id="sn2-KL-9Uf"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="4dU-fY-JE4" secondAttribute="trailing" id="zgB-A6-jqH"/>
+                                                                        </constraints>
+                                                                    </stackView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select atleast one button" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2i-GU-mIb">
+                                                                        <rect key="frame" x="0.0" y="315" width="355" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="gZv-Uc-Bc0" secondAttribute="height" multiplier="355:30" id="EvL-7p-ZYC"/>
+                                                                    <constraint firstItem="W2i-GU-mIb" firstAttribute="leading" secondItem="ku7-qi-6qn" secondAttribute="leading" id="9AQ-YR-iGj"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="W2i-GU-mIb" secondAttribute="trailing" id="VEp-BX-poU"/>
+                                                                    <constraint firstItem="do3-Uk-saU" firstAttribute="leading" secondItem="ku7-qi-6qn" secondAttribute="leading" id="eYB-aC-wcn"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="do3-Uk-saU" secondAttribute="trailing" id="oY7-di-J9c"/>
                                                                 </constraints>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="V5u-aW-2W4">
-                                                                <rect key="frame" x="0.0" y="40" width="355" height="30"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8uJ-LB-p7i">
+                                                                <rect key="frame" x="0.0" y="393.5" width="183.5" height="12"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixo-Hd-gEr">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="10AM - 11AM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="i2h-jL-Yeq"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnN-V2-uS2">
-                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="11AM - 12PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="glm-q3-NZ0"/>
-                                                                        </connections>
-                                                                    </button>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-nM-ZbR" userLabel="View_Unavailable">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
+                                                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="12" id="Cqm-xC-Y5r"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avilable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xe-il-yM1">
+                                                                        <rect key="frame" x="22" y="0.0" width="50" height="12"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yv0-nR-ro6" userLabel="View_Unavailable">
+                                                                        <rect key="frame" x="82" y="0.0" width="12" height="12"/>
+                                                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="12" id="SGr-Dv-g48"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Un Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aN-HP-FSM">
+                                                                        <rect key="frame" x="104" y="0.0" width="79.5" height="12"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="V5u-aW-2W4" secondAttribute="height" multiplier="355:30" id="NkA-Er-49y"/>
+                                                                    <constraint firstAttribute="height" constant="12" id="cfs-pm-LW7"/>
                                                                 </constraints>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nLf-R4-KkU">
-                                                                <rect key="frame" x="0.0" y="80" width="355" height="30"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNS-gK-s8d">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="12PM - 1PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="t30-iE-AeK"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0M-PB-ITX">
-                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="1PM - 2PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="zof-dl-Z2A"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YIP-Jl-aeo">
+                                                        <rect key="frame" x="0.0" y="424.5" width="355" height="100"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For any queries related to time slot, Contact Admin." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBc-dX-FVP">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="41"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="nLf-R4-KkU" secondAttribute="height" multiplier="355:30" id="Abn-Xz-3Os"/>
+                                                                    <constraint firstAttribute="width" constant="355" id="ans-c3-5Ck"/>
                                                                 </constraints>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4dU-fY-JE4">
-                                                                <rect key="frame" x="0.0" y="120" width="355" height="30"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VST-fG-2qP">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="2PM - 3PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="TBp-WF-mAE"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MG-zG-KMT">
-                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="3PM - 4PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="FV0-7A-uum"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G31-xE-G2Q">
+                                                                <rect key="frame" x="0.0" y="61" width="355" height="39"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="4dU-fY-JE4" secondAttribute="height" multiplier="355:30" id="NsQ-45-56K"/>
+                                                                    <constraint firstAttribute="width" constant="355" id="gzg-am-n7m"/>
+                                                                    <constraint firstAttribute="height" constant="39" id="h9W-89-EJR"/>
                                                                 </constraints>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m6d-ey-Fxc">
-                                                                <rect key="frame" x="0.0" y="160" width="355" height="30"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FzU-U0-0wM">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="4PM - 5PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="I8C-GL-iPw"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFv-kc-2Lg">
-                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="5PM - 6PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="pX9-Tl-m1f"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="m6d-ey-Fxc" secondAttribute="height" multiplier="355:30" id="3Jb-DA-lZC"/>
-                                                                </constraints>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BaP-kS-hHW">
-                                                                <rect key="frame" x="0.0" y="200" width="355" height="30"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyZ-s8-Sv3">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="6PM - 7PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="tR6-Hj-wmI"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FF6-4g-U2H">
-                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="7PM - 8PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="Fsc-e3-ZLf"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="BaP-kS-hHW" secondAttribute="height" multiplier="355:30" id="Wv4-nu-Pgs"/>
-                                                                </constraints>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6uf-N7-vpQ">
-                                                                <rect key="frame" x="0.0" y="240" width="355" height="30"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ew3-ig-DI0">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="8PM - 9PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="3We-bE-mR2"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3q-zh-dI1">
-                                                                        <rect key="frame" x="187.5" y="0.0" width="167.5" height="30"/>
-                                                                        <state key="normal" title="9PM - 10PM">
-                                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="ZOM-t7-LLc"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="6uf-N7-vpQ" secondAttribute="height" multiplier="355:30" id="iVq-SO-ZH4"/>
-                                                                </constraints>
-                                                            </stackView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V6x-70-LHa">
-                                                                <rect key="frame" x="0.0" y="280" width="355" height="30"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="V6x-70-LHa" secondAttribute="height" multiplier="355:30" id="zAS-hx-BV9"/>
-                                                                </constraints>
-                                                                <state key="normal" title="Full Day(8AM - 10PM)">
+                                                                <state key="normal" title="Button">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="btnSelectSlotFunction:" destination="4eb-sB-Kai" eventType="touchUpInside" id="hUU-xL-vYb"/>
+                                                                    <action selector="btn_bookAction" destination="4eb-sB-Kai" eventType="touchUpInside" id="Mac-oL-qlH"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="V6x-70-LHa" secondAttribute="trailing" id="9D5-kX-bAC"/>
-                                                            <constraint firstAttribute="trailing" secondItem="gZv-Uc-Bc0" secondAttribute="trailing" id="9xa-l2-JrS"/>
-                                                            <constraint firstAttribute="trailing" secondItem="nLf-R4-KkU" secondAttribute="trailing" id="D1F-kf-YAH"/>
-                                                            <constraint firstAttribute="trailing" secondItem="BaP-kS-hHW" secondAttribute="trailing" id="Hx1-l8-gKr"/>
-                                                            <constraint firstAttribute="trailing" secondItem="V5u-aW-2W4" secondAttribute="trailing" id="XSf-6F-YR5"/>
-                                                            <constraint firstAttribute="trailing" secondItem="m6d-ey-Fxc" secondAttribute="trailing" id="eWC-5Y-e0j"/>
-                                                            <constraint firstAttribute="trailing" secondItem="6uf-N7-vpQ" secondAttribute="trailing" id="sn2-KL-9Uf"/>
-                                                            <constraint firstAttribute="trailing" secondItem="4dU-fY-JE4" secondAttribute="trailing" id="zgB-A6-jqH"/>
-                                                        </constraints>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Select atleast one button" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2i-GU-mIb">
-                                                        <rect key="frame" x="0.0" y="315" width="355" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="W2i-GU-mIb" firstAttribute="leading" secondItem="ku7-qi-6qn" secondAttribute="leading" id="9AQ-YR-iGj"/>
-                                                    <constraint firstAttribute="trailing" secondItem="W2i-GU-mIb" secondAttribute="trailing" id="VEp-BX-poU"/>
-                                                    <constraint firstItem="do3-Uk-saU" firstAttribute="leading" secondItem="ku7-qi-6qn" secondAttribute="leading" id="eYB-aC-wcn"/>
-                                                    <constraint firstAttribute="trailing" secondItem="do3-Uk-saU" secondAttribute="trailing" id="oY7-di-J9c"/>
-                                                </constraints>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YIP-Jl-aeo">
-                                                <rect key="frame" x="10" y="747" width="355" height="100"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For any queries related to time slot, Contact Admin." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBc-dX-FVP">
-                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="41"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G31-xE-G2Q">
-                                                        <rect key="frame" x="0.0" y="61" width="355" height="39"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="39" id="h9W-89-EJR"/>
-                                                        </constraints>
-                                                        <state key="normal" title="Button">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="btn_bookAction" destination="4eb-sB-Kai" eventType="touchUpInside" id="Mac-oL-qlH"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="G31-xE-G2Q" secondAttribute="trailing" id="i1P-CY-TqA"/>
-                                                    <constraint firstAttribute="trailing" secondItem="nBc-dX-FVP" secondAttribute="trailing" id="uOc-oT-emW"/>
-                                                </constraints>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8uJ-LB-p7i">
-                                                <rect key="frame" x="10" y="725" width="183.5" height="12"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-nM-ZbR" userLabel="View_Unavailable">
-                                                        <rect key="frame" x="0.0" y="0.0" width="12" height="12"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="12" id="Cqm-xC-Y5r"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avilable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xe-il-yM1">
-                                                        <rect key="frame" x="22" y="0.0" width="50" height="12"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yv0-nR-ro6" userLabel="View_Unavailable">
-                                                        <rect key="frame" x="82" y="0.0" width="12" height="12"/>
-                                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="12" id="SGr-Dv-g48"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Un Available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aN-HP-FSM">
-                                                        <rect key="frame" x="104" y="0.0" width="79.5" height="12"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="12" id="cfs-pm-LW7"/>
-                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="gOm-6q-Dv6" secondAttribute="trailing" constant="10" id="0YH-7t-7NT"/>
                                             <constraint firstItem="gOm-6q-Dv6" firstAttribute="top" secondItem="wWg-dN-gdG" secondAttribute="bottom" constant="10" id="3co-5f-DyK"/>
-                                            <constraint firstItem="ku7-qi-6qn" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="5hh-PD-XHY"/>
-                                            <constraint firstAttribute="trailing" secondItem="Pfm-8e-vic" secondAttribute="trailing" constant="10" id="6bN-za-CY5"/>
-                                            <constraint firstItem="ku7-qi-6qn" firstAttribute="top" secondItem="Pfm-8e-vic" secondAttribute="bottom" constant="10" id="7Gd-hO-oyk"/>
                                             <constraint firstAttribute="trailing" secondItem="aWo-H6-ayt" secondAttribute="trailing" constant="10" id="7dt-te-2rT"/>
                                             <constraint firstAttribute="trailing" secondItem="wWg-dN-gdG" secondAttribute="trailing" constant="10" id="7iN-J4-Xae"/>
+                                            <constraint firstItem="9Vx-td-gOC" firstAttribute="top" secondItem="1HR-fH-Kfu" secondAttribute="bottom" constant="10" id="8PG-LC-nI4"/>
                                             <constraint firstItem="wWg-dN-gdG" firstAttribute="top" secondItem="8Jd-uP-ylk" secondAttribute="bottom" constant="10" id="A58-vQ-zua"/>
                                             <constraint firstItem="aWo-H6-ayt" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="F6R-vd-oCB"/>
-                                            <constraint firstAttribute="trailing" secondItem="ku7-qi-6qn" secondAttribute="trailing" constant="10" id="Kcu-v7-Dem"/>
                                             <constraint firstItem="8Jd-uP-ylk" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="M1k-gP-Lze"/>
                                             <constraint firstItem="gOm-6q-Dv6" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="RGF-Wq-dAD"/>
-                                            <constraint firstItem="Pfm-8e-vic" firstAttribute="top" secondItem="1HR-fH-Kfu" secondAttribute="bottom" constant="10" id="Uy8-V1-KNh"/>
+                                            <constraint firstItem="9Vx-td-gOC" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="T7Y-N6-teq"/>
                                             <constraint firstItem="aWo-H6-ayt" firstAttribute="top" secondItem="gOm-6q-Dv6" secondAttribute="bottom" constant="5" id="WCM-kg-JoP"/>
                                             <constraint firstAttribute="trailing" secondItem="1HR-fH-Kfu" secondAttribute="trailing" constant="10" id="Wnz-mu-NdL"/>
-                                            <constraint firstItem="YIP-Jl-aeo" firstAttribute="top" secondItem="8uJ-LB-p7i" secondAttribute="bottom" constant="10" id="Wp4-y7-GyN"/>
-                                            <constraint firstItem="8uJ-LB-p7i" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="YLa-oX-NNe"/>
-                                            <constraint firstItem="Pfm-8e-vic" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="e67-QA-EQi"/>
+                                            <constraint firstAttribute="trailing" secondItem="9Vx-td-gOC" secondAttribute="trailing" constant="10" id="Yfd-Xu-Msd"/>
                                             <constraint firstItem="1HR-fH-Kfu" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="fZw-I9-a2C"/>
                                             <constraint firstItem="8Jd-uP-ylk" firstAttribute="top" secondItem="LLd-n0-ilC" secondAttribute="top" constant="15" id="iMg-Mn-Rsb"/>
                                             <constraint firstItem="wWg-dN-gdG" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="ncs-Jj-iGd"/>
-                                            <constraint firstItem="YIP-Jl-aeo" firstAttribute="leading" secondItem="LLd-n0-ilC" secondAttribute="leading" constant="10" id="rL4-J3-fh6"/>
                                             <constraint firstAttribute="trailing" secondItem="8Jd-uP-ylk" secondAttribute="trailing" constant="10" id="rLN-2w-ohO"/>
-                                            <constraint firstItem="8uJ-LB-p7i" firstAttribute="top" secondItem="ku7-qi-6qn" secondAttribute="bottom" constant="10" id="uMi-BP-stf"/>
                                             <constraint firstItem="1HR-fH-Kfu" firstAttribute="top" secondItem="aWo-H6-ayt" secondAttribute="bottom" constant="10" id="y0u-be-a6z"/>
-                                            <constraint firstAttribute="trailing" secondItem="YIP-Jl-aeo" secondAttribute="trailing" constant="10" id="z9U-AY-fuj"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -9643,9 +9645,11 @@
                     <connections>
                         <outlet property="btn_Book" destination="G31-xE-G2Q" id="nY8-4m-uBw"/>
                         <outlet property="btn_Concerts" destination="zuH-0Q-grW" id="OXd-en-xa8"/>
+                        <outlet property="btn_FullDay" destination="V6x-70-LHa" id="Nhe-sS-EU1"/>
                         <outlet property="btn_Meetings" destination="I9A-4a-f8d" id="FXQ-Y5-aFg"/>
                         <outlet property="btn_Parties" destination="z9E-Ny-dWT" id="L1j-Gl-WxH"/>
                         <outlet property="btn_Seminars" destination="BMv-Fq-xlW" id="SeH-hs-vcW"/>
+                        <outlet property="btn_stackView" destination="wQh-IW-UrM" id="2z8-Gy-umC"/>
                         <outlet property="lbl_ChooseCategory" destination="gOm-6q-Dv6" id="bkQ-B5-43u"/>
                         <outlet property="lbl_ChooseTimeSlot" destination="Pfm-8e-vic" id="AtB-0y-1Re"/>
                         <outlet property="lbl_EventDate" destination="qZD-gc-756" id="wSd-Ze-oKB"/>
@@ -9660,21 +9664,21 @@
                         <outlet property="scrollView" destination="Wl5-k5-Z3N" id="CGH-DA-Vlp"/>
                         <outlet property="txt_EventDate" destination="N6p-IN-8wW" id="vLL-JG-nPp"/>
                         <outlet property="txt_EventTitle" destination="AvL-PD-8Mc" id="OzQ-FX-1KR"/>
-                        <outletCollection property="btn_EventHours" destination="Uyd-S2-dnb" collectionClass="NSMutableArray" id="qpg-JR-wEs"/>
-                        <outletCollection property="btn_EventHours" destination="dpV-Xa-6cX" collectionClass="NSMutableArray" id="eG1-OQ-Qdn"/>
-                        <outletCollection property="btn_EventHours" destination="ixo-Hd-gEr" collectionClass="NSMutableArray" id="YQh-mN-6si"/>
-                        <outletCollection property="btn_EventHours" destination="HnN-V2-uS2" collectionClass="NSMutableArray" id="5Q5-Kr-OsW"/>
-                        <outletCollection property="btn_EventHours" destination="hNS-gK-s8d" collectionClass="NSMutableArray" id="EPJ-oJ-WOM"/>
-                        <outletCollection property="btn_EventHours" destination="g0M-PB-ITX" collectionClass="NSMutableArray" id="Sea-DB-fbP"/>
-                        <outletCollection property="btn_EventHours" destination="VST-fG-2qP" collectionClass="NSMutableArray" id="YC6-ob-ioS"/>
-                        <outletCollection property="btn_EventHours" destination="8MG-zG-KMT" collectionClass="NSMutableArray" id="T7F-cs-2is"/>
-                        <outletCollection property="btn_EventHours" destination="FzU-U0-0wM" collectionClass="NSMutableArray" id="jsp-H8-gQ8"/>
-                        <outletCollection property="btn_EventHours" destination="LFv-kc-2Lg" collectionClass="NSMutableArray" id="jDw-z4-qHW"/>
-                        <outletCollection property="btn_EventHours" destination="ZyZ-s8-Sv3" collectionClass="NSMutableArray" id="uXf-WO-kJd"/>
-                        <outletCollection property="btn_EventHours" destination="FF6-4g-U2H" collectionClass="NSMutableArray" id="OQd-Bw-Atd"/>
-                        <outletCollection property="btn_EventHours" destination="Ew3-ig-DI0" collectionClass="NSMutableArray" id="hiG-Fx-2R2"/>
-                        <outletCollection property="btn_EventHours" destination="B3q-zh-dI1" collectionClass="NSMutableArray" id="ESJ-pq-0Nk"/>
-                        <outletCollection property="btn_EventHours" destination="V6x-70-LHa" collectionClass="NSMutableArray" id="MMJ-KE-kom"/>
+                        <outletCollection property="btn_EventHours" destination="Uyd-S2-dnb" collectionClass="NSMutableArray" id="8o3-bq-00G"/>
+                        <outletCollection property="btn_EventHours" destination="dpV-Xa-6cX" collectionClass="NSMutableArray" id="NES-qP-Nsg"/>
+                        <outletCollection property="btn_EventHours" destination="ixo-Hd-gEr" collectionClass="NSMutableArray" id="RfU-B9-KwB"/>
+                        <outletCollection property="btn_EventHours" destination="HnN-V2-uS2" collectionClass="NSMutableArray" id="2Dd-Xh-SCq"/>
+                        <outletCollection property="btn_EventHours" destination="hNS-gK-s8d" collectionClass="NSMutableArray" id="fJu-JV-5oc"/>
+                        <outletCollection property="btn_EventHours" destination="g0M-PB-ITX" collectionClass="NSMutableArray" id="YtQ-lI-tto"/>
+                        <outletCollection property="btn_EventHours" destination="VST-fG-2qP" collectionClass="NSMutableArray" id="Gbg-DC-70b"/>
+                        <outletCollection property="btn_EventHours" destination="8MG-zG-KMT" collectionClass="NSMutableArray" id="uBi-E1-wCA"/>
+                        <outletCollection property="btn_EventHours" destination="FzU-U0-0wM" collectionClass="NSMutableArray" id="BwR-hq-1Fc"/>
+                        <outletCollection property="btn_EventHours" destination="LFv-kc-2Lg" collectionClass="NSMutableArray" id="ed9-sn-aDY"/>
+                        <outletCollection property="btn_EventHours" destination="ZyZ-s8-Sv3" collectionClass="NSMutableArray" id="UYA-4Y-lzA"/>
+                        <outletCollection property="btn_EventHours" destination="FF6-4g-U2H" collectionClass="NSMutableArray" id="vdt-ls-znl"/>
+                        <outletCollection property="btn_EventHours" destination="Ew3-ig-DI0" collectionClass="NSMutableArray" id="9SC-eM-zpW"/>
+                        <outletCollection property="btn_EventHours" destination="B3q-zh-dI1" collectionClass="NSMutableArray" id="bBv-b7-TFQ"/>
+                        <outletCollection property="btn_EventHours" destination="V6x-70-LHa" collectionClass="NSMutableArray" id="Iqu-SW-06W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0Z-Y3-taP" userLabel="First Responder" sceneMemberID="firstResponder"/>
