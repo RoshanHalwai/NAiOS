@@ -72,6 +72,7 @@ class MainScreenViewController: NANavigationViewController {
         
         navigationItem.rightBarButtonItem = nil
         super.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.isHidden = false
         
         societyData = [
             societyServicesModel(cellTitle: NAString().digi_gate(),cellImage:  #imageLiteral(resourceName: "digiGate")),
