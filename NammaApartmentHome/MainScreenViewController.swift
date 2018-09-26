@@ -316,8 +316,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
             case 6:
                 let lv6 = NAViewPresenter().addEventManagementVC()
                 lv6.navTitle = NAString().event_management()
-                getInProgressUID(VC: lv6, serviceName: NAString().eventManagement())
-                
+                self.navigationController?.pushViewController(lv6, animated: true)
             case 7:
                 let lv7 = NAViewPresenter().societyServiceVC()
                 lv7.navTitle = NAString().scrapCollection()
@@ -405,14 +404,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                                         awaitingResponseVC.navTitle = NAString().societyService()
                                         awaitingResponseVC.serviceType = serviceName.capitalized
                                         awaitingResponseVC.notificationUID = lastUID!
-                                        if serviceName == NAString().eventManagement() {
-                                            let lv = NAViewPresenter().showEventManagementVC()
-                                            lv.getEventUID = lastUID!
-                                            lv.navTitle = NAString().event_management()
-                                            self.navigationController?.pushViewController(lv, animated: true)
-                                        } else {
-                                            self.navigationController?.pushViewController(awaitingResponseVC, animated: true)
-                                        }
+                                        self.navigationController?.pushViewController(awaitingResponseVC, animated: true)
                                     } else {
                                         self.navigationController?.pushViewController(VC, animated: true)
                                     }
