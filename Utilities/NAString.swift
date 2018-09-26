@@ -1706,7 +1706,7 @@ class NAString : NSObject {
     }
     
     func societyServices() -> String {
-        return String("   Pay \n Maintenance")
+        return String("Society Services")
     }
     
     func no_Dues_Alert_Title() -> String {
