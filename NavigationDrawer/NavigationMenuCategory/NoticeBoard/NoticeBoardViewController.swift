@@ -23,11 +23,13 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: NAString().notice_board())
         infoButton()
-       
+        
+        tableView.separatorStyle = .none
+        
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()
     }
-   
+    
     @IBAction func btn_BackAction(_ sender: Any) {
         goBackToMyFlatDetails()
     }
