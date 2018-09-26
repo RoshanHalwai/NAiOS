@@ -94,5 +94,4 @@ class ContactUsHistoryViewController: NANavigationViewController, UICollectionVi
             }
         }
     }
-    
 }

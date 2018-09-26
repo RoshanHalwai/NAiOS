@@ -205,6 +205,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         }
         if !(txt_Choose_One.text?.isEmpty)! && !(txt_Describe_Your_Problem.text.isEmpty) {
             
+            self.txt_Describe_Your_Problem.resignFirstResponder()
             storingSupportDetails()
             
             self.txt_Choose_One.text = ""
