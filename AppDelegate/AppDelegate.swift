@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //This method will call when application finished its launching state.
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let launchVC = self.storyboard.instantiateViewController(withIdentifier: "RootVC")
+        let launchVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().rootVC())
         self.window?.rootViewController = launchVC
         self.window?.makeKeyAndVisible()
         

@@ -16,6 +16,9 @@ class UNService: NSObject {
     
     static let shared = UNService()
     let unCenter = UNUserNotificationCenter.current()
+   
+    var window: UIWindow?
+    let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
     
     func authorize() {
         let options: UNAuthorizationOptions = [.alert, .badge, .sound]
@@ -46,15 +49,16 @@ extension UNService: UNUserNotificationCenterDelegate {
         let notificationType = userInfo[Constants.FIREBASE_NOTIFICATION_TYPE] as? String
         
         if notificationType == Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD {
-//            let dest = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
-//            self.window?.rootViewController = dest
-//            self.window?.makeKeyAndVisible()
+            let dest = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
+            window?.rootViewController = dest
+            window?.makeKeyAndVisible()
+
             UIApplication.shared.applicationIconBadgeNumber = 0
         } else {
-//            let launchVC = self.storyboard.instantiateViewController(withIdentifier: "RootVC")
-//            self.window?.rootViewController = launchVC
-//            self.window?.makeKeyAndVisible()
-            
+            let launchVC = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().rootVC())
+            window?.rootViewController = launchVC
+            window?.makeKeyAndVisible()
+            UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
         //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
