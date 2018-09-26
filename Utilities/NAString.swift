@@ -1498,15 +1498,15 @@ class NAString : NSObject {
     }
     
     func referToSocietyServives() -> String {
-        return ("Hey there! I got the reference of this Service from Namma Apartments app. You can also avail this Service by downloading..")
+        return ("Hey there! I got the reference of this Service from Namma Apartments app. You can also avail this Service by downloading: https://itunes.apple.com/us/app/namma-apartments/id1435813154?ls=1&mt=8")
     }
     
     func sendMessageToSocietyServices() -> String {
-        return("Hey there! I would like to have your Service at my Flat.Revert back so that we we can schedule and sort things out quickly.")
+        return("Hey there! I would like to get in contact with you,as I need your service at my Flat. Revert back so that we can discuss the necessary terms related to your service.")
     }
     
     func sendMessageToSocietyServivesWhatsapp() -> String {
-        return ("whatsapp://send?text=Hey%20there%20!%20I%20would%20like%20to%20have%20your%20Service%20at%20my%20Flat.%20Revert%20back%20so%20that%20we%20we%20can%20schedule%20and%20sort%20things%20out%20quickly.")
+        return ("Hey there! I would like to get in contact with you,as I need your service at my Flat. Revert back so that we can discuss the necessary terms related to your service.")
     }
     
     func faqWebsiteLink() -> String {
