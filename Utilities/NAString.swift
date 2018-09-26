@@ -1698,15 +1698,23 @@ class NAString : NSObject {
     }
     
     func wallet_Description() -> String {
-        return String("Hola! Now we provide you an option to make online payments for your Society and Apartment Services.")
+        return String("Hola! Now we provide you an option to make online payment for the basic Society Maintenance charges.")
     }
     
     func make_payment_For() -> String {
-        return String("Make Payment For")
+        return String("Make Payment")
     }
     
     func societyServices() -> String {
         return String("Society Services")
+    }
+    
+    func no_Dues_Alert_Title() -> String {
+        return String("No Dues")
+    }
+    
+    func no_Dues_Alert_Message() -> String {
+        return String("You do not have any pending dues.")
     }
     
     func ApartmentServices() -> String {
