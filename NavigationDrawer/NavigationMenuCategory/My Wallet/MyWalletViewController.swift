@@ -50,6 +50,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         //Payment Gateway Namma Apartment API KEY for Transactions
         razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
+        
         storingPendingDues()
         
         //Retrieving Firebase Data in Pending Dues
@@ -113,7 +114,12 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     
     @IBAction func societyServicesAction(_ sender: Any) {
         paymentDescription = NAString().society_Services_Title()
-        showPaymentUI()
+        
+        if lbl_Maintenance.text == NAString().noPendingDues() {
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), OkStyle: .default, OK: nil)
+        } else {
+            showPaymentUI()
+        }
     }
     
     //This will call when any error occurred during transaction
