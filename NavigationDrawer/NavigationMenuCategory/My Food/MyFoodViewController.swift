@@ -160,6 +160,7 @@ class MyFoodViewController: NANavigationViewController {
             lbl_FoodQuantity_Validation.text = NAString().Please_select_expected_Hours()
         }
         if !(txt_FoodType.text?.isEmpty)! && (isValidSelectDonateFoodButtonClicked.index(of: true) != nil) {
+            txt_FoodType.resignFirstResponder()
             storeDonateFoodDetailsInFirebase()
         }
     }

@@ -296,6 +296,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             txtInvitorMobile.underlined()
             lbl_Mob_Validation.isHidden = true
         }
+        if self.lbl_CountryCode.text == NAString().stateCodePlaceHolder() {
+            lbl_Mob_Validation.isHidden = false
+            lbl_Mob_Validation.text =  NAString().please_select_country_code()
+        }
         if (txtDate.text?.isEmpty)! {
             lbl_Date_Validation.isHidden = false
             lbl_Date_Validation.text = NAString().Please_select_date()
@@ -304,7 +308,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
             lbl_Date_Validation.isHidden = true
             txtDate.underlined()
         }
-        if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
+        if !(txtInvitorName.text?.isEmpty)! && !(txtInvitorMobile.text?.isEmpty)! && txtInvitorMobile.text?.count == NAString().required_mobileNo_Length() && !(txtDate.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             
             //Calling storeVisitorDatailsInFirebase fucntion on click of Invite Visitor button & Showing alertView.
             self.storeVisitorDetailsInFirebase()
@@ -481,7 +485,7 @@ extension UIViewController {
         self.navigationItem.setRightBarButton(info, animated: true)
     }
     
-   //Navigate to FAQ's WebSite
+    //Navigate to FAQ's WebSite
     @objc func gotofrequentlyAskedQuestionsVC() {
         UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
     }
