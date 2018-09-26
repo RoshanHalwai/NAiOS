@@ -146,11 +146,11 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                     let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
                                     let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                                     let societyServiceProblem = societyServiceData?[NASocietyServicesFBKeys.problem.key] as! String
-                                    print(societyServiceProblem)
                                     let societyServiceTimeSlot: String = societyServiceData?[NASocietyServicesFBKeys.timeSlot.key] as! String
                                     let societyServiceStatus: String = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
                                     let societyServiceEndOTP: String = societyServiceData?[NASocietyServicesFBKeys.endOTP.key] as! String
-                                    
+                                    let societyServiceTimeStamp = societyServiceData?[NASocietyServicesFBKeys.timestamp.key]?.floatValue
+
                                     let societyServiceDataRef = Constants.FIREBASE_SOCIETY_SERVICES
                                         .child(societyServiceType)
                                         .child(Constants.FIREBASE_CHILD_PRIVATE)
@@ -163,9 +163,8 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                         let serviceData = snapshot.value as? [String: AnyObject]
                                         let societyServiceName: String = serviceData?[NASocietyServicesFBKeys.fullName.key] as! String
                                         let societyServiceNumber: String = serviceData?[NASocietyServicesFBKeys.mobileNumber.key] as! String
-                                        let societyServiceTimeStamp = serviceData?[Constants.FIREBASE_CHILD_TIMESTAMP]
                                         
-                                        let societyServiceDataList = NASocietyServices(problem: societyServiceProblem, timeSlot: societyServiceTimeSlot, userUID: userUID, societyServiceType: societyServiceType, notificationUID: notifictionUID as! String, status: societyServiceUID, takenBy: societyServiceStatus, endOTP: societyServiceEndOTP, fullName: societyServiceName, mobileNumber: societyServiceNumber, timeStamp:societyServiceTimeStamp as! Int )
+                                        let societyServiceDataList = NASocietyServices(problem: societyServiceProblem, timeSlot: societyServiceTimeSlot, userUID: userUID, societyServiceType: societyServiceType, notificationUID: notifictionUID as! String, status: societyServiceStatus, takenBy:  societyServiceUID, endOTP: societyServiceEndOTP, fullName: societyServiceName, mobileNumber: societyServiceNumber, timeStamp:Int(societyServiceTimeStamp!))
                                         self.NASocietyServiceData.append(societyServiceDataList)
                                         NAActivityIndicator.shared.hideActivityIndicator()
                                         self.collectionView.reloadData()
