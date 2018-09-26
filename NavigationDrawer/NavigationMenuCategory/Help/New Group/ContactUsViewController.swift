@@ -119,18 +119,6 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
-        
-        //created custom back button for goto Help Screen view Controller
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHelpVC))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    //Navigating Back to Help Screen View Controller.
-    @objc func goBackToHelpVC() {
-        let helpScreenVC = NAViewPresenter().helpVC()
-        helpScreenVC.navTitle = NAString().help().capitalized
-        self.navigationController?.pushViewController(helpScreenVC, animated: true)
     }
     
     // Navigate to FAQ's WebSite
@@ -180,7 +168,12 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        txt_Choose_One.text = selectedItem
+        if selectedItem.isEmpty {
+            self.txt_Choose_One.text = ""
+        } else {
+            self.txt_Choose_One.text = selectedItem
+            selectedItem = ""
+        }
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
