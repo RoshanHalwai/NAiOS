@@ -186,7 +186,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         //placing image calender imgage inside the Date&Time TextField
         self.txt_EventDate.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
-        let image = UIImage(named: "newCalender")
+        let image : UIImage = #imageLiteral(resourceName: "newcalender")
         imageView.image = image
         txt_EventDate.rightView = imageView
         
@@ -517,7 +517,7 @@ extension EventManagementViewController {
         let serviceType = NAString().eventManagement()
         
         let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
+        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key!
         
         let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
         notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())

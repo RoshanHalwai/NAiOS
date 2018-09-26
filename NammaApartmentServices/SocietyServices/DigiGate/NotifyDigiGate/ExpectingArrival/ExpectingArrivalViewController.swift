@@ -95,7 +95,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         //placing image calender imgage inside the Date&Time TextField
         self.txt_DateTime.rightViewMode = UITextFieldViewMode.always
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 26, height: 26))
-        let image = UIImage(named: "newCalender")
+        let image : UIImage = #imageLiteral(resourceName: "calendar")
         imageView.image = image
         txt_DateTime.rightView = imageView
         

@@ -232,7 +232,32 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         
         //Updating if and only if atleast one item is Changed.
         if existedName != txt_Name.text || existedEmail != txt_EmailId.text || isImageChanged == true {
-            updateProfileChanges()
+            let providedEmailAddress = txt_EmailId.text
+            let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
+            if (txt_Name.text?.isEmpty)! {
+                lbl_Name_Validation.isHidden = false
+                lbl_Name_Validation.text = NAString().please_enter_name()
+                txt_Name.redunderlined()
+            } else {
+                lbl_Name_Validation.isHidden = true
+                txt_Name.underlined()
+                updateProfileChanges()
+            }
+            if (txt_EmailId.text?.isEmpty)! {
+                lbl_Email_Validation.isHidden = false
+                lbl_Email_Validation.text = NAString().please_enter_email()
+                txt_EmailId.redunderlined()
+            }
+            if !(txt_EmailId.text?.isEmpty)! {
+                if isEmailAddressIsValid {
+                    lbl_Email_Validation.isHidden = true
+                    txt_EmailId.underlined()
+                } else {
+                    lbl_Email_Validation.isHidden = false
+                    lbl_Email_Validation.text = NAString().please_enter_Valid_email()
+                    txt_EmailId.redunderlined()
+                }
+            }
         } else if existedFlatAdmin != txt_Flat_Admin.text && GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
             
             //Showing Confirmation Alert PopUp for changing Admin Access
@@ -335,6 +360,19 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             self.present(NavLogin, animated: true)
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == txt_Name {
+            lbl_Name_Validation.isHidden = true
+            txt_Name.underlined()
+        }
+        if textField == txt_EmailId {
+            lbl_Email_Validation.isHidden = true
+            txt_EmailId.underlined()
+        }
+        return true
+    }
 }
 
 extension EditMyProfileViewController {
@@ -342,11 +380,21 @@ extension EditMyProfileViewController {
         self.updateUserRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         if existedName != txt_Name.text {
             updateUserRef?.child(Constants.FIREBASE_CHILD_FULLNAME).setValue(txt_Name.text)
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), OkStyle: .default) { (action) in
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         if existedEmail != txt_EmailId.text {
             updateUserRef?.child(Constants.FIREBASE_CHILD_EMAIL).setValue(txt_EmailId.text)
         }
         
+        let providedEmailAddress = txt_EmailId.text
+        let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
+        if isEmailAddressIsValid == true {
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), OkStyle: .default) { (action) in
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
         if isImageChanged == true {
             let updatedImageRef = Storage.storage().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_CHILD_PRIVATE).child(userUID)
             
@@ -373,9 +421,6 @@ extension EditMyProfileViewController {
                 })
             })
             uploadTask.resume()
-        }
-        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), OkStyle: .default) { (action) in
-            self.navigationController?.popViewController(animated: true)
         }
     }
 }
