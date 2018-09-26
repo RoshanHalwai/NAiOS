@@ -908,7 +908,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="217" id="fEc-tf-xFr" customClass="HomeTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="217" id="fEc-tf-xFr" customClass="HomeTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="217"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fEc-tf-xFr" id="SfY-XT-q0A">
@@ -1007,7 +1007,7 @@
                                 <rect key="frame" x="0.0" y="59" width="375" height="544"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="8Di-yR-KZq" customClass="MainScreenTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="8Di-yR-KZq" customClass="MainScreenTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Di-yR-KZq" id="MJ4-Ev-fAp">
@@ -2847,7 +2847,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="335" id="vMU-Ba-VlU" customClass="HandedThingsToDailyServicesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="335" id="vMU-Ba-VlU" customClass="HandedThingsToDailyServicesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="335"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vMU-Ba-VlU" id="2Fa-Q3-01f">
@@ -3563,7 +3563,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="335" id="JVb-Dm-Mre" customClass="HandedThingsToGuestTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="335" id="JVb-Dm-Mre" customClass="HandedThingsToGuestTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="335"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JVb-Dm-Mre" id="DDS-7N-3We">
@@ -6239,7 +6239,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="67" id="xEW-4z-DDM" customClass="LanguagesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="67" id="xEW-4z-DDM" customClass="LanguagesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xEW-4z-DDM" id="mtv-38-deX">
@@ -6556,7 +6556,7 @@
                                 <rect key="frame" x="0.0" y="134" width="375" height="533"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="72" id="lt3-DL-eAK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="72" id="lt3-DL-eAK">
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lt3-DL-eAK" id="fGU-O3-ZAK">
@@ -7097,7 +7097,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="250" id="qUf-My-lmU" customClass="NoticeBoardTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="250" id="qUf-My-lmU" customClass="NoticeBoardTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qUf-My-lmU" id="lw7-A7-jUn">
@@ -7239,7 +7239,7 @@
                                 <rect key="frame" x="5" y="25" width="365" height="637"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="53" id="0Vd-sK-m2r" customClass="FrequentlyAskedTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="53" id="0Vd-sK-m2r" customClass="FrequentlyAskedTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="365" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Vd-sK-m2r" id="n3e-fJ-epK">
@@ -7835,7 +7835,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9am-70-889" customClass="SearchTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="9am-70-889" customClass="SearchTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="84" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9am-70-889" id="U0u-Uf-1MF">
@@ -8733,7 +8733,7 @@
                                 <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="67" id="W7d-Xq-tX5" customClass="LanguagesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="67" id="W7d-Xq-tX5" customClass="LanguagesTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W7d-Xq-tX5" id="0A1-3c-xAm">
@@ -9697,7 +9697,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="355" id="d8E-2c-wgL" customClass="EventManagementHistoryTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="355" id="d8E-2c-wgL" customClass="EventManagementHistoryTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="355"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d8E-2c-wgL" id="D0g-mj-UtC">
@@ -9705,7 +9705,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbq-tV-CR7">
-                                                    <rect key="frame" x="20" y="16" width="335" height="323"/>
+                                                    <rect key="frame" x="15" y="11" width="345" height="333"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event" translatesAutoresizingMaskIntoConstraints="NO" id="ieD-g5-o3r">
                                                             <rect key="frame" x="5" y="10" width="60" height="60"/>
@@ -9715,10 +9715,10 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wB9-Qv-yhj">
-                                                            <rect key="frame" x="75" y="5" width="189.5" height="71.5"/>
+                                                            <rect key="frame" x="75" y="5" width="189.5" height="81.5"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EcX-fK-tqS">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="71.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="81.5"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="EventTitle:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owo-la-D8K">
                                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="20.5"/>
@@ -9726,14 +9726,14 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-h0-VgT">
-                                                                            <rect key="frame" x="0.0" y="25.5" width="54" height="20.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-h0-VgT">
+                                                                            <rect key="frame" x="0.0" y="25.5" width="54" height="30.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EventDate:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TA7-6N-kji">
-                                                                            <rect key="frame" x="0.0" y="51" width="83.5" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="61" width="83.5" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -9741,22 +9741,22 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4aH-ve-Gnu">
-                                                                    <rect key="frame" x="88.5" y="0.0" width="101" height="71.5"/>
+                                                                    <rect key="frame" x="88.5" y="0.0" width="101" height="81.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJQ-Ri-I8v">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="101" height="20.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJQ-Ri-I8v">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="101" height="30.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Queued" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a04-YS-4Bh">
-                                                                            <rect key="frame" x="0.0" y="25.5" width="101" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="35.5" width="101" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 20, 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaJ-Tg-toh">
-                                                                            <rect key="frame" x="0.0" y="51" width="101" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="61" width="101" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -9770,7 +9770,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selected Slots:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYm-bM-SQd">
-                                                            <rect key="frame" x="10" y="86.5" width="315" height="30"/>
+                                                            <rect key="frame" x="10" y="96.5" width="325" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="4ie-qK-3UL"/>
                                                             </constraints>
@@ -9779,15 +9779,15 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aXe-Wl-zQb">
-                                                            <rect key="frame" x="8" y="126.5" width="320" height="190"/>
+                                                            <rect key="frame" x="5" y="136.5" width="280" height="190"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aZC-el-1Vk">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aZC-el-1Vk">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3f-UI-gTn">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="1Vl-xq-E9q"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="1Vl-xq-E9q"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="KB2-mh-gXq"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9795,9 +9795,9 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rj7-F4-NWf">
-                                                                            <rect key="frame" x="110" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="95" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="2hc-kE-b5i"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="2hc-kE-b5i"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="ga7-YF-Myd"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9805,9 +9805,9 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ri-ih-4Sl">
-                                                                            <rect key="frame" x="220" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="190" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="FFG-6e-b8t"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="FFG-6e-b8t"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="tc5-aH-hRO"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9815,14 +9815,15 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
+                                                                    <viewLayoutGuide key="safeArea" id="t5N-mV-Ve2"/>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5M6-2p-cGD">
-                                                                    <rect key="frame" x="0.0" y="40" width="320" height="30"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5M6-2p-cGD">
+                                                                    <rect key="frame" x="0.0" y="40" width="280" height="30"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8w-4a-iGK">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="WIm-zv-qgP"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="WIm-zv-qgP"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="vSy-T0-yfy"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9830,19 +9831,19 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dd5-n0-HLM">
-                                                                            <rect key="frame" x="110" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="95" y="0.0" width="90" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="EaB-9y-ula"/>
-                                                                                <constraint firstAttribute="width" constant="100" id="hd4-xC-5rh"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="hd4-xC-5rh"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8O-7K-euJ">
-                                                                            <rect key="frame" x="220" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="190" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="3h0-Ts-7sM"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="3h0-Ts-7sM"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="DYX-VE-RSr"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9851,23 +9852,23 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tOY-8P-L54">
-                                                                    <rect key="frame" x="0.0" y="80" width="320" height="30"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="tOY-8P-L54">
+                                                                    <rect key="frame" x="0.0" y="80" width="280" height="30"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIF-Xb-dMp">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="B62-SA-psX"/>
-                                                                                <constraint firstAttribute="width" constant="100" id="vKl-QN-Y3d"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="vKl-QN-Y3d"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psO-Gc-Fi7">
-                                                                            <rect key="frame" x="110" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="95" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="O9Y-f9-FSX"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="O9Y-f9-FSX"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="lsy-Z1-pRk"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9875,10 +9876,10 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAL-M3-byH">
-                                                                            <rect key="frame" x="220" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="190" y="0.0" width="90" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="QhO-R7-tzf"/>
-                                                                                <constraint firstAttribute="width" constant="100" id="qQw-Ch-qnJ"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="qQw-Ch-qnJ"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                             <nil key="textColor"/>
@@ -9886,33 +9887,33 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="JDI-xu-K9x">
-                                                                    <rect key="frame" x="0.0" y="120" width="320" height="30"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JDI-xu-K9x">
+                                                                    <rect key="frame" x="0.0" y="120" width="280" height="30"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5r-7l-6Du">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="Vci-G9-Skr"/>
-                                                                                <constraint firstAttribute="width" constant="100" id="wTn-wU-f31"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="wTn-wU-f31"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrb-m8-pcR">
-                                                                            <rect key="frame" x="110" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="95" y="0.0" width="90" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="JWq-b3-HNF"/>
-                                                                                <constraint firstAttribute="width" constant="100" id="Jta-uS-gyn"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="Jta-uS-gyn"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85B-iR-Vzx">
-                                                                            <rect key="frame" x="220" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="190" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="HLX-IZ-or0"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="HLX-IZ-or0"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="OEf-di-VXm"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9921,23 +9922,23 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="df6-Qm-fHt">
-                                                                    <rect key="frame" x="0.0" y="160" width="320" height="30"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="df6-Qm-fHt">
+                                                                    <rect key="frame" x="0.0" y="160" width="280" height="30"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3Z-NU-FdK">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="30" id="48h-RG-QQg"/>
-                                                                                <constraint firstAttribute="width" constant="100" id="k2O-uU-6eV"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="k2O-uU-6eV"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzt-6x-OHE">
-                                                                            <rect key="frame" x="110" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="95" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="oi5-Uv-9sT"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="oi5-Uv-9sT"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="tg0-6y-wde"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9945,9 +9946,9 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUr-Ur-6t1">
-                                                                            <rect key="frame" x="220" y="0.0" width="100" height="30"/>
+                                                                            <rect key="frame" x="190" y="0.0" width="90" height="30"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="100" id="cOX-Lt-9M3"/>
+                                                                                <constraint firstAttribute="width" constant="90" id="cOX-Lt-9M3"/>
                                                                                 <constraint firstAttribute="height" constant="30" id="moz-q1-HXJ"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="14"/>
@@ -9965,7 +9966,7 @@
                                                         <constraint firstItem="wB9-Qv-yhj" firstAttribute="top" secondItem="Qbq-tV-CR7" secondAttribute="top" constant="5" id="A2g-gI-VyZ"/>
                                                         <constraint firstItem="vYm-bM-SQd" firstAttribute="leading" secondItem="Qbq-tV-CR7" secondAttribute="leading" constant="10" id="Qen-Lq-TJg"/>
                                                         <constraint firstItem="vYm-bM-SQd" firstAttribute="top" secondItem="wB9-Qv-yhj" secondAttribute="bottom" constant="10" id="Ujs-K3-mf0"/>
-                                                        <constraint firstItem="aXe-Wl-zQb" firstAttribute="leading" secondItem="Qbq-tV-CR7" secondAttribute="leading" constant="8" id="VsE-Rz-jgJ"/>
+                                                        <constraint firstItem="aXe-Wl-zQb" firstAttribute="leading" secondItem="Qbq-tV-CR7" secondAttribute="leading" priority="999" constant="5" id="VsE-Rz-jgJ"/>
                                                         <constraint firstItem="aXe-Wl-zQb" firstAttribute="top" secondItem="vYm-bM-SQd" secondAttribute="bottom" constant="10" id="aE4-2L-mwD"/>
                                                         <constraint firstItem="ieD-g5-o3r" firstAttribute="leading" secondItem="Qbq-tV-CR7" secondAttribute="leading" constant="5" id="bMp-ko-GBm"/>
                                                         <constraint firstItem="ieD-g5-o3r" firstAttribute="top" secondItem="Qbq-tV-CR7" secondAttribute="top" constant="10" id="dZl-cu-C3q"/>
@@ -9975,10 +9976,10 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Qbq-tV-CR7" firstAttribute="top" secondItem="D0g-mj-UtC" secondAttribute="topMargin" constant="5" id="23y-XD-jAq"/>
-                                                <constraint firstItem="Qbq-tV-CR7" firstAttribute="leading" secondItem="D0g-mj-UtC" secondAttribute="leadingMargin" constant="5" id="AAb-hC-URz"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Qbq-tV-CR7" secondAttribute="trailing" constant="5" id="kf0-zV-AeP"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Qbq-tV-CR7" secondAttribute="bottom" constant="5" id="ycL-wx-WFE"/>
+                                                <constraint firstItem="Qbq-tV-CR7" firstAttribute="top" secondItem="D0g-mj-UtC" secondAttribute="topMargin" id="23y-XD-jAq"/>
+                                                <constraint firstItem="Qbq-tV-CR7" firstAttribute="leading" secondItem="D0g-mj-UtC" secondAttribute="leadingMargin" id="AAb-hC-URz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Qbq-tV-CR7" secondAttribute="trailing" id="kf0-zV-AeP"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Qbq-tV-CR7" secondAttribute="bottom" id="ycL-wx-WFE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
