@@ -52,13 +52,11 @@ extension UNService: UNUserNotificationCenterDelegate {
             let dest = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
             window?.rootViewController = dest
             window?.makeKeyAndVisible()
-
-            UIApplication.shared.applicationIconBadgeNumber = 0
+           
         } else {
             let launchVC = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().rootVC())
             window?.rootViewController = launchVC
             window?.makeKeyAndVisible()
-            UIApplication.shared.applicationIconBadgeNumber = 0
         }
         
         //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
@@ -169,6 +167,7 @@ extension UNService: UNUserNotificationCenterDelegate {
                 break
             }
         }
+        UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler()
     }
     
