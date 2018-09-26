@@ -349,12 +349,16 @@ class SocietyServicesViewController: NANavigationViewController {
         }
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.txt_SelectAny.text = selectedProblem
-        
-        if (self.txt_SelectAny.text == NAString().others()) {
-            othersStackView.isHidden = false
+        if selectedProblem.isEmpty {
+            self.txt_SelectAny.text = ""
         } else {
-            othersStackView.isHidden = true
+            self.txt_SelectAny.text = selectedProblem
+            selectedProblem = ""
+            if (self.txt_SelectAny.text == NAString().others()) {
+                othersStackView.isHidden = false
+            } else {
+                othersStackView.isHidden = true
+            }
         }
     }
     
@@ -451,10 +455,10 @@ class SocietyServicesViewController: NANavigationViewController {
         let alert = UIAlertController(title: NAString().requestRaised() , message: NAString().scrapCollectionHistoryAlertTitle(), preferredStyle: .alert)
         //creating Accept alert actions
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
-                let scrapHistoryVC = NAViewPresenter().societyServiceHistoryVC()
-                  scrapHistoryVC.titleName = NAString().history()
-                 scrapHistoryVC.navigationTitle = NAString().scrap_Collection()
-                self.navigationController?.pushViewController(scrapHistoryVC, animated: true)
+            let scrapHistoryVC = NAViewPresenter().societyServiceHistoryVC()
+            scrapHistoryVC.titleName = NAString().history()
+            scrapHistoryVC.navigationTitle = NAString().scrap_Collection()
+            self.navigationController?.pushViewController(scrapHistoryVC, animated: true)
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
@@ -483,7 +487,7 @@ extension SocietyServicesViewController {
             serviceType = (navTitle?.lowercased())!
         }
         let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        notificationUID = societyServiceNotificationRef.childByAutoId().key!
+        notificationUID = societyServiceNotificationRef.childByAutoId().key
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         
@@ -515,7 +519,6 @@ extension SocietyServicesViewController {
                 self.callAwaitingResponseViewController()
             })
         }
-        
     }
     
     func callAwaitingResponseViewController() {

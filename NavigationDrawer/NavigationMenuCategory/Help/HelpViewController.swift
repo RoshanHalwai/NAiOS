@@ -46,17 +46,6 @@ class HelpViewController: NANavigationViewController, UICollectionViewDelegate, 
         
         //apply defined layout to collectionview
         collection_View!.collectionViewLayout = layout
-        
-        //created custom back button for goto Main Screen view Controller
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToMainVC))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    //Navigating Back to Main Screen View Controller.
-    @objc func goBackToMainVC() {
-        let mainScreenVC = NAViewPresenter().mainScreenVC()
-        self.navigationController?.pushViewController(mainScreenVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

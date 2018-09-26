@@ -20,19 +20,6 @@ class ContactUsHistoryViewController: NANavigationViewController, UICollectionVi
         self.ConfigureNavBarTitle(title: NAString().history().capitalized)
         self.navigationItem.rightBarButtonItem = nil
         retrievingUserProblemData()
-        
-        //created custom back button for goto ContactUs Screen view Controller
-        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToContactUsVC))
-        self.navigationItem.leftBarButtonItem = backButton
-        self.navigationItem.hidesBackButton = true
-    }
-    
-    //Navigating Back to ContactUs Screen View Controller.
-    @objc func goBackToContactUsVC() {
-        serviceType = ""
-        let contactUsScreenVC = NAViewPresenter().contactUs()
-        contactUsScreenVC.navTitle = NAString().contact_us().capitalized
-        self.navigationController?.pushViewController(contactUsScreenVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
