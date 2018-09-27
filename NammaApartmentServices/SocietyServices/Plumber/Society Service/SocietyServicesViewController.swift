@@ -30,6 +30,8 @@ class SocietyServicesViewController: NANavigationViewController {
     @IBOutlet weak var lbl_CheckList_RequestService: UILabel!
     @IBOutlet weak var lbl_CheckList_FreeService: UILabel!
     @IBOutlet weak var lbl_DescrptionErrorValidation_Message: UILabel!
+    
+    @IBOutlet weak var lbl_Garbage_Type_Error_Validation: UILabel!
     @IBOutlet weak var checkList_CardView: UIView!
     
     @IBOutlet weak var cardView: UIView!
@@ -72,7 +74,6 @@ class SocietyServicesViewController: NANavigationViewController {
         } else {
             getButtonHour_Text = NAString().immediately()
         }
-        getButtonGarbage_Problem_Text = NAString().dryWaste()
         
         self.txt_SelectAny.text = selectedProblem
         
@@ -92,8 +93,10 @@ class SocietyServicesViewController: NANavigationViewController {
         lbl_unAvailable.font = NAFont().descriptionFont()
         lbl_ErrorValidation_Message.font = NAFont().descriptionFont()
         lbl_DescrptionErrorValidation_Message.font = NAFont().descriptionFont()
+        lbl_Garbage_Type_Error_Validation.font = NAFont().descriptionFont()
         lbl_ErrorValidation_Message.isHidden = true
         lbl_DescrptionErrorValidation_Message.isHidden = true
+        lbl_Garbage_Type_Error_Validation.isHidden = true
         
         //Hiding the StackView
         garbageStackView.isHidden = true
@@ -167,7 +170,6 @@ class SocietyServicesViewController: NANavigationViewController {
         
         //Calling Button Color Function
         self.selectedColor(tag: btn_Immediately.tag)
-        self.selectedGarbageColor(tag: btn_DryWaste.tag)
         
         //Calling Button Titles Functions
         self.changingButtonTitles()
@@ -372,6 +374,7 @@ class SocietyServicesViewController: NANavigationViewController {
     //Create Button garbage Function
     @IBAction func btnSelectGarbageFunction(_ sender: UIButton) {
         getButtonGarbage_Problem_Text = (sender.titleLabel?.text)!
+        lbl_Garbage_Type_Error_Validation.isHidden = true
         selectedGarbageColor(tag: sender.tag)
     }
     //Calling SelectAny Button Function
@@ -420,7 +423,11 @@ class SocietyServicesViewController: NANavigationViewController {
     //Create request Plumber Button Action
     @IBAction func btn_requestPlumberAction() {
         if navTitle == NAString().garbage_Collection() {
-            storeSocietyServiceDetails()
+            if getButtonGarbage_Problem_Text.isEmpty {
+                lbl_Garbage_Type_Error_Validation.isHidden = false
+            } else {
+                storeSocietyServiceDetails()
+            }
         } else {
             if (txt_SelectAny.text?.isEmpty)! {
                 txt_SelectAny.redunderlined()
