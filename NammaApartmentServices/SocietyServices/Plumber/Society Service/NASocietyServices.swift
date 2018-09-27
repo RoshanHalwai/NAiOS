@@ -20,6 +20,7 @@ enum NASocietyServicesFBKeys : String {
     case scrapType
     case quantity
     case uid
+    case timestamp
     
     var key : String {
         switch self {
@@ -37,6 +38,7 @@ enum NASocietyServicesFBKeys : String {
         case .scrapType: return "scrapType"
         case .quantity: return "quantity"
         case .uid: return "uid"
+        case .timestamp: return "timestamp"
         }
     }
 }
