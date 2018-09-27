@@ -482,7 +482,7 @@ extension SocietyServicesViewController {
             if (self.txt_SelectAny.text == NAString().others()) {
                 problem = self.txt_Others.text!
             } else  {
-                problem = selectedProblem
+                problem = txt_SelectAny.text!
             }
             serviceType = (navTitle?.lowercased())!
         }

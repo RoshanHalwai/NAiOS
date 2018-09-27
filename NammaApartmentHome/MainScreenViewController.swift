@@ -391,8 +391,9 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                             allUIDArray.append(uid as! String)
                             
                             if count == allUIDMap.count {
+                                let sortedArray = allUIDArray.sorted()
                                 //getting last UID from the Array
-                                let lastUID = allUIDArray.last
+                                let lastUID = sortedArray.last
                                 let serviceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL.child(lastUID!)
                                 
                                 serviceNotificationRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
