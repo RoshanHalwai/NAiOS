@@ -18,6 +18,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     @IBOutlet weak var btn_Seminars : UIButton!
     
     @IBOutlet var btn_EventHours : [UIButton]!
+    @IBOutlet var btn_Category: [UIButton]!
     
     @IBOutlet weak var btn_Book : UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -230,6 +231,18 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         button.setTitleColor(UIColor.lightGray, for: .normal)
     }
     
+    //Clearing data on Fields when coming back from history Screen.
+    override func viewWillAppear(_ animated: Bool) {
+        btn_stackView.isHidden = true
+        txt_EventDate.text = ""
+        txt_EventTitle.text = ""
+        getButtonCategory_Text = ""
+        for button in btn_Category {
+            button.backgroundColor = UIColor.white
+            button.tintColor = UIColor.clear
+        }
+    }
+    
     // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
         UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
@@ -316,7 +329,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
             let dv = NAViewPresenter().eventManagementHistoryVC()
             self.navigationController?.pushViewController(dv, animated: true)
         })
-        self.storeEventManagements()
+        self.storeEventManagements(paymentId: payment_id)
     }
     
     //This will show the default UI of RazorPay with some user’s informations.
@@ -508,7 +521,7 @@ extension EventManagementViewController {
         return true
     }
     
-    func storeEventManagements() {
+    func storeEventManagements(paymentId: String) {
         let eventManagementRef = Constants.FIREBASE_EVENT_MANAGEMENT.child(Constants.FIREBASE_CHILD_PRIVATE).child(convertedDate)
         for slots in selectedMutipleSlotsArray {
             eventManagementRef.child(slots).setValue(NAString().gettrue())
@@ -534,6 +547,23 @@ extension EventManagementViewController {
             NAEventManagementFBKeys.notificationUID.key : eventNotificationUID,
             NAEventManagementFBKeys.status.key : NAString().in_Progress()]
         eventManagementNotificationRef.child(eventNotificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
+            
+            let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_TRANSACTIONS)
+            let transactionUID : String?
+            transactionUID = (userDataRef.childByAutoId().key)
+            userDataRef.child(transactionUID!).setValue(NAString().gettrue())
+            
+            let transactionRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_TRANSACTIONS).child(Constants.FIREBASE_CHILD_PRIVATE).child(transactionUID!)
+            
+            let transactionDetails = [
+                NAUserTransactionFBKeys.amount.key :self.totalAmount,
+                NAUserTransactionFBKeys.paymentId.key : paymentId,
+                NAUserTransactionFBKeys.result.key : NAString().successful(),
+                NAUserTransactionFBKeys.serviceCategory.key : NAString().event_management(),
+                NAUserTransactionFBKeys.timestamp.key : (Int64(Date().timeIntervalSince1970 * 1000)),
+                NAUserTransactionFBKeys.uid.key : transactionUID as Any,
+                NAUserTransactionFBKeys.userUID.key : userUID]
+            transactionRef.setValue(transactionDetails)
             
             for slots in self.selectedMutipleSlotsArray {
                 eventManagementNotificationRef.child(self.eventNotificationUID).child(NAEventManagementFBKeys.timeSlots.key).child(slots).setValue(NAString().gettrue())
