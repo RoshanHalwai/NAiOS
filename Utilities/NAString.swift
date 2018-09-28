@@ -1013,8 +1013,8 @@ class NAString : NSObject {
         return String("OK")
     }
     
-    func warning() -> String {
-        return String("Warning")
+    func delete_FamilyMembers_AlertTitle() -> String {
+        return String("Remove Flat Member Message")
     }
     
     func message_warning_text() -> String {
