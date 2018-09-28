@@ -1636,7 +1636,7 @@ class NAString : NSObject {
     }
     
     func flat_AlertMessage(admin: String) -> String {
-        return ("Sorry, we already have an Admin from your Flat. Please ask \(admin) to add you as a Family Member or Friend.")
+        return ("Sorry, we already have an Admin from your Flat.")
     }
     
     func plumber_Service() -> String {
