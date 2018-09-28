@@ -193,6 +193,7 @@ extension UNService: UNUserNotificationCenterDelegate {
             [actionCategory])
     }
     
+    //Created delay function, so we can call our function after specific time.
     func delay(_ delay: Double, closure: @escaping() -> ()) {
         let when = DispatchTime.now() + delay
         DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
@@ -220,12 +221,23 @@ extension UNService: UNUserNotificationCenterDelegate {
             let flatNumber = userFlatData?[UserFlatListFBKeys.flatNumber.key] as! String
             let societyName = userFlatData?[UserFlatListFBKeys.societyName.key] as! String
             
-            let gateNotificationRef = Constants.FIREBASE_USERDATA_PRIVATE.child(city).child(societyName).child(apartmentName).child(flatNumber).child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID).child(guestType!).child(guestUID!)
-            
-            //This deplay function we are calling to set ignored value in firebase, if user not accept & reject the E-Intercom Guest.
-            self.delay(45) {
-                gateNotificationRef.child(NAString().status()).setValue(NAString().ignored())
-                 UIApplication.shared.applicationIconBadgeNumber = 0
+            if (guestUID != nil) && guestType != nil {
+                
+                let gateNotificationUserRef = Constants.FIREBASE_USERDATA_PRIVATE.child(city).child(societyName).child(apartmentName).child(flatNumber).child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID)
+                
+                let gateNotificationRef = gateNotificationUserRef.child(guestType!).child(guestUID!)
+                let gateNotificationStatusRef = gateNotificationUserRef.child(guestType!).child(guestUID!).child(Constants.FIREBASE_STATUS)
+                
+                //This deplay function we are calling to set ignored value in firebase, if user not accept & reject the E-Intercom Visitor.
+                self.delay(30) {
+                    
+                   gateNotificationStatusRef.observeSingleEvent(of: .value, with: { (statusSnapshot) in
+                        if !statusSnapshot.exists() {
+                            center.removeAllDeliveredNotifications()
+                            gateNotificationRef.child(NAString().status()).setValue(NAString().ignored())
+                        }
+                    })
+                }
             }
         }
         
