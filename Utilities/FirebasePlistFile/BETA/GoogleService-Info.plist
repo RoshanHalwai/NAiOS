@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>703896080530-d8lmkpdohf5e1ogutir7iu1gabi5trtn.apps.googleusercontent.com</string>
+	<string>896005326129-ivn188nh5aosljk6tchkpdc6rlmtj4pu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.703896080530-d8lmkpdohf5e1ogutir7iu1gabi5trtn</string>
+	<string>com.googleusercontent.apps.896005326129-ivn188nh5aosljk6tchkpdc6rlmtj4pu</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAEM6CUqV8swQnTOAqLGMpKZ4ENzqLJF1Q</string>
+	<string>AIzaSyD9IHUOpY4ItiSI0Ly2seAaeFFDqFZJY9I</string>
 	<key>GCM_SENDER_ID</key>
-	<string>703896080530</string>
+	<string>896005326129</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.kirtanlab.nammaapartments</string>
 	<key>PROJECT_ID</key>
-	<string>nammaapartments-development</string>
+	<string>nammaapartments-beta</string>
 	<key>STORAGE_BUCKET</key>
-	<string>nammaapartments-development.appspot.com</string>
+	<string>nammaapartments-beta.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:703896080530:ios:61a460236dc64533</string>
+	<string>1:896005326129:ios:61a460236dc64533</string>
 	<key>DATABASE_URL</key>
-	<string>https://nammaapartments-development.firebaseio.com</string>
+	<string>https://nammaapartments-beta.firebaseio.com</string>
 </dict>
 </plist>

@@ -399,7 +399,6 @@ extension MyFlatDetailsViewController {
                                 .child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
                                 .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
                             
-                            self.userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
                             self.userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_GUEST_SOUND).setValue(NAString().gettrue())
                             self.userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND).setValue(NAString().gettrue())
                             self.userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_CAB_SOUND).setValue(NAString().gettrue())
@@ -413,7 +412,7 @@ extension MyFlatDetailsViewController {
                             preferences.synchronize()
                             
                             //Navigate to Namma Apartment Welcome Screen After Storing all users data.
-
+                            
                             let dest = NAViewPresenter().activationRequiredVC()
                             self.navigationController?.pushViewController(dest, animated: true)
                             
