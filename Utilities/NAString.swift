@@ -214,11 +214,11 @@ class NAString : NSObject {
     }
     
     func please_enter_your_mobile_no() -> String{
-        return String("Please Enter Your Mobile Number")
+        return String("Please Enter Mobile Number")
     }
     
     func please_enter_10_digit_no() -> String{
-        return String("Please enter a valid 10 digit mobile number")
+        return String("Please Enter a valid 10 digit mobile number")
     }
     
     func please_select_country_code() -> String{
