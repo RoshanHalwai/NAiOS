@@ -214,11 +214,11 @@ class NAString : NSObject {
     }
     
     func please_enter_your_mobile_no() -> String{
-        return String("Please Enter Your Mobile Number")
+        return String("Please Enter Mobile Number")
     }
     
     func please_enter_10_digit_no() -> String{
-        return String("Please enter a valid 10 digit mobile number")
+        return String("Please Enter a valid 10 digit mobile number")
     }
     
     func please_select_country_code() -> String{
@@ -1013,8 +1013,8 @@ class NAString : NSObject {
         return String("OK")
     }
     
-    func warning() -> String {
-        return String("Warning")
+    func delete_FamilyMembers_AlertTitle() -> String {
+        return String("Remove Flat Member Message")
     }
     
     func message_warning_text() -> String {
@@ -1417,7 +1417,7 @@ class NAString : NSObject {
     }
     
     func addFood_AlertTitle() -> String {
-        return ("Food Request Message")
+        return ("Request Raised")
     }
     
     func addFood_AlertMessage() -> String {
@@ -1882,7 +1882,7 @@ class NAString : NSObject {
     }
     
     func foodTypeErrorMessage() -> String {
-        return String("Please enter food type")
+        return String("Please Enter Food Type")
     }
     
     func cancelRequest() -> String {
@@ -1943,5 +1943,158 @@ class NAString : NSObject {
     
     func eventBill() -> String {
         return String("Event Bill")
+    }
+    
+    /* Society Service(Plumber,Carpenter,Electrician and ScrapCollection) Problems List. */
+    //Plumber Problems List
+    func dripping_faucets() -> String {
+        return String("Installation of underground Drainage Pipes")
+    }
+    
+    func dslow_draining_sink() -> String {
+        return String("Bathtub repair and replacement")
+    }
+    
+    func clogged_bath_or_shower_drain() -> String {
+        return String("Toilet repair and replacement")
+    }
+    
+    func clogged_toilet() -> String {
+        return String("Water heater")
+    }
+    
+    func running_toilet() -> String {
+        return String("Drain cleaning")
+    }
+    
+    func faulty_water_heater() -> String {
+        return String("Leak repair")
+    }
+    
+    func low_water_pressure() -> String {
+        return String("Clearing/cleaning clogged pipes")
+    }
+    
+    func jammed_garbage_disposal() -> String {
+        return String("Water filter installation")
+    }
+    
+    func leaky_pipes() -> String {
+        return String("Burst pipe repair, leaks and other faults")
+    }
+    
+    func sewer_system_backup() -> String {
+        return String("Fitting of valves and couplings")
+    }
+    
+    //Carpenter ProblemsList
+    func carpentry_finish_appears_uneven() -> String {
+        return String("Wooden Mesh")
+    }
+    
+    func split_in_the_wood() -> String {
+        return String("Wood partition")
+    }
+    
+    func weak_joints() -> String {
+        return String("Bolt, Latch and Handle work")
+    }
+    
+    func dents_in_wood() -> String {
+        return String("Polishing and Repair")
+    }
+    
+    func glue_stuck() -> String {
+        return String("Furniture installation and assembly")
+    }
+    
+    func wood_flooring() -> String {
+        return String("Build Stairs")
+    }
+    
+    func damage_burns() -> String {
+        return String("Window Frame repair")
+    }
+    
+    func sofa_door() -> String {
+        return String("Wood Flooring repair")
+    }
+    
+    func window_frame() -> String {
+        return String("Unable to open doors/drawers")
+    }
+    
+    //Electrician ProblemsList
+    func frequent_electrical_surge() -> String {
+        return String("Circuit Overload")
+    }
+    
+    func sags_and_dips_in_power() -> String {
+        return String("Lightening connections")
+    }
+    
+    func light_switches_not_working_properly() -> String {
+        return String("Electrical short circuit")
+    }
+    
+    func circuit_breaker_tripping_frequently() -> String {
+        return String("Wiring issues")
+    }
+    
+    func circuit_overload() -> String {
+        return String("Ceiling Fan upgrade")
+    }
+    
+    func lights_too_bright_or_dim() -> String {
+        return String("Circuit breaker installation")
+    }
+    
+    func electrical_shocks() -> String {
+        return String("Switches are not working")
+    }
+    
+    func high_electrical_bill() -> String {
+        return String("Recessed lighting")
+    }
+    
+    func light_bulbs_burning_out_too_often() -> String {
+        return String("Microwave issue")
+    }
+    
+    func recessed_light_goes_out_and_comes_back_on() -> String {
+        return String("Water Heater repair")
+    }
+    
+    //ScrapCollection ProblemsList
+    func paper_Scrap() -> String {
+        return String("Paper Scrap")
+    }
+    
+    func metal_Waste() -> String {
+        return String("Metal Waste")
+    }
+    
+    func plastic() -> String {
+        return String("Plastic")
+    }
+    
+    func bottles() -> String {
+        return String("Bottles")
+    }
+    
+    func clothes() -> String {
+        return String("Clothes")
+    }
+    
+    func utensils() -> String {
+        return String("Utensils")
+    }
+    
+    func electronic_Waste() -> String {
+        return String("Electronic Waste")
+    }
+    
+    func mix_Waste() -> String {
+        return String("Mix Waste")
     }
 }

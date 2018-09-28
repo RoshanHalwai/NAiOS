@@ -22,11 +22,10 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
     var navigationTitle = String()
     var filteredArray = [String]()
     
-    //TODO: Need to Add more Problems in future.
-    var plumberProblemsList = ["Dripping faucets","Slow draining sink","Clogged bath or shower drain","Clogged toilet","Running toilet","Faulty water heater","Low water pressure","Jammed garbage disposal","Leaky pipes","Sewer system backup","Others"]
-    var carpenterProblemsList = ["Carpentry finish appears uneven","Split in the wood","Weak joints","Dents in wood","Glue stuck","Others"]
-    var electricianProblemsList = ["Frequent Electrical Surge","Sags and Dips in Power","Light Switches not working properly","Circuit Overload","Circuit Breaker Tripping Frequently","Lights too Bright or Dim","Electrical Shocks","High Electrical Bill","Light Bulbs burning out too often","Recessed Light 'Goes Out' and comesback on","Others"]
-    var scrapCollectionTypeList = ["Paper Scrap","Metal Waste","Plastic","Bottles","Clothes","Utensils","Electronic Waste","Mix Waste","Others"]
+    var plumberProblemsList = [NAString().dripping_faucets(), NAString().dslow_draining_sink(), NAString().clogged_bath_or_shower_drain(), NAString().clogged_toilet(), NAString().running_toilet(), NAString().faulty_water_heater(), NAString().low_water_pressure(), NAString().jammed_garbage_disposal(), NAString().leaky_pipes(), NAString().sewer_system_backup(), NAString().others()]
+    var carpenterProblemsList = [NAString().carpentry_finish_appears_uneven(), NAString().split_in_the_wood(), NAString().weak_joints(), NAString().dents_in_wood(), NAString().glue_stuck(), NAString().wood_flooring(), NAString().damage_burns(), NAString().sofa_door(), NAString().window_frame(), NAString().others()]
+    var electricianProblemsList = [NAString().frequent_electrical_surge(), NAString().sags_and_dips_in_power(), NAString().light_switches_not_working_properly(), NAString().circuit_breaker_tripping_frequently(), NAString().circuit_overload(), NAString().lights_too_bright_or_dim(), NAString().electrical_shocks(), NAString().high_electrical_bill(), NAString().light_bulbs_burning_out_too_often(), NAString().recessed_light_goes_out_and_comes_back_on(), NAString().others()]
+    var scrapCollectionTypeList = [NAString().paper_Scrap(), NAString().metal_Waste(), NAString().plastic(), NAString().bottles(), NAString().clothes(), NAString().utensils(), NAString().electronic_Waste(), NAString().mix_Waste(), NAString().others()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
