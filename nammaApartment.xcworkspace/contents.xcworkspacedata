@@ -8,6 +8,9 @@
       location = "group:nammaApartment.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:nammaApartment-Info.plist">
+   </FileRef>
+   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

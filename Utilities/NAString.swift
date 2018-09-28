@@ -31,7 +31,7 @@ class NAString : NSObject {
     }
     
     func splash_SocietyServices_Description() -> String {
-        return String("A smarter way to manage your daily needs from our dedicated service team.")
+        return String("A smarter way to manage your daily needs from our dedicated nammaApartmentService team.")
     }
     
     func splash_ApartementServices_Title() -> String {
@@ -226,7 +226,7 @@ class NAString : NSObject {
     }
     
     func please_enter_name() -> String{
-        return String("Please enter name")
+        return String("Please Enter Name")
     }
     
     func please_upload_Image() -> String {
@@ -250,7 +250,7 @@ class NAString : NSObject {
     }
     
     func please_enter_your_scrapType() -> String {
-        return String("Please select your scrap type")
+        return String("Please Select Scrap Type")
     }
     
     func please_enter_Valid_email() -> String {
@@ -497,7 +497,7 @@ class NAString : NSObject {
     }
     
     func daily_newspaper() -> String {
-        return String("Daily NewsPaper")
+        return String("Daily Newspaper")
     }
     
     func milk_man() -> String {
@@ -578,7 +578,7 @@ class NAString : NSObject {
     }
     
     func inviteButtonloadViewTitle() -> String {
-        return String("Inviting Your Guest")
+        return String("Inviting your Guest")
     }
     
     func loadingProfile() -> String {
@@ -649,6 +649,10 @@ class NAString : NSObject {
     
     func history() -> String {
         return String("History")
+    }
+    
+    func food_Donations() -> String {
+        return String("Food Donations")
     }
     
     func my_Daily_Services() -> String {
@@ -799,7 +803,7 @@ class NAString : NSObject {
     }
     
     func addButtonDailyServicesloadViewTitle() -> String {
-        return String("Adding Your Daily Service")
+        return String("Adding your Daily Service")
     }
     
     func dailyServicesOTPDescription() -> String {
@@ -1242,7 +1246,7 @@ class NAString : NSObject {
     }
     
     func societyServiceNotAvailable(serviceName: String) -> String {
-        return String("Sorry you cannot use this feature since you haven't raised any \(serviceName) request at your flat yet")
+        return String("Sorry you cannot use this feature since you have not raised any \(serviceName) request at your flat yet")
     }
     
     func verifyingOTPDescription() -> String {
@@ -1636,7 +1640,7 @@ class NAString : NSObject {
     }
     
     func flat_AlertMessage(admin: String) -> String {
-        return ("Sorry, we already have an Admin from your Flat. Please ask \(admin) to add you as a Family Member or Friend.")
+        return ("Sorry, we already have an Admin from your Flat.")
     }
     
     func plumber_Service() -> String {
@@ -1702,7 +1706,7 @@ class NAString : NSObject {
     }
     
     func wallet_Description() -> String {
-        return String("Hola! Now we provide you an option to make online payment for the basic Society Maintenance charges.")
+        return String("Hola! Now we provide you an option to make online payment for your Society Services.")
     }
     
     func make_payment_For() -> String {

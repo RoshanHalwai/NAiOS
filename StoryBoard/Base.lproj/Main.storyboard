@@ -283,19 +283,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="170" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="172.5" y="0.0" width="53" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will collect food " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smj-Ef-i0k">
-                                                <rect key="frame" x="255" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="255.5" y="0.0" width="54.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -4580,8 +4580,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emergency alarm raised" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRL-7O-hI7">
-                                <rect key="frame" x="91.5" y="421" width="192.5" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emergency alarm has been raised" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRL-7O-hI7">
+                                <rect key="frame" x="54.5" y="421" width="266.5" height="22"/>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -5714,13 +5714,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UY-qF-7pc">
-                                                <rect key="frame" x="170" y="0.0" width="55" height="43"/>
+                                                <rect key="frame" x="170" y="0.0" width="53" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the free service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53u-9B-EnE">
-                                                <rect key="frame" x="255" y="0.0" width="55" height="43"/>
+                                                <rect key="frame" x="253" y="0.0" width="57" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -7770,7 +7770,7 @@
                                 <rect key="frame" x="0.0" y="96" width="260" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -7778,7 +7778,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

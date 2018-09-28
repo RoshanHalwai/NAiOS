@@ -16,7 +16,7 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.ConfigureNavBarTitle(title: NAString().history().capitalized)
+        self.ConfigureNavBarTitle(title: NAString().food_Donations().capitalized)
         self.navigationItem.rightBarButtonItem = nil
         retrievingFoodDonationsData()
         
