@@ -24,7 +24,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var btn_ChangeAccess: UIButton!
     
     var userPrivilegesRef : DatabaseReference?
-   
+    
     //A boolean variable to indicate if previous screen was Home Screen and My Sweet Home Screen.
     var fromHomeScreenVC = false
     var fromMySweetHomeScreenVC = false
@@ -286,7 +286,7 @@ extension MySweetHomeViewController {
     
     @objc func deleteData() {
         
-        let alert = UIAlertController(title: NAString().warning(), message: NAString().delete_FamilyMembers_AlertMessage(), preferredStyle: .alert)
+        let alert = UIAlertController(title: NAString().delete_FamilyMembers_AlertTitle(), message: NAString().delete_FamilyMembers_AlertMessage(), preferredStyle: .alert)
         
         let actionOK = UIAlertAction(title:NAString().ok(), style: .cancel) { (action) in }
         

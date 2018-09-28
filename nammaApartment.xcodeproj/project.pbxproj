@@ -147,7 +147,6 @@
 		868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
 		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
 		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
-		869306C720F23AF70069305D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869306C620F23AF60069305D /* GoogleService-Info.plist */; };
 		869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */; };
 		86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
 		86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */; };
@@ -166,6 +165,163 @@
 		86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */; };
 		86E83E4520A9B0D000FA7CA7 /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
 		86F13F002154229400AF3EE6 /* DonateFoodHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */; };
+		86F7B31D215D1CF9005A26CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F7B31B215D1CF9005A26CE /* GoogleService-Info.plist */; };
+		86F7B3D0215D1FAD005A26CE /* SocietyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D6B211323AB009FE3B6 /* SocietyTableViewController.swift */; };
+		86F7B3D1215D1FAD005A26CE /* NAFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74EB209A2E7000B159A3 /* NAFont.swift */; };
+		86F7B3D2215D1FAD005A26CE /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
+		86F7B3D3215D1FAD005A26CE /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77428D210DD49F0049344F /* SignupViewController.swift */; };
+		86F7B3D4215D1FAD005A26CE /* NADailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8679B77F21022C0C0020B004 /* NADailyServices.swift */; };
+		86F7B3D5215D1FAD005A26CE /* SplashApartmentServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D774282210DD49F0049344F /* SplashApartmentServices.swift */; };
+		86F7B3D6215D1FAD005A26CE /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77428A210DD49F0049344F /* Reachability.swift */; };
+		86F7B3D7215D1FAD005A26CE /* AddMyVehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB6212165A50005160B /* AddMyVehiclesViewController.swift */; };
+		86F7B3D8215D1FAD005A26CE /* NAExpectingArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867FF1B920FC737B00A6A4C9 /* NAExpectingArrival.swift */; };
+		86F7B3D9215D1FAD005A26CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862700F6209707BB004B28EB /* AppDelegate.swift */; };
+		86F7B3DA215D1FAD005A26CE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086568AB212D447600E4CDE1 /* SettingViewController.swift */; };
+		86F7B3DB215D1FAD005A26CE /* EventManagementCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */; };
+		86F7B3DC215D1FAD005A26CE /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D81209C1FB500C700DA /* MainScreenViewController.swift */; };
+		86F7B3DD215D1FAD005A26CE /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
+		86F7B3DE215D1FAD005A26CE /* NAString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D83209C343F00C700DA /* NAString.swift */; };
+		86F7B3DF215D1FAD005A26CE /* DigitalGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D88209C662200C700DA /* DigitalGateCollectionViewCell.swift */; };
+		86F7B3E0215D1FAD005A26CE /* HelpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */; };
+		86F7B3E1215D1FAD005A26CE /* SplashSocietyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D774283210DD49F0049344F /* SplashSocietyServices.swift */; };
+		86F7B3E2215D1FAD005A26CE /* MySweetHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */; };
+		86F7B3E3215D1FAD005A26CE /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
+		86F7B3E4215D1FAD005A26CE /* SplashRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D774280210DD49F0049344F /* SplashRootViewController.swift */; };
+		86F7B3E5215D1FAD005A26CE /* HandedThingsToDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8820F8A96600F549AF /* HandedThingsToDailyServicesViewController.swift */; };
+		86F7B3E6215D1FAD005A26CE /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4BE2155042500656819 /* EventManagementViewController.swift */; };
+		86F7B3E7215D1FAD005A26CE /* NotifyDigiGateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4920A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift */; };
+		86F7B3E8215D1FAD005A26CE /* AddMyFamilyMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0818AA5A20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift */; };
+		86F7B3E9215D1FAD005A26CE /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E820F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift */; };
+		86F7B3EA215D1FAD005A26CE /* EditMyProfileFlatMembersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084BBB5A2143C55E00289B38 /* EditMyProfileFlatMembersListViewController.swift */; };
+		86F7B3EB215D1FAD005A26CE /* NammaApartmentArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */; };
+		86F7B3EC215D1FAD005A26CE /* NotifyDigiGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4520A0579600B175A1 /* NotifyDigiGateViewController.swift */; };
+		86F7B3ED215D1FAD005A26CE /* ContactUsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423033A02131436B00DBF109 /* ContactUsListViewController.swift */; };
+		86F7B3EE215D1FAD005A26CE /* MyDailyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */; };
+		86F7B3EF215D1FAD005A26CE /* SocietyHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */; };
+		86F7B3F0215D1FAD005A26CE /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
+		86F7B3F1215D1FAD005A26CE /* ApartmentServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42313792211D8DEA00518147 /* ApartmentServicesViewController.swift */; };
+		86F7B3F2215D1FAD005A26CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77428E210DD49F0049344F /* LoginViewController.swift */; };
+		86F7B3F3215D1FAD005A26CE /* RetrieveFamilyMemberList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7742A1210E0ACB0049344F /* RetrieveFamilyMemberList.swift */; };
+		86F7B3F4215D1FAD005A26CE /* OpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42329D1920F9BF80000AA9AF /* OpacityView.swift */; };
+		86F7B3F5215D1FAD005A26CE /* MyDailyServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */; };
+		86F7B3F6215D1FAD005A26CE /* InviteVisitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865C7BCB209D838200443C75 /* InviteVisitorViewController.swift */; };
+		86F7B3F7215D1FAD005A26CE /* NAMyGuardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */; };
+		86F7B3F8215D1FAD005A26CE /* EventManagementHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */; };
+		86F7B3F9215D1FAD005A26CE /* NAUserProblems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578821464A1F00A0574D /* NAUserProblems.swift */; };
+		86F7B3FA215D1FAD005A26CE /* ActivationRequired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E8392213121D800E3A0A2 /* ActivationRequired.swift */; };
+		86F7B3FB215D1FAD005A26CE /* retrieveUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CF63221452999007D2A5F /* retrieveUserData.swift */; };
+		86F7B3FC215D1FAD005A26CE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427B210DD49F0049344F /* SearchViewController.swift */; };
+		86F7B3FD215D1FAD005A26CE /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
+		86F7B3FE215D1FAD005A26CE /* MyGuardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB4212165620005160B /* MyGuardsViewController.swift */; };
+		86F7B3FF215D1FAD005A26CE /* NoticeBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */; };
+		86F7B400215D1FAD005A26CE /* NASocietyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809B91B211DAB7100B30EE2 /* NASocietyServices.swift */; };
+		86F7B401215D1FAD005A26CE /* MyGuestListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4020A0325200B175A1 /* MyGuestListCollectionViewCell.swift */; };
+		86F7B402215D1FAD005A26CE /* SplashNammaApartments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D774285210DD49F0049344F /* SplashNammaApartments.swift */; };
+		86F7B403215D1FAD005A26CE /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427D210DD49F0049344F /* SearchTableViewCell.swift */; };
+		86F7B404215D1FAD005A26CE /* NammaApartmentEmergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08355B0C210E2CB700F671D2 /* NammaApartmentEmergency.swift */; };
+		86F7B405215D1FAD005A26CE /* RaiseAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86646BC120AB1530002A92B8 /* RaiseAlarmViewController.swift */; };
+		86F7B406215D1FAD005A26CE /* EmergencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86646BBD20AB0472002A92B8 /* EmergencyViewController.swift */; };
+		86F7B407215D1FAD005A26CE /* MyVehiclesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB8212165CC0005160B /* MyVehiclesCollectionViewCell.swift */; };
+		86F7B408215D1FAD005A26CE /* NoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A94B7210836940088F519 /* NoticeBoardViewController.swift */; };
+		86F7B409215D1FAD005A26CE /* EditMyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */; };
+		86F7B40A215D1FAD005A26CE /* MyVisitorsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56820E75B5F00116FD0 /* MyVisitorsListCollectionViewCell.swift */; };
+		86F7B40B215D1FAD005A26CE /* MyFlatDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427E210DD49F0049344F /* MyFlatDetailsViewController.swift */; };
+		86F7B40C215D1FAD005A26CE /* RateUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081156812125866B002386D9 /* RateUs.swift */; };
+		86F7B40D215D1FAD005A26CE /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
+		86F7B40E215D1FAD005A26CE /* MyGuardsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BBA212165D90005160B /* MyGuardsCollectionViewCell.swift */; };
+		86F7B40F215D1FAD005A26CE /* MyFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */; };
+		86F7B410215D1FAD005A26CE /* NAUserTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA5782214649EB00A0574D /* NAUserTransactions.swift */; };
+		86F7B411215D1FAD005A26CE /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628857E2159129900CC540B /* DownloadService.swift */; };
+		86F7B412215D1FAD005A26CE /* DonateFoodHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */; };
+		86F7B413215D1FAD005A26CE /* ContactUsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578421464A0A00A0574D /* ContactUsHistoryViewController.swift */; };
+		86F7B414215D1FAD005A26CE /* NavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963C2100C92900BE9D3D /* NavigationMenuViewController.swift */; };
+		86F7B415215D1FAD005A26CE /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
+		86F7B416215D1FAD005A26CE /* RetrievingGuestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081F25D0210C8EB60065F90E /* RetrievingGuestList.swift */; };
+		86F7B417215D1FAD005A26CE /* NAEventManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42914D9B2126872F00B3B57A /* NAEventManagement.swift */; };
+		86F7B418215D1FAD005A26CE /* SocietyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42305D692113063D009FE3B6 /* SocietyServicesViewController.swift */; };
+		86F7B419215D1FAD005A26CE /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422FF98820F8A9DA004089C2 /* PopupView.swift */; };
+		86F7B41A215D1FAD005A26CE /* EventManagementHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */; };
+		86F7B41B215D1FAD005A26CE /* AddMyServicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */; };
+		86F7B41C215D1FAD005A26CE /* ApartmentServicesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42313794211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift */; };
+		86F7B41D215D1FAD005A26CE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
+		86F7B41E215D1FAD005A26CE /* SocietyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */; };
+		86F7B41F215D1FAD005A26CE /* UNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628855D2158E64E00CC540B /* UNService.swift */; };
+		86F7B420215D1FAD005A26CE /* ContactUsHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */; };
+		86F7B421215D1FAD005A26CE /* HandedThingsDailyServicesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */; };
+		86F7B422215D1FAD005A26CE /* HandedThingsGuestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */; };
+		86F7B423215D1FAD005A26CE /* MyVehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB2212165510005160B /* MyVehiclesViewController.swift */; };
+		86F7B424215D1FAD005A26CE /* MainScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D7F209C1FA300C700DA /* MainScreenTableViewCell.swift */; };
+		86F7B425215D1FAD005A26CE /* DonateFoodHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */; };
+		86F7B426215D1FAD005A26CE /* AwaitingResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E0C2114882700648D40 /* AwaitingResponseViewController.swift */; };
+		86F7B427215D1FAD005A26CE /* NANavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8672B3BC20A97FD40040A5E2 /* NANavigationViewController.swift */; };
+		86F7B428215D1FAD005A26CE /* NANoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D208412130324400D3AF3E /* NANoticeBoardViewController.swift */; };
+		86F7B429215D1FAD005A26CE /* NAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BD74ED209A2EB500B159A3 /* NAColor.swift */; };
+		86F7B42A215D1FAD005A26CE /* NavigationMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084D963E2100CAD100BE9D3D /* NavigationMenuTableViewCell.swift */; };
+		86F7B42B215D1FAD005A26CE /* DigitalGateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86548D86209C63C700C700DA /* DigitalGateViewController.swift */; };
+		86F7B42C215D1FAD005A26CE /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646712101FA0C00C5FBF6 /* HelpViewController.swift */; };
+		86F7B42D215D1FAD005A26CE /* MyGuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BF6A4220A0326E00B175A1 /* MyGuestListViewController.swift */; };
+		86F7B42E215D1FAD005A26CE /* MyFlatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427C210DD49F0049344F /* MyFlatTableViewCell.swift */; };
+		86F7B42F215D1FAD005A26CE /* NAConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BE20FA47DF0086F885 /* NAConfirmationAlert.swift */; };
+		86F7B430215D1FAD005A26CE /* EmergencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86646BBF20AB0704002A92B8 /* EmergencyCollectionViewCell.swift */; };
+		86F7B431215D1FAD005A26CE /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D774289210DD49F0049344F /* OTPViewController.swift */; };
+		86F7B432215D1FAD005A26CE /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D774281210DD49F0049344F /* RootViewController.swift */; };
+		86F7B433215D1FAD005A26CE /* MyVisitorsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0816E56620E75A4700116FD0 /* MyVisitorsListViewController.swift */; };
+		86F7B434215D1FAD005A26CE /* NAFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */; };
+		86F7B435215D1FAD005A26CE /* HandedThingsToGuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */; };
+		86F7B436215D1FAD005A26CE /* NammaApartmentDailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */; };
+		86F7B437215D1FAD005A26CE /* HandedThingsToDailyServicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8A20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift */; };
+		86F7B438215D1FAD005A26CE /* NADailyServiceHandedThingsHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4E7E52111B17A00BE1AFD /* NADailyServiceHandedThingsHistory.swift */; };
+		86F7B439215D1FAD005A26CE /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8620F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift */; };
+		86F7B43A215D1FAD005A26CE /* NammaApartmentVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1A8D920D50EAB00D90D88 /* NammaApartmentVisitor.swift */; };
+		86F7B43B215D1FAD005A26CE /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
+		86F7B43C215D1FAD005A26CE /* NammaApartmentVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42358A372122F99700186B1D /* NammaApartmentVehicle.swift */; };
+		86F7B43D215D1FAD005A26CE /* HandedThingsToGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867CFF2820A43E9F00EDB966 /* HandedThingsToGuestViewController.swift */; };
+		86F7B43E215D1FAD005A26CE /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0834B393214249F000516C9C /* ContactUsViewController.swift */; };
+		86F7B43F215D1FAD005A26CE /* HandedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DF2620FCC280002C13BB /* HandedHistory.swift */; };
+		86F7B440215D1FAD005A26CE /* namaApartment.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862700FD209707BB004B28EB /* namaApartment.xcdatamodeld */; };
+		86F7B441215D1FAD005A26CE /* MyTransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA577E214649DB00A0574D /* MyTransactionsViewController.swift */; };
+		86F7B442215D1FAD005A26CE /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D774288210DD49F0049344F /* DataModel.swift */; };
+		86F7B443215D1FAD005A26CE /* SocietyHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */; };
+		86F7B444215D1FAD005A26CE /* RescheduleMyGuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */; };
+		86F7B445215D1FAD005A26CE /* NAFBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B1A8DB20D5276200D90D88 /* NAFBConstants.swift */; };
+		86F7B446215D1FAD005A26CE /* MyTransactionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */; };
+		86F7B447215D1FAD005A26CE /* NAShodowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */; };
+		86F7B448215D1FAD005A26CE /* MyWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4234754A212EB87200A791AA /* MyWalletViewController.swift */; };
+		86F7B449215D1FAD005A26CE /* CustomLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082CAAA7214A431100FA0E8E /* CustomLaunchScreenViewController.swift */; };
+		86F7B44A215D1FAD005A26CE /* NammaApartmentFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42245145214FBDE600CD2C0E /* NammaApartmentFood.swift */; };
+		86F7B44B215D1FAD005A26CE /* ExpectingArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */; };
+		86F7B44C215D1FAD005A26CE /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
+		86F7B44E215D1FAD005A26CE /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D520F378E400F10A23 /* FirebaseAuth.framework */; };
+		86F7B44F215D1FAD005A26CE /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D720F378E400F10A23 /* FirebaseCore.framework */; };
+		86F7B450215D1FAD005A26CE /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187D920F378E400F10A23 /* FirebaseDatabase.framework */; };
+		86F7B451215D1FAD005A26CE /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DB20F378E400F10A23 /* FirebaseMessaging.framework */; };
+		86F7B452215D1FAD005A26CE /* FirebaseStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DD20F378E400F10A23 /* FirebaseStorage.framework */; };
+		86F7B453215D1FAD005A26CE /* FirebaseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187DF20F378E400F10A23 /* FirebaseUI.framework */; };
+		86F7B454215D1FAD005A26CE /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E120F378E400F10A23 /* GoogleToolboxForMac.framework */; };
+		86F7B455215D1FAD005A26CE /* GTMSessionFetcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E320F378E400F10A23 /* GTMSessionFetcher.framework */; };
+		86F7B456215D1FAD005A26CE /* leveldb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E520F378E400F10A23 /* leveldb.framework */; };
+		86F7B457215D1FAD005A26CE /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187E720F378E400F10A23 /* nanopb.framework */; };
+		86F7B458215D1FAD005A26CE /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 423187ED20F378E400F10A23 /* Protobuf.framework */; };
+		86F7B459215D1FAD005A26CE /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B934209EC9FF00EA1C35 /* Contacts.framework */; };
+		86F7B45A215D1FAD005A26CE /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A8B935209EC9FF00EA1C35 /* ContactsUI.framework */; };
+		86F7B45B215D1FAD005A26CE /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */; };
+		86F7B45D215D1FAD005A26CE /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00120B9AA98009EC0EF /* Lato-Black.ttf */; };
+		86F7B45E215D1FAD005A26CE /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00720B9AA98009EC0EF /* Lato-Light.ttf */; };
+		86F7B45F215D1FAD005A26CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86270102209707BC004B28EB /* LaunchScreen.storyboard */; };
+		86F7B460215D1FAD005A26CE /* SocietyServiceRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */; };
+		86F7B461215D1FAD005A26CE /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00220B9AA98009EC0EF /* Lato-HairlineItalic.ttf */; };
+		86F7B462215D1FAD005A26CE /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00620B9AA98009EC0EF /* Lato-BoldItalic.ttf */; };
+		86F7B463215D1FAD005A26CE /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00020B9AA98009EC0EF /* Lato-Bold.ttf */; };
+		86F7B464215D1FAD005A26CE /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00520B9AA98009EC0EF /* Lato-BlackItalic.ttf */; };
+		86F7B465215D1FAD005A26CE /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00320B9AA98009EC0EF /* Lato-Regular.ttf */; };
+		86F7B466215D1FAD005A26CE /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFF20B9AA98009EC0EF /* Lato-LightItalic.ttf */; };
+		86F7B467215D1FAD005A26CE /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CC00420B9AA98009EC0EF /* Lato-Hairline.ttf */; };
+		86F7B469215D1FAD005A26CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86270100209707BC004B28EB /* Assets.xcassets */; };
+		86F7B46A215D1FAD005A26CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4230EEAF2108AB4F0037345D /* Main.storyboard */; };
+		86F7B46B215D1FAD005A26CE /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFE20B9AA98009EC0EF /* Lato-Italic.ttf */; };
+		86F7B46C215D1FAD005A26CE /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 422FF98620F8A9C8004089C2 /* PopupView.xib */; };
+		86F7B471215D1FAD005A26CE /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8628857321590A0F00CC540B /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		86F7B477215D1FBA005A26CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86F7B319215D1CF8005A26CE /* GoogleService-Info.plist */; };
 		86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */; };
 		AE89B264571E0E8BB68725DE /* Pods_nammaApartmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E236AF21BBE4186258696358 /* Pods_nammaApartmentTests.framework */; };
 		DD38302D57353FCCC56D30E5 /* Pods_nammaApartmentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9E4FA99AFC6477243245A6 /* Pods_nammaApartmentUITests.framework */; };
@@ -193,6 +349,13 @@
 			remoteGlobalIDString = 8628857221590A0F00CC540B;
 			remoteInfo = NotificationServiceExtension;
 		};
+		86F7B3CD215D1FAD005A26CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 862700EB209707BB004B28EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8628857221590A0F00CC540B;
+			remoteInfo = NotificationServiceExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -203,6 +366,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				8628857A21590A0F00CC540B /* NotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86F7B470215D1FAD005A26CE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				86F7B471215D1FAD005A26CE /* NotificationServiceExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,7 +534,6 @@
 		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
 		869306C520F22D050069305D /* nammaApartment.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = nammaApartment.entitlements; sourceTree = "<group>"; };
-		869306C620F23AF60069305D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentArrival.swift; sourceTree = "<group>"; };
 		86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAActivityIndicator.swift; sourceTree = "<group>"; };
 		86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFirebase.swift; sourceTree = "<group>"; };
@@ -379,6 +552,10 @@
 		86D19EF920A2B26300FB7DC8 /* ExpectingArrivalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpectingArrivalViewController.swift; sourceTree = "<group>"; };
 		86E83E4420A9B0D000FA7CA7 /* AddMyServicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyServicesViewController.swift; sourceTree = "<group>"; };
 		86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryViewController.swift; sourceTree = "<group>"; };
+		86F7B319215D1CF8005A26CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		86F7B31B215D1CF9005A26CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		86F7B3C9215D1F2E005A26CE /* nammaApartment-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "nammaApartment-Info.plist"; path = "/Users/vikasnayak/Desktop/nammaapartmentsios/nammaApartment-Info.plist"; sourceTree = "<absolute>"; };
+		86F7B475215D1FAD005A26CE /* nammaApartmentBETA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartmentBETA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentDailyServices.swift; sourceTree = "<group>"; };
 		8E9E4FA99AFC6477243245A6 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		932EC8C8A9BD03466DB6D6CF /* Pods-nammaApartmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentTests/Pods-nammaApartmentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -429,6 +606,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86F7B44D215D1FAD005A26CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86F7B44E215D1FAD005A26CE /* FirebaseAuth.framework in Frameworks */,
+				86F7B44F215D1FAD005A26CE /* FirebaseCore.framework in Frameworks */,
+				86F7B450215D1FAD005A26CE /* FirebaseDatabase.framework in Frameworks */,
+				86F7B451215D1FAD005A26CE /* FirebaseMessaging.framework in Frameworks */,
+				86F7B452215D1FAD005A26CE /* FirebaseStorage.framework in Frameworks */,
+				86F7B453215D1FAD005A26CE /* FirebaseUI.framework in Frameworks */,
+				86F7B454215D1FAD005A26CE /* GoogleToolboxForMac.framework in Frameworks */,
+				86F7B455215D1FAD005A26CE /* GTMSessionFetcher.framework in Frameworks */,
+				86F7B456215D1FAD005A26CE /* leveldb.framework in Frameworks */,
+				86F7B457215D1FAD005A26CE /* nanopb.framework in Frameworks */,
+				86F7B458215D1FAD005A26CE /* Protobuf.framework in Frameworks */,
+				86F7B459215D1FAD005A26CE /* Contacts.framework in Frameworks */,
+				86F7B45A215D1FAD005A26CE /* ContactsUI.framework in Frameworks */,
+				86F7B45B215D1FAD005A26CE /* Pods_nammaApartment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +1027,7 @@
 				86C1A138209AF3FC00D75D0F /* StoryBoard */,
 				86BD74E9209A2DD000B159A3 /* Utilities */,
 				5604502185698E5A09687321 /* Pods */,
+				86F7B3C9215D1F2E005A26CE /* nammaApartment-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -839,6 +1038,7 @@
 				8627010A209707BC004B28EB /* nammaApartmentTests.xctest */,
 				86270115209707BC004B28EB /* nammaApartmentUITests.xctest */,
 				8628857321590A0F00CC540B /* NotificationServiceExtension.appex */,
+				86F7B475215D1FAD005A26CE /* nammaApartmentBETA.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1075,7 +1275,8 @@
 		86CE8E5D20C26AC10067F031 /* FirebasePlistFile */ = {
 			isa = PBXGroup;
 			children = (
-				869306C620F23AF60069305D /* GoogleService-Info.plist */,
+				86F7B318215D1CF8005A26CE /* BETA */,
+				86F7B31A215D1CF9005A26CE /* DEV */,
 			);
 			path = FirebasePlistFile;
 			sourceTree = "<group>";
@@ -1096,6 +1297,22 @@
 				8679B77F21022C0C0020B004 /* NADailyServices.swift */,
 			);
 			path = AddMyServices;
+			sourceTree = "<group>";
+		};
+		86F7B318215D1CF8005A26CE /* BETA */ = {
+			isa = PBXGroup;
+			children = (
+				86F7B319215D1CF8005A26CE /* GoogleService-Info.plist */,
+			);
+			path = BETA;
+			sourceTree = "<group>";
+		};
+		86F7B31A215D1CF9005A26CE /* DEV */ = {
+			isa = PBXGroup;
+			children = (
+				86F7B31B215D1CF9005A26CE /* GoogleService-Info.plist */,
+			);
+			path = DEV;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1179,6 +1396,29 @@
 			productReference = 8628857321590A0F00CC540B /* NotificationServiceExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		86F7B3CB215D1FAD005A26CE /* nammaApartmentBETA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86F7B472215D1FAD005A26CE /* Build configuration list for PBXNativeTarget "nammaApartmentBETA" */;
+			buildPhases = (
+				86F7B3CE215D1FAD005A26CE /* [CP] Check Pods Manifest.lock */,
+				86F7B3CF215D1FAD005A26CE /* Sources */,
+				86F7B44D215D1FAD005A26CE /* Frameworks */,
+				86F7B45C215D1FAD005A26CE /* Resources */,
+				86F7B46D215D1FAD005A26CE /* [CP] Embed Pods Frameworks */,
+				86F7B46E215D1FAD005A26CE /* [CP] Copy Pods Resources */,
+				86F7B46F215D1FAD005A26CE /* ShellScript */,
+				86F7B470215D1FAD005A26CE /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				86F7B3CC215D1FAD005A26CE /* PBXTargetDependency */,
+			);
+			name = nammaApartmentBETA;
+			productName = namaAppartment;
+			productReference = 86F7B475215D1FAD005A26CE /* nammaApartmentBETA.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1230,6 +1470,7 @@
 				86270109209707BC004B28EB /* nammaApartmentTests */,
 				86270114209707BC004B28EB /* nammaApartmentUITests */,
 				8628857221590A0F00CC540B /* NotificationServiceExtension */,
+				86F7B3CB215D1FAD005A26CE /* nammaApartmentBETA */,
 			);
 		};
 /* End PBXProject section */
@@ -1250,11 +1491,11 @@
 				861CC00D20B9AA99009EC0EF /* Lato-Regular.ttf in Resources */,
 				861CC00920B9AA99009EC0EF /* Lato-LightItalic.ttf in Resources */,
 				861CC00E20B9AA99009EC0EF /* Lato-Hairline.ttf in Resources */,
+				86F7B31D215D1CF9005A26CE /* GoogleService-Info.plist in Resources */,
 				86270101209707BC004B28EB /* Assets.xcassets in Resources */,
 				4230EEB12108AB4F0037345D /* Main.storyboard in Resources */,
 				861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */,
 				422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */,
-				869306C720F23AF70069305D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1276,6 +1517,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86F7B45C215D1FAD005A26CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86F7B45D215D1FAD005A26CE /* Lato-Black.ttf in Resources */,
+				86F7B45E215D1FAD005A26CE /* Lato-Light.ttf in Resources */,
+				86F7B45F215D1FAD005A26CE /* LaunchScreen.storyboard in Resources */,
+				86F7B460215D1FAD005A26CE /* SocietyServiceRatingView.xib in Resources */,
+				86F7B461215D1FAD005A26CE /* Lato-HairlineItalic.ttf in Resources */,
+				86F7B462215D1FAD005A26CE /* Lato-BoldItalic.ttf in Resources */,
+				86F7B463215D1FAD005A26CE /* Lato-Bold.ttf in Resources */,
+				86F7B464215D1FAD005A26CE /* Lato-BlackItalic.ttf in Resources */,
+				86F7B465215D1FAD005A26CE /* Lato-Regular.ttf in Resources */,
+				86F7B466215D1FAD005A26CE /* Lato-LightItalic.ttf in Resources */,
+				86F7B467215D1FAD005A26CE /* Lato-Hairline.ttf in Resources */,
+				86F7B477215D1FBA005A26CE /* GoogleService-Info.plist in Resources */,
+				86F7B469215D1FAD005A26CE /* Assets.xcassets in Resources */,
+				86F7B46A215D1FAD005A26CE /* Main.storyboard in Resources */,
+				86F7B46B215D1FAD005A26CE /* Lato-Italic.ttf in Resources */,
+				86F7B46C215D1FAD005A26CE /* PopupView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1301,6 +1565,87 @@
 			showEnvVarsInLog = 0;
 		};
 		861E838C212FD79B00E3A0A2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
+		86F7B3CE215D1FAD005A26CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nammaApartment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86F7B46D215D1FAD005A26CE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/razorpay-pod/Pod/Razorpay.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Razorpay.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86F7B46E215D1FAD005A26CE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86F7B46F215D1FAD005A26CE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1559,6 +1904,138 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		86F7B3CF215D1FAD005A26CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86F7B3D0215D1FAD005A26CE /* SocietyTableViewController.swift in Sources */,
+				86F7B3D1215D1FAD005A26CE /* NAFont.swift in Sources */,
+				86F7B3D2215D1FAD005A26CE /* NAValidation.swift in Sources */,
+				86F7B3D3215D1FAD005A26CE /* SignupViewController.swift in Sources */,
+				86F7B3D4215D1FAD005A26CE /* NADailyServices.swift in Sources */,
+				86F7B3D5215D1FAD005A26CE /* SplashApartmentServices.swift in Sources */,
+				86F7B3D6215D1FAD005A26CE /* Reachability.swift in Sources */,
+				86F7B3D7215D1FAD005A26CE /* AddMyVehiclesViewController.swift in Sources */,
+				86F7B3D8215D1FAD005A26CE /* NAExpectingArrival.swift in Sources */,
+				86F7B3D9215D1FAD005A26CE /* AppDelegate.swift in Sources */,
+				86F7B3DA215D1FAD005A26CE /* SettingViewController.swift in Sources */,
+				86F7B3DB215D1FAD005A26CE /* EventManagementCardViewController.swift in Sources */,
+				86F7B3DC215D1FAD005A26CE /* MainScreenViewController.swift in Sources */,
+				86F7B3DD215D1FAD005A26CE /* UserFlatDetails.swift in Sources */,
+				86F7B3DE215D1FAD005A26CE /* NAString.swift in Sources */,
+				86F7B3DF215D1FAD005A26CE /* DigitalGateCollectionViewCell.swift in Sources */,
+				86F7B3E0215D1FAD005A26CE /* HelpCollectionViewCell.swift in Sources */,
+				86F7B3E1215D1FAD005A26CE /* SplashSocietyServices.swift in Sources */,
+				86F7B3E2215D1FAD005A26CE /* MySweetHomeViewController.swift in Sources */,
+				86F7B3E3215D1FAD005A26CE /* UserPersonalDetails.swift in Sources */,
+				86F7B3E4215D1FAD005A26CE /* SplashRootViewController.swift in Sources */,
+				86F7B3E5215D1FAD005A26CE /* HandedThingsToDailyServicesViewController.swift in Sources */,
+				86F7B3E6215D1FAD005A26CE /* EventManagementViewController.swift in Sources */,
+				86F7B3E7215D1FAD005A26CE /* NotifyDigiGateCollectionViewCell.swift in Sources */,
+				86F7B3E8215D1FAD005A26CE /* AddMyFamilyMembersViewController.swift in Sources */,
+				86F7B3E9215D1FAD005A26CE /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
+				86F7B3EA215D1FAD005A26CE /* EditMyProfileFlatMembersListViewController.swift in Sources */,
+				86F7B3EB215D1FAD005A26CE /* NammaApartmentArrival.swift in Sources */,
+				86F7B3EC215D1FAD005A26CE /* NotifyDigiGateViewController.swift in Sources */,
+				86F7B3ED215D1FAD005A26CE /* ContactUsListViewController.swift in Sources */,
+				86F7B3EE215D1FAD005A26CE /* MyDailyServicesViewController.swift in Sources */,
+				86F7B3EF215D1FAD005A26CE /* SocietyHistoryViewController.swift in Sources */,
+				86F7B3F0215D1FAD005A26CE /* UserPrivileges.swift in Sources */,
+				86F7B3F1215D1FAD005A26CE /* ApartmentServicesViewController.swift in Sources */,
+				86F7B3F2215D1FAD005A26CE /* LoginViewController.swift in Sources */,
+				86F7B3F3215D1FAD005A26CE /* RetrieveFamilyMemberList.swift in Sources */,
+				86F7B3F4215D1FAD005A26CE /* OpacityView.swift in Sources */,
+				86F7B3F5215D1FAD005A26CE /* MyDailyServicesCollectionViewCell.swift in Sources */,
+				86F7B3F6215D1FAD005A26CE /* InviteVisitorViewController.swift in Sources */,
+				86F7B3F7215D1FAD005A26CE /* NAMyGuardsViewController.swift in Sources */,
+				86F7B3F8215D1FAD005A26CE /* EventManagementHistoryViewController.swift in Sources */,
+				86F7B3F9215D1FAD005A26CE /* NAUserProblems.swift in Sources */,
+				86F7B3FA215D1FAD005A26CE /* ActivationRequired.swift in Sources */,
+				86F7B3FB215D1FAD005A26CE /* retrieveUserData.swift in Sources */,
+				86F7B3FC215D1FAD005A26CE /* SearchViewController.swift in Sources */,
+				86F7B3FD215D1FAD005A26CE /* NAViewPresenter.swift in Sources */,
+				86F7B3FE215D1FAD005A26CE /* MyGuardsViewController.swift in Sources */,
+				86F7B3FF215D1FAD005A26CE /* NoticeBoardTableViewCell.swift in Sources */,
+				86F7B400215D1FAD005A26CE /* NASocietyServices.swift in Sources */,
+				86F7B401215D1FAD005A26CE /* MyGuestListCollectionViewCell.swift in Sources */,
+				86F7B402215D1FAD005A26CE /* SplashNammaApartments.swift in Sources */,
+				86F7B403215D1FAD005A26CE /* SearchTableViewCell.swift in Sources */,
+				86F7B404215D1FAD005A26CE /* NammaApartmentEmergency.swift in Sources */,
+				86F7B405215D1FAD005A26CE /* RaiseAlarmViewController.swift in Sources */,
+				86F7B406215D1FAD005A26CE /* EmergencyViewController.swift in Sources */,
+				86F7B407215D1FAD005A26CE /* MyVehiclesCollectionViewCell.swift in Sources */,
+				86F7B408215D1FAD005A26CE /* NoticeBoardViewController.swift in Sources */,
+				86F7B409215D1FAD005A26CE /* EditMyProfileViewController.swift in Sources */,
+				86F7B40A215D1FAD005A26CE /* MyVisitorsListCollectionViewCell.swift in Sources */,
+				86F7B40B215D1FAD005A26CE /* MyFlatDetailsViewController.swift in Sources */,
+				86F7B40C215D1FAD005A26CE /* RateUs.swift in Sources */,
+				86F7B40D215D1FAD005A26CE /* CabAndPackageArrivalCardListViewController.swift in Sources */,
+				86F7B40E215D1FAD005A26CE /* MyGuardsCollectionViewCell.swift in Sources */,
+				86F7B40F215D1FAD005A26CE /* MyFoodViewController.swift in Sources */,
+				86F7B410215D1FAD005A26CE /* NAUserTransactions.swift in Sources */,
+				86F7B411215D1FAD005A26CE /* DownloadService.swift in Sources */,
+				86F7B412215D1FAD005A26CE /* DonateFoodHistoryCollectionViewCell.swift in Sources */,
+				86F7B413215D1FAD005A26CE /* ContactUsHistoryViewController.swift in Sources */,
+				86F7B414215D1FAD005A26CE /* NavigationMenuViewController.swift in Sources */,
+				86F7B415215D1FAD005A26CE /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
+				86F7B416215D1FAD005A26CE /* RetrievingGuestList.swift in Sources */,
+				86F7B417215D1FAD005A26CE /* NAEventManagement.swift in Sources */,
+				86F7B418215D1FAD005A26CE /* SocietyServicesViewController.swift in Sources */,
+				86F7B419215D1FAD005A26CE /* PopupView.swift in Sources */,
+				86F7B41A215D1FAD005A26CE /* EventManagementHistoryTableViewCell.swift in Sources */,
+				86F7B41B215D1FAD005A26CE /* AddMyServicesViewController.swift in Sources */,
+				86F7B41C215D1FAD005A26CE /* ApartmentServicesCollectionViewCell.swift in Sources */,
+				86F7B41D215D1FAD005A26CE /* NAActivityIndicator.swift in Sources */,
+				86F7B41E215D1FAD005A26CE /* SocietyServiceRatingView.swift in Sources */,
+				86F7B41F215D1FAD005A26CE /* UNService.swift in Sources */,
+				86F7B420215D1FAD005A26CE /* ContactUsHistoryCollectionViewCell.swift in Sources */,
+				86F7B421215D1FAD005A26CE /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
+				86F7B422215D1FAD005A26CE /* HandedThingsGuestHistoryViewController.swift in Sources */,
+				86F7B423215D1FAD005A26CE /* MyVehiclesViewController.swift in Sources */,
+				86F7B424215D1FAD005A26CE /* MainScreenTableViewCell.swift in Sources */,
+				86F7B425215D1FAD005A26CE /* DonateFoodHistoryViewController.swift in Sources */,
+				86F7B426215D1FAD005A26CE /* AwaitingResponseViewController.swift in Sources */,
+				86F7B427215D1FAD005A26CE /* NANavigationViewController.swift in Sources */,
+				86F7B428215D1FAD005A26CE /* NANoticeBoardViewController.swift in Sources */,
+				86F7B429215D1FAD005A26CE /* NAColor.swift in Sources */,
+				86F7B42A215D1FAD005A26CE /* NavigationMenuTableViewCell.swift in Sources */,
+				86F7B42B215D1FAD005A26CE /* DigitalGateViewController.swift in Sources */,
+				86F7B42C215D1FAD005A26CE /* HelpViewController.swift in Sources */,
+				86F7B42D215D1FAD005A26CE /* MyGuestListViewController.swift in Sources */,
+				86F7B42E215D1FAD005A26CE /* MyFlatTableViewCell.swift in Sources */,
+				86F7B42F215D1FAD005A26CE /* NAConfirmationAlert.swift in Sources */,
+				86F7B430215D1FAD005A26CE /* EmergencyCollectionViewCell.swift in Sources */,
+				86F7B431215D1FAD005A26CE /* OTPViewController.swift in Sources */,
+				86F7B432215D1FAD005A26CE /* RootViewController.swift in Sources */,
+				86F7B433215D1FAD005A26CE /* MyVisitorsListViewController.swift in Sources */,
+				86F7B434215D1FAD005A26CE /* NAFirebase.swift in Sources */,
+				86F7B435215D1FAD005A26CE /* HandedThingsToGuestTableViewCell.swift in Sources */,
+				86F7B436215D1FAD005A26CE /* NammaApartmentDailyServices.swift in Sources */,
+				86F7B437215D1FAD005A26CE /* HandedThingsToDailyServicesTableViewCell.swift in Sources */,
+				86F7B438215D1FAD005A26CE /* NADailyServiceHandedThingsHistory.swift in Sources */,
+				86F7B439215D1FAD005A26CE /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
+				86F7B43A215D1FAD005A26CE /* NammaApartmentVisitor.swift in Sources */,
+				86F7B43B215D1FAD005A26CE /* NAUser.swift in Sources */,
+				86F7B43C215D1FAD005A26CE /* NammaApartmentVehicle.swift in Sources */,
+				86F7B43D215D1FAD005A26CE /* HandedThingsToGuestViewController.swift in Sources */,
+				86F7B43E215D1FAD005A26CE /* ContactUsViewController.swift in Sources */,
+				86F7B43F215D1FAD005A26CE /* HandedHistory.swift in Sources */,
+				86F7B440215D1FAD005A26CE /* namaApartment.xcdatamodeld in Sources */,
+				86F7B441215D1FAD005A26CE /* MyTransactionsViewController.swift in Sources */,
+				86F7B442215D1FAD005A26CE /* DataModel.swift in Sources */,
+				86F7B443215D1FAD005A26CE /* SocietyHistoryCollectionViewCell.swift in Sources */,
+				86F7B444215D1FAD005A26CE /* RescheduleMyGuestListViewController.swift in Sources */,
+				86F7B445215D1FAD005A26CE /* NAFBConstants.swift in Sources */,
+				86F7B446215D1FAD005A26CE /* MyTransactionsCollectionViewCell.swift in Sources */,
+				86F7B447215D1FAD005A26CE /* NAShodowEffect.swift in Sources */,
+				86F7B448215D1FAD005A26CE /* MyWalletViewController.swift in Sources */,
+				86F7B449215D1FAD005A26CE /* CustomLaunchScreenViewController.swift in Sources */,
+				86F7B44A215D1FAD005A26CE /* NammaApartmentFood.swift in Sources */,
+				86F7B44B215D1FAD005A26CE /* ExpectingArrivalViewController.swift in Sources */,
+				86F7B44C215D1FAD005A26CE /* mySweetHomeCollectionViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1576,6 +2053,11 @@
 			isa = PBXTargetDependency;
 			target = 8628857221590A0F00CC540B /* NotificationServiceExtension */;
 			targetProxy = 8628857821590A0F00CC540B /* PBXContainerItemProxy */;
+		};
+		86F7B3CC215D1FAD005A26CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8628857221590A0F00CC540B /* NotificationServiceExtension */;
+			targetProxy = 86F7B3CD215D1FAD005A26CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1893,6 +2375,57 @@
 			};
 			name = Release;
 		};
+		86F7B473215D1FAD005A26CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A57802A1AA1E8103BBFEF75 /* Pods-nammaApartment.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = nammaApartment.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PUZKL58568;
+				INFOPLIST_FILE = "nammaApartment copy2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		86F7B474215D1FAD005A26CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C39585696205478FE4CEF756 /* Pods-nammaApartment.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = nammaApartment.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PUZKL58568;
+				INFOPLIST_FILE = "nammaApartment copy2-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kirtanlab.nammaapartments;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1937,6 +2470,15 @@
 			buildConfigurations = (
 				8628857C21590A0F00CC540B /* Debug */,
 				8628857D21590A0F00CC540B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86F7B472215D1FAD005A26CE /* Build configuration list for PBXNativeTarget "nammaApartmentBETA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86F7B473215D1FAD005A26CE /* Debug */,
+				86F7B474215D1FAD005A26CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
