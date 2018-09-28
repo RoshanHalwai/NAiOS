@@ -201,9 +201,7 @@ class SocietyServicesViewController: NANavigationViewController {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         
-        if navTitle == NAString().scrapCollection() {
-            
-        } else {
+        if navTitle != NAString().scrapCollection() {
             if hour >= 12 {
                 btn_9AMto12PM.isUserInteractionEnabled = false
                 btn_9AMto12PM.setTitleColor(UIColor.lightGray, for: .normal)
