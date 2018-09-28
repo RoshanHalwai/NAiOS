@@ -2464,6 +2464,11 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4KH-3P-63H">
+                                                    <rect key="frame" x="51" y="63" width="37" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2476,6 +2481,7 @@
                                             <constraint firstItem="ylE-nN-7h5" firstAttribute="leading" secondItem="bEP-8Y-Y6J" secondAttribute="leading" constant="10" id="ZAe-ej-65m"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="4KH-3P-63H" id="bpR-a7-bFK"/>
                                             <outlet property="image_View" destination="ylE-nN-7h5" id="Pli-Lt-GCx"/>
                                             <outlet property="lbl_Date_Detail" destination="vSk-lt-6Vx" id="oSh-vx-zsW"/>
                                             <outlet property="lbl_Date_Type" destination="9wD-fd-pf2" id="efh-Dt-Hm7"/>
@@ -2786,6 +2792,11 @@
                                                         <constraint firstAttribute="height" constant="110" id="xR4-Ui-MPt"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wDo-JT-o0H">
+                                                    <rect key="frame" x="47" y="58" width="37" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2798,6 +2809,7 @@
                                             <constraint firstItem="bhB-QJ-dVd" firstAttribute="leading" secondItem="MGY-c1-Bg9" secondAttribute="trailing" constant="5" id="mvl-Qg-cAD"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="wDo-JT-o0H" id="q2j-sd-QEK"/>
                                             <outlet property="image_View" destination="MGY-c1-Bg9" id="Asx-Bb-rhD"/>
                                             <outlet property="lbl_Date_Detail" destination="eiT-xN-XOI" id="1k9-oo-imP"/>
                                             <outlet property="lbl_Date_Type" destination="aLB-IU-WZF" id="6RU-7g-2L2"/>

@@ -14,8 +14,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
     @IBOutlet weak var collectionView: UICollectionView!
     var navTitle = String()
     
-    var isActivityIndicatorRunning = false
-    
     var myExpectedGuardsList = [NAExpectingGuard]()
     
     override func viewDidLoad() {
@@ -47,12 +45,15 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
     }
     
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
         DispatchQueue.main.async {
-            self.isActivityIndicatorRunning = true
+            self.collectionView.performBatchUpdates(nil, completion: nil)
             self.collectionView.reloadData()
         }
     }
@@ -81,8 +82,10 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         queue.addOperation {
             if let urlString = myGuardsList.getprofilePhoto() {
                 NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myGuardImage)
-                //Here Adding Observer Value Using NotificationCenter
-                NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    cell.activityIndicator.isHidden = true
+                    cell.activityIndicator.stopAnimating()
+                }
             }
         }
         queue.waitUntilAllOperationsAreFinished()
@@ -94,13 +97,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         cell.lbl_GuardName.font = NAFont().textFieldFont()
         cell.lbl_GuardGateNo.font = NAFont().textFieldFont()
         cell.lbl_GuardStatus.font = NAFont().textFieldFont()
-        
-        if isActivityIndicatorRunning == false {
-            cell.activityIndicator.startAnimating()
-        } else if (isActivityIndicatorRunning == true) {
-            cell.activityIndicator.stopAnimating()
-            cell.activityIndicator.isHidden = true
-        }
         
         NAShadowEffect().shadowEffect(Cell: cell)
         
