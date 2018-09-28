@@ -70,7 +70,7 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         myGuardsList = myExpectedGuardsList[indexPath.row]
         
         cell.lbl_MyGuardName.text = myGuardsList.getfullName()
-        cell.lbl_MyGuardStatus.text = myGuardsList.getstatus()
+        cell.lbl_MyGuardStatus.text = myGuardsList.getstatus().capitalized
         
         let gateNumber : Int = myGuardsList.getgateNumber()
         let gateNoString = String(gateNumber)

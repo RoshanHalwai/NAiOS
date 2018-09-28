@@ -16,6 +16,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     //set title from previous page
     var titleName =  String()
     var navigationTitle = String()
+    var serviceTypeString = String()
     var NASocietyServiceData = [NASocietyServices]()
     
     //Created Instance of Model Class To get data in card view
@@ -26,6 +27,23 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         
         //Showing Activity Indicator
         NAActivityIndicator.shared.showActivityIndicator(view: self)
+        print(navigationTitle)
+        
+        switch navigationTitle {
+            
+        case NAString().plumber().lowercased(): serviceTypeString = NAString().plumber()
+            
+        case NAString().carpenter().lowercased(): serviceTypeString = NAString().carpenter()
+            
+        case NAString().electrician().lowercased(): serviceTypeString = NAString().electrician()
+           
+        case NAString().garbageCollection(): serviceTypeString = NAString().garbage_Collection()
+            
+        case NAString().scrap_Collection(): serviceTypeString = NAString().scrapCollection()
+            
+        default:
+            break
+        }
         
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
@@ -183,12 +201,12 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                         }
                     } else {
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.navigationTitle.capitalized))
+                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
                     }
                 })
             } else {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.navigationTitle.capitalized))
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
             }
         }
     }
