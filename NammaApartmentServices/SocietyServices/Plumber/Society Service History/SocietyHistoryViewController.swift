@@ -27,7 +27,6 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         
         //Showing Activity Indicator
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        print(navigationTitle)
         
         switch navigationTitle {
             
