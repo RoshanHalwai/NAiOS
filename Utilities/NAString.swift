@@ -1229,6 +1229,10 @@ class NAString : NSObject {
         return String ("status")
     }
     
+    func ignored() -> String {
+        return String ("Ignored")
+    }
+    
     func dailyServiceNotAvailable() -> String {
         return String ("Please add your Daily Services for their hassle free entry at your Society")
     }

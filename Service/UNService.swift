@@ -16,7 +16,7 @@ class UNService: NSObject {
     
     static let shared = UNService()
     let unCenter = UNUserNotificationCenter.current()
-   
+    
     var window: UIWindow?
     let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
     
@@ -52,7 +52,7 @@ extension UNService: UNUserNotificationCenterDelegate {
             let dest = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
             window?.rootViewController = dest
             window?.makeKeyAndVisible()
-           
+            
         } else {
             let launchVC = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().rootVC())
             window?.rootViewController = launchVC
@@ -193,15 +193,45 @@ extension UNService: UNUserNotificationCenterDelegate {
             [actionCategory])
     }
     
-     //This method will call when notification will recieved by the device.
+    func delay(_ delay: Double, closure: @escaping() -> ()) {
+        let when = DispatchTime.now() + delay
+        DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
+    }
+    
+    //This method will call when notification will recieved by the device.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         let options: UNNotificationPresentationOptions = [.alert, .sound]
         let userInfo = notification.request.content.userInfo
-        print(userInfo as Any)
+        
+        //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
+        let guestType = userInfo[Constants.FIREBASE_CHILD_VISITOR_TYPE] as? String
+        let guestUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
+        
+        //retrieving user’sFlat Details
+        let userFlatDetails = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FLATDETAILS)
+        userFlatDetails.observeSingleEvent(of: .value) { (flatSnapshot) in
+            
+            //Getting Data Form Firebase & Adding into Model Class
+            let userFlatData = flatSnapshot.value as? [String: AnyObject]
+            
+            let apartmentName = userFlatData?[UserFlatListFBKeys.apartmentName.key] as! String
+            let city = userFlatData?[UserFlatListFBKeys.city.key] as! String
+            let flatNumber = userFlatData?[UserFlatListFBKeys.flatNumber.key] as! String
+            let societyName = userFlatData?[UserFlatListFBKeys.societyName.key] as! String
+            
+            let gateNotificationRef = Constants.FIREBASE_USERDATA_PRIVATE.child(city).child(societyName).child(apartmentName).child(flatNumber).child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID).child(guestType!).child(guestUID!)
+            
+            //This deplay function we are calling to set ignored value in firebase, if user not accept & reject the E-Intercom Guest.
+            self.delay(45) {
+                gateNotificationRef.child(NAString().status()).setValue(NAString().ignored())
+                 UIApplication.shared.applicationIconBadgeNumber = 0
+            }
+        }
         
         //Calling Notification action button function
         setActionCategories()
+        
         completionHandler(options)
     }
 }
