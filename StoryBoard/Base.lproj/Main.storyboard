@@ -283,19 +283,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="172.5" y="0.0" width="53" height="53"/>
+                                                <rect key="frame" x="170" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will collect food " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smj-Ef-i0k">
-                                                <rect key="frame" x="255.5" y="0.0" width="54.5" height="53"/>
+                                                <rect key="frame" x="255" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1910,11 +1910,11 @@
                                             <action selector="datePicker:" destination="pQ4-Mt-NNo" eventType="valueChanged" id="hfz-NM-S9u"/>
                                         </connections>
                                     </datePicker>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-Aa-RCm" userLabel="StackView_Buttons">
-                                        <rect key="frame" x="20" y="220" width="295" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-Aa-RCm" userLabel="StackView_Buttons">
+                                        <rect key="frame" x="30" y="220" width="275" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAM-dN-QXZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="147.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
@@ -1922,7 +1922,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e28-iQ-3Qx">
-                                                <rect key="frame" x="147.5" y="0.0" width="147.5" height="30"/>
+                                                <rect key="frame" x="147.5" y="0.0" width="127.5" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Reschedule"/>
                                                 <connections>
@@ -1941,10 +1941,10 @@
                                     <constraint firstItem="bFG-Wu-gHu" firstAttribute="top" secondItem="Pt2-LZ-Ujd" secondAttribute="bottom" constant="20" id="LKH-BZ-qfr"/>
                                     <constraint firstAttribute="trailing" secondItem="bFG-Wu-gHu" secondAttribute="trailing" id="MUH-D9-ikQ"/>
                                     <constraint firstItem="bFG-Wu-gHu" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" id="Rfs-sA-cfM"/>
-                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" constant="20" id="Xtr-i9-L2J"/>
+                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" constant="30" id="Xtr-i9-L2J"/>
                                     <constraint firstItem="Pt2-LZ-Ujd" firstAttribute="top" secondItem="Ry4-Fb-evj" secondAttribute="top" constant="20" id="idd-cH-Nsp"/>
                                     <constraint firstAttribute="trailing" secondItem="Pt2-LZ-Ujd" secondAttribute="trailing" constant="20" id="jhe-3c-TJB"/>
-                                    <constraint firstAttribute="trailing" secondItem="9Og-Aa-RCm" secondAttribute="trailing" constant="20" id="qqd-gQ-c06"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Og-Aa-RCm" secondAttribute="trailing" constant="30" id="qqd-gQ-c06"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -5702,13 +5702,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UY-qF-7pc">
-                                                <rect key="frame" x="170" y="0.0" width="53" height="43"/>
+                                                <rect key="frame" x="170" y="0.0" width="55" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the free service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53u-9B-EnE">
-                                                <rect key="frame" x="253" y="0.0" width="57" height="43"/>
+                                                <rect key="frame" x="255" y="0.0" width="55" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
