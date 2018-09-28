@@ -1902,7 +1902,7 @@ class NAString : NSObject {
     }
     
     func contactUsServiceValidationErrorMessage() -> String {
-        return String("Please enter problem")
+        return String("Please enter problem description")
     }
     
     func contactUsServiceProblemValidationErrorMessage() -> String {
