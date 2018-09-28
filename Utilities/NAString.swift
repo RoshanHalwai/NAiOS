@@ -1417,7 +1417,7 @@ class NAString : NSObject {
     }
     
     func addFood_AlertTitle() -> String {
-        return ("Food Request Message")
+        return ("Request Raised")
     }
     
     func addFood_AlertMessage() -> String {
@@ -1882,7 +1882,7 @@ class NAString : NSObject {
     }
     
     func foodTypeErrorMessage() -> String {
-        return String("Please enter food type")
+        return String("Please Enter Food Type")
     }
     
     func cancelRequest() -> String {
