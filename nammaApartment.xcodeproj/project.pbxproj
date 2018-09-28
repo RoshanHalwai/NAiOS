@@ -554,7 +554,6 @@
 		86F13EFF2154229300AF3EE6 /* DonateFoodHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryViewController.swift; sourceTree = "<group>"; };
 		86F7B319215D1CF8005A26CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86F7B31B215D1CF9005A26CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		86F7B3C9215D1F2E005A26CE /* nammaApartment-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "nammaApartment-Info.plist"; path = "/Users/vikasnayak/Desktop/nammaapartmentsios/nammaApartment-Info.plist"; sourceTree = "<absolute>"; };
 		86F7B475215D1FAD005A26CE /* nammaApartmentBETA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nammaApartmentBETA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentDailyServices.swift; sourceTree = "<group>"; };
 		8E9E4FA99AFC6477243245A6 /* Pods_nammaApartmentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartmentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1027,7 +1026,6 @@
 				86C1A138209AF3FC00D75D0F /* StoryBoard */,
 				86BD74E9209A2DD000B159A3 /* Utilities */,
 				5604502185698E5A09687321 /* Pods */,
-				86F7B3C9215D1F2E005A26CE /* nammaApartment-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
