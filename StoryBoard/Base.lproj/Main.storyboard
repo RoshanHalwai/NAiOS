@@ -1910,11 +1910,11 @@
                                             <action selector="datePicker:" destination="pQ4-Mt-NNo" eventType="valueChanged" id="hfz-NM-S9u"/>
                                         </connections>
                                     </datePicker>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-Aa-RCm" userLabel="StackView_Buttons">
-                                        <rect key="frame" x="20" y="220" width="295" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9Og-Aa-RCm" userLabel="StackView_Buttons">
+                                        <rect key="frame" x="30" y="220" width="275" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAM-dN-QXZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="147.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="127.5" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Cancel"/>
                                                 <connections>
@@ -1922,7 +1922,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e28-iQ-3Qx">
-                                                <rect key="frame" x="147.5" y="0.0" width="147.5" height="30"/>
+                                                <rect key="frame" x="147.5" y="0.0" width="127.5" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Reschedule"/>
                                                 <connections>
@@ -1941,10 +1941,10 @@
                                     <constraint firstItem="bFG-Wu-gHu" firstAttribute="top" secondItem="Pt2-LZ-Ujd" secondAttribute="bottom" constant="20" id="LKH-BZ-qfr"/>
                                     <constraint firstAttribute="trailing" secondItem="bFG-Wu-gHu" secondAttribute="trailing" id="MUH-D9-ikQ"/>
                                     <constraint firstItem="bFG-Wu-gHu" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" id="Rfs-sA-cfM"/>
-                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" constant="20" id="Xtr-i9-L2J"/>
+                                    <constraint firstItem="9Og-Aa-RCm" firstAttribute="leading" secondItem="Ry4-Fb-evj" secondAttribute="leading" constant="30" id="Xtr-i9-L2J"/>
                                     <constraint firstItem="Pt2-LZ-Ujd" firstAttribute="top" secondItem="Ry4-Fb-evj" secondAttribute="top" constant="20" id="idd-cH-Nsp"/>
                                     <constraint firstAttribute="trailing" secondItem="Pt2-LZ-Ujd" secondAttribute="trailing" constant="20" id="jhe-3c-TJB"/>
-                                    <constraint firstAttribute="trailing" secondItem="9Og-Aa-RCm" secondAttribute="trailing" constant="20" id="qqd-gQ-c06"/>
+                                    <constraint firstAttribute="trailing" secondItem="9Og-Aa-RCm" secondAttribute="trailing" constant="30" id="qqd-gQ-c06"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
