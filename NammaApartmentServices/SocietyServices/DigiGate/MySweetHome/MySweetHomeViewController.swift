@@ -24,11 +24,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     @IBOutlet weak var btn_ChangeAccess: UIButton!
     
     var userPrivilegesRef : DatabaseReference?
-   
+    
     //A boolean variable to indicate if previous screen was Home Screen and My Sweet Home Screen.
     var fromHomeScreenVC = false
     var fromMySweetHomeScreenVC = false
-    var isActivityIndicatorRunning = false
     
     var navTitle = String()
     
@@ -87,12 +86,15 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
     }
     
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
         DispatchQueue.main.async {
-            self.isActivityIndicatorRunning = true
+            self.collectionView.performBatchUpdates(nil, completion: nil)
             self.collectionView.reloadData()
         }
     }
@@ -165,8 +167,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         queue.addOperation {
             if let urlString = flatMember.personalDetails.profilePhoto {
                 NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
-                //Here Adding Observer Value Using NotificationCenter
-                NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    cell.activityIndicator.isHidden = true
+                    cell.activityIndicator.stopAnimating()
+                }
             }
         }
         queue.waitUntilAllOperationsAreFinished()
@@ -205,13 +209,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_Remove.text = NAString().remove()
         
         cell.btn_Remove.addTarget(self,action:#selector(deleteData), for:.touchUpInside)
-        
-        if isActivityIndicatorRunning == false {
-            cell.activityIndicator.startAnimating()
-        } else if (isActivityIndicatorRunning == true) {
-            cell.activityIndicator.stopAnimating()
-            cell.activityIndicator.isHidden = true
-        }
         
         cell.objEdit = {
             

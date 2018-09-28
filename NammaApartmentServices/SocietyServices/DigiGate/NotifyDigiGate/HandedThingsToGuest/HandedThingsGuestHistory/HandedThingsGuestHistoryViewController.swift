@@ -67,12 +67,23 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
     }
     
     //CollectionView Reload with Background Thread
     func CollectionReload()
     {
         DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    //Create image Handle  Function
+    @objc func imageHandle(notification: Notification) {
+        DispatchQueue.main.async {
+            self.collectionView.performBatchUpdates(nil, completion: nil)
             self.collectionView.reloadData()
         }
     }
@@ -98,11 +109,19 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         cell.lbl_Date_Detail.text = dateString
         cell.lbl_Visitor_Detail.text = nammaApartmentVisitor.getfullName()
         cell.lbl_Things_Detail.text = nammaApartmentVisitor.getHandedThings()
+        let queue = OperationQueue()
         
-        //Calling function to get Profile Image from Firebase.
-        if let urlString = nammaApartmentVisitor.getprofilePhoto() {
-            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
+        queue.addOperation {
+            //Calling function to get Profile Image from Firebase.
+            if let urlString = nammaApartmentVisitor.getprofilePhoto() {
+                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    cell.activityIndicator.isHidden = true
+                    cell.activityIndicator.stopAnimating()
+                }
+            }
         }
+        queue.waitUntilAllOperationsAreFinished()
         
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_Inviter_Detail.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
