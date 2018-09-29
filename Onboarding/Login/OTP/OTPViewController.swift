@@ -21,6 +21,9 @@ var userUID = ""
 
 class OTPViewController: NANavigationViewController {
     
+    //Created instance for calling retrieveUserData class function
+    var loadingUserData = retrieveUserData()
+    
     var delegateData : DataPass!
     var familyDelegateData : FamilyDataPass!
     
@@ -386,6 +389,7 @@ extension OTPViewController {
                             let dest = NAViewPresenter().activationRequiredVC()
                             self.navigationController?.pushViewController(dest, animated: true)
                         } else {
+                            self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID!)
                             let dest = NAViewPresenter().mainScreenVC()
                             self.navigationController?.pushViewController(dest, animated: true)
                         }
