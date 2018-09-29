@@ -35,7 +35,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     let picker = UIDatePicker()
     
     var fromAddMyDailyServicesVC = false
-    var isActivityIndicatorRunning = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -96,7 +95,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
         DispatchQueue.main.async {
-            self.isActivityIndicatorRunning = true
+            self.collectionView.performBatchUpdates(nil, completion: nil)
             self.collectionView.reloadData()
         }
     }
@@ -206,6 +205,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         queue.addOperation {
             if let urlString = DSList.profilePhoto {
                 NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    cell.activityIndicator.isHidden = true
+                    cell.activityIndicator.stopAnimating()
+                }
             }
         }
         queue.waitUntilAllOperationsAreFinished()
@@ -251,13 +254,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_myDailyFlats.text = NAString().flats()
         cell.lbl_myDailyTime.text = NAString().status().capitalized
         cell.lbl_myDailyRating.text = NAString().rating()
-        
-        if isActivityIndicatorRunning == false {
-            cell.activityIndicator.startAnimating()
-        } else if (isActivityIndicatorRunning == true) {
-            cell.activityIndicator.stopAnimating()
-            cell.activityIndicator.isHidden = true
-        }
         
         cell.index = indexPath
         cell.delegate = self

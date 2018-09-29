@@ -22,7 +22,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     //Created variable for NammaApartmentVisitor file to fetch data from firebase.
     @IBOutlet weak var collectionView: UICollectionView!
     var titleName = String()
-    var isActivityIndicatorRunning = false
     
     //A boolean variable to indicate if previous screen was Expecting Arrival.
     var fromInvitingVisitorsVC = false
@@ -71,7 +70,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
         DispatchQueue.main.async {
-            self.isActivityIndicatorRunning = true
+            self.collectionView.performBatchUpdates(nil, completion: nil)
             self.collectionView.reloadData()
         }
     }
@@ -144,6 +143,10 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             //Calling function to get Profile Image from Firebase.
             if let urlString = nammaApartmentVisitor.getprofilePhoto() {
                 NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    cell.activityIndicator.isHidden = true
+                    cell.activityIndicator.stopAnimating()
+                }
             }
         }
         queue.waitUntilAllOperationsAreFinished()
@@ -163,13 +166,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                 let fullName = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
                 cell.lbl_InvitedName.text = fullName
             })
-        }
-        
-        if isActivityIndicatorRunning == false {
-            cell.activityIndicator.startAnimating()
-        } else if (isActivityIndicatorRunning == true) {
-            cell.activityIndicator.stopAnimating()
-            cell.activityIndicator.isHidden = true
         }
         
         NAShadowEffect().shadowEffect(Cell: cell)

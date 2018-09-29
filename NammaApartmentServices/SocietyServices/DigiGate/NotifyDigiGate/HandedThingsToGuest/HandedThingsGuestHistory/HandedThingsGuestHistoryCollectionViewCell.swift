@@ -21,6 +21,7 @@ class HandedThingsGuestHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_InTime_Detail: UILabel!
     @IBOutlet weak var lbl_Inviter_Detail: UILabel!
     @IBOutlet weak var lbl_Things_Detail: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func layoutSubviews() {
         super .layoutSubviews()

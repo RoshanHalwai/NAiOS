@@ -52,6 +52,17 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+    }
+    
+    //Create image Handle  Function
+    @objc func imageHandle(notification: Notification) {
+        DispatchQueue.main.async {
+            self.collectionView.performBatchUpdates(nil, completion: nil)
+            self.collectionView.reloadData()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -107,10 +118,18 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         cell.lbl_Type_Detail.text = dailyServiceKey
         cell.lbl_Things_Detail.text = DSHandedList.getHandedThings()
         cell.lbl_Name_Detail.text = DSHandedList.getfullName()
+        let queue = OperationQueue()
         
-        if let urlString = DSHandedList.profilePhoto {
-            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
+        queue.addOperation {
+            if let urlString = DSHandedList.profilePhoto {
+                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    cell.activityIndicator.isHidden = true
+                    cell.activityIndicator.stopAnimating()
+                }
+            }
         }
+        queue.waitUntilAllOperationsAreFinished()
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
