@@ -2097,4 +2097,13 @@ class NAString : NSObject {
     func mix_Waste() -> String {
         return String("Mix Waste")
     }
+    
+    func remove_Alert_Title() -> String {
+        return String("Remove Message")
+    }
+    
+    func remove_Alert_Message() -> String {
+        return String("Are you sure you want to remove the details of the Vehicle?")
+    }
 }
+
