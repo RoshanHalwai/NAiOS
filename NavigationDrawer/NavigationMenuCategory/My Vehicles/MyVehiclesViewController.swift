@@ -190,7 +190,6 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         opacity_View.isHidden = true
         popUp_Parent_View.isHidden = true
         popUp_View.isHidden = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -291,25 +290,23 @@ extension MyVehiclesViewController {
                 for vehicleUID in (vehiclesUID?.allKeys)! {
                     
                     //Retrieving true Mapped UID's
-                    if vehiclesUID![vehicleUID] as! Bool == true {
-                        self.vehiclesPublicRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehicleUID as! String)
-                        self.vehiclesPublicRef?.keepSynced(true)
-                        self.vehiclesPublicRef?.observe(.value, with: { (snapshot) in
-                            if snapshot.exists() {
-                                let vehicleData = snapshot.value as?[String: AnyObject]
-                                let vehicleType = (vehicleData?[VehicleListFBKeys.vehicleType.key] as? String)!
-                                let addedDate = vehicleData?[VehicleListFBKeys.addedDate.key] as? String
-                                let ownerName = GlobalUserData.shared.personalDetails_Items.first?.getfullName()
-                                let vehicleNumber = vehicleData?[VehicleListFBKeys.vehicleNumber.key] as? String
-                                let vehicleUID = vehicleData?[VehicleListFBKeys.vehicleUID.key] as? String
-                                let vehicleDetails = NAExpectingVehicle(addedDate: addedDate,ownerName: ownerName, vehicleNumber: vehicleNumber!,vehicleType: vehicleType, vehicleUID: vehicleUID)
-                                
-                                self.myExpectedVehicleList.append(vehicleDetails)
-                                NAActivityIndicator.shared.hideActivityIndicator()
-                                self.collectionView.reloadData()
-                            }
-                        })
-                    }
+                    self.vehiclesPublicRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehicleUID as! String)
+                    self.vehiclesPublicRef?.keepSynced(true)
+                    self.vehiclesPublicRef?.observe(.value, with: { (snapshot) in
+                        if snapshot.exists() {
+                            let vehicleData = snapshot.value as?[String: AnyObject]
+                            let vehicleType = (vehicleData?[VehicleListFBKeys.vehicleType.key] as? String)!
+                            let addedDate = vehicleData?[VehicleListFBKeys.addedDate.key] as? String
+                            let ownerName = GlobalUserData.shared.personalDetails_Items.first?.getfullName()
+                            let vehicleNumber = vehicleData?[VehicleListFBKeys.vehicleNumber.key] as? String
+                            let vehicleUID = vehicleData?[VehicleListFBKeys.vehicleUID.key] as? String
+                            let vehicleDetails = NAExpectingVehicle(addedDate: addedDate,ownerName: ownerName, vehicleNumber: vehicleNumber!,vehicleType: vehicleType, vehicleUID: vehicleUID)
+                            
+                            self.myExpectedVehicleList.append(vehicleDetails)
+                            NAActivityIndicator.shared.hideActivityIndicator()
+                            self.collectionView.reloadData()
+                        }
+                    })
                 }
             } else {
                 NAActivityIndicator.shared.hideActivityIndicator()
@@ -374,7 +371,10 @@ extension MyVehiclesViewController : dataRemoveProtocol {
             .child(vehicleUID.getVehicleUID())
         
         NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().remove_Alert_Title(), Message: NAString().remove_Alert_Message(), CancelStyle: .default, OkStyle: .destructive, OK: { (action) in
-            userDataReference.setValue(NAString().getfalse())
+            userDataReference.removeValue()
+            
+            let vehicleRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehicleUID.getVehicleUID())
+            vehicleRef.removeValue()
             
             self.myExpectedVehicleList.remove(at: index)
             

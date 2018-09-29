@@ -410,42 +410,6 @@ class ExpectingArrivalViewController: NANavigationViewController {
             return false
         }
     }
-    
-//    // Creating move cursor from One textField to another TextField
-//    func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool {
-//        //Check if textField has two chacraters
-//        if ((textField.text?.count)! == 1  && string.count > 0) {
-//            // get next TextField
-//            let nextTag = textField.tag + 1
-//            var nextTextField = textField.superview?.viewWithTag(nextTag)
-//            if (nextTextField == nil) {
-//                nextTextField = textField.superview?.viewWithTag(1)
-//            }
-//            textField.text = textField.text! + string
-//            //write here your last textfield tag
-//            if textField.tag == 4 {
-//                //Dissmiss keyboard on last entry
-//                textField.resignFirstResponder()
-//            }
-//            else {
-//                //Appear keyboard
-//                nextTextField?.becomeFirstResponder()
-//            }
-//            return false
-//        } else if ((textField.text?.count)! == 1  && string.count == 0) {
-//            // on deleteing value from Textfield
-//            let previousTag = textField.tag - 1
-//            // get previous TextField
-//            var previousTextField = textField.superview?.viewWithTag(previousTag)
-//            if (previousTextField == nil) {
-//                previousTextField = textField.superview?.viewWithTag(1)
-//            }
-//            textField.text = ""
-//            previousTextField?.becomeFirstResponder()
-//            return false
-//        }
-//        return true
-//    }
 }
 
 extension ExpectingArrivalViewController {

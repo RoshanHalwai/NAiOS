@@ -30,7 +30,6 @@ class MyVehiclesCollectionViewCell: UICollectionViewCell {
     
     var actionEdit : (() -> Void)? = nil
     
-    
     @IBAction func btn_Edit_Action(_ sender: UIButton) {
         
         if let btnAction = self.actionEdit {
@@ -41,5 +40,4 @@ class MyVehiclesCollectionViewCell: UICollectionViewCell {
     @IBAction func btn_Remove_Action(_ sender: UIButton) {
         delegate?.removeData(index: (index?.row)!, cell: self)
     }
-    
 }
