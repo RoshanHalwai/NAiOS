@@ -1704,7 +1704,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TBS-RZ-CFz">
-                                                    <rect key="frame" x="14.5" y="131" width="275" height="55"/>
+                                                    <rect key="frame" x="13.5" y="131" width="275" height="55"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="575-rB-C9m">
                                                             <rect key="frame" x="0.0" y="0.0" width="32.5" height="55"/>
@@ -1754,7 +1754,7 @@
                                                             <rect key="frame" x="131.5" y="0.0" width="77.5" height="55"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3S-wB-HhT">
-                                                                    <rect key="frame" x="22.5" y="0.0" width="32" height="32"/>
+                                                                    <rect key="frame" x="23" y="0.0" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="EhU-5a-ovI"/>
                                                                         <constraint firstAttribute="height" constant="32" id="dRN-vz-hfy"/>
@@ -4232,7 +4232,7 @@
                                                     <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </activityIndicatorView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s39-EX-Sf7">
-                                                    <rect key="frame" x="18" y="13" width="106" height="106"/>
+                                                    <rect key="frame" x="18" y="15.5" width="106" height="106"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="106" id="fZc-fy-nMl"/>
                                                         <constraint firstAttribute="height" constant="106" id="wHR-4n-KbP"/>
@@ -4426,7 +4426,7 @@
                                             <constraint firstAttribute="trailing" secondItem="82o-1q-FBF" secondAttribute="trailing" constant="6" id="dvA-yf-MNp"/>
                                             <constraint firstItem="M9S-Rm-83j" firstAttribute="top" secondItem="8By-VR-XWJ" secondAttribute="topMargin" constant="8" id="elb-ai-Wss"/>
                                             <constraint firstItem="82o-1q-FBF" firstAttribute="top" secondItem="4Qh-bo-u8r" secondAttribute="bottom" constant="5" id="hNA-mk-UyS"/>
-                                            <constraint firstItem="s39-EX-Sf7" firstAttribute="top" secondItem="8By-VR-XWJ" secondAttribute="topMargin" constant="5" id="hzB-mI-xxe"/>
+                                            <constraint firstItem="s39-EX-Sf7" firstAttribute="top" secondItem="8By-VR-XWJ" secondAttribute="topMargin" constant="7.5" id="hzB-mI-xxe"/>
                                             <constraint firstItem="4Qh-bo-u8r" firstAttribute="top" secondItem="8By-VR-XWJ" secondAttribute="topMargin" constant="8" id="oCE-9R-Euf"/>
                                             <constraint firstAttribute="bottom" secondItem="B5o-aQ-5kA" secondAttribute="bottom" constant="5" id="wFh-g5-lbx"/>
                                         </constraints>
