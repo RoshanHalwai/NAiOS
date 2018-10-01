@@ -56,10 +56,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         
         popUp_View.layer.cornerRadius = 10
         
-        txt_VehicleState_Code.underlined()
-        txt_Vehicle_Rto_Number.underlined()
-        txt_Vehicle_SerialNumberOne.underlined()
-        txt_Vehicle_SerialNumberTwo.underlined()
+        text_Field_Underlined()
         
         lbl_PopUp_Vehicle_No.font = NAFont().headerFont()
         txt_VehicleState_Code.font = NAFont().textFieldFont()
@@ -106,6 +103,13 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
     
     @objc func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y += 100
+    }
+    
+    func text_Field_Underlined() {
+        txt_VehicleState_Code.underlined()
+        txt_Vehicle_Rto_Number.underlined()
+        txt_Vehicle_SerialNumberOne.underlined()
+        txt_Vehicle_SerialNumberTwo.underlined()
     }
     
     //Navigating Back to Home Screen according to Screen coming from
@@ -203,16 +207,12 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         self.view.endEditing(true)
     }
     
+    //Validating PopUp Vehicle Number Text Fields
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
         let vehicle_New_TextLength = text.utf16.count + string.utf16.count - range.length
         if textField == txt_VehicleState_Code {
-            if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_VehicleState_Code.redunderlined()
-            } else {
-                lbl_VehicleNumber_Validation.isHidden = true
-                txt_VehicleState_Code.underlined()
-            }
+            text_Field_validation(textField: txt_VehicleState_Code, textLength: vehicle_New_TextLength)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
                     return vehicle_New_TextLength <= 2
@@ -221,12 +221,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
             }
         }
         if textField == txt_Vehicle_Rto_Number {
-            if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_Vehicle_Rto_Number.redunderlined()
-            } else {
-                lbl_VehicleNumber_Validation.isHidden = true
-                txt_Vehicle_Rto_Number.underlined()
-            }
+            text_Field_validation(textField: txt_Vehicle_Rto_Number, textLength: vehicle_New_TextLength)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
                     return vehicle_New_TextLength <= 2
@@ -235,12 +230,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
             }
         }
         if textField == txt_Vehicle_SerialNumberOne {
-            if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_Vehicle_SerialNumberOne.redunderlined()
-            } else {
-                lbl_VehicleNumber_Validation.isHidden = true
-                txt_Vehicle_SerialNumberOne.underlined()
-            }
+            text_Field_validation(textField: txt_Vehicle_SerialNumberOne, textLength: vehicle_New_TextLength)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
                     return vehicle_New_TextLength <= 2
@@ -249,15 +239,19 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
             }
         }
         if textField == txt_Vehicle_SerialNumberTwo {
-            if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_Vehicle_SerialNumberTwo.redunderlined()
-            } else {
-                lbl_VehicleNumber_Validation.isHidden = true
-                txt_Vehicle_SerialNumberTwo.underlined()
-            }
+            text_Field_validation(textField: txt_Vehicle_SerialNumberTwo, textLength: vehicle_New_TextLength)
             return vehicle_New_TextLength <= 4
         }
         return false
+    }
+    
+    func text_Field_validation(textField: UITextField, textLength: Int) {
+        if (textLength == NAString().zero_length()) {
+            textField.redunderlined()
+        } else {
+            lbl_VehicleNumber_Validation.isHidden = true
+            textField.underlined()
+        }
     }
     
     // Creating VehicleStateCodeAndSerailCodeLength Validation and vehicleSerialNumberLength Validation
@@ -329,8 +323,11 @@ extension MyVehiclesViewController {
         txt_Vehicle_Rto_Number.text = String(vehicleNumberArray[1])
         txt_Vehicle_SerialNumberOne.text = String(vehicleNumberArray[2])
         txt_Vehicle_SerialNumberTwo.text = String(vehicleNumberArray[3])
+        text_Field_Underlined()
+        lbl_VehicleNumber_Validation.isHidden = true
     }
     
+    //Performing Update Button Action Functionality
     @objc func UpdateAction() {
         
         let stateCodeString = txt_VehicleState_Code.text
@@ -344,12 +341,15 @@ extension MyVehiclesViewController {
         
         updatedVehicleNumber  = firstHalfVehicleNumber + hyphen + secondHalfVehicleNumber
         if vehicleNumber != updatedVehicleNumber {
-            let vehicleRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehicleUID.getVehicleUID())
+            let vehiclePrivateRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehicleUID.getVehicleUID())
+            let vehicleAllRef = Constants.FIREBASE_VEHICLES_ALL
             
             if !(txt_VehicleState_Code.text?.isEmpty)! && !(txt_Vehicle_Rto_Number.text?.isEmpty)! && !(txt_Vehicle_SerialNumberOne.text?.isEmpty)! && !(txt_Vehicle_SerialNumberTwo.text?.isEmpty)! {
-                vehicleRef.child(VehicleListFBKeys.vehicleNumber.key).setValue(updatedVehicleNumber)
+                vehiclePrivateRef.child(VehicleListFBKeys.vehicleNumber.key).setValue(updatedVehicleNumber)
+                vehicleAllRef.child(updatedVehicleNumber).setValue(vehicleUID.getVehicleUID())
+                vehicleAllRef.child(vehicleUID.getvehicleNumber()).removeValue()
                 
-                vehicleRef.observe(.value) { (snapshot) in
+                vehiclePrivateRef.observe(.value) { (snapshot) in
                     self.retrieviedVehicleDataInFirebase()
                 }
                 
@@ -376,8 +376,11 @@ extension MyVehiclesViewController : dataRemoveProtocol {
         NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().remove_Alert_Title(), Message: NAString().remove_Alert_Message(), CancelStyle: .default, OkStyle: .destructive, OK: { (action) in
             userDataReference.removeValue()
             
-            let vehicleRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehicleUID.getVehicleUID())
-            vehicleRef.removeValue()
+            let vehiclePrivateRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehicleUID.getVehicleUID())
+            vehiclePrivateRef.removeValue()
+            
+            let vehicleAllRef = Constants.FIREBASE_VEHICLES_ALL.child(vehicleUID.getvehicleNumber())
+            vehicleAllRef.removeValue()
             
             self.myExpectedVehicleList.remove(at: index)
             
