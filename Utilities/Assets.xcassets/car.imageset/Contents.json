@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "car-3.png",
+      "filename" : "car.png",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "car-4.png",
+      "filename" : "car-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "car-5.png",
+      "filename" : "car-2.png",
       "scale" : "3x"
     }
   ],

@@ -15,6 +15,7 @@ enum VehicleListFBKeys: String {
     case ownerName
     case vehicleNumber
     case vehicleType
+    case vehicleUID
     
     var key : String {
         switch self {
@@ -23,6 +24,7 @@ enum VehicleListFBKeys: String {
         case .ownerName: return "ownerName"
         case .vehicleNumber: return "vehicleNumber"
         case .vehicleType:return "vehicleType"
+        case .vehicleUID: return "uid"
         }
     }
 }
@@ -33,12 +35,14 @@ class NAExpectingVehicle {
     var ownerName : String?
     var vehicleNumber : String?
     var vehicleType : String?
+    var vehicleUID : String?
     
-    init(addedDate : String?,ownerName : String?, vehicleNumber: String?,vehicleType: String?) {
+    init(addedDate : String?,ownerName : String?, vehicleNumber: String?,vehicleType: String?, vehicleUID : String?) {
         self.addedDate = addedDate
         self.ownerName = ownerName
         self.vehicleNumber = vehicleNumber
         self.vehicleType = vehicleType
+        self.vehicleUID = vehicleUID
     }
     
     func getaddedDate() -> String {
@@ -55,5 +59,9 @@ class NAExpectingVehicle {
     
     func getvehicleType() -> String {
         return vehicleType!
+    }
+    
+    func getVehicleUID() -> String {
+        return vehicleUID!
     }
 }

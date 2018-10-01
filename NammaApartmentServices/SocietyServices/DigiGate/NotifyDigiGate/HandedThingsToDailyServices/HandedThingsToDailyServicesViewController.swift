@@ -20,6 +20,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     
     //set title from previous page
     var titleName =  String()
+    var isActivityIndicatorRunning = false
     
     //Database References
     var userDataRef : DatabaseReference?
@@ -61,6 +62,17 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+    }
+    
+    //Create image Handle  Function
+    @objc func imageHandle(notification: Notification) {
+        DispatchQueue.main.async {
+            self.isActivityIndicatorRunning = true
+            self.tableView.reloadData()
+        }
     }
     
     // Navigate to FAQ's WebSite
@@ -187,6 +199,13 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         //image makes round
         cell.cellImage.layer.cornerRadius = cell.cellImage.frame.size.width/2
         cell.cellImage.clipsToBounds = true
+        
+        if isActivityIndicatorRunning == false {
+            cell.activityIndicator.startAnimating()
+        } else if (isActivityIndicatorRunning == true) {
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.isHidden = true
+        }
         
         /*Dynamically Change Cell Height while selecting segment Controller
          by default which index is selected on view load*/

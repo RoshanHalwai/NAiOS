@@ -46,6 +46,10 @@ class NAFont: NSObject {
         return UIFont(name: "Lato-Light", size: 22)!
     }
     
+    func lato_Light_16() -> UIFont {
+        return UIFont(name: "Lato-Light", size: 16)!
+    }
+    
     func CellLabelFont() -> UIFont {
         return UIFont(name: "Lato-Bold", size: 26)!
     }

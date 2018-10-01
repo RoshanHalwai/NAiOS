@@ -223,41 +223,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
         }
     }
     
-    // Creating move cursor from One textField to another TextField
-    func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool {
-        //Check if textField has two chacraters
-        if ((textField.text?.count)! == 1  && string.count > 0) {
-            // get next TextField
-            let nextTag = textField.tag + 1
-            var nextTextField = textField.superview?.viewWithTag(nextTag)
-            if (nextTextField == nil) {
-                nextTextField = textField.superview?.viewWithTag(1)
-            }
-            textField.text = textField.text! + string
-            //write here your last textfield tag
-            if textField.tag == 4 {
-                //Dissmiss keyboard on last entry
-                textField.resignFirstResponder()
-            }
-            else {
-                //Appear keyboard
-                nextTextField?.becomeFirstResponder()
-            }
-            return false
-        } else if ((textField.text?.count)! == 1  && string.count == 0) {
-            // on deleteing value from Textfield
-            let previousTag = textField.tag - 1
-            // get previous TextField
-            var previousTextField = textField.superview?.viewWithTag(previousTag)
-            if (previousTextField == nil) {
-                previousTextField = textField.superview?.viewWithTag(1)
-            }
-            textField.text = ""
-            previousTextField?.becomeFirstResponder()
-            return false
-        }
-        return true
-    }
+   
 }
 
 extension AddMyVehiclesViewController {
@@ -321,6 +287,8 @@ extension AddMyVehiclesViewController {
         return false
     }
     
+    
+    
     //Creating Function for Storing Vehicle Data in Firebase
     func storeVehicleDetailsInFirebase() {
         let date = Date()
@@ -356,7 +324,8 @@ extension AddMyVehiclesViewController {
             VehicleListFBKeys.addedDate.key : currentDate,
             VehicleListFBKeys.ownerName.key : GlobalUserData.shared.personalDetails_Items.first?.fullName,
             VehicleListFBKeys.vehicleNumber.key : finalVehicleString,
-            VehicleListFBKeys.vehicleType.key : btn_VehicleType_String
+            VehicleListFBKeys.vehicleType.key : btn_VehicleType_String,
+            VehicleListFBKeys.vehicleUID.key : vehicleUID
         ]
         
         //Adding data in Firebase from dictionary
@@ -364,5 +333,39 @@ extension AddMyVehiclesViewController {
         self.txt_VehicleSerialNumberTwo.resignFirstResponder()
         //Calling Alert Function After Storing Data in Firebase
         inviteAlertView()
+    }
+}
+
+extension UIViewController {
+    //Creating method to move cursor from one TextField to another
+    func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool {
+        //Checking TextField containing two characters
+        if ((textField.text?.count)! == 1  && string.count > 0) {
+            let nextTag = textField.tag + 1
+            var nextTextField = textField.superview?.viewWithTag(nextTag)
+            if (nextTextField == nil) {
+                nextTextField = textField.superview?.viewWithTag(1)
+            }
+            textField.text = textField.text! + string
+            //Assigning last textfield tag value
+            if textField.tag == 4 {
+                textField.resignFirstResponder()
+            } else {
+                nextTextField?.becomeFirstResponder()
+            }
+            return false
+        } else if ((textField.text?.count)! == 1  && string.count == 0) {
+            //Cursor navigate to earlier textField, After deleting characters.
+            let previousTag = textField.tag - 1
+            //Getting previous TextField
+            var previousTextField = textField.superview?.viewWithTag(previousTag)
+            if (previousTextField == nil) {
+                previousTextField = textField.superview?.viewWithTag(1)
+            }
+            textField.text = ""
+            previousTextField?.becomeFirstResponder()
+            return false
+        }
+        return true
     }
 }

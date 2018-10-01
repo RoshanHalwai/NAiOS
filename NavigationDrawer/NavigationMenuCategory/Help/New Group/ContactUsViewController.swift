@@ -128,6 +128,9 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     
     @objc func gotoContactUsHistoryVC() {
         let dv = NAViewPresenter().contactUsHistoryVC()
+        lbl_SelectServiceType_Validation.isHidden = true
+        lbl_DescribeYourProblem_Validation.isHidden = true
+        txt_Choose_One.underlined()
         self.navigationController?.pushViewController(dv, animated: true)
     }
     
@@ -252,7 +255,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         let problemDetails = [
             SupportDetailsFBKeys.problemDescription.key : txt_Describe_Your_Problem.text,
             SupportDetailsFBKeys.serviceCategory.key : getServiceButton_Text.capitalized,
-            SupportDetailsFBKeys.serviceType.key: selectedItem,
+            SupportDetailsFBKeys.serviceType.key: txt_Choose_One.text as Any,
             SupportDetailsFBKeys.status.key : NAString().pending(),
             SupportDetailsFBKeys.timestamp.key : (Int64(Date().timeIntervalSince1970 * 1000)),
             SupportDetailsFBKeys.uid.key : problemUID as Any,

@@ -38,7 +38,6 @@
 		08EA5781214649E400A0574D /* MyTransactionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */; };
 		08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA5782214649EB00A0574D /* NAUserTransactions.swift */; };
 		08EA578521464A0B00A0574D /* ContactUsHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578421464A0A00A0574D /* ContactUsHistoryViewController.swift */; };
-		08EA578721464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */; };
 		08EA578921464A2000A0574D /* NAUserProblems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578821464A1F00A0574D /* NAUserProblems.swift */; };
 		08EF759020D240620031FA66 /* NAValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EF758F20D240620031FA66 /* NAValidation.swift */; };
 		08F3ED9F212FC7AD0030DBEF /* SocietyServiceRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */; };
@@ -80,6 +79,7 @@
 		42914D9C2126872F00B3B57A /* NAEventManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42914D9B2126872F00B3B57A /* NAEventManagement.swift */; };
 		4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */; };
 		42D208422130324400D3AF3E /* NANoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D208412130324400D3AF3E /* NANoticeBoardViewController.swift */; };
+		42EAC91E216239A900CB0EC9 /* ContactUsHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EAC91D216239A900CB0EC9 /* ContactUsHistoryTableViewCell.swift */; };
 		5D0A230692BD5675BDF1151F /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
 		5D70B4BF2155042500656819 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4BE2155042500656819 /* EventManagementViewController.swift */; };
@@ -248,7 +248,6 @@
 		86F7B41D215D1FAD005A26CE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
 		86F7B41E215D1FAD005A26CE /* SocietyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */; };
 		86F7B41F215D1FAD005A26CE /* UNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628855D2158E64E00CC540B /* UNService.swift */; };
-		86F7B420215D1FAD005A26CE /* ContactUsHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */; };
 		86F7B421215D1FAD005A26CE /* HandedThingsDailyServicesHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 083D5C8420F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift */; };
 		86F7B422215D1FAD005A26CE /* HandedThingsGuestHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081B49E620F32740006D502A /* HandedThingsGuestHistoryViewController.swift */; };
 		86F7B423215D1FAD005A26CE /* MyVehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42341BB2212165510005160B /* MyVehiclesViewController.swift */; };
@@ -417,7 +416,6 @@
 		08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTransactionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		08EA5782214649EB00A0574D /* NAUserTransactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAUserTransactions.swift; sourceTree = "<group>"; };
 		08EA578421464A0A00A0574D /* ContactUsHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsHistoryViewController.swift; sourceTree = "<group>"; };
-		08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		08EA578821464A1F00A0574D /* NAUserProblems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAUserProblems.swift; sourceTree = "<group>"; };
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
 		08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocietyServiceRatingView.xib; sourceTree = "<group>"; };
@@ -460,6 +458,7 @@
 		42914D9B2126872F00B3B57A /* NAEventManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAEventManagement.swift; sourceTree = "<group>"; };
 		4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMyGuardsViewController.swift; sourceTree = "<group>"; };
 		42D208412130324400D3AF3E /* NANoticeBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NANoticeBoardViewController.swift; sourceTree = "<group>"; };
+		42EAC91D216239A900CB0EC9 /* ContactUsHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		57024B9AAB6FF7DBC02BCC40 /* Pods-nammaApartmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D70B4BE2155042500656819 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
@@ -666,7 +665,7 @@
 			children = (
 				0834B393214249F000516C9C /* ContactUsViewController.swift */,
 				08EA578421464A0A00A0574D /* ContactUsHistoryViewController.swift */,
-				08EA578621464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift */,
+				42EAC91D216239A900CB0EC9 /* ContactUsHistoryTableViewCell.swift */,
 				08EA578821464A1F00A0574D /* NAUserProblems.swift */,
 				423033A02131436B00DBF109 /* ContactUsListViewController.swift */,
 			);
@@ -1837,7 +1836,6 @@
 				86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */,
 				08F3EDA1212FD6B00030DBEF /* SocietyServiceRatingView.swift in Sources */,
 				8628855E2158E64E00CC540B /* UNService.swift in Sources */,
-				08EA578721464A1300A0574D /* ContactUsHistoryCollectionViewCell.swift in Sources */,
 				083D5C8520F87E2F00F549AF /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
 				081B49E720F32740006D502A /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				42341BB3212165510005160B /* MyVehiclesViewController.swift in Sources */,
@@ -1851,6 +1849,7 @@
 				86548D87209C63C700C700DA /* DigitalGateViewController.swift in Sources */,
 				085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */,
 				86BF6A4320A0326E00B175A1 /* MyGuestListViewController.swift in Sources */,
+				42EAC91E216239A900CB0EC9 /* ContactUsHistoryTableViewCell.swift in Sources */,
 				5D774290210DD49F0049344F /* MyFlatTableViewCell.swift in Sources */,
 				08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */,
 				86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */,
@@ -1994,7 +1993,6 @@
 				86F7B41D215D1FAD005A26CE /* NAActivityIndicator.swift in Sources */,
 				86F7B41E215D1FAD005A26CE /* SocietyServiceRatingView.swift in Sources */,
 				86F7B41F215D1FAD005A26CE /* UNService.swift in Sources */,
-				86F7B420215D1FAD005A26CE /* ContactUsHistoryCollectionViewCell.swift in Sources */,
 				86F7B421215D1FAD005A26CE /* HandedThingsDailyServicesHistoryViewController.swift in Sources */,
 				86F7B422215D1FAD005A26CE /* HandedThingsGuestHistoryViewController.swift in Sources */,
 				86F7B423215D1FAD005A26CE /* MyVehiclesViewController.swift in Sources */,

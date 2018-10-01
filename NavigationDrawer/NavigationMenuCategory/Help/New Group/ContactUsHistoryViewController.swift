@@ -8,26 +8,29 @@
 
 import UIKit
 
-class ContactUsHistoryViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ContactUsHistoryViewController: NANavigationViewController, UITableViewDataSource,UITableViewDelegate {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
     
     var userSupportDetails = [NAUserProblems]()
     var serviceType = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.separatorStyle = .none
         self.ConfigureNavBarTitle(title: NAString().history().capitalized)
         self.navigationItem.rightBarButtonItem = nil
-        retrievingUserProblemData()
+        retrievingUserProblemData()        
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //MARK : TableView DataSource & Delegate Methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userSupportDetails.count
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as? ContactUsHistoryCollectionViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as? ContactUsTableViewCell
         
         let supportDetails : NAUserProblems
         supportDetails = userSupportDetails[indexPath.row]
@@ -59,7 +62,14 @@ class ContactUsHistoryViewController: NANavigationViewController, UICollectionVi
         cell?.lbl_Date_Detail.font = NAFont().headerFont()
         cell?.lbl_Status_Detail.font = NAFont().headerFont()
         
-        NAShadowEffect().shadowEffect(Cell: cell!)
+        //cardUIView
+        cell?.cardView.layer.cornerRadius = 3
+        cell?.cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
+        cell?.cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        cell?.cardView.layer.shadowRadius = 1.7
+        cell?.cardView.layer.shadowOpacity = 0.45
+        cell?.isUserInteractionEnabled = false
+        
         return cell!
     }
     
@@ -86,7 +96,7 @@ class ContactUsHistoryViewController: NANavigationViewController, UICollectionVi
                         
                         self.userSupportDetails.append(problemsData)
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        self.collectionView.reloadData()
+                        self.tableView.reloadData()
                     })
                 }
             } else {

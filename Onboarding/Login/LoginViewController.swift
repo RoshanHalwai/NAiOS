@@ -15,6 +15,7 @@ var personalDetails = [UserPersonalDetails]()
 var userprivileges = [UserPrivileges]()
 
 class LoginViewController: NANavigationViewController {
+    
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var lbl_MobileNo: UILabel!
     @IBOutlet weak var btnLogin: UIButton!
@@ -22,6 +23,8 @@ class LoginViewController: NANavigationViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var lbl_CountryCode: UILabel!
+    @IBOutlet weak var lbl_Arrow: UILabel!
+    @IBOutlet weak var stack_CountryCode: UIStackView!
     
     var countryCodeArray = [NAString().unitedStateCode(),NAString().indianStateCode()]
     
@@ -30,9 +33,10 @@ class LoginViewController: NANavigationViewController {
         
         self.navigationController?.navigationBar.isHidden = false
         
-        let countryCodePlaceHolder: String = NAString().stateCodePlaceHolder()
-        lbl_CountryCode.textColor = UIColor.darkGray
-        lbl_CountryCode.text = countryCodePlaceHolder
+        lbl_CountryCode.textColor = UIColor.black
+        lbl_CountryCode.text = NAString()._91()
+        lbl_Arrow.text = NAString().image()
+        lbl_Arrow.textColor = UIColor.black
         
         //scrollView
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
@@ -74,39 +78,42 @@ class LoginViewController: NANavigationViewController {
         hideNumberPad(numberTextField: txt_MobileNo)
         
         let selectCountryCode = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
-        lbl_CountryCode.isUserInteractionEnabled = true
-        lbl_CountryCode.addGestureRecognizer(selectCountryCode)
+        stack_CountryCode.isUserInteractionEnabled = true
+        stack_CountryCode.addGestureRecognizer(selectCountryCode)
     }
-        @objc func tapFunction(sender:UITapGestureRecognizer) {
-            let actionSheet = UIAlertController(title:NAString().selectCountryCode(), message: nil, preferredStyle: .actionSheet)
-            
-            let action1 = UIAlertAction(title: countryCodeArray[0], style: .default, handler: countryCodeSelected)
-            let action2 = UIAlertAction(title: countryCodeArray[1], style: .default, handler: countryCodeSelected)
-            
-            let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
-                (alert: UIAlertAction!) -> Void in
-            })
-            actionSheet.addAction(action1)
-            actionSheet.addAction(action2)
-            
-            actionSheet.addAction(cancel)
-            actionSheet.view.tintColor = UIColor.black
-            self.present(actionSheet, animated: true, completion: nil)
-            
-        }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        
+        let actionSheet = UIAlertController(title:NAString().selectCountryCode(), message: nil, preferredStyle: .actionSheet)
+        
+        let action1 = UIAlertAction(title: countryCodeArray[0], style: .default, handler: countryCodeSelected)
+        let action2 = UIAlertAction(title: countryCodeArray[1], style: .default, handler: countryCodeSelected)
+        
+        let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        actionSheet.addAction(action1)
+        actionSheet.addAction(action2)
+        
+        actionSheet.addAction(cancel)
+        actionSheet.view.tintColor = UIColor.black
+        self.present(actionSheet, animated: true, completion: nil)
+    }
     
     func countryCodeSelected(alert: UIAlertAction!) {
         if alert.title == NAString().unitedStateCode() {
             lbl_CountryCode.text = NAString()._1()
+            lbl_Arrow.text = NAString().image()
             lbl_CountryCode.textColor = UIColor.black
-            lbl_Validation.isHidden = true
+            lbl_Arrow.textColor = UIColor.black
         } else {
             lbl_CountryCode.text = NAString()._91()
+            lbl_Arrow.text = NAString().image()
             lbl_CountryCode.textColor = UIColor.black
-            lbl_Validation.isHidden = true
+            lbl_Arrow.textColor = UIColor.black
         }
     }
-        
+    
     //Accept only 10 digit mobile number in MobileNumber TextField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true }
@@ -129,9 +136,6 @@ class LoginViewController: NANavigationViewController {
             lbl_Validation.isHidden = false
             lbl_Validation.text =  NAString().please_enter_10_digit_no()
             txt_MobileNo.redunderlined()
-        } else if self.lbl_CountryCode.text == NAString().stateCodePlaceHolder() {
-            lbl_Validation.isHidden = false
-              lbl_Validation.text =  NAString().please_select_country_code()
         } else if ((txt_MobileNo.text?.count)! == NAString().required_mobileNo_Length()) {
             txt_MobileNo.resignFirstResponder()
             let lv = NAViewPresenter().otpViewController()
