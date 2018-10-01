@@ -34,6 +34,7 @@ class HandedThingsToDailyServicesTableViewCell: UITableViewCell {
     @IBOutlet weak var btn_NotifyGate: UIButton!
     
     @IBOutlet weak var segmentSelect: UISegmentedControl!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //Defining cell Height
     class var expandedHeight: CGFloat { get { return 340 } }
