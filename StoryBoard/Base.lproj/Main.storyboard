@@ -295,7 +295,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will collect food " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smj-Ef-i0k">
-                                                <rect key="frame" x="255.5" y="0.0" width="54.5" height="53"/>
+                                                <rect key="frame" x="255" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3445,7 +3445,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNx-TJ-Zb9">
-                                        <rect key="frame" x="49" y="250" width="275" height="140"/>
+                                        <rect key="frame" x="50" y="263.5" width="275" height="140"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="epN-UV-caa">
                                                 <rect key="frame" x="13" y="100" width="250" height="30"/>
@@ -3547,9 +3547,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="uNx-TJ-Zb9" firstAttribute="leading" secondItem="zKL-pa-39C" secondAttribute="leading" constant="49" id="abM-FG-50C"/>
-                                    <constraint firstItem="uNx-TJ-Zb9" firstAttribute="top" secondItem="zKL-pa-39C" secondAttribute="top" constant="250" id="b5E-mp-MLT"/>
-                                    <constraint firstAttribute="trailing" secondItem="uNx-TJ-Zb9" secondAttribute="trailing" constant="51" id="zM5-AA-NIC"/>
+                                    <constraint firstItem="uNx-TJ-Zb9" firstAttribute="centerX" secondItem="zKL-pa-39C" secondAttribute="centerX" id="4Re-Wz-sXJ"/>
+                                    <constraint firstItem="uNx-TJ-Zb9" firstAttribute="centerY" secondItem="zKL-pa-39C" secondAttribute="centerY" id="I2P-wh-wlY"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81V-EG-HHv">
