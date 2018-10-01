@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "bike.png",
+      "filename" : "motorbike.png",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "bike-1.png",
+      "filename" : "motorbike-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "bike-2.png",
+      "filename" : "motorbike-2.png",
       "scale" : "3x"
     }
   ],
