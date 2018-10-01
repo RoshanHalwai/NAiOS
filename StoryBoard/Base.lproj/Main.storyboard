@@ -283,13 +283,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="170" y="0.0" width="55.5" height="53"/>
+                                                <rect key="frame" x="172.5" y="0.0" width="53" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -10008,7 +10008,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbq-tV-CR7">
                                                     <rect key="frame" x="15" y="11" width="345" height="333"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event" translatesAutoresizingMaskIntoConstraints="NO" id="ieD-g5-o3r">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eventManagement" translatesAutoresizingMaskIntoConstraints="NO" id="ieD-g5-o3r">
                                                             <rect key="frame" x="5" y="10" width="60" height="60"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="DbU-Qa-qKA"/>
@@ -10027,8 +10027,8 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-h0-VgT">
-                                                                            <rect key="frame" x="0.0" y="25.5" width="54" height="30.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-h0-VgT">
+                                                                            <rect key="frame" x="0.0" y="25.5" width="75" height="30.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -10370,6 +10370,7 @@
         <image name="customer-support" width="256" height="256"/>
         <image name="donteFoodHistory" width="128" height="128"/>
         <image name="event" width="64" height="64"/>
+        <image name="eventManagement" width="128" height="128"/>
         <image name="imageIcon" width="256" height="256"/>
         <image name="motorCycle" width="128" height="128"/>
         <image name="namma_apartments_na" width="307" height="239"/>
