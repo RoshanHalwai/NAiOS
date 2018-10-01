@@ -150,6 +150,10 @@ class NAString : NSObject {
         return String("+1")
     }
     
+    func image() -> String {
+        return String("▼")
+    }
+    
     func selectCountryCode() -> String {
         return String("Select your country code")
     }
@@ -234,7 +238,7 @@ class NAString : NSObject {
     }
     
     func please_enter_email() -> String {
-        return String("Please enter Email")
+        return String("Please Enter E-mail")
     }
     
     func please_select_your_relation() -> String {

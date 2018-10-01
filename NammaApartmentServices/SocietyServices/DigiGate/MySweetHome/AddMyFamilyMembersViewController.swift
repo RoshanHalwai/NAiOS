@@ -40,6 +40,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var lbl_CountryCode: UILabel!
     @IBOutlet weak var txt_Email: UITextField!
+    @IBOutlet weak var lbl_Arrow: UILabel!
+    @IBOutlet weak var stack_CountryCode: UIStackView!
     
     @IBOutlet weak var btn_SelectContact: UIButton!
     @IBOutlet weak var btn_addDetails: UIButton!
@@ -87,9 +89,10 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        let countryCodePlaceHolder: String = NAString().stateCodePlaceHolder()
-        lbl_CountryCode.textColor = UIColor.darkGray
-        lbl_CountryCode.text = countryCodePlaceHolder
+        lbl_CountryCode.textColor = UIColor.black
+        lbl_CountryCode.text = NAString()._91()
+        lbl_Arrow.text = NAString().image()
+        lbl_Arrow.textColor = UIColor.black
         
         img_Profile.layer.borderColor = UIColor.black.cgColor
         
@@ -168,8 +171,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         hideNumberPad(numberTextField: txt_MobileNo)
         
         let selectCountryCode = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
-        lbl_CountryCode.isUserInteractionEnabled = true
-        lbl_CountryCode.addGestureRecognizer(selectCountryCode)
+        stack_CountryCode.isUserInteractionEnabled = true
+        stack_CountryCode.addGestureRecognizer(selectCountryCode)
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
@@ -192,12 +195,14 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     func countryCodeSelected(alert: UIAlertAction!) {
         if alert.title == NAString().unitedStateCode() {
             lbl_CountryCode.text = NAString()._1()
+            lbl_Arrow.text = NAString().image()
             lbl_CountryCode.textColor = UIColor.black
-            lbl_Mobile_Validation.isHidden = true
+            lbl_Arrow.textColor = UIColor.black
         } else {
             lbl_CountryCode.text = NAString()._91()
+            lbl_Arrow.text = NAString().image()
             lbl_CountryCode.textColor = UIColor.black
-            lbl_Mobile_Validation.isHidden = true
+            lbl_Arrow.textColor = UIColor.black
         }
     }
     
@@ -414,10 +419,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         } else if (txt_MobileNo.text?.count == NAString().required_mobileNo_Length()) {
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
-        }
-        if self.lbl_CountryCode.text == NAString().stateCodePlaceHolder() {
-            lbl_Mobile_Validation.isHidden = false
-            lbl_Mobile_Validation.text =  NAString().please_select_country_code()
         }
         if !(txt_Name.text?.isEmpty)! && isEmailAddressIsValid == true && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if(grantAcess_Segment.selectedSegmentIndex == 0) {
