@@ -337,31 +337,27 @@ extension AddMyVehiclesViewController {
 }
 
 extension UIViewController {
-    // Creating move cursor from One textField to another TextField
+    //Creating method to move cursor from one TextField to another
     func shouldChangeCustomCharacters(textField:UITextField, string: String) ->Bool {
-        //Check if textField has two chacraters
+        //Checking TextField containing two characters
         if ((textField.text?.count)! == 1  && string.count > 0) {
-            // get next TextField
             let nextTag = textField.tag + 1
             var nextTextField = textField.superview?.viewWithTag(nextTag)
             if (nextTextField == nil) {
                 nextTextField = textField.superview?.viewWithTag(1)
             }
             textField.text = textField.text! + string
-            //write here your last textfield tag
+            //Assigning last textfield tag value
             if textField.tag == 4 {
-                //Dissmiss keyboard on last entry
                 textField.resignFirstResponder()
-            }
-            else {
-                //Appear keyboard
+            } else {
                 nextTextField?.becomeFirstResponder()
             }
             return false
         } else if ((textField.text?.count)! == 1  && string.count == 0) {
-            // on deleteing value from Textfield
+            //Cursor navigate to earlier textField, After deleting characters.
             let previousTag = textField.tag - 1
-            // get previous TextField
+            //Getting previous TextField
             var previousTextField = textField.superview?.viewWithTag(previousTag)
             if (previousTextField == nil) {
                 previousTextField = textField.superview?.viewWithTag(1)
