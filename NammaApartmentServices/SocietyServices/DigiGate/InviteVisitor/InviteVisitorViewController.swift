@@ -33,6 +33,9 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     @IBOutlet weak var lbl_Date_Validation: UILabel!
     @IBOutlet weak var img_Profile: UIImageView!
     @IBOutlet weak var seperatingLineView: UIView!
+    @IBOutlet weak var lbl_Arrow: UILabel!
+    @IBOutlet weak var stack_CountryCode: UIStackView!
+    
     
     //Creating Firebase DB Reference variable.
     var visitorsPrivateRef : DatabaseReference?
@@ -140,13 +143,14 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //Calling function from NANavigationViewController class to hide numberPad on done pressed
         hideNumberPad(numberTextField: txtInvitorMobile)
         
-        let countryCodePlaceHolder: String = NAString().stateCodePlaceHolder()
-        lbl_CountryCode.textColor = UIColor.darkGray
-        lbl_CountryCode.text = countryCodePlaceHolder
+        lbl_CountryCode.textColor = UIColor.black
+        lbl_CountryCode.text = NAString()._91()
+        lbl_Arrow.text = NAString().image()
+        lbl_Arrow.textColor = UIColor.black
         
         let selectCountryCode = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
-        lbl_CountryCode.isUserInteractionEnabled = true
-        lbl_CountryCode.addGestureRecognizer(selectCountryCode)
+        stack_CountryCode.isUserInteractionEnabled = true
+        stack_CountryCode.addGestureRecognizer(selectCountryCode)
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
@@ -170,12 +174,14 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     func countryCodeSelected(alert: UIAlertAction!) {
         if alert.title == NAString().unitedStateCode() {
             lbl_CountryCode.text = NAString()._1()
+            lbl_Arrow.text = NAString().image()
             lbl_CountryCode.textColor = UIColor.black
-            lbl_Mob_Validation.isHidden = true
+            lbl_Arrow.textColor = UIColor.black
         } else {
             lbl_CountryCode.text = NAString()._91()
+            lbl_Arrow.text = NAString().image()
             lbl_CountryCode.textColor = UIColor.black
-            lbl_Mob_Validation.isHidden = true
+            lbl_Arrow.textColor = UIColor.black
         }
     }
     
@@ -295,10 +301,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         } else if (txtInvitorMobile.text?.count == NAString().required_mobileNo_Length()) {
             txtInvitorMobile.underlined()
             lbl_Mob_Validation.isHidden = true
-        }
-        if self.lbl_CountryCode.text == NAString().stateCodePlaceHolder() {
-            lbl_Mob_Validation.isHidden = false
-            lbl_Mob_Validation.text =  NAString().please_select_country_code()
         }
         if (txtDate.text?.isEmpty)! {
             lbl_Date_Validation.isHidden = false
