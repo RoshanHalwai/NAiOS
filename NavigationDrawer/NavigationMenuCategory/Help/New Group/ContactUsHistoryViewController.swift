@@ -19,7 +19,7 @@ class ContactUsHistoryViewController: NANavigationViewController, UICollectionVi
         super.viewDidLoad()
         self.ConfigureNavBarTitle(title: NAString().history().capitalized)
         self.navigationItem.rightBarButtonItem = nil
-        retrievingUserProblemData()
+        retrievingUserProblemData()        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
