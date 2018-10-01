@@ -83,7 +83,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         let width = UIScreen.main.bounds.width
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: 220)
+        layout.itemSize = CGSize(width: width - 10, height: 200)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
