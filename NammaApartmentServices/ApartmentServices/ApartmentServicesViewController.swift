@@ -276,8 +276,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                                 let serviceOwnerRef = serviceTypeRef.child(serviceTypeUID)
                                 serviceOwnerRef.observeSingleEvent(of: .value, with: { (ownerUIDSnapshot) in
                                     
-                                    
-                                    
                                     let flatCount = ownerUIDSnapshot.childrenCount - 2
                                     if let serviceOwnersUID = ownerUIDSnapshot.value as? [String: Any] {
                                         let averageRating = serviceOwnersUID[NAString().averageRating()]
