@@ -1412,6 +1412,14 @@ class NAString : NSObject {
         return ("Bike")
     }
     
+    func car_No() -> String {
+        return String("Car No:")
+    }
+    
+    func bike_No() -> String {
+        return String("Bike No:")
+    }
+    
     func please_Enter_Vehicle_Number() -> String {
         return ("Please Enter Vehicle Number")
     }

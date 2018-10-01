@@ -54,6 +54,7 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         popUp_View.isHidden = true
         lbl_VehicleNumber_Validation.isHidden = true
         
+        popUp_View.layer.cornerRadius = 10
         
         txt_VehicleState_Code.underlined()
         txt_Vehicle_Rto_Number.underlined()
@@ -71,11 +72,11 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         txt_Vehicle_SerialNumberOne.delegate = self
         txt_Vehicle_SerialNumberTwo.delegate = self
         
-        btn_PopUp_Cancel.titleLabel?.font = NAFont().descriptionFont()
+        btn_PopUp_Cancel.titleLabel?.font = NAFont().lato_Light_16()
         btn_PopUp_Cancel.backgroundColor = NAColor().buttonBgColor()
         btn_PopUp_Cancel.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         
-        btn_PopUp_Update.titleLabel?.font = NAFont().descriptionFont()
+        btn_PopUp_Update.titleLabel?.font = NAFont().lato_Light_16()
         btn_PopUp_Update.backgroundColor = NAColor().buttonBgColor()
         btn_PopUp_Update.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         
@@ -134,8 +135,10 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         
         if  myVehicleList.getvehicleType() == NAString().car() {
             cell.myVehicleImage.image = #imageLiteral(resourceName: "car")
+            cell.lbl_VehicleNumber.text = NAString().car_No()
         } else {
             cell.myVehicleImage.image = #imageLiteral(resourceName: "motorCycle")
+            cell.lbl_VehicleNumber.text = NAString().bike_No()
         }
         
         cell.index = indexPath
@@ -149,11 +152,11 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         cell.lbl_VehicleOwner.font = NAFont().textFieldFont()
         cell.lbl_VehicleAddedOn.font = NAFont().textFieldFont()
         
-        cell.btn_Edit.titleLabel?.font = NAFont().descriptionFont()
+        cell.btn_Edit.titleLabel?.font = NAFont().lato_Light_16()
         cell.btn_Edit.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         cell.btn_Edit.backgroundColor = NAColor().buttonBgColor()
         
-        cell.btn_Remove.titleLabel?.font = NAFont().descriptionFont()
+        cell.btn_Remove.titleLabel?.font = NAFont().lato_Light_16()
         cell.btn_Remove.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         cell.btn_Remove.backgroundColor = NAColor().buttonBgColor()
         
