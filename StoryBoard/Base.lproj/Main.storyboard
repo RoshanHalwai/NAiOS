@@ -8903,17 +8903,17 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uvW-K3-jbU">
-                                    <size key="itemSize" width="344" height="263"/>
+                                    <size key="itemSize" width="345" height="288"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="1Ve-WF-X9O" customClass="ContactUsHistoryCollectionViewCell" customModule="nammaApartment" customModuleProvider="target">
-                                        <rect key="frame" x="15.5" y="10" width="344" height="263"/>
+                                        <rect key="frame" x="15" y="10" width="345" height="288"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="344" height="263"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="288"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="customer-support" translatesAutoresizingMaskIntoConstraints="NO" id="qHj-cQ-42p">
@@ -8988,43 +8988,49 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="82" id="5js-cK-u3v"/>
+                                                    </constraints>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OP1-PH-1kW">
-                                                    <rect key="frame" x="18" y="235" width="147" height="20.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problem:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99K-IT-9Ar">
-                                                            <rect key="frame" x="0.0" y="0.0" width="68.5" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="12" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSw-51-8zi">
-                                                            <rect key="frame" x="78.5" y="0.0" width="68.5" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Problem:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dg-C7-reY">
+                                                    <rect key="frame" x="18" y="235" width="72" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikL-Q9-XZz">
+                                                    <rect key="frame" x="110" y="235" width="225" height="20.5"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" staticText="YES" adjustable="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="225" id="6y0-F6-O8Y"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="ZGK-Im-lfh" firstAttribute="leading" secondItem="1Ve-WF-X9O" secondAttribute="leadingMargin" constant="10" id="CIi-8b-1dz"/>
                                             <constraint firstItem="qHj-cQ-42p" firstAttribute="top" secondItem="1Ve-WF-X9O" secondAttribute="topMargin" constant="12" id="D1d-Fh-WDp"/>
-                                            <constraint firstItem="OP1-PH-1kW" firstAttribute="leading" secondItem="1Ve-WF-X9O" secondAttribute="leadingMargin" constant="10" id="Qzn-e3-fN0"/>
+                                            <constraint firstItem="ikL-Q9-XZz" firstAttribute="top" secondItem="ZGK-Im-lfh" secondAttribute="bottom" constant="3" id="EaA-Sf-8f7"/>
+                                            <constraint firstItem="4dg-C7-reY" firstAttribute="top" secondItem="ZGK-Im-lfh" secondAttribute="bottom" constant="3" id="KQR-WD-T6A"/>
                                             <constraint firstItem="qHj-cQ-42p" firstAttribute="centerX" secondItem="1Ve-WF-X9O" secondAttribute="centerX" id="amL-EG-jF5"/>
-                                            <constraint firstAttribute="bottom" secondItem="OP1-PH-1kW" secondAttribute="bottom" constant="7.5" id="gfT-B1-Yw7"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="ikL-Q9-XZz" secondAttribute="trailing" constant="2" id="ckc-KI-0DA"/>
                                             <constraint firstItem="ZGK-Im-lfh" firstAttribute="top" secondItem="qHj-cQ-42p" secondAttribute="bottom" constant="10" id="iLh-1i-PwV"/>
-                                            <constraint firstItem="OP1-PH-1kW" firstAttribute="top" secondItem="ZGK-Im-lfh" secondAttribute="bottom" constant="3" id="uLd-Ll-wWl"/>
+                                            <constraint firstItem="ikL-Q9-XZz" firstAttribute="leading" secondItem="4dg-C7-reY" secondAttribute="trailing" constant="20" id="kYC-Tq-9mL"/>
+                                            <constraint firstItem="4dg-C7-reY" firstAttribute="leading" secondItem="1Ve-WF-X9O" secondAttribute="leadingMargin" constant="10" id="z2n-Ep-pzo"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="lbl_Category_Detail" destination="dIJ-od-TX9" id="8vJ-WY-mvV"/>
                                             <outlet property="lbl_Category_Type" destination="TIZ-VH-98Q" id="nTP-76-tik"/>
                                             <outlet property="lbl_Date_Detail" destination="CP8-jk-2Wl" id="i8u-Wv-Lr0"/>
                                             <outlet property="lbl_Date_Type" destination="7kt-Gm-M9E" id="im2-RK-nGs"/>
-                                            <outlet property="lbl_Problem_Detail" destination="kSw-51-8zi" id="ckQ-tE-Pwa"/>
-                                            <outlet property="lbl_Problem_Type" destination="99K-IT-9Ar" id="Ifc-Id-euw"/>
+                                            <outlet property="lbl_Problem_Detail" destination="ikL-Q9-XZz" id="Nv1-If-XBV"/>
+                                            <outlet property="lbl_Problem_Type" destination="4dg-C7-reY" id="4UQ-P5-d1D"/>
                                             <outlet property="lbl_Status_Detail" destination="X3V-xw-YRw" id="3f9-GY-LpW"/>
                                             <outlet property="lbl_Status_Type" destination="aa7-BU-on2" id="nDH-6k-GK7"/>
                                             <outlet property="lbl_Type" destination="DZv-AP-XAa" id="bZk-pp-vWK"/>

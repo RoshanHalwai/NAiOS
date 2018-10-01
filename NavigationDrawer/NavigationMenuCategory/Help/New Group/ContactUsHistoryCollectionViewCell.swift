@@ -21,4 +21,4 @@ class ContactUsHistoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_Problem_Detail: UILabel!
     @IBOutlet weak var lbl_Date_Detail: UILabel!
     @IBOutlet weak var lbl_Status_Detail: UILabel!
-    }
+}
