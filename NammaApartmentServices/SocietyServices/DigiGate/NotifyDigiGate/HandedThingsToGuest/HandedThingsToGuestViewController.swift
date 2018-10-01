@@ -17,6 +17,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     var titleName =  String()
     
     @IBOutlet weak var tableView: UITableView!
+    var isActivityIndicatorRunning = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,17 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
+        
+        //Here Adding Observer Value Using NotificationCenter
+        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
+    }
+    
+    //Create image Handle  Function
+    @objc func imageHandle(notification: Notification) {
+        DispatchQueue.main.async {
+            self.isActivityIndicatorRunning = true
+            self.tableView.reloadData()
+        }
     }
     
     // Navigate to FAQ's WebSite
@@ -83,11 +95,15 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.lbl_GuestTime.text = timeString
         cell.lbl_GuestDate.text = dateString
         cell.lbl_VisiterName.text = nammaApartmentVisitor.getfullName()
+        let queue = OperationQueue()
         
-        //Calling function to get Profile Image from Firebase.
-        if let urlString = nammaApartmentVisitor.getprofilePhoto() {
-            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
+        queue.addOperation {
+            //Calling function to get Profile Image from Firebase.
+            if let urlString = nammaApartmentVisitor.getprofilePhoto() {
+                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
+            }
         }
+        queue.waitUntilAllOperationsAreFinished()
         
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_GuestInvitedBy.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
@@ -118,6 +134,13 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         
         cell.lbl_ThingsGiven.font = NAFont().headerFont()
         cell.lbl_Description.font = NAFont().headerFont()
+        
+        if isActivityIndicatorRunning == false {
+            cell.activityIndicator.startAnimating()
+        } else if (isActivityIndicatorRunning == true) {
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.isHidden = true
+        }
         
         //This creates the shadows and modifies the cards a little bit
         cell.backgroundCardView.backgroundColor = UIColor.white
