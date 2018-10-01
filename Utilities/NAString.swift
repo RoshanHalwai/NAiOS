@@ -1331,7 +1331,7 @@ class NAString : NSObject {
     }
     
     func addMyVehicles() -> String {
-        return String ("Add My Vehicles")
+        return String ("Add My Vehicle")
     }
     
     func societyService() -> String {
