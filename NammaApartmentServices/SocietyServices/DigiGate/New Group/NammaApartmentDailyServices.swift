@@ -42,12 +42,13 @@ class NammaApartmentDailyServices {
     var rating: Int?
     var timeOfVisit: String?
     var uid: String?
+    var averageRating: Int?
     private var type: String?
     private var numberOfFlat: Int?
     private var status: String?
     
     //initilaize the variables
-    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?) {
+    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?, averageRating: Int?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
@@ -58,6 +59,7 @@ class NammaApartmentDailyServices {
         self.type = type
         self.numberOfFlat = numberOfFlat
         self.status = status
+        self.averageRating = averageRating
         
     }
     
@@ -84,6 +86,10 @@ class NammaApartmentDailyServices {
     //Get mobileNumber
     func getrating() -> Int {
         return rating!
+    }
+    
+    func getAverageRating() -> Int {
+        return averageRating!
     }
     
     //Get timeOfVisit

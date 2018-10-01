@@ -822,6 +822,10 @@ class NAString : NSObject {
         return String("You have successfully added your Daily Service.")
     }
     
+    func averageRating() -> String {
+        return String("averageRating")
+    }
+    
     //visitor list
     func visitor() -> String {
         return String("Visitor:")

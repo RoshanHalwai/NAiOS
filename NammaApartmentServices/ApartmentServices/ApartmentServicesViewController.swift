@@ -186,11 +186,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         dailyServicesData = allDailyServicesList[indexPath.row]
         
         cell.lbl_MyCookName.text = dailyServicesData.getfullName()
-        
-        //TODO: Need to get Actual Rating of that particular service person.
-        cell.lbl_MyCookRating.text = "\(dailyServicesData.getrating())"
-        //TODO: Need to Implement Time slot.
-        cell.lbl_MyCookTimeSlot.text = dailyServicesData.gettimeOfVisit()
+        cell.lbl_MyCookRating.text = "\(dailyServicesData.getAverageRating())"
         cell.lbl_MyCookFlat.text = "\(dailyServicesData.getNumberOfFlats())"
         let queue = OperationQueue()
         
@@ -207,12 +203,10 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         
         cell.lbl_CookName.font = NAFont().textFieldFont()
         cell.lbl_CookRating.font = NAFont().textFieldFont()
-        cell.lbl_CookTimeSlot.font = NAFont().textFieldFont()
         cell.lbl_CookFlat.font = NAFont().textFieldFont()
         
         cell.lbl_MyCookName.font = NAFont().headerFont()
         cell.lbl_MyCookRating.font = NAFont().headerFont()
-        cell.lbl_MyCookTimeSlot.font = NAFont().headerFont()
         cell.lbl_MyCookFlat.font = NAFont().headerFont()
         
         NAShadowEffect().shadowEffect(Cell: cell)
@@ -282,8 +276,11 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                                 let serviceOwnerRef = serviceTypeRef.child(serviceTypeUID)
                                 serviceOwnerRef.observeSingleEvent(of: .value, with: { (ownerUIDSnapshot) in
                                     
-                                    let flatCount = ownerUIDSnapshot.childrenCount - 1
+                                    
+                                    
+                                    let flatCount = ownerUIDSnapshot.childrenCount - 2
                                     if let serviceOwnersUID = ownerUIDSnapshot.value as? [String: Any] {
+                                        let averageRating = serviceOwnersUID[NAString().averageRating()]
                                         
                                         var servicesOwnerUIDKeys = [String]()
                                         servicesOwnerUIDKeys = Array(serviceOwnersUID.keys)
@@ -303,7 +300,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                                             let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
                                             let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
                                             
-                                            let serviceData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: nil, rating: rating as? Int, timeOfVisit: timeOfVisit as? String, uid: (uid as! String), type: nil, numberOfFlat: flats, status: nil)
+                                            let serviceData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: nil, rating: rating as? Int, timeOfVisit: timeOfVisit as? String, uid: (uid as! String), type: nil, numberOfFlat: flats, status: nil, averageRating: averageRating as? Int)
                                             
                                             self.allDailyServicesList.append(serviceData)
                                             NAActivityIndicator.shared.hideActivityIndicator()

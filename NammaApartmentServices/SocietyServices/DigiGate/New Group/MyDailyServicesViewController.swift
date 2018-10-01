@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import MessageUI
+import HCSStarRatingView
 
 class MyDailyServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
     
@@ -31,10 +32,14 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
     
     var dailyServiceKey = String()
+    var dailyServiceType = String()
     
     let picker = UIDatePicker()
     
     var fromAddMyDailyServicesVC = false
+    var dailyServiceRating : DailyServiceRatingView!
+    var dailyServiceUID : NammaApartmentDailyServices!
+    var index = Int()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -57,6 +62,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
         checkAndRetrieveDailyService()
+        opacity_View.isHidden = true
         
         self.btn_AddMyDailyServices.setTitle(NAString().add_my_service().capitalized, for: .normal)
         self.btn_AddMyDailyServices.backgroundColor = NAColor().buttonBgColor()
@@ -90,6 +96,10 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        opacity_View.isUserInteractionEnabled = true
+        opacity_View.addGestureRecognizer(tap)
     }
     
     //Create image Handle  Function
@@ -286,6 +296,12 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             messageSheet.body = ""
             self.present(messageSheet, animated: true, completion: nil)
         }
+        
+        cell.actionRate = {
+            print(cell.lbl_MyDailyServiceType.text as Any)
+            self.index = indexPath.row
+            self.showRatingView()
+        }
         return cell
     }
     
@@ -325,6 +341,101 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     @IBAction func btn_Reschedule_Action(_ sender: UIButton) {
         opacity_View.isHidden = true
         popUp_View.isHidden = true
+    }
+    
+    //on Click of Submit Button
+    @objc func storeRating() {
+        
+        let rating = self.dailyServiceRating.ratingValue
+        var serviceRating = Double()
+        serviceRating = Double(rating)
+        
+        self.opacity_View.isHidden = true
+        self.dailyServiceRating.isHidden = true
+        
+        switch dailyServiceKey {
+        case NAString().cook() :
+            dailyServiceType = Constants.FIREBASE_DSTYPE_COOKS
+            break
+        case NAString().maid():
+            dailyServiceType = Constants.FIREBASE_DSTYPE_MAIDS
+            break
+        case NAString().car_bike_cleaning():
+            dailyServiceType = Constants.FIREBASE_DSTYPE_CARBIKE_CLEANER
+        case NAString().child_day_care():
+            dailyServiceType = Constants.FIREBASE_DSTYPE_CHILDDAY_CARE
+            break
+        case NAString().daily_newspaper():
+            dailyServiceType = Constants.FIREBASE_DSTYPE_DAILY_NEWSPAPER
+            break
+        case NAString().milk_man():
+            dailyServiceType = Constants.FIREBASE_DSTYPE_MILKMEN
+            break
+        case  NAString().laundry():
+            dailyServiceType = Constants.FIREBASE_DSTYPE_LAUNDRIES
+            break
+        case NAString().driver():
+            dailyServiceType = Constants.FIREBASE_DSTYPE_DRIVERS
+            break
+        default:
+            break
+        }
+        
+        dailyServiceUID = NADailyServicesList[index]
+        print(dailyServiceType)
+        
+        let dailyServiceRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType).child(dailyServiceUID.getuid()).child(userUID)
+        dailyServiceRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
+        
+        dailyServiceRef.observe(.value) { (snapshot) in
+            self.NADailyServicesList.removeAll()
+            self.checkAndRetrieveDailyService()
+        }
+        
+        //Storing Average Rating
+        let averageRatingRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType).child(dailyServiceUID.getuid())
+        averageRatingRef.observeSingleEvent(of: .value) { (snapshot) in
+            let data = snapshot.value as! [String: AnyObject]
+            let number: Double = Double(snapshot.childrenCount - 2)
+            let previousRating: Double = Double(self.dailyServiceUID.getrating())
+            let previousAveragerating: Double = data[NAString().averageRating()] as! Double
+            let ratingDifference = serviceRating - previousRating
+            let newAverageRating = (ratingDifference + (previousAveragerating*number))/number
+            averageRatingRef.child(NAString().averageRating()).setValue(newAverageRating)
+        }
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        opacity_View.isHidden = true
+        dailyServiceRating.isHidden = true
+    }
+    
+    func showRatingView() {
+        opacity_View.isHidden = false
+        //opacity_View.addSubview(dailyServiceRating)
+        dailyServiceRating = DailyServiceRatingView(frame: CGRect(x: 0, y: 0, width: 280, height: 199))
+        dailyServiceRating.center.x = self.view.bounds.width/2
+        dailyServiceRating.center.y = self.view.bounds.height/2
+        dailyServiceRating.btn_Submit.titleLabel?.font = NAFont().buttonFont()
+        dailyServiceRating.btn_Submit.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        dailyServiceRating.btn_Submit.backgroundColor = NAColor().buttonBgColor()
+        dailyServiceRating.layer.cornerRadius = 10
+        dailyServiceRating.layer.masksToBounds = true
+        dailyServiceRating.btn_Submit.addTarget(self, action: #selector(storeRating), for: .touchUpInside)
+        
+        //Customized Code for Star rating
+        let starRatingView: HCSStarRatingView = HCSStarRatingView()
+        starRatingView.maximumValue = 5
+        starRatingView.minimumValue = 0
+        starRatingView.value = 1
+        starRatingView.tintColor = UIColor.yellow
+        starRatingView.allowsHalfStars = false
+        starRatingView.emptyStarImage = UIImage(named: "EmptyStar")?.withRenderingMode(.alwaysTemplate)
+        starRatingView.filledStarImage = UIImage(named: "FullStar")?.withRenderingMode(.alwaysTemplate)
+        starRatingView.center = self.view.center
+        dailyServiceRating.view.addSubview(starRatingView)
+        starRatingView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(dailyServiceRating)
     }
 }
 
@@ -369,6 +480,7 @@ extension MyDailyServicesViewController {
         var type: String
         var flat: Int
         var status: String
+        var averageRating : Int
     }
     
     func retrieveDailyServicesFromFirebase(userUID : String) {
@@ -396,6 +508,7 @@ extension MyDailyServicesViewController {
                     var numberOfFlat = 0
                     var dsType = ""
                     var dsStatus = ""
+                    var dsAverageRating = Int()
                     var iterator = 0
                     
                     if snapshot.exists() {                        
@@ -414,18 +527,21 @@ extension MyDailyServicesViewController {
                                     if dailyServicesUID![dailyServiceUID] as! Bool == true {
                                         self.dailyServiceCountRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
                                         //Getting Daily Services Status (Like Entered or Not)
-                                        self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(NAString().status())
-                                        self.dailyServiceStatusRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+                                        self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
+                                        self.dailyServiceStatusRef?.child(NAString().status()).observeSingleEvent(of: .value, with: { (snapshot) in
                                             let dailyServiceStatus = snapshot.value
-                                            
+                                            self.dailyServiceStatusRef?.child(NAString().averageRating()).observeSingleEvent(of: .value, with: { (averageRatingSnapshot) in
+                                                let dailyServiceAverageRating = averageRatingSnapshot.value
+                                          
                                             queue.addOperation {
                                                 self.dailyServiceCountRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-                                                    numberOfFlat = Int((snapshot.childrenCount) - 1)
+                                                    numberOfFlat = Int((snapshot.childrenCount) - 2)
                                                     dsType = dailyServiceType as! String
                                                     dsStatus = dailyServiceStatus as! String
+                                                    dsAverageRating = dailyServiceAverageRating as! Int
                                                     
                                                     //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
-                                                    let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus)
+                                                    let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus, averageRating: dsAverageRating)
                                                     dsInfo.append(servicetype)
                                                     
                                                     self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC
@@ -445,7 +561,7 @@ extension MyDailyServicesViewController {
                                                             let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
                                                             
                                                             if dsInfo.count > 0 {
-                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
+                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?, averageRating: dsInfo[iterator].averageRating)
                                                                 
                                                                 self.NADailyServicesList.append(dailyServicesData)
                                                                 
@@ -461,6 +577,7 @@ extension MyDailyServicesViewController {
                                                 })
                                             }
                                             queue.waitUntilAllOperationsAreFinished()
+                                            })
                                         })
                                     } else {
                                         NAActivityIndicator.shared.hideActivityIndicator()
