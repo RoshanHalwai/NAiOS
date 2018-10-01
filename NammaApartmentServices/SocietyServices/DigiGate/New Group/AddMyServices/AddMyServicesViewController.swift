@@ -37,6 +37,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     @IBOutlet weak var txt_MobileNo: UITextField!
     @IBOutlet weak var txt_Date: UITextField!
     @IBOutlet weak var lbl_CountryCode: UILabel!
+    @IBOutlet weak var lbl_Arrow: UILabel!
+    @IBOutlet weak var stack_CountryCode: UIStackView!
     
     @IBOutlet weak var btn_SelectContact: UIButton!
     @IBOutlet weak var btn_AddDetails: UIButton!
@@ -110,9 +112,10 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
             break
         }
         
-        let countryCodePlaceHolder: String = NAString().stateCodePlaceHolder()
-        lbl_CountryCode.textColor = UIColor.darkGray
-        lbl_CountryCode.text = countryCodePlaceHolder
+        lbl_CountryCode.textColor = UIColor.black
+        lbl_CountryCode.text = NAString()._91()
+        lbl_Arrow.text = NAString().image()
+        lbl_Arrow.textColor = UIColor.black
         
         //Create Name textfield first letter capital
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
@@ -166,12 +169,12 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         
         self.lbl_Name.text = NAString().name()
         self.lbl_MobileNo.text = NAString().mobile()
-
+        
         self.txt_Date.font = NAFont().textFieldFont()
         self.txt_MobileNo.font = NAFont().textFieldFont()
         self.txt_Name.font = NAFont().textFieldFont()
         self.lbl_CountryCode.font = NAFont().headerFont()
-       
+        
         self.btn_SelectContact.backgroundColor = NAColor().buttonBgColor()
         self.btn_SelectContact.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_SelectContact.setTitle(NAString().BtnselectFromContact().capitalized, for: .normal)
@@ -193,8 +196,8 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         hideNumberPad(numberTextField: txt_MobileNo)
         
         let selectCountryCode = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
-        lbl_CountryCode.isUserInteractionEnabled = true
-        lbl_CountryCode.addGestureRecognizer(selectCountryCode)
+        stack_CountryCode.isUserInteractionEnabled = true
+        stack_CountryCode.addGestureRecognizer(selectCountryCode)
     }
     
     /* - Create name textfield first letter capital function.
@@ -229,12 +232,14 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     func countryCodeSelected(alert: UIAlertAction!) {
         if alert.title == NAString().unitedStateCode() {
             lbl_CountryCode.text = NAString()._1()
+            lbl_Arrow.text = NAString().image()
             lbl_CountryCode.textColor = UIColor.black
-            lbl_Mobile_Validation.isHidden = true
+            lbl_Arrow.textColor = UIColor.black
         } else {
             lbl_CountryCode.text = NAString()._91()
+            lbl_Arrow.text = NAString().image()
             lbl_CountryCode.textColor = UIColor.black
-            lbl_Mobile_Validation.isHidden = true
+            lbl_Arrow.textColor = UIColor.black
         }
     }
     
@@ -403,10 +408,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         } else if (txt_MobileNo.text?.count == NAString().required_mobileNo_Length()) {
             txt_MobileNo.underlined()
             lbl_Mobile_Validation.isHidden = true
-        }
-        if self.lbl_CountryCode.text == NAString().stateCodePlaceHolder() {
-            lbl_Mobile_Validation.isHidden = false
-            lbl_Mobile_Validation.text =  NAString().please_select_country_code()
         }
         if !(txt_Name.text?.isEmpty)! && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
