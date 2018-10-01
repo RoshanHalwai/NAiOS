@@ -150,6 +150,10 @@ class NAString : NSObject {
         return String("+1")
     }
     
+    func image() -> String {
+        return String("▼")
+    }
+    
     func selectCountryCode() -> String {
         return String("Select your country code")
     }
