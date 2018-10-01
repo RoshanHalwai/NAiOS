@@ -298,7 +298,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         }
         
         cell.actionRate = {
-            print(cell.lbl_MyDailyServiceType.text as Any)
             self.index = indexPath.row
             self.showRatingView()
         }
@@ -362,6 +361,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             break
         case NAString().car_bike_cleaning():
             dailyServiceType = Constants.FIREBASE_DSTYPE_CARBIKE_CLEANER
+            break
         case NAString().child_day_care():
             dailyServiceType = Constants.FIREBASE_DSTYPE_CHILDDAY_CARE
             break
@@ -410,9 +410,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         dailyServiceRating.isHidden = true
     }
     
+    //Creating Method for Rate View
     func showRatingView() {
         opacity_View.isHidden = false
-        //opacity_View.addSubview(dailyServiceRating)
         dailyServiceRating = DailyServiceRatingView(frame: CGRect(x: 0, y: 0, width: 280, height: 199))
         dailyServiceRating.center.x = self.view.bounds.width/2
         dailyServiceRating.center.y = self.view.bounds.height/2
