@@ -116,15 +116,17 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         paymentDescription = NAString().society_Services_Title()
         
         if lbl_Maintenance.text == NAString().noPendingDues() {
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), OkStyle: .default, OK: nil)
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
         } else {
-            showPaymentUI()
+           // showPaymentUI()
+            
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: 100, additionalCharges: 2, totalAmount: 102), buttonTitle: NAString().payNow(), OkStyle: .default, OK: nil)
         }
     }
     
     //This will call when any error occurred during transaction
     func onPaymentError(_ code: Int32, description str: String) {
-        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, OkStyle: .default, OK: nil)
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
         
         //Storing data in firebase in case of Transaction fail & after getting error code 0
         if code != 2 || str != NAString().paymentCancelledByUser() {
@@ -134,7 +136,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     
     //This will call when transaction succeed
     func onPaymentSuccess(_ payment_id: String) {
-        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", OkStyle: .default, OK: nil)
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
         storePaymentDetails(paymentId: payment_id, result: NAString().successful())
         let pendingRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES).removeValue()
     }
