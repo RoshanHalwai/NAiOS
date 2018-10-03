@@ -520,7 +520,6 @@ extension AddMyServicesViewController {
             
             if !dsAvailableSnapshot.exists() {
                 self.dailyServicesStatusRef?.child(NAString().status()).setValue(NAString().notEntered())
-                self.dailyServicesStatusRef?.child(NAString().averageRating()).setValue(NAString().three())
             }
         })
         
