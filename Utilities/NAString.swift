@@ -1441,7 +1441,7 @@ class NAString : NSObject {
     }
     
     func addFood_AlertMessage() -> String {
-        return ("Thank you for rasing request.Our Representative will arrive at your flat to collect food.")
+        return ("Thank you for rasing request. Our representative will arrive at your flat to collect food.")
     }
     
     func add_your_vehicle_message() -> String {
@@ -1852,7 +1852,7 @@ class NAString : NSObject {
     func maintenanceAmountAlert_Message(maintenanceAmount: Int, additionalCharges: Float, totalAmount: Float, chargesPer : Float) -> String {
         return String("\n Maintenance Amount:\t\t Rs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t    Rs \(totalAmount)")
     }
-
+    
     func transactions() -> String {
         return String("Transactions")
     }

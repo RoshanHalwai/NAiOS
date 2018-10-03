@@ -57,9 +57,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         //Create Name textfield first letter capital
         txtInvitorName.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        //Add border color on profile imageview
-        img_Profile.layer.borderColor = UIColor.black.cgColor
-        
         //Hiding error labels while view load.
         lbl_Name_Validation.isHidden = true
         lbl_Mob_Validation.isHidden = true
