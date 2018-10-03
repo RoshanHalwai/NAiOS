@@ -188,20 +188,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         
         dailyServicesData = allDailyServicesList[indexPath.row]
         
-        //
-        //        print(ratingArray.count)
-        //        var ratingSum : Float = 0
-        //        for n in ratingArray {
-        //            ratingSum += n
-        //        }
-        //
-        //        print(ratingSum)
-        //        let arrayCount : Float = Float(ratingArray.count)
-        //
-        //        averageRating : Float = (Float(ratingSum/arrayCount))
-        //        print(averageRating)
-        
-        
         cell.lbl_MyCookName.text = dailyServicesData.getfullName()
         cell.lbl_MyCookRating.text = "\(dailyServicesData.getrating())"
         cell.lbl_MyCookFlat.text = "\(dailyServicesData.getNumberOfFlats())"

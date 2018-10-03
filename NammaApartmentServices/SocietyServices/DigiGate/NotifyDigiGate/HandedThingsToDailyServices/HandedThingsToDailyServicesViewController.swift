@@ -338,7 +338,7 @@ extension HandedThingsToDailyServicesViewController {
                                         
                                         queue.addOperation {
                                             self.dailyServiceCountRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-                                                numberOfFlat = Int((snapshot.childrenCount) - 2)
+                                                numberOfFlat = Int((snapshot.childrenCount) - 1)
                                                 dsType = dailyServiceType as! String
                                                 dsStatus = dailyServiceStatus as! String
                                                 
@@ -351,34 +351,27 @@ extension HandedThingsToDailyServicesViewController {
                                                     dsInfo.append(servicetype)
                                                     
                                                     self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC
-                                                    let averageRatingRef = self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String)
-                                                    averageRatingRef?.observeSingleEvent(of: .value, with: { (averageRatingSnapshot) in
+                                                    self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
                                                         
-                                                        let serviceData = averageRatingSnapshot.value as! [String: AnyObject]
+                                                        //Getting Data Form Firebase & Adding into Model Class
+                                                        let dailyServiceData = snapshot.value as? [String: AnyObject]
                                                         
-                                                        let averageRating = serviceData[NAString().averageRating()]
-                                                        self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                                        let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
+                                                        let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
+                                                        let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
+                                                        let providedThings = dailyServiceData?[DailyServicesListFBKeys.providedThings.key]
+                                                        let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
+                                                        let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
+                                                        let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
+                                                        
+                                                        if dsInfo.count > 0 {
+                                                            let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
                                                             
-                                                            //Getting Data Form Firebase & Adding into Model Class
-                                                            let dailyServiceData = snapshot.value as? [String: AnyObject]
-                                                            
-                                                            let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
-                                                            let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
-                                                            let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
-                                                            let providedThings = dailyServiceData?[DailyServicesListFBKeys.providedThings.key]
-                                                            let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
-                                                            let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
-                                                            let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
-                                                            
-                                                            if dsInfo.count > 0 {
-                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as? Int, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
-                                                                
-                                                                self.dailyServiceHandedThingsList.append(dailyServicesData)
-                                                                NAActivityIndicator.shared.hideActivityIndicator()
-                                                                self.tableView.reloadData()
-                                                                iterator = iterator + 1
-                                                            }
-                                                        })
+                                                            self.dailyServiceHandedThingsList.append(dailyServicesData)
+                                                            NAActivityIndicator.shared.hideActivityIndicator()
+                                                            self.tableView.reloadData()
+                                                            iterator = iterator + 1
+                                                        }
                                                     })
                                                 } else if (isDataEntered == false) {
                                                     NAActivityIndicator.shared.hideActivityIndicator()
