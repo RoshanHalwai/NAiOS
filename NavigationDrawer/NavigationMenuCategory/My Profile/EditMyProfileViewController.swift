@@ -280,7 +280,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
                 updatedUserGrantAccessRef.child(Constants.FIREBASE_CHILD_GRANTACCESS).setValue(NAString().gettrue())
                 
                 //Showing Successfully Updated PopUp after Data Replaced in firebase.
-                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), OkStyle: .default) { (action) in
+                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
                     
                     //Making present user to logout from this App after Clicking ok in Alert PopUp.
                     self.logoutAction()
@@ -289,7 +289,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         } else {
             
             //If no Changes are made then Showing "No Changes Made" Alert PopUp.
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Failure_Alert_Message(), OkStyle: .default) { (action) in}
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Failure_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in}
         }
     }
     
@@ -318,7 +318,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             flatMembersReference.observeSingleEvent(of: .value) { (flatMembersUIDSnapshot) in
                 if flatMembersUIDSnapshot.childrenCount == 1 {
                     self.txt_Flat_Admin.resignFirstResponder()
-                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), OkStyle: .default, OK: { (action) in })
+                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().change_Admin_Alert_Title(), Message: NAString().change_Admin_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: { (action) in })
                 } else {
                     self.flatMembersNameList.removeAll()
                     let flatMembersUIDMap = flatMembersUIDSnapshot.value as? NSDictionary
@@ -380,7 +380,7 @@ extension EditMyProfileViewController {
         self.updateUserRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         if existedName != txt_Name.text {
             updateUserRef?.child(Constants.FIREBASE_CHILD_FULLNAME).setValue(txt_Name.text)
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), OkStyle: .default) { (action) in
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -391,7 +391,7 @@ extension EditMyProfileViewController {
         let providedEmailAddress = txt_EmailId.text
         let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
         if isEmailAddressIsValid == true {
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), OkStyle: .default) { (action) in
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
                 self.navigationController?.popViewController(animated: true)
             }
         }

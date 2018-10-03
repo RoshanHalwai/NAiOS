@@ -320,12 +320,12 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     
     //This will call when any error occurred during transaction
     func onPaymentError(_ code: Int32, description str: String) {
-        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, OkStyle: .default, OK: nil)
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
     }
     
     //This will call when transaction succeed
     func onPaymentSuccess(_ payment_id: String) {
-        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().event_Payment_Successfull_Title(), Message: NAString().event_Payment_Successfull_Message(), OkStyle: .default, OK: {action in
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().event_Payment_Successfull_Title(), Message: NAString().event_Payment_Successfull_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: {action in
             let dv = NAViewPresenter().eventManagementHistoryVC()
             self.navigationController?.pushViewController(dv, animated: true)
         })
@@ -530,7 +530,7 @@ extension EventManagementViewController {
         let serviceType = NAString().eventManagement()
         
         let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
+        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key!
         
         let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
         notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())

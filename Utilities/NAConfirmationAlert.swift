@@ -20,9 +20,9 @@ class NAConfirmationAlert: NSObject {
         VC.present(alert, animated: true)
     }
     
-    func showNotificationDialog(VC : UIViewController, Title: String, Message: String, OkStyle: UIAlertActionStyle, OK: ((UIAlertAction) -> Void)? ) {
+    func showNotificationDialog(VC : UIViewController, Title: String, Message: String, buttonTitle: String, OkStyle: UIAlertActionStyle, OK: ((UIAlertAction) -> Void)? ) {
         let alert = UIAlertController(title: Title, message: Message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: OkStyle, handler: OK))
+        alert.addAction(UIAlertAction(title: buttonTitle, style: OkStyle, handler: OK))
         alert.view.backgroundColor = UIColor.white
         alert.view.layer.cornerRadius = 10
         VC.present(alert, animated: true)

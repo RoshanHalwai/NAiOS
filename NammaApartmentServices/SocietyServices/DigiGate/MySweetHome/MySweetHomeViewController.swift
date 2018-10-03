@@ -139,7 +139,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             lv.navTitle = NAString().btn_mySweet_home()
             self.navigationController?.pushViewController(lv, animated: true)
         } else {
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().add_Family_Members_Alert_Title(), Message: NAString().add_Family_Members_Alert_Message(), OkStyle: .default) { (action) in }
+            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().add_Family_Members_Alert_Title(), Message: NAString().add_Family_Members_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in }
         }
     }
     
@@ -227,7 +227,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
                 self.PopUp_ParentView.isHidden = false
                 self.popUp_View.isHidden = false
             } else {
-                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().edit_Message_Alert_Title(), Message: NAString().edit_Alert_Message(), OkStyle: .default, OK: { (action) in})
+                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().edit_Message_Alert_Title(), Message: NAString().edit_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: { (action) in})
             }
         }
         
