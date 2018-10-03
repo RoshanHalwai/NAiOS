@@ -121,6 +121,7 @@ struct Constants {
     static let FIREBASE_CHILD_SERVING = "serving"
     static let FIREBASE_CHILD_FUTURE = "future"
     static let FIREBASE_CHILD_SCRAP_COLLECTION = "scrapCollection"
+    static let FIREBASE_CHILD_CONVENIENCE = "convenienceCharges"
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     
@@ -164,4 +165,6 @@ struct Constants {
     static let FIREBASE_VEHICLES_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_VEHICLES).child(FIREBASE_USER_CHILD_ALL)
     
     static let FIREBASE_GUARD_PRIVATE_DATA = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_GUARD).child(FIREBASE_CHILD_PRIVATE).child(FIREBASE_CHILD_DATA)
+    
+    static let FIREBASE_CONVENIENCE_CHARGES = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_TRANSACTIONS).child(FIREBASE_CHILD_CONVENIENCE)
 }
