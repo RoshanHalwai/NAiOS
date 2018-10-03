@@ -1849,8 +1849,8 @@ class NAString : NSObject {
         return String("Maintenance Bill")
     }
     
-    func maintenanceAmountAlert_Message(maintenanceAmount: Int, additionalCharges: Int, totalAmount: Int) -> String {
-        return String("\n Maintenance Amount:  Rs \(maintenanceAmount) \n\n Additional Charges (2%):   Rs \(additionalCharges) \n\n Total Amount:    Rs \(totalAmount)")
+    func maintenanceAmountAlert_Message(maintenanceAmount: Int, additionalCharges: Float, totalAmount: Float, chargesPer : Float) -> String {
+        return String("\n Maintenance Amount:\t\t Rs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t    Rs \(totalAmount)")
     }
 
     func transactions() -> String {

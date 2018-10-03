@@ -37,6 +37,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var pendingDueAmount = String()
     var maintenanceCost = Int()
     var currentComponents = DateComponents()
+    var convenienceFee: Float = 0.0
     
     //created varible for razorPay
     var razorpay: Razorpay!
@@ -44,6 +45,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var getUserMobileNumebr = String()
     var getUserEmailID = String()
     var getUserPendingAmount = String()
+    var gettingPercentageAmount = Double()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,15 +117,21 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     @IBAction func societyServicesAction(_ sender: Any) {
         paymentDescription = NAString().society_Services_Title()
         
-        if lbl_Maintenance.text == NAString().noPendingDues() {
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
-        } else {
-           // showPaymentUI()
-            
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: 100, additionalCharges: 2, totalAmount: 102), buttonTitle: NAString().payNow(), OkStyle: .default, OK: nil)
+        let convenienceChargesRef = Constants.FIREBASE_CONVENIENCE_CHARGES
+        convenienceChargesRef.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
+            self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
+            self.gettingPercentageAmount = Double((Float(self.maintenanceCost) * self.convenienceFee) / 100)
+            let totalAmount:Float = Float(Double(Float(self.maintenanceCost)) + self.gettingPercentageAmount)
+         
+            if self.lbl_Maintenance.text == NAString().noPendingDues() {
+                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
+            } else {
+                NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: self.maintenanceCost, additionalCharges: Float(self.gettingPercentageAmount), totalAmount: (Float(totalAmount)), chargesPer: (self.convenienceFee)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+                    self.showPaymentUI()
+                }, Cancel: nil, cancelActionTitle: NAString().cancel().uppercased(), okActionTitle: NAString().payNow())
+            }
         }
     }
-    
     //This will call when any error occurred during transaction
     func onPaymentError(_ code: Int32, description str: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
@@ -138,7 +146,8 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     func onPaymentSuccess(_ payment_id: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
         storePaymentDetails(paymentId: payment_id, result: NAString().successful())
-        let pendingRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES).removeValue()
+        let pendingRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
+        pendingRef.removeValue()
     }
     
     func storePaymentDetails(paymentId: String, result: String) {
@@ -162,8 +171,19 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     
     //This will show the default UI of RazorPay with some user's informations.
     func showPaymentUI() {
+        
+        let percentageChargesInPaisa: Int = Int(self.gettingPercentageAmount * 100)
+        self.pendingDueAmount = String(percentageChargesInPaisa)
+        
+        let pendingChargesInInt = Int(pendingDueAmount)
+        let pendingAmountInInt = Int(getUserPendingAmount)
+        let totalAmountInInt = pendingChargesInInt! + pendingAmountInInt!
+        
+        //Converting Int to String for showing in RazorPay
+        let totalPendingAmount = "\(totalAmountInInt)"
+        
         let options: [String:Any] = [
-            "amount" : getUserPendingAmount,
+            "amount" : totalPendingAmount,
             "description": paymentDescription,
             "name": NAString().splash_NammaHeader_Title(),
             "prefill": [
