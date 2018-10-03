@@ -6642,31 +6642,25 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HwY-6p-tqu">
-                                                    <rect key="frame" x="128" y="17" width="212" height="96.5"/>
+                                                    <rect key="frame" x="128" y="17" width="188.5" height="96.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="6II-Ia-gWE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="77" height="96.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="53.5" height="96.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9D-eu-QiV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="29.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rating:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znA-Z4-EEs">
-                                                                    <rect key="frame" x="0.0" y="25" width="53.5" height="21.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Slot:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdh-ki-RgB">
-                                                                    <rect key="frame" x="0.0" y="50.5" width="77" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="33.5" width="53.5" height="29.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flats:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGz-qi-YLG">
-                                                                    <rect key="frame" x="0.0" y="75.5" width="41.5" height="21"/>
+                                                                    <rect key="frame" x="0.0" y="67" width="41.5" height="29.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -6674,10 +6668,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PGN-0R-xjK">
-                                                            <rect key="frame" x="82" y="0.0" width="130" height="96.5"/>
+                                                            <rect key="frame" x="58.5" y="0.0" width="130" height="96.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Srilatha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDh-PJ-PXb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="130" height="29"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="130" id="9PO-ST-mb0"/>
                                                                     </constraints>
@@ -6686,19 +6680,13 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5I-TL-BSu">
-                                                                    <rect key="frame" x="0.0" y="25.5" width="130" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 : 30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ejb-le-U6b">
-                                                                    <rect key="frame" x="0.0" y="51" width="130" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="34" width="130" height="28.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdu-f6-AJO">
-                                                                    <rect key="frame" x="0.0" y="76" width="130" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="67.5" width="130" height="29"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -6839,12 +6827,10 @@
                                             <outlet property="lbl_CookFlat" destination="zGz-qi-YLG" id="A4f-3v-pJ8"/>
                                             <outlet property="lbl_CookName" destination="b9D-eu-QiV" id="tzV-ht-YgG"/>
                                             <outlet property="lbl_CookRating" destination="znA-Z4-EEs" id="2oB-Zt-bxe"/>
-                                            <outlet property="lbl_CookTimeSlot" destination="Fdh-ki-RgB" id="5lm-9b-v7h"/>
                                             <outlet property="lbl_Message" destination="YYJ-yF-y4m" id="z4X-Ro-ndP"/>
                                             <outlet property="lbl_MyCookFlat" destination="wdu-f6-AJO" id="akA-oJ-KSb"/>
                                             <outlet property="lbl_MyCookName" destination="pDh-PJ-PXb" id="9PC-iv-mGV"/>
                                             <outlet property="lbl_MyCookRating" destination="N5I-TL-BSu" id="3Mm-bF-yLB"/>
-                                            <outlet property="lbl_MyCookTimeSlot" destination="Ejb-le-U6b" id="gkJ-p6-oYs"/>
                                             <outlet property="lbl_Refer" destination="FNF-vs-SUF" id="RoN-cD-o40"/>
                                             <outlet property="lbl_WhatsApp" destination="1k0-fF-pp1" id="cJV-wA-JP9"/>
                                             <outlet property="myCookImage" destination="Tdd-9y-FAu" id="7kF-dS-f8Q"/>
@@ -8079,7 +8065,7 @@
                                 <rect key="frame" x="0.0" y="96" width="260" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -8087,7 +8073,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

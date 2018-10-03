@@ -39,7 +39,7 @@ class NammaApartmentDailyServices {
     var phoneNumber: String?
     var profilePhoto: String?
     var providedThings: Bool?
-    var rating: Int?
+    var rating: Float?
     var timeOfVisit: String?
     var uid: String?
     var averageRating: Int?
@@ -48,7 +48,7 @@ class NammaApartmentDailyServices {
     private var status: String?
     
     //initilaize the variables
-    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?, averageRating: Int?) {
+    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Float?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?, averageRating: Int?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
@@ -84,7 +84,7 @@ class NammaApartmentDailyServices {
     }
     
     //Get mobileNumber
-    func getrating() -> Int {
+    func getrating() -> Float {
         return rating!
     }
     

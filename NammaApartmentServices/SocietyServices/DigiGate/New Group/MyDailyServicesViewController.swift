@@ -398,9 +398,9 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             let data = snapshot.value as! [String: AnyObject]
             let number: Double = Double(snapshot.childrenCount - 2)
             let previousRating: Double = Double(self.dailyServiceUID.getrating())
-            let previousAveragerating: Double = data[NAString().averageRating()] as! Double
+            let previousAverageRating: Double = data[NAString().averageRating()] as! Double
             let ratingDifference = serviceRating - previousRating
-            let newAverageRating = (ratingDifference + (previousAveragerating*number))/number
+            let newAverageRating = (ratingDifference + (previousAverageRating*number))/number
             averageRatingRef.child(NAString().averageRating()).setValue(newAverageRating)
         }
     }
@@ -561,7 +561,7 @@ extension MyDailyServicesViewController {
                                                             let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
                                                             
                                                             if dsInfo.count > 0 {
-                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?, averageRating: dsInfo[iterator].averageRating)
+                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as? Float, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?, averageRating: dsInfo[iterator].averageRating)
                                                                 
                                                                 self.NADailyServicesList.append(dailyServicesData)
                                                                 
