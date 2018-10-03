@@ -301,7 +301,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                                     let index = servicesOwnerUIDKeys.index(of : NAString().status())
                                     servicesOwnerUIDKeys.remove(at: index!)
                                     
-                                    
                                     let retrieveApartmentsServicesList : RetrievingApartmentServicesData
                                     retrieveApartmentsServicesList = RetrievingApartmentServicesData.init(dailyServiceUID: serviceTypeUID, dailyServiceType: serviceType)
                                     retrieveApartmentsServicesList.getDailyServicesDetails(callback: { (dailyServiceData) in

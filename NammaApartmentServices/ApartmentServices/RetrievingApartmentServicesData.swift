@@ -21,6 +21,7 @@ class RetrievingApartmentServicesData {
         self.dailyServiceType = dailyServiceType
     }
     
+    //Calculating average rating for particular daily service and getting Daily service data under first owner UID
     public func getDailyServicesDetails(callback: @escaping (_ dailyServiceData: NammaApartmentDailyServices) -> Void) {
         getDailyServiceOwnersUIDList { (ownersUIDList) in
             self.getOwnerData(ownerUID: ownersUIDList[0], callback: { (dailyServiceData) in
@@ -49,6 +50,7 @@ class RetrievingApartmentServicesData {
         }
     }
     
+    //Getting Owners UID List
     private func getDailyServiceOwnersUIDList(callback: @escaping (_ ownersUIDList: [String]) -> Void) {
         
         var ownersUIDList = [String]()
@@ -62,6 +64,7 @@ class RetrievingApartmentServicesData {
         }
     }
     
+    //Getting owners Data based on service type and Daily service UID
     private func getOwnerData(ownerUID: String, callback: @escaping (_ dailyServiceData: NammaApartmentDailyServices) -> Void) {
         let dailyServiceDataRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType).child(dailyServiceUID).child(ownerUID)
         dailyServiceDataRef.observeSingleEvent(of: .value) { (dataSnapshot) in
@@ -72,9 +75,8 @@ class RetrievingApartmentServicesData {
             let profilePhoto = dailyServicesData?[DailyServicesListFBKeys.profilePhoto.key]
             let uid = dailyServicesData?[DailyServicesListFBKeys.uid.key]
             let rating = dailyServicesData?[DailyServicesListFBKeys.rating.key]
-            let flatCount = 1
             
-            let dailyServiceData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: nil, rating: rating as? Int, timeOfVisit: nil, uid: (uid as! String), type: nil, numberOfFlat: flatCount, status: nil)
+            let dailyServiceData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: nil, rating: rating as? Int, timeOfVisit: nil, uid: (uid as! String), type: nil, numberOfFlat: self.flatCount, status: nil)
             
             callback(dailyServiceData)
         }
