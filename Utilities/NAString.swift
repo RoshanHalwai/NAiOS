@@ -1965,12 +1965,12 @@ class NAString : NSObject {
         return String("Full Day(8AM - 10PM)")
     }
     
-    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Int) -> String {
-        return String("\nNo. of Booked Slots :    \(slotsCount) \n\n Amount per Slot :    Rs 100 \n\n Total Amount :    Rs \(totalAmount)")
+    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Float, perSlot: Int, estimatedAmount: Int, convenienceFee: Float, convenienceAmount: Float ) -> String {
+        return String("\nNo. of Booked Slots:\t\t\t  \(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):      Rs. \(convenienceAmount) \n\nTotal Amount:\t\t   Rs. \(totalAmount)")
     }
     
-    func eventBill() -> String {
-        return String("Event Bill")
+    func bookingSummary() -> String {
+        return String("Booking Summary")
     }
     
     /* Society Service(Plumber,Carpenter,Electrician and ScrapCollection) Problems List. */
