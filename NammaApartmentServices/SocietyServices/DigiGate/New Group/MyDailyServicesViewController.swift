@@ -391,18 +391,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
             self.NADailyServicesList.removeAll()
             self.checkAndRetrieveDailyService()
         }
-        
-        //Storing Average Rating
-        let averageRatingRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType).child(dailyServiceUID.getuid())
-        averageRatingRef.observeSingleEvent(of: .value) { (snapshot) in
-            let data = snapshot.value as! [String: AnyObject]
-            let number: Double = Double(snapshot.childrenCount - 2)
-            let previousRating: Double = Double(self.dailyServiceUID.getrating())
-            let previousAverageRating: Double = data[NAString().averageRating()] as! Double
-            let ratingDifference = serviceRating - previousRating
-            let newAverageRating = (ratingDifference + (previousAverageRating*number))/number
-            averageRatingRef.child(NAString().averageRating()).setValue(newAverageRating)
-        }
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
@@ -480,7 +468,6 @@ extension MyDailyServicesViewController {
         var type: String
         var flat: Int
         var status: String
-        var averageRating : Int
     }
     
     func retrieveDailyServicesFromFirebase(userUID : String) {
@@ -508,7 +495,6 @@ extension MyDailyServicesViewController {
                     var numberOfFlat = 0
                     var dsType = ""
                     var dsStatus = ""
-                    var dsAverageRating = Int()
                     var iterator = 0
                     
                     if snapshot.exists() {                        
@@ -530,18 +516,15 @@ extension MyDailyServicesViewController {
                                         self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
                                         self.dailyServiceStatusRef?.child(NAString().status()).observeSingleEvent(of: .value, with: { (snapshot) in
                                             let dailyServiceStatus = snapshot.value
-                                            self.dailyServiceStatusRef?.child(NAString().averageRating()).observeSingleEvent(of: .value, with: { (averageRatingSnapshot) in
-                                                let dailyServiceAverageRating = averageRatingSnapshot.value
-                                          
+                                    
                                             queue.addOperation {
                                                 self.dailyServiceCountRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                                     numberOfFlat = Int((snapshot.childrenCount) - 2)
                                                     dsType = dailyServiceType as! String
                                                     dsStatus = dailyServiceStatus as! String
-                                                    dsAverageRating = dailyServiceAverageRating as! Int
                                                     
                                                     //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
-                                                    let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus, averageRating: dsAverageRating)
+                                                    let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus)
                                                     dsInfo.append(servicetype)
                                                     
                                                     self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC
@@ -561,7 +544,7 @@ extension MyDailyServicesViewController {
                                                             let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
                                                             
                                                             if dsInfo.count > 0 {
-                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as? Float, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?, averageRating: dsInfo[iterator].averageRating)
+                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as? Int, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
                                                                 
                                                                 self.NADailyServicesList.append(dailyServicesData)
                                                                 
@@ -577,7 +560,6 @@ extension MyDailyServicesViewController {
                                                 })
                                             }
                                             queue.waitUntilAllOperationsAreFinished()
-                                            })
                                         })
                                     } else {
                                         NAActivityIndicator.shared.hideActivityIndicator()

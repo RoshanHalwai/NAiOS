@@ -39,16 +39,15 @@ class NammaApartmentDailyServices {
     var phoneNumber: String?
     var profilePhoto: String?
     var providedThings: Bool?
-    var rating: Float?
+    var rating: Int?
     var timeOfVisit: String?
     var uid: String?
-    var averageRating: Int?
     private var type: String?
     private var numberOfFlat: Int?
     private var status: String?
     
     //initilaize the variables
-    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Float?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?, averageRating: Int?) {
+    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: Bool?,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
@@ -59,8 +58,6 @@ class NammaApartmentDailyServices {
         self.type = type
         self.numberOfFlat = numberOfFlat
         self.status = status
-        self.averageRating = averageRating
-        
     }
     
     //Get FullName
@@ -84,12 +81,12 @@ class NammaApartmentDailyServices {
     }
     
     //Get mobileNumber
-    func getrating() -> Float {
+    func getrating() -> Int {
         return rating!
     }
     
-    func getAverageRating() -> Int {
-        return averageRating!
+    func setRating(rating: Int) {
+        self.rating = rating
     }
     
     //Get timeOfVisit
@@ -104,6 +101,10 @@ class NammaApartmentDailyServices {
     
     func getNumberOfFlats() -> Int {
         return numberOfFlat!
+    }
+    
+    func setFlats(flats: Int) {
+        self.numberOfFlat = flats
     }
     
     func getType() -> String {
