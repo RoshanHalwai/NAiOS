@@ -77,6 +77,8 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        retrieveBookingAmountPerSlot()
+        
         //Payment Gateway Namma Apartment API KEY for Transactions
         razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
         
@@ -96,6 +98,8 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)
+        
+        self.navigationItem.rightBarButtonItems?.removeAll()
         
         //Apply Label Fonts
         lbl_EventTitle.font = NAFont().headerFont()
@@ -200,19 +204,16 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
         
-        //Creating History icon on Navigation bar
-        let historyButton = UIButton(type: .system)
-        historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
-        historyButton.addTarget(self, action: #selector(gotoSocietyServiceHistoryVC), for: .touchUpInside)
-        let history = UIBarButtonItem(customView: historyButton)
-        //Creating info icon on Navigation bar
-        let infoButton = UIButton(type: .system)
-        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
-        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
-        let info = UIBarButtonItem(customView: infoButton)
-        
-        //created Array for history and info button icons
-        self.navigationItem.setRightBarButtonItems([info,history], animated: true)
+        self.btn_Parties.isHidden = true
+        self.btn_Seminars.isHidden = true
+        self.btn_Concerts.isHidden = true
+        self.btn_Meetings.isHidden = true
+        self.txt_EventTitle.isHidden = true
+        self.lbl_EventTitle.isHidden = true
+        self.lbl_ChooseCategory.isHidden = true
+        self.txt_EventDate.isHidden = true
+        self.lbl_EventDate.isHidden = true
+        self.btn_Book.isHidden = true
     }
     
     func disabling_Slots() {
@@ -570,6 +571,55 @@ extension EventManagementViewController {
             }
             eventManagementNotificationRef.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
             })
+        }
+    }
+}
+
+extension EventManagementViewController {
+    
+    //Retrieving booking amount value, so we can check wether this particular society have 'Event Management' facility or not
+    func retrieveBookingAmountPerSlot() {
+        
+        OpacityView.shared.showingOpacityView(view: self)
+        OpacityView.shared.showEventPopupView(view: self, title: NAString().event_booking())
+
+        let bookingAmountRef = Constants.FIREBASE_BOOKING_SLOT
+        bookingAmountRef.observeSingleEvent(of: .value) { (bookingAmountSnapshot) in
+            
+            if !bookingAmountSnapshot.exists() {
+                OpacityView.shared.hidingOpacityView()
+                OpacityView.shared.hidingPopupView()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().event_booking_facility())
+            } else {
+                OpacityView.shared.hidingOpacityView()
+                OpacityView.shared.hidingPopupView()
+                
+                //Creating History icon on Navigation bar
+                let historyButton = UIButton(type: .system)
+                historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
+                historyButton.addTarget(self, action: #selector(self.gotoSocietyServiceHistoryVC), for: .touchUpInside)
+                let history = UIBarButtonItem(customView: historyButton)
+                //Creating info icon on Navigation bar
+                let infoButton = UIButton(type: .system)
+                infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+                infoButton.addTarget(self, action: #selector(self.gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
+                let info = UIBarButtonItem(customView: infoButton)
+                
+                //created Array for history and info button icons
+                self.navigationItem.setRightBarButtonItems([info,history], animated: true)
+                
+                //Showing all UI elements 
+                self.btn_Parties.isHidden = false
+                self.btn_Seminars.isHidden = false
+                self.btn_Concerts.isHidden = false
+                self.btn_Meetings.isHidden = false
+                self.txt_EventTitle.isHidden = false
+                self.lbl_EventTitle.isHidden = false
+                self.lbl_ChooseCategory.isHidden = false
+                self.txt_EventDate.isHidden = false
+                self.lbl_EventDate.isHidden = false
+                self.btn_Book.isHidden = false
+            }
         }
     }
 }
