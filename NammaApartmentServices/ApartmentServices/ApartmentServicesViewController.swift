@@ -99,7 +99,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         let width = UIScreen.main.bounds.width
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: 210)
+        layout.itemSize = CGSize(width: width - 10, height: 190)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -190,7 +190,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         //TODO: Need to get Actual Rating of that particular service person.
         cell.lbl_MyCookRating.text = "\(dailyServicesData.getrating())"
         //TODO: Need to Implement Time slot.
-        cell.lbl_MyCookTimeSlot.text = dailyServicesData.gettimeOfVisit()
         cell.lbl_MyCookFlat.text = "\(dailyServicesData.getNumberOfFlats())"
         let queue = OperationQueue()
         
@@ -207,12 +206,10 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         
         cell.lbl_CookName.font = NAFont().textFieldFont()
         cell.lbl_CookRating.font = NAFont().textFieldFont()
-        cell.lbl_CookTimeSlot.font = NAFont().textFieldFont()
         cell.lbl_CookFlat.font = NAFont().textFieldFont()
         
         cell.lbl_MyCookName.font = NAFont().headerFont()
         cell.lbl_MyCookRating.font = NAFont().headerFont()
-        cell.lbl_MyCookTimeSlot.font = NAFont().headerFont()
         cell.lbl_MyCookFlat.font = NAFont().headerFont()
         
         NAShadowEffect().shadowEffect(Cell: cell)
