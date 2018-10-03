@@ -382,7 +382,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         }
         
         dailyServiceUID = NADailyServicesList[index]
-        print(dailyServiceType)
         
         let dailyServiceRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType).child(dailyServiceUID.getuid()).child(userUID)
         dailyServiceRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)

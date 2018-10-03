@@ -56,7 +56,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         infoButton()
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        print(titleName)
+       
         switch titleName {
             
         case NAString().cook():
