@@ -13,11 +13,9 @@ class ApartmentServicesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myCookImage: UIImageView!
     @IBOutlet weak var lbl_MyCookName: UILabel!
     @IBOutlet weak var lbl_MyCookRating: UILabel!
-    @IBOutlet weak var lbl_MyCookTimeSlot: UILabel!
     @IBOutlet weak var lbl_MyCookFlat: UILabel!
     @IBOutlet weak var lbl_CookName: UILabel!
     @IBOutlet weak var lbl_CookRating: UILabel!
-    @IBOutlet weak var lbl_CookTimeSlot: UILabel!
     @IBOutlet weak var lbl_CookFlat: UILabel!
     
     @IBOutlet weak var lbl_Call: UILabel!
@@ -33,11 +31,9 @@ class ApartmentServicesCollectionViewCell: UICollectionViewCell {
         //Setting Label Fonts
         lbl_MyCookName.font = NAFont().headerFont()
         lbl_MyCookRating.font = NAFont().headerFont()
-        lbl_MyCookTimeSlot.font = NAFont().headerFont()
         lbl_MyCookFlat.font = NAFont().headerFont()
         lbl_CookName.font = NAFont().textFieldFont()
         lbl_CookRating.font = NAFont().textFieldFont()
-        lbl_CookTimeSlot.font = NAFont().textFieldFont()
         lbl_CookFlat.font = NAFont().textFieldFont()
         
         lbl_Call.font = NAFont().cellButtonFont()
