@@ -324,10 +324,10 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                                             self.collectionView.reloadData()
                                         } else {
                                             var count : Float = 0
-                                            
+                                            var rating = Float()
                                             for ownerUID in servicesOwnerUIDKeys {
                                                 count = count + 1
-                                                var rating = Float()
+                                                
                                                 let ratingRef = serviceOwnerRef
                                                 
                                                 ratingRef.child(ownerUID).child(Constants.FIREBASE_CHILD_RATING).observeSingleEvent(of: .value, with: { (ratingSnapshot) in
@@ -346,7 +346,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                                                         
                                                         self.allDailyServicesList.append(serviceData)
                                                     }
-                                                    
                                                 })
                                             }
                                            
