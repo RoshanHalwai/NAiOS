@@ -43,6 +43,21 @@ class OpacityView {
         view.view.addSubview(popupView)
     }
     
+    //Create popup view for event management
+    func showEventPopupView(view: UIViewController,title: String) {
+        popupView = PopupView(frame: CGRect(x: 0, y:0, width: 280, height: 150))
+        popupView.center.x = view.view.bounds.width/2
+        popupView.center.y = view.view.bounds.height/2
+        popupView.lbl_Message.text = NAString().addButtonloadViewMessage()
+        popupView.lbl_Title.text = title
+        popupView.lbl_Title.font = NAFont().headerFont()
+        popupView.lbl_Message.font = NAFont().popupViewFont()
+      
+        popupView.layer.cornerRadius = CGFloat(NAString().popupViewCornerRadius())
+        popupView.layer.masksToBounds = true
+        view.view.addSubview(popupView)
+    }
+    
     //Create popup view label title
     func popupViewTitle() {
         popupView.lbl_Title.font = NAFont().headerFont()

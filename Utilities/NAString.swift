@@ -2125,5 +2125,13 @@ class NAString : NSObject {
     func remove_Alert_Message() -> String {
         return String("Are you sure you want to remove the details of the Vehicle?")
     }
+    
+    func event_booking_facility() -> String {
+        return String("Event Booking facility is Unavailable in your Society")
+    }
+    
+    func event_booking() -> String {
+        return String("Event Booking")
+    }
 }
 
