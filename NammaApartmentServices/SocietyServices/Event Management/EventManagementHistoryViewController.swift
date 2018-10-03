@@ -46,9 +46,9 @@ class EventManagementHistoryViewController: NANavigationViewController,UITableVi
         
         cell.lbl_EventTitle_Details.text = eventDetails.getTitle()
         cell.lbl_EventDate_Details.text = eventDetails.getDate()
-        cell.lbl_Status_Details.text = eventDetails.getStatus()
+        cell.lbl_Status_Details.text = eventDetails.getCategory()
         
-        let timeSlotsArray = eventDetails.getTimeSlot()
+        let timeSlotsArray = eventDetails.getTimeSlot().sorted()
         var index = 0
         for label in cell.lbl_SelectedSlots {
             if index != timeSlotsArray.count {
@@ -108,9 +108,8 @@ class EventManagementHistoryViewController: NANavigationViewController,UITableVi
         }
         
         for label in cell.lbl_SelectedSlots {
-            label.layer.borderColor = UIColor.green.cgColor
-            label.layer.borderWidth = 1
-            label.layer.cornerRadius = 10
+            label.backgroundColor = UIColor.white
+            NAShadowEffect().shadowEffectForButton(label: label)
         }
         cell.isUserInteractionEnabled = false
         return cell
@@ -132,12 +131,12 @@ class EventManagementHistoryViewController: NANavigationViewController,UITableVi
                                 
                                 let eventTitle = eventsData[NAEventManagementFBKeys.eventTitle.key]
                                 let eventDate = eventsData[NAEventManagementFBKeys.eventDate.key]
-                                let eventStatus = eventsData[NAEventManagementFBKeys.status.key]
+                                let eventCategory = eventsData[NAEventManagementFBKeys.category.key]
                                 eventManagementRef.child(NAEventManagementFBKeys.timeSlots.key).observeSingleEvent(of: .value, with: { (timeSlotSnapshot) in
                                     let timeSlots = timeSlotSnapshot.value as! NSDictionary
                                     self.timeSlotsArry = timeSlots.allKeys as! [String]
                                     
-                                    let userData = NAEventManagement(title: (eventTitle as! String), date: (eventDate as! String), timeSlot: self.timeSlotsArry, status: (eventStatus as! String))
+                                    let userData = NAEventManagement(title: (eventTitle as! String), date: (eventDate as! String), timeSlot: self.timeSlotsArry, status: nil, category: eventCategory as? String)
                                     self.userEventManagementDetails.append(userData)
                                     NAActivityIndicator.shared.hideActivityIndicator()
                                     self.tableView.reloadData()

@@ -46,7 +46,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="namma_apartments_na" translatesAutoresizingMaskIntoConstraints="NO" id="SxG-dr-J5r">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="namma_apartments_na" translatesAutoresizingMaskIntoConstraints="NO" id="SxG-dr-J5r">
                                 <rect key="frame" x="0.0" y="20" width="375" height="333.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One stop shop solutions for all your  society needs." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bl-a1-vxh">
@@ -286,19 +286,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="170" y="0.0" width="55.5" height="53"/>
+                                                <rect key="frame" x="170" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will collect food " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smj-Ef-i0k">
-                                                <rect key="frame" x="255.5" y="0.0" width="54.5" height="53"/>
+                                                <rect key="frame" x="255" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3448,7 +3448,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uNx-TJ-Zb9">
-                                        <rect key="frame" x="49" y="250" width="275" height="140"/>
+                                        <rect key="frame" x="50" y="263.5" width="275" height="140"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="epN-UV-caa">
                                                 <rect key="frame" x="13" y="100" width="250" height="30"/>
@@ -3550,9 +3550,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="uNx-TJ-Zb9" firstAttribute="leading" secondItem="zKL-pa-39C" secondAttribute="leading" constant="49" id="abM-FG-50C"/>
-                                    <constraint firstItem="uNx-TJ-Zb9" firstAttribute="top" secondItem="zKL-pa-39C" secondAttribute="top" constant="250" id="b5E-mp-MLT"/>
-                                    <constraint firstAttribute="trailing" secondItem="uNx-TJ-Zb9" secondAttribute="trailing" constant="51" id="zM5-AA-NIC"/>
+                                    <constraint firstItem="uNx-TJ-Zb9" firstAttribute="centerX" secondItem="zKL-pa-39C" secondAttribute="centerX" id="4Re-Wz-sXJ"/>
+                                    <constraint firstItem="uNx-TJ-Zb9" firstAttribute="centerY" secondItem="zKL-pa-39C" secondAttribute="centerY" id="I2P-wh-wlY"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="81V-EG-HHv">
@@ -10031,7 +10030,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qbq-tV-CR7">
                                                     <rect key="frame" x="15" y="11" width="345" height="333"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event" translatesAutoresizingMaskIntoConstraints="NO" id="ieD-g5-o3r">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eventManagement" translatesAutoresizingMaskIntoConstraints="NO" id="ieD-g5-o3r">
                                                             <rect key="frame" x="5" y="10" width="60" height="60"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="60" id="DbU-Qa-qKA"/>
@@ -10050,8 +10049,8 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-h0-VgT">
-                                                                            <rect key="frame" x="0.0" y="25.5" width="54" height="30.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKl-h0-VgT">
+                                                                            <rect key="frame" x="0.0" y="25.5" width="75" height="30.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -10394,9 +10393,10 @@
         <image name="customer-support" width="256" height="256"/>
         <image name="donteFoodHistory" width="128" height="128"/>
         <image name="event" width="64" height="64"/>
+        <image name="eventManagement" width="128" height="128"/>
         <image name="imageIcon" width="256" height="256"/>
         <image name="motorCycle" width="128" height="128"/>
-        <image name="namma_apartments_na" width="307" height="239"/>
+        <image name="namma_apartments_na" width="800" height="450"/>
         <image name="purse" width="256" height="256"/>
         <image name="rupee-indian" width="128" height="128"/>
         <image name="society_services_na" width="250" height="250"/>
