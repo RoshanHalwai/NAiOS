@@ -120,8 +120,6 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         //Create Name textfield first letter capital
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
-        img_Profile.layer.borderColor = UIColor.black.cgColor
-        
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true
         lbl_Picture_Validation.isHidden = true

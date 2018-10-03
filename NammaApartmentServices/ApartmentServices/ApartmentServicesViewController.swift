@@ -101,7 +101,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         let width = UIScreen.main.bounds.width
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: 210)
+        layout.itemSize = CGSize(width: width - 10, height: 190)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10

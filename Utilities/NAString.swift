@@ -1445,7 +1445,7 @@ class NAString : NSObject {
     }
     
     func addFood_AlertMessage() -> String {
-        return ("Thank you for rasing request.Our Representative will arrive at your flat to collect food.")
+        return ("Thank you for rasing request. Our representative will arrive at your flat to collect food.")
     }
     
     func add_your_vehicle_message() -> String {
@@ -1856,7 +1856,7 @@ class NAString : NSObject {
     func maintenanceAmountAlert_Message(maintenanceAmount: Int, additionalCharges: Float, totalAmount: Float, chargesPer : Float) -> String {
         return String("\n Maintenance Amount:\t\t Rs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t    Rs \(totalAmount)")
     }
-
+    
     func transactions() -> String {
         return String("Transactions")
     }
@@ -2136,6 +2136,14 @@ class NAString : NSObject {
     
     func remove_Alert_Message() -> String {
         return String("Are you sure you want to remove the details of the Vehicle?")
+    }
+    
+    func event_booking_facility() -> String {
+        return String("Event Booking facility is Unavailable in your Society")
+    }
+    
+    func event_booking() -> String {
+        return String("Event Booking")
     }
 }
 

@@ -112,9 +112,6 @@ class MyFoodViewController: NANavigationViewController {
     
     @objc func gotoDonateFoodHistoryVC() {
         let dv = NAViewPresenter().donateFoodHistoryVC()
-        lbl_FoodQuantity_Validation.isHidden = true
-        lbl_FoodType_Validation.isHidden = true
-        txt_FoodType.underlined()
         self.navigationController?.pushViewController(dv, animated: true)
     }
     
@@ -187,10 +184,6 @@ class MyFoodViewController: NANavigationViewController {
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        txt_FoodType.text = ""
     }
 }
 
