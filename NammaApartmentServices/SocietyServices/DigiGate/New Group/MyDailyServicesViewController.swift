@@ -519,7 +519,7 @@ extension MyDailyServicesViewController {
                                     
                                             queue.addOperation {
                                                 self.dailyServiceCountRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-                                                    numberOfFlat = Int((snapshot.childrenCount) - 2)
+                                                    numberOfFlat = Int((snapshot.childrenCount) - 1)
                                                     dsType = dailyServiceType as! String
                                                     dsStatus = dailyServiceStatus as! String
                                                     
