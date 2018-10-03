@@ -553,7 +553,7 @@ extension MyDailyServicesViewController {
                                                                 iterator = iterator + 1
                                                             } else {
                                                                 NAActivityIndicator.shared.hideActivityIndicator()
-                                                               // NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                                                             }
                                                         }
                                                     })
@@ -563,7 +563,7 @@ extension MyDailyServicesViewController {
                                         })
                                     } else {
                                         NAActivityIndicator.shared.hideActivityIndicator()
-                                        //NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                                     }
                                 }
                             })
