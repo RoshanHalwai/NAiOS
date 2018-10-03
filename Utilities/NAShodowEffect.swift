@@ -44,4 +44,16 @@ class NAShadowEffect: NSObject {
         button.layer.shadowOpacity = 1.0
         button.layer.shadowPath = UIBezierPath(roundedRect: button.bounds, cornerRadius: button.layer.cornerRadius).cgPath
     }
+    
+    func shadowEffectForButton(label: UILabel) {
+        label.layer.cornerRadius = 8.0
+        label.layer.borderWidth = 1.0
+        label.layer.borderColor = UIColor.clear.cgColor
+        label.layer.masksToBounds = false
+        label.layer.shadowColor = UIColor.gray.cgColor
+        label.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        label.layer.shadowRadius = 3.0
+        label.layer.shadowOpacity = 0.4
+        label.layer.shadowPath = UIBezierPath(roundedRect: label.bounds, cornerRadius: label.layer.cornerRadius).cgPath
+    }
 }

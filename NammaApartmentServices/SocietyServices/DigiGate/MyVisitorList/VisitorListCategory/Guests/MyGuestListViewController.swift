@@ -204,7 +204,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
                 dv.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
                 self.present(dv, animated: true, completion: nil)
             } else {
-                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().reschedule_Title(), Message: NAString().reschedule_Alert_Message(), OkStyle: .default, OK: nil)
+                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().reschedule_Title(), Message: NAString().reschedule_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
             }
         }
         
