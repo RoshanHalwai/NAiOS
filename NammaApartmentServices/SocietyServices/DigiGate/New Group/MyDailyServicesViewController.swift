@@ -254,6 +254,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_Remove.font = NAFont().cellButtonFont()
         cell.lbl_Message.font = NAFont().cellButtonFont()
         
+        
         cell.lbl_Call.text = NAString().call()
         cell.lbl_Edit.text = NAString().edit()
         cell.lbl_Remove.text = NAString().remove()
@@ -552,7 +553,7 @@ extension MyDailyServicesViewController {
                                                                 iterator = iterator + 1
                                                             } else {
                                                                 NAActivityIndicator.shared.hideActivityIndicator()
-                                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                                               // NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                                                             }
                                                         }
                                                     })
@@ -562,7 +563,7 @@ extension MyDailyServicesViewController {
                                         })
                                     } else {
                                         NAActivityIndicator.shared.hideActivityIndicator()
-                                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                        //NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                                     }
                                 }
                             })
