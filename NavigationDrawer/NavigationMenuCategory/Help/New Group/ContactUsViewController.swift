@@ -128,9 +128,6 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     
     @objc func gotoContactUsHistoryVC() {
         let dv = NAViewPresenter().contactUsHistoryVC()
-        lbl_SelectServiceType_Validation.isHidden = true
-        lbl_DescribeYourProblem_Validation.isHidden = true
-        txt_Choose_One.underlined()
         self.navigationController?.pushViewController(dv, animated: true)
     }
     
