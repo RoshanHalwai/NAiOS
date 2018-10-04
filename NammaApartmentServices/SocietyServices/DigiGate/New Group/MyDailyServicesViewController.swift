@@ -446,6 +446,12 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
             self.NADailyServicesList.remove(at: indx)
             self.dailyServiceInUserRef?.child(dailyService.getType()).child(dailyService.getuid()).setValue(NAString().getfalse())
             
+            //Showing Error Layout Message if the List is Empty
+            if self.NADailyServicesList.isEmpty {
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+            }
+            
             cell.alpha = 1
             cell.layer.transform = CATransform3DIdentity
             
@@ -561,9 +567,6 @@ extension MyDailyServicesViewController {
                                             }
                                             queue.waitUntilAllOperationsAreFinished()
                                         })
-                                    } else {
-                                        NAActivityIndicator.shared.hideActivityIndicator()
-                                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                                     }
                                 }
                             })
