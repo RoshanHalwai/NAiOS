@@ -289,7 +289,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         }
         if (txtInvitorMobile.text?.isEmpty)! {
             lbl_Mob_Validation.isHidden = false
-            lbl_Mob_Validation.text = NAString().please_enter_mobile_no()
+            lbl_Mob_Validation.text = NAString().please_enter_your_mobile_no()
             txtInvitorMobile.redunderlined()
         } else if (!(txtInvitorMobile.text?.isEmpty)!) && (txtInvitorMobile.text?.count != NAString().required_mobileNo_Length()) {
             lbl_Mob_Validation.isHidden = false

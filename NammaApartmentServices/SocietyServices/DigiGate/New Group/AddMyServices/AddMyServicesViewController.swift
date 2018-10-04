@@ -397,7 +397,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         }
         if (txt_MobileNo.text?.isEmpty)! {
             lbl_Mobile_Validation.isHidden = false
-            lbl_Mobile_Validation.text = NAString().please_enter_mobile_no()
+            lbl_Mobile_Validation.text = NAString().please_enter_your_mobile_no()
             txt_MobileNo.redunderlined()
         } else if (!(txt_MobileNo.text?.isEmpty)!) && (txt_MobileNo.text?.count != NAString().required_mobileNo_Length()) {
             lbl_Mobile_Validation.isHidden = false

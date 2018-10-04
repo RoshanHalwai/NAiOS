@@ -300,12 +300,12 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                         }
                     } else {
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorApartmentServices(serviceType: self.titleName))
+                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorApartmentServices())
                     }
                 })
             } else {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorApartmentServices(serviceType: self.titleName))
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorApartmentServices())
             }
         }
     }
