@@ -83,7 +83,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = NAString().userProblemTimeStampFormat()
         let dateAndTime = dateFormatterGet.date(from: dateString)
-        dateFormatterGet.dateFormat = NAString().convertedUserProblemTimeStampFormat()
+        dateFormatterGet.dateFormat = NAString().convertedSocietyServiceTimeStampFormat()
         let userRequestTime = (dateFormatterGet.string(from: dateAndTime!))
         
         switch societyServiceList.getSocietyServiceType() {
