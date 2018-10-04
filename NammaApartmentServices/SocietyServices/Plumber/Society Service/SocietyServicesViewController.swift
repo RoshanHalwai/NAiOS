@@ -515,7 +515,7 @@ extension SocietyServicesViewController {
         }
         
         let societyServiceNotificationData = [
-            problemOrScrapType : problem,
+            problemOrScrapType : txt_SelectAny.text as Any,
             timeSlotOrQuantity : getButtonHour_Text,
             NASocietyServicesFBKeys.userUID.key: userUID,
             NASocietyServicesFBKeys.societyServiceType.key : serviceType,
