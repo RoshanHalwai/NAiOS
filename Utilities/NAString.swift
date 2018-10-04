@@ -1757,6 +1757,9 @@ class NAString : NSObject {
         return String("MMM dd, YYYY")
     }
     
+    func convertedSocietyServiceTimeStampFormat() -> String {
+        return String("EEE, MMM dd, HH:MM")
+    }
     func payments() -> String {
         return String("Payments")
     }

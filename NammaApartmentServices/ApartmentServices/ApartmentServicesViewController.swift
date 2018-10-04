@@ -56,7 +56,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         infoButton()
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-       
+        
         switch titleName {
             
         case NAString().cook():
@@ -101,7 +101,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         let width = UIScreen.main.bounds.width
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: 190)
+        layout.itemSize = CGSize(width: width - 10, height: 210)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
