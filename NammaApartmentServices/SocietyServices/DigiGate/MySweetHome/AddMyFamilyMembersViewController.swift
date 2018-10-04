@@ -94,8 +94,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         lbl_Arrow.text = NAString().image()
         lbl_Arrow.textColor = UIColor.black
         
-        img_Profile.layer.borderColor = UIColor.black.cgColor
-        
         lbl_Name_Validation.isHidden = true
         lbl_Mobile_Validation.isHidden = true
         lbl_Picture_Validation.isHidden = true

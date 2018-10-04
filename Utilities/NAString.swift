@@ -1441,7 +1441,7 @@ class NAString : NSObject {
     }
     
     func addFood_AlertMessage() -> String {
-        return ("Thank you for rasing request.Our Representative will arrive at your flat to collect food.")
+        return ("Thank you for rasing request. Our representative will arrive at your flat to collect food.")
     }
     
     func add_your_vehicle_message() -> String {
@@ -1852,7 +1852,7 @@ class NAString : NSObject {
     func maintenanceAmountAlert_Message(maintenanceAmount: Int, additionalCharges: Float, totalAmount: Float, chargesPer : Float) -> String {
         return String("\n Maintenance Amount:\t\t Rs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t    Rs \(totalAmount)")
     }
-
+    
     func transactions() -> String {
         return String("Transactions")
     }
@@ -1965,12 +1965,12 @@ class NAString : NSObject {
         return String("Full Day(8AM - 10PM)")
     }
     
-    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Int) -> String {
-        return String("\nNo. of Booked Slots :    \(slotsCount) \n\n Amount per Slot :    Rs 100 \n\n Total Amount :    Rs \(totalAmount)")
+    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Float, perSlot: Int, estimatedAmount: Int, convenienceFee: Float, convenienceAmount: Float ) -> String {
+        return String("\nNo. of Booked Slots:\t\t\t  \(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):      Rs. \(convenienceAmount) \n\nTotal Amount:\t\t   Rs. \(totalAmount)")
     }
     
-    func eventBill() -> String {
-        return String("Event Bill")
+    func bookingSummary() -> String {
+        return String("Booking Summary")
     }
     
     /* Society Service(Plumber,Carpenter,Electrician and ScrapCollection) Problems List. */
@@ -2132,6 +2132,14 @@ class NAString : NSObject {
     
     func remove_Alert_Message() -> String {
         return String("Are you sure you want to remove the details of the Vehicle?")
+    }
+    
+    func event_booking_facility() -> String {
+        return String("Event Booking facility is Unavailable in your Society")
+    }
+    
+    func event_booking() -> String {
+        return String("Event Booking")
     }
 }
 

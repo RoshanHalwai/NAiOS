@@ -14,9 +14,9 @@ class ContactUsListViewController: NANavigationViewController, UITableViewDelega
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var navTitle: UILabel!
     
-    var societyServiceArray = [NAString().digi_gate(), NAString().plumber(), NAString().carpenter(), NAString().electrician(), NAString().garbage_Collection(), NAString().emergency(), NAString().scrapCollection(), NAString().event_management()]
+    var societyServiceArray = [NAString().digi_gate(), NAString().plumber(), NAString().carpenter(), NAString().electrician(), NAString().garbage_Collection(), NAString().emergency(), NAString().event_management(), NAString().scrapCollection()]
     
-    var apartmentServiceArray = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(), NAString().daily_newspaper(), NAString().milk_man(), NAString().laundry(), NAString().driver(), NAString().groceries()]
+    var apartmentServiceArray = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(), NAString().daily_newspaper(), NAString().milk_man(), NAString().laundry(), NAString().driver()]
     
     var searchActive : Bool = false
     

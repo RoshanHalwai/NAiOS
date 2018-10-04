@@ -69,13 +69,19 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     
     var slotsCount = Int()
     var totalAmount = Int()
-    var amountPerEachSlot = 100
+    var bookingAmount = Int()
+    var convenienceFee: Float = 0.0
+    var gettingPercentageAmount = Double()
+    var getFinalAmount = Double()
+    var getFinalAmountInString = String()
     
     //created date picker programtically
     let picker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        retrieveBookingAmountPerSlot()
         
         //Payment Gateway Namma Apartment API KEY for Transactions
         razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
@@ -96,6 +102,8 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)
+        
+        self.navigationItem.rightBarButtonItems?.removeAll()
         
         //Apply Label Fonts
         lbl_EventTitle.font = NAFont().headerFont()
@@ -200,19 +208,16 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         //set local date to Europe to show 24 hours
         picker.locale = Locale(identifier: "en_GB")
         
-        //Creating History icon on Navigation bar
-        let historyButton = UIButton(type: .system)
-        historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
-        historyButton.addTarget(self, action: #selector(gotoSocietyServiceHistoryVC), for: .touchUpInside)
-        let history = UIBarButtonItem(customView: historyButton)
-        //Creating info icon on Navigation bar
-        let infoButton = UIButton(type: .system)
-        infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
-        infoButton.addTarget(self, action: #selector(gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
-        let info = UIBarButtonItem(customView: infoButton)
-        
-        //created Array for history and info button icons
-        self.navigationItem.setRightBarButtonItems([info,history], animated: true)
+        self.btn_Parties.isHidden = true
+        self.btn_Seminars.isHidden = true
+        self.btn_Concerts.isHidden = true
+        self.btn_Meetings.isHidden = true
+        self.txt_EventTitle.isHidden = true
+        self.lbl_EventTitle.isHidden = true
+        self.lbl_ChooseCategory.isHidden = true
+        self.txt_EventDate.isHidden = true
+        self.lbl_EventDate.isHidden = true
+        self.btn_Book.isHidden = true
     }
     
     func disabling_Slots() {
@@ -336,7 +341,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     func showPaymentUI() {
         let options: [String:Any] = [
             //TODO: Need to give Actual Total Amount of event Slots before App Update.
-            "amount" : "100",
+            "amount" : getFinalAmountInString,
             "description": paymentDescription,
             "name": NAString().splash_NammaHeader_Title(),
             "prefill": [
@@ -431,7 +436,6 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                 }
             }
         }
-        print(selectedMutipleSlotsArray)
     }
     
     //Create Button SelectEvent Function
@@ -471,16 +475,27 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
         if !(txt_EventTitle.text?.isEmpty)! && !(txt_EventDate.text?.isEmpty)! && (isValidSelectSlotButtonClicked.index(of: true) != nil) && (isValidSelectEventButtonClicked.index(of: true) != nil) {
             
             if selectedMutipleSlotsArray.contains(NAString().fullDaySlot()) {
-                totalAmount = 1400
+                //If user select all the slots(full day)
                 slotsCount = 14
+                totalAmount = slotsCount * bookingAmount
             } else {
-                totalAmount = selectedMutipleSlotsArray.count * amountPerEachSlot
-                slotsCount = selectedMutipleSlotsArray.count
+                //If user select only some particular slots
+                totalAmount = selectedMutipleSlotsArray.count * bookingAmount
             }
             
-            NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().eventBill(), Message: NAString().eventSlotsAmountAlert_Message(slotsCount: slotsCount, totalAmount: totalAmount), CancelStyle: .default, OkStyle: .default, OK: { (action) in
-                self.showPaymentUI()
-            }, Cancel: nil, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().payNow().capitalized)
+            let convenienceChargesRef = Constants.FIREBASE_CONVENIENCE_CHARGES
+            convenienceChargesRef.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
+                self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
+                
+                self.gettingPercentageAmount = Double((Float(self.totalAmount) * self.convenienceFee) / 100)
+                self.getFinalAmount = (Double(self.gettingPercentageAmount)) + (Double(self.totalAmount))
+                let getfinalAmountInPaisa = (self.getFinalAmount * 100)
+                self.getFinalAmountInString = "\(getfinalAmountInPaisa)"
+                    
+                NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().bookingSummary(), Message: NAString().eventSlotsAmountAlert_Message(slotsCount: self.selectedMutipleSlotsArray.count, totalAmount: Float(self.getFinalAmount), perSlot: self.bookingAmount, estimatedAmount: self.totalAmount, convenienceFee: self.convenienceFee, convenienceAmount: Float(self.gettingPercentageAmount)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+                    self.showPaymentUI()
+                }, Cancel: nil, cancelActionTitle: NAString().cancel().uppercased(), okActionTitle: NAString().payNow().uppercased())
+            }
         }
     }
     
@@ -573,4 +588,56 @@ extension EventManagementViewController {
         }
     }
 }
+
+extension EventManagementViewController {
+    
+    //Retrieving booking amount value, so we can check wether this particular society have 'Event Management' facility or not
+    func retrieveBookingAmountPerSlot() {
+        
+        OpacityView.shared.showingOpacityView(view: self)
+        OpacityView.shared.showEventPopupView(view: self, title: NAString().event_booking())
+
+        let bookingAmountRef = Constants.FIREBASE_BOOKING_SLOT
+        bookingAmountRef.observeSingleEvent(of: .value) { (bookingAmountSnapshot) in
+            
+            if !bookingAmountSnapshot.exists() {
+                OpacityView.shared.hidingOpacityView()
+                OpacityView.shared.hidingPopupView()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().event_booking_facility())
+            } else {
+                OpacityView.shared.hidingOpacityView()
+                OpacityView.shared.hidingPopupView()
+                
+                self.bookingAmount = bookingAmountSnapshot.value as! Int
+      
+                //Creating History icon on Navigation bar
+                let historyButton = UIButton(type: .system)
+                historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
+                historyButton.addTarget(self, action: #selector(self.gotoSocietyServiceHistoryVC), for: .touchUpInside)
+                let history = UIBarButtonItem(customView: historyButton)
+                //Creating info icon on Navigation bar
+                let infoButton = UIButton(type: .system)
+                infoButton.setImage(#imageLiteral(resourceName: "infoButton"), for: .normal)
+                infoButton.addTarget(self, action: #selector(self.gotofrequentlyAskedQuestionsVC), for: .touchUpInside)
+                let info = UIBarButtonItem(customView: infoButton)
+                
+                //created Array for history and info button icons
+                self.navigationItem.setRightBarButtonItems([info,history], animated: true)
+                
+                //Showing all UI elements 
+                self.btn_Parties.isHidden = false
+                self.btn_Seminars.isHidden = false
+                self.btn_Concerts.isHidden = false
+                self.btn_Meetings.isHidden = false
+                self.txt_EventTitle.isHidden = false
+                self.lbl_EventTitle.isHidden = false
+                self.lbl_ChooseCategory.isHidden = false
+                self.txt_EventDate.isHidden = false
+                self.lbl_EventDate.isHidden = false
+                self.btn_Book.isHidden = false
+            }
+        }
+    }
+}
+
 
