@@ -232,7 +232,7 @@ class AwaitingResponseViewController: NANavigationViewController {
                         serviceImage = #imageLiteral(resourceName: "carpenter")
                         break
                     case NAString().electrician().lowercased():
-                        servicesType = NAString().electrician().lowercased()
+                        servicesType = NAString().electrician()
                         serviceImage = #imageLiteral(resourceName: "electrician")
                         break
                     default:
