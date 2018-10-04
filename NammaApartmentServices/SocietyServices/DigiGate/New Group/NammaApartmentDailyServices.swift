@@ -58,7 +58,6 @@ class NammaApartmentDailyServices {
         self.type = type
         self.numberOfFlat = numberOfFlat
         self.status = status
-        
     }
     
     //Get FullName
@@ -86,6 +85,10 @@ class NammaApartmentDailyServices {
         return rating!
     }
     
+    func setRating(rating: Int) {
+        self.rating = rating
+    }
+    
     //Get timeOfVisit
     func gettimeOfVisit() -> String {
         return timeOfVisit!
@@ -98,6 +101,10 @@ class NammaApartmentDailyServices {
     
     func getNumberOfFlats() -> Int {
         return numberOfFlat!
+    }
+    
+    func setFlats(flats: Int) {
+        self.numberOfFlat = flats
     }
     
     func getType() -> String {

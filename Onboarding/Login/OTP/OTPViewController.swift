@@ -125,6 +125,14 @@ class OTPViewController: NANavigationViewController {
         let tapResendOTP = UITapGestureRecognizer(target: self, action: #selector(tapResend))
         lbl_WaitingForOTP.isUserInteractionEnabled = true
         lbl_WaitingForOTP.addGestureRecognizer(tapResendOTP)
+        
+        //Calling function from NANavigationViewController class to hide numberPad on done pressed
+        hideNumberPad(numberTextField: txtOTP1)
+        hideNumberPad(numberTextField: txtOTP2)
+        hideNumberPad(numberTextField: txtOTP3)
+        hideNumberPad(numberTextField: txtOTP4)
+        hideNumberPad(numberTextField: txtOTP5)
+        hideNumberPad(numberTextField: txtOTP6)
     }
     
     //Resend OTP Action
