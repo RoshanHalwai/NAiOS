@@ -15,6 +15,7 @@ struct Constants {
     static let FIREBASE_CHILD_VISITORS = "visitors"
     static let FIREBASE_CHILD_PRE_APPROVED = "preApproved"
     static let FIREBASE_CHILD_POST_APPROVED = "postApproved"
+    static let FIREBASE_CHILD_GUARD_APPROVED = "guardApproved"
     static let FIREBASE_CHILD_PRE_APPROVED_VISITORS_MOBILENUMBER = "preApprovedVisitorsMobileNumber"
     static let FIREBASE_USER = "users"
     static let FIREBASE_CHILD_PRIVATE = "private"
@@ -123,7 +124,7 @@ struct Constants {
     static let FIREBASE_CHILD_SCRAP_COLLECTION = "scrapCollection"
     static let FIREBASE_CHILD_BOOKING_AMOUNT = "bookingAmount"
     static let FIREBASE_CHILD_CONVENIENCE = "convenienceCharges"
-
+    
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     
     static let FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(FIREBASE_USER_CHILD_ALL)
