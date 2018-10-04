@@ -226,15 +226,19 @@ class AwaitingResponseViewController: NANavigationViewController {
                     case NAString().plumber().lowercased():
                         serviceImage = #imageLiteral(resourceName: "plumber")
                         servicesType = NAString().plumber()
+                        break
                     case NAString().carpenter().lowercased():
                         servicesType = NAString().carpenter()
                         serviceImage = #imageLiteral(resourceName: "carpenter")
-                    case NAString().electrician().lowercased():
-                        servicesType = NAString().carpenter().lowercased()
-                        serviceImage = #imageLiteral(resourceName: "electrician")
-                    default:
                         break
-                        
+                    case NAString().electrician().lowercased():
+                        servicesType = NAString().electrician()
+                        serviceImage = #imageLiteral(resourceName: "electrician")
+                        break
+                    default:
+                        servicesType = NAString().garbage()
+                        serviceImage = #imageLiteral(resourceName: "garbage")
+                        break
                     }
                     self.showingRatingView(serviceTypeImage: serviceImage, serviceType: servicesType)
                 }
