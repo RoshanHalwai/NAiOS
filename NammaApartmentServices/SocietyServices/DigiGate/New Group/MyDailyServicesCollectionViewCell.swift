@@ -36,6 +36,7 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btn_Message: UIButton!
     @IBOutlet weak var btn_Edit: UIButton!
     @IBOutlet weak var btn_Cancel: UIButton!
+    @IBOutlet weak var btn_Rate: UIButton!
     
     @IBOutlet weak var lbl_Remove: UILabel!
     @IBOutlet weak var lbl_Edit: UILabel!
@@ -46,6 +47,7 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell {
     var actionEdit : (() -> Void)? = nil
     var actionCall : (() -> Void)? = nil
     var actionMessage : (() -> Void)? = nil
+    var actionRate : (() -> Void)? = nil
     
     @IBAction func btnCancel(_ sender: UIButton) {
         delegate?.deleteData(indx: (index?.row)!, cell: self)
@@ -68,5 +70,11 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell {
             btnMessageAction()
         }
         
+    }
+    
+    @IBAction func btnRate(_ sender: UIButton) {
+        if let btnRateAction = self.actionRate {
+            btnRateAction()
+        }
     }
 }

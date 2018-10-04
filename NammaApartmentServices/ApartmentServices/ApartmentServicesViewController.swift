@@ -23,6 +23,8 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     var locationManager = CLLocationManager()
     var longitude = String()
     var latitude = String()
+    var ratingArray = [Float]()
+    var averageRating = Float()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +56,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         infoButton()
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
+       
         switch titleName {
             
         case NAString().cook():
@@ -183,13 +185,11 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! ApartmentServicesCollectionViewCell
         let dailyServicesData: NammaApartmentDailyServices
+        
         dailyServicesData = allDailyServicesList[indexPath.row]
         
         cell.lbl_MyCookName.text = dailyServicesData.getfullName()
-        
-        //TODO: Need to get Actual Rating of that particular service person.
         cell.lbl_MyCookRating.text = "\(dailyServicesData.getrating())"
-        //TODO: Need to Implement Time slot.
         cell.lbl_MyCookFlat.text = "\(dailyServicesData.getNumberOfFlats())"
         let queue = OperationQueue()
         
@@ -263,6 +263,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     }
     
     func retrieveApartmentServicesData(serviceType: String) {
+        
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         let serviceDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         serviceDataRef.observeSingleEvent(of: .value) { (snapshot) in
@@ -272,52 +273,39 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
                 serviceTypeRef.observeSingleEvent(of: .value, with: { (serviceTypeSnapshot) in
                     if serviceTypeSnapshot.exists() {
                         
-                        if let servicesTypeUID = serviceTypeSnapshot.value as? [String: Any] {
+                        if let servicesTypeUID = serviceTypeSnapshot.value as? [String: AnyObject] {
                             let servicesTypeUIDKeys = Array(servicesTypeUID.keys)
                             for serviceTypeUID in servicesTypeUIDKeys {
                                 
                                 let serviceOwnerRef = serviceTypeRef.child(serviceTypeUID)
                                 serviceOwnerRef.observeSingleEvent(of: .value, with: { (ownerUIDSnapshot) in
                                     
-                                    let flatCount = ownerUIDSnapshot.childrenCount - 1
-                                    if let serviceOwnersUID = ownerUIDSnapshot.value as? [String: Any] {
-                                        
-                                        var servicesOwnerUIDKeys = [String]()
-                                        servicesOwnerUIDKeys = Array(serviceOwnersUID.keys)
-                                        let index = servicesOwnerUIDKeys.index(of : NAString().status())
-                                        servicesOwnerUIDKeys.remove(at: index!)
-                                        let ownersUID = servicesOwnerUIDKeys[0]
-                                        let serviceDataRef = serviceOwnerRef.child(ownersUID)
-                                        serviceDataRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
-                                            
-                                            let dailyServiceData = dataSnapshot.value as? [String: AnyObject]
-                                            let flats : Int = Int(flatCount)
-                                            
-                                            let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
-                                            let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
-                                            let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
-                                            let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
-                                            let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
-                                            let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
-                                            
-                                            let serviceData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: nil, rating: rating as? Int, timeOfVisit: timeOfVisit as? String, uid: (uid as! String), type: nil, numberOfFlat: flats, status: nil)
-                                            
-                                            self.allDailyServicesList.append(serviceData)
-                                            NAActivityIndicator.shared.hideActivityIndicator()
-                                            self.collectionView.reloadData()
-                                        })
-                                    }
+                                    let serviceOwnersUID = ownerUIDSnapshot.value as? [String: Any]
+                                    
+                                    var servicesOwnerUIDKeys = [String]()
+                                    servicesOwnerUIDKeys = Array(serviceOwnersUID!.keys)
+                                    let index = servicesOwnerUIDKeys.index(of : NAString().status())
+                                    servicesOwnerUIDKeys.remove(at: index!)
+                                    
+                                    let retrieveApartmentsServicesList : RetrievingApartmentServicesData
+                                    retrieveApartmentsServicesList = RetrievingApartmentServicesData.init(dailyServiceUID: serviceTypeUID, dailyServiceType: serviceType)
+                                    retrieveApartmentsServicesList.getDailyServicesDetails(callback: { (dailyServiceData) in
+                                        //Hiding Progress indicator after retrieving data.
+                                        NAActivityIndicator.shared.hideActivityIndicator()
+                                        self.allDailyServicesList.append(dailyServiceData)
+                                        self.collectionView.reloadData()
+                                    })
                                 })
                             }
                         }
                     } else {
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorApartmentServices(serviceType: self.titleName))
+                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorApartmentServices())
                     }
                 })
             } else {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorApartmentServices(serviceType: self.titleName))
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorApartmentServices())
             }
         }
     }

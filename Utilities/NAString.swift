@@ -31,7 +31,7 @@ class NAString : NSObject {
     }
     
     func splash_SocietyServices_Description() -> String {
-        return String("A smarter way to manage your daily needs from our dedicated nammaApartmentService team.")
+        return String("A smarter way to manage your daily needs from our dedicated Namma Apartments team.")
     }
     
     func splash_ApartementServices_Title() -> String {
@@ -39,7 +39,7 @@ class NAString : NSObject {
     }
     
     func splash_ApartementServices_Description() -> String {
-        return String("Enjoy benefits of all Digital Apartment Services under one umbrella with ease and control.")
+        return String("Enjoy benefits of all digital Apartment Services under one umbrella with ease and control.")
     }
     
     func splash_ApartementServices_Button() -> String {
@@ -52,12 +52,12 @@ class NAString : NSObject {
     }
     
     func enter_verification_code(first : String ,second : String) -> String {
-        return String("We need to verify \(first) account. Please enter the 6 digit verification code sent to \(second) mobile number.")
+        return String("We need to verify \(first) account. Please enter the 6 digit verification code that has been sent to \(second) mobile number.")
     }
     
     
     func verify_otp_button() -> String {
-        return String("VERIFY OTP")
+        return String("Verify OTP")
     }
     
     func incorrect_otp() -> String {
@@ -65,15 +65,15 @@ class NAString : NSObject {
     }
     
     func connectivity_Validation() -> String {
-        return String("Please check your Network Connection")
+        return String("Please check your Network connection")
     }
     
     func chooseCategory() -> String {
-        return String("Please choose Category")
+        return String("Please choose category")
     }
     
     func chooseTimeSlot() -> String {
-        return String("Please choose Time Slot")
+        return String("Please choose time slot")
     }
     
     //Flat Details Screen
@@ -182,10 +182,10 @@ class NAString : NSObject {
         return String("Update Message")
     }
     func update_Successfull_Alert_Message() -> String {
-        return String("You have successfully updated your profile")
+        return String("You have successfully updated your profile.")
     }
     func update_Failure_Alert_Message() -> String {
-        return String("You have not made any changes to your profile")
+        return String("You have not made any changes to your profile.")
     }
     
     func change_Admin_Alert_Title() -> String {
@@ -195,14 +195,14 @@ class NAString : NSObject {
         return String("You are the Administrator")
     }
     func change_Admin_Alert_Message() -> String {
-        return String("Sorry there are no Flat members Added to your flat")
+        return String("Currently there are no Flat members added to your Flat.t")
     }
     
     func change_Admin_Message_Alert_Title() -> String {
         return String("Change Admin Message")
     }
     func change_Admin_Message_Alert_Message(name: String) -> String {
-        return String("Are you sure you want to make \(name) as Admin? \n Note: Your admin privileges will be transferred to \(name)")
+        return String("Are you sure you want to make \(name) as Admin? \n Note: Your Admin privileges will be transferred to \(name)")
     }
     //Signin screen and Visitor screen
     func create_an_account_button() -> String {
@@ -213,16 +213,12 @@ class NAString : NSObject {
         return String("LOGIN")
     }
     
-    func please_enter_mobile_no() -> String{
-        return String("Please Enter Mobile Number")
-    }
-    
     func please_enter_your_mobile_no() -> String{
-        return String("Please Enter Mobile Number")
+        return String("Please enter mobile number")
     }
     
     func please_enter_10_digit_no() -> String{
-        return String("Please Enter a valid 10 digit mobile number")
+        return String("Please enter a valid 10 digit mobile number")
     }
     
     func please_select_country_code() -> String{
@@ -230,35 +226,35 @@ class NAString : NSObject {
     }
     
     func please_enter_name() -> String{
-        return String("Please Enter Name")
+        return String("Please enter name")
     }
     
     func please_upload_Image() -> String {
-        return String("Please Upload Image")
+        return String("Please upload Image")
     }
     
     func please_enter_email() -> String {
-        return String("Please Enter E-mail")
+        return String("Please enter e-mail")
     }
     
     func please_select_your_relation() -> String {
-        return String("Please Select Your Relation")
+        return String("Please select your relation")
     }
     
     func please_select_your_problem() -> String {
-        return String("Please Select Your Problem")
+        return String("Please select your problem")
     }
     
     func please_enter_your_problem() -> String {
-        return String("Please Enter Your Problem")
+        return String("Please enter your problem")
     }
     
     func please_enter_your_scrapType() -> String {
-        return String("Please Select Scrap Type")
+        return String("Please select scrap type")
     }
     
     func please_enter_Valid_email() -> String {
-        return String("Please enter a Valid Email address")
+        return String("Please enter a valid e-mail address")
     }
     
     func required_mobileNo_Length() -> Int{
@@ -778,7 +774,7 @@ class NAString : NSObject {
     }
     
     func remove_myDailyService_alertView_Message() -> String {
-        return String("Are you sure you want to remove this Daily Service?  \n \n NOTE: You will stop receiving notifications related to this Daily Service.")
+        return String("Are you sure you want to remove this Daily Service?  \n \n NOTE: You will stop receiving notifications related to this particular Daily Service.")
     }
     
     //adding my daily services
@@ -824,6 +820,10 @@ class NAString : NSObject {
     
     func addMyDailyService_AlertView_Message() -> String{
         return String("You have successfully added your Daily Service.")
+    }
+    
+    func averageRating() -> String {
+        return String("averageRating")
     }
     
     //visitor list
@@ -909,7 +909,7 @@ class NAString : NSObject {
     }
     
     func otp_message_family_member(name : String) -> String {
-        return String ("We will send an OTP to your \(name) for Authentication.")
+        return String ("We will send an OTP to your \(name) for authentication.")
     }
     func family_Member() -> String {
         return String("Family Member")
@@ -988,7 +988,7 @@ class NAString : NSObject {
     }
     
     func edit_my_family_member_grantAccess_alertBox(first : String) -> String {
-        return String ("Please note that this member will \(first) have access to all notifications.")
+        return String ("Please note that this member will \(first) have an access to all notifications.")
     }
     
     //date & time format
@@ -1042,7 +1042,7 @@ class NAString : NSObject {
     }
     
     func remove_invitation_message() -> String {
-        return String("Are you sure you want to cancel this Invitation?")
+        return String("Are you sure you want to cancel this invitation?")
     }
     func remove_guests_message() -> String {
         return String("Are you sure you want to remove this Guest data from the list?")
@@ -1057,11 +1057,11 @@ class NAString : NSObject {
     }
     
     func edit_Alert_Message() -> String {
-        return String("Sorry you cannot edit this flat member since you are not the admin of this flat")
+        return String("You cannot edit this Flat member, since you are not the Admin of this Flat.")
     }
     
     func add_Family_Members_Alert_Message() -> String {
-        return String("Sorry you cannot add family members to this flat since you are not the admin of this flat")
+        return String("You cannot add Flat members to this Flat, since you are not the Admin of this Flat.")
     }
     
     func delete() -> String {
@@ -1096,7 +1096,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorVisitorList() -> String {
-        return String ("Sorry you cannot use this feature since currently there are no guests at your flat.")
+        return String ("Currently there are no guests scheduled at your flat.")
     }
     
     func layoutFeatureErrorTransactionsList() -> String {
@@ -1104,7 +1104,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorCabArrivalList() -> String {
-        return String ("Sorry you cannot use this feature since currently there are no cab arrivals scheduled for your flat.")
+        return String ("Currently there are no Cab arrivals scheduled for your flat.")
     }
     
     func layoutFeatureErrorUserSupport() -> String {
@@ -1112,11 +1112,11 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorUserFoodDonations() -> String {
-        return String("Currently there are no foodDonation requests raised by the user.")
+        return String("There has been no Food Donation done by the user yet.")
     }
     
     func layoutFeatureErrorpackageArrivalList() -> String {
-        return String ("Sorry you cannot use this feature since currently there are no package arrivals scheduled for your flat.")
+        return String ("Currently there are no Package arrivals scheduled for your flat.")
     }
     
     func layoutFeatureErrorEventManagementHistory() -> String {
@@ -1131,8 +1131,8 @@ class NAString : NSObject {
         return String ("Please add your Flat Members to approve visitors on your behalf.")
     }
     
-    func layoutFeatureErrorApartmentServices(serviceType: String) -> String {
-        return String ("Sorry you cannot use this feature since currently there are no \(serviceType) service available at your Society.")
+    func layoutFeatureErrorApartmentServices() -> String {
+        return String ("Currently there is no Apartment service available at your Society.")
     }
     
     func layoutFeatureErrorGroceriesServices() -> String {
@@ -1145,7 +1145,7 @@ class NAString : NSObject {
     
     //Cab Arrival and Package Arrival Validation
     func please_fill_details(name : String) -> String {
-        return String("Please Enter \(name)")
+        return String("Please enter \(name)")
     }
     
     func Please_select_date() -> String {
@@ -1246,11 +1246,11 @@ class NAString : NSObject {
     }
     
     func dailyServiceNotAvailableHandedThings() -> String {
-        return String ("Sorry you cannot use this feature since currently there are no daily service at your flat.")
+        return String ("There are no Daily Service added for your Flat ye")
     }
     
     func societyServiceNotAvailable(serviceName: String) -> String {
-        return String("Sorry you cannot use this feature since you have not raised any \(serviceName) request at your flat yet")
+        return String("You have not raised any \(serviceName) requests from your flat yet.")
     }
     
     func verifyingOTPDescription() -> String {
@@ -1425,7 +1425,7 @@ class NAString : NSObject {
     }
     
     func please_Enter_Vehicle_Number() -> String {
-        return ("Please Enter Vehicle Number")
+        return ("Please enter vehicle number")
     }
     
     func addVehicle_AlertMessage() -> String {
@@ -1441,11 +1441,11 @@ class NAString : NSObject {
     }
     
     func addFood_AlertMessage() -> String {
-        return ("Thank you for rasing request. Our representative will arrive at your flat to collect food.")
+        return ("Thank you for rasing request. Our representative will arrive at your Flat to collect food.")
     }
     
     func add_your_vehicle_message() -> String {
-        return ("Please add your vehicles for Hassle Free entry into the society.")
+        return ("Please add your vehicle(s) for hassle free entry into the society.")
     }
     
     // Event Management Activity
@@ -1462,11 +1462,11 @@ class NAString : NSObject {
     }
     
     func choose_category() -> String {
-        return ("Choose Category")
+        return ("Choose category")
     }
     
     func choose_time_slot() -> String {
-        return ("Choose Time Slot")
+        return ("Choose time slot")
     }
     
     func event_date() -> String {
@@ -1689,7 +1689,7 @@ class NAString : NSObject {
     }
     
     func welcomeScreenDescription() -> String {
-        return String("Thank you for Registering with Namma Apartments. Your flat details has been sent to Society Admin. We will notify you once your account gets Activated.")
+        return String("Thank you for registering with Namma Apartments. Your details have been sent to the Society Admin. We will notify you once your account gets activated.")
     }
     
     func userDefault_USERUID() -> String {
@@ -1910,7 +1910,7 @@ class NAString : NSObject {
     }
     
     func foodTypeErrorMessage() -> String {
-        return String("Please Enter Food Type")
+        return String("Please enter food type")
     }
     
     func cancelRequest() -> String {
@@ -1954,7 +1954,7 @@ class NAString : NSObject {
     }
     
     func scrapCollectionHistoryAlertTitle() -> String {
-        return String("A Scrap collection request has been raised")
+        return String("A Scrap collection request has been raised.")
     }
     
     func noPendingDues() -> String {
@@ -1976,7 +1976,7 @@ class NAString : NSObject {
     /* Society Service(Plumber,Carpenter,Electrician and ScrapCollection) Problems List. */
     //Plumber Problems List
     func dripping_faucets() -> String {
-        return String("Installation of underground Drainage Pipes")
+        return String("Installation of underground drainage pipes")
     }
     
     func dslow_draining_sink() -> String {
@@ -2000,7 +2000,7 @@ class NAString : NSObject {
     }
     
     func low_water_pressure() -> String {
-        return String("Clearing/cleaning clogged pipes")
+        return String("Clearing/Cleaning clogged pipes")
     }
     
     func jammed_garbage_disposal() -> String {
@@ -2017,7 +2017,7 @@ class NAString : NSObject {
     
     //Carpenter ProblemsList
     func carpentry_finish_appears_uneven() -> String {
-        return String("Wooden Mesh")
+        return String("Wooden mesh")
     }
     
     func split_in_the_wood() -> String {
@@ -2025,7 +2025,7 @@ class NAString : NSObject {
     }
     
     func weak_joints() -> String {
-        return String("Bolt, Latch and Handle work")
+        return String("Bolt, latch and handle work")
     }
     
     func dents_in_wood() -> String {
@@ -2037,15 +2037,15 @@ class NAString : NSObject {
     }
     
     func wood_flooring() -> String {
-        return String("Build Stairs")
+        return String("Build stairs")
     }
     
     func damage_burns() -> String {
-        return String("Window Frame repair")
+        return String("Window frame repair")
     }
     
     func sofa_door() -> String {
-        return String("Wood Flooring repair")
+        return String("Wood flooring repair")
     }
     
     func window_frame() -> String {
@@ -2054,7 +2054,7 @@ class NAString : NSObject {
     
     //Electrician ProblemsList
     func frequent_electrical_surge() -> String {
-        return String("Circuit Overload")
+        return String("Circuit overload")
     }
     
     func sags_and_dips_in_power() -> String {
@@ -2135,7 +2135,7 @@ class NAString : NSObject {
     }
     
     func event_booking_facility() -> String {
-        return String("Event Booking facility is Unavailable in your Society")
+        return String("Event Booking facility is unavailable in your Society")
     }
     
     func event_booking() -> String {
