@@ -100,6 +100,9 @@
 		5D77429D210DD49F0049344F /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77428D210DD49F0049344F /* SignupViewController.swift */; };
 		5D77429E210DD49F0049344F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77428E210DD49F0049344F /* LoginViewController.swift */; };
 		5D7742A2210E0ACB0049344F /* RetrieveFamilyMemberList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7742A1210E0ACB0049344F /* RetrieveFamilyMemberList.swift */; };
+		5DC9760F2162026500B1928F /* DailyServiceRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC9760E2162026500B1928F /* DailyServiceRatingView.xib */; };
+		5DC976112162029100B1928F /* DailyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC976102162029100B1928F /* DailyServiceRatingView.swift */; };
+		5DC9761321649D5200B1928F /* RetrievingApartmentServicesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9761221649D5200B1928F /* RetrievingApartmentServicesData.swift */; };
 		5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DF2620FCC280002C13BB /* HandedHistory.swift */; };
 		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
 		861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFE20B9AA98009EC0EF /* Lato-Italic.ttf */; };
@@ -477,6 +480,9 @@
 		5D77428D210DD49F0049344F /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		5D77428E210DD49F0049344F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5D7742A1210E0ACB0049344F /* RetrieveFamilyMemberList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveFamilyMemberList.swift; sourceTree = "<group>"; };
+		5DC9760E2162026500B1928F /* DailyServiceRatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyServiceRatingView.xib; sourceTree = "<group>"; };
+		5DC976102162029100B1928F /* DailyServiceRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyServiceRatingView.swift; sourceTree = "<group>"; };
+		5DC9761221649D5200B1928F /* RetrievingApartmentServicesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingApartmentServicesData.swift; sourceTree = "<group>"; };
 		5DD9DF2620FCC280002C13BB /* HandedHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedHistory.swift; sourceTree = "<group>"; };
 		7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B8A2E220ED171204623A20 /* Pods-nammaApartmentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -694,6 +700,7 @@
 			children = (
 				42313792211D8DEA00518147 /* ApartmentServicesViewController.swift */,
 				42313794211D96FE00518147 /* ApartmentServicesCollectionViewCell.swift */,
+				5DC9761221649D5200B1928F /* RetrievingApartmentServicesData.swift */,
 			);
 			path = ApartmentServices;
 			sourceTree = "<group>";
@@ -1116,6 +1123,8 @@
 				8672B3BA20A97F5D0040A5E2 /* MyDailyServicesViewController.swift */,
 				8672B3BE20A9951B0040A5E2 /* MyDailyServicesCollectionViewCell.swift */,
 				86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */,
+				5DC976102162029100B1928F /* DailyServiceRatingView.swift */,
+				5DC9760E2162026500B1928F /* DailyServiceRatingView.xib */,
 				86E83E4320A9B07D00FA7CA7 /* AddMyServices */,
 			);
 			name = MyDailyServices;
@@ -1492,6 +1501,7 @@
 				86270101209707BC004B28EB /* Assets.xcassets in Resources */,
 				4230EEB12108AB4F0037345D /* Main.storyboard in Resources */,
 				861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */,
+				5DC9760F2162026500B1928F /* DailyServiceRatingView.xib in Resources */,
 				422FF98720F8A9C8004089C2 /* PopupView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1793,6 +1803,7 @@
 				861E8393213121D900E3A0A2 /* ActivationRequired.swift in Sources */,
 				862CF63321452999007D2A5F /* retrieveUserData.swift in Sources */,
 				5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */,
+				5DC976112162029100B1928F /* DailyServiceRatingView.swift in Sources */,
 				86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */,
 				42341BB5212165620005160B /* MyGuardsViewController.swift in Sources */,
 				423633D22133F74600637F5F /* NoticeBoardTableViewCell.swift in Sources */,
@@ -1813,6 +1824,7 @@
 				42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */,
 				426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */,
 				08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */,
+				5DC9761321649D5200B1928F /* RetrievingApartmentServicesData.swift in Sources */,
 				8628857F2159129900CC540B /* DownloadService.swift in Sources */,
 				423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */,
 				08EA578521464A0B00A0574D /* ContactUsHistoryViewController.swift in Sources */,
