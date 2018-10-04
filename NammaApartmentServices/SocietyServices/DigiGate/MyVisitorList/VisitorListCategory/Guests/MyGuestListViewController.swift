@@ -58,7 +58,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         let width = UIScreen.main.bounds.width
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: 210)
+        layout.itemSize = CGSize(width: width - 10, height: 220)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -181,6 +181,9 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         //Setting Label Invitor text based on Firebase Approved Type
         if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
             cell.lbl_Invitor.text = NAString().approver()
+        } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
+            cell.lbl_Invitor.text = NAString().approver()
+            cell.lbl_InvitedName.text = NAString().guard_Nmae()
         }
         
         //calling Reschedule action to rechedule visitor date

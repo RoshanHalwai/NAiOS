@@ -2141,5 +2141,9 @@ class NAString : NSObject {
     func event_booking() -> String {
         return String("Event Booking")
     }
+    
+    func guard_Nmae() -> String {
+        return String("Guard")
+    }
 }
 

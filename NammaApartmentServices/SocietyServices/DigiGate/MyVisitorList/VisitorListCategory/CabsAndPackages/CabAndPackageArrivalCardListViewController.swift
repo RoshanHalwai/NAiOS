@@ -51,7 +51,7 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
-
+        
         //Get device width
         let width = UIScreen.main.bounds.width
         
@@ -116,11 +116,6 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
             cell.lbl_InTime_Detail.text = timeString
             cell.lbl_Date_Detail.text = dateString
             
-            //Setting Label Invitor text based on Firebase Approved Type
-            if  myCabList.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
-                cell.lbl_Inviter_Type.text = NAString().approver()
-            }
-            
             if(myCabList.getInviterUID() == userUID) {
                 cell.lbl_Inviter_Detail.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
             } else {
@@ -133,6 +128,15 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
                     cell.lbl_Inviter_Detail.text = fullName
                 })
             }
+            
+            //Setting Label Invitor text based on Firebase Approved Type
+            if  myCabList.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
+                cell.lbl_Inviter_Type.text = NAString().approver()
+            } else if myCabList.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
+                cell.lbl_Inviter_Type.text = NAString().approver()
+                cell.lbl_Inviter_Detail.text = NAString().guard_Nmae()
+            }
+            
         } else {
             let myPackageList : NAExpectingArrival
             myPackageList = myExpectedPackageList[indexPath.row]
@@ -148,11 +152,6 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
             cell.lbl_InTime_Detail.text = timeString
             cell.lbl_Date_Detail.text = dateString
             
-            //Setting Label Invitor text based on Firebase Approved Type
-            if  myPackageList.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
-                cell.lbl_Inviter_Type.text = NAString().approver()
-            }
-            
             if(myPackageList.getInviterUID() == userUID) {
                 cell.lbl_Inviter_Detail.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
             } else {
@@ -165,6 +164,14 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
                     print(fullName as Any)
                     cell.lbl_Inviter_Detail.text = fullName
                 })
+            }
+            
+            //Setting Label Invitor text based on Firebase Approved Type
+            if  myPackageList.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
+                cell.lbl_Inviter_Type.text = NAString().approver()
+            } else if myPackageList.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
+                cell.lbl_Inviter_Type.text = NAString().approver()
+                cell.lbl_Inviter_Detail.text = NAString().guard_Nmae()
             }
         }
         
@@ -321,7 +328,7 @@ extension CabAndPackageArrivalCardListViewController {
     }
     
     //Retriving Expecting Package data for both family & friends
-  //  TODO: Need to fix -> Progress bar is showing without error layout msg if friend will invite a Package for the first time.
+    //  TODO: Need to fix -> Progress bar is showing without error layout msg if friend will invite a Package for the first time.
     func checkAndRetrievePackageArrivals() {
         var friend = [String]()
         friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
