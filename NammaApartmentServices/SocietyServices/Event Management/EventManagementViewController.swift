@@ -545,7 +545,7 @@ extension EventManagementViewController {
         let serviceType = NAString().eventManagement()
         
         let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
+        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key!
         
         let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
         notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())

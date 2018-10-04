@@ -19,9 +19,6 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     var serviceTypeString = String()
     var NASocietyServiceData = [NASocietyServices]()
     
-    //Created Instance of Model Class To get data in card view
-    var NAEventList = [NAEventManagement]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,15 +28,15 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
         switch navigationTitle {
             
         case NAString().plumber().lowercased(): serviceTypeString = NAString().plumber()
-            
+            break
         case NAString().carpenter().lowercased(): serviceTypeString = NAString().carpenter()
-            
+            break
         case NAString().electrician().lowercased(): serviceTypeString = NAString().electrician()
-           
+            break
         case NAString().garbageCollection(): serviceTypeString = NAString().garbage_Collection()
-            
+            break
         case NAString().scrap_Collection(): serviceTypeString = NAString().scrapCollection()
-            
+            break
         default:
             break
         }
@@ -71,63 +68,52 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
     
     //MARK : CollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if navigationTitle == NAString().eventManagement() {
-            return NAEventList.count
-        }
         return NASocietyServiceData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! SocietyHistoryCollectionViewCell
         
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "E, MMM d, HH:mm"
-        let currentDate = formatter.string(from: date)
+        let societyServiceList : NASocietyServices
+        societyServiceList = NASocietyServiceData[indexPath.row]
         
-        if navigationTitle == NAString().eventManagement() {
-            let eventServiceList : NAEventManagement
-            eventServiceList = NAEventList[indexPath.row]
-            
-            cell.cellImage.image = #imageLiteral(resourceName: "event")
-            // cell.lbl_Problem.text = eventServiceList.getTimeSlot()
-            cell.lbl_Date.text = currentDate
-        } else {
-            let societyServiceList : NASocietyServices
-            societyServiceList = NASocietyServiceData[indexPath.row]
-            
-            let timeStamp = societyServiceList.getTimeStamp()
-            let date = (NSDate(timeIntervalSince1970: TimeInterval(timeStamp/1000)))
-            let dateString = String(describing: date)
-            let dateFormatterGet = DateFormatter()
-            dateFormatterGet.dateFormat = NAString().userProblemTimeStampFormat()
-            let dateAndTime = dateFormatterGet.date(from: dateString)
-            dateFormatterGet.dateFormat = NAString().convertedUserProblemTimeStampFormat()
-            let userRequestTime = (dateFormatterGet.string(from: dateAndTime!))
-            
-            switch societyServiceList.getSocietyServiceType() {
-            case NAString().plumber_Service() :
-                cell.cellImage.image = #imageLiteral(resourceName: "plumber")
-                break
-            case NAString().carpenter_Service() :
-                cell.cellImage.image = #imageLiteral(resourceName: "carpenter")
-                break
-            case NAString().electrician_Service() :
-                cell.cellImage.image = #imageLiteral(resourceName: "electrician")
-                break
-            case NAString().garbageCollection() :
-                cell.cellImage.image = #imageLiteral(resourceName: "garbage")
-                break
-            case NAString().scrap_Collection() :
-                cell.cellImage.image = #imageLiteral(resourceName: "scrapCollection")
-                break
-            default:
-                break
-            }
-            
-            cell.lbl_Problem.text = societyServiceList.getProblem()
-            cell.lbl_Date.text = userRequestTime
+        let timeStamp = societyServiceList.getTimeStamp()
+        let date = (NSDate(timeIntervalSince1970: TimeInterval(timeStamp/1000)))
+        let dateString = String(describing: date)
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = NAString().userProblemTimeStampFormat()
+        let dateAndTime = dateFormatterGet.date(from: dateString)
+        dateFormatterGet.dateFormat = NAString().convertedSocietyServiceTimeStampFormat()
+        let userRequestTime = (dateFormatterGet.string(from: dateAndTime!))
+        
+        switch societyServiceList.getSocietyServiceType() {
+        case NAString().plumber_Service() :
+            cell.cellImage.image = #imageLiteral(resourceName: "plumber")
+            break
+        case NAString().carpenter_Service() :
+            cell.cellImage.image = #imageLiteral(resourceName: "carpenter")
+            break
+        case NAString().electrician_Service() :
+            cell.cellImage.image = #imageLiteral(resourceName: "electrician")
+            break
+        case NAString().garbageCollection() :
+            cell.cellImage.image = #imageLiteral(resourceName: "garbage")
+            break
+        case NAString().scrap_Collection() :
+            cell.cellImage.image = #imageLiteral(resourceName: "scrapCollection")
+            break
+        default:
+            break
         }
+        
+        if societyServiceList.getStatus() == NAString().cancelled() {
+            cell.checkMarkImage.image = #imageLiteral(resourceName: "Cancel")
+        } else {
+            cell.checkMarkImage.image = #imageLiteral(resourceName: "checked")
+        }
+        
+        cell.lbl_Problem.text = societyServiceList.getProblem()
+        cell.lbl_Date.text = userRequestTime
         
         //Setting fonts for labels.
         cell.lbl_Problem.font = NAFont().headerFont()
@@ -157,45 +143,28 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                 
                                 let societyServiceData = snapshot.value as? [String: AnyObject]
                                 
-                                //Checking whether Service Person Accepted the User Request or not
-                                if (societyServiceData?[NASocietyServicesFBKeys.takenBy.key] != nil &&
-                                    societyServiceData?[NASocietyServicesFBKeys.endOTP.key] != nil) {
-                                    let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
-                                    let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
-                                    let societyServiceProblem = societyServiceData?[NASocietyServicesFBKeys.problem.key] as! String
-                                    let societyServiceTimeSlot: String = societyServiceData?[NASocietyServicesFBKeys.timeSlot.key] as! String
-                                    let societyServiceStatus: String = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
-                                    let societyServiceEndOTP: String = societyServiceData?[NASocietyServicesFBKeys.endOTP.key] as! String
-                                    let societyServiceTimeStamp = societyServiceData?[NASocietyServicesFBKeys.timestamp.key]?.floatValue
-
-                                    let societyServiceDataRef = Constants.FIREBASE_SOCIETY_SERVICES
-                                        .child(societyServiceType)
-                                        .child(Constants.FIREBASE_CHILD_PRIVATE)
-                                        .child(Constants.FIREBASE_CHILD_DATA)
-                                        .child(societyServiceUID)
-                                    
-                                    //Getting Service Person Name and Mobile Number
-                                    societyServiceDataRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                                        
-                                        let serviceData = snapshot.value as? [String: AnyObject]
-                                        let societyServiceName: String = serviceData?[NASocietyServicesFBKeys.fullName.key] as! String
-                                        let societyServiceNumber: String = serviceData?[NASocietyServicesFBKeys.mobileNumber.key] as! String
-                                        
-                                        let societyServiceDataList = NASocietyServices(problem: societyServiceProblem, timeSlot: societyServiceTimeSlot, userUID: userUID, societyServiceType: societyServiceType, notificationUID: notifictionUID as! String, status: societyServiceStatus, takenBy:  societyServiceUID, endOTP: societyServiceEndOTP, fullName: societyServiceName, mobileNumber: societyServiceNumber, timeStamp:Int(societyServiceTimeStamp!))
-                                        self.NASocietyServiceData.append(societyServiceDataList)
-                                        NAActivityIndicator.shared.hideActivityIndicator()
-                                        self.collectionView.reloadData()
-                                    })
-                                } else {
+                                if (self.navigationTitle == NAString().scrap_Collection()) {
                                     let societyServiceScrapType: String = societyServiceData?[NASocietyServicesFBKeys.scrapType.key] as! String
                                     let societyServiceTimeStamp = (societyServiceData?[Constants.FIREBASE_CHILD_TIMESTAMP])
                                     let societyServiceType = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                                     
                                     let societyServiceDataList = NASocietyServices(problem: societyServiceScrapType, timeSlot: "", userUID: "", societyServiceType: societyServiceType, notificationUID: "", status: "", takenBy: "", endOTP: "", fullName: "", mobileNumber: "", timeStamp:societyServiceTimeStamp as! Int)
                                     self.NASocietyServiceData.append(societyServiceDataList)
-                                    NAActivityIndicator.shared.hideActivityIndicator()
-                                    self.collectionView.reloadData()
+                                    
+                                } else {
+                                    if societyServiceData?[NASocietyServicesFBKeys.status.key] as? String != NAString().in_Progress() {
+                                        
+                                        let societyServiceProblem = societyServiceData?[NASocietyServicesFBKeys.problem.key] as! String
+                                        let societyServiceStatus: String = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
+                                        let societyServiceTimeStamp = societyServiceData?[Constants.FIREBASE_CHILD_TIMESTAMP]
+                                        let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
+                                        
+                                        let societyServiceDataList = NASocietyServices(problem: societyServiceProblem, timeSlot: "", userUID: userUID, societyServiceType: societyServiceType, notificationUID: notifictionUID as! String, status: societyServiceStatus, takenBy: "", endOTP: "", fullName: "", mobileNumber: "", timeStamp: societyServiceTimeStamp as! Int)
+                                        self.NASocietyServiceData.append(societyServiceDataList)
+                                    }
                                 }
+                                NAActivityIndicator.shared.hideActivityIndicator()
+                                self.collectionView.reloadData()
                             }
                         }
                     } else {
