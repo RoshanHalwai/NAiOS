@@ -136,8 +136,11 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                         let notificationsUID = UIDSnapshot.value as! NSDictionary
                         
                         var notificationUIDArray = [String]()
+                        //Getting all Notification UID's in Empty Array
                         notificationUIDArray = notificationsUID.allKeys as! [String]
+                        //sorting UID's
                         let sortedArray = notificationUIDArray.sorted()
+                        //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
                         let reversedArray = sortedArray.reversed()
                         for notifictionUID in reversedArray {
                             
