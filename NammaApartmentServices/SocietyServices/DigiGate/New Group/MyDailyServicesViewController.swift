@@ -28,6 +28,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     
     //Created Instance of Model Class To get data in card view
     var NADailyServicesList = [NammaApartmentDailyServices]()
+    var layoutMessageObj = NAFirebase()
     
     var dailyService = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(),NAString().daily_newspaper(), NAString().milk_man(),NAString().laundry(),NAString().driver()]
     
@@ -40,6 +41,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
     var dailyServiceRating : DailyServiceRatingView!
     var dailyServiceUID : NammaApartmentDailyServices!
     var index = Int()
+    var isDailyServicePresent = false
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -60,6 +62,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
          - Calling Daily services Retrieving Function on Load */
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
+        
+        if NADailyServicesList.isEmpty {
+            NAActivityIndicator.shared.hideActivityIndicator()
+            self.layoutMessageObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+        }
         
         checkAndRetrieveDailyService()
         opacity_View.isHidden = true
@@ -517,6 +524,8 @@ extension MyDailyServicesViewController {
                                 for dailyServiceUID in (dailyServicesUID?.allKeys)! {
                                     
                                     if dailyServicesUID![dailyServiceUID] as! Bool == true {
+                                        self.isDailyServicePresent = true
+                                        
                                         self.dailyServiceCountRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
                                         //Getting Daily Services Status (Like Entered or Not)
                                         self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
@@ -567,6 +576,9 @@ extension MyDailyServicesViewController {
                                             }
                                             queue.waitUntilAllOperationsAreFinished()
                                         })
+                                    }
+                                    if self.isDailyServicePresent {
+                                        self.layoutMessageObj.hideLayoutUnavailableMessage()
                                     }
                                 }
                             })

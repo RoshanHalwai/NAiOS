@@ -11,6 +11,7 @@ import UIKit
 
 class NAFirebase {
     
+    var stackView : UIStackView!
     //Created Global function to get Profile image from firebase in Visitor List
     func downloadImageFromServerURL(urlString: String, imageView:UIImageView) {
         
@@ -44,7 +45,7 @@ class NAFirebase {
         newLabel.textAlignment = .center
         
         //Stack View
-        let stackView = UIStackView()
+        stackView = UIStackView()
         stackView.axis = UILayoutConstraintAxis.vertical
         stackView.distribution = UIStackViewDistribution.equalCentering
         stackView.alignment = UIStackViewAlignment.center
@@ -68,5 +69,10 @@ class NAFirebase {
             newLabel.removeFromSuperview()
             newImage.removeFromSuperview()
         }
+    }
+    
+    //Creating Method to hide Layout Unavailable Message
+    func hideLayoutUnavailableMessage() {
+        stackView?.isHidden = true
     }
 }
