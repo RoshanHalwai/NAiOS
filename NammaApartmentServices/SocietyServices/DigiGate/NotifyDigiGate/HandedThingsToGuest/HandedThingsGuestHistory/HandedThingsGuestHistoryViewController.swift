@@ -57,10 +57,9 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         
         //Get device width
         let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: height/4)
+        layout.itemSize = CGSize(width: width - 10, height: 160)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
@@ -129,6 +128,14 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         
         //Creating shadow Effect for Collection View Cell.
         NAShadowEffect().shadowEffect(Cell: cell)
+        
+        //Setting Label Invitor text based on Firebase Approved Type
+        if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
+            cell.lbl_Inviter_Type.text = NAString().approver()
+        } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
+            cell.lbl_Inviter_Type.text = NAString().approver()
+            cell.lbl_Inviter_Detail.text = NAString().guard_Nmae()
+        }
         
         //assigning font & style to cell labels
         cell.lbl_Visitor_Type.font = NAFont().textFieldFont()

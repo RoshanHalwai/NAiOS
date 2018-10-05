@@ -142,6 +142,14 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
             cell.activityIndicator.isHidden = true
         }
         
+        //Setting Label Invitor text based on Firebase Approved Type
+        if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {
+            cell.lbl_Invited.text = NAString().approver()
+        } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
+            cell.lbl_Invited.text = NAString().approver()
+            cell.lbl_GuestInvitedBy.text = NAString().guard_Nmae()
+        }
+        
         //This creates the shadows and modifies the cards a little bit
         cell.backgroundCardView.backgroundColor = UIColor.white
         cell.contentView.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
