@@ -285,19 +285,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="170" y="0.0" width="53" height="53"/>
+                                                <rect key="frame" x="172.5" y="0.0" width="53" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will collect food " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smj-Ef-i0k">
-                                                <rect key="frame" x="253" y="0.0" width="57" height="53"/>
+                                                <rect key="frame" x="255.5" y="0.0" width="54.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -7688,13 +7688,24 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dnG-yr-Bwd">
                                         <rect key="frame" x="5" y="10" width="347" height="286"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Sound Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOI-ar-EfE">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U5s-I9-tfc">
                                                 <rect key="frame" x="0.0" y="0.0" width="347" height="53"/>
-                                                <color key="backgroundColor" red="0.88235294119999996" green="0.87450980389999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcz-ng-YQo">
+                                                        <rect key="frame" x="5" y="0.0" width="334" height="53"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.88235294117647056" green="0.87450980392156863" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="dcz-ng-YQo" firstAttribute="leading" secondItem="U5s-I9-tfc" secondAttribute="leading" constant="5" id="9fU-do-kaw"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dcz-ng-YQo" secondAttribute="bottom" id="cIB-hK-0oJ"/>
+                                                    <constraint firstItem="dcz-ng-YQo" firstAttribute="top" secondItem="U5s-I9-tfc" secondAttribute="top" id="k2f-LH-e3R"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dcz-ng-YQo" secondAttribute="trailing" constant="8" id="pC9-iM-B4U"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHj-S3-xWT">
                                                 <rect key="frame" x="0.0" y="58" width="347" height="53.5"/>
                                                 <subviews>
@@ -7862,7 +7873,7 @@
                         <outlet property="dailyService_Notification_Label" destination="wks-gX-xrH" id="rdx-W8-pGr"/>
                         <outlet property="guest_Notification_Label" destination="b8X-Oi-Ug1" id="Xz8-gW-seU"/>
                         <outlet property="package_Notification_Label" destination="7Kc-Sv-tsK" id="WaR-xQ-SPG"/>
-                        <outlet property="sound_Settings_Label" destination="mOI-ar-EfE" id="Rn6-DA-z8g"/>
+                        <outlet property="sound_Settings_Label" destination="dcz-ng-YQo" id="ea5-GE-5hp"/>
                         <outlet property="sound_settings_View" destination="aW6-DC-MmH" id="9Zg-0z-0XQ"/>
                         <outlet property="switch_Cab" destination="9le-FL-cex" id="8Tj-XY-uYe"/>
                         <outlet property="switch_DailyServices" destination="V3N-hZ-JRD" id="BTz-Om-2I5"/>
