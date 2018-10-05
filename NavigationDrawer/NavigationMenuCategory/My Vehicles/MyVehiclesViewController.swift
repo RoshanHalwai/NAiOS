@@ -172,6 +172,10 @@ class MyVehiclesViewController: NANavigationViewController,UICollectionViewDeleg
         cell.lbl_VehicleOwner.font = NAFont().textFieldFont()
         cell.lbl_VehicleAddedOn.font = NAFont().textFieldFont()
         
+        //assigning title to cell Labels
+        cell.lbl_VehicleOwner.text = NAString().owner_Name()
+        cell.lbl_VehicleAddedOn.text = NAString().added_On()
+        
         cell.btn_Edit.titleLabel?.font = NAFont().lato_Light_16()
         cell.btn_Edit.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         cell.btn_Edit.backgroundColor = NAColor().buttonBgColor()

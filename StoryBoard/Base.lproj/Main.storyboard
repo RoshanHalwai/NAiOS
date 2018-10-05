@@ -285,19 +285,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="172.5" y="0.0" width="53" height="53"/>
+                                                <rect key="frame" x="170" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will collect food " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smj-Ef-i0k">
-                                                <rect key="frame" x="255.5" y="0.0" width="54.5" height="53"/>
+                                                <rect key="frame" x="255" y="0.0" width="55" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1876,6 +1876,9 @@
                                             <outlet property="btn_Reschedule" destination="q3S-wB-HhT" id="hmS-Hc-tIf"/>
                                             <outlet property="lbl_Call" destination="jbW-mR-ui6" id="JHc-2L-2ao"/>
                                             <outlet property="lbl_Cancel" destination="ohv-tL-aR3" id="f6v-AK-p91"/>
+                                            <outlet property="lbl_Date" destination="FPN-B5-XUc" id="evX-oy-DNH"/>
+                                            <outlet property="lbl_Guest" destination="Bel-Lg-iKi" id="AcV-WN-sMt"/>
+                                            <outlet property="lbl_InTime" destination="Z08-9J-y5B" id="W8J-S8-tNS"/>
                                             <outlet property="lbl_InvitedName" destination="z3r-mk-oB1" id="Zfu-a4-w3b"/>
                                             <outlet property="lbl_Invitor" destination="AXI-au-ddB" id="XxW-3H-qpb"/>
                                             <outlet property="lbl_Message" destination="JKM-Z2-Tco" id="8G0-bs-TiG"/>
@@ -1884,6 +1887,7 @@
                                             <outlet property="lbl_MyVisitorTime" destination="hJe-cx-LyE" id="xdV-UO-UC3"/>
                                             <outlet property="lbl_MyVisitorType" destination="GfI-aK-D8d" id="LCC-hk-YoW"/>
                                             <outlet property="lbl_Reschedule" destination="eNZ-rz-6Lf" id="tpZ-hD-U6U"/>
+                                            <outlet property="lbl_Status" destination="Q2c-Xv-xK9" id="Z09-iO-REb"/>
                                             <outlet property="myVisitorImage" destination="TzA-Vi-zzS" id="7pS-WI-aQ6"/>
                                             <outlet property="typeLabel" destination="Q2c-Xv-xK9" id="HpL-MK-QnA"/>
                                         </connections>
@@ -4036,10 +4040,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="PNh-CM-ipn" firstAttribute="leading" secondItem="tKX-0r-u2A" secondAttribute="leading" id="9v6-0G-LQv"/>
-                            <constraint firstItem="PNh-CM-ipn" firstAttribute="trailing" secondItem="tKX-0r-u2A" secondAttribute="trailing" id="DBT-nQ-bci"/>
-                            <constraint firstItem="PNh-CM-ipn" firstAttribute="bottom" secondItem="tKX-0r-u2A" secondAttribute="bottom" id="HC4-2L-7mQ"/>
-                            <constraint firstItem="PNh-CM-ipn" firstAttribute="top" secondItem="tKX-0r-u2A" secondAttribute="top" id="aMZ-G9-LZt"/>
+                            <constraint firstItem="PNh-CM-ipn" firstAttribute="bottom" secondItem="tKX-0r-u2A" secondAttribute="bottom" id="2aJ-Il-kAy"/>
+                            <constraint firstItem="PNh-CM-ipn" firstAttribute="top" secondItem="tKX-0r-u2A" secondAttribute="top" id="Vdi-rd-NrN"/>
+                            <constraint firstItem="PNh-CM-ipn" firstAttribute="leading" secondItem="tKX-0r-u2A" secondAttribute="leading" id="iys-ku-brW"/>
+                            <constraint firstItem="PNh-CM-ipn" firstAttribute="trailing" secondItem="tKX-0r-u2A" secondAttribute="trailing" id="xqJ-wF-9ub"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tKX-0r-u2A"/>
                     </view>
@@ -5998,13 +6002,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UY-qF-7pc">
-                                                <rect key="frame" x="170" y="0.0" width="55" height="43"/>
+                                                <rect key="frame" x="170" y="0.0" width="53" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the free service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53u-9B-EnE">
-                                                <rect key="frame" x="255" y="0.0" width="55" height="43"/>
+                                                <rect key="frame" x="253" y="0.0" width="57" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

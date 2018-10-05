@@ -27,7 +27,7 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         //Get device width
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
-
+        
         //set cell item size here
         layout.itemSize = CGSize(width: width - 10, height: height/4.5)
         
@@ -64,6 +64,11 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         cell?.lbl_FoodType.font = NAFont().textFieldFont()
         cell?.lbl_FoodQuantity_Type.font = NAFont().textFieldFont()
         cell?.lbl_Date_Type.font = NAFont().textFieldFont()
+        
+        //assigning title to cell Labels
+        cell?.lbl_FoodType.text = NAString().food_Type()
+        cell?.lbl_FoodQuantity_Type.text = NAString().food_Quantity()
+        cell?.lbl_Date_Type.text = NAString().date()
         
         cell?.lbl_FoodType_Detail.font = NAFont().headerFont()
         cell?.lbl_FoodQuantity_Detail.font = NAFont().headerFont()

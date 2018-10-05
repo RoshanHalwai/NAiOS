@@ -98,6 +98,11 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         cell.lbl_GuardGateNo.font = NAFont().textFieldFont()
         cell.lbl_GuardStatus.font = NAFont().textFieldFont()
         
+        //assigning title to cell Labels
+        cell.lbl_GuardName.text = NAString().guard_No()
+        cell.lbl_GuardGateNo.text = NAString().gate_No()
+        cell.lbl_GuardStatus.text = NAString().Status()
+        
         NAShadowEffect().shadowEffect(Cell: cell)
         
         return cell

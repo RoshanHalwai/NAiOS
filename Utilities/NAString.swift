@@ -1087,7 +1087,7 @@ class NAString : NSObject {
         return String("now")
     }
     
-    func guest() -> String {
+    func guest_Type() -> String {
         return String("Guest")
     }
     
@@ -2147,6 +2147,50 @@ class NAString : NSObject {
     
     func guard_Nmae() -> String {
         return String("Guard")
+    }
+    
+    func food_Type() -> String {
+        return String("Food Type:")
+    }
+    
+    func food_Quantity() -> String {
+        return String("Food Quantity:")
+    }
+    
+    func category() -> String {
+        return String("Category:")
+    }
+    
+    func Status() -> String {
+        return String("Status:")
+    }
+    
+    func problem() -> String {
+        return String("Problem:")
+    }
+    
+    func owner_Name() -> String {
+        return String("Owner:")
+    }
+    
+    func added_On() -> String {
+        return String("Added On:")
+    }
+    
+    func guard_No() -> String {
+        return String("Guard:")
+    }
+    
+    func gate_No() -> String {
+        return String("Gate No:")
+    }
+    
+    func guest_Name() -> String {
+        return String("Guest:")
+    }
+    
+    func things() -> String {
+        return String("Things:")
     }
 }
 

@@ -56,6 +56,13 @@ class ContactUsHistoryViewController: NANavigationViewController, UITableViewDat
         cell?.lbl_Date_Type.font = NAFont().textFieldFont()
         cell?.lbl_Status_Type.font = NAFont().textFieldFont()
         
+        //assigning title to cell Labels
+        cell?.lbl_Category_Type.text = NAString().category()
+        cell?.lbl_Type.text = NAString().myVisitorType()
+        cell?.lbl_Problem_Type.text = NAString().problem()
+        cell?.lbl_Date_Type.text = NAString().myVisitorDate()
+        cell?.lbl_Status_Type.text = NAString().Status()
+        
         cell?.lbl_Category_Detail.font = NAFont().headerFont()
         cell?.lbl_Type_Detail.font = NAFont().headerFont()
         cell?.lbl_Problem_Detail.font = NAFont().headerFont()

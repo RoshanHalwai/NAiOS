@@ -184,6 +184,8 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
             cell.lbl_Invitor.text = NAString().approver()
             cell.lbl_InvitedName.text = NAString().guard_Nmae()
+        } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_PRE_APPROVED {
+            cell.lbl_Invitor.text = NAString().inviter()
         }
         
         //calling Reschedule action to rechedule visitor date
