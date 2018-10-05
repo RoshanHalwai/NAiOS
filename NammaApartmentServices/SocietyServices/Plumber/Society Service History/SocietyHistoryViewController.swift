@@ -134,10 +134,18 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                     
                     if UIDSnapshot.exists() {
                         let notificationsUID = UIDSnapshot.value as! NSDictionary
-                        for notifictionUID in notificationsUID.allKeys {
+                        
+                        var notificationUIDArray = [String]()
+                        //Getting all Notification UID's in Empty Array
+                        notificationUIDArray = notificationsUID.allKeys as! [String]
+                        //sorting UID's
+                        let sortedArray = notificationUIDArray.sorted()
+                        //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
+                        let reversedArray = sortedArray.reversed()
+                        for notifictionUID in reversedArray {
                             
                             let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-                                .child(notifictionUID as! String)
+                                .child(notifictionUID)
                             
                             societyServiceNotificationRef.observeSingleEvent(of: .value) { (snapshot) in
                                 
@@ -159,7 +167,7 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                         let societyServiceTimeStamp = societyServiceData?[Constants.FIREBASE_CHILD_TIMESTAMP]
                                         let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                                         
-                                        let societyServiceDataList = NASocietyServices(problem: societyServiceProblem, timeSlot: "", userUID: userUID, societyServiceType: societyServiceType, notificationUID: notifictionUID as! String, status: societyServiceStatus, takenBy: "", endOTP: "", fullName: "", mobileNumber: "", timeStamp: societyServiceTimeStamp as! Int)
+                                        let societyServiceDataList = NASocietyServices(problem: societyServiceProblem, timeSlot: "", userUID: userUID, societyServiceType: societyServiceType, notificationUID: notifictionUID, status: societyServiceStatus, takenBy: "", endOTP: "", fullName: "", mobileNumber: "", timeStamp: societyServiceTimeStamp as! Int)
                                         self.NASocietyServiceData.append(societyServiceDataList)
                                     }
                                 }
