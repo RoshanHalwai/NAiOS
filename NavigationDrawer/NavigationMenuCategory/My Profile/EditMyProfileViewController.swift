@@ -74,7 +74,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         imagePickerController.delegate = self
         
         let userDataRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
-        userDataRef.keepSynced(true)
         //Adding observe event to each of user UID
         userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
             let usersData = userDataSnapshot.value as? [String: AnyObject]
@@ -136,7 +135,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         update_btn.titleLabel?.font = NAFont().buttonFont()
         
         let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_ADMIN)
-        userDataReference.keepSynced(true)
         userDataReference.observeSingleEvent(of: .value) { (snapshot) in
             print(snapshot)
             self.adminUID = (snapshot.value as! String)
@@ -146,7 +144,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
                 self.existedFlatAdmin = self.txt_Flat_Admin.text
             } else {
                 let adminNameRef = Constants.FIREBASE_USERS_PRIVATE.child(self.adminUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
-                adminNameRef.keepSynced(true)
                 adminNameRef.observeSingleEvent(of: .value, with: { (nameSnapShot) in
                     self.txt_Flat_Admin.text = (nameSnapShot.value as! String)
                     self.existedFlatAdmin = self.txt_Flat_Admin.text

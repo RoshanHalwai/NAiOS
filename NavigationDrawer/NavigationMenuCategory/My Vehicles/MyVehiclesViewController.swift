@@ -295,7 +295,6 @@ extension MyVehiclesViewController {
         myExpectedVehicleList.removeAll()
         userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VEHICLES)
         
-        userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 self.myExpectedVehicleList.removeAll()
@@ -304,7 +303,6 @@ extension MyVehiclesViewController {
                     
                     //Retrieving true Mapped UID's
                     self.vehiclesPublicRef = Constants.FIREBASE_VEHICLES_PRIVATE.child(vehicleUID as! String)
-                    self.vehiclesPublicRef?.keepSynced(true)
                     self.vehiclesPublicRef?.observe(.value, with: { (snapshot) in
                         if snapshot.exists() {
                             let vehicleData = snapshot.value as?[String: AnyObject]

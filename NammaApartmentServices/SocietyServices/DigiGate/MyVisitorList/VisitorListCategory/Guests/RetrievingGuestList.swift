@@ -64,7 +64,6 @@ class RetrievingGuestList {
     // Checks if flat has Visitors key as one of its children
     private func isGuestRefExists(callback : @escaping (_ guestRefExists : Bool) -> Void) {
         let guestDataReference = self.userDataReference.child(Constants.FIREBASE_CHILD_VISITORS)
-        guestDataReference.keepSynced(true)
         guestDataReference.observeSingleEvent(of: .value) { (dataSnapshot) in
             callback(dataSnapshot.exists())
         }
@@ -84,7 +83,6 @@ class RetrievingGuestList {
         let guestListReference = self.userDataReference
             .child(Constants.FIREBASE_CHILD_VISITORS)
             .child(userUID)
-        guestListReference.keepSynced(true)
         guestListReference.observeSingleEvent(of: .value) { (snapshot) in
             var guestUIDList = [String]()
             if (snapshot.exists()) {
@@ -123,7 +121,6 @@ class RetrievingGuestList {
         
         //Take each of the visitor UID and get their data from visitors -> preApprovedVisitors
         let visitorDataRef = Constants.FIREBASE_VISITORS_PRIVATE.child(visitorUID)
-        visitorDataRef.keepSynced(true)
         //Adding observe event to each of visitors UID
         visitorDataRef.observeSingleEvent(of: .value, with: { (guestDataSnapshot) in
             let guestsData = guestDataSnapshot.value as? [String: AnyObject]
