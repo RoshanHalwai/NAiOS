@@ -212,13 +212,11 @@ extension CabAndPackageArrivalCardListViewController {
     func expectingCabArrival(userUID : String) {
         
         userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS).child(userUID)
-        userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let cabsUID = snapshot.value as? NSDictionary
                 for cabsUID in (cabsUID?.allKeys)! {
                     self.cabsPublicRef = Constants.FIREBASE_CABS_PRIVATE.child(cabsUID as! String)
-                    self.cabsPublicRef?.keepSynced(true)
                     self.cabsPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
                             
@@ -299,13 +297,11 @@ extension CabAndPackageArrivalCardListViewController {
     func expectingPackageArrival(userUID : String)  {
         
         userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
-        userDataRef?.keepSynced(true)
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let packageUID = snapshot.value as? NSDictionary
                 for vendorUID in (packageUID?.allKeys)! {
                     self.packagePublicRef = Constants.FIREBASE_DELIVERIES_PRIVATE.child(vendorUID as! String)
-                    self.packagePublicRef?.keepSynced(true)
                     self.packagePublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
                             
