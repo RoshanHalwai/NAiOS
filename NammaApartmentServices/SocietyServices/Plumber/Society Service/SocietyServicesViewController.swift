@@ -489,14 +489,14 @@ extension SocietyServicesViewController {
             serviceType = NAString().scrap_Collection()
         } else {
             if (self.txt_SelectAny.text == NAString().others()) {
-                problem = self.txt_Others.text!
+               problem = self.txt_Others.text!
             } else  {
                 problem = txt_SelectAny.text!
             }
             serviceType = (navTitle?.lowercased())!
         }
         let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        notificationUID = societyServiceNotificationRef.childByAutoId().key
+        notificationUID = societyServiceNotificationRef.childByAutoId().key!
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         
@@ -515,7 +515,7 @@ extension SocietyServicesViewController {
         }
         
         let societyServiceNotificationData = [
-            problemOrScrapType : txt_SelectAny.text as Any,
+            problemOrScrapType : problem,
             timeSlotOrQuantity : getButtonHour_Text,
             NASocietyServicesFBKeys.userUID.key: userUID,
             NASocietyServicesFBKeys.societyServiceType.key : serviceType,
