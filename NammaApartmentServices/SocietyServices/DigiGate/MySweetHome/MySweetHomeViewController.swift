@@ -200,6 +200,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_Relation.font = NAFont().textFieldFont()
         cell.lbl_GrantAccess.font = NAFont().textFieldFont()
         
+        //assigning title to cell Labels
         cell.lbl_Name.text = NAString().name()
         cell.lbl_Relation.text = NAString().relation()
         cell.lbl_GrantAccess.text = NAString().access()

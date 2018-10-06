@@ -173,6 +173,13 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         cell.lbl_ThingsGiven.font = NAFont().headerFont()
         cell.lbl_Description.font = NAFont().headerFont()
         
+        //assigning title to cell Labels
+        cell.lbl_Name.text = NAString().name()
+        cell.lbl_Type.text = NAString().type()
+        cell.lbl_Rating.text = NAString().rating()
+        cell.lbl_InTime.text = NAString().pick_time()
+        cell.lbl_Flats.text = NAString().flats()
+        
         //This creates the shadows and modifies the cards a little bit
         cell.backgroundCardView.backgroundColor = UIColor.white
         cell.contentView.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)

@@ -261,16 +261,16 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_Remove.font = NAFont().cellButtonFont()
         cell.lbl_Message.font = NAFont().cellButtonFont()
         
-        
         cell.lbl_Call.text = NAString().call()
         cell.lbl_Edit.text = NAString().edit()
         cell.lbl_Remove.text = NAString().remove()
         cell.lbl_Message.text = NAString().message()
         
+        //assigning title to cell Labels
         cell.lbl_myDailyName.text = NAString().name()
         cell.lbl_myDailytype.text = NAString().type()
         cell.lbl_myDailyFlats.text = NAString().flats()
-        cell.lbl_myDailyTime.text = NAString().status().capitalized
+        cell.lbl_myDailyTime.text = NAString().Status()
         cell.lbl_myDailyRating.text = NAString().rating()
         
         cell.index = indexPath

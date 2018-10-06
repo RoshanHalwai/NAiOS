@@ -32,7 +32,12 @@ class MyGuestListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_Message: UILabel!
     @IBOutlet weak var lbl_Reschedule: UILabel!
     @IBOutlet weak var lbl_Cancel: UILabel!
-
+    
+    @IBOutlet weak var lbl_Date: UILabel!
+    @IBOutlet weak var lbl_Guest: UILabel!
+    @IBOutlet weak var lbl_Status: UILabel!
+    @IBOutlet weak var lbl_InTime: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -42,11 +47,27 @@ class MyGuestListCollectionViewCell: UICollectionViewCell {
         lbl_MyVisitorDate.font = NAFont().headerFont()
         lbl_MyVisitorTime.font = NAFont().headerFont()
         
+        lbl_Date.font = NAFont().textFieldFont()
+        lbl_Guest.font = NAFont().textFieldFont()
+        lbl_Status.font = NAFont().textFieldFont()
+        lbl_InTime.font = NAFont().textFieldFont()
+        lbl_Invitor.font = NAFont().textFieldFont()
+        
         lbl_Call.font = NAFont().cellButtonFont()
         lbl_Message.font = NAFont().cellButtonFont()
         lbl_Reschedule.font = NAFont().cellButtonFont()
         lbl_Cancel.font = NAFont().cellButtonFont()
-        lbl_Invitor.font = NAFont().textFieldFont()
+        
+        //assigning title to cell Labels
+        lbl_Call.text = NAString().call()
+        lbl_Message.text = NAString().message()
+        lbl_Reschedule.text = NAString().reschedule()
+        lbl_Cancel.text = NAString().cancel()
+        
+        lbl_Date.text = NAString().date()
+        lbl_Guest.text = NAString().guest_Name()
+        lbl_Status.text = NAString().Status()
+        lbl_InTime.text = NAString().pick_time()
     }
     
     var actionRescheduling : (() -> Void)? = nil

@@ -135,6 +135,8 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
             } else if myCabList.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
                 cell.lbl_Inviter_Type.text = NAString().approver()
                 cell.lbl_Inviter_Detail.text = NAString().guard_Nmae()
+            } else if myCabList.getapprovalType() == Constants.FIREBASE_CHILD_PRE_APPROVED {
+                cell.lbl_Inviter_Type.text = NAString().inviter()
             }
             
         } else {
@@ -172,6 +174,8 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
             } else if myPackageList.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
                 cell.lbl_Inviter_Type.text = NAString().approver()
                 cell.lbl_Inviter_Detail.text = NAString().guard_Nmae()
+            } else if myPackageList.getapprovalType() == Constants.FIREBASE_CHILD_PRE_APPROVED {
+                cell.lbl_Inviter_Type.text = NAString().inviter()
             }
         }
         
@@ -189,6 +193,11 @@ class CabAndPackageArrivalCardListViewController: NANavigationViewController, UI
         cell.lbl_InTime_Detail.font = NAFont().headerFont()
         cell.lbl_Status_Detail.font = NAFont().headerFont()
         cell.lbl_Inviter_Detail.font = NAFont().headerFont()
+        
+        //assigning title to cell Labels
+        cell.lbl_Date_Type.text = NAString().date()
+        cell.lbl_InTime_Type.text = NAString().pick_time()
+        cell.lbl_Status_Type.text = NAString().Status()
         
         /*Setting round image*/
         cell.image_View.layer.cornerRadius = cell.image_View.frame.size.width/2

@@ -135,7 +135,15 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
             cell.lbl_Inviter_Type.text = NAString().approver()
             cell.lbl_Inviter_Detail.text = NAString().guard_Nmae()
+        } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_PRE_APPROVED {
+            cell.lbl_Inviter_Type.text = NAString().inviter()
         }
+        
+        //assigning title to cell Labels
+        cell.lbl_Visitor_Type.text = NAString().visitor()
+        cell.lbl_Date_Type.text = NAString().date()
+        cell.lbl_InTime_Type.text = NAString().pick_time()
+        cell.lbl_Things_Type.text = NAString().things()
         
         //assigning font & style to cell labels
         cell.lbl_Visitor_Type.font = NAFont().textFieldFont()
@@ -143,6 +151,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         cell.lbl_InTime_Type.font = NAFont().textFieldFont()
         cell.lbl_Inviter_Type.font = NAFont().textFieldFont()
         cell.lbl_Things_Type.font = NAFont().textFieldFont()
+        
         cell.lbl_Visitor_Detail.font = NAFont().headerFont()
         cell.lbl_Date_Detail.font = NAFont().headerFont()
         cell.lbl_InTime_Detail.font = NAFont().headerFont()

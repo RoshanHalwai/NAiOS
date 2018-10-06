@@ -117,7 +117,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.lbl_Type.text = NAString().type()
         cell.lbl_Date.text = NAString().date()
         cell.lbl_Time.text = NAString().time()
-        cell.lbl_Invited.text = NAString().inviter()
         
         //Label Formatting & setting
         cell.lbl_Visiter.font = NAFont().textFieldFont()
@@ -148,6 +147,8 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_GUARD_APPROVED {
             cell.lbl_Invited.text = NAString().approver()
             cell.lbl_GuestInvitedBy.text = NAString().guard_Nmae()
+        } else if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_PRE_APPROVED {
+            cell.lbl_Invited.text = NAString().inviter()
         }
         
         //This creates the shadows and modifies the cards a little bit
