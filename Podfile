@@ -16,7 +16,7 @@ pod 'Firebase/Messaging'
 pod 'FirebaseUI/Phone'
 pod 'Fabric'
 pod 'Crashlytics'
-pod 'razorpay-pod', '1.0.18'
+pod 'razorpay-pod', '1.0.23'
 pod 'GoogleToolboxForMac', '~> 2.1'
 
   target 'nammaApartmentTests' do
