@@ -266,11 +266,7 @@ class AwaitingResponseViewController: NANavigationViewController {
         
         let rating = self.societyServiceRating.ratingValue
         var serviceRating = Double()
-        if rating == 0 {
-            serviceRating = 5
-        } else {
-            serviceRating = Double(rating)
-        }
+        serviceRating = Double(rating)
         
         self.opacity_View.isHidden = true
         self.societyServiceRating.isHidden = true
@@ -300,6 +296,7 @@ class AwaitingResponseViewController: NANavigationViewController {
                         let averageServiceRating = (presentAveragerating + serviceRating)/noOfRatingsGiven
                         
                         societyServiceDataRef.child(Constants.FIREBASE_CHILD_RATING).setValue(averageServiceRating)
+                        
                         self.navigationController?.popViewController(animated: true)
                     })
                 } else {

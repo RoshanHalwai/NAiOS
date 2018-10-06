@@ -106,16 +106,12 @@ class SocietyTableViewController: NANavigationViewController,UITableViewDelegate
             filteredArray = filteredArray.sorted()
             cell.textLabel?.text = filteredArray[indexPath.row]
         } else if (NAString().plumber() == titleString) {
-            plumberProblemsList = plumberProblemsList.sorted()
             cell.textLabel?.text = plumberProblemsList[indexPath.row]
         } else if (NAString().carpenter() == titleString) {
-            carpenterProblemsList = carpenterProblemsList.sorted()
             cell.textLabel?.text = carpenterProblemsList[indexPath.row]
         } else if (NAString().electrician() == titleString) {
-            electricianProblemsList = electricianProblemsList.sorted()
             cell.textLabel?.text = electricianProblemsList[indexPath.row]
         } else {
-            scrapCollectionTypeList = scrapCollectionTypeList.sorted()
             cell.textLabel?.text = scrapCollectionTypeList[indexPath.row]
         }
         
