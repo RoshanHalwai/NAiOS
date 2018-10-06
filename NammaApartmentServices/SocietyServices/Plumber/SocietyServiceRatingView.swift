@@ -16,7 +16,7 @@ import HCSStarRatingView
     @IBOutlet weak var plumber_ImageView: UIImageView!
     @IBOutlet weak var lbl_Plumber: UILabel!
     @IBOutlet weak var lbl_RateYour_Service: UILabel!
-    var ratingValue : Int
+    var ratingValue = 5
     
     //Create LoadView Nib Name
     func loadViewFromNib() -> UIView {
@@ -39,16 +39,15 @@ import HCSStarRatingView
     
     //Create Xib Frame
     override init(frame: CGRect) {
-        ratingValue = Int()
+        ratingValue = 5
         super.init(frame: frame)
         xibSetup()
     }
     
     required init(coder aDecoder: NSCoder) {
-        ratingValue = Int()
+        ratingValue = 5
         super.init(coder: aDecoder)!
         xibSetup()
     }
-    
 }
 
