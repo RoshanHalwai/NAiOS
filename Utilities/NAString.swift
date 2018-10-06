@@ -354,7 +354,7 @@ class NAString : NSObject {
     }
     
     func sound_settings() -> String {
-        return String("  Sound Settings")
+        return String("Sound Settings")
     }
     
     func language() -> String {
