@@ -291,13 +291,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="170" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="170" y="0.0" width="53" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will collect food " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smj-Ef-i0k">
-                                                <rect key="frame" x="255" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="253" y="0.0" width="57" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -7901,23 +7901,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="EBo-HB-xPv">
-                                    <size key="itemSize" width="349" height="144"/>
+                                    <size key="itemSize" width="338" height="116"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="urJ-vK-0vr" customClass="DonateFoodHistoryCollectionViewCell" customModule="nammaApartment" customModuleProvider="target">
-                                        <rect key="frame" x="13" y="0.0" width="349" height="144"/>
+                                        <rect key="frame" x="18.5" y="0.0" width="338" height="116"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="349" height="144"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="338" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="donteFoodHistory" translatesAutoresizingMaskIntoConstraints="NO" id="EbN-vQ-SiX">
-                                                    <rect key="frame" x="8" y="28" width="88" height="88"/>
+                                                    <rect key="frame" x="2" y="18" width="80" height="80"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="EbN-vQ-SiX" secondAttribute="height" multiplier="1:1" id="vFk-O2-XYg"/>
+                                                        <constraint firstAttribute="width" constant="80" id="ZiA-2R-Gea"/>
+                                                        <constraint firstAttribute="height" constant="80" id="rtE-Ik-Sup"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -7925,8 +7926,8 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-6u-9UU">
-                                                    <rect key="frame" x="101" y="37" width="217" height="71.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-6u-9UU">
+                                                    <rect key="frame" x="84" y="22.5" width="214" height="71.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pzp-Aa-L8Y">
                                                             <rect key="frame" x="0.0" y="0.0" width="113" height="71.5"/>
@@ -7955,7 +7956,7 @@
                                                             </constraints>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FwL-Ug-ENG">
-                                                            <rect key="frame" x="118" y="0.0" width="99" height="71.5"/>
+                                                            <rect key="frame" x="115" y="0.0" width="99" height="71.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSe-oT-ZkJ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="33" height="20.5"/>
@@ -7983,11 +7984,10 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottomMargin" secondItem="EbN-vQ-SiX" secondAttribute="bottom" constant="20" id="3Dq-dp-mYG"/>
-                                            <constraint firstItem="EbN-vQ-SiX" firstAttribute="top" secondItem="urJ-vK-0vr" secondAttribute="topMargin" constant="20" id="753-J3-jlP"/>
-                                            <constraint firstItem="HNv-6u-9UU" firstAttribute="leading" secondItem="EbN-vQ-SiX" secondAttribute="trailing" constant="5" id="J5Y-qX-q9e"/>
-                                            <constraint firstItem="EbN-vQ-SiX" firstAttribute="leading" secondItem="urJ-vK-0vr" secondAttribute="leadingMargin" id="Joa-Ng-s6v"/>
+                                            <constraint firstItem="EbN-vQ-SiX" firstAttribute="centerY" secondItem="urJ-vK-0vr" secondAttribute="centerY" id="aO0-fh-LFu"/>
                                             <constraint firstItem="HNv-6u-9UU" firstAttribute="centerY" secondItem="urJ-vK-0vr" secondAttribute="centerY" id="blg-4M-LHD"/>
+                                            <constraint firstItem="HNv-6u-9UU" firstAttribute="leading" secondItem="EbN-vQ-SiX" secondAttribute="trailing" constant="2" id="bqn-RP-SPZ"/>
+                                            <constraint firstItem="EbN-vQ-SiX" firstAttribute="leading" secondItem="urJ-vK-0vr" secondAttribute="leading" constant="2" id="t3b-Zl-1R9"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="lbl_Date_Detail" destination="q5C-rf-zZW" id="1ge-Xy-z5O"/>
