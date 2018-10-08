@@ -4830,9 +4830,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOo-Yt-J4H">
-                                <rect key="frame" x="120" y="266" width="135" height="135"/>
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="OOo-Yt-J4H" secondAttribute="height" multiplier="1:1" id="l7M-ZN-bwf"/>
+                                    <constraint firstAttribute="height" constant="100" id="AsF-rM-R3B"/>
+                                    <constraint firstAttribute="width" constant="100" id="h79-nf-jYu"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="EmergencyBell"/>
                                 <connections>
@@ -4840,13 +4841,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on bell icon to create alert" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1K-T0-olj">
-                                <rect key="frame" x="67.5" y="224" width="240.5" height="22"/>
+                                <rect key="frame" x="67.5" y="241.5" width="240.5" height="22"/>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emergency alarm has been raised" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRL-7O-hI7">
-                                <rect key="frame" x="54.5" y="421" width="266.5" height="22"/>
+                                <rect key="frame" x="54.5" y="403.5" width="266.5" height="22"/>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -4858,7 +4859,6 @@
                             <constraint firstItem="OOo-Yt-J4H" firstAttribute="centerY" secondItem="6yI-W0-Qho" secondAttribute="centerY" id="Ez9-yT-JxJ"/>
                             <constraint firstItem="s1K-T0-olj" firstAttribute="centerX" secondItem="6yI-W0-Qho" secondAttribute="centerX" id="JF7-Hg-wrl"/>
                             <constraint firstItem="oRL-7O-hI7" firstAttribute="top" secondItem="OOo-Yt-J4H" secondAttribute="bottom" constant="20" id="f6t-pR-WLW"/>
-                            <constraint firstItem="T0u-1G-y8X" firstAttribute="trailing" secondItem="OOo-Yt-J4H" secondAttribute="trailing" constant="120" id="itA-TA-EDX"/>
                             <constraint firstItem="oRL-7O-hI7" firstAttribute="centerX" secondItem="6yI-W0-Qho" secondAttribute="centerX" id="pVW-eV-zzg"/>
                             <constraint firstItem="OOo-Yt-J4H" firstAttribute="centerX" secondItem="6yI-W0-Qho" secondAttribute="centerX" id="xOQ-Q0-OHD"/>
                         </constraints>
@@ -8064,7 +8064,7 @@
                                 <rect key="frame" x="0.0" y="96" width="260" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -8072,7 +8072,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
