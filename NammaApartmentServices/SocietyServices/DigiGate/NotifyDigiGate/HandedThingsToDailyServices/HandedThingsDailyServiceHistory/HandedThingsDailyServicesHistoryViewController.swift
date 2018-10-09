@@ -42,10 +42,9 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         
         //Get device width
         let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
         
         //set cell item size here
-        layout.itemSize = CGSize(width: width - 10, height: height/4)
+        layout.itemSize = CGSize(width: width - 10, height: 150)
         
         //set Minimum spacing between 2 items
         layout.minimumInteritemSpacing = 10
