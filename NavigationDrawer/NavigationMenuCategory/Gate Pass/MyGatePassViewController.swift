@@ -72,7 +72,6 @@ class MyGatePassViewController: NANavigationViewController {
         lbl_SocietyName.font = NAFont().labelFont()
         lbl_BlockNumber.font = NAFont().headerFont()
         lbl_FlatNumber.font = NAFont().headerFont()
-        lbl_Description.font = NAFont().descriptionFont()
         
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
