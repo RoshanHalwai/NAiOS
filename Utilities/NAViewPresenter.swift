@@ -269,4 +269,9 @@ class NAViewPresenter: NSObject {
     func eventManagementHistoryVC() -> EventManagementHistoryViewController {
         return storyBoard.instantiateViewController(withIdentifier: "eventManagementHistoryVC") as! EventManagementHistoryViewController
     }
+    
+    //Create My Gate Pass screen
+    func myGatePassVC() -> MyGatePassViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myGatePassVC") as! MyGatePassViewController
+    }
 }
