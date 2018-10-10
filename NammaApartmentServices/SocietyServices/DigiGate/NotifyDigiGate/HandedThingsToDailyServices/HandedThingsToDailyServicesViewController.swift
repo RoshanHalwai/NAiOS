@@ -21,6 +21,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     //set title from previous page
     var titleName =  String()
     var isActivityIndicatorRunning = false
+    var layoutObj = NAFirebase()
     
     //Database References
     var userDataRef : DatabaseReference?
@@ -319,6 +320,7 @@ extension HandedThingsToDailyServicesViewController {
                     var dsStatus = ""
                     var iterator = 0
                     var isDataEntered = false
+                    var count = 0
                     
                     let dailyServiceTypes = snapshot.value as? NSDictionary
                     
@@ -326,6 +328,7 @@ extension HandedThingsToDailyServicesViewController {
                     let queue = OperationQueue()
                     
                     for dailyServiceType in (dailyServiceTypes?.allKeys)! {
+                        count = count + 1
                         self.dailyServiceInUserRef?.child(dailyServiceType as! String).observeSingleEvent(of: .value, with: { (snapshot) in
                             
                             //Getting Daily Services UID here
@@ -378,11 +381,11 @@ extension HandedThingsToDailyServicesViewController {
                                                             NAActivityIndicator.shared.hideActivityIndicator()
                                                             self.tableView.reloadData()
                                                             iterator = iterator + 1
-                                                        }
+                                                        } 
                                                     })
-                                                } else if (isDataEntered == false) {
-                                                    NAActivityIndicator.shared.hideActivityIndicator()
-                                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
+                                                }
+                                                if isDataEntered {
+                                                    self.layoutObj.hideLayoutUnavailableMessage()
                                                 }
                                             })
                                         }
@@ -391,6 +394,12 @@ extension HandedThingsToDailyServicesViewController {
                                 }
                             }
                         })
+                        if count == dailyServiceTypes?.count {
+                            if self.dailyServiceHandedThingsList.isEmpty {
+                                NAActivityIndicator.shared.hideActivityIndicator()
+                                self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
+                            }
+                        }
                     }
                 })
             }

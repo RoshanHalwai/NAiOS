@@ -63,11 +63,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
-        if NADailyServicesList.isEmpty {
-            NAActivityIndicator.shared.hideActivityIndicator()
-            self.layoutMessageObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
-        }
-        
         checkAndRetrieveDailyService()
         opacity_View.isHidden = true
         
@@ -517,10 +512,11 @@ extension MyDailyServicesViewController {
                         for dailyServiceType in (dailyServiceTypes?.allKeys)! {
                             self.dailyServiceInUserRef?.child(dailyServiceType as! String).observeSingleEvent(of: .value, with: { (snapshot) in
                                 
+                                var count = 0
                                 //Getting Daily Services UID here
                                 let dailyServicesUID = snapshot.value as? NSDictionary
                                 for dailyServiceUID in (dailyServicesUID?.allKeys)! {
-                                    
+                                    count = count + 1
                                     if dailyServicesUID![dailyServiceUID] as! Bool == true {
                                         self.isDailyServicePresent = true
                                         
@@ -576,6 +572,11 @@ extension MyDailyServicesViewController {
                                     }
                                     if self.isDailyServicePresent {
                                         self.layoutMessageObj.hideLayoutUnavailableMessage()
+                                    } else if count == dailyServicesUID?.count {
+                                        if self.NADailyServicesList.isEmpty {
+                                            NAActivityIndicator.shared.hideActivityIndicator()
+                                            self.layoutMessageObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                                        }
                                     }
                                 }
                             })

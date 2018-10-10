@@ -16,6 +16,7 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
     var titleName =  String()
     
     var dailyServiceKey = String()
+    var layoutObj = NAFirebase()
     
     //Created Instance of Model Class To get data in card view
     var dailyServiceHistoryList = [NADailyServiceHandedThingsHistory]()
@@ -217,12 +218,13 @@ extension HandedThingsDailyServicesHistoryViewController {
                         let queue = OperationQueue()
                         
                         for dailyServiceType in (dailyServiceTypes?.allKeys)! {
+                            count = count + 1
+                            
                             self.dailyServiceInUserRef?.child(dailyServiceType as! String).observeSingleEvent(of: .value, with: { (snapshot) in
                                 
                                 //Getting Daily Services UID here
                                 let dailyServicesUID = snapshot.value as? NSDictionary
                                 for dailyServiceUID in (dailyServicesUID?.allKeys)! {
-                                    count = count + 1
                                     queue.addOperation {
                                         dsType = dailyServiceType as! String
                                         
@@ -271,15 +273,21 @@ extension HandedThingsDailyServicesHistoryViewController {
                                                         iterator = iterator + 1
                                                     } 
                                                 })
-                                            } else if (isHandedThingsAdded == false) {
-                                                NAActivityIndicator.shared.hideActivityIndicator()
-                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
+                                            }
+                                            if isHandedThingsAdded {
+                                                self.layoutObj.hideLayoutUnavailableMessage()
                                             }
                                         })
                                     }
                                     queue.waitUntilAllOperationsAreFinished()
                                 }
                             })
+                            if count == dailyServiceTypes?.count {
+                                if self.dailyServiceHistoryList.isEmpty {
+                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                    self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
+                                }
+                            }
                         }
                     }
                 })
