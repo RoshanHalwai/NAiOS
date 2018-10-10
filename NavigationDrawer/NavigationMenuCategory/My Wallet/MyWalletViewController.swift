@@ -126,7 +126,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             if self.lbl_Maintenance.text == NAString().noPendingDues() {
                 NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
             } else {
-                NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: self.maintenanceCost, additionalCharges: Float(self.gettingPercentageAmount), totalAmount: (Float(totalAmount)), chargesPer: (self.convenienceFee)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+                NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: self.maintenanceCost, additionalCharges: Float(self.gettingPercentageAmount), totalAmount: (Float(totalAmount)), chargesPer: (self.convenienceFee)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
                     self.showPaymentUI()
                 }, Cancel: nil, cancelActionTitle: NAString().cancel().uppercased(), okActionTitle: NAString().payNow())
             }
