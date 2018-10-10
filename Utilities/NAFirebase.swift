@@ -64,10 +64,9 @@ class NAFirebase {
         stackView.leadingAnchor.constraint(equalTo: mainView.view.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: mainView.view.trailingAnchor).isActive = true
         
-        if newText.count == 0 {
-            stackView.removeFromSuperview()
-            newLabel.removeFromSuperview()
-            newImage.removeFromSuperview()
+        if newText == "" {
+            newImage.isHidden = true
+            newLabel.isHidden = true
         }
     }
     

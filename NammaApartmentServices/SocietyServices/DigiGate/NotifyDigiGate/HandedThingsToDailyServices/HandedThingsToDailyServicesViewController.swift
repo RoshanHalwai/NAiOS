@@ -359,7 +359,7 @@ extension HandedThingsToDailyServicesViewController {
                                                     
                                                     self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC
                                                     self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
-                                                        
+                                                      
                                                         //Getting Data Form Firebase & Adding into Model Class
                                                         let dailyServiceData = snapshot.value as? [String: AnyObject]
                                                         
