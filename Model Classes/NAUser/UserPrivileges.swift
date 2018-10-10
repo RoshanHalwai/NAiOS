@@ -43,6 +43,11 @@ class UserPrivileges {
     func getAdmin() -> Bool {
         return admin!
     }
+    
+    func setAdmin(admin: Bool) {
+        self.admin = admin
+    }
+    
     func getGrantAccess() -> Bool {
         return grantAccess!
     }

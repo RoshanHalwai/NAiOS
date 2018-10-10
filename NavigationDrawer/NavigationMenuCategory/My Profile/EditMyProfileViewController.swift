@@ -131,25 +131,9 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         txt_Flat_Admin.font = NAFont().textFieldFont()
         lbl_EIntercomSerialNo.font = NAFont().layoutFeatureErrorFont()
         lbl_EIntercomNumber.font = NAFont().layoutFeatureErrorFont()
-        
         update_btn.titleLabel?.font = NAFont().buttonFont()
         
-        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_ADMIN)
-        userDataReference.observeSingleEvent(of: .value) { (snapshot) in
-            print(snapshot)
-            self.adminUID = (snapshot.value as! String)
-            
-            if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true {
-                self.txt_Flat_Admin.text = NAString().you_are_the_Administrator()
-                self.existedFlatAdmin = self.txt_Flat_Admin.text
-            } else {
-                let adminNameRef = Constants.FIREBASE_USERS_PRIVATE.child(self.adminUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
-                adminNameRef.observeSingleEvent(of: .value, with: { (nameSnapShot) in
-                    self.txt_Flat_Admin.text = (nameSnapShot.value as! String)
-                    self.existedFlatAdmin = self.txt_Flat_Admin.text
-                })
-            }
-        }
+        adminNameRef()
         
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.width/2
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.height/2
@@ -174,6 +158,32 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     @objc func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y += 100
+    }
+    
+    ///Getting Flat Admin Name
+    func adminNameRef() {
+        let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_ADMIN)
+        userDataReference.observeSingleEvent(of: .value) { (snapshot) in
+            print(snapshot)
+            self.adminUID = (snapshot.value as! String)
+            
+            let userRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
+                .child(Constants.FIREBASE_CHILD_PRIVILEGES)
+                .child(Constants.FIREBASE_CHILD_ADMIN)
+            userRef.observeSingleEvent(of: .value, with: { (adminSnapshot) in
+                let admin = adminSnapshot.value as? Bool
+                if admin == true {
+                    self.txt_Flat_Admin.text = NAString().you_are_the_Administrator()
+                    self.existedFlatAdmin = self.txt_Flat_Admin.text
+                } else {
+                    let adminNameRef = Constants.FIREBASE_USERS_PRIVATE.child(self.adminUID!).child(Constants.FIREBASE_CHILD_PERSONALDETAILS).child(Constants.FIREBASE_CHILD_FULLNAME)
+                    adminNameRef.observeSingleEvent(of: .value, with: { (nameSnapShot) in
+                        self.txt_Flat_Admin.text = (nameSnapShot.value as! String)
+                        self.existedFlatAdmin = self.txt_Flat_Admin.text
+                    })
+                }
+            })
+        }
     }
     
     //Create image Handle  Function
@@ -263,6 +273,8 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
                 //After Changing Admin Access Previous Admin user Admin Access changed to false.
                 let removedAdminRef =  Constants.FIREBASE_USERS_PRIVATE.child(self.adminUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES)
                 removedAdminRef.child(Constants.FIREBASE_CHILD_ADMIN).setValue(NAString().getfalse())
+                //Setting the admin Value in GlobalUser data after User Changed Admin Access
+                GlobalUserData.shared.privileges_Items.first?.setAdmin(admin: NAString().getfalse())
                 
                 //After Changing Admin Access new Admin UID will get Replaced with previous UID
                 let UpdatedUserDataAdminRef = GlobalUserData.shared.getUserDataReference()
@@ -343,18 +355,25 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        txt_Flat_Admin.text = selectedMember
+        
+        if selectedMember.isEmpty {
+            adminNameRef()
+        } else {
+            txt_Flat_Admin.text = selectedMember
+        }
     }
     
     //To Logout the current user
     func logoutAction() {
         let preferences = UserDefaults.standard
-        let currentLevelKey = "USERUID"
-        preferences.removeObject(forKey: currentLevelKey)
+        let userUID = NAString().userDefault_USERUID()
+        let loggedIn = NAString().userDefault_Logged_In()
+        preferences.removeObject(forKey: userUID)
+        preferences.set(false, forKey: loggedIn)
+        preferences.synchronize()
         if self.storyboard != nil {
-            let storyboard = UIStoryboard(name: NAViewPresenter().main(), bundle: nil)
-            let NavLogin = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().loginNavigation())
-            self.present(NavLogin, animated: true)
+            let NavLogin = NAViewPresenter().loginVC()
+            self.navigationController?.pushViewController(NavLogin, animated: true)
         }
     }
     
@@ -377,12 +396,16 @@ extension EditMyProfileViewController {
         self.updateUserRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         if existedName != txt_Name.text {
             updateUserRef?.child(Constants.FIREBASE_CHILD_FULLNAME).setValue(txt_Name.text)
+            //setting the Name value in GlobalUser data after User Updated his Name.
+            GlobalUserData.shared.personalDetails_Items.first?.setFullName(fullName: txt_Name.text!)
             NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
                 self.navigationController?.popViewController(animated: true)
             }
         }
         if existedEmail != txt_EmailId.text {
             updateUserRef?.child(Constants.FIREBASE_CHILD_EMAIL).setValue(txt_EmailId.text)
+            //setting the email value in GlobalUser data after User Updated his email.
+            GlobalUserData.shared.personalDetails_Items.first?.setEmail(email: txt_EmailId.text!)
         }
         
         let providedEmailAddress = txt_EmailId.text
@@ -410,6 +433,8 @@ extension EditMyProfileViewController {
                     
                     if urlError == nil {
                         self.updateUserRef?.child(Constants.FIREBASE_CHILD_PERSONALDETAILS_PROFILEIMAGE).setValue(url?.absoluteString)
+                        //Setting the profilePhoto value in GlobalUser data after User Updated his Profile Photo
+                        GlobalUserData.shared.personalDetails_Items.first?.setProfilePhoto(profilePhoto: (url?.absoluteString)!)
                         
                         //Using else statement & printing error,so the other developers can know what is going on.
                     } else {

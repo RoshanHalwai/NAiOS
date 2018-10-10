@@ -97,6 +97,7 @@ class EditMyProfileFlatMembersListViewController: NANavigationViewController, UI
         let indexPath = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell;()
         let currentItem = currentCell.textLabel?.text
+        myProfileVC.updatedAdminUID = myProfileVC.allFlatMembersUID[(indexPath?.row)!]
         myProfileVC.selectedMember = currentItem!
         tableView.deselectRow(at: indexPath!, animated: true)
         self.navigationController?.dismiss(animated: true)
