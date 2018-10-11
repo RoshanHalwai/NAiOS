@@ -68,3 +68,27 @@ class NAExpectingNeighbours {
         return uid
     }
 }
+
+class NANeighboursChat {
+    var message : String
+    var receiverUID : String
+    var timeStamp : Int
+    
+    init(message: String, receiverUID: String, timeStamp: Int) {
+        self.message = message
+        self.receiverUID = receiverUID
+        self.timeStamp = timeStamp
+    }
+    
+    func getMessage() -> String {
+        return message
+    }
+    
+    func getReceiverUID() -> String {
+        return receiverUID
+    }
+    
+    func getTimeStamp() -> Int {
+        return timeStamp
+    }
+}
