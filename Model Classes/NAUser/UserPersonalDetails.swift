@@ -49,13 +49,27 @@ class UserPersonalDetails {
     func getfullName() -> String {
         return fullName!
     }
+    
+    func setFullName(fullName: String) {
+        self.fullName = fullName
+    }
+    
     func getemail() -> String {
         return email!
     }
+    
+    func setEmail(email: String) {
+        self.email = email
+    }
+    
     func getphoneNumber() -> String {
         return phoneNumber!
     }
     func getprofilePhoto() -> String {
         return profilePhoto!
+    }
+    
+    func setProfilePhoto(profilePhoto: String) {
+        self.profilePhoto = profilePhoto
     }
 }
