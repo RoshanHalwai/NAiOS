@@ -279,4 +279,8 @@ class NAViewPresenter: NSObject {
     func myGatePassVC() -> MyGatePassViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myGatePassVC") as! MyGatePassViewController
     }
+    
+    func sendMessageVC() -> SendMessageViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "sendMessageVC") as! SendMessageViewController
+    }
 }
