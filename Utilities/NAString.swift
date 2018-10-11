@@ -1246,7 +1246,7 @@ class NAString : NSObject {
     }
     
     func dailyServiceNotAvailableHandedThings() -> String {
-        return String ("There are no Daily Service added for your Flat ye")
+        return String ("There are no Daily Service added for your Flat yet.")
     }
     
     func societyServiceNotAvailable(serviceName: String) -> String {
@@ -1908,6 +1908,14 @@ class NAString : NSObject {
         return String("DONATE  FOOD")
     }
     
+    func download() -> String {
+        return String("DOWNLOAD")
+    }
+    
+    func myGatePass() -> String {
+        return String("MY GATE PASS")
+    }
+    
     func donateFood() -> String {
         return String("Donate Food")
     }
@@ -2191,6 +2199,10 @@ class NAString : NSObject {
     
     func things() -> String {
         return String("Things:")
+    }
+    
+    func gatePass() -> String {
+        return String("Gate Pass")
     }
 }
 

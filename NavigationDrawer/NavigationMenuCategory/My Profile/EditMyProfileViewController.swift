@@ -31,6 +31,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var gatePass_btn: UIButton!
     @IBOutlet weak var update_btn: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var parentView: UIView!
@@ -63,7 +64,11 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         self.parentView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height + 40)
         NAShadowEffect().shadowEffectForView(view: cardView)
         
-        
+        //Button Formatting & settings
+        gatePass_btn.setTitle(NAString().myGatePass(), for: .normal)
+        gatePass_btn.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        gatePass_btn.backgroundColor = NAColor().buttonBgColor()
+        gatePass_btn.titleLabel?.font = NAFont().buttonFont()
         
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
@@ -164,6 +169,12 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+    }
+    
+    @IBAction func myGatePassWayButtonAction() {
+        let dv = NAViewPresenter().myGatePassVC()
+        dv.navTitle = NAString().gatePass()
+        self.navigationController?.pushViewController(dv, animated: true)
     }
     
     @objc func keyboardWillShow(sender: NSNotification) {
