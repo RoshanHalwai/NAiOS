@@ -27,4 +27,25 @@ class NAConfirmationAlert: NSObject {
         alert.view.layer.cornerRadius = 10
         VC.present(alert, animated: true)
     }
+    
+    func paymentsConfirmationDialog(VC: UIViewController, Title: String, Message: String, CancelStyle: UIAlertActionStyle, OkStyle: UIAlertActionStyle, OK: ((UIAlertAction) -> Void)?, Cancel: ((UIAlertAction) -> Void)?, cancelActionTitle: String, okActionTitle: String) {
+        let alert = UIAlertController(title: Title , message: Message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: cancelActionTitle, style: CancelStyle, handler: Cancel))
+        alert.addAction(UIAlertAction(title: okActionTitle, style: OkStyle, handler: OK))
+        //Showing Alert view text alignment to left
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.left
+        
+        let messageText = NSMutableAttributedString(
+            string: Message,
+            attributes: [
+                NSAttributedStringKey.paragraphStyle: paragraphStyle,
+                NSAttributedStringKey.font: UIFont.systemFont(ofSize: 13.0)
+            ]
+        )
+        alert.setValue(messageText, forKey: "attributedMessage")
+        alert.view.backgroundColor = UIColor.white
+        alert.view.layer.cornerRadius = 10
+        VC.present(alert, animated: true)
+    }
 }

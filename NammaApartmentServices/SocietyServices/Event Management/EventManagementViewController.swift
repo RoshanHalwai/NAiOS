@@ -481,6 +481,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
             } else {
                 //If user select only some particular slots
                 totalAmount = selectedMutipleSlotsArray.count * bookingAmount
+                slotsCount = self.selectedMutipleSlotsArray.count
             }
             
             let convenienceChargesRef = Constants.FIREBASE_CONVENIENCE_CHARGES
@@ -492,7 +493,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                 let getfinalAmountInPaisa = (self.getFinalAmount * 100)
                 self.getFinalAmountInString = "\(getfinalAmountInPaisa)"
                     
-                NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().bookingSummary(), Message: NAString().eventSlotsAmountAlert_Message(slotsCount: self.selectedMutipleSlotsArray.count, totalAmount: Float(self.getFinalAmount), perSlot: self.bookingAmount, estimatedAmount: self.totalAmount, convenienceFee: self.convenienceFee, convenienceAmount: Float(self.gettingPercentageAmount)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+                NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().bookingSummary(), Message: NAString().eventSlotsAmountAlert_Message(slotsCount: self.slotsCount, totalAmount: Float(self.getFinalAmount), perSlot: self.bookingAmount, estimatedAmount: self.totalAmount, convenienceFee: self.convenienceFee, convenienceAmount: Float(self.gettingPercentageAmount)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
                     self.showPaymentUI()
                 }, Cancel: nil, cancelActionTitle: NAString().cancel().uppercased(), okActionTitle: NAString().payNow().uppercased())
             }

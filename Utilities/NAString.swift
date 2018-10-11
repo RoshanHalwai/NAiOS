@@ -1853,7 +1853,7 @@ class NAString : NSObject {
     }
     
     func maintenanceAmountAlert_Message(maintenanceAmount: Int, additionalCharges: Float, totalAmount: Float, chargesPer : Float) -> String {
-        return String("\n Maintenance Amount:\t\t Rs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t    Rs \(totalAmount)")
+        return String("\nMaintenance Amount:\t\tRs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t\tRs \(totalAmount)")
     }
     
     func transactions() -> String {
@@ -1977,7 +1977,7 @@ class NAString : NSObject {
     }
     
     func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Float, perSlot: Int, estimatedAmount: Int, convenienceFee: Float, convenienceAmount: Float ) -> String {
-        return String("\nNo. of Booked Slots:\t\t\t  \(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):      Rs. \(convenienceAmount) \n\nTotal Amount:\t\t   Rs. \(totalAmount)")
+        return String("\nNo. of Booked Slots:\t\t\(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):     Rs. \(convenienceAmount) \n\nTotal Amount:\t\t\tRs. \(totalAmount)")
     }
     
     func bookingSummary() -> String {
