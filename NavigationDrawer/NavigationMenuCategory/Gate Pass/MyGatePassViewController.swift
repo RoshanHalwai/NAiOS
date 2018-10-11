@@ -16,7 +16,7 @@ class MyGatePassViewController: NANavigationViewController {
     @IBOutlet weak var lbl_FlatNumber: UILabel!
     @IBOutlet weak var lbl_Description: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var btn_Download : UIButton!
     @IBOutlet weak var image_View : UIImageView!
