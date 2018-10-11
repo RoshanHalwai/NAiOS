@@ -14,6 +14,9 @@ enum NANeighboursListKeys: String {
     case profilePhoto
     case apartment
     case flat
+    case message
+    case receiverUID
+    case timeStamp
     
     var key : String {
         switch self {
@@ -22,6 +25,9 @@ enum NANeighboursListKeys: String {
         case .profilePhoto: return "profilePhoto"
         case .apartment: return "apartment"
         case .flat:return "flat"
+        case .message: return "message"
+        case .receiverUID: return "receiverUID"
+        case .timeStamp: return "timeStamp"
         }
     }
 }
@@ -32,12 +38,14 @@ class NAExpectingNeighbours {
     var profilePhoto : String
     var apartment : String
     var flat : String
+    var uid : String
     
-    init(name : String,profilePhoto : String, apartment: String, flat: String) {
+    init(name : String,profilePhoto : String, apartment: String, flat: String, uid: String) {
         self.name = name
         self.profilePhoto = profilePhoto
         self.apartment = apartment
         self.flat = flat
+        self.uid = uid
     }
     
     func getname() -> String {
@@ -54,5 +62,9 @@ class NAExpectingNeighbours {
     
     func getflat() -> String {
         return flat
+    }
+    
+    func getneighbourUID() -> String {
+        return uid
     }
 }

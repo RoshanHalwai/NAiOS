@@ -87,6 +87,14 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         }
         queue.waitUntilAllOperationsAreFinished()
         
+        cell.actionMessage = {
+            let sendMessageVC = NAViewPresenter().sendMessageVC()
+            sendMessageVC.neighbourUID = myNeighboursList.getneighbourUID()
+            sendMessageVC.neighbourApartment = myNeighboursList.getapartment()
+            sendMessageVC.neighbourFlat = myNeighboursList.getflat()
+            self.navigationController?.pushViewController(sendMessageVC, animated: true)
+        }
+        
         //assigning font & style to cell labels
         cell.lbl_MyNeighbourName.font = NAFont().headerFont()
         cell.lbl_MyNeighbourApartment.font = NAFont().headerFont()
@@ -124,7 +132,7 @@ extension MyNeighboursViewController {
                         
                         //Creating instance of UserPrivileges Details
                         var userPrivilegesDataMap = usersData?["privileges"] as? [String: AnyObject]
-                        let admin = userPrivilegesDataMap?[UserPrivilegesListFBKeys.admin.key]
+                        let admin = userPrivilegesDataMap?[UserPrivilegesListFBKeys.admin.key] as! Bool
                         
                         //Creating instance of UserFlatDetails
                         var userFlatDataMap = usersData?["flatDetails"] as? [String: Any]
@@ -136,9 +144,9 @@ extension MyNeighboursViewController {
                         let name = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as! String
                         let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
                         
-                        let neighboursDetails = NAExpectingNeighbours(name: name, profilePhoto: profilePhoto!, apartment: self.apartmentName, flat: self.flatNumber)
+                        let neighboursDetails = NAExpectingNeighbours(name: name, profilePhoto: profilePhoto!, apartment: self.apartmentName, flat: self.flatNumber, uid: userDataUID as! String)
                         
-                        if GlobalUserData.shared.privileges_Items.first?.getAdmin() == true && !(self.apartmentName == GlobalUserData.shared.flatDetails_Items.first?.apartmentName && self.flatNumber == GlobalUserData.shared.flatDetails_Items.first?.flatNumber) {
+                        if admin == true && !(self.apartmentName == GlobalUserData.shared.flatDetails_Items.first?.apartmentName && self.flatNumber == GlobalUserData.shared.flatDetails_Items.first?.flatNumber) {
                             self.myExpectedNeighboursList.append(neighboursDetails)
                             
                             //Hiding Progress indicator after retrieving data.
