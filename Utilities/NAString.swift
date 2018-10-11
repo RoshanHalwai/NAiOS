@@ -1246,7 +1246,7 @@ class NAString : NSObject {
     }
     
     func dailyServiceNotAvailableHandedThings() -> String {
-        return String ("There are no Daily Service added for your Flat yet.")
+        return String ("There are no Daily Service added for your Flat ye")
     }
     
     func societyServiceNotAvailable(serviceName: String) -> String {
@@ -1853,7 +1853,7 @@ class NAString : NSObject {
     }
     
     func maintenanceAmountAlert_Message(maintenanceAmount: Int, additionalCharges: Float, totalAmount: Float, chargesPer : Float) -> String {
-        return String("\nMaintenance Amount:\t\tRs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t\tRs \(totalAmount)")
+        return String("\n Maintenance Amount:\t\t Rs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t    Rs \(totalAmount)")
     }
     
     func transactions() -> String {
@@ -1906,14 +1906,6 @@ class NAString : NSObject {
     
     func collectFood() -> String {
         return String("DONATE  FOOD")
-    }
-    
-    func download() -> String {
-        return String("DOWNLOAD")
-    }
-    
-    func myGatePass() -> String {
-        return String("MY GATE PASS")
     }
     
     func donateFood() -> String {
@@ -1977,7 +1969,7 @@ class NAString : NSObject {
     }
     
     func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Float, perSlot: Int, estimatedAmount: Int, convenienceFee: Float, convenienceAmount: Float ) -> String {
-        return String("\nNo. of Booked Slots:\t\t\(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):     Rs. \(convenienceAmount) \n\nTotal Amount:\t\t\tRs. \(totalAmount)")
+        return String("\nNo. of Booked Slots:\t\t\t  \(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):      Rs. \(convenienceAmount) \n\nTotal Amount:\t\t   Rs. \(totalAmount)")
     }
     
     func bookingSummary() -> String {
@@ -2199,6 +2191,26 @@ class NAString : NSObject {
     
     func things() -> String {
         return String("Things:")
+    }
+    
+    func flat_Name() -> String {
+        return String("Flat:")
+    }
+    
+    func apartment_Name() -> String {
+        return String("Apartment:")
+    }
+    
+    func myNeighbours() -> String {
+        return String("My Neighbours")
+    }
+    
+    func download() -> String {
+        return String("DOWNLOAD")
+    }
+    
+    func myGatePass() -> String {
+        return String("MY GATE PASS")
     }
     
     func gatePass() -> String {
