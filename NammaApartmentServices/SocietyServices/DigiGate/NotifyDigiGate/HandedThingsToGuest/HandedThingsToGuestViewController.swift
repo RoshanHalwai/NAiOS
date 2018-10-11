@@ -57,9 +57,11 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     
     //Create image Handle  Function
     @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.isActivityIndicatorRunning = true
+        if self.isActivityIndicatorRunning == false {
             self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.isActivityIndicatorRunning = true
+            }
         }
     }
     
@@ -82,6 +84,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as! HandedThingsToGuestTableViewCell
         //Created constant variable to store all the firebase data in it.
+        
         let nammaApartmentVisitor : NammaApartmentVisitor
         nammaApartmentVisitor = handedThingsList[indexPath.row]
         //Created local variable to store Date & Time From Firebase
