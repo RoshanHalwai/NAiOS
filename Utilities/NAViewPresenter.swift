@@ -270,8 +270,17 @@ class NAViewPresenter: NSObject {
         return storyBoard.instantiateViewController(withIdentifier: "eventManagementHistoryVC") as! EventManagementHistoryViewController
     }
     
+    //Create My Neighbours screen
+    func myNeighboursVC() -> MyNeighboursViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "myNeighboursVC") as! MyNeighboursViewController
+    }
+    
     //Create My Gate Pass screen
     func myGatePassVC() -> MyGatePassViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myGatePassVC") as! MyGatePassViewController
+    }
+    
+    func sendMessageVC() -> SendMessageViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "sendMessageVC") as! SendMessageViewController
     }
 }

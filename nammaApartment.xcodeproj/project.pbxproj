@@ -84,6 +84,10 @@
 		42EAC91E216239A900CB0EC9 /* ContactUsHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EAC91D216239A900CB0EC9 /* ContactUsHistoryTableViewCell.swift */; };
 		5D0A230692BD5675BDF1151F /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */; };
 		5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */; };
+		5D60F267216F48A700A940CC /* MyNeighboursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F266216F48A700A940CC /* MyNeighboursViewController.swift */; };
+		5D60F269216F48B000A940CC /* NeighboursCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F268216F48AF00A940CC /* NeighboursCollectionViewCell.swift */; };
+		5D60F26B216F48B700A940CC /* NANeighbours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F26A216F48B700A940CC /* NANeighbours.swift */; };
+		5D60F26D216F48E100A940CC /* SendMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F26C216F48E100A940CC /* SendMessageViewController.swift */; };
 		5D70B4BF2155042500656819 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4BE2155042500656819 /* EventManagementViewController.swift */; };
 		5D70B4C12155047700656819 /* EventManagementHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */; };
 		5D70B4C3215504C000656819 /* EventManagementHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */; };
@@ -464,6 +468,10 @@
 		432AA48C802147B688F8B436 /* Pods-nammaApartment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartment.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment.release.xcconfig"; sourceTree = "<group>"; };
 		57024B9AAB6FF7DBC02BCC40 /* Pods-nammaApartmentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D18B39D20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mySweetHomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		5D60F266216F48A700A940CC /* MyNeighboursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyNeighboursViewController.swift; path = "NavigationDrawer/NavigationMenuCategory/My Neighbours/MyNeighboursViewController.swift"; sourceTree = SOURCE_ROOT; };
+		5D60F268216F48AF00A940CC /* NeighboursCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighboursCollectionViewCell.swift; path = "NavigationDrawer/NavigationMenuCategory/My Neighbours/NeighboursCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		5D60F26A216F48B700A940CC /* NANeighbours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NANeighbours.swift; path = "NavigationDrawer/NavigationMenuCategory/My Neighbours/NANeighbours.swift"; sourceTree = SOURCE_ROOT; };
+		5D60F26C216F48E100A940CC /* SendMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageViewController.swift; sourceTree = "<group>"; };
 		5D70B4BE2155042500656819 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryViewController.swift; sourceTree = "<group>"; };
 		5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -652,6 +660,7 @@
 		085646702101F9CC00C5FBF6 /* NavigationMenuCategory */ = {
 			isa = PBXGroup;
 			children = (
+				5D60F265216F487800A940CC /* My Neighbours */,
 				4244B7C4216CA2ED006788CD /* Gate Pass */,
 				426A1F2E214D340D0003ED01 /* My Food */,
 				42347549212EB85000A791AA /* My Wallet */,
@@ -932,6 +941,18 @@
 			);
 			name = ModelClasses;
 			path = "Model Classes";
+			sourceTree = "<group>";
+		};
+		5D60F265216F487800A940CC /* My Neighbours */ = {
+			isa = PBXGroup;
+			children = (
+				5D60F266216F48A700A940CC /* MyNeighboursViewController.swift */,
+				5D60F268216F48AF00A940CC /* NeighboursCollectionViewCell.swift */,
+				5D60F26C216F48E100A940CC /* SendMessageViewController.swift */,
+				5D60F26A216F48B700A940CC /* NANeighbours.swift */,
+			);
+			name = "My Neighbours";
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		5D774279210DD49F0049344F /* Onboarding */ = {
@@ -1672,7 +1693,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -1683,7 +1703,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -1729,6 +1748,7 @@
 				86BF6A4A20A05EA000B175A1 /* NotifyDigiGateCollectionViewCell.swift in Sources */,
 				0818AA5B20DBBFC4000A4B89 /* AddMyFamilyMembersViewController.swift in Sources */,
 				081B49E920F32D03006D502A /* HandedThingsGuestHistoryCollectionViewCell.swift in Sources */,
+				5D60F26B216F48B700A940CC /* NANeighbours.swift in Sources */,
 				084BBB5B2143C55E00289B38 /* EditMyProfileFlatMembersListViewController.swift in Sources */,
 				869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */,
 				86BF6A4620A0579600B175A1 /* NotifyDigiGateViewController.swift in Sources */,
@@ -1813,6 +1833,7 @@
 				083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
 				86B1A8DA20D50EAB00D90D88 /* NammaApartmentVisitor.swift in Sources */,
 				86A4D4A520D57047007890D2 /* NAUser.swift in Sources */,
+				5D60F26D216F48E100A940CC /* SendMessageViewController.swift in Sources */,
 				42358A382122F99700186B1D /* NammaApartmentVehicle.swift in Sources */,
 				867CFF2920A43E9F00EDB966 /* HandedThingsToGuestViewController.swift in Sources */,
 				0834B394214249F000516C9C /* ContactUsViewController.swift in Sources */,
@@ -1823,10 +1844,12 @@
 				422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,
 				86B1A8DC20D5276200D90D88 /* NAFBConstants.swift in Sources */,
+				5D60F267216F48A700A940CC /* MyNeighboursViewController.swift in Sources */,
 				08EA5781214649E400A0574D /* MyTransactionsCollectionViewCell.swift in Sources */,
 				0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */,
 				4234754B212EB87200A791AA /* MyWalletViewController.swift in Sources */,
 				082CAAA8214A431200FA0E8E /* CustomLaunchScreenViewController.swift in Sources */,
+				5D60F269216F48B000A940CC /* NeighboursCollectionViewCell.swift in Sources */,
 				42245146214FBDE600CD2C0E /* NammaApartmentFood.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
