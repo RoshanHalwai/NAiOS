@@ -71,11 +71,11 @@ class MyGatePassViewController: NANavigationViewController {
     
     @IBAction func btnDownloadGatePass(_ sender: Any) {
         
-        //Taking Snapshot of Particular UIview for storing User Gate Pass in gallery
+        //Taking Snapshot of Particular UIView for storing Gate Pass in gallery
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 1.0)
         let renderer = UIGraphicsImageRenderer(size: cardView.bounds.size)
         
-        _ = renderer.image(actions: { context in
+        renderer.image(actions: { context in
             cardView.drawHierarchy(in: cardView.bounds, afterScreenUpdates: true)
             let screenshot = UIGraphicsGetImageFromCurrentImageContext()
             let imageData  = UIImagePNGRepresentation(screenshot!)
