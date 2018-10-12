@@ -283,4 +283,8 @@ class NAViewPresenter: NSObject {
     func sendMessageVC() -> SendMessageViewController {
         return storyBoard.instantiateViewController(withIdentifier: "sendMessageVC") as! SendMessageViewController
     }
+    
+    func transactionSummaryVC() -> TransactionSummaryViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "transactionSummaryVC") as! TransactionSummaryViewController
+    }
 }

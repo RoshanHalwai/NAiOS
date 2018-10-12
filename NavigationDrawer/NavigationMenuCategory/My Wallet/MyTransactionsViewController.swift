@@ -54,6 +54,8 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
         } else {
             cell.success_Failure_Image.image = #imageLiteral(resourceName: "Cancel")
         }
+        
+        cell.btn_to_NextVC.addTarget(self, action: #selector(goToTransactionSummary), for: .touchUpInside)
         NAShadowEffect().shadowEffect(Cell: cell)
         cell.lbl_rupees.font = NAFont().lato_Bold_16()
         cell.lbl_rupees.textColor = UIColor.gray
@@ -63,6 +65,11 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
         cell.lbl_Date_And_Time.textColor = UIColor.gray
         
         return cell
+    }
+    
+    @objc func goToTransactionSummary() {
+        let transactionSummaryVC = NAViewPresenter().transactionSummaryVC()
+        self.navigationController?.pushViewController(transactionSummaryVC, animated: true)
     }
     
     func retrievingUserTransactions() {
