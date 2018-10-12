@@ -32,6 +32,7 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         text_View.font = NAFont().textFieldFont()
         retrieveNeighboursMessages()
         table_View.separatorStyle = .none
+       
         
         table_View.estimatedRowHeight = 100
 
@@ -94,13 +95,13 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
             cell?.parentView.layer.borderWidth = 1
             cell?.parentView.backgroundColor = UIColor.white
             cell?.lbl_time.textColor = UIColor.lightGray
-            cell?.parentView_Trailing.constant = 50
+            cell?.parentView_Trailing.constant = 60
             cell?.parentView_Leading.constant = 14
         } else {
             cell?.parentView.backgroundColor = UIColor.lightGray
             cell?.lbl_time.textColor = UIColor.black
             cell?.parentView_Trailing.constant = 14
-            cell?.parentView_Leading.constant = 50
+            cell?.parentView_Leading.constant = 60
         }
         cell?.lbl_Messages.text = messageList.getMessage()
         cell?.lbl_time.text = messageTime
