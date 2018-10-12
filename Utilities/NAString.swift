@@ -2216,5 +2216,17 @@ class NAString : NSObject {
     func gatePass() -> String {
         return String("Gate Pass")
     }
+    
+    func downloadCompleted() -> String {
+        return String("Download Completed")
+    }
+    
+    func downloadCompletedMessage() -> String {
+        return String("You can find your Gate Pass in gallery")
+    }
+    
+    func gatePassDescription() -> String {
+        return String("Download this pass for your hassle free entry into the Society. Issued by Namma Apartments.")
+    }
 }
 
