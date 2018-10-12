@@ -24,7 +24,8 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.ConfigureNavBarTitle(title: "Send Messages")
+        self.ConfigureNavBarTitle(title: "Send Message")
+        self.navigationItem.rightBarButtonItem = nil
         text_View.backgroundColor = UIColor.white
         text_View.layer.borderColor = UIColor.black.cgColor
         text_View.layer.borderWidth = 2
