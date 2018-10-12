@@ -85,32 +85,18 @@ class MyGatePassViewController: NANavigationViewController {
     }
     
     @IBAction func btnDownloadGatePass(_ sender: Any) {
-        let imageData  = UIImagePNGRepresentation(UIApplication.shared.screenShot!)
-        let compressedImage = UIImage(data: imageData!)
-        UIImageWriteToSavedPhotosAlbum(compressedImage!, nil, nil, nil)
         
-    }
-
-}
-
-extension UIApplication {
-    
-    var screenShot: UIImage?  {
-        return keyWindow?.layer.screenShot
-    }
-}
-
-extension CALayer {
-    
-    var screenShot: UIImage?  {
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(cardView.frame.size, false, scale)
-        if let context = UIGraphicsGetCurrentContext() {
-            render(in: context)
-            let screenshot = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return screenshot
-        }
-        return nil
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 1.0)
+        let renderer = UIGraphicsImageRenderer(size: cardView.bounds.size)
+        
+        _ = renderer.image(actions: { context in
+            cardView.drawHierarchy(in: cardView.bounds, afterScreenUpdates: true)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            let imageData  = UIImagePNGRepresentation(image!)
+          let compressedImage = UIImage(data: imageData!)
+         UIImageWriteToSavedPhotosAlbum(compressedImage!, nil, nil, nil)
+            
+             NAConfirmationAlert().showNotificationDialog(VC: self, Title: "Download Completed", Message: "You can find your Gate Pass in gallery", buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
+        })
     }
 }
