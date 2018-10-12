@@ -8,8 +8,8 @@
 
 import UIKit
 
-class SendMessageViewController: NANavigationViewController, UITableViewDataSource, UITableViewDelegate {
-
+class SendMessageViewController: NANavigationViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+    
     @IBOutlet weak var text_View: UITextView!
     @IBOutlet weak var btn_Send: UIButton!
     @IBOutlet weak var table_View: UITableView!
@@ -28,15 +28,46 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         text_View.layer.borderColor = UIColor.black.cgColor
         text_View.layer.borderWidth = 2
         text_View.layer.cornerRadius = 5
-        text_View.delegate = self as? UITextViewDelegate
+        text_View.delegate = self
         text_View.font = NAFont().textFieldFont()
         retrieveNeighboursMessages()
         table_View.separatorStyle = .none
-    }
+        
+        table_View.estimatedRowHeight = 100
 
+        table_View.rowHeight = UITableViewAutomaticDimension
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        view.isUserInteractionEnabled = true
+        btn_Send.isUserInteractionEnabled = true
+        btn_Send.addGestureRecognizer(tap)
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        if self.view.frame.origin.y >= 0 {
+            self.view.frame.origin.y -= 260
+        }
+    }
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y += 260
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @IBAction func btn_Send_Action(_ sender: UIButton) {
         storeMessageInFirebase()
-        retrieveNeighboursMessages()
+        //retrieveNeighboursMessages()
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,7 +78,7 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as? SendMessageTableViewCell
         var messageList : NANeighboursChat
         messageList = neighboursChat[indexPath.row]
-         cell?.parentView.layer.cornerRadius = 10
+        cell?.parentView.layer.cornerRadius = 10
         
         let timeStamp = messageList.getTimeStamp()
         let date = (NSDate(timeIntervalSince1970: TimeInterval(timeStamp/1000)))
@@ -73,7 +104,7 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         }
         cell?.lbl_Messages.text = messageList.getMessage()
         cell?.lbl_time.text = messageTime
-        indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
+        //indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
         
         cell?.lbl_Messages.font = NAFont().textFieldFont()
         cell?.isUserInteractionEnabled = false
@@ -129,7 +160,8 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
     func retrieveNeighboursMessages() {
         self.neighboursChat.removeAll()
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CHATS).child(neighbourUID)
-        userDataRef.observeSingleEvent(of: .value) { (snapshot) in
+        
+        userDataRef.observe(.value) { (snapshot) in
             if snapshot.exists() {
                 let chatRoomUID = snapshot.value as? String
                 
@@ -153,7 +185,8 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
                             
                             self.neighboursChat.append(messageData)
                             self.table_View.reloadData()
-                            self.table_View.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: true)
+                            let indexPath = NSIndexPath(row: self.neighboursChat.count-1, section: 0)
+                            self.table_View.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.bottom, animated: true)
                         })
                     }
                 })
