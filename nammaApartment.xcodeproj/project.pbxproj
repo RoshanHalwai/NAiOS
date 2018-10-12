@@ -88,7 +88,8 @@
 		5D60F269216F48B000A940CC /* NeighboursCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F268216F48AF00A940CC /* NeighboursCollectionViewCell.swift */; };
 		5D60F26B216F48B700A940CC /* NANeighbours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F26A216F48B700A940CC /* NANeighbours.swift */; };
 		5D60F26D216F48E100A940CC /* SendMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F26C216F48E100A940CC /* SendMessageViewController.swift */; };
-		5D60F26F216F7DA800A940CC /* SendMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F26E216F7DA800A940CC /* SendMessageTableViewCell.swift */; };
+		5D60F2712170A71000A940CC /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F2702170A71000A940CC /* UserTableViewCell.swift */; };
+		5D60F2732170A72500A940CC /* ReceiverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F2722170A72500A940CC /* ReceiverTableViewCell.swift */; };
 		5D70B4BF2155042500656819 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4BE2155042500656819 /* EventManagementViewController.swift */; };
 		5D70B4C12155047700656819 /* EventManagementHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */; };
 		5D70B4C3215504C000656819 /* EventManagementHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */; };
@@ -473,7 +474,8 @@
 		5D60F268216F48AF00A940CC /* NeighboursCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NeighboursCollectionViewCell.swift; path = "NavigationDrawer/NavigationMenuCategory/My Neighbours/NeighboursCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		5D60F26A216F48B700A940CC /* NANeighbours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NANeighbours.swift; path = "NavigationDrawer/NavigationMenuCategory/My Neighbours/NANeighbours.swift"; sourceTree = SOURCE_ROOT; };
 		5D60F26C216F48E100A940CC /* SendMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageViewController.swift; sourceTree = "<group>"; };
-		5D60F26E216F7DA800A940CC /* SendMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageTableViewCell.swift; sourceTree = "<group>"; };
+		5D60F2702170A71000A940CC /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		5D60F2722170A72500A940CC /* ReceiverTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverTableViewCell.swift; sourceTree = "<group>"; };
 		5D70B4BE2155042500656819 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryViewController.swift; sourceTree = "<group>"; };
 		5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -950,7 +952,8 @@
 				5D60F266216F48A700A940CC /* MyNeighboursViewController.swift */,
 				5D60F268216F48AF00A940CC /* NeighboursCollectionViewCell.swift */,
 				5D60F26C216F48E100A940CC /* SendMessageViewController.swift */,
-				5D60F26E216F7DA800A940CC /* SendMessageTableViewCell.swift */,
+				5D60F2702170A71000A940CC /* UserTableViewCell.swift */,
+				5D60F2722170A72500A940CC /* ReceiverTableViewCell.swift */,
 				5D60F26A216F48B700A940CC /* NANeighbours.swift */,
 			);
 			name = "My Neighbours";
@@ -1774,6 +1777,7 @@
 				42341BB5212165620005160B /* MyGuardsViewController.swift in Sources */,
 				423633D22133F74600637F5F /* NoticeBoardTableViewCell.swift in Sources */,
 				0809B91C211DAB7100B30EE2 /* NASocietyServices.swift in Sources */,
+				5D60F2732170A72500A940CC /* ReceiverTableViewCell.swift in Sources */,
 				86BF6A4120A0325200B175A1 /* MyGuestListCollectionViewCell.swift in Sources */,
 				5D774298210DD49F0049344F /* SplashNammaApartments.swift in Sources */,
 				5D774291210DD49F0049344F /* SearchTableViewCell.swift in Sources */,
@@ -1829,6 +1833,7 @@
 				86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */,
 				867CFF2B20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86FEE60B20DBB4F00023DC94 /* NammaApartmentDailyServices.swift in Sources */,
+				5D60F2712170A71000A940CC /* UserTableViewCell.swift in Sources */,
 				083D5C8B20F8A99200F549AF /* HandedThingsToDailyServicesTableViewCell.swift in Sources */,
 				86C4E7E62111B17B00BE1AFD /* NADailyServiceHandedThingsHistory.swift in Sources */,
 				083D5C8720F87E6800F549AF /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
@@ -1841,7 +1846,6 @@
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
 				08EA577F214649DB00A0574D /* MyTransactionsViewController.swift in Sources */,
-				5D60F26F216F7DA800A940CC /* SendMessageTableViewCell.swift in Sources */,
 				5D774299210DD49F0049344F /* DataModel.swift in Sources */,
 				422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */,
 				86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */,

@@ -17,6 +17,7 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
     var neighbourUID = String()
     var neighbourApartment = String()
     var neighbourFlat = String()
+    var messageTime = String()
     
     var neighboursChat = [NANeighboursChat]()
     
@@ -27,15 +28,15 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         text_View.backgroundColor = UIColor.white
         text_View.layer.borderColor = UIColor.black.cgColor
         text_View.layer.borderWidth = 2
-        text_View.layer.cornerRadius = 5
+        text_View.layer.cornerRadius = 15
         text_View.delegate = self
         text_View.font = NAFont().textFieldFont()
         retrieveNeighboursMessages()
         table_View.separatorStyle = .none
-       
+        
         
         table_View.estimatedRowHeight = 100
-
+        
         table_View.rowHeight = UITableViewAutomaticDimension
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
@@ -54,11 +55,11 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
     
     @objc func keyboardWillShow(sender: NSNotification) {
         if self.view.frame.origin.y >= 0 {
-            self.view.frame.origin.y -= 260
+            self.view.frame.origin.y -= 255
         }
     }
     @objc func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 260
+        self.view.frame.origin.y += 255
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -76,11 +77,9 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as? SendMessageTableViewCell
+        
         var messageList : NANeighboursChat
         messageList = neighboursChat[indexPath.row]
-        cell?.parentView.layer.cornerRadius = 10
-        
         let timeStamp = messageList.getTimeStamp()
         let date = (NSDate(timeIntervalSince1970: TimeInterval(timeStamp/1000)))
         let dateString = String(describing: date)
@@ -88,29 +87,31 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         dateFormatterGet.dateFormat = NAString().userProblemTimeStampFormat()
         let dateAndTime = dateFormatterGet.date(from: dateString)
         dateFormatterGet.dateFormat = "hh:mm a"
-        let messageTime = (dateFormatterGet.string(from: dateAndTime!))
-        
+        messageTime = (dateFormatterGet.string(from: dateAndTime!))
         if messageList.getReceiverUID() == userUID {
-            cell?.parentView.layer.borderColor = UIColor.black.cgColor
-            cell?.parentView.layer.borderWidth = 1
-            cell?.parentView.backgroundColor = UIColor.white
-            cell?.lbl_time.textColor = UIColor.lightGray
-            cell?.parentView_Trailing.constant = 60
-            cell?.parentView_Leading.constant = 14
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as? ReceiverTableViewCell
+            
+            cell?.lbl_Reciever_Time.textColor = UIColor.black
+            cell?.lbl_Reciever_Message.text = messageList.getMessage()
+            cell?.lbl_Reciever_Time.text = messageTime
+            cell?.lbl_Reciever_Message.font = NAFont().lato_Regular_16()
+            cell?.lbl_Reciever_Message.sizeToFit()
+            cell?.isUserInteractionEnabled = false
+            cell?.reciever_Parent_View.layer.cornerRadius = 10
+            return cell!
         } else {
-            cell?.parentView.backgroundColor = UIColor.lightGray
-            cell?.lbl_time.textColor = UIColor.black
-            cell?.parentView_Trailing.constant = 14
-            cell?.parentView_Leading.constant = 60
+            let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as? UserTableViewCell
+           
+            cell?.lbl_User_Time.textColor = UIColor.white
+            cell?.lbl_User_Message.textColor = UIColor.white
+            cell?.lbl_User_Message.text = messageList.getMessage()
+            cell?.lbl_User_Time.text = messageTime
+            cell?.user_Parent_View.layer.cornerRadius = 10
+            cell?.lbl_User_Message.sizeToFit()
+            cell?.lbl_User_Message.font = NAFont().lato_Regular_16()
+            cell?.isUserInteractionEnabled = false
+            return cell!
         }
-        cell?.lbl_Messages.text = messageList.getMessage()
-        cell?.lbl_time.text = messageTime
-        //indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
-        
-        cell?.lbl_Messages.font = NAFont().textFieldFont()
-        cell?.isUserInteractionEnabled = false
-        
-        return cell!
     }
     
     func storeMessageInFirebase() {
@@ -195,3 +196,39 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         }
     }
 }
+
+//        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as? SendMessageTableViewCell
+//        var messageList : NANeighboursChat
+//        messageList = neighboursChat[indexPath.row]
+//        cell?.parentView.layer.cornerRadius = 10
+//
+//        let timeStamp = messageList.getTimeStamp()
+//        let date = (NSDate(timeIntervalSince1970: TimeInterval(timeStamp/1000)))
+//        let dateString = String(describing: date)
+//        let dateFormatterGet = DateFormatter()
+//        dateFormatterGet.dateFormat = NAString().userProblemTimeStampFormat()
+//        let dateAndTime = dateFormatterGet.date(from: dateString)
+//        dateFormatterGet.dateFormat = "hh:mm a"
+//        let messageTime = (dateFormatterGet.string(from: dateAndTime!))
+//
+//        if messageList.getReceiverUID() == userUID {
+//            cell?.parentView.layer.borderColor = UIColor.black.cgColor
+//            cell?.parentView.layer.borderWidth = 1
+//            cell?.parentView.backgroundColor = UIColor.white
+//            cell?.lbl_time.textColor = UIColor.lightGray
+//            cell?.parentView_Trailing.constant = 60
+//            cell?.parentView_Leading.constant = 14
+//        } else {
+//            cell?.parentView.backgroundColor = UIColor.lightGray
+//            cell?.lbl_time.textColor = UIColor.black
+//            cell?.parentView_Trailing.constant = 14
+//            cell?.parentView_Leading.constant = 60
+//        }
+//        cell?.lbl_Messages.text = messageList.getMessage()
+//        cell?.lbl_time.text = messageTime
+//        //indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
+//
+//        cell?.lbl_Messages.font = NAFont().textFieldFont()
+//        cell?.isUserInteractionEnabled = false
+//
+//        return cell!
