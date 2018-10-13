@@ -18,6 +18,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 pod 'razorpay-pod', '1.0.18'
 pod 'GoogleToolboxForMac', '~> 2.1'
+pod 'SDWebImage'
 
   target 'nammaApartmentTests' do
     inherit! :search_paths

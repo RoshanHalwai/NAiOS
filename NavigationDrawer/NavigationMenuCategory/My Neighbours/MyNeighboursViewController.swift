@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MyNeighboursViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -74,18 +75,45 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         cell.lbl_MyNeighbourApartment.text = myNeighboursList.getapartment()
         cell.lbl_MyNeighbourFlat.text = myNeighboursList.getflat()
         
-        let queue = OperationQueue()
+//        let queue = OperationQueue()
+//
+//        queue.addOperation {
+//            if let urlString = myNeighboursList.getprofilePhoto() {
+//                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myNeighboursImage)
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                    cell.activityIndicator.isHidden = true
+//                    cell.activityIndicator.stopAnimating()
+//                }
+//            }
+//        }
+//        queue.waitUntilAllOperationsAreFinished()
         
-        queue.addOperation {
-            if let urlString = myNeighboursList.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myNeighboursImage)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+       // cell.myNeighboursImage.sd_setIndicatorStyle(.whiteLarge)
+      //  cell.myNeighboursImage.sd_setImage(with: URL(string: myNeighboursList.getprofilePhoto()!), completed: nil)
+        //cell.myNeighboursImage.sd_setAnimationImages(with: URL(string: myNeighboursList.getprofilePhoto())
+        
+        
+         cell.myNeighboursImage.sd_setShowActivityIndicatorView(true)
+         cell.myNeighboursImage.sd_setImage(with: URL(string: myNeighboursList.getprofilePhoto()!), completed: nil)
+         cell.myNeighboursImage.sd_setShowActivityIndicatorView(false)
+        //cell.myNeighboursImage.sd_addActivityIndicator()
+       
+        
+        
+//        let activityIndicator = UIActivityIndicatorView.init(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+//        activityIndicator.center = cell.myNeighboursImage.center
+//        activityIndicator.hidesWhenStopped = true
+//
+//        cell.myNeighboursImage.sd_setImage(with: URL(string: myNeighboursList.getprofilePhoto()!), completed: { (image: UIImage?, error: Error?, cacheType: SDImageCacheType, imageURL: URL?) in
+//            activityIndicator.removeFromSuperview()
+//        })
+//
+//        cell.myNeighboursImage.addSubview(activityIndicator)
+//        activityIndicator.startAnimating()
+        
+        
+        
+        
         
         cell.actionMessage = {
             let sendMessageVC = NAViewPresenter().sendMessageVC()
