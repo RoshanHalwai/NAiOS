@@ -48,7 +48,7 @@ class NAFirebase {
         let width = mainView.view.bounds.width
         
         //Stack View
-        let stackView = UIStackView(frame: CGRect(x: 10, y: 30, width: width - 20, height: 200))
+        let stackView = UIStackView(frame: CGRect(x: 20, y: 30, width: width - 30, height: 200))
         stackView.axis = UILayoutConstraintAxis.vertical
         stackView.distribution = UIStackViewDistribution.fill
         stackView.alignment = UIStackViewAlignment.center
