@@ -120,13 +120,13 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         let convenienceChargesRef = Constants.FIREBASE_CONVENIENCE_CHARGES
         convenienceChargesRef.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
             self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
-            self.gettingPercentageAmount = Double((Float(self.maintenanceCost) * self.convenienceFee) / 100)
-            let totalAmount:Float = Float(Double(Float(self.maintenanceCost)) + self.gettingPercentageAmount)
+            self.gettingPercentageAmount = Double((Float(self.pendingDueAmount)! * self.convenienceFee) / 100)
+            let totalAmount:Float = Float(Double(Float(self.pendingDueAmount)!) + self.gettingPercentageAmount)
          
             if self.lbl_Maintenance.text == NAString().noPendingDues() {
                 NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
             } else {
-                NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: self.maintenanceCost, additionalCharges: Float(self.gettingPercentageAmount), totalAmount: (Float(totalAmount)), chargesPer: (self.convenienceFee)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+                NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: Int(self.pendingDueAmount)!, additionalCharges: Float(self.gettingPercentageAmount), totalAmount: (Float(totalAmount)), chargesPer: (self.convenienceFee)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
                     self.showPaymentUI()
                 }, Cancel: nil, cancelActionTitle: NAString().cancel().uppercased(), okActionTitle: NAString().payNow())
             }

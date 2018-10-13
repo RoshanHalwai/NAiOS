@@ -54,8 +54,7 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
         } else {
             cell.success_Failure_Image.image = #imageLiteral(resourceName: "Cancel")
         }
-        
-        cell.btn_to_NextVC.addTarget(self, action: #selector(goToTransactionSummary), for: .touchUpInside)
+    
         NAShadowEffect().shadowEffect(Cell: cell)
         cell.lbl_rupees.font = NAFont().lato_Bold_16()
         cell.lbl_rupees.textColor = UIColor.gray
@@ -67,8 +66,19 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
         return cell
     }
     
-    @objc func goToTransactionSummary() {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? MyTransactionsCollectionViewCell
+        
+        passdata(index: indexPath.row, cell: cell!, date: (cell?.lbl_Date_And_Time.text)!)
+    }
+    
+    func passdata(index: Int, cell: UICollectionViewCell, date: String) {
+        let transactiondetails = userTransactionData[index]
         let transactionSummaryVC = NAViewPresenter().transactionSummaryVC()
+       transactionSummaryVC.totalAmount = transactiondetails.getAmount()
+        transactionSummaryVC.transactionDate = date
+        transactionSummaryVC.status = transactiondetails.getResult()
+       transactionSummaryVC.transactionUID = transactiondetails.getTransactionID()
         self.navigationController?.pushViewController(transactionSummaryVC, animated: true)
     }
     
@@ -88,8 +98,9 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
                         let servicecategory = transactionData[NAUserTransactionFBKeys.serviceCategory.key]
                         let timestamp = (transactionData[NAUserTransactionFBKeys.timestamp.key])?.floatValue
                         let result = transactionData[NAUserTransactionFBKeys.result.key]
+                        let paymentID = transactionData[NAUserTransactionFBKeys.paymentId.key]
                         
-                        let userData = NAUserTransactions(amount: Int(amount! as Float), serviceCategory: servicecategory as! String, timestamp: Int(timestamp! as Float), result: result as! String)
+                        let userData = NAUserTransactions(amount: Int(amount! as Float), serviceCategory: servicecategory as! String, timestamp: Int(timestamp! as Float), result: result as! String, transactionId: paymentID as! String)
                         
                         self.userTransactionData.append(userData)
                         NAActivityIndicator.shared.hideActivityIndicator()

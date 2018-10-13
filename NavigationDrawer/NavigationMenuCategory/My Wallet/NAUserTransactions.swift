@@ -37,13 +37,15 @@ class NAUserTransactions {
     private var serviceCategory: String
     private var timestamp: Int
     private var result: String
+    private var transactionId : String
     
     //initilaize the variables
-    init(amount: Int, serviceCategory: String, timestamp: Int, result: String) {
+    init(amount: Int, serviceCategory: String, timestamp: Int, result: String, transactionId: String ) {
         self.amount = amount
         self.serviceCategory = serviceCategory
         self.timestamp = timestamp
         self.result = result
+        self.transactionId = transactionId
     }
     
     func getAmount() -> Int {
@@ -60,5 +62,9 @@ class NAUserTransactions {
     
     func getResult() -> String {
         return result
+    }
+    
+    func getTransactionID() -> String {
+        return transactionId
     }
 }
