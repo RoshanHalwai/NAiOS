@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MyNeighboursViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -47,16 +48,6 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
         
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates(nil, completion: nil)
-            self.collectionView.reloadData()
-        }
     }
     
     //MARK: CollectionView Delegate & DataSource Methods
@@ -74,19 +65,10 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         cell.lbl_MyNeighbourApartment.text = myNeighboursList.getapartment()
         cell.lbl_MyNeighbourFlat.text = myNeighboursList.getflat()
         
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            if let urlString = myNeighboursList.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myNeighboursImage)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
-        
+        cell.myNeighboursImage.sd_setShowActivityIndicatorView(true)
+        cell.myNeighboursImage.sd_setIndicatorStyle(.gray)
+        cell.myNeighboursImage.sd_setImage(with: URL(string: myNeighboursList.getprofilePhoto()!), completed: nil)
+       
         cell.actionMessage = {
             let sendMessageVC = NAViewPresenter().sendMessageVC()
             sendMessageVC.neighbourUID = myNeighboursList.getneighbourUID()

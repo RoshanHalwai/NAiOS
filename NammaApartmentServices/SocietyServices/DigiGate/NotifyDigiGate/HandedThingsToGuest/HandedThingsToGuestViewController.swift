@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import SDWebImage
 
 class HandedThingsToGuestViewController: NANavigationViewController,UITableViewDataSource,UITableViewDelegate {
     
@@ -17,8 +18,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     var titleName =  String()
     
     @IBOutlet weak var tableView: UITableView!
-    var isActivityIndicatorRunning = false
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,19 +50,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
-        
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        if self.isActivityIndicatorRunning == false {
-            self.tableView.reloadData()
-            DispatchQueue.main.async {
-                self.isActivityIndicatorRunning = true
-            }
-        }
     }
     
     // Navigate to FAQ's WebSite
@@ -98,15 +85,11 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         cell.lbl_GuestTime.text = timeString
         cell.lbl_GuestDate.text = dateString
         cell.lbl_VisiterName.text = nammaApartmentVisitor.getfullName()
-        let queue = OperationQueue()
         
-        queue.addOperation {
-            //Calling function to get Profile Image from Firebase.
-            if let urlString = nammaApartmentVisitor.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.image_View.sd_setShowActivityIndicatorView(true)
+        cell.image_View.sd_setIndicatorStyle(.gray)
+        cell.image_View.sd_setImage(with: URL(string: nammaApartmentVisitor.getprofilePhoto()!), completed: nil)
         
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_GuestInvitedBy.text = GlobalUserData.shared.personalDetails_Items.first?.fullName
@@ -136,13 +119,6 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         
         cell.lbl_ThingsGiven.font = NAFont().headerFont()
         cell.lbl_Description.font = NAFont().headerFont()
-        
-        if isActivityIndicatorRunning == false {
-            cell.activityIndicator.startAnimating()
-        } else if (isActivityIndicatorRunning == true) {
-            cell.activityIndicator.stopAnimating()
-            cell.activityIndicator.isHidden = true
-        }
         
         //Setting Label Invitor text based on Firebase Approved Type
         if nammaApartmentVisitor.getapprovalType() == Constants.FIREBASE_CHILD_POST_APPROVED {

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import SDWebImage
 
 class HandedThingsToDailyServicesViewController: NANavigationViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -20,7 +21,6 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     
     //set title from previous page
     var titleName =  String()
-    var isActivityIndicatorRunning = false
     var layoutObj = NAFirebase()
     
     //Database References
@@ -63,26 +63,12 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
         self.navigationItem.title = ""
-        
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        if self.isActivityIndicatorRunning == false {
-            self.tableView.reloadData()
-            DispatchQueue.main.async {
-                self.isActivityIndicatorRunning = true
-            }
-        }
     }
     
     // Navigate to FAQ's WebSite
     @objc override func gotofrequentlyAskedQuestionsVC() {
         UIApplication.shared.open(URL(string: NAString().faqWebsiteLink())!, options: [:], completionHandler: nil)
     }
-    
     
     //TableView cell move up automatically, If when keyboard will appaer
     @objc func keyboardWillShow(_ notification:Notification) {
@@ -153,9 +139,10 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         cell.lbl_ServiceInTime.text = DSList.gettimeOfVisit()
         cell.lbl_ServiceFlats.text = "\(DSList.getNumberOfFlats())"
         
-        if let urlString = DSList.profilePhoto {
-            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.cellImage)
-        }
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.cellImage.sd_setShowActivityIndicatorView(true)
+        cell.cellImage.sd_setIndicatorStyle(.gray)
+        cell.cellImage.sd_setImage(with: URL(string: DSList.getprofilePhoto()!), completed: nil)
         
         //assigning delegate method to textFiled
         cell.txt_Description.delegate = self
@@ -209,13 +196,6 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         //image makes round
         cell.cellImage.layer.cornerRadius = cell.cellImage.frame.size.width/2
         cell.cellImage.clipsToBounds = true
-        
-        if isActivityIndicatorRunning == false {
-            cell.activityIndicator.startAnimating()
-        } else if (isActivityIndicatorRunning == true) {
-            cell.activityIndicator.stopAnimating()
-            cell.activityIndicator.isHidden = true
-        }
         
         /*Dynamically Change Cell Height while selecting segment Controller
          by default which index is selected on view load*/
