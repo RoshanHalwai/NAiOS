@@ -44,29 +44,25 @@ class NAFirebase {
         newLabel.text  = newText
         newLabel.textAlignment = .center
         
+        //Get device width
+        let width = mainView.view.bounds.width
+        
         //Stack View
-        stackView = UIStackView()
+        let stackView = UIStackView(frame: CGRect(x: 20, y: 30, width: width - 30, height: 200))
         stackView.axis = UILayoutConstraintAxis.vertical
-        stackView.distribution = UIStackViewDistribution.equalCentering
+        stackView.distribution = UIStackViewDistribution.fill
         stackView.alignment = UIStackViewAlignment.center
-        stackView.spacing = CGFloat(NAString().fifteen())
+        stackView.spacing = 5
         
         stackView.addArrangedSubview(newImage)
         stackView.addArrangedSubview(newLabel)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         mainView.view.addSubview(stackView)
         
-        //Constraints
-        stackView.centerXAnchor.constraint(equalTo: mainView.view.centerXAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: mainView.view.topAnchor).isActive = true
-        
-        stackView.leadingAnchor.constraint(equalTo: mainView.view.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: mainView.view.trailingAnchor).isActive = true
-        
-        if newText == "" {
-            newImage.isHidden = true
-            newLabel.isHidden = true
+        if newText.count == 0 {
+            stackView.removeFromSuperview()
+            newLabel.removeFromSuperview()
+            newImage.removeFromSuperview()
         }
     }
     
