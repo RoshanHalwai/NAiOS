@@ -542,7 +542,8 @@ extension AddMyServicesViewController {
                         NADailyServicesStringFBKeys.rating.key : 3,
                         NADailyServicesStringFBKeys.timeOfVisit.key : self.txt_Date.text! as String,
                         NADailyServicesStringFBKeys.uid.key : dailyServiceUID!,
-                        NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString ?? ""
+                        NADailyServicesStringFBKeys.profilePhoto.key : url?.absoluteString ?? "",
+                        NADailyServicesStringFBKeys.type.key : self.dailyServiceKey
                         ] as [String : Any]
                     
                     self.dailyServicesPublicRef?.setValue(dailyServicesData)

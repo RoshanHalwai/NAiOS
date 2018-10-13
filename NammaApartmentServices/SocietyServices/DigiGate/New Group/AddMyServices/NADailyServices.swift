@@ -16,6 +16,7 @@ enum NADailyServicesStringFBKeys: String {
     case rating
     case timeOfVisit
     case uid
+    case type
     
     var key : String {
         switch self {
@@ -26,6 +27,7 @@ enum NADailyServicesStringFBKeys: String {
         case .rating: return "rating"
         case .timeOfVisit:return "timeOfVisit"
         case .uid: return "uid"
+        case .type: return "type"
         }
     }
 }
