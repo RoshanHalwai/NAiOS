@@ -33,6 +33,7 @@ class TransactionSummaryViewController: NANavigationViewController {
     var transactionDate = String()
     var totalAmount = Int()
     var status = String()
+    var transactionPeriod = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,7 @@ class TransactionSummaryViewController: NANavigationViewController {
         lbl_PaymentID.text = transactionUID
         lbl_Total_Amount.text = String(totalAmount)
         lbl_Transaction_Date.text = transactionDate
+        lbl_Transaction_Period.text = transactionPeriod
         if status == NAString().successful() {
             transactionID_Parent_View.isHidden = false
             status_ImageView.image = #imageLiteral(resourceName: "checked")
@@ -51,6 +53,7 @@ class TransactionSummaryViewController: NANavigationViewController {
             transactionID_Parent_View.isHidden = true
             status_ImageView.image = #imageLiteral(resourceName: "Cancel")
             lbl_Successful_title.text = NAString().transactionSummary_Failed_Title()
+            lbl_Successful_title.textColor = UIColor.red
         }
         
        btn_Copy.setTitleColor(NAColor().buttonFontColor(), for: .normal)

@@ -17,6 +17,7 @@ enum NAUserTransactionFBKeys: String {
     case timestamp
     case uid
     case userUID
+    case period
     
     var key : String {
         switch self {
@@ -27,6 +28,7 @@ enum NAUserTransactionFBKeys: String {
         case .timestamp : return Constants.FIREBASE_CHILD_TIMESTAMP
         case .uid : return Constants.FIREBASE_CHILD_UID
         case .userUID : return Constants.FIREBASE_USERUID
+        case .period : return Constants.FIREBASE_CHILD_PERIOD
         }
     }
 }
@@ -38,14 +40,16 @@ class NAUserTransactions {
     private var timestamp: Int
     private var result: String
     private var transactionId : String
+    private var period : String
     
     //initilaize the variables
-    init(amount: Int, serviceCategory: String, timestamp: Int, result: String, transactionId: String ) {
+    init(amount: Int, serviceCategory: String, timestamp: Int, result: String, transactionId: String, period: String) {
         self.amount = amount
         self.serviceCategory = serviceCategory
         self.timestamp = timestamp
         self.result = result
         self.transactionId = transactionId
+        self.period = period
     }
     
     func getAmount() -> Int {
@@ -66,5 +70,9 @@ class NAUserTransactions {
     
     func getTransactionID() -> String {
         return transactionId
+    }
+    
+    func getPeriod() -> String {
+        return period
     }
 }

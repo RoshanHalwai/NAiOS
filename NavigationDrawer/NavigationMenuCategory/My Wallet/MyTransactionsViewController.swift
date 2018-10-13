@@ -99,8 +99,22 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
                         let timestamp = (transactionData[NAUserTransactionFBKeys.timestamp.key])?.floatValue
                         let result = transactionData[NAUserTransactionFBKeys.result.key]
                         let paymentID = transactionData[NAUserTransactionFBKeys.paymentId.key]
+                        let transactionPeriod = transactionData[NAUserTransactionFBKeys.period.key] as! String
                         
-                        let userData = NAUserTransactions(amount: Int(amount! as Float), serviceCategory: servicecategory as! String, timestamp: Int(timestamp! as Float), result: result as! String, transactionId: paymentID as! String)
+                        var startPeriod = String()
+                        var endPeriod = String()
+                        
+                        let array = transactionPeriod.split(separator: "-")
+                        startPeriod = String(array[0])
+                        if array.count == 1 {
+                            
+                        } else {
+                            
+                        }
+                       
+                        
+                        
+                        let userData = NAUserTransactions(amount: Int(amount! as Float), serviceCategory: servicecategory as! String, timestamp: Int(timestamp! as Float), result: result as! String, transactionId: paymentID as! String, period: transactionPeriod)
                         
                         self.userTransactionData.append(userData)
                         NAActivityIndicator.shared.hideActivityIndicator()

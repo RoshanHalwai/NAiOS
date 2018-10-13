@@ -1861,7 +1861,7 @@ class NAString : NSObject {
     }
     
     func transactionSummary_Failed_Title() -> String {
-        return String("Your payment Failed")
+        return String("Your payment failed")
     }
     
     func transactions() -> String {
