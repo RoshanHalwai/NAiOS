@@ -226,7 +226,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                         self.dailyServiceHandedThingsRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                                             if snapshot.exists() {
                                                 isHandedThingsAdded = true
-                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: "")
+                                                //NAFirebase().layoutFeatureUnavailable(mainView: self, newText: "")
                                                 //Getting Daily Services Given Date here
                                                 let dailyServicesDate = snapshot.value
                                                 for dailyServiceDate in ((dailyServicesDate as AnyObject).allKeys)! {

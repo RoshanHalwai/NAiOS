@@ -357,7 +357,7 @@ extension HandedThingsToDailyServicesViewController {
                                                         let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
                                                         
                                                         if dsInfo.count > 0 {
-                                                            let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
+                                                            let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: (providedThings as! NSDictionary?)!, rating: rating as! Int?, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
                                                             
                                                             self.dailyServiceHandedThingsList.append(dailyServicesData)
                                                             NAActivityIndicator.shared.hideActivityIndicator()
