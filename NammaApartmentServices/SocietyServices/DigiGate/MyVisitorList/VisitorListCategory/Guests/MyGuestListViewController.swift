@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import MessageUI
+import SDWebImage
 
 class MyGuestListViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource,UIAlertViewDelegate, MFMessageComposeViewControllerDelegate {
     
@@ -137,19 +138,11 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.lbl_MyVisitorDate.text = dateString
         cell.lbl_MyVisitorName.text = nammaApartmentVisitor.getfullName()
         cell.lbl_MyVisitorType.text = nammaApartmentVisitor.getstatus()
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            //Calling function to get Profile Image from Firebase.
-            if let urlString = nammaApartmentVisitor.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myVisitorImage)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+  
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.myVisitorImage.sd_setShowActivityIndicatorView(true)
+        cell.myVisitorImage.sd_setIndicatorStyle(.gray)
+        cell.myVisitorImage.sd_setImage(with: URL(string: nammaApartmentVisitor.getprofilePhoto()!), completed: nil)
         
         /* We check if the inviters UID is equal to current UID if it is then we don't have to check in
          firebase since we now know that the inviter is current user.*/

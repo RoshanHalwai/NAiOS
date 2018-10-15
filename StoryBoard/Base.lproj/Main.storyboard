@@ -1665,11 +1665,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="310" height="212"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uhq-fg-cRJ">
-                                                    <rect key="frame" x="42" y="58" width="37" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </activityIndicatorView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TzA-Vi-zzS">
                                                     <rect key="frame" x="10" y="18" width="100" height="100"/>
                                                     <constraints>
@@ -1872,7 +1867,6 @@
                                         </constraints>
                                         <size key="customSize" width="310" height="212"/>
                                         <connections>
-                                            <outlet property="activityIndicator" destination="uhq-fg-cRJ" id="TIJ-r9-A36"/>
                                             <outlet property="btn_Reschedule" destination="q3S-wB-HhT" id="hmS-Hc-tIf"/>
                                             <outlet property="lbl_Call" destination="jbW-mR-ui6" id="JHc-2L-2ao"/>
                                             <outlet property="lbl_Cancel" destination="ohv-tL-aR3" id="f6v-AK-p91"/>
@@ -4194,11 +4188,6 @@
                                                         <constraint firstAttribute="width" constant="100" id="cDB-8g-4Oh"/>
                                                     </constraints>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Bqm-NJ-LV1">
-                                                    <rect key="frame" x="45.5" y="45" width="37" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </activityIndicatorView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="I0v-le-IWS">
                                                     <rect key="frame" x="118.5" y="22" width="221.5" height="82"/>
                                                     <subviews>
@@ -4385,7 +4374,6 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="MySweeetHomeimg" destination="6vJ-5E-DY2" id="ItP-Ie-2q4"/>
-                                            <outlet property="activityIndicator" destination="Bqm-NJ-LV1" id="2D2-YX-8Nz"/>
                                             <outlet property="btn_Call" destination="qXN-rQ-Qkv" id="89b-il-AwI"/>
                                             <outlet property="btn_Edit" destination="rlI-IG-2V8" id="nZP-rW-g9k"/>
                                             <outlet property="btn_Message" destination="oib-BF-q3T" id="dzB-Ex-ERh"/>
@@ -4687,11 +4675,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="308" height="198"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Yeq-zH-Jm5">
-                                                    <rect key="frame" x="51.5" y="54" width="37" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </activityIndicatorView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s39-EX-Sf7">
                                                     <rect key="frame" x="18" y="15.5" width="106" height="106"/>
                                                     <constraints>
@@ -4940,7 +4923,6 @@
                                         </constraints>
                                         <size key="customSize" width="308" height="198"/>
                                         <connections>
-                                            <outlet property="activityIndicator" destination="Yeq-zH-Jm5" id="oQP-2k-hZX"/>
                                             <outlet property="btn_Call" destination="5eC-Yv-oeh" id="fG9-LC-P6i"/>
                                             <outlet property="btn_Cancel" destination="2gh-FO-VWh" id="Kfd-5i-azU"/>
                                             <outlet property="btn_Edit" destination="vz9-b5-xt0" id="MBw-Zm-Gd6"/>
@@ -6257,13 +6239,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UY-qF-7pc">
-                                                <rect key="frame" x="170" y="0.0" width="53" height="43"/>
+                                                <rect key="frame" x="170" y="0.0" width="55" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the free service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53u-9B-EnE">
-                                                <rect key="frame" x="253" y="0.0" width="57" height="43"/>
+                                                <rect key="frame" x="255" y="0.0" width="55" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

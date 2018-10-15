@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import MessageUI
 import HCSStarRatingView
+import SDWebImage
 
 class MyDailyServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
     
@@ -212,18 +213,11 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = DSList.getStatus()
         cell.lbl_MyDailyServicesFlats.text = "\(DSList.getNumberOfFlats())"
         cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            if let urlString = DSList.profilePhoto {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myDailyServicesImage)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.myDailyServicesImage.sd_setShowActivityIndicatorView(true)
+        cell.myDailyServicesImage.sd_setIndicatorStyle(.gray)
+        cell.myDailyServicesImage.sd_setImage(with: URL(string: DSList.getprofilePhoto()!), completed: nil)
         
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0

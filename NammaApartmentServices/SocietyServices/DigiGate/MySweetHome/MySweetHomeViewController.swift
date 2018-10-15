@@ -161,19 +161,11 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             cell.lbl_MySweetHomeRelation.text = NAString().friend()
         }
         cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
-        
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            if let urlString = flatMember.personalDetails.profilePhoto {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+                
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.MySweeetHomeimg.sd_setShowActivityIndicatorView(true)
+        cell.MySweeetHomeimg.sd_setIndicatorStyle(.gray)
+        cell.MySweeetHomeimg.sd_setImage(with: URL(string: flatMember.personalDetails.profilePhoto!), completed: nil)
         
         /* - This creates the shadows and modifies the cards a little bit.
          - Creating round Image using Corner radius.
