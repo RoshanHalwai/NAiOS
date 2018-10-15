@@ -35,7 +35,7 @@ enum NAUserTransactionFBKeys: String {
 
 class NAUserTransactions {
     //defining strings according to firebase names which is inside the visitor Node.
-    private var amount: Int
+    private var amount: Float
     private var serviceCategory: String
     private var timestamp: Int
     private var result: String
@@ -43,7 +43,7 @@ class NAUserTransactions {
     private var period : String
     
     //initilaize the variables
-    init(amount: Int, serviceCategory: String, timestamp: Int, result: String, transactionId: String, period: String) {
+    init(amount: Float, serviceCategory: String, timestamp: Int, result: String, transactionId: String, period: String) {
         self.amount = amount
         self.serviceCategory = serviceCategory
         self.timestamp = timestamp
@@ -52,7 +52,7 @@ class NAUserTransactions {
         self.period = period
     }
     
-    func getAmount() -> Int {
+    func getAmount() -> Float {
         return amount
     }
     
