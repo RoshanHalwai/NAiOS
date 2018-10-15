@@ -2230,7 +2230,7 @@ class NAString : NSObject {
     }
     
     func downloadCompletedMessage() -> String {
-        return String("You can find your Gate Pass in gallery")
+        return String("Your gate pass has been saved to the gallery")
     }
     
     func gatePassDescription() -> String {
