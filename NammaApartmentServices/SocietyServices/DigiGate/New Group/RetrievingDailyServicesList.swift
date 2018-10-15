@@ -69,7 +69,6 @@ class RetrievingDailyServicesList {
                         let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
                         let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
                         let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
-                        //let providedThings = dailyServiceData?[DailyServicesListFBKeys.providedThings.key]
                         let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
                         let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
                         let type = dailyServiceData?[NADailyServicesStringFBKeys.type.key]
@@ -83,16 +82,12 @@ class RetrievingDailyServicesList {
                             
                             if handedThingsSnapshot.exists() {
                                 let handedThingsMap = NSDictionary()
-                                
-                                 let handedThingsData = handedThingsSnapshot.value as? NSDictionary
-                                
+                                let handedThingsData = handedThingsSnapshot.value as? NSDictionary
                                 for handedThing in handedThingsData! {
                                     handedThingsMap.setValue(handedThing.value, forKey: handedThing.key as! String)
                                     
                                 }
-                                
                             }
-                            
                             
                             dailyServiceList.append(dailyServicesData)
                             if dailyServiceList.count == dsUIDList.count {
