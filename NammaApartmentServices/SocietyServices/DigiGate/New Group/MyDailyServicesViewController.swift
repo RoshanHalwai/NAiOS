@@ -515,14 +515,23 @@ extension MyDailyServicesViewController {
                                 var count = 0
                                 //Getting Daily Services UID here
                                 let dailyServicesUID = snapshot.value as? NSDictionary
-                                for dailyServiceUID in (dailyServicesUID?.allKeys)! {
+                                
+                                var dailyServiceUIDArray = [String]()
+                                //Getting all DailyService UID's in Empty Array
+                                dailyServiceUIDArray = dailyServicesUID?.allKeys as! [String]
+                                //sorting UID's
+                                let sortedArray = dailyServiceUIDArray.sorted()
+                                //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
+                                let reversedArray = sortedArray.reversed()
+                                
+                                for dailyServiceUID in reversedArray {
                                     count = count + 1
                                     if dailyServicesUID![dailyServiceUID] as! Bool == true {
                                         self.isDailyServicePresent = true
                                         
-                                        self.dailyServiceCountRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
+                                        self.dailyServiceCountRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID)
                                         //Getting Daily Services Status (Like Entered or Not)
-                                        self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
+                                        self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID)
                                         self.dailyServiceStatusRef?.child(NAString().status()).observeSingleEvent(of: .value, with: { (snapshot) in
                                             let dailyServiceStatus = snapshot.value
                                             
