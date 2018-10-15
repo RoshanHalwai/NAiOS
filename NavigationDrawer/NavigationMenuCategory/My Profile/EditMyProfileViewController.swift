@@ -104,6 +104,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         txt_Flat_Admin.underlined()
         
         super.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.rightBarButtonItem = nil
         
         txt_Name.addTarget(self, action: #selector(valueChanged(sender:)), for: .editingChanged)
         
@@ -139,9 +140,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         profile_Image.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.imageTapped))
         self.profile_Image.addGestureRecognizer(tapGesture)
-        
-        //Calling Info Button Method
-        infoButton()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
