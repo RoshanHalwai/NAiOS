@@ -1861,14 +1861,18 @@ class NAString : NSObject {
     }
     
     func transactionSummary_Failed_Title() -> String {
-        return String("Your payment Failed")
+        return String("Your payment failed")
     }
     
     func transactions() -> String {
         return String("Transactions")
     }
     
-    func rs(amount: Int) -> String {
+    func transactionSummary() -> String {
+        return String("Transaction Summary")
+    }
+    
+    func rs(amount: Float) -> String {
         return String ("Rs.\(amount)")
     }
     
@@ -1878,6 +1882,14 @@ class NAString : NSObject {
     
     func convertedTimeStampFormat() -> String {
         return String("E, MMM dd, hh:mm")
+    }
+    
+    func transactionPeriodFormat() -> String {
+        return String("MMyyyy")
+    }
+    
+    func convertedTransactionPeriodFormat() -> String {
+        return String("MMM yyyy")
     }
     
     func chooseOne() -> String {
@@ -1976,7 +1988,7 @@ class NAString : NSObject {
         return String("Full Day(8AM - 10PM)")
     }
     
-    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Float, perSlot: Int, estimatedAmount: Int, convenienceFee: Float, convenienceAmount: Float ) -> String {
+    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Double, perSlot: Int, estimatedAmount: Double, convenienceFee: Float, convenienceAmount: Float ) -> String {
         return String("\nNo. of Booked Slots:\t\t  \(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):     Rs. \(convenienceAmount) \n\nTotal Amount:\t\t\tRs. \(totalAmount)")
     }
     

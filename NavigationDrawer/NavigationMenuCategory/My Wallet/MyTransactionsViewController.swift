@@ -45,7 +45,7 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
         dateFormatterGet.dateFormat = NAString().convertedTimeStampFormat()
         let transactionDate = (dateFormatterGet.string(from: dateAndTime!))
         
-        cell.lbl_rupees.text = NAString().rs(amount: transactionDetails.getAmount())
+        cell.lbl_rupees.text = NAString().rs(amount: Float(transactionDetails.getAmount()))
         cell.lbl_ServiceType.text = transactionDetails.getServiceCategory()
         cell.lbl_Date_And_Time.text = transactionDate
         
@@ -54,7 +54,7 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
         } else {
             cell.success_Failure_Image.image = #imageLiteral(resourceName: "Cancel")
         }
-    
+        
         NAShadowEffect().shadowEffect(Cell: cell)
         cell.lbl_rupees.font = NAFont().lato_Bold_16()
         cell.lbl_rupees.textColor = UIColor.gray
@@ -75,10 +75,11 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
     func passdata(index: Int, cell: UICollectionViewCell, date: String) {
         let transactiondetails = userTransactionData[index]
         let transactionSummaryVC = NAViewPresenter().transactionSummaryVC()
-       transactionSummaryVC.totalAmount = transactiondetails.getAmount()
+        transactionSummaryVC.totalAmount = transactiondetails.getAmount()
         transactionSummaryVC.transactionDate = date
         transactionSummaryVC.status = transactiondetails.getResult()
-       transactionSummaryVC.transactionUID = transactiondetails.getTransactionID()
+        transactionSummaryVC.transactionUID = transactiondetails.getTransactionID()
+        transactionSummaryVC.transactionPeriod = transactiondetails.getPeriod()
         self.navigationController?.pushViewController(transactionSummaryVC, animated: true)
     }
     
@@ -99,8 +100,39 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
                         let timestamp = (transactionData[NAUserTransactionFBKeys.timestamp.key])?.floatValue
                         let result = transactionData[NAUserTransactionFBKeys.result.key]
                         let paymentID = transactionData[NAUserTransactionFBKeys.paymentId.key]
+                        let transactionPeriod = transactionData[NAUserTransactionFBKeys.period.key] as! String
                         
-                        let userData = NAUserTransactions(amount: Int(amount! as Float), serviceCategory: servicecategory as! String, timestamp: Int(timestamp! as Float), result: result as! String, transactionId: paymentID as! String)
+                        var startPeriod = String()
+                        var endPeriod = String()
+                        var transactionMonth = String()
+                        
+                        let array = transactionPeriod.split(separator: "-")
+                        startPeriod = String(array[0])
+                        
+                        let date = startPeriod
+                        let dateString = String(describing: date)
+                        let dateFormatterGet = DateFormatter()
+                        dateFormatterGet.dateFormat = NAString().transactionPeriodFormat()
+                        let dateAndTime = dateFormatterGet.date(from: dateString)
+                        dateFormatterGet.dateFormat = NAString().convertedTransactionPeriodFormat()
+                        let startingMonth = (dateFormatterGet.string(from: dateAndTime!))
+                        
+                        //Checking whether the pending dues Months count
+                        if array.count == 1 {
+                            transactionMonth = startingMonth
+                        } else {
+                            endPeriod = String(array[1])
+                            let date = endPeriod
+                            let dateString = String(describing: date)
+                            let dateFormatterGet = DateFormatter()
+                            dateFormatterGet.dateFormat = NAString().transactionPeriodFormat()
+                            let dateAndTime = dateFormatterGet.date(from: dateString)
+                            dateFormatterGet.dateFormat = NAString().convertedTransactionPeriodFormat()
+                            let endMonth = (dateFormatterGet.string(from: dateAndTime!))
+                            transactionMonth = startingMonth + " - " + endMonth
+                        }
+                        
+                        let userData = NAUserTransactions(amount: amount!, serviceCategory: servicecategory as! String, timestamp: Int(timestamp! as Float), result: result as! String, transactionId: paymentID as! String, period: transactionMonth)
                         
                         self.userTransactionData.append(userData)
                         NAActivityIndicator.shared.hideActivityIndicator()
