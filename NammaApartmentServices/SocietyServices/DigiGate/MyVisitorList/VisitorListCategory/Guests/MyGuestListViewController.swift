@@ -46,8 +46,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData(notification:)), name: Notification.Name("refreshRescheduledData"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-        
+       
         //info Button Action
         infoButton()
         
@@ -66,14 +65,6 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates(nil, completion: nil)
-            self.collectionView.reloadData()
-        }
     }
     
     //Create Refresh Data Function

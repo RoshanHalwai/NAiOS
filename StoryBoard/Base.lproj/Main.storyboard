@@ -2544,11 +2544,6 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="4KH-3P-63H">
-                                                    <rect key="frame" x="44" y="63" width="37" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2560,7 +2555,6 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="ZBD-TT-vJP" secondAttribute="trailing" id="ivB-5D-2kB"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="activityIndicator" destination="4KH-3P-63H" id="bpR-a7-bFK"/>
                                             <outlet property="image_View" destination="ylE-nN-7h5" id="Pli-Lt-GCx"/>
                                             <outlet property="lbl_Date_Detail" destination="vSk-lt-6Vx" id="oSh-vx-zsW"/>
                                             <outlet property="lbl_Date_Type" destination="9wD-fd-pf2" id="efh-Dt-Hm7"/>
@@ -2914,11 +2908,6 @@
                                                         <constraint firstAttribute="height" constant="110" id="xR4-Ui-MPt"/>
                                                     </constraints>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wDo-JT-o0H">
-                                                    <rect key="frame" x="47" y="58" width="37" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2930,7 +2919,6 @@
                                             <constraint firstItem="2ca-aX-doE" firstAttribute="centerY" secondItem="Jmw-We-LWO" secondAttribute="centerY" id="qK6-ad-fZW"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="activityIndicator" destination="wDo-JT-o0H" id="q2j-sd-QEK"/>
                                             <outlet property="image_View" destination="MGY-c1-Bg9" id="Asx-Bb-rhD"/>
                                             <outlet property="lbl_Date_Detail" destination="eiT-xN-XOI" id="1k9-oo-imP"/>
                                             <outlet property="lbl_Date_Type" destination="aLB-IU-WZF" id="6RU-7g-2L2"/>
@@ -3333,11 +3321,6 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NPz-bo-I9D">
-                                                    <rect key="frame" x="32" y="41" width="53.5" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3349,7 +3332,6 @@
                                         </constraints>
                                         <size key="customSize" width="326" height="119"/>
                                         <connections>
-                                            <outlet property="activityIndicator" destination="NPz-bo-I9D" id="nGg-cy-Sdf"/>
                                             <outlet property="lbl_GuardGateNo" destination="m3n-hw-hgt" id="oaj-1d-a7Y"/>
                                             <outlet property="lbl_GuardName" destination="KPh-Hb-0fo" id="bAb-kc-fhi"/>
                                             <outlet property="lbl_GuardStatus" destination="tJ6-4c-Brf" id="DsV-l3-WWr"/>
@@ -4576,11 +4558,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Wb4-Cp-f4r">
-                                        <rect key="frame" x="159" y="87" width="37" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -4622,7 +4599,6 @@
                         <viewLayoutGuide key="safeArea" id="up2-KU-yAD"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="Wb4-Cp-f4r" id="r4R-Lm-Ptz"/>
                         <outlet property="btn_Download" destination="igG-pZ-T3j" id="YsH-pl-8vf"/>
                         <outlet property="cardView" destination="3Yj-JA-dg8" id="fyw-y3-OXB"/>
                         <outlet property="image_View" destination="dwO-Bt-s2O" id="QNK-ed-4x4"/>
@@ -6943,11 +6919,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="l3p-6Q-Vor">
-                                                    <rect key="frame" x="42" y="46" width="37" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </activityIndicatorView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NiM-uW-naX">
                                                     <rect key="frame" x="37" y="131" width="282" height="58"/>
                                                     <subviews>
@@ -7061,7 +7032,6 @@
                                             <constraint firstItem="HmN-VG-Uxl" firstAttribute="top" secondItem="HwY-6p-tqu" secondAttribute="bottom" constant="15" id="zBx-tp-1uv"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="activity_Indicator" destination="l3p-6Q-Vor" id="iQk-VQ-eVQ"/>
                                             <outlet property="lbl_Call" destination="dEk-dp-jnl" id="vao-HA-QTG"/>
                                             <outlet property="lbl_CookFlat" destination="zGz-qi-YLG" id="A4f-3v-pJ8"/>
                                             <outlet property="lbl_CookName" destination="b9D-eu-QiV" id="tzV-ht-YgG"/>
@@ -9061,10 +9031,6 @@
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rI1-g2-H2U">
-                                                <rect key="frame" x="170" y="65" width="37" height="37"/>
-                                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </activityIndicatorView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="EP5-lv-f4P">
                                                 <rect key="frame" x="12" y="246" width="355" height="250"/>
                                                 <subviews>
@@ -9240,7 +9206,6 @@
                                             <constraint firstItem="a5e-fl-Eah" firstAttribute="top" secondItem="0uV-BR-w56" secondAttribute="top" constant="148" id="5lg-xY-8fC"/>
                                             <constraint firstItem="cxg-zx-0Nn" firstAttribute="centerX" secondItem="a5e-fl-Eah" secondAttribute="centerX" id="Bjk-Lf-g0Q"/>
                                             <constraint firstItem="Y3i-Rg-iQO" firstAttribute="leading" secondItem="0uV-BR-w56" secondAttribute="leading" constant="20" id="CG2-xx-Y5u"/>
-                                            <constraint firstItem="cxg-zx-0Nn" firstAttribute="centerY" secondItem="rI1-g2-H2U" secondAttribute="centerY" id="CIh-tO-Mij"/>
                                             <constraint firstItem="3ye-7M-06P" firstAttribute="top" secondItem="a5e-fl-Eah" secondAttribute="bottom" constant="8" id="G1D-XY-FFz"/>
                                             <constraint firstItem="EP5-lv-f4P" firstAttribute="leading" secondItem="0uV-BR-w56" secondAttribute="leading" constant="12" id="Gvh-v6-HlL"/>
                                             <constraint firstItem="1cO-qc-Q6l" firstAttribute="top" secondItem="Y3i-Rg-iQO" secondAttribute="bottom" constant="20" id="RGE-qV-NQd"/>
@@ -9254,7 +9219,6 @@
                                             <constraint firstAttribute="trailing" secondItem="EP5-lv-f4P" secondAttribute="trailing" constant="8" id="tHo-nB-E06"/>
                                             <constraint firstItem="1cO-qc-Q6l" firstAttribute="leading" secondItem="0uV-BR-w56" secondAttribute="leading" constant="20" id="tei-eH-x4F"/>
                                             <constraint firstItem="a5e-fl-Eah" firstAttribute="centerX" secondItem="0uV-BR-w56" secondAttribute="centerX" id="z8g-1Z-cQv"/>
-                                            <constraint firstItem="rI1-g2-H2U" firstAttribute="leading" secondItem="0uV-BR-w56" secondAttribute="leading" constant="170" id="zgF-4Y-KUG"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -9281,7 +9245,6 @@
                     </view>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="rI1-g2-H2U" id="KgK-9y-RyY"/>
                         <outlet property="cardView" destination="3ye-7M-06P" id="20d-dQ-P86"/>
                         <outlet property="cardView_Image" destination="h5k-LS-9wn" id="Svt-5N-Bm4"/>
                         <outlet property="gatePass_btn" destination="1cO-qc-Q6l" id="2h3-Au-UMF"/>

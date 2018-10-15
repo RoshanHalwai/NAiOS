@@ -15,7 +15,6 @@ class MyGatePassViewController: NANavigationViewController {
     @IBOutlet weak var lbl_BlockNumber: UILabel!
     @IBOutlet weak var lbl_FlatNumber: UILabel!
     @IBOutlet weak var lbl_Description: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var btn_Download : UIButton!
     @IBOutlet weak var image_View : UIImageView!
@@ -27,9 +26,11 @@ class MyGatePassViewController: NANavigationViewController {
         
         //Setting & Assigning User Details in the Gate Pass Card View
         let profilePhoto = GlobalUserData.shared.personalDetails_Items.first?.getprofilePhoto()
-        if let urlString = profilePhoto {
-            NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: self.image_View)
-        }
+        
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        image_View.sd_setShowActivityIndicatorView(true)
+        image_View.sd_setIndicatorStyle(.gray)
+        image_View.sd_setImage(with: URL(string: profilePhoto!), completed: nil)
         
         lbl_Name.text = GlobalUserData.shared.personalDetails_Items.first?.getfullName()
         lbl_SocietyName.text = GlobalUserData.shared.flatDetails_Items.first?.getsocietyName()
@@ -58,15 +59,6 @@ class MyGatePassViewController: NANavigationViewController {
         lbl_BlockNumber.font = NAFont().headerFont()
         lbl_FlatNumber.font = NAFont().headerFont()
         
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.activityIndicator.isHidden = true
-        }
     }
     
     @IBAction func btnDownloadGatePass(_ sender: Any) {

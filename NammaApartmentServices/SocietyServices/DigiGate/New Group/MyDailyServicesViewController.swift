@@ -78,9 +78,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
         
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-        
         //info Button Action
         infoButton()
         
@@ -104,15 +101,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         opacity_View.isUserInteractionEnabled = true
         opacity_View.addGestureRecognizer(tap)
     }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates(nil, completion: nil)
-            self.collectionView.reloadData()
-        }
-    }
-    
+   
     /* - For navigating back to My Digi Gate VC.
      - For creating action sheet to select my daily services. */
     

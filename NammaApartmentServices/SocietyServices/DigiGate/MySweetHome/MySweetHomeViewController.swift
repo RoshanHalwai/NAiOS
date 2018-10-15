@@ -9,11 +9,11 @@
 import UIKit
 import FirebaseDatabase
 import MessageUI
+import SDWebImage
 
 class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var opacity_View: UIView!
     @IBOutlet weak var PopUp_ParentView: UIView!
     @IBOutlet weak var popUp_View: UIView!
@@ -86,17 +86,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
-        
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates(nil, completion: nil)
-            self.collectionView.reloadData()
-        }
     }
     
     func retrieveFlatMembersData() {
