@@ -110,6 +110,7 @@
 		5DC976112162029100B1928F /* DailyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC976102162029100B1928F /* DailyServiceRatingView.swift */; };
 		5DC9761321649D5200B1928F /* RetrievingApartmentServicesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9761221649D5200B1928F /* RetrievingApartmentServicesData.swift */; };
 		5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DF2620FCC280002C13BB /* HandedHistory.swift */; };
+		5DE874492170E8A200267427 /* TransactionSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE874482170E8A200267427 /* TransactionSummaryViewController.swift */; };
 		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
 		861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFE20B9AA98009EC0EF /* Lato-Italic.ttf */; };
 		861CC00920B9AA99009EC0EF /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFF20B9AA98009EC0EF /* Lato-LightItalic.ttf */; };
@@ -494,6 +495,7 @@
 		5DC976102162029100B1928F /* DailyServiceRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyServiceRatingView.swift; sourceTree = "<group>"; };
 		5DC9761221649D5200B1928F /* RetrievingApartmentServicesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingApartmentServicesData.swift; sourceTree = "<group>"; };
 		5DD9DF2620FCC280002C13BB /* HandedHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedHistory.swift; sourceTree = "<group>"; };
+		5DE874482170E8A200267427 /* TransactionSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSummaryViewController.swift; sourceTree = "<group>"; };
 		7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B8A2E220ED171204623A20 /* Pods-nammaApartmentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewPresenter.swift; sourceTree = "<group>"; };
@@ -754,6 +756,7 @@
 				4234754A212EB87200A791AA /* MyWalletViewController.swift */,
 				08EA577E214649DB00A0574D /* MyTransactionsViewController.swift */,
 				08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */,
+				5DE874482170E8A200267427 /* TransactionSummaryViewController.swift */,
 				08EA5782214649EB00A0574D /* NAUserTransactions.swift */,
 			);
 			path = "My Wallet";
@@ -1693,7 +1696,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1705,7 +1707,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1843,6 +1844,7 @@
 				0834B394214249F000516C9C /* ContactUsViewController.swift in Sources */,
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
+				5DE874492170E8A200267427 /* TransactionSummaryViewController.swift in Sources */,
 				08EA577F214649DB00A0574D /* MyTransactionsViewController.swift in Sources */,
 				5D774299210DD49F0049344F /* DataModel.swift in Sources */,
 				422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */,
