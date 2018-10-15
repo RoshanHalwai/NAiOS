@@ -10,6 +10,7 @@ import UIKit
 import MessageUI
 import FirebaseDatabase
 import MapKit
+import SDWebImage
 
 class ApartmentServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource, MFMessageComposeViewControllerDelegate, CLLocationManagerDelegate {
     
@@ -90,9 +91,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         default:
             break
         }
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-        
+       
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
@@ -164,14 +163,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         }
     }
     
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates(nil, completion: nil)
-            self.collectionView.reloadData()
-        }
-    }
-    
     //MARK : UICollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allDailyServicesList.count
@@ -186,18 +177,11 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         cell.lbl_MyCookName.text = dailyServicesData.getfullName()
         cell.lbl_MyCookRating.text = "\(dailyServicesData.getrating())"
         cell.lbl_MyCookFlat.text = "\(dailyServicesData.getNumberOfFlats())"
-        let queue = OperationQueue()
         
-        queue.addOperation {
-            if let urlString = dailyServicesData.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myCookImage)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activity_Indicator.isHidden = true
-                    cell.activity_Indicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.myCookImage.sd_setShowActivityIndicatorView(true)
+        cell.myCookImage.sd_setIndicatorStyle(.gray)
+        cell.myCookImage.sd_setImage(with: URL(string: dailyServicesData.getprofilePhoto()!), completed: nil)
         
         cell.lbl_CookName.font = NAFont().textFieldFont()
         cell.lbl_CookRating.font = NAFont().textFieldFont()

@@ -24,8 +24,6 @@ class MyDailyServicesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_MyDailyServicesRating: UILabel!
     @IBOutlet weak var lbl_MyDailyServicesInTime: UILabel!
     @IBOutlet weak var lbl_MyDailyServicesFlats: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet weak var lbl_myDailytype: UILabel!
     @IBOutlet weak var lbl_myDailyName: UILabel!
     @IBOutlet weak var lbl_myDailyRating: UILabel!

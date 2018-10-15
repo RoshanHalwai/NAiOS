@@ -22,9 +22,7 @@ class ApartmentServicesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_Message: UILabel!
     @IBOutlet weak var lbl_WhatsApp: UILabel!
     @IBOutlet weak var lbl_Refer: UILabel!
-    
-    @IBOutlet weak var activity_Indicator: UIActivityIndicatorView!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         
