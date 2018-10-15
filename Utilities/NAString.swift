@@ -1889,7 +1889,7 @@ class NAString : NSObject {
     }
     
     func rs(amount: Float) -> String {
-        return String ("Rs.\(amount)")
+        return String ("Rs. \(amount)")
     }
     
     func transactionTimeStampFormat() -> String {
