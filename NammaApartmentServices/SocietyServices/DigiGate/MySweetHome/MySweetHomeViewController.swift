@@ -9,11 +9,11 @@
 import UIKit
 import FirebaseDatabase
 import MessageUI
+import SDWebImage
 
 class MySweetHomeViewController: NANavigationViewController , UICollectionViewDelegate , UICollectionViewDataSource, MFMessageComposeViewControllerDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var opacity_View: UIView!
     @IBOutlet weak var PopUp_ParentView: UIView!
     @IBOutlet weak var popUp_View: UIView!
@@ -86,17 +86,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
-        
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates(nil, completion: nil)
-            self.collectionView.reloadData()
-        }
     }
     
     func retrieveFlatMembersData() {
@@ -161,19 +150,11 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
             cell.lbl_MySweetHomeRelation.text = NAString().friend()
         }
         cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
-        
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            if let urlString = flatMember.personalDetails.profilePhoto {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString, imageView: cell.MySweeetHomeimg)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+                
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.MySweeetHomeimg.sd_setShowActivityIndicatorView(true)
+        cell.MySweeetHomeimg.sd_setIndicatorStyle(.gray)
+        cell.MySweeetHomeimg.sd_setImage(with: URL(string: flatMember.personalDetails.profilePhoto!), completed: nil)
         
         /* - This creates the shadows and modifies the cards a little bit.
          - Creating round Image using Corner radius.

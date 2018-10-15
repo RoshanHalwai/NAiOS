@@ -21,6 +21,7 @@ class AwaitingResponseViewController: NANavigationViewController {
     @IBOutlet weak var lbl_ServiceName : UILabel?
     @IBOutlet weak var lbl_ServiceNumber : UILabel?
     @IBOutlet weak var lbl_ServiceOTP: UILabel?
+    @IBOutlet weak var lbl_NotAvailable: UILabel?
     
     @IBOutlet weak var opacity_View: UIView!
     @IBOutlet weak var rating_Parent_View: UIView!
@@ -28,9 +29,11 @@ class AwaitingResponseViewController: NANavigationViewController {
     @IBOutlet weak var activityIndicator : UIActivityIndicatorView?
     @IBOutlet weak var img_Title : UIImageView?
     @IBOutlet weak var cardView : UIView?
+    @IBOutlet weak var acceptCardView : UIView?
     
     @IBOutlet weak var btn_Call: UIButton!
     @IBOutlet weak var btn_Cancel: UIButton!
+    @IBOutlet weak var btn_RequestAgain: UIButton!
     
     //To set navigation title
     var navTitle : String?
@@ -40,6 +43,7 @@ class AwaitingResponseViewController: NANavigationViewController {
     var societyServiceNumber = String()
     var societyServiceType = String()
     var societyServiceUID = String()
+    var societyServiceStatus = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +60,14 @@ class AwaitingResponseViewController: NANavigationViewController {
         lbl_Name?.font = NAFont().textFieldFont()
         lbl_Mobile?.font = NAFont().textFieldFont()
         lbl_OTP?.font = NAFont().textFieldFont()
+        lbl_NotAvailable?.font = NAFont().headerFont()
+        
+        //Accept CardUIView
+        acceptCardView?.layer.cornerRadius = 3
+        acceptCardView?.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
+        acceptCardView?.layer.shadowOffset = CGSize(width: 0, height: 1.75)
+        acceptCardView?.layer.shadowRadius = 1.7
+        acceptCardView?.layer.shadowOpacity = 0.45
         
         //cardUIView
         cardView?.layer.cornerRadius = 3
@@ -69,10 +81,13 @@ class AwaitingResponseViewController: NANavigationViewController {
         
         //Hiding CardView
         cardView?.isHidden = true
+        acceptCardView?.isHidden = true
         opacity_View.isHidden = true
-        rating_Parent_View.isHidden = true 
+        rating_Parent_View.isHidden = true
+        
         //Calling Society Service Messages Function
         self.changingSocietyServiceMessages()
+        self.changingSocietyServiceNotAvailableMessages()
         
         //created custom back button for goto MainScreen view Controller
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToMainScreenVC))
@@ -89,6 +104,28 @@ class AwaitingResponseViewController: NANavigationViewController {
         btn_Cancel.titleLabel?.font = NAFont().buttonFont()
         btn_Cancel.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_Cancel.backgroundColor = NAColor().buttonBgColor()
+        
+        btn_RequestAgain.setTitle(NAString().requestPlumber(name: NAString().again()), for: .normal)
+        btn_RequestAgain.titleLabel?.font = NAFont().buttonFont()
+        btn_RequestAgain.setTitleColor(NAColor().buttonFontColor(), for: .normal)
+        btn_RequestAgain.backgroundColor = NAColor().buttonBgColor()
+    }
+    
+    @IBAction func btnRequestAgain() {
+        let societyServiceVC = NAViewPresenter().societyServiceVC()
+        if ( serviceType == NAString().plumber()) {
+            societyServiceVC.navTitle = NAString().plumber()
+        } else if (serviceType == NAString().carpenter()) {
+            societyServiceVC.navTitle = NAString().carpenter()
+        } else if (serviceType == NAString().electrician()) {
+            societyServiceVC.navTitle = NAString().electrician()
+        } else if (serviceType == NAString().garbage_Collection()) {
+            societyServiceVC.navTitle = NAString().garbage_Collection()
+        } else {
+            societyServiceVC.navTitle = NAString().scrapCollection()
+        }
+        societyServiceVC.fromSocietyServiceVC = true
+        self.navigationController?.pushViewController(societyServiceVC, animated: true)
     }
     
     @IBAction func btnCall(_ sender: UIButton) {
@@ -210,15 +247,17 @@ class AwaitingResponseViewController: NANavigationViewController {
                         self.lbl_ServiceOTP?.text = endOTP
                     })
                 }
-                let societyServiceStatus: String = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
+                self.societyServiceStatus = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
                 let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
                 
                 //ensuring if the Status is Complete.
-                if societyServiceStatus == NAString().complete() {
+                if self.societyServiceStatus == NAString().complete() {
+                    self.ConfigureNavBarTitle(title: self.navTitle!)
                     self.lbl_Title?.isHidden = true
                     self.lbl_message?.isHidden = true
                     self.activityIndicator?.isHidden = true
                     self.cardView?.isHidden = true
+                    self.acceptCardView?.isHidden = true
                     self.opacity_View.isHidden = false
                     var serviceImage = UIImage()
                     var servicesType = String()
@@ -241,6 +280,14 @@ class AwaitingResponseViewController: NANavigationViewController {
                         break
                     }
                     self.showingRatingView(serviceTypeImage: serviceImage, serviceType: servicesType)
+                } else if self.societyServiceStatus == NAString().declined() {
+                    self.ConfigureNavBarTitle(title: NAString().awaitingResponse())
+                    self.lbl_Title?.isHidden = true
+                    self.lbl_message?.isHidden = true
+                    self.activityIndicator?.isHidden = true
+                    self.cardView?.isHidden = true
+                    self.opacity_View.isHidden = true
+                    self.acceptCardView?.isHidden = false
                 }
             })
         }
@@ -258,6 +305,21 @@ class AwaitingResponseViewController: NANavigationViewController {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().garbage_Collection())
         } else {
             lbl_message?.text = NAString().societyServiceMessage(name: NAString().scrapCollection())
+        }
+    }
+    
+    //Create Changing the Society Service Not Available  Messages Function
+    func changingSocietyServiceNotAvailableMessages() {
+        if ( serviceType == NAString().plumber()) {
+            lbl_NotAvailable?.text = NAString().requestAccept_Message(name: NAString().plumber())
+        } else if (serviceType == NAString().carpenter()) {
+            lbl_NotAvailable?.text = NAString().requestAccept_Message(name: NAString().carpenter())
+        } else if (serviceType == NAString().electrician()) {
+            lbl_NotAvailable?.text = NAString().requestAccept_Message(name: NAString().electrician())
+        } else if (serviceType == NAString().garbage_Collection()) {
+            lbl_NotAvailable?.text = NAString().requestAccept_Message(name: NAString().garbage_Collection())
+        } else {
+            lbl_NotAvailable?.text = NAString().requestAccept_Message(name: NAString().scrapCollection())
         }
     }
     

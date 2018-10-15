@@ -118,19 +118,12 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         cell.lbl_Type_Detail.text = dailyServiceKey
         cell.lbl_Things_Detail.text = DSHandedList.getHandedThings()
         cell.lbl_Name_Detail.text = DSHandedList.getfullName()
-        let queue = OperationQueue()
         
-        queue.addOperation {
-            if let urlString = DSHandedList.profilePhoto {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
-        
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.image_View.sd_setShowActivityIndicatorView(true)
+        cell.image_View.sd_setIndicatorStyle(.gray)
+        cell.image_View.sd_setImage(with: URL(string: DSHandedList.profilePhoto!), completed: nil)
+ 
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0

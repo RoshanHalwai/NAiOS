@@ -61,6 +61,9 @@ class SocietyServicesViewController: NANavigationViewController {
     var garbageButtons : [UIButton] = []
     var isValidgarbageButtonClicked: [Bool] = []
     
+    //A boolean variable to indicate if previous screen was Expecting.
+    var fromSocietyServiceVC = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -214,6 +217,21 @@ class SocietyServicesViewController: NANavigationViewController {
                 btn_3PMto5PM.isUserInteractionEnabled = false
                 btn_3PMto5PM.setTitleColor(UIColor.lightGray, for: .normal)
             }
+        }
+        
+        //created custom back button for goto My DigiGate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    //Navigating Back to digi gate according to Screen coming from
+    @objc func goBackToDigitGate() {
+        if fromSocietyServiceVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-4]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -489,14 +507,14 @@ extension SocietyServicesViewController {
             serviceType = NAString().scrap_Collection()
         } else {
             if (self.txt_SelectAny.text == NAString().others()) {
-               problem = self.txt_Others.text!
+                problem = self.txt_Others.text!
             } else  {
                 problem = txt_SelectAny.text!
             }
             serviceType = (navTitle?.lowercased())!
         }
         let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        notificationUID = societyServiceNotificationRef.childByAutoId().key
+        notificationUID = societyServiceNotificationRef.childByAutoId().key!
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         

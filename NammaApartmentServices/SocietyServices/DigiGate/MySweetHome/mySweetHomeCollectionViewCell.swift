@@ -28,7 +28,6 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
     @IBOutlet weak var lbl_MySweetHomeName: UILabel!
     @IBOutlet weak var lbl_MySweetHomeRelation: UILabel!
     @IBOutlet weak var lbl_MySweetHomeGrantAccess: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var btn_Call: UIButton!
     @IBOutlet weak var btn_Message: UIButton!

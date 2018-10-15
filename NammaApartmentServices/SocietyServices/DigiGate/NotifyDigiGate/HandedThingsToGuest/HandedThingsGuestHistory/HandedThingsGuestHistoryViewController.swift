@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import SDWebImage
 
 class HandedThingsGuestHistoryViewController: NANavigationViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -66,9 +67,6 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
-        
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
     }
     
     //CollectionView Reload with Background Thread
@@ -108,19 +106,11 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
         cell.lbl_Date_Detail.text = dateString
         cell.lbl_Visitor_Detail.text = nammaApartmentVisitor.getfullName()
         cell.lbl_Things_Detail.text = nammaApartmentVisitor.getHandedThings()
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            //Calling function to get Profile Image from Firebase.
-            if let urlString = nammaApartmentVisitor.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.image_View)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+  
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.image_View.sd_setShowActivityIndicatorView(true)
+        cell.image_View.sd_setIndicatorStyle(.gray)
+        cell.image_View.sd_setImage(with: URL(string: nammaApartmentVisitor.getprofilePhoto()!), completed: nil)
         
         if(nammaApartmentVisitor.getinviterUID() == userUID) {
             cell.lbl_Inviter_Detail.text = GlobalUserData.shared.personalDetails_Items.first?.fullName

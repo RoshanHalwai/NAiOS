@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import SDWebImage
 
 class EditMyProfileViewController: NANavigationViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -28,7 +29,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     @IBOutlet weak var txt_Name: UITextField!
     @IBOutlet weak var txt_EmailId: UITextField!
     @IBOutlet weak var txt_Flat_Admin: UITextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var gatePass_btn: UIButton!
@@ -70,9 +70,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
         gatePass_btn.backgroundColor = NAColor().buttonBgColor()
         gatePass_btn.titleLabel?.font = NAFont().buttonFont()
         
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-        
         //Hiding Keyboard on click of FlatAdmin textFiled
         txt_Flat_Admin.inputView = UIView()
         txt_Flat_Admin.tintColor = UIColor.clear
@@ -84,7 +81,7 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             let usersData = userDataSnapshot.value as? [String: AnyObject]
             
             //Creating instance of UserPersonalDetails
-            let userPersonalDataMap = usersData?["personalDetails"] as? [String: AnyObject]
+            let userPersonalDataMap = usersData?[Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String: AnyObject]
             
             self.txt_Name.text = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as? String
             self.txt_EmailId.text = userPersonalDataMap?[UserPersonalListFBKeys.email.key] as? String
@@ -93,15 +90,10 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             self.existedEmail = self.txt_EmailId.text
             let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
             
-            let queue = OperationQueue()
-            
-            queue.addOperation {
-                //Calling function to get Profile Image from Firebase.
-                if let urlString = profilePhoto {
-                    NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: self.profile_Image)
-                }
-            }
-            queue.waitUntilAllOperationsAreFinished()
+            //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+            self.profile_Image.sd_setShowActivityIndicatorView(true)
+            self.profile_Image.sd_setIndicatorStyle(.gray)
+            self.profile_Image.sd_setImage(with: URL(string: profilePhoto!), completed: nil)
         })
         
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0)
@@ -194,13 +186,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
                     })
                 }
             })
-        }
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.activityIndicator.isHidden = true
         }
     }
     

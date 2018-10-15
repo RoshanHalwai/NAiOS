@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import SDWebImage
 
 class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
@@ -44,17 +45,6 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
-        
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-    }
-    
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates(nil, completion: nil)
-            self.collectionView.reloadData()
-        }
     }
     
     //MARK : UICollectionView Delegate & DataSource Functions
@@ -75,19 +65,11 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         let gateNumber : Int = myGuardsList.getgateNumber()
         let gateNoString = String(gateNumber)
         cell.lbl_MyGuardGateNo.text = gateNoString
-        
-        let queue = OperationQueue()
-        
-        queue.addOperation {
-            if let urlString = myGuardsList.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myGuardImage)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activityIndicator.isHidden = true
-                    cell.activityIndicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+       
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.myGuardImage.sd_setShowActivityIndicatorView(true)
+        cell.myGuardImage.sd_setIndicatorStyle(.gray)
+        cell.myGuardImage.sd_setImage(with: URL(string: myGuardsList.getprofilePhoto()!), completed: nil)
         
         //assigning font & style to cell labels
         cell.lbl_MyGuardName.font = NAFont().headerFont()
