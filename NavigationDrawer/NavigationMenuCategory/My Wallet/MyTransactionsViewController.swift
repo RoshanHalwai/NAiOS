@@ -117,7 +117,7 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
                         dateFormatterGet.dateFormat = NAString().convertedTransactionPeriodFormat()
                         let startingMonth = (dateFormatterGet.string(from: dateAndTime!))
                         
-                        //Checking whether the pending dues Months count
+                        //Checking pending dues Months count
                         if array.count == 1 {
                             transactionMonth = startingMonth
                         } else {

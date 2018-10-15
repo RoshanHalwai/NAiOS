@@ -57,6 +57,7 @@ class TransactionSummaryViewController: NANavigationViewController {
     }
     
     @IBAction func btn_Copy_Action(_ sender: UIButton) {
+        //Copying paymentID to clipboard
         let pasteboard = UIPasteboard.general
         pasteboard.string = lbl_PaymentID.text
     }
