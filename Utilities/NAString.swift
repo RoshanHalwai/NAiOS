@@ -1322,8 +1322,16 @@ class NAString : NSObject {
         return String ("REQUEST  \(name)")
     }
     
+    func requestAccept_Message(name : String) -> String {
+        return String ("Sorry, no \(name) is avilable at the moment")
+    }
+    
     func selectAnyProblem() -> String {
         return String ("Select Problem")
+    }
+    
+    func again() -> String {
+        return String ("AGAIN")
     }
     
     func selectLanguage() -> String {
@@ -1352,6 +1360,10 @@ class NAString : NSObject {
     
     func scrapType() -> String {
         return String ("scrapType")
+    }
+    
+    func awaitingResponse() -> String {
+        return String ("Awaiting Response")
     }
     
     func selectAnyOne() -> String {
@@ -1686,6 +1698,10 @@ class NAString : NSObject {
     
     func accountCreated() -> String {
         return String("Account Created")
+    }
+    
+    func declined() -> String {
+        return String("Declined")
     }
     
     func welcomeScreenDescription() -> String {
