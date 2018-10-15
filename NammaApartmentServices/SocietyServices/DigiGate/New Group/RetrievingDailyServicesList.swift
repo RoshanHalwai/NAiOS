@@ -46,9 +46,9 @@ class RetrievingDailyServicesList {
         }
     }
     
-    private func getDailyServiceCategoryData(dsCategory : String, dsUIDList : [String], callback: @escaping (_ dailyserviceDictionary: NammaApartmentDailyServices) -> Void) {
+    private func getDailyServiceCategoryData(dsCategory : String, dsUIDList : [String], callback: @escaping (_ dailyserviceDictionary: NSDictionary) -> Void) {
         
-        let dailyserviceDictionary = NSDictionary()
+        var dailyserviceDictionary = [String: AnyObject]()
         var dailyServiceList = [NammaApartmentDailyServices]()
         for dsUID in dsUIDList {
             let dailyServiceRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dsCategory).child(dsUID).child(userUID)
@@ -96,8 +96,8 @@ class RetrievingDailyServicesList {
                             
                             dailyServiceList.append(dailyServicesData)
                             if dailyServiceList.count == dsUIDList.count {
-                                dailyserviceDictionary.setValue(dailyServiceList, forKey: dsCategory)
-                                callback(dailyserviceDictionary)
+                                dailyserviceDictionary.updateValue(dailyServiceList as AnyObject, forKey: dsCategory)
+                                callback(dailyserviceDictionary as NSDictionary)
                             }
                         })
                     })
