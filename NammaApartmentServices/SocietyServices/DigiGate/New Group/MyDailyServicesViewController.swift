@@ -465,7 +465,6 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
                 for dailyServiceData in userDailyServivcesList {
                     self.NADailyServicesList.append(dailyServiceData)
                     NAActivityIndicator.shared.hideActivityIndicator()
-                    
                     self.collectionView.reloadData()
                 }
             }
