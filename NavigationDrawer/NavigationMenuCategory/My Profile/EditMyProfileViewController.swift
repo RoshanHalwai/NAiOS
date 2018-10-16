@@ -41,7 +41,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     var existedName : String?
     var existedEmail : String?
-    var existedImage : UIImageView?
     var existedFlatAdmin : String?
     var adminUID : String?
     var updatedAdminUID : String?
@@ -128,7 +127,6 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
             self.lbl_EIntercomNumber.text = userPersonalDataMap?[UserPersonalListFBKeys.phoneNumber.key] as? String
             self.existedName = self.txt_Name.text
             self.existedEmail = self.txt_EmailId.text
-            self.existedImage?.image = self.profile_Image.image
             let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
             
             //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
