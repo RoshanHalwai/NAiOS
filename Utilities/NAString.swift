@@ -237,6 +237,10 @@ class NAString : NSObject {
         return String("Please enter e-mail")
     }
     
+    func enter_email_Data() -> String {
+        return String("email")
+    }
+    
     func please_select_your_relation() -> String {
         return String("Please select your relation")
     }
@@ -247,6 +251,10 @@ class NAString : NSObject {
     
     func please_enter_your_problem() -> String {
         return String("Please enter your problem")
+    }
+    
+    func enter_your_data(name : String) -> String {
+        return String("Enter your \(name)")
     }
     
     func please_enter_your_scrapType() -> String {
@@ -1239,6 +1247,10 @@ class NAString : NSObject {
     
     func ignored() -> String {
         return String ("Ignored")
+    }
+    
+    func done() -> String {
+        return String ("Done")
     }
     
     func dailyServiceNotAvailable() -> String {
@@ -2251,6 +2263,10 @@ class NAString : NSObject {
     
     func gatePass() -> String {
         return String("Gate Pass")
+    }
+    
+    func profile_Name() -> String {
+        return String("name")
     }
     
     func downloadCompleted() -> String {

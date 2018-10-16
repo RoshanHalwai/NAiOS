@@ -43,6 +43,8 @@
 		08F3ED9F212FC7AD0030DBEF /* SocietyServiceRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */; };
 		08F3EDA1212FD6B00030DBEF /* SocietyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */; };
 		1E6FA2C8546034E2AFB2464C /* Pods_nammaApartment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */; };
+		420324B321759E60005BC455 /* MyProfileDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420324B221759E60005BC455 /* MyProfileDataViewController.swift */; };
+		420324B421759E69005BC455 /* MyProfileDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420324B221759E60005BC455 /* MyProfileDataViewController.swift */; };
 		42245146214FBDE600CD2C0E /* NammaApartmentFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42245145214FBDE600CD2C0E /* NammaApartmentFood.swift */; };
 		422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */; };
 		422E7E062114619F00648D40 /* SocietyHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */; };
@@ -428,6 +430,7 @@
 		08EF758F20D240620031FA66 /* NAValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAValidation.swift; sourceTree = "<group>"; };
 		08F3ED9E212FC7AD0030DBEF /* SocietyServiceRatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocietyServiceRatingView.xib; sourceTree = "<group>"; };
 		08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyServiceRatingView.swift; sourceTree = "<group>"; };
+		420324B221759E60005BC455 /* MyProfileDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileDataViewController.swift; sourceTree = "<group>"; };
 		42245145214FBDE600CD2C0E /* NammaApartmentFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentFood.swift; sourceTree = "<group>"; };
 		422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyHistoryViewController.swift; sourceTree = "<group>"; };
@@ -935,6 +938,7 @@
 			children = (
 				0816E57A20EA77E700116FD0 /* EditMyProfileViewController.swift */,
 				084BBB5A2143C55E00289B38 /* EditMyProfileFlatMembersListViewController.swift */,
+				420324B221759E60005BC455 /* MyProfileDataViewController.swift */,
 			);
 			path = "My Profile";
 			sourceTree = "<group>";
@@ -1785,6 +1789,7 @@
 				5D774298210DD49F0049344F /* SplashNammaApartments.swift in Sources */,
 				5D774291210DD49F0049344F /* SearchTableViewCell.swift in Sources */,
 				08355B0D210E2CB700F671D2 /* NammaApartmentEmergency.swift in Sources */,
+				420324B321759E60005BC455 /* MyProfileDataViewController.swift in Sources */,
 				86646BC220AB1530002A92B8 /* RaiseAlarmViewController.swift in Sources */,
 				86646BBE20AB0472002A92B8 /* EmergencyViewController.swift in Sources */,
 				42341BB9212165CC0005160B /* MyVehiclesCollectionViewCell.swift in Sources */,
@@ -1896,6 +1901,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86F7B3D0215D1FAD005A26CE /* SocietyTableViewController.swift in Sources */,
+				420324B421759E69005BC455 /* MyProfileDataViewController.swift in Sources */,
 				86F7B3D1215D1FAD005A26CE /* NAFont.swift in Sources */,
 				86F7B3D2215D1FAD005A26CE /* NAValidation.swift in Sources */,
 				86F7B3D3215D1FAD005A26CE /* SignupViewController.swift in Sources */,
