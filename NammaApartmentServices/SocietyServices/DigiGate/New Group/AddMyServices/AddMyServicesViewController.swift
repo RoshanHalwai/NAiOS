@@ -410,7 +410,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
         if !(txt_Name.text?.isEmpty)! && txt_MobileNo.text?.count == NAString().required_mobileNo_Length() && !(txt_Date.text?.isEmpty)! && img_Profile.image != #imageLiteral(resourceName: "ExpectingVisitor") {
             if (navTitle! == NAString().add_my_service().capitalized) {
                 let lv = NAViewPresenter().otpViewController()
-                let dailyServicesString = NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their")
+                let dailyServicesString = NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: self.lbl_CountryCode.text!, third: self.txt_MobileNo.text!)
                 lv.getCountryCodeString = self.lbl_CountryCode.text!
                 lv.getMobileString = self.txt_MobileNo.text!
                 lv.newOtpString = dailyServicesString

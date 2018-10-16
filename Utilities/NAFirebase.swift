@@ -12,22 +12,6 @@ import UIKit
 class NAFirebase {
     
     var stackView : UIStackView!
-    //Created Global function to get Profile image from firebase in Visitor List
-    func downloadImageFromServerURL(urlString: String, imageView:UIImageView) {
-        
-        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-            if error == nil {
-                let image = UIImage(data: data!)
-                DispatchQueue.main.async(execute: { () -> Void in
-                    imageView.image = image
-                    
-                    //Here Post the Value using NotificationCenter
-                    NotificationCenter.default.post(name: Notification.Name("CallBack"), object: nil)
-                })
-            }
-        }).resume()
-    }
-    
     func layoutFeatureUnavailable(mainView : UIViewController, newText : String) {
         
         //Image View
