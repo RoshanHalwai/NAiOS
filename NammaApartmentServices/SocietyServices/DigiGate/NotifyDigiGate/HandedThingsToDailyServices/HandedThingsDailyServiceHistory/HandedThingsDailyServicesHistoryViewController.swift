@@ -275,12 +275,7 @@ extension HandedThingsDailyServicesHistoryViewController {
                                     queue.waitUntilAllOperationsAreFinished()
                                 }
                             })
-                            if count == dailyServiceTypes?.count {
-                                if self.dailyServiceHistoryList.isEmpty {
-                                    NAActivityIndicator.shared.hideActivityIndicator()
-                                    self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
-                                }
-                            }
+                           
                         }
                     }
                 })

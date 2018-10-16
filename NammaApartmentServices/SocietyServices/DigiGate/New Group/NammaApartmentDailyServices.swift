@@ -38,7 +38,7 @@ class NammaApartmentDailyServices {
     var fullName: String?
     var phoneNumber: String?
     var profilePhoto: String?
-    var providedThings: NSDictionary
+    var providedThings: [String: String]
     var rating: Int?
     var timeOfVisit: String?
     var uid: String?
@@ -47,7 +47,7 @@ class NammaApartmentDailyServices {
     private var status: String?
     
     //initilaize the variables
-    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: NSDictionary,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?) {
+    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: [String: String],rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
@@ -76,11 +76,11 @@ class NammaApartmentDailyServices {
     }
     
     //Get providedThings
-    func getprovidedThings() -> NSDictionary {
+    func getprovidedThings() -> [String: String] {
         return providedThings
     }
     
-    func setprovidedThings(providedThings: NSDictionary) {
+    func setprovidedThings(providedThings: [String: String]) {
         self.providedThings = providedThings
     }
     

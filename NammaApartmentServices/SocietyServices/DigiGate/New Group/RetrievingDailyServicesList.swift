@@ -35,7 +35,10 @@ class RetrievingDailyServicesList {
                 
                 self.getDailyServiceCategoryData(dsCategory: dsCategory as! String, dsUIDList: dailyServiceUIDDictiornary.value(forKey: dsCategory as! String) as! [String], callback: { (dailyserviceDictionary) in
                     self.count = self.count + 1
-                    userDailyServicesList.append(dailyserviceDictionary.value(forKey: dsCategory as! String) as! NammaApartmentDailyServices)
+                   let dailyServices = dailyserviceDictionary[dsCategory as! String]
+                    for dailyservice in dailyServices! {
+                        userDailyServicesList.append(dailyservice)
+                    }
                     
                     if self.count == dailyServiceUIDDictiornary.count {
                         self.count = 0
@@ -46,12 +49,12 @@ class RetrievingDailyServicesList {
         }
     }
     
-    private func getDailyServiceCategoryData(dsCategory : String, dsUIDList : [String], callback: @escaping (_ dailyserviceDictionary: NSDictionary) -> Void) {
+    private func getDailyServiceCategoryData(dsCategory : String, dsUIDList : Array<Any>, callback: @escaping (_ dailyserviceDictionary: [String: [NammaApartmentDailyServices]]) -> Void) {
         
-        var dailyserviceDictionary = [String: AnyObject]()
+        var dailyserviceDictionary = [String: [NammaApartmentDailyServices]]()
         var dailyServiceList = [NammaApartmentDailyServices]()
         for dsUID in dsUIDList {
-            let dailyServiceRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dsCategory).child(dsUID).child(userUID)
+            let dailyServiceRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dsCategory).child(dsUID as! String).child(userUID)
             
             dailyServiceRef.observeSingleEvent(of: .value) { (dailyServiceSnapshot) in
                 
@@ -76,23 +79,25 @@ class RetrievingDailyServicesList {
                         
                         let status = statusSnapshot.value as? String
                         
-                        let dailyServicesData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: ["":""], rating: rating as? Int, timeOfVisit: timeOfVisit as? String, uid: uid as? String, type: type as? String, numberOfFlat: flats, status: status)
+                        var handedThingsMap = [String: String]()
                         let handedThingsRef = dailyServiceRef.child(Constants.FIREBASE_HANDEDTHINGS)
                         handedThingsRef.observeSingleEvent(of: .value, with: { (handedThingsSnapshot) in
                             
                             if handedThingsSnapshot.exists() {
-                                let handedThingsMap = NSDictionary()
+                                
                                 let handedThingsData = handedThingsSnapshot.value as? NSDictionary
                                 for handedThing in handedThingsData! {
-                                    handedThingsMap.setValue(handedThing.value, forKey: handedThing.key as! String)
-                                    
+                                    handedThingsMap.updateValue(handedThing.value as! String, forKey: handedThing.key as! String)
                                 }
+    
                             }
+                            let dailyServicesData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: handedThingsMap, rating: rating as? Int, timeOfVisit: timeOfVisit as? String, uid: uid as? String, type: type as? String, numberOfFlat: flats, status: status)
                             
                             dailyServiceList.append(dailyServicesData)
                             if dailyServiceList.count == dsUIDList.count {
-                                dailyserviceDictionary.updateValue(dailyServiceList as AnyObject, forKey: dsCategory)
-                                callback(dailyserviceDictionary as NSDictionary)
+                                
+                                dailyserviceDictionary.updateValue(dailyServiceList, forKey: dsCategory)
+                                callback(dailyserviceDictionary)
                             }
                         })
                     })
@@ -100,9 +105,9 @@ class RetrievingDailyServicesList {
             }
         }
     }
-    
+
     private func getAllDailyServiceUIDs(callback: @escaping (_ dailyServiceUIDDictiornary: NSDictionary) -> Void) {
-        var dailyServiceUIDDictiornary = [String:AnyObject]()
+        var dailyServiceUIDDictiornary = [String:[String]]()
         
         getDailyServicesCategories { (dailyServiceCategoriesList) in
             
@@ -116,7 +121,7 @@ class RetrievingDailyServicesList {
                 self.getDailyServicesUIDs(dailyServiceCategories: dailyServiceCategory, callback: { (dailyServiceUIDList) in
                     self.count = self.count + 1
                     
-                    dailyServiceUIDDictiornary.updateValue(dailyServiceUIDList as [String] as AnyObject, forKey: dailyServiceCategory)
+                    dailyServiceUIDDictiornary.updateValue(dailyServiceUIDList, forKey: dailyServiceCategory)
                     //setValue(dailyServiceUIDList as [String], forKey: dailyServiceCategory)
                     
                     if self.count == dailyServiceCategoriesList.count {
