@@ -31,7 +31,7 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         super.viewDidLoad()
         
         //Loading Retrieving History function on Load
-        checkAndRetrieveDailyService()
+        retrieveHandedThingsdailyServiceHistory()
         
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: titleName)
@@ -162,7 +162,7 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         return cell
     }
     
-    func checkAndRetrieveDailyService() {
+    func retrieveHandedThingsdailyServiceHistory() {
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
         let retrieveDailyList : RetrievingDailyServicesList
@@ -172,14 +172,16 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
                 NAActivityIndicator.shared.hideActivityIndicator()
                 self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
+                var count = 0
                 for dailyServiceData in userDailyServivcesList {
-                    
+                    count = count + 1
                     if !(dailyServiceData.getprovidedThings().isEmpty) {
                         self.dailyServiceHistoryList.append(dailyServiceData)
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        
                         self.collectionView.reloadData()
-                    } else {
+                    }
+                    
+                    if count == userDailyServivcesList.count && self.dailyServiceHistoryList.isEmpty {
                         NAActivityIndicator.shared.hideActivityIndicator()
                         self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                     }

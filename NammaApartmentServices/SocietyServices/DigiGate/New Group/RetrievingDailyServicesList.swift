@@ -149,9 +149,11 @@ class RetrievingDailyServicesList {
             callback(dailyServiceUIDList)
         })
     }
+    
     ///Returns a list of all categories of daily services added by user.
     ///
-    ///Parameters callback: returns a callback containing list of categories
+    ///
+    ///returns a callback containing list of categories
     private func getDailyServicesCategories(callback: @escaping (_ dailyServiceCategoriesList: [String]) -> Void) {
         
         var dailyServiceCategoriesList = [String]()

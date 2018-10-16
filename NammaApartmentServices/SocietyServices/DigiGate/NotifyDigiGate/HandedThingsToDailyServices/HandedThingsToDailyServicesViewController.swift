@@ -41,7 +41,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         //Calling Handed Things TO Daily services Retrieving Function on Load
-        checkAndRetrieveDailyService()
+        retrieveEnteredDailyServices()
         
         //Disable Table view cell selection & cell border line.
         tableView.allowsSelection = false
@@ -264,7 +264,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         self.tableView.reloadData()
     }
     
-    func checkAndRetrieveDailyService() {
+    func retrieveEnteredDailyServices() {
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         let retrieveDailyList : RetrievingDailyServicesList
         retrieveDailyList = RetrievingDailyServicesList.init(userUID: userUID)
@@ -282,9 +282,9 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
                         NAActivityIndicator.shared.hideActivityIndicator()
                         
                         self.tableView.reloadData()
-                    } else if count == userDailyServivcesList.count{
+                    }
+                    if count == userDailyServivcesList.count && self.dailyServiceHandedThingsList.isEmpty {
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        
                         self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
                     }
                 }
