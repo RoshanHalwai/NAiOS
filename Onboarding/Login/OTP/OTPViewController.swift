@@ -199,7 +199,7 @@ class OTPViewController: NANavigationViewController {
         //Concatinating all the OTP String variables to get Final String.
         finalOTPString = Otp_Strig1 + Otp_Strig2 + Otp_Strig3 + Otp_Strig4 + Otp_Strig5 + Otp_Strig6
         
-        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: "your")) {
+        if (lbl_OTPDescription.text == NAString().enter_verification_code(first: "your", second: self.getCountryCodeString, third: self.getMobileString)) {
             
             /* - Calling verify OTP function, When OTP Screen is Coming From Login VC.
              - Back to My Sweet Home screen and My Daily Services Screen. */
@@ -227,7 +227,7 @@ class OTPViewController: NANavigationViewController {
             }
         }
         //Back to My Daily Services Screen
-        if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: "their"))  {
+        if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: self.getCountryCodeString, third: self.getMobileString))  {
             
             //Creating Credential variable to check correct OTP String.
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)

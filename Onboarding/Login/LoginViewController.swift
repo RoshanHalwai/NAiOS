@@ -139,7 +139,7 @@ class LoginViewController: NANavigationViewController {
         } else if ((txt_MobileNo.text?.count)! == NAString().required_mobileNo_Length()) {
             txt_MobileNo.resignFirstResponder()
             let lv = NAViewPresenter().otpViewController()
-            let otpString = NAString().enter_verification_code(first: "your", second: "your")
+            let otpString = NAString().enter_verification_code(first: "your", second: self.lbl_CountryCode.text!, third: self.txt_MobileNo.text!)
             lv.newOtpString = otpString
             
             //Passing mobile number string to OTP VC (For mapping No with UID)

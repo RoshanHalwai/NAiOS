@@ -434,9 +434,9 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         let destVC = NAViewPresenter().otpViewController()
         var segmentType = String()
         if familyType == familyMember {
-            segmentType = NAString().enter_verification_code(first: NAString().your_Friend(), second: NAString().their())
+            segmentType = NAString().enter_verification_code(first: NAString().your_Friend(), second: self.lbl_CountryCode.text!, third: self.txt_MobileNo.text!)
         } else {
-            segmentType = NAString().enter_verification_code(first:NAString().your_Family_Member(), second: NAString().their())
+            segmentType = NAString().enter_verification_code(first:NAString().your_Family_Member(), second: self.lbl_CountryCode.text!, third: self.txt_MobileNo.text!)
         }
         destVC.newOtpString = segmentType
         destVC.getCountryCodeString = self.lbl_CountryCode.text!
