@@ -1322,8 +1322,16 @@ class NAString : NSObject {
         return String ("REQUEST  \(name)")
     }
     
+    func requestAccept_Message(name : String) -> String {
+        return String ("Sorry, no \(name) is avilable at the moment")
+    }
+    
     func selectAnyProblem() -> String {
         return String ("Select Problem")
+    }
+    
+    func again() -> String {
+        return String ("AGAIN")
     }
     
     func selectLanguage() -> String {
@@ -1352,6 +1360,10 @@ class NAString : NSObject {
     
     func scrapType() -> String {
         return String ("scrapType")
+    }
+    
+    func awaitingResponse() -> String {
+        return String ("Awaiting Response")
     }
     
     func selectAnyOne() -> String {
@@ -1688,6 +1700,10 @@ class NAString : NSObject {
         return String("Account Created")
     }
     
+    func declined() -> String {
+        return String("Declined")
+    }
+    
     func welcomeScreenDescription() -> String {
         return String("Thank you for registering with Namma Apartments. Your details have been sent to the Society Admin. We will notify you once your account gets activated.")
     }
@@ -1853,15 +1869,27 @@ class NAString : NSObject {
     }
     
     func maintenanceAmountAlert_Message(maintenanceAmount: Int, additionalCharges: Float, totalAmount: Float, chargesPer : Float) -> String {
-        return String("\n Maintenance Amount:\t\t Rs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t    Rs \(totalAmount)")
+        return String("\nMaintenance Amount:\t\tRs \(maintenanceAmount) \n\nConvenience Fee (\(chargesPer)%):\tRs \(additionalCharges) \n\nTotal Amount: \t\t\tRs \(totalAmount)")
+    }
+    
+    func transactionSummary_Success_Title() -> String {
+        return String("Your payment was successful !!")
+    }
+    
+    func transactionSummary_Failed_Title() -> String {
+        return String("Your payment failed")
     }
     
     func transactions() -> String {
         return String("Transactions")
     }
     
-    func rs(amount: Int) -> String {
-        return String ("Rs.\(amount)")
+    func transactionSummary() -> String {
+        return String("Transaction Summary")
+    }
+    
+    func rs(amount: Float) -> String {
+        return String ("Rs. \(amount)")
     }
     
     func transactionTimeStampFormat() -> String {
@@ -1870,6 +1898,14 @@ class NAString : NSObject {
     
     func convertedTimeStampFormat() -> String {
         return String("E, MMM dd, hh:mm")
+    }
+    
+    func transactionPeriodFormat() -> String {
+        return String("MMyyyy")
+    }
+    
+    func convertedTransactionPeriodFormat() -> String {
+        return String("MMM yyyy")
     }
     
     func chooseOne() -> String {
@@ -1968,8 +2004,8 @@ class NAString : NSObject {
         return String("Full Day(8AM - 10PM)")
     }
     
-    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Float, perSlot: Int, estimatedAmount: Int, convenienceFee: Float, convenienceAmount: Float ) -> String {
-        return String("\nNo. of Booked Slots:\t\t\t  \(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):      Rs. \(convenienceAmount) \n\nTotal Amount:\t\t   Rs. \(totalAmount)")
+    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Double, perSlot: Int, estimatedAmount: Double, convenienceFee: Float, convenienceAmount: Float ) -> String {
+        return String("\nNo. of Booked Slots:\t\t  \(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):     Rs. \(convenienceAmount) \n\nTotal Amount:\t\t\tRs. \(totalAmount)")
     }
     
     func bookingSummary() -> String {
@@ -2215,6 +2251,18 @@ class NAString : NSObject {
     
     func gatePass() -> String {
         return String("Gate Pass")
+    }
+    
+    func downloadCompleted() -> String {
+        return String("Download Completed")
+    }
+    
+    func downloadCompletedMessage() -> String {
+        return String("Your gate pass has been saved to the gallery")
+    }
+    
+    func gatePassDescription() -> String {
+        return String("Download this pass for your hassle free entry into the Society. Issued by Namma Apartments.")
     }
 }
 

@@ -87,10 +87,18 @@ class RetrievingGuestList {
             var guestUIDList = [String]()
             if (snapshot.exists()) {
                 let guestsUIDMap = snapshot.value as? NSDictionary
-                for guestUID in (guestsUIDMap?.allKeys)! {
+                
+                var guestUIDArray = [String]()
+                //Getting all Guest UID's in Empty Array
+                guestUIDArray = guestsUIDMap?.allKeys as! [String]
+                //sorting UID's
+                let sortedArray = guestUIDArray.sorted()
+                //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
+                let reversedArray = sortedArray.reversed()
+                for guestUID in reversedArray {
                     
                     if guestsUIDMap![guestUID] as! Bool == true || guestsUIDMap![guestUID] as! Bool == self.pastGuestListRequired {
-                        guestUIDList.append(guestUID as! String)
+                        guestUIDList.append(guestUID)
                     }
                 }
             }

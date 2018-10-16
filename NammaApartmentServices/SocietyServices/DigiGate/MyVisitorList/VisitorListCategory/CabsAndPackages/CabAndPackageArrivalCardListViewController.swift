@@ -224,8 +224,16 @@ extension CabAndPackageArrivalCardListViewController {
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let cabsUID = snapshot.value as? NSDictionary
-                for cabsUID in (cabsUID?.allKeys)! {
-                    self.cabsPublicRef = Constants.FIREBASE_CABS_PRIVATE.child(cabsUID as! String)
+                
+                var cabUIDArray = [String]()
+                //Getting all Cab UID's in Empty Array
+                cabUIDArray = cabsUID?.allKeys as! [String]
+                //sorting UID's
+                let sortedArray = cabUIDArray.sorted()
+                //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
+                let reversedArray = sortedArray.reversed()
+                for cabsUID in reversedArray {
+                    self.cabsPublicRef = Constants.FIREBASE_CABS_PRIVATE.child(cabsUID)
                     self.cabsPublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
                             
@@ -309,8 +317,16 @@ extension CabAndPackageArrivalCardListViewController {
         userDataRef?.observeSingleEvent(of: .value, with: {(snapshot) in
             if snapshot.exists() {
                 let packageUID = snapshot.value as? NSDictionary
-                for vendorUID in (packageUID?.allKeys)! {
-                    self.packagePublicRef = Constants.FIREBASE_DELIVERIES_PRIVATE.child(vendorUID as! String)
+                
+                var packageUIDArray = [String]()
+                //Getting all Package UID's in Empty Array
+                packageUIDArray = packageUID?.allKeys as! [String]
+                //sorting UID's
+                let sortedArray = packageUIDArray.sorted()
+                //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
+                let reversedArray = sortedArray.reversed()
+                for vendorUID in reversedArray {
+                    self.packagePublicRef = Constants.FIREBASE_DELIVERIES_PRIVATE.child(vendorUID)
                     self.packagePublicRef?.observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.exists() {
                             

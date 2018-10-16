@@ -10,6 +10,7 @@ import UIKit
 import MessageUI
 import FirebaseDatabase
 import MapKit
+import SDWebImage
 
 class ApartmentServicesViewController: NANavigationViewController,UICollectionViewDelegate,UICollectionViewDataSource, MFMessageComposeViewControllerDelegate, CLLocationManagerDelegate {
     
@@ -90,9 +91,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         default:
             break
         }
-        //Here Adding Observer Value Using NotificationCenter
-        NotificationCenter.default.addObserver(self, selector: #selector(self.imageHandle(notification:)), name: Notification.Name("CallBack"), object: nil)
-        
+       
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
@@ -121,30 +120,25 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         //Text Label
         let newLabel = UILabel()
         newLabel.textColor = UIColor.black
-        newLabel.numberOfLines = 2
+        newLabel.numberOfLines = 5
         newLabel.font = NAFont().layoutFeatureErrorFont()
         newLabel.text  = newText
         newLabel.textAlignment = .center
         
+        //Get device width
+        let width = mainView.view.bounds.width
+        
         //Stack View
-        let stackView = UIStackView()
+        let stackView = UIStackView(frame: CGRect(x: 20, y: 30, width: width - 30, height: 200))
         stackView.axis = UILayoutConstraintAxis.vertical
-        stackView.distribution = UIStackViewDistribution.equalCentering
+        stackView.distribution = UIStackViewDistribution.fill
         stackView.alignment = UIStackViewAlignment.center
-        stackView.spacing = CGFloat(NAString().fifteen())
+        stackView.spacing = 5
         
         stackView.addArrangedSubview(newImage)
         stackView.addArrangedSubview(newLabel)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         mainView.view.addSubview(stackView)
-        
-        //Constraints
-        stackView.centerXAnchor.constraint(equalTo: mainView.view.centerXAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: mainView.view.topAnchor).isActive = true
-        
-        stackView.leadingAnchor.constraint(equalTo: mainView.view.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: mainView.view.trailingAnchor).isActive = true
         
         if newText.count == 0 {
             stackView.removeFromSuperview()
@@ -169,14 +163,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         }
     }
     
-    //Create image Handle  Function
-    @objc func imageHandle(notification: Notification) {
-        DispatchQueue.main.async {
-            self.collectionView.performBatchUpdates(nil, completion: nil)
-            self.collectionView.reloadData()
-        }
-    }
-    
     //MARK : UICollectionView Delegate & DataSource Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allDailyServicesList.count
@@ -191,18 +177,11 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         cell.lbl_MyCookName.text = dailyServicesData.getfullName()
         cell.lbl_MyCookRating.text = "\(dailyServicesData.getrating())"
         cell.lbl_MyCookFlat.text = "\(dailyServicesData.getNumberOfFlats())"
-        let queue = OperationQueue()
         
-        queue.addOperation {
-            if let urlString = dailyServicesData.getprofilePhoto() {
-                NAFirebase().downloadImageFromServerURL(urlString: urlString,imageView: cell.myCookImage)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    cell.activity_Indicator.isHidden = true
-                    cell.activity_Indicator.stopAnimating()
-                }
-            }
-        }
-        queue.waitUntilAllOperationsAreFinished()
+        //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
+        cell.myCookImage.sd_setShowActivityIndicatorView(true)
+        cell.myCookImage.sd_setIndicatorStyle(.gray)
+        cell.myCookImage.sd_setImage(with: URL(string: dailyServicesData.getprofilePhoto()!), completed: nil)
         
         cell.lbl_CookName.font = NAFont().textFieldFont()
         cell.lbl_CookRating.font = NAFont().textFieldFont()

@@ -93,6 +93,7 @@
 		5D70B4BF2155042500656819 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4BE2155042500656819 /* EventManagementViewController.swift */; };
 		5D70B4C12155047700656819 /* EventManagementHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */; };
 		5D70B4C3215504C000656819 /* EventManagementHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */; };
+		5D70F49821749A7D0089E0EC /* RetrievingDailyServicesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70F49721749A7D0089E0EC /* RetrievingDailyServicesList.swift */; };
 		5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427B210DD49F0049344F /* SearchViewController.swift */; };
 		5D774290210DD49F0049344F /* MyFlatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427C210DD49F0049344F /* MyFlatTableViewCell.swift */; };
 		5D774291210DD49F0049344F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427D210DD49F0049344F /* SearchTableViewCell.swift */; };
@@ -112,6 +113,7 @@
 		5DC976112162029100B1928F /* DailyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC976102162029100B1928F /* DailyServiceRatingView.swift */; };
 		5DC9761321649D5200B1928F /* RetrievingApartmentServicesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9761221649D5200B1928F /* RetrievingApartmentServicesData.swift */; };
 		5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD9DF2620FCC280002C13BB /* HandedHistory.swift */; };
+		5DE874492170E8A200267427 /* TransactionSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE874482170E8A200267427 /* TransactionSummaryViewController.swift */; };
 		86114E5E20B5A88D00656B56 /* NAViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */; };
 		861CC00820B9AA99009EC0EF /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFE20B9AA98009EC0EF /* Lato-Italic.ttf */; };
 		861CC00920B9AA99009EC0EF /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 861CBFFF20B9AA98009EC0EF /* Lato-LightItalic.ttf */; };
@@ -479,6 +481,7 @@
 		5D70B4BE2155042500656819 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryViewController.swift; sourceTree = "<group>"; };
 		5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		5D70F49721749A7D0089E0EC /* RetrievingDailyServicesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingDailyServicesList.swift; sourceTree = "<group>"; };
 		5D77427B210DD49F0049344F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5D77427C210DD49F0049344F /* MyFlatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFlatTableViewCell.swift; sourceTree = "<group>"; };
 		5D77427D210DD49F0049344F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -498,6 +501,7 @@
 		5DC976102162029100B1928F /* DailyServiceRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyServiceRatingView.swift; sourceTree = "<group>"; };
 		5DC9761221649D5200B1928F /* RetrievingApartmentServicesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingApartmentServicesData.swift; sourceTree = "<group>"; };
 		5DD9DF2620FCC280002C13BB /* HandedHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedHistory.swift; sourceTree = "<group>"; };
+		5DE874482170E8A200267427 /* TransactionSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSummaryViewController.swift; sourceTree = "<group>"; };
 		7D32319EB7F3BC3F9FBA2319 /* Pods_nammaApartment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nammaApartment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B8A2E220ED171204623A20 /* Pods-nammaApartmentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nammaApartmentUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-nammaApartmentUITests/Pods-nammaApartmentUITests.release.xcconfig"; sourceTree = "<group>"; };
 		86114E5D20B5A88D00656B56 /* NAViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewPresenter.swift; sourceTree = "<group>"; };
@@ -549,6 +553,7 @@
 		867CFF2A20A43EB500EDB966 /* HandedThingsToGuestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandedThingsToGuestTableViewCell.swift; sourceTree = "<group>"; };
 		867DFFA820AEA3BB00A45895 /* MySweetHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySweetHomeViewController.swift; sourceTree = "<group>"; };
 		867FF1B920FC737B00A6A4C9 /* NAExpectingArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAExpectingArrival.swift; sourceTree = "<group>"; };
+		868CD8BC216F2934001A118F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFlatDetails.swift; sourceTree = "<group>"; };
 		868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPersonalDetails.swift; sourceTree = "<group>"; };
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
@@ -757,6 +762,7 @@
 				4234754A212EB87200A791AA /* MyWalletViewController.swift */,
 				08EA577E214649DB00A0574D /* MyTransactionsViewController.swift */,
 				08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */,
+				5DE874482170E8A200267427 /* TransactionSummaryViewController.swift */,
 				08EA5782214649EB00A0574D /* NAUserTransactions.swift */,
 			);
 			path = "My Wallet";
@@ -1163,6 +1169,7 @@
 				86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */,
 				5DC976102162029100B1928F /* DailyServiceRatingView.swift */,
 				5DC9760E2162026500B1928F /* DailyServiceRatingView.xib */,
+				5D70F49721749A7D0089E0EC /* RetrievingDailyServicesList.swift */,
 				86E83E4320A9B07D00FA7CA7 /* AddMyServices */,
 			);
 			name = MyDailyServices;
@@ -1233,6 +1240,7 @@
 		86A8B933209EC9FE00EA1C35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				868CD8BC216F2934001A118F /* AssetsLibrary.framework */,
 				423187D520F378E400F10A23 /* FirebaseAuth.framework */,
 				423187D720F378E400F10A23 /* FirebaseCore.framework */,
 				423187D920F378E400F10A23 /* FirebaseDatabase.framework */,
@@ -1699,6 +1707,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${PODS_ROOT}/razorpay-pod/Pod/Razorpay.framework",
@@ -1709,6 +1718,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Razorpay.framework",
@@ -1791,6 +1801,7 @@
 				5D774292210DD49F0049344F /* MyFlatDetailsViewController.swift in Sources */,
 				081156822125866B002386D9 /* RateUs.swift in Sources */,
 				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
+				5D70F49821749A7D0089E0EC /* RetrievingDailyServicesList.swift in Sources */,
 				42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */,
 				426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */,
 				08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */,
@@ -1845,6 +1856,7 @@
 				0834B394214249F000516C9C /* ContactUsViewController.swift in Sources */,
 				5DD9DF2720FCC280002C13BB /* HandedHistory.swift in Sources */,
 				862700FF209707BB004B28EB /* namaApartment.xcdatamodeld in Sources */,
+				5DE874492170E8A200267427 /* TransactionSummaryViewController.swift in Sources */,
 				08EA577F214649DB00A0574D /* MyTransactionsViewController.swift in Sources */,
 				5D774299210DD49F0049344F /* DataModel.swift in Sources */,
 				422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */,

@@ -13,4 +13,5 @@ class MyTransactionsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_ServiceType: UILabel!
     @IBOutlet weak var lbl_Date_And_Time: UILabel!
     @IBOutlet weak var success_Failure_Image: UIImageView!
+    @IBOutlet weak var btn_to_NextVC: UIButton!
 }

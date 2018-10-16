@@ -12,7 +12,6 @@ class SocietyHistoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var lbl_Problem: UILabel!
     @IBOutlet weak var lbl_Date: UILabel!
-    
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var checkMarkImage: UIImageView!
 }
