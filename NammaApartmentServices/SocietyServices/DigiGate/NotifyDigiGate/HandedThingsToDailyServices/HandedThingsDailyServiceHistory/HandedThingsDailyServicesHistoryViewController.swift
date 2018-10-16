@@ -162,12 +162,14 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         return cell
     }
     
+    /* - Check if the flat has any daily service. If it does not have any daily services added we show daily service unavailable message.
+     - Else, we display the daily services who got things handed by the user.*/
     func retrieveHandedThingsdailyServiceHistory() {
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
         let retrieveDailyList : RetrievingDailyServicesList
         retrieveDailyList = RetrievingDailyServicesList.init(userUID: userUID)
         retrieveDailyList.getAllDailyServices { (userDailyServivcesList) in
+            
             if userDailyServivcesList.isEmpty {
                 NAActivityIndicator.shared.hideActivityIndicator()
                 self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
@@ -175,6 +177,7 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
                 var count = 0
                 for dailyServiceData in userDailyServivcesList {
                     count = count + 1
+                    
                     if !(dailyServiceData.getprovidedThings().isEmpty) {
                         self.dailyServiceHistoryList.append(dailyServiceData)
                         NAActivityIndicator.shared.hideActivityIndicator()

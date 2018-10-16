@@ -49,6 +49,12 @@ class RetrievingDailyServicesList {
         }
     }
     
+    ///Returns a map with key as {@link DailyServiceType} and values as all daily services under that category
+    ///which is in turn an instance of {@link NammaApartmentDailyService}
+    ///
+    ///- parameter dsCategory: category of the daily service
+    ///- parameter dsUIDList:  list of all daily service UIDs which belong to dsCategory
+    ///- parameter callback: to return map which contain data of daily service which belong to dsCategory
     private func getDailyServiceCategoryData(dsCategory : String, dsUIDList : Array<Any>, callback: @escaping (_ dailyserviceDictionary: [String: [NammaApartmentDailyServices]]) -> Void) {
         
         var dailyserviceDictionary = [String: [NammaApartmentDailyServices]]()
@@ -57,7 +63,7 @@ class RetrievingDailyServicesList {
             let dailyServiceRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dsCategory).child(dsUID as! String).child(userUID)
             
             dailyServiceRef.observeSingleEvent(of: .value) { (dailyServiceSnapshot) in
-                
+                //To get actual data of Daily Service
                 let dailyServiceUIDRef = dailyServiceSnapshot.ref.parent
                 dailyServiceUIDRef?.observeSingleEvent(of: .value, with: { (dsUIDSnapshot) in
                     
@@ -66,6 +72,7 @@ class RetrievingDailyServicesList {
                     
                     dailyServiceUIDRef?.child(Constants.FIREBASE_STATUS).observeSingleEvent(of: .value, with: { (statusSnapshot) in
                         
+                        //To get status of daily service
                         //Getting Data Form Firebase & Adding into Model Class
                         let dailyServiceData = dailyServiceSnapshot.value as? [String: AnyObject]
                         
@@ -82,6 +89,8 @@ class RetrievingDailyServicesList {
                         var handedThings = String()
                         var dateOfHandedThings = String()
                         let handedThingsRef = dailyServiceRef.child(Constants.FIREBASE_HANDEDTHINGS)
+                        
+                        //To get handed things history of daily service
                         handedThingsRef.observeSingleEvent(of: .value, with: { (handedThingsSnapshot) in
                             
                             if handedThingsSnapshot.exists() {
@@ -91,7 +100,6 @@ class RetrievingDailyServicesList {
                                     handedThings = handedThing.value as! String
                                     dateOfHandedThings = handedThing.key as! String
                                 }
-                                
                             }
                             let dailyServicesData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: handedThings, dateOfHandedThings: dateOfHandedThings, rating: rating as? Int, timeOfVisit: timeOfVisit as? String, uid: uid as? String, type: type as? String, numberOfFlat: flats, status: status)
                             
@@ -108,6 +116,9 @@ class RetrievingDailyServicesList {
         }
     }
     
+    ///Returns all the daily service UIDs who have been added by the user
+    ///
+    ///- parameter callback: returns a callback which contains daily service category as key and all UIDs associated to each of the category
     private func getAllDailyServiceUIDs(callback: @escaping (_ dailyServiceUIDDictiornary: NSDictionary) -> Void) {
         var dailyServiceUIDDictiornary = [String:[String]]()
         
@@ -124,7 +135,6 @@ class RetrievingDailyServicesList {
                     self.count = self.count + 1
                     
                     dailyServiceUIDDictiornary.updateValue(dailyServiceUIDList, forKey: dailyServiceCategory)
-                    //setValue(dailyServiceUIDList as [String], forKey: dailyServiceCategory)
                     
                     if self.count == dailyServiceCategoriesList.count {
                         self.count = 0
@@ -135,6 +145,10 @@ class RetrievingDailyServicesList {
         }
     }
     
+    ///Get daily service UIDs of one category of Daily Service, say 3 UIDs of Type Cook
+    ///
+    ///- parameter dailyServiceCategories: category of the daily service
+    ///- parameter callback: returns a callback which contains a list of all UID which belong to daily service category
     private func getDailyServicesUIDs(dailyServiceCategories : String, callback: @escaping (_ dailyServiceUIDList: [String]) -> Void) {
         
         var dailyServiceUIDList = [String]()
@@ -152,8 +166,7 @@ class RetrievingDailyServicesList {
     
     ///Returns a list of all categories of daily services added by user.
     ///
-    ///
-    ///returns a callback containing list of categories
+    ///- parameter callback: returns a callback containing list of categories
     private func getDailyServicesCategories(callback: @escaping (_ dailyServiceCategoriesList: [String]) -> Void) {
         
         var dailyServiceCategoriesList = [String]()

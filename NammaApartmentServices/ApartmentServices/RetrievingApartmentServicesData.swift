@@ -76,9 +76,9 @@ class RetrievingApartmentServicesData {
             let uid = dailyServicesData?[DailyServicesListFBKeys.uid.key]
             let rating = dailyServicesData?[DailyServicesListFBKeys.rating.key]
             
-//            let dailyServiceData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: "", rating: rating as? Int, timeOfVisit: nil, uid: (uid as! String), type: nil, numberOfFlat: self.flatCount, status: nil)
-//            
-//            callback(dailyServiceData)
+            let dailyServiceData = NammaApartmentDailyServices(fullName: (fullName as! String), phoneNumber: phoneNumber as? String, profilePhoto: profilePhoto as? String, providedThings: "", dateOfHandedThings: "", rating: rating as? Int, timeOfVisit: nil, uid: (uid as! String), type: nil, numberOfFlat: self.flatCount, status: nil)
+            
+            callback(dailyServiceData)
         }
     }
 }

@@ -264,6 +264,8 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         self.tableView.reloadData()
     }
     
+    /* - Check if the flat has any daily service. If it does not have any daily services added we show daily service unavailable message
+    - Else, we display the daily services whose status is “Entered” of the current user and their family members.*/
     func retrieveEnteredDailyServices() {
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         let retrieveDailyList : RetrievingDailyServicesList
@@ -277,10 +279,8 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
                 for dailyServiceData in userDailyServivcesList {
                     count = count + 1
                     if dailyServiceData.getStatus() == NAString().entered() {
-                        
                         self.dailyServiceHandedThingsList.append(dailyServiceData)
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        
                         self.tableView.reloadData()
                     }
                     if count == userDailyServivcesList.count && self.dailyServiceHandedThingsList.isEmpty {

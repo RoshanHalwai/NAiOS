@@ -451,6 +451,8 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
         collectionView.reloadData()
     }
     
+    /* - Check if the flat has any daily service. If it does not have any daily services added we show daily service unavailable message
+     - Else, we display the cardView of all daily services of the current user.*/
     func checkAndRetrieveDailyService() {
         let retrieveDailyList : RetrievingDailyServicesList
         retrieveDailyList = RetrievingDailyServicesList.init(userUID: userUID)
