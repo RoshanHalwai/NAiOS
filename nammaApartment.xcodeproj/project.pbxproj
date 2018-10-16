@@ -91,6 +91,7 @@
 		5D70B4BF2155042500656819 /* EventManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4BE2155042500656819 /* EventManagementViewController.swift */; };
 		5D70B4C12155047700656819 /* EventManagementHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */; };
 		5D70B4C3215504C000656819 /* EventManagementHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */; };
+		5D70F49821749A7D0089E0EC /* RetrievingDailyServicesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70F49721749A7D0089E0EC /* RetrievingDailyServicesList.swift */; };
 		5D77428F210DD49F0049344F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427B210DD49F0049344F /* SearchViewController.swift */; };
 		5D774290210DD49F0049344F /* MyFlatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427C210DD49F0049344F /* MyFlatTableViewCell.swift */; };
 		5D774291210DD49F0049344F /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D77427D210DD49F0049344F /* SearchTableViewCell.swift */; };
@@ -476,6 +477,7 @@
 		5D70B4BE2155042500656819 /* EventManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementViewController.swift; sourceTree = "<group>"; };
 		5D70B4C02155047700656819 /* EventManagementHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryViewController.swift; sourceTree = "<group>"; };
 		5D70B4C2215504C000656819 /* EventManagementHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		5D70F49721749A7D0089E0EC /* RetrievingDailyServicesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingDailyServicesList.swift; sourceTree = "<group>"; };
 		5D77427B210DD49F0049344F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5D77427C210DD49F0049344F /* MyFlatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFlatTableViewCell.swift; sourceTree = "<group>"; };
 		5D77427D210DD49F0049344F /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -1161,6 +1163,7 @@
 				86FEE60A20DBB4F00023DC94 /* NammaApartmentDailyServices.swift */,
 				5DC976102162029100B1928F /* DailyServiceRatingView.swift */,
 				5DC9760E2162026500B1928F /* DailyServiceRatingView.xib */,
+				5D70F49721749A7D0089E0EC /* RetrievingDailyServicesList.swift */,
 				86E83E4320A9B07D00FA7CA7 /* AddMyServices */,
 			);
 			name = MyDailyServices;
@@ -1791,6 +1794,7 @@
 				5D774292210DD49F0049344F /* MyFlatDetailsViewController.swift in Sources */,
 				081156822125866B002386D9 /* RateUs.swift in Sources */,
 				08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */,
+				5D70F49821749A7D0089E0EC /* RetrievingDailyServicesList.swift in Sources */,
 				42341BBB212165D90005160B /* MyGuardsCollectionViewCell.swift in Sources */,
 				426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */,
 				08EA5783214649EB00A0574D /* NAUserTransactions.swift in Sources */,
