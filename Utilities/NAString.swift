@@ -52,7 +52,7 @@ class NAString : NSObject {
     }
     
     func enter_verification_code(first : String, second : String, third: String) -> String {
-        return String("We need to verify \(first) account. Please enter the 6-digit verification code that has been sent to \(second) \(third).")
+        return String("We need to verify \(first) account. Please enter the 6-digit verification code sent to \(second)-\(third).")
     }
     
     func verify_otp_button() -> String {
