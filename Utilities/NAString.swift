@@ -2264,5 +2264,17 @@ class NAString : NSObject {
     func gatePassDescription() -> String {
         return String("Download this pass for your hassle free entry into the Society. Issued by Namma Apartments.")
     }
+    
+    func send_Message() -> String {
+        return String("Send Message")
+    }
+    
+    func converted_Chat_TimeFormat() -> String {
+        return String("hh:mm a")
+    }
+    
+    func secondCell_ID() -> String {
+        return String("Cell1")
+    }
 }
 

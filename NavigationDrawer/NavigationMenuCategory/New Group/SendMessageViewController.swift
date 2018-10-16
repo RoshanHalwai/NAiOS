@@ -10,13 +10,15 @@ import UIKit
 
 class SendMessageViewController: NANavigationViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     
+    @IBOutlet weak var txtView_Parent_View: UIView!
     @IBOutlet weak var text_View: UITextView!
     @IBOutlet weak var btn_Send: UIButton!
     @IBOutlet weak var table_View: UITableView!
     @IBOutlet weak var stackView_Bottom_Constraints: NSLayoutConstraint!
     @IBOutlet weak var text_View_Height_Constraints: NSLayoutConstraint!
+    @IBOutlet weak var send_Button_Bottom_Constraints: NSLayoutConstraint!
     
-    @IBOutlet weak var table_View_Bottom_Constraint: NSLayoutConstraint!
+    @IBOutlet weak var parent_View_Height_Constraint: NSLayoutConstraint!
     
     var neighbourUID = String()
     var neighbourApartment = String()
@@ -28,21 +30,17 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.ConfigureNavBarTitle(title: "Send Message")
+        self.ConfigureNavBarTitle(title: NAString().send_Message())
         self.navigationItem.rightBarButtonItem = nil
         text_View.backgroundColor = UIColor.white
-        text_View.layer.borderColor = UIColor.black.cgColor
-        text_View.layer.borderWidth = 2
-        text_View.layer.cornerRadius = 15
+        txtView_Parent_View.layer.borderColor = UIColor.black.cgColor
+        txtView_Parent_View.layer.borderWidth = 2
+        txtView_Parent_View.layer.cornerRadius = 15
         text_View.delegate = self
         text_View.font = NAFont().textFieldFont()
         retrieveNeighboursMessages()
         table_View.separatorStyle = .none
-       
-        
-        
-        table_View.estimatedRowHeight = 100
-        
+        table_View.estimatedRowHeight = 200
         table_View.rowHeight = UITableViewAutomaticDimension
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
@@ -65,11 +63,11 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
             let keyBoardRect = frame?.cgRectValue
             if let keyBoardHeight = keyBoardRect?.height {
                 self.stackView_Bottom_Constraints.constant = keyBoardHeight
-                //self.table_View_Bottom_Constraint.constant = keyBoardHeight
-                
-                
+                self.send_Button_Bottom_Constraints.constant = keyBoardHeight
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
+                    let indexPath = NSIndexPath(row: self.neighboursChat.count-1, section: 0)
+                    self.table_View.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.bottom, animated: true)
                 })
             }
         }
@@ -80,9 +78,8 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
             let frame = userInfo[UIKeyboardFrameEndUserInfoKey]
             let keyBoardRect = frame?.cgRectValue
             if let keyBoardHeight = keyBoardRect?.height {
-                self.stackView_Bottom_Constraints.constant = self.stackView_Bottom_Constraints.constant - keyBoardHeight
-                //self.table_View_Bottom_Constraint.constant = self.table_View_Bottom_Constraint.constant - keyBoardHeight
-               
+                self.stackView_Bottom_Constraints.constant = (self.stackView_Bottom_Constraints.constant - keyBoardHeight) + 4
+                self.send_Button_Bottom_Constraints.constant = (self.send_Button_Bottom_Constraints.constant - keyBoardHeight) + 4
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
                 })
@@ -90,14 +87,8 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     @IBAction func btn_Send_Action(_ sender: UIButton) {
         storeMessageInFirebase()
-        //retrieveNeighboursMessages()
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -114,10 +105,12 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = NAString().userProblemTimeStampFormat()
         let dateAndTime = dateFormatterGet.date(from: dateString)
-        dateFormatterGet.dateFormat = "hh:mm a"
+        dateFormatterGet.dateFormat = NAString().converted_Chat_TimeFormat()
         messageTime = (dateFormatterGet.string(from: dateAndTime!))
+        
+        //Using two different table view Cells for recieved message and sent message.
         if messageList.getReceiverUID() == userUID {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell1", for: indexPath) as? ReceiverTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: NAString().secondCell_ID(), for: indexPath) as? ReceiverTableViewCell
             
             cell?.lbl_Reciever_Time.textColor = UIColor.black
             cell?.lbl_Reciever_Message.text = messageList.getMessage()
@@ -142,19 +135,17 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         }
     }
     
+    /*Resizing the Text View According to the Content Entered by the User and also allowing to resize upto 4 lines.*/
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
         let numberOfLines: Int = Int(self.text_View.contentSize.height/(self.text_View.font?.lineHeight)!)
-        let estimatedSize = self.text_View.contentSize.height
-        text_View.constraints.forEach { (constraints) in
-            self.text_View_Height_Constraints.constant = estimatedSize
-        }
-        if numberOfLines <= 5 {
+        if numberOfLines <= 4 {
             self.text_View_Height_Constraints.constant = self.text_View.contentSize.height
+            self.parent_View_Height_Constraint.constant = self.text_View.contentSize.height
         } 
         return true
     }
     
+    ///Storing User Sent Messages under particular Chat Room UID.
     func storeMessageInFirebase() {
         let userDataRef = GlobalUserData.shared.getUserDataReference()
             .child(Constants.FIREBASE_CHILD_CHATS)
@@ -205,6 +196,7 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         }
     }
     
+    ///Retrieving Neighbours sent Messages in particular chat Room.
     func retrieveNeighboursMessages() {
         self.neighboursChat.removeAll()
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CHATS).child(neighbourUID)
@@ -242,39 +234,3 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         }
     }
 }
-
-//        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID(), for: indexPath) as? SendMessageTableViewCell
-//        var messageList : NANeighboursChat
-//        messageList = neighboursChat[indexPath.row]
-//        cell?.parentView.layer.cornerRadius = 10
-//
-//        let timeStamp = messageList.getTimeStamp()
-//        let date = (NSDate(timeIntervalSince1970: TimeInterval(timeStamp/1000)))
-//        let dateString = String(describing: date)
-//        let dateFormatterGet = DateFormatter()
-//        dateFormatterGet.dateFormat = NAString().userProblemTimeStampFormat()
-//        let dateAndTime = dateFormatterGet.date(from: dateString)
-//        dateFormatterGet.dateFormat = "hh:mm a"
-//        let messageTime = (dateFormatterGet.string(from: dateAndTime!))
-//
-//        if messageList.getReceiverUID() == userUID {
-//            cell?.parentView.layer.borderColor = UIColor.black.cgColor
-//            cell?.parentView.layer.borderWidth = 1
-//            cell?.parentView.backgroundColor = UIColor.white
-//            cell?.lbl_time.textColor = UIColor.lightGray
-//            cell?.parentView_Trailing.constant = 60
-//            cell?.parentView_Leading.constant = 14
-//        } else {
-//            cell?.parentView.backgroundColor = UIColor.lightGray
-//            cell?.lbl_time.textColor = UIColor.black
-//            cell?.parentView_Trailing.constant = 14
-//            cell?.parentView_Leading.constant = 60
-//        }
-//        cell?.lbl_Messages.text = messageList.getMessage()
-//        cell?.lbl_time.text = messageTime
-//        //indexPath = IndexPath(row: numberOfRows-1, section: (numberOfSections-1))
-//
-//        cell?.lbl_Messages.font = NAFont().textFieldFont()
-//        cell?.isUserInteractionEnabled = false
-//
-//        return cell!

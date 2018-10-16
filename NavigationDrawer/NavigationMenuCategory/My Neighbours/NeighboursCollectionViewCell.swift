@@ -19,7 +19,6 @@ class NeighboursCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lbl_NeighbourFlat: UILabel!
     
     @IBOutlet weak var btn_Message: UIButton!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var actionMessage : (() -> Void)? = nil
     
