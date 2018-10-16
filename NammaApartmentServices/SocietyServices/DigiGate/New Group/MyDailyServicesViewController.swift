@@ -101,7 +101,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         opacity_View.isUserInteractionEnabled = true
         opacity_View.addGestureRecognizer(tap)
     }
-   
+    
     /* - For navigating back to My Digi Gate VC.
      - For creating action sheet to select my daily services. */
     
@@ -202,7 +202,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.lbl_MyDailyServicesInTime.text = DSList.getStatus()
         cell.lbl_MyDailyServicesFlats.text = "\(DSList.getNumberOfFlats())"
         cell.lbl_MyDailyServicesRating.text = "\(DSList.rating!)"
-
+        
         //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
         cell.myDailyServicesImage.sd_setShowActivityIndicatorView(true)
         cell.myDailyServicesImage.sd_setIndicatorStyle(.gray)
@@ -457,163 +457,16 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
         retrieveDailyList.getAllDailyServices { (userDailyServivcesList) in
             if userDailyServivcesList.isEmpty {
                 NAActivityIndicator.shared.hideActivityIndicator()
-
+                
                 self.layoutMessageObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
                 for dailyServiceData in userDailyServivcesList {
                     self.NADailyServicesList.append(dailyServiceData)
                     NAActivityIndicator.shared.hideActivityIndicator()
-
+                    
                     self.collectionView.reloadData()
                 }
             }
         }
     }
 }
-
-//extension MyDailyServicesViewController {
-//
-//    //Created structure to Daily Service Type & NumberOfFlats.
-//    struct dailySericeTypeAndNumberOfFlat {
-//        var type: String
-//        var flat: Int
-//        var status: String
-//    }
-//
-//    func retrieveDailyServicesFromFirebase(userUID : String) {
-//
-//        var dsInfo: [dailySericeTypeAndNumberOfFlat] = []
-//
-//        //To check that Any daily service is available or not inside user's flat
-//        userDataRef =  GlobalUserData.shared.getUserDataReference()
-//            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
-//        //To Daily Service UID in dailyServive child -> Public
-//        userDataRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//            if (!(snapshot.exists())) {
-//                NAActivityIndicator.shared.hideActivityIndicator()
-//
-//                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
-//            } else {
-//                self.dailyServiceInUserRef = GlobalUserData.shared.getUserDataReference()
-//                    .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
-//                self.dailyServiceInUserRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//                    //Created this to get Number of flat & Daily Service Type From Firebase & to use iterator for getting Data.
-//                    var numberOfFlat = 0
-//                    var dsType = ""
-//                    var dsStatus = ""
-//                    var iterator = 0
-//
-//                    if snapshot.exists() {
-//                        let dailyServiceTypes = snapshot.value as? NSDictionary
-//
-//                        //Used OperationQueue thread to add data in a priority level
-//                        let queue = OperationQueue()
-//
-//                        for dailyServiceType in (dailyServiceTypes?.allKeys)! {
-//                            self.dailyServiceInUserRef?.child(dailyServiceType as! String).observeSingleEvent(of: .value, with: { (snapshot) in
-//
-//                                var count = 0
-//                                //Getting Daily Services UID here
-//                                let dailyServicesUID = snapshot.value as? NSDictionary
-//                                for dailyServiceUID in (dailyServicesUID?.allKeys)! {
-//                                    count = count + 1
-//                                    if dailyServicesUID![dailyServiceUID] as! Bool == true {
-//                                        self.isDailyServicePresent = true
-//
-//                                        self.dailyServiceCountRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
-//                                        //Getting Daily Services Status (Like Entered or Not)
-//                                        self.dailyServiceStatusRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType as! String).child(dailyServiceUID as! String)
-//                                        self.dailyServiceStatusRef?.child(NAString().status()).observeSingleEvent(of: .value, with: { (snapshot) in
-//                                            let dailyServiceStatus = snapshot.value
-//
-//                                            queue.addOperation {
-//                                                self.dailyServiceCountRef?.observeSingleEvent(of: .value, with: { (snapshot) in
-//                                                    numberOfFlat = Int((snapshot.childrenCount) - 1)
-//                                                    dsType = dailyServiceType as! String
-//                                                    dsStatus = dailyServiceStatus as! String
-//
-//                                                    //After getting Number of Flat & Daily Service Type from Firebase, Here i'm appending data in structure
-//                                                    let servicetype = dailySericeTypeAndNumberOfFlat.init(type: dsType, flat: numberOfFlat, status: dsStatus)
-//                                                    dsInfo.append(servicetype)
-//
-//                                                    self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC
-//                                                    self.dailyServicePublicRef?.child(dailyServiceType as! String).child(dailyServiceUID as! String).child(userUID).observeSingleEvent(of: .value, with: { (snapshot) in
-//                                                        if snapshot.exists() {
-//
-//                                                            //Getting Data Form Firebase & Adding into Model Class
-//                                                            let dailyServiceData = snapshot.value as? [String: AnyObject]
-//
-//                                                            let fullName = dailyServiceData?[DailyServicesListFBKeys.fullName.key]
-//                                                            let phoneNumber = dailyServiceData?[DailyServicesListFBKeys.phoneNumber.key]
-//                                                            let profilePhoto = dailyServiceData?[DailyServicesListFBKeys.profilePhoto.key]
-//                                                            let providedThings = dailyServiceData?[DailyServicesListFBKeys.providedThings.key]
-//                                                            let rating = dailyServiceData?[DailyServicesListFBKeys.rating.key]
-//                                                            let timeOfVisit = dailyServiceData?[DailyServicesListFBKeys.timeOfVisit.key]
-//                                                            let uid = dailyServiceData?[DailyServicesListFBKeys.uid.key]
-//
-//                                                            if dsInfo.count > 0 {
-//                                                                let dailyServicesData = NammaApartmentDailyServices(fullName: fullName as! String?, phoneNumber: phoneNumber as! String?, profilePhoto: profilePhoto as! String?, providedThings: providedThings as! Bool?, rating: rating as? Int, timeOfVisit: timeOfVisit as! String?, uid: uid as! String?, type: dsInfo[iterator].type as String?, numberOfFlat: dsInfo[iterator].flat as Int?, status: dsInfo[iterator].status as String?)
-//
-//                                                                self.NADailyServicesList.append(dailyServicesData)
-//
-//                                                                NAActivityIndicator.shared.hideActivityIndicator()
-//                                                                self.collectionView.reloadData()
-//                                                                iterator = iterator + 1
-//                                                            } else {
-//                                                                NAActivityIndicator.shared.hideActivityIndicator()
-//                                                                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
-//                                                            }
-//                                                        }
-//                                                    })
-//                                                })
-//                                            }
-//                                            queue.waitUntilAllOperationsAreFinished()
-//                                        })
-//                                    }
-//                                    if self.isDailyServicePresent {
-//                                        self.layoutMessageObj.hideLayoutUnavailableMessage()
-//                                    } else if count == dailyServicesUID?.count {
-//                                        if self.NADailyServicesList.isEmpty {
-//                                            NAActivityIndicator.shared.hideActivityIndicator()
-//                                            self.layoutMessageObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
-//                                        }
-//                                    }
-//                                }
-//                            })
-//                        }
-//                    }
-//                })
-//            }
-//        })
-//    }
-//
-//    /* - Check if the flat has any daily service. If it does not have any Daily services added, we show daily service unavailable message
-//     - Else, we Display the cardView of all daily services of the current user. */
-//    func checkAndRetrieveDailyService() {
-////        let userDataReference = GlobalUserData.shared.getUserDataReference()
-////            .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
-////        userDataReference.observeSingleEvent(of: .value) { (dailyServiceSnapshot) in
-////            if !(dailyServiceSnapshot.exists()) {
-////                NAActivityIndicator.shared.hideActivityIndicator()
-////                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
-////            } else {
-////                let privateFlatReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
-////                privateFlatReference.observeSingleEvent(of: .value, with: { (flatSnapshot) in
-////                    let flatMembers = flatSnapshot.value as? NSDictionary
-////                    print(flatMembers as Any)
-////                    for flatMembersUID in (flatMembers?.allKeys)! {
-////                        print(flatMembersUID as Any)
-////                        self.retrieveDailyServicesFromFirebase(userUID: flatMembersUID as! String)
-////                    }
-////                })
-////            }
-////        }
-//
-//
-//
-//    }
-//}
-
-

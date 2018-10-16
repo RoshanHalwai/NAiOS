@@ -38,7 +38,8 @@ class NammaApartmentDailyServices {
     var fullName: String?
     var phoneNumber: String?
     var profilePhoto: String?
-    var providedThings: [String: String]
+    var providedThings: String
+    var dateOfHandedThings : String
     var rating: Int?
     var timeOfVisit: String?
     var uid: String?
@@ -47,11 +48,12 @@ class NammaApartmentDailyServices {
     private var status: String?
     
     //initilaize the variables
-    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: [String: String],rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?) {
+    init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: String,dateOfHandedThings: String,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?) {
         self.fullName = fullName
         self.phoneNumber = phoneNumber
         self.profilePhoto = profilePhoto
         self.providedThings = providedThings
+        self.dateOfHandedThings = dateOfHandedThings
         self.rating = rating
         self.timeOfVisit = timeOfVisit
         self.uid = uid
@@ -76,12 +78,12 @@ class NammaApartmentDailyServices {
     }
     
     //Get providedThings
-    func getprovidedThings() -> [String: String] {
+    func getprovidedThings() -> String {
         return providedThings
     }
     
-    func setprovidedThings(providedThings: [String: String]) {
-        self.providedThings = providedThings
+    func getDateOfHandedThings() -> String {
+        return dateOfHandedThings
     }
     
     //Get mobileNumber
