@@ -61,7 +61,7 @@ class OTPViewController: NANavigationViewController {
     
     //Created variables for timer functionality
     var countdownTimer: Timer!
-    var totalTime = 120
+    var totalTime = 10
     var timeisOn = false
     
     override func viewDidLoad() {
