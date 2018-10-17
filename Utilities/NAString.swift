@@ -194,7 +194,7 @@ class NAString : NSObject {
         return String("You are the Administrator")
     }
     func change_Admin_Alert_Message() -> String {
-        return String("Currently there are no Flat members added to your Flat.t")
+        return String("Currently there are no Flat members added to your Flat.")
     }
     
     func change_Admin_Message_Alert_Title() -> String {

@@ -514,7 +514,7 @@ extension SocietyServicesViewController {
             serviceType = (navTitle?.lowercased())!
         }
         let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        notificationUID = societyServiceNotificationRef.childByAutoId().key!
+        notificationUID = societyServiceNotificationRef.childByAutoId().key
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         
@@ -533,12 +533,12 @@ extension SocietyServicesViewController {
         }
         
         let societyServiceNotificationData = [
-            problemOrScrapType : problem,
+            problemOrScrapType : self.txt_SelectAny.text as Any,
             timeSlotOrQuantity : getButtonHour_Text,
             NASocietyServicesFBKeys.userUID.key: userUID,
             NASocietyServicesFBKeys.societyServiceType.key : serviceType,
             uidOrNotificationUID : notificationUID,
-            NASocietyServicesFBKeys.status.key : NAString().in_Progress()]
+            NASocietyServicesFBKeys.status.key : NAString().in_Progress()] as [String : Any]
         
         societyServiceNotificationRef.child(notificationUID).setValue(societyServiceNotificationData) { (error, snapshot) in
             //Storing Current System time in milli seconds for time stamp.
