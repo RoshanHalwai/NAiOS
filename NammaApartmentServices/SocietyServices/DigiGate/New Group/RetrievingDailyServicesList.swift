@@ -133,8 +133,10 @@ class RetrievingDailyServicesList {
                 
                 self.getDailyServicesUIDs(dailyServiceCategories: dailyServiceCategory, callback: { (dailyServiceUIDList) in
                     self.count = self.count + 1
-                    
-                    dailyServiceUIDDictiornary.updateValue(dailyServiceUIDList, forKey: dailyServiceCategory)
+                    //checking if the Daily Service UIDList is not equal to zero
+                    if dailyServiceUIDList.count != 0 {
+                        dailyServiceUIDDictiornary.updateValue(dailyServiceUIDList, forKey: dailyServiceCategory)
+                    }
                     
                     if self.count == dailyServiceCategoriesList.count {
                         self.count = 0
@@ -155,9 +157,12 @@ class RetrievingDailyServicesList {
         userDataRef?.child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(dailyServiceCategories).observeSingleEvent(of: .value, with: { (DSUIDSnapshot) in
             
             if DSUIDSnapshot.exists() {
-                let dailyServicesUIDs = DSUIDSnapshot.value as! NSDictionary
-                for dailyServiceType in dailyServicesUIDs.allKeys {
-                    dailyServiceUIDList.append(dailyServiceType as! String)
+                let dailyServicesUIDs = DSUIDSnapshot.value as! [String: Bool]
+                for dailyServiceType in dailyServicesUIDs {
+                    //appending only true Mapped Daily Services.
+                    if dailyServiceType.value == NAString().gettrue() {
+                        dailyServiceUIDList.append(dailyServiceType.key)
+                    }
                 }
             }
             callback(dailyServiceUIDList)
