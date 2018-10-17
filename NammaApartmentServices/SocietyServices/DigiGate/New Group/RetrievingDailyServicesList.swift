@@ -133,7 +133,7 @@ class RetrievingDailyServicesList {
                 
                 self.getDailyServicesUIDs(dailyServiceCategories: dailyServiceCategory, callback: { (dailyServiceUIDList) in
                     self.count = self.count + 1
-                    
+                    //checking if the Daily Service UIDList is not equal to zero
                     if dailyServiceUIDList.count != 0 {
                         dailyServiceUIDDictiornary.updateValue(dailyServiceUIDList, forKey: dailyServiceCategory)
                     }
@@ -159,6 +159,7 @@ class RetrievingDailyServicesList {
             if DSUIDSnapshot.exists() {
                 let dailyServicesUIDs = DSUIDSnapshot.value as! [String: Bool]
                 for dailyServiceType in dailyServicesUIDs {
+                    //appending only true Mapped Daily Services.
                     if dailyServiceType.value == NAString().gettrue() {
                         dailyServiceUIDList.append(dailyServiceType.key)
                     }
