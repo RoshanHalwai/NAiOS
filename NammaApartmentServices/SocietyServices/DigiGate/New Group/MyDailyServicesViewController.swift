@@ -373,7 +373,6 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         dailyServiceRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
         
         dailyServiceRef.observe(.value) { (snapshot) in
-            self.NADailyServicesList.removeAll()
             self.checkAndRetrieveDailyService()
         }
     }
@@ -463,6 +462,7 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
                 self.layoutMessageObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
                 for dailyServiceData in userDailyServivcesList {
+                    self.NADailyServicesList.removeAll()
                     self.NADailyServicesList.append(dailyServiceData)
                     NAActivityIndicator.shared.hideActivityIndicator()
                     self.collectionView.reloadData()
