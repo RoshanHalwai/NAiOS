@@ -66,8 +66,10 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
                 self.send_Button_Bottom_Constraints.constant = keyBoardHeight
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.layoutIfNeeded()
+                    if !self.neighboursChat.isEmpty {
                     let indexPath = NSIndexPath(row: self.neighboursChat.count-1, section: 0)
                     self.table_View.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.bottom, animated: true)
+                    }
                 })
             }
         }
@@ -141,6 +143,10 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
         if numberOfLines <= 4 {
             self.text_View_Height_Constraints.constant = self.text_View.contentSize.height
             self.parent_View_Height_Constraint.constant = self.text_View.contentSize.height
+            if !self.neighboursChat.isEmpty {
+                let indexPath = NSIndexPath(row: self.neighboursChat.count-1, section: 0)
+                self.table_View.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.bottom, animated: true)
+            }
         } 
         return true
     }
