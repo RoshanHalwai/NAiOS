@@ -71,8 +71,8 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     var totalAmount = Float()
     var bookingAmount = Int()
     var convenienceFee: Float = 0.0
-    var gettingPercentageAmount = Double()
-    var getFinalAmount = Double()
+    var gettingPercentageAmount = Float()
+    var getFinalAmount = Float()
     var getFinalAmountInString = String()
     
     //created date picker programtically
@@ -488,12 +488,12 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
             convenienceChargesRef.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
                 self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
                 
-                self.gettingPercentageAmount = Double((Float(self.totalAmount) * self.convenienceFee) / 100)
-                self.getFinalAmount = (Double(self.gettingPercentageAmount)) + (Double(self.totalAmount))
+                self.gettingPercentageAmount = (Float(self.totalAmount) * self.convenienceFee) / 100
+                self.getFinalAmount = (self.gettingPercentageAmount) + (self.totalAmount)
                 let getfinalAmountInPaisa = (self.getFinalAmount * 100)
                 self.getFinalAmountInString = "\(getfinalAmountInPaisa)"
                     
-                NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().bookingSummary(), Message: NAString().eventSlotsAmountAlert_Message(slotsCount: self.slotsCount, totalAmount: self.getFinalAmount, perSlot: self.bookingAmount, estimatedAmount: Double(self.totalAmount), convenienceFee: self.convenienceFee, convenienceAmount: Float(self.gettingPercentageAmount)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+                NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().bookingSummary(), Message: NAString().eventSlotsAmountAlert_Message(slotsCount: self.slotsCount, totalAmount: self.getFinalAmount, perSlot: self.bookingAmount, estimatedAmount: self.totalAmount, convenienceFee: self.convenienceFee, convenienceAmount: Float(self.gettingPercentageAmount)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
                     self.showPaymentUI()
                 }, Cancel: nil, cancelActionTitle: NAString().cancel().uppercased(), okActionTitle: NAString().payNow().uppercased())
             }
