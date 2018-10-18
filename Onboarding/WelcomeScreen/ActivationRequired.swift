@@ -55,21 +55,17 @@ class ActivationRequired: NANavigationViewController {
             
             switch isVerified {
             case 1 :
-                print("Home Screem")
                 self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                //Navigating to main screen
                 let dest = NAViewPresenter().mainScreenVC()
                 self.navigationController?.pushViewController(dest, animated: true)
                 break
             case 2 :
-                print("Rejected")
                 self.welcomeImage.isHidden = true
                 self.welcomeDescription.isHidden = true
                 self.navigationController?.isNavigationBarHidden = false
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().userRejectedByAdminDescription())
                 break
             default:
-                print("Welcome Screen")
                 self.welcomeImage.isHidden = false
                 self.welcomeDescription.isHidden = false
                 self.welcomeDescription.text = NAString().welcomeScreenDescription()
