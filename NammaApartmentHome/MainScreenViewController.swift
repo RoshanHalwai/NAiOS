@@ -401,7 +401,7 @@ extension MainScreenViewController : UITableViewDelegate,UITableViewDataSource {
                                     let status: String = dataMap[NASocietyServicesFBKeys.status.key] as! String
                                     
                                     /* If the Status is in Progress we are Allowing user to awaiting response Screen else allowing user to Request one more service. */
-                                    if status == NAString().in_Progress() {
+                                    if status == NAString().in_Progress() || status == NAString().accepted()  {
                                         let awaitingResponseVC = NAViewPresenter().societyServiceDataVC()
                                         awaitingResponseVC.navTitle = NAString().societyService()
                                         awaitingResponseVC.serviceType = serviceName.capitalized

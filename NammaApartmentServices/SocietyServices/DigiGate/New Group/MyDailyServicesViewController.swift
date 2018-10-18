@@ -456,18 +456,14 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
         let retrieveDailyList : RetrievingDailyServicesList
         retrieveDailyList = RetrievingDailyServicesList.init(userUID: userUID)
         retrieveDailyList.getAllDailyServices { (userDailyServivcesList) in
+            NAActivityIndicator.shared.hideActivityIndicator()
             if userDailyServivcesList.isEmpty {
-                NAActivityIndicator.shared.hideActivityIndicator()
-                
                 self.layoutMessageObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
             } else {
-                for dailyServiceData in userDailyServivcesList {
-                    self.NADailyServicesList.removeAll()
-                    self.NADailyServicesList.append(dailyServiceData)
-                    NAActivityIndicator.shared.hideActivityIndicator()
-                    self.collectionView.reloadData()
-                }
+                self.NADailyServicesList.removeAll()
+                self.NADailyServicesList.append(contentsOf: userDailyServivcesList)
             }
+            self.collectionView.reloadData()
         }
     }
 }
