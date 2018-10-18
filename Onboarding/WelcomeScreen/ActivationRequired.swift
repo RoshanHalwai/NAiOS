@@ -21,9 +21,11 @@ class ActivationRequired: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.welcomeImage.isHidden = true
+        self.welcomeDescription.isHidden = true
+        
         super.ConfigureNavBarTitle(title: NAString().accountCreated())
         welcomeDescription.font = NAFont().textFieldFont()
-        welcomeDescription.text = NAString().welcomeScreenDescription()
         
         self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItem = nil
@@ -49,11 +51,28 @@ class ActivationRequired: NANavigationViewController {
             .child(Constants.FIREBASE_CHILD_VERIFIED)
         
         usersVerifiedRef?.observe(DataEventType.value, with: { (verifiedSnapshot) in
-            if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
-                    self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                    //Navigating to main screen
-                    let dest = NAViewPresenter().mainScreenVC()
-                    self.navigationController?.pushViewController(dest, animated: true)
+            let isVerified = verifiedSnapshot.value as! Int
+            
+            switch isVerified {
+            case 1 :
+                print("Home Screem")
+                self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                //Navigating to main screen
+                let dest = NAViewPresenter().mainScreenVC()
+                self.navigationController?.pushViewController(dest, animated: true)
+                break
+            case 2 :
+                print("Rejected")
+                self.welcomeImage.isHidden = true
+                self.welcomeDescription.isHidden = true
+                self.navigationController?.isNavigationBarHidden = false
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().userRejectedByAdminDescription())
+                break
+            default:
+                print("Welcome Screen")
+                self.welcomeImage.isHidden = false
+                self.welcomeDescription.isHidden = false
+                self.welcomeDescription.text = NAString().welcomeScreenDescription()
             }
         })
     }

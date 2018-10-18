@@ -83,13 +83,22 @@ class CustomLaunchScreenViewController: NANavigationViewController {
                                 .child(Constants.FIREBASE_CHILD_VERIFIED)
                             
                             usersVerifiedRef?.observeSingleEvent(of: .value, with: { (verifiedSnapshot) in
-                                if verifiedSnapshot.exists() &&  (verifiedSnapshot.value as? Bool)!{
+                                let isVerified = verifiedSnapshot.value as! Int
+                                
+                                switch isVerified {
+                                case 1 :
                                     preferences.set(true, forKey: verified)
                                     preferences.synchronize()
                                     self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
                                     let navMain = NAViewPresenter().mainScreenVC()
                                     self.navigationController?.pushViewController(navMain, animated: true)
-                                } else {
+                                    break
+                                case 2 :
+                                    self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                                    let navWelcomeVC = NAViewPresenter().activationRequiredVC()
+                                    self.navigationController?.pushViewController(navWelcomeVC, animated: true)
+                                    break
+                                default:
                                     self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
                                     let navWelcomeVC = NAViewPresenter().activationRequiredVC()
                                     self.navigationController?.pushViewController(navWelcomeVC, animated: true)
