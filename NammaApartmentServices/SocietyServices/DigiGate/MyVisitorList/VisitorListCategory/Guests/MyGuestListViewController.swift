@@ -87,10 +87,8 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
             if(guestDataList.count == 0) {
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
             } else {
-                for guestData in guestDataList {
-                    //Append only those guest data
-                    self.myVisitorList.append(guestData)
-                }
+                self.myVisitorList.removeAll()
+                self.myVisitorList.append(contentsOf: guestDataList)
                 self.collectionView.reloadData()
             }
         }

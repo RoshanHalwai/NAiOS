@@ -160,7 +160,8 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                     self.NASocietyServiceData.append(societyServiceDataList)
                                     
                                 } else {
-                                    if societyServiceData?[NASocietyServicesFBKeys.status.key] as? String != NAString().in_Progress() {
+                                    let status = societyServiceData?[NASocietyServicesFBKeys.status.key] as? String
+                                    if status == NAString().complete() || status == NAString().cancelled() {
                                         
                                         let societyServiceProblem = societyServiceData?[NASocietyServicesFBKeys.problem.key] as! String
                                         let societyServiceStatus: String = societyServiceData?[NASocietyServicesFBKeys.status.key] as! String
