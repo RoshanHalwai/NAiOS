@@ -2019,7 +2019,7 @@ class NAString : NSObject {
         return String("Full Day(8AM - 10PM)")
     }
     
-    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Double, perSlot: Int, estimatedAmount: Double, convenienceFee: Float, convenienceAmount: Float ) -> String {
+    func eventSlotsAmountAlert_Message(slotsCount: Int, totalAmount: Float, perSlot: Int, estimatedAmount: Float, convenienceFee: Float, convenienceAmount: Float ) -> String {
         return String("\nNo. of Booked Slots:\t\t  \(slotsCount)\n\nAmount per Slot: \t\t\tRs. \(perSlot) \n\nEstimated Amount: \t\tRs. \(estimatedAmount)\n\nConvenience Fee (\(convenienceFee)%):     Rs. \(convenienceAmount) \n\nTotal Amount:\t\t\tRs. \(totalAmount)")
     }
     
