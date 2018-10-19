@@ -393,7 +393,7 @@ extension OTPViewController {
                     userActivationRef.observeSingleEvent(of: .value, with: { (activationSnapshot) in
                         let verified = activationSnapshot.value as! Int
                         
-                        if verified == 0 {
+                        if verified == 0 || verified == 2 {
                             let dest = NAViewPresenter().activationRequiredVC()
                             self.navigationController?.pushViewController(dest, animated: true)
                         } else {

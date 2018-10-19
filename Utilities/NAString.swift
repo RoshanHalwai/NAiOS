@@ -1719,6 +1719,10 @@ class NAString : NSObject {
         return String("Thank you for registering with Namma Apartments. Your details have been sent to the Society Admin. We will notify you once your account gets activated.")
     }
     
+    func userRejectedByAdminDescription() -> String {
+        return String("Sorry, your Account activation request has been rejected by the Society Admin.")
+    }
+    
     func userDefault_USERUID() -> String {
         return String("USERUID")
     }
