@@ -147,9 +147,7 @@ class MyProfileDataViewController: NANavigationViewController {
                                 self.txt_Name.resignFirstResponder()
                                 //setting the email value in GlobalUser data after User Updated his email.
                                 GlobalUserData.shared.personalDetails_Items.first?.setEmail(email: newMail!)
-                                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
-                                    self.navigationController?.popViewController(animated: true)
-                                }
+                                self.navigationController?.popViewController(animated: true)
                             } else {
                                 lbl_Validation.isHidden = false
                                 lbl_Validation.text = NAString().please_enter_Valid_email()
@@ -171,9 +169,7 @@ class MyProfileDataViewController: NANavigationViewController {
                     self.txt_Name.resignFirstResponder()
                     //setting the Name value in GlobalUser data after User Updated his Name.
                     GlobalUserData.shared.personalDetails_Items.first?.setFullName(fullName: newName!)
-                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
-                        self.navigationController?.popViewController(animated: true)
-                    }
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }
