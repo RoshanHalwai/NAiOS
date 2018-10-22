@@ -23,7 +23,6 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         
         //Setting & fromatting Navigation Bar
         super.ConfigureNavBarTitle(title: NAString().digital_gate_title())
-        self.navigationItem.title = ""
         
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -66,29 +65,32 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
         case 0:
             let lv = NAViewPresenter().inviteVisitorVC()
             self.navigationController?.pushViewController(lv, animated: true)
+            break
             
         case 1:
             let lv1 = NAViewPresenter().myVisitorsListVC()
             self.navigationController?.pushViewController(lv1, animated: true)
+            break
             
         case 2:
             let lv2 = NAViewPresenter().myDailyServicesVC()
             self.navigationController?.pushViewController(lv2, animated: true)
+            break
             
         case 3:
             let lv3 = NAViewPresenter().notifyDigiGateVC()
             self.navigationController?.pushViewController(lv3, animated: true)
-            
+            break
             
         case 4:
             let lv4 = NAViewPresenter().mySweetHomeVC()
-            lv4.navTitle = NAString().my_sweet_home()
             self.navigationController?.pushViewController(lv4, animated: true)
-            
+            break
             
         case 5:
             let lv5 = NAViewPresenter().emergencyVC()
             self.navigationController?.pushViewController(lv5, animated: true)
+            break
             
         default:
             break

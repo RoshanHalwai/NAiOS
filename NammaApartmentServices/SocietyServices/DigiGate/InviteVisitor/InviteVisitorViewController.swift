@@ -14,7 +14,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseStorage
 
-class InviteVisitorViewController: NANavigationViewController,CNContactPickerDelegate {
+class InviteVisitorViewController: NANavigationViewController {
     
     @IBOutlet weak var lbl_InvitorName: UILabel!
     @IBOutlet weak var lbl_InvitorMobile: UILabel!
@@ -86,7 +86,6 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
         
         //Formatting & setting navigation bar
         super.ConfigureNavBarTitle(title: NAString().invite_Guests())
-        self.navigationItem.title = ""
         
         //calling date picker function on view didload.
         createDatePicker(dateTextField: txtDate)
@@ -216,36 +215,7 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     }
     
     @IBAction func btnSelectContact(_ sender: Any) {
-        let entityType = CNEntityType.contacts
-        let authStatus = CNContactStore.authorizationStatus(for: entityType)
-        
-        if authStatus == CNAuthorizationStatus.notDetermined {
-            let contactStore = CNContactStore.init()
-            contactStore.requestAccess(for: entityType, completionHandler: { (success, nil) in
-                
-                if success {
-                    self.openContacts()
-                }
-            })
-        } else if authStatus == CNAuthorizationStatus.authorized {
-            self.openContacts()
-        }
-            //Open App Setting if user cannot able to access Contacts
-        else if authStatus == CNAuthorizationStatus.denied {
-            NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().setting_Permission_AlertBox(), Message: "", CancelStyle: .cancel, OkStyle: .default, OK: { (action) in
-                let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)!
-                UIApplication.shared.open(settingsUrl)
-            }, Cancel: { (action) in
-            }, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().settings())
-        }
-    }
-    
-    //to call default address book app
-    func openContacts() {
-        let contactPicker = CNContactPickerViewController.init()
-        contactPicker.delegate = self
-        //uses did select method here
-        self.present(contactPicker, animated: true, completion: nil)
+        toSelectContacts(VC: self)
     }
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
@@ -413,29 +383,10 @@ class InviteVisitorViewController: NANavigationViewController,CNContactPickerDel
     }
 }
 
-extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+extension InviteVisitorViewController {
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            pickerController.allowsEditing = true
-            
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: {
-            
-            (alert: UIAlertAction!) -> Void in
-        })
-        actionSheet.addAction(actionGallery)
-        actionSheet.addAction(cancel)
-        
-        actionSheet.view.tintColor = UIColor.black
-        self.present(actionSheet, animated: true, completion: nil)
+       toselectFromGallery(VC: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -459,8 +410,7 @@ extension InviteVisitorViewController : UIImagePickerControllerDelegate,UINaviga
         if textField == txtInvitorMobile {
             lbl_Mob_Validation.isHidden = true
             txtInvitorMobile.underlined()
-            if NAValidation().isValidMobileNumber(isNewMobileNoLength: newLength) {
-            }
+
             if newLength >= NAString().required_mobileNo_Length() && !(txtInvitorName.text?.isEmpty)! && !(txtDate.text?.isEmpty)! {
             }
             //Check for Text Removal

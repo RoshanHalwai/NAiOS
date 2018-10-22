@@ -67,26 +67,31 @@ class NotifyDigiGateViewController: NANavigationViewController,UICollectionViewD
             lv.navTitle = NAString().expecting_cab_arrival()
             lv.vendorCabNameString = NAString().cab_number()
             self.navigationController?.pushViewController(lv, animated: true)
+            break
             
         case 1:
             let lv1 = NAViewPresenter().expectingCabArrivalVC()
             lv1.navTitle = NAString().expecting_package_arrival()
             lv1.vendorCabNameString = NAString().package_vendor_name()
             self.navigationController?.pushViewController(lv1, animated: true)
+            break
             
         case 2:
             let lv2 = NAViewPresenter().inviteVisitorVC()
             self.navigationController?.pushViewController(lv2, animated: true)
+            break
             
         case 3:
             let lv3 = NAViewPresenter().handedThingsToMyGuestVC()
             self.navigationController?.pushViewController(lv3, animated: true)
             lv3.titleName = NAString().handed_Things().capitalized
+            break
             
         case 4:
             let lv4 = NAViewPresenter().handedThingsToMyDailyServiceVC()
             self.navigationController?.pushViewController(lv4, animated: true)
             lv4.titleName = NAString().handed_Things().capitalized
+            break
             
         default:
             break

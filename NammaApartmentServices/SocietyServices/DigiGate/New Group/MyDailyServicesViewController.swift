@@ -208,16 +208,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         cell.myDailyServicesImage.sd_setIndicatorStyle(.gray)
         cell.myDailyServicesImage.sd_setImage(with: URL(string: DSList.getprofilePhoto()!), completed: nil)
         
-        cell.contentView.layer.cornerRadius = 4.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = false
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-        cell.layer.shadowRadius = 4.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+        NAShadowEffect().shadowEffect(Cell: cell)
         
         cell.myDailyServicesImage.layer.cornerRadius = cell.myDailyServicesImage.frame.size.width/2
         cell.myDailyServicesImage.clipsToBounds = true

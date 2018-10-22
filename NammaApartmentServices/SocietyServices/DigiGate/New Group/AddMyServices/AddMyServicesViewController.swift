@@ -18,7 +18,7 @@ protocol DataPass {
     func dataPassing()
 }
 
-class AddMyServicesViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, DataPass,AlertViewDelegate {
+class AddMyServicesViewController: NANavigationViewController, DataPass,AlertViewDelegate {
     
     @IBOutlet weak var img_Profile: UIImageView!
     
@@ -242,30 +242,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
     }
     
     @objc func imageTapped() {
-        let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-        let actionCamera = UIAlertAction(title:NAString().camera(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.camera
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let cancel = UIAlertAction(title:NAString().cancel(), style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in})
-        actionSheet.addAction(actionCamera)
-        actionSheet.addAction(actionGallery)
-        actionSheet.addAction(cancel)
-        actionSheet.view.tintColor = UIColor.black
-        self.present(actionSheet, animated: true, completion: nil)
+       toSelectImages(VC: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -308,32 +285,7 @@ class AddMyServicesViewController: NANavigationViewController, CNContactPickerDe
      - Create AlertView Delegate Function. */
     
     @IBAction func btnSelectContact(_ sender: Any) {
-        let entityType = CNEntityType.contacts
-        let authStatus = CNContactStore.authorizationStatus(for: entityType)
-        if authStatus == CNAuthorizationStatus.notDetermined {
-            let contactStore = CNContactStore.init()
-            contactStore.requestAccess(for: entityType, completionHandler: { (success, nil) in
-                if success {
-                    self.openContacts()
-                }
-            })
-        } else if authStatus == CNAuthorizationStatus.authorized {
-            self.openContacts()
-        }
-            
-        else if authStatus == CNAuthorizationStatus.denied {
-            NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().setting_Permission_AlertBox(), Message: "", CancelStyle: .cancel, OkStyle: .default, OK: { (action) in
-                let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)!
-                UIApplication.shared.open(settingsUrl)
-            }, Cancel: { (action) in
-            }, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().settings())
-        }
-    }
-    
-    func openContacts() {
-        let contactPicker = CNContactPickerViewController.init()
-        contactPicker.delegate = self
-        self.present(contactPicker, animated: true, completion: nil)
+        toSelectContacts(VC: self)
     }
     
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {

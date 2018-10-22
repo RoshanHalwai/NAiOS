@@ -19,6 +19,7 @@ class MyProfileDataViewController: NANavigationViewController {
     
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var stackView_Bottom_Constraint: NSLayoutConstraint!
+    @IBOutlet weak var lbl_Validation: UILabel!
     
     var name = String()
     var email = String()
@@ -44,6 +45,8 @@ class MyProfileDataViewController: NANavigationViewController {
         self.stackView_Bottom_Constraint.constant = self.stackView_Bottom_Constraint.constant - 5
         txt_Name.underlined()
         txt_Name.font = NAFont().textFieldFont()
+        lbl_Validation.font = NAFont().descriptionFont()
+        lbl_Validation.isHidden = true
         
         //Button Formatting & settings
         btn_Cancel.setTitle(NAString().cancel(), for: .normal)
@@ -114,34 +117,65 @@ class MyProfileDataViewController: NANavigationViewController {
         return  returnValue
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        lbl_Validation.isHidden = true
+        txt_Name.underlined()
+        return true
+    }
+    
     @IBAction func doneButtonAction() {
+        
         self.updateUserRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_PERSONALDETAILS)
         if existedName != self.txt_Name.text {
             if navTitle == NAString().enter_your_data(name: NAString().enter_email_Data()) {
                 if existedEmail != self.txt_Name.text {
                     let newMail = self.txt_Name.text
-                    updateUserRef?.child(Constants.FIREBASE_CHILD_EMAIL).setValue(newMail)
-                    //setting the email value in GlobalUser data after User Updated his email.
-                    GlobalUserData.shared.personalDetails_Items.first?.setEmail(email: newMail!)
+                    if (newMail?.isEmpty)! {
+                        lbl_Validation.isHidden = false
+                        txt_Name.redunderlined()
+                        lbl_Validation.text = NAString().please_enter_email()
+                    } else {
+                        lbl_Validation.isHidden = true
+                        txt_Name.underlined()
+                        let providedEmailAddress = self.txt_Name.text
+                        let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
+                        if !(newMail?.isEmpty)! {
+                            if isEmailAddressIsValid {
+                                lbl_Validation.isHidden = true
+                                txt_Name.underlined()
+                                updateUserRef?.child(Constants.FIREBASE_CHILD_EMAIL).setValue(newMail)
+                                self.txt_Name.resignFirstResponder()
+                                //setting the email value in GlobalUser data after User Updated his email.
+                                GlobalUserData.shared.personalDetails_Items.first?.setEmail(email: newMail!)
+                                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                            } else {
+                                lbl_Validation.isHidden = false
+                                lbl_Validation.text = NAString().please_enter_Valid_email()
+                                txt_Name.redunderlined()
+                            }
+                        }
+                    }
                 }
             } else {
                 let newName = self.txt_Name.text
-                updateUserRef?.child(Constants.FIREBASE_CHILD_FULLNAME).setValue(newName)
-                //setting the Name value in GlobalUser data after User Updated his Name.
-                GlobalUserData.shared.personalDetails_Items.first?.setFullName(fullName: newName!)
-                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
-                    self.navigationController?.popViewController(animated: true)
+                if (newName?.isEmpty)! {
+                    lbl_Validation.isHidden = false
+                    txt_Name.redunderlined()
+                    lbl_Validation.text = NAString().please_enter_name()
+                } else {
+                    lbl_Validation.isHidden = true
+                    txt_Name.underlined()
+                    updateUserRef?.child(Constants.FIREBASE_CHILD_FULLNAME).setValue(newName)
+                    self.txt_Name.resignFirstResponder()
+                    //setting the Name value in GlobalUser data after User Updated his Name.
+                    GlobalUserData.shared.personalDetails_Items.first?.setFullName(fullName: newName!)
+                    NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         }
-        
-        let providedEmailAddress = self.txt_Name.text
-        let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
-        if isEmailAddressIsValid == true {
-            NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().update_Alert_Title(), Message: NAString().update_Successfull_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default) { (action) in
-                self.navigationController?.popViewController(animated: true)
-            }
-        }
-        self.navigationController?.popViewController(animated: true)
     }
 }

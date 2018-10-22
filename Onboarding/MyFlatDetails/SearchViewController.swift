@@ -87,7 +87,7 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID()) as! SearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID()) as! UITableViewCell
         if(searchActive) {
             filteredArray = filteredArray.sorted()
             cell.textLabel?.text = filteredArray[indexPath.row]

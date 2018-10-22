@@ -68,21 +68,25 @@ class EmergencyViewController: NANavigationViewController, UICollectionViewDeleg
             let lv = NAViewPresenter().raiseAlarmVC()
             self.navigationController?.pushViewController(lv, animated: true)
             lv.titleName = NAString().medicalEmergency_Title().capitalized
+            break
             
         case 1:
             let lv1 = NAViewPresenter().raiseAlarmVC()
             self.navigationController?.pushViewController(lv1, animated: true)
             lv1.titleName = NAString().raise_Fire_Alarm_Title().capitalized
+            break
             
         case 2:
             let lv2 = NAViewPresenter().raiseAlarmVC()
             self.navigationController?.pushViewController(lv2, animated: true)
             lv2.titleName = NAString().raise_Theft_Alarm_Title().capitalized
+            break
             
         case 3:
             let lv3 = NAViewPresenter().raiseAlarmVC()
             lv3.titleName = NAString().raise_water_Alarm_Title().capitalized
             self.navigationController?.pushViewController(lv3, animated: true)
+            break
             
         default:
             break

@@ -13,7 +13,7 @@ protocol removeCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell)
 }
 
-class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewControllerDelegate {
+class mySweetHomeCollectionViewCell: UICollectionViewCell {
     
     var delegate : removeCollectionProtocol?
     var index : IndexPath?
@@ -63,8 +63,4 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell ,MFMessageComposeViewC
     }
     
     @IBAction func btnRemove(_ sender: Any) { }
-    
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        controller.dismiss(animated: true, completion: nil)
-    }
 }
