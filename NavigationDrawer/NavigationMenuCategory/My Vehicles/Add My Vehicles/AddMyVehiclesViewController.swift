@@ -156,7 +156,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
         textFieldvalidation(textField: txt_VehicleStateCode)
         textFieldvalidation(textField: txt_VehicleRtoNumber)
         textFieldvalidation(textField: txt_VehicleSerialNumberOne)
-        textFieldvalidation(textField:  txt_VehicleSerialNumberTwo)
+        textFieldvalidation(textField: txt_VehicleSerialNumberTwo)
 
         if !(txt_VehicleStateCode.text?.isEmpty)! &&  !(txt_VehicleRtoNumber.text?.isEmpty)! && !(txt_VehicleSerialNumberOne.text?.isEmpty)! && !(txt_VehicleSerialNumberTwo.text?.isEmpty)! {
             lbl_VehicleNumber_Validation.isHidden = true
