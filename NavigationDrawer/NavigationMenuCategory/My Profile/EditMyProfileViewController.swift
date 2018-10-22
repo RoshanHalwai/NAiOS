@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
-import SDWebImage
 
 class EditMyProfileViewController: NANavigationViewController {
     
@@ -30,6 +29,7 @@ class EditMyProfileViewController: NANavigationViewController {
     @IBOutlet weak var gatePass_btn: UIButton!
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var parentView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var updateUserRef : DatabaseReference?
     var familyMemberNameRef : DatabaseReference?
@@ -44,7 +44,6 @@ class EditMyProfileViewController: NANavigationViewController {
     var existedFlatAdmin : String?
     var adminUID : String?
     var updatedAdminUID : String?
-    var isImageChanged: Bool = false
     let imagePickerController = UIImagePickerController()
     
     /* - Creating Text Field Action for Name for first letter to be Capital.
@@ -110,6 +109,40 @@ class EditMyProfileViewController: NANavigationViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        let userDataRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
+        //Adding observe event to each of user UID
+        userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
+            let usersData = userDataSnapshot.value as? [String: AnyObject]
+            
+            //Creating instance of UserPersonalDetails
+            let userPersonalDataMap = usersData?[Constants.FIREBASE_CHILD_PERSONALDETAILS] as? [String: AnyObject]
+            let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
+            
+            let queue = OperationQueue()
+            
+            queue.addOperation {
+                //Calling function to get Profile Image from Firebase.
+                if let urlString = profilePhoto {
+                    self.downloadImageFromServerURL(urlString: urlString,imageView: self.profile_Image)
+                }
+            }
+            queue.waitUntilAllOperationsAreFinished()
+        })
+    }
+    
+    //Created Global function to get Profile image from firebase in Visitor List
+    func downloadImageFromServerURL(urlString: String, imageView:UIImageView) {
+        
+        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
+            if error == nil {
+                let image = UIImage(data: data!)
+                DispatchQueue.main.async(execute: { () -> Void in
+                    imageView.image = image
+                    self.activityIndicator.isHidden = true
+                })
+            }
+        }).resume()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,12 +160,6 @@ class EditMyProfileViewController: NANavigationViewController {
             self.lbl_EIntercomNumber.text = userPersonalDataMap?[UserPersonalListFBKeys.phoneNumber.key] as? String
             self.existedName = self.txt_Name.text
             self.existedEmail = self.txt_EmailId.text
-            let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
-            
-            //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
-            self.profile_Image.sd_setShowActivityIndicatorView(true)
-            self.profile_Image.sd_setIndicatorStyle(.gray)
-            self.profile_Image.sd_setImage(with: URL(string: profilePhoto!), completed: nil)
         })
     }
     
@@ -152,7 +179,7 @@ class EditMyProfileViewController: NANavigationViewController {
         self.view.frame.origin.y += 100
     }
     
-    ///Getting Flat Admin Name
+    //Getting Flat Admin Name
     func adminNameRef() {
         let userDataReference = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_ADMIN)
         userDataReference.observe(.value) { (snapshot) in
@@ -184,9 +211,8 @@ class EditMyProfileViewController: NANavigationViewController {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.updateImageChange(image: image)
             profile_Image.image = image
-            isImageChanged = true
-            updateImageChange(image: image)
         }
         self.dismiss(animated: true, completion: nil)
     }

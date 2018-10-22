@@ -285,19 +285,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="170" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="172.5" y="0.0" width="53" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our team will collect food " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smj-Ef-i0k">
-                                                <rect key="frame" x="255" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="255.5" y="0.0" width="54.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -8285,7 +8285,7 @@
                                 <rect key="frame" x="0.0" y="96" width="260" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="50" id="Sbd-Nc-bhM" customClass="NavigationMenuTableViewCell" customModule="nammaApartment" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="260" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Sbd-Nc-bhM" id="z0O-we-N9V">
@@ -8293,7 +8293,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2D-wp-zO6">
-                                                    <rect key="frame" x="68" y="12" width="62" height="25"/>
+                                                    <rect key="frame" x="68" y="12" width="177" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -9376,6 +9376,11 @@
                                                     <action selector="myGatePassWayButtonAction" destination="IYb-Jz-7vM" eventType="touchUpInside" id="Sep-jV-VXI"/>
                                                 </connections>
                                             </button>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vLC-LM-JzN">
+                                                <rect key="frame" x="169" y="65" width="37" height="37"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -9422,6 +9427,7 @@
                     </view>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="vLC-LM-JzN" id="u90-Ld-a4Z"/>
                         <outlet property="cardView" destination="3ye-7M-06P" id="20d-dQ-P86"/>
                         <outlet property="cardView_Image" destination="h5k-LS-9wn" id="Svt-5N-Bm4"/>
                         <outlet property="gatePass_btn" destination="1cO-qc-Q6l" id="2h3-Au-UMF"/>
@@ -9576,14 +9582,23 @@
                                     <constraint firstAttribute="height" constant="39" id="VuE-O0-EsO"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhe-1r-l0k">
+                                <rect key="frame" x="20" y="84" width="335" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fUV-3c-4FV" firstAttribute="centerX" secondItem="MBA-8B-WlI" secondAttribute="centerX" id="9j1-u7-55s"/>
                             <constraint firstItem="fUV-3c-4FV" firstAttribute="leading" secondItem="XJn-Bw-gfb" secondAttribute="leading" id="CKo-ah-dRN"/>
+                            <constraint firstItem="Rhe-1r-l0k" firstAttribute="top" secondItem="rDu-al-1Hj" secondAttribute="bottom" constant="5" id="D0V-aI-r4e"/>
                             <constraint firstItem="XJn-Bw-gfb" firstAttribute="trailing" secondItem="rDu-al-1Hj" secondAttribute="trailing" constant="20" id="D4O-w3-dC5"/>
                             <constraint firstItem="rDu-al-1Hj" firstAttribute="top" secondItem="XJn-Bw-gfb" secondAttribute="top" constant="20" id="PgY-hL-i47"/>
                             <constraint firstItem="XJn-Bw-gfb" firstAttribute="bottom" secondItem="fUV-3c-4FV" secondAttribute="bottom" constant="5" id="c6t-k1-UHp"/>
+                            <constraint firstItem="XJn-Bw-gfb" firstAttribute="trailing" secondItem="Rhe-1r-l0k" secondAttribute="trailing" constant="20" id="dFv-A7-fg7"/>
+                            <constraint firstItem="Rhe-1r-l0k" firstAttribute="centerX" secondItem="MBA-8B-WlI" secondAttribute="centerX" id="kUI-vQ-LPf"/>
                             <constraint firstItem="XJn-Bw-gfb" firstAttribute="trailing" secondItem="fUV-3c-4FV" secondAttribute="trailing" id="r3Z-Jo-RJ6"/>
                             <constraint firstItem="rDu-al-1Hj" firstAttribute="centerX" secondItem="MBA-8B-WlI" secondAttribute="centerX" id="vdK-8J-rbO"/>
                             <constraint firstItem="rDu-al-1Hj" firstAttribute="leading" secondItem="XJn-Bw-gfb" secondAttribute="leading" constant="20" id="yBQ-1q-lWp"/>
@@ -9593,6 +9608,7 @@
                     <connections>
                         <outlet property="btn_Cancel" destination="9Du-fz-Jjd" id="LZh-4C-nus"/>
                         <outlet property="btn_Done" destination="hjL-zU-JNE" id="rfn-lI-m2N"/>
+                        <outlet property="lbl_Validation" destination="Rhe-1r-l0k" id="PJl-22-Opr"/>
                         <outlet property="stackView" destination="fUV-3c-4FV" id="Lp0-bW-wjS"/>
                         <outlet property="stackView_Bottom_Constraint" destination="c6t-k1-UHp" id="sOG-23-poy"/>
                         <outlet property="txt_Name" destination="rDu-al-1Hj" id="OB8-Gm-Pt6"/>
