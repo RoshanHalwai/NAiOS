@@ -45,6 +45,8 @@ class MyProfileDataViewController: NANavigationViewController {
         self.stackView_Bottom_Constraint.constant = self.stackView_Bottom_Constraint.constant - 5
         txt_Name.underlined()
         txt_Name.font = NAFont().textFieldFont()
+        lbl_Validation.font = NAFont().descriptionFont()
+        lbl_Validation.isHidden = true
         
         //Button Formatting & settings
         btn_Cancel.setTitle(NAString().cancel(), for: .normal)
@@ -59,8 +61,6 @@ class MyProfileDataViewController: NANavigationViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        lbl_Validation.isHidden = true
     }
     
     //Create Keyboard Showing Function
