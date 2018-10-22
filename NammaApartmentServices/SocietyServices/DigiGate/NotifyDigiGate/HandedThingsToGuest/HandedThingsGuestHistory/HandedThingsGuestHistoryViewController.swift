@@ -70,8 +70,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
     }
     
     //CollectionView Reload with Background Thread
-    func CollectionReload()
-    {
+    func CollectionReload() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }

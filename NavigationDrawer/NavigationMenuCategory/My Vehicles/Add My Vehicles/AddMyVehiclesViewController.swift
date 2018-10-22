@@ -39,6 +39,7 @@ class AddMyVehiclesViewController: NANavigationViewController {
     
     var finalVehicleString = String()
     var btn_VehicleType_String = String()
+    var vehicle_New_TextLength = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,31 +134,30 @@ class AddMyVehiclesViewController: NANavigationViewController {
         lbl_VehicleType_Validation.isHidden = true
     }
     
+    func textFieldvalidation(textField: UITextField) {
+        if (textField.text?.isEmpty)! {
+            textField.redunderlined()
+        } else {
+            lbl_VehicleNumber_Validation.isHidden = true
+            textField.underlined()
+        }
+    }
+    
+    func textLengthValidation(textField: UITextField) {
+        if (vehicle_New_TextLength == NAString().zero_length()) {
+            textField.redunderlined()
+        } else {
+            lbl_VehicleNumber_Validation.isHidden = true
+            textField.underlined()
+        }
+    }
+    
     @IBAction func addVehicleButtonAction() {
-        if (txt_VehicleStateCode.text?.isEmpty)! {
-            txt_VehicleStateCode.redunderlined()
-        } else {
-            lbl_VehicleNumber_Validation.isHidden = true
-            txt_VehicleStateCode.underlined()
-        }
-        if (txt_VehicleRtoNumber.text?.isEmpty)! {
-            txt_VehicleRtoNumber.redunderlined()
-        } else {
-            lbl_VehicleNumber_Validation.isHidden = true
-            txt_VehicleRtoNumber.underlined()
-        }
-        if (txt_VehicleSerialNumberOne.text?.isEmpty)! {
-            txt_VehicleSerialNumberOne.redunderlined()
-        } else {
-            lbl_VehicleNumber_Validation.isHidden = true
-            txt_VehicleSerialNumberOne.underlined()
-        }
-        if (txt_VehicleSerialNumberTwo.text?.isEmpty)! {
-            txt_VehicleSerialNumberTwo.redunderlined()
-        } else {
-            lbl_VehicleNumber_Validation.isHidden = true
-            txt_VehicleSerialNumberTwo.underlined()
-        }
+        textFieldvalidation(textField: txt_VehicleStateCode)
+        textFieldvalidation(textField: txt_VehicleRtoNumber)
+        textFieldvalidation(textField: txt_VehicleSerialNumberOne)
+        textFieldvalidation(textField:  txt_VehicleSerialNumberTwo)
+
         if !(txt_VehicleStateCode.text?.isEmpty)! &&  !(txt_VehicleRtoNumber.text?.isEmpty)! && !(txt_VehicleSerialNumberOne.text?.isEmpty)! && !(txt_VehicleSerialNumberTwo.text?.isEmpty)! {
             lbl_VehicleNumber_Validation.isHidden = true
         } else {
@@ -230,14 +230,9 @@ extension AddMyVehiclesViewController {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
-        let vehicle_New_TextLength = text.utf16.count + string.utf16.count - range.length
+        vehicle_New_TextLength = text.utf16.count + string.utf16.count - range.length
         if textField == txt_VehicleStateCode {
-            if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_VehicleStateCode.redunderlined()
-            } else {
-                lbl_VehicleNumber_Validation.isHidden = true
-                txt_VehicleStateCode.underlined()
-            }
+           textLengthValidation(textField: txt_VehicleStateCode)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
                     return vehicle_New_TextLength <= 2
@@ -246,12 +241,7 @@ extension AddMyVehiclesViewController {
             }
         }
         if textField == txt_VehicleRtoNumber {
-            if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_VehicleRtoNumber.redunderlined()
-            } else {
-                lbl_VehicleNumber_Validation.isHidden = true
-                txt_VehicleRtoNumber.underlined()
-            }
+            textLengthValidation(textField: txt_VehicleRtoNumber)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
                     return vehicle_New_TextLength <= 2
@@ -260,12 +250,7 @@ extension AddMyVehiclesViewController {
             }
         }
         if textField == txt_VehicleSerialNumberOne {
-            if (vehicle_New_TextLength == NAString().zero_length()) {
-                txt_VehicleSerialNumberOne.redunderlined()
-            } else {
-                lbl_VehicleNumber_Validation.isHidden = true
-                txt_VehicleSerialNumberOne.underlined()
-            }
+            textLengthValidation(textField: txt_VehicleSerialNumberOne)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if vehicleStateCodeAndSerailCodeLength(isVehicleNumberLength: vehicle_New_TextLength) {
                     return vehicle_New_TextLength <= 2
@@ -275,12 +260,7 @@ extension AddMyVehiclesViewController {
         }
         if textField == txt_VehicleSerialNumberTwo {
             if vehicleSerialNumberLength(isVehicleSerialNumberLength: vehicle_New_TextLength) {
-                if (vehicle_New_TextLength == NAString().zero_length()) {
-                    txt_VehicleSerialNumberTwo.redunderlined()
-                } else {
-                    lbl_VehicleNumber_Validation.isHidden = true
-                    txt_VehicleSerialNumberTwo.underlined()
-                }
+               textLengthValidation(textField: txt_VehicleSerialNumberTwo)
             }
             return vehicle_New_TextLength <= 4
         }

@@ -59,7 +59,6 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             self.navigationController?.pushViewController(myProfileVC, animated: true)
         case 1 :
             let dv = NAViewPresenter().mySweetHomeVC()
-            dv.navTitle = NAString().my_sweet_home()
             dv.fromHomeScreenVC = true
             self.navigationController?.pushViewController(dv, animated: true)
         case 2 :

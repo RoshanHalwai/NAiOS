@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import SDWebImage
 
-class EditMyProfileViewController: NANavigationViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditMyProfileViewController: NANavigationViewController {
     
     @IBOutlet weak var profile_Image: UIImageView!
     @IBOutlet weak var cardView_Image: UIImageView!
@@ -179,38 +179,14 @@ class EditMyProfileViewController: NANavigationViewController, UIImagePickerCont
     
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let actionCamera = UIAlertAction(title: NAString().camera(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.camera
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: { (alert: UIAlertAction!) -> Void in })
-        actionSheet.addAction(actionCamera)
-        actionSheet.addAction(actionGallery)
-        actionSheet.addAction(cancel)
-        
-        actionSheet.view.tintColor = UIColor.black
-        self.present(actionSheet, animated: true, completion: nil)
+       toSelectImages(VC: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            updateImageChange(image: image)
             profile_Image.image = image
             isImageChanged = true
+            updateImageChange(image: image)
         }
         self.dismiss(animated: true, completion: nil)
     }
