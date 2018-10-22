@@ -29,8 +29,6 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
     var fromHomeScreenVC = false
     var fromMySweetHomeScreenVC = false
     
-    var navTitle = String()
-    
     var NAFamilyMemberList = [NAUser]()
     
     override func viewDidLoad() {
@@ -61,8 +59,7 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         self.btn_AddmyFamilyMember.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         self.btn_AddmyFamilyMember.titleLabel?.font = NAFont().buttonFont()
         
-        super.ConfigureNavBarTitle(title: navTitle)
-        self.navigationItem.title = ""
+        super.ConfigureNavBarTitle(title: NAString().my_sweet_home())
         
         let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToHomeScreenVC))
         self.navigationItem.leftBarButtonItem = backButton

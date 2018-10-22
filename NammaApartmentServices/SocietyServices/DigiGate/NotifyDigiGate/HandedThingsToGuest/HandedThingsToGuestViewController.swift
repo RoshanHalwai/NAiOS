@@ -131,15 +131,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
         }
         
         //This creates the shadows and modifies the cards a little bit
-        cell.backgroundCardView.backgroundColor = UIColor.white
-        cell.contentView.backgroundColor = UIColor(red: 240/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1.0)
-        cell.backgroundCardView.layer.borderWidth = 1.0
-        cell.backgroundCardView.layer.borderColor = UIColor.clear.cgColor
-        cell.backgroundCardView.layer.cornerRadius = 8.0
-        cell.backgroundCardView.layer.masksToBounds = false
-        cell.backgroundCardView.layer.shadowColor = UIColor.gray.cgColor
-        cell.backgroundCardView.layer.shadowOffset = CGSize(width: 1, height: 1)
-        cell.backgroundCardView.layer.shadowOpacity = 1
+        NAShadowEffect().shadowEffectForView(view: cell.backgroundCardView)
         
         //TextField Formatting & setting
         cell.txt_Description.font = NAFont().textFieldFont()

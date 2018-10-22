@@ -43,15 +43,20 @@ class RaiseAlarmViewController: NANavigationViewController {
             switch self.titleName {
             case NAString().medicalEmergency_Title() :
                 self.emergencyType = NAString().medical()
+                break
                 
             case NAString().raise_Fire_Alarm_Title() :
                 self.emergencyType = NAString().fire()
+                break
                 
             case NAString().raise_Theft_Alarm_Title() :
                 self.emergencyType = NAString().theft()
+                break
                 
             case NAString().raise_water_Alarm_Title() :
                 self.emergencyType = NAString().water()
+                break
+                
             default:
                 break
             }

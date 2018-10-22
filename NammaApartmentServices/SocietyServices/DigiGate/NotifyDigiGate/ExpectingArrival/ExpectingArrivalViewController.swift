@@ -66,6 +66,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
     
     var finalCabString = String()
     var btn_Hour_String = String()
+    var cab_New_TextLength = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -281,42 +282,33 @@ class ExpectingArrivalViewController: NANavigationViewController {
         selectedColor(tag: sender.tag)
     }
     
+    func textFieldvalidation(textField : UITextField) {
+        if (textField.text?.isEmpty)! {
+            inviteLabelCabNumberTitle()
+            textField.redunderlined()
+        } else {
+            lbl_cabNumber_Validation.isHidden = true
+            textField.underlined()
+        }
+    }
+    
+    func textLengthValidation(textField: UITextField) {
+        if (cab_New_TextLength == NAString().zero_length()) {
+            inviteLabelCabNumberTitle()
+            textField.redunderlined()
+        } else {
+            lbl_cabNumber_Validation.isHidden = true
+            textField.underlined()
+        }
+    }
     @IBAction func btnNotifyGate(_ sender: Any) {
-        if (txt_CabStateCode.text?.isEmpty)! {
-            inviteLabelCabNumberTitle()
-            txt_CabStateCode.redunderlined()
-        } else {
-            lbl_cabNumber_Validation.isHidden = true
-            txt_CabStateCode.underlined()
-        }
-        if (txt_CabRtoNumber.text?.isEmpty)! {
-            inviteLabelCabNumberTitle()
-            txt_CabRtoNumber.redunderlined()
-        } else {
-            lbl_cabNumber_Validation.isHidden = true
-            txt_CabRtoNumber.underlined()
-        }
-        if (txt_CabSerialNumberOne.text?.isEmpty)! {
-            inviteLabelCabNumberTitle()
-            txt_CabSerialNumberOne.redunderlined()
-        } else {
-            lbl_cabNumber_Validation.isHidden = true
-            txt_CabSerialNumberOne.underlined()
-        }
-        if (txt_CabSerialNumberTwo.text?.isEmpty)! {
-            inviteLabelCabNumberTitle()
-            txt_CabSerialNumberTwo.redunderlined()
-        } else {
-            lbl_cabNumber_Validation.isHidden = true
-            txt_CabSerialNumberTwo.underlined()
-        }
-        if (txt_PackageVendor.text?.isEmpty)! {
-            inviteLabelCabNumberTitle()
-            txt_PackageVendor.redunderlined()
-        } else {
-            lbl_cabNumber_Validation.isHidden = true
-            txt_PackageVendor.underlined()
-        }
+        
+        textFieldvalidation(textField: txt_CabStateCode)
+        textFieldvalidation(textField: txt_CabRtoNumber)
+        textFieldvalidation(textField: txt_CabSerialNumberOne)
+        textFieldvalidation(textField: txt_CabSerialNumberTwo)
+        textFieldvalidation(textField: txt_PackageVendor)
+
         if (txt_DateTime.text?.isEmpty)! {
             lbl_dateField_Validation.isHidden = false
             lbl_dateField_Validation.text = NAString().Please_select_date()
@@ -416,15 +408,9 @@ extension ExpectingArrivalViewController {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return true}
-        let cab_New_TextLength = text.utf16.count + string.utf16.count - range.length
+        cab_New_TextLength = text.utf16.count + string.utf16.count - range.length
         if textField == txt_CabStateCode {
-            if (cab_New_TextLength == NAString().zero_length()) {
-                inviteLabelCabNumberTitle()
-                txt_CabStateCode.redunderlined()
-            } else {
-                lbl_cabNumber_Validation.isHidden = true
-                txt_CabStateCode.underlined()
-            }
+            textLengthValidation(textField: txt_CabStateCode)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
                     return cab_New_TextLength <= 2
@@ -432,14 +418,9 @@ extension ExpectingArrivalViewController {
                 return true
             }
         }
+        
         if textField == txt_CabRtoNumber {
-            if (cab_New_TextLength == NAString().zero_length()) {
-                inviteLabelCabNumberTitle()
-                txt_CabRtoNumber.redunderlined()
-            } else {
-                lbl_cabNumber_Validation.isHidden = true
-                txt_CabRtoNumber.underlined()
-            }
+             textLengthValidation(textField: txt_CabRtoNumber)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
                     return cab_New_TextLength <= 2
@@ -447,14 +428,9 @@ extension ExpectingArrivalViewController {
                 return true
             }
         }
+        
         if textField == txt_CabSerialNumberOne {
-            if (cab_New_TextLength == NAString().zero_length()) {
-                inviteLabelCabNumberTitle()
-                txt_CabSerialNumberOne.redunderlined()
-            } else {
-                lbl_cabNumber_Validation.isHidden = true
-                txt_CabSerialNumberOne.underlined()
-            }
+            textLengthValidation(textField:  txt_CabSerialNumberOne)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
                     return cab_New_TextLength <= 2
@@ -462,27 +438,18 @@ extension ExpectingArrivalViewController {
                 return true
             }
         }
+        
         if textField == txt_CabSerialNumberTwo {
             if cabSerialNumberLength(isCabSerialNumberLength: cab_New_TextLength) {
-                if (cab_New_TextLength == NAString().zero_length()) {
-                    inviteLabelCabNumberTitle()
-                    txt_CabSerialNumberTwo.redunderlined()
-                } else {
-                    lbl_cabNumber_Validation.isHidden = true
-                    txt_CabSerialNumberTwo.underlined()
-                }
+                textLengthValidation(textField: txt_CabSerialNumberTwo)
             }
             return cab_New_TextLength <= 4
         }
+        
         if textField == txt_PackageVendor {
-            if (cab_New_TextLength == NAString().zero_length()) {
-                inviteLabelCabNumberTitle()
-                txt_PackageVendor.redunderlined()
-            } else {
-                lbl_cabNumber_Validation.isHidden = true
-                txt_PackageVendor.underlined()
-            }
+            textLengthValidation(textField: txt_PackageVendor)
         }
+        
         if textField == txt_DateTime {
             if (cab_New_TextLength == NAString().zero_length()) {
                 lbl_dateField_Validation.isHidden = false
@@ -493,9 +460,11 @@ extension ExpectingArrivalViewController {
                 txt_DateTime.underlined()
             }
         }
+        
         if (navTitle == NAString().expecting_cab_arrival()) {
             return false
         }
+        
         return true
     }
 }

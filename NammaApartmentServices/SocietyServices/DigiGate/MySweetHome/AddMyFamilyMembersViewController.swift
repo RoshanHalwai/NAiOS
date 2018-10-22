@@ -18,7 +18,7 @@ protocol FamilyDataPass {
     func familydataPassing()
 }
 
-class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,AlertViewDelegate, FamilyDataPass {
+class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDelegate, FamilyDataPass {
     
     @IBOutlet weak var img_Profile: UIImageView!
     
@@ -249,32 +249,8 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     // Function to appear select image from by tapping image.
-    
     @objc func imageTapped() {
-        let actionSheet = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-        let actionCamera = UIAlertAction(title:NAString().camera(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.camera
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let cancel = UIAlertAction(title:NAString().cancel(), style: .cancel, handler: {
-            (alert: UIAlertAction!) -> Void in})
-        actionSheet.addAction(actionCamera)
-        actionSheet.addAction(actionGallery)
-        actionSheet.addAction(cancel)
-        actionSheet.view.tintColor = UIColor.black
-        self.present(actionSheet, animated: true, completion: nil)
+        toSelectImages(VC: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -286,40 +262,14 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
     }
     
     @IBAction func btnSelectContact(_ sender: Any) {
-        let entityType = CNEntityType.contacts
-        let authStatus = CNContactStore.authorizationStatus(for: entityType)
-        if authStatus == CNAuthorizationStatus.notDetermined {
-            let contactStore = CNContactStore.init()
-            contactStore.requestAccess(for: entityType, completionHandler: { (success, nil) in
-                if success {
-                    self.openContacts()
-                }
-            })
-        }
-        else if authStatus == CNAuthorizationStatus.authorized {
-            self.openContacts()
-        }
-            //Open App Setting if user cannot able to access Contacts
-        else if authStatus == CNAuthorizationStatus.denied {
-            NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().setting_Permission_AlertBox(), Message: "", CancelStyle: .cancel, OkStyle: .default, OK: { (action) in
-                let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)!
-                UIApplication.shared.open(settingsUrl)
-            }, Cancel: { (action) in
-            }, cancelActionTitle: NAString().cancel(), okActionTitle: NAString().settings())
-        }
+      toSelectContacts(VC: self)
     }
     
     /* - To call default address book app.
      - User select any contact particular part.
      - Retrive Data Alert View Delegate.
      - Create Timer Function,AlertView Action and OK button. */
-    
-    func openContacts() {
-        let contactPicker = CNContactPickerViewController.init()
-        contactPicker.delegate = self
-        self.present(contactPicker, animated: true, completion: nil)
-    }
-    
+
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -364,7 +314,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, CNContactPic
         
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
             let lv = NAViewPresenter().mySweetHomeVC()
-            lv.navTitle = NAString().my_sweet_home()
             lv.fromMySweetHomeScreenVC = true
             self.navigationController?.pushViewController(lv, animated: true)
         }
@@ -641,4 +590,3 @@ extension AddMyFamilyMembersViewController {
         }
     }
 }
-

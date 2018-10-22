@@ -167,35 +167,11 @@ class SignupViewController: NANavigationViewController {
         }
     }
 }
-extension SignupViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+extension SignupViewController {
     
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
-        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let actionCamera = UIAlertAction(title: NAString().camera(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.camera
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let actionGallery = UIAlertAction(title:NAString().gallery(), style: .default, handler: {
-            (alert: UIAlertAction!) -> Void in
-            let pickerController = UIImagePickerController()
-            pickerController.delegate = self
-            pickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-            pickerController.allowsEditing = true
-            self.present(pickerController, animated: true, completion: nil)
-        })
-        let cancel = UIAlertAction(title: NAString().cancel(), style: .cancel, handler: { (alert: UIAlertAction!) -> Void in })
-        actionSheet.addAction(actionCamera)
-        actionSheet.addAction(actionGallery)
-        actionSheet.addAction(cancel)
-        
-        actionSheet.view.tintColor = UIColor.black
-        self.present(actionSheet, animated: true, completion: nil)
+      toSelectImages(VC: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
