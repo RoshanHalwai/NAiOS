@@ -3184,7 +3184,6 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="npx-YL-1SC" secondAttribute="trailing" constant="10" id="9qp-Ld-Fvb"/>
                                                 <constraint firstItem="npx-YL-1SC" firstAttribute="top" secondItem="2Fa-Q3-01f" secondAttribute="top" constant="10" id="Odp-Th-yN3"/>
@@ -4092,7 +4091,6 @@
                                                 <constraint firstItem="6Ug-tQ-JBl" firstAttribute="leading" secondItem="DDS-7N-3We" secondAttribute="leading" constant="10" id="u4r-Ck-QPP"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.4992716908454895" green="0.94819861650466919" blue="0.1383189857006073" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="backgroundCardView" destination="6Ug-tQ-JBl" id="RZa-47-cJG"/>
                                             <outlet property="btn_NotifyGate" destination="cpx-Cq-aPj" id="J0v-cV-ijF"/>
@@ -6215,13 +6213,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UY-qF-7pc">
-                                                <rect key="frame" x="170" y="0.0" width="53" height="43"/>
+                                                <rect key="frame" x="170" y="0.0" width="55" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the free service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53u-9B-EnE">
-                                                <rect key="frame" x="253" y="0.0" width="57" height="43"/>
+                                                <rect key="frame" x="255" y="0.0" width="55" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>

@@ -172,7 +172,7 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
             
             if userDailyServivcesList.isEmpty {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
             } else {
                 var count = 0
                 for dailyServiceData in userDailyServivcesList {
@@ -186,7 +186,7 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
                     
                     if count == userDailyServivcesList.count && self.dailyServiceHistoryList.isEmpty {
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                        self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                     }
                 }
             }
