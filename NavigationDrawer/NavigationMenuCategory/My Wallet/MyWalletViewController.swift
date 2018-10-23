@@ -120,7 +120,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         paymentDescription = NAString().society_Services_Title()
         
         let convenienceChargesRef = Constants.FIREBASE_CONVENIENCE_CHARGES
-        convenienceChargesRef.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
+        convenienceChargesRef?.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
             self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
             self.gettingPercentageAmount = Double((Float(self.pendingDueAmount)! * self.convenienceFee) / 100)
             let totalAmount:Float = Float(Double(Float(self.pendingDueAmount)!) + self.gettingPercentageAmount)

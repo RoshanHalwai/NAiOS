@@ -22,7 +22,7 @@ class GlobalUserData {
     
     func getUserDataReference() -> DatabaseReference {
         let userFlatDetails = GlobalUserData.shared.flatDetails_Items.first
-        let userDataReference = Database.database().reference()
+        let userDataReference = Constants.FIREBASE_DATABASE_REFERENCE
             .child(Constants.FIREBASE_USERDATA)
             .child(Constants.FIREBASE_CHILD_PRIVATE)
             .child((userFlatDetails?.city)!)
