@@ -42,6 +42,7 @@ class MyGatePassViewController: NANavigationViewController {
         
         //Setting & Formatting Navigation bar
         super.ConfigureNavBarTitle(title: navTitle)
+        self.navigationItem.rightBarButtonItem = nil
         
         //setting image round
         image_View.layer.cornerRadius = image_View.frame.size.width/2

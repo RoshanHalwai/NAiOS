@@ -308,7 +308,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         textFieldvalidation(textField: txt_CabSerialNumberOne)
         textFieldvalidation(textField: txt_CabSerialNumberTwo)
         textFieldvalidation(textField: txt_PackageVendor)
-
+        
         if (txt_DateTime.text?.isEmpty)! {
             lbl_dateField_Validation.isHidden = false
             lbl_dateField_Validation.text = NAString().Please_select_date()
@@ -342,9 +342,9 @@ class ExpectingArrivalViewController: NANavigationViewController {
     func inviteLabelCabNumberTitle() {
         lbl_cabNumber_Validation.isHidden = false
         if (navTitle == NAString().expecting_cab_arrival()) {
-            lbl_cabNumber_Validation.text = NAString().please_fill_details(name: "Cab Number")
+            lbl_cabNumber_Validation.text = NAString().please_fill_details(name: "cab cumber")
         } else {
-            lbl_cabNumber_Validation.text = NAString().please_fill_details(name: "Name")
+            lbl_cabNumber_Validation.text = NAString().please_fill_details(name: "name")
         }
     }
     
@@ -420,7 +420,7 @@ extension ExpectingArrivalViewController {
         }
         
         if textField == txt_CabRtoNumber {
-             textLengthValidation(textField: txt_CabRtoNumber)
+            textLengthValidation(textField: txt_CabRtoNumber)
             if shouldChangeCustomCharacters(textField: textField, string: string) {
                 if cabStateCodeAndSerailCodeLength(isCabNumberLength: cab_New_TextLength) {
                     return cab_New_TextLength <= 2

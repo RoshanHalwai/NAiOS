@@ -45,6 +45,8 @@
 		420324B321759E60005BC455 /* MyProfileDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420324B221759E60005BC455 /* MyProfileDataViewController.swift */; };
 		420324B421759E69005BC455 /* MyProfileDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420324B221759E60005BC455 /* MyProfileDataViewController.swift */; };
 		42245146214FBDE600CD2C0E /* NammaApartmentFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42245145214FBDE600CD2C0E /* NammaApartmentFood.swift */; };
+		4228BD3E217F3F58000D57F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4228BD3C217F3F58000D57F2 /* Main.storyboard */; };
+		4228BD3F217F3F58000D57F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4228BD3C217F3F58000D57F2 /* Main.storyboard */; };
 		422E7E042114618A00648D40 /* SocietyHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */; };
 		422E7E062114619F00648D40 /* SocietyHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */; };
 		422E7E0D2114882700648D40 /* AwaitingResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422E7E0C2114882700648D40 /* AwaitingResponseViewController.swift */; };
@@ -161,8 +163,6 @@
 		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
 		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
 		869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */; };
-		86A0DBF3217DC77300586A8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A0DBF2217DC77300586A8C /* Main.storyboard */; };
-		86A0DBF4217DC77300586A8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A0DBF2217DC77300586A8C /* Main.storyboard */; };
 		86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
 		86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */; };
 		86A4D4A520D57047007890D2 /* NAUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4D4A420D57047007890D2 /* NAUser.swift */; };
@@ -433,6 +433,7 @@
 		08F3EDA0212FD6B00030DBEF /* SocietyServiceRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyServiceRatingView.swift; sourceTree = "<group>"; };
 		420324B221759E60005BC455 /* MyProfileDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileDataViewController.swift; sourceTree = "<group>"; };
 		42245145214FBDE600CD2C0E /* NammaApartmentFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentFood.swift; sourceTree = "<group>"; };
+		4228BD3D217F3F58000D57F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		422E7E032114618A00648D40 /* SocietyHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		422E7E052114619F00648D40 /* SocietyHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocietyHistoryViewController.swift; sourceTree = "<group>"; };
 		422E7E0C2114882700648D40 /* AwaitingResponseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwaitingResponseViewController.swift; sourceTree = "<group>"; };
@@ -560,7 +561,6 @@
 		868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPrivileges.swift; sourceTree = "<group>"; };
 		869306C520F22D050069305D /* nammaApartment.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = nammaApartment.entitlements; sourceTree = "<group>"; };
 		869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NammaApartmentArrival.swift; sourceTree = "<group>"; };
-		86A0DBF2217DC77300586A8C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../Main.storyboard; sourceTree = "<group>"; };
 		86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NAActivityIndicator.swift; sourceTree = "<group>"; };
 		86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAFirebase.swift; sourceTree = "<group>"; };
 		86A4D4A420D57047007890D2 /* NAUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAUser.swift; sourceTree = "<group>"; };
@@ -1321,7 +1321,7 @@
 		86C1A138209AF3FC00D75D0F /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				86A0DBF2217DC77300586A8C /* Main.storyboard */,
+				4228BD3C217F3F58000D57F2 /* Main.storyboard */,
 			);
 			path = StoryBoard;
 			sourceTree = "<group>";
@@ -1537,7 +1537,7 @@
 				08F3ED9F212FC7AD0030DBEF /* SocietyServiceRatingView.xib in Resources */,
 				861CC00C20B9AA99009EC0EF /* Lato-HairlineItalic.ttf in Resources */,
 				861CC01020B9AA99009EC0EF /* Lato-BoldItalic.ttf in Resources */,
-				86A0DBF3217DC77300586A8C /* Main.storyboard in Resources */,
+				4228BD3E217F3F58000D57F2 /* Main.storyboard in Resources */,
 				861CC00A20B9AA99009EC0EF /* Lato-Bold.ttf in Resources */,
 				861CC00F20B9AA99009EC0EF /* Lato-BlackItalic.ttf in Resources */,
 				861CC00D20B9AA99009EC0EF /* Lato-Regular.ttf in Resources */,
@@ -1587,7 +1587,7 @@
 				86F7B465215D1FAD005A26CE /* Lato-Regular.ttf in Resources */,
 				86F7B466215D1FAD005A26CE /* Lato-LightItalic.ttf in Resources */,
 				86F7B467215D1FAD005A26CE /* Lato-Hairline.ttf in Resources */,
-				86A0DBF4217DC77300586A8C /* Main.storyboard in Resources */,
+				4228BD3F217F3F58000D57F2 /* Main.storyboard in Resources */,
 				86F7B477215D1FBA005A26CE /* GoogleService-Info.plist in Resources */,
 				86F7B469215D1FAD005A26CE /* Assets.xcassets in Resources */,
 				86F7B46B215D1FAD005A26CE /* Lato-Italic.ttf in Resources */,
@@ -1707,7 +1707,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1719,7 +1718,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -2062,6 +2060,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		4228BD3C217F3F58000D57F2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4228BD3D217F3F58000D57F2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		86270102209707BC004B28EB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

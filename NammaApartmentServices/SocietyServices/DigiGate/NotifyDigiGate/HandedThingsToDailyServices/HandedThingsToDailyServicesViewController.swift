@@ -257,7 +257,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     }
     
     /* - Check if the flat has any daily service. If it does not have any daily services added we show daily service unavailable message
-    - Else, we display the daily services whose status is “Entered” of the current user and their family members.*/
+     - Else, we display the daily services whose status is “Entered” of the current user and their family members.*/
     func retrieveEnteredDailyServices() {
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         let retrieveDailyList : RetrievingDailyServicesList

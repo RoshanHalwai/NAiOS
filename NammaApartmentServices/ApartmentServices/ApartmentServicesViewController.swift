@@ -91,7 +91,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         default:
             break
         }
-       
+        
         //Define Layout here
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)

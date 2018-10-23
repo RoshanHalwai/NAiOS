@@ -229,7 +229,7 @@ class NAString : NSObject {
     }
     
     func please_upload_Image() -> String {
-        return String("Please upload Image")
+        return String("Please upload image")
     }
     
     func please_enter_email() -> String {
@@ -948,7 +948,7 @@ class NAString : NSObject {
     }
     
     func emergency_Alert_Message() -> String {
-        return String("Emergency notification will be sent to the Guard. Press OK to confirm")
+        return String("Emergency notification will be sent to the Guard. Press OK to confirm.")
     }
     
     func emergency_alarm_raised() -> String {
@@ -1103,7 +1103,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorVisitorList() -> String {
-        return String ("Currently there are no guests scheduled at your flat.")
+        return String ("Sorry, you cannot use this feature since currently there are no Guests at your Flat.")
     }
     
     func layoutFeatureErrorTransactionsList() -> String {
@@ -1143,7 +1143,7 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorGroceriesServices() -> String {
-        return String("We are setting up soon in your Society. We will notify you when once we are there.")
+        return String("We are setting up soon in your Society. We will notify you once we are there.")
     }
     
     func statusNotEntered() -> String {
@@ -1168,7 +1168,7 @@ class NAString : NSObject {
     }
     
     func Please_select_atleast_oneRelation() -> String {
-        return String("Please select At least One Relation")
+        return String("Please select at least one relation")
     }
     
     func notifyButtonAlertViewMessage() -> String {
@@ -1253,11 +1253,11 @@ class NAString : NSObject {
     }
     
     func dailyServiceNotAvailable() -> String {
-        return String ("Please add your Daily Services for their hassle free entry at your Society")
+        return String ("There are no Daily Service added for your Flat yet.")
     }
     
     func dailyServiceNotAvailableHandedThings() -> String {
-        return String ("There are no Daily Service added for your Flat ye")
+        return String ("You haven't handed any things to your Daily Services.")
     }
     
     func societyServiceNotAvailable(serviceName: String) -> String {
@@ -2277,7 +2277,7 @@ class NAString : NSObject {
     }
     
     func downloadCompletedMessage() -> String {
-        return String("Your gate pass has been saved to the gallery")
+        return String("Your Gate Pass has been downloaded to the device Gallery.")
     }
     
     func gatePassDescription() -> String {

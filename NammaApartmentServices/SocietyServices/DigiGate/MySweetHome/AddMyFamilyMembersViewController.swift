@@ -99,6 +99,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
         lbl_Picture_Validation.isHidden = true
         lbl_Email_Validation.isHidden = true
         lbl_Relation_Validation.isHidden = true
+        lbl_OTPDescription.isHidden = true
         
         txt_Name.delegate = self
         txt_MobileNo.delegate = self
@@ -125,7 +126,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
         
         self.lbl_MobileNo.font = NAFont().headerFont()
         self.lbl_Name.font = NAFont().headerFont()
-        self.lbl_OTPDescription.font = NAFont().popupViewFont()
+        self.lbl_OTPDescription.font = NAFont().headerFont()
         self.lbl_Relation.font = NAFont().headerFont()
         self.lbl_Email.font = NAFont().headerFont()
         self.lbl_GrantAccess.font = NAFont().headerFont()
@@ -134,7 +135,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
         self.lbl_Picture_Validation.font = NAFont().descriptionFont()
         self.lbl_Email_Validation.font = NAFont().descriptionFont()
         self.lbl_Relation_Validation.font = NAFont().descriptionFont()
-        self.lbl_OTPDescription.text = NAString().otp_message_family_member(name:NAString().family_Member())
         self.lbl_Relation.text = NAString().relation()
         self.lbl_GrantAccess.text = NAString().grant_access()
         self.lbl_Name.text = NAString().name()
@@ -219,6 +219,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
     }
     
     @IBAction func relationSegmentAction() {
+        lbl_OTPDescription.isHidden = false
         if Relation_Segment.selectedSegmentIndex == 0 {
             lbl_Relation_Validation.isHidden = true
             lbl_OTPDescription.text = NAString().otp_message_family_member(name: NAString().family_Member())
@@ -262,14 +263,14 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
     }
     
     @IBAction func btnSelectContact(_ sender: Any) {
-      toSelectContacts(VC: self)
+        toSelectContacts(VC: self)
     }
     
     /* - To call default address book app.
      - User select any contact particular part.
      - Retrive Data Alert View Delegate.
      - Create Timer Function,AlertView Action and OK button. */
-
+    
     func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
         picker.dismiss(animated: true, completion: nil)
     }
