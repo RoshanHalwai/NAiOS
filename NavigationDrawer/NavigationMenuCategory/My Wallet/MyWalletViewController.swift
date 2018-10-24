@@ -147,7 +147,10 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     
     //This will call when transaction succeed
     func onPaymentSuccess(_ payment_id: String) {
-        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
+        NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", buttonTitle: NAString().ok(), OkStyle: .default, OK: {action in
+            let transactionSummaryVC = NAViewPresenter().transactionSummaryVC()
+            self.navigationController?.pushViewController(transactionSummaryVC, animated: true)
+        })
         storePaymentDetails(paymentId: payment_id, result: NAString().successful())
         let pendingRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
         pendingRef.removeValue()
