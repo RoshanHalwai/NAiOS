@@ -244,7 +244,7 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
     func retrieveApartmentServicesData(serviceType: String) {
         
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        let serviceDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
+        let serviceDataRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
         serviceDataRef.observeSingleEvent(of: .value) { (snapshot) in
             if snapshot.exists() {
                 

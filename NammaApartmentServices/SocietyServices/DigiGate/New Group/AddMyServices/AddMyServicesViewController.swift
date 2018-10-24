@@ -519,7 +519,7 @@ extension AddMyServicesViewController {
     func addMyDailyServiceExistsOrNot(VC: UIViewController)  {
         
         let addMyDailyServiceMobileRef = Constants.FIREBASE_USERS_ALL
-        addMyDailyServiceMobileRef.observeSingleEvent(of: .value) { (mobileSnapshot) in
+        addMyDailyServiceMobileRef?.observeSingleEvent(of: .value) { (mobileSnapshot) in
             
             var count = 0
             let mobileNumbers = mobileSnapshot.value as! NSDictionary

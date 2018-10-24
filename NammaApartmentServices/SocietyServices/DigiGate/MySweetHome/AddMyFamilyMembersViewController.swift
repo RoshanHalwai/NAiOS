@@ -574,7 +574,7 @@ extension AddMyFamilyMembersViewController {
     func familyMemberExistsOrNot(VC: UIViewController)  {
         
         let familyMemberMobileRef = Constants.FIREBASE_USERS_ALL
-        familyMemberMobileRef.observeSingleEvent(of: .value) { (mobileSnapshot) in
+        familyMemberMobileRef?.observeSingleEvent(of: .value) { (mobileSnapshot) in
             
             var count = 0
             let mobileNumbers = mobileSnapshot.value as! NSDictionary

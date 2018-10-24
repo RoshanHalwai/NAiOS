@@ -364,8 +364,8 @@ extension MyVehiclesViewController {
             
             if !(txt_VehicleState_Code.text?.isEmpty)! && !(txt_Vehicle_Rto_Number.text?.isEmpty)! && !(txt_Vehicle_SerialNumberOne.text?.isEmpty)! && !(txt_Vehicle_SerialNumberTwo.text?.isEmpty)! {
                 vehiclePrivateRef.child(VehicleListFBKeys.vehicleNumber.key).setValue(updatedVehicleNumber)
-                vehicleAllRef.child(updatedVehicleNumber).setValue(vehicleUID.getVehicleUID())
-                vehicleAllRef.child(vehicleUID.getvehicleNumber()).removeValue()
+                vehicleAllRef?.child(updatedVehicleNumber).setValue(vehicleUID.getVehicleUID())
+                vehicleAllRef?.child(vehicleUID.getvehicleNumber()).removeValue()
                 
                 vehiclePrivateRef.observe(.value) { (snapshot) in
                     self.retrieviedVehicleDataInFirebase()
