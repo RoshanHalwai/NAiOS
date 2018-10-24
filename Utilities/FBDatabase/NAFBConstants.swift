@@ -126,6 +126,8 @@ struct Constants {
     static let FIREBASE_CHILD_CONVENIENCE = "convenienceCharges"
     static let FIREBASE_CHILD_CHATS = "chats"
     static let FIREBASE_CHILD_PERIOD = "period"
+    static let FIREBASE_CHILD_CONTACTUS = "contactUs"
+    static let FIREBASE_CHILD_NUMBER = "number"
     
     static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
     
