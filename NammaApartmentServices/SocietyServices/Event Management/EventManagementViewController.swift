@@ -492,7 +492,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                 self.getFinalAmount = (self.gettingPercentageAmount) + (self.totalAmount)
                 let getfinalAmountInPaisa = (self.getFinalAmount * 100)
                 self.getFinalAmountInString = "\(getfinalAmountInPaisa)"
-                    
+                
                 NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().bookingSummary(), Message: NAString().eventSlotsAmountAlert_Message(slotsCount: self.slotsCount, totalAmount: self.getFinalAmount, perSlot: self.bookingAmount, estimatedAmount: self.totalAmount, convenienceFee: self.convenienceFee, convenienceAmount: Float(self.gettingPercentageAmount)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
                     self.showPaymentUI()
                 }, Cancel: nil, cancelActionTitle: NAString().cancel().uppercased(), okActionTitle: NAString().payNow().uppercased())
@@ -597,7 +597,7 @@ extension EventManagementViewController {
         
         OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showEventPopupView(view: self, title: NAString().event_booking())
-
+        
         let bookingAmountRef = Constants.FIREBASE_BOOKING_SLOT
         bookingAmountRef.observeSingleEvent(of: .value) { (bookingAmountSnapshot) in
             
@@ -610,7 +610,7 @@ extension EventManagementViewController {
                 OpacityView.shared.hidingPopupView()
                 
                 self.bookingAmount = bookingAmountSnapshot.value as! Int
-      
+                
                 //Creating History icon on Navigation bar
                 let historyButton = UIButton(type: .system)
                 historyButton.setImage(#imageLiteral(resourceName: "historyButton"), for: .normal)
