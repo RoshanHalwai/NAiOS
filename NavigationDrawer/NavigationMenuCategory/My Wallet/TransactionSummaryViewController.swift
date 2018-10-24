@@ -35,6 +35,10 @@ class TransactionSummaryViewController: NANavigationViewController {
         self.ConfigureNavBarTitle(title: NAString().transactionSummary())
         self.navigationItem.rightBarButtonItem = nil
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        contact_Us_ParentView.isUserInteractionEnabled = true
+        contact_Us_ParentView.addGestureRecognizer(tap)
+        
         lbl_PaymentID.text = transactionUID
         lbl_Total_Amount.text = String(totalAmount)
         lbl_Transaction_Date.text = transactionDate
@@ -71,6 +75,13 @@ class TransactionSummaryViewController: NANavigationViewController {
         } else {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    //Create Guesture Function
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        let transactionContactUsVC = NAViewPresenter().transactionContactUsVC()
+        transactionContactUsVC.navTitle = NAString().contactUs()
+        self.navigationController?.pushViewController(transactionContactUsVC, animated: true)
     }
     
     @IBAction func btn_Copy_Action(_ sender: UIButton) {

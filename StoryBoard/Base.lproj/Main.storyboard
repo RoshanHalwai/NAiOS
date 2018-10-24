@@ -903,6 +903,114 @@
             </objects>
             <point key="canvasLocation" x="2900" y="713.79310344827593"/>
         </scene>
+        <!--Transactions Contact Us View Controller-->
+        <scene sceneID="biJ-pZ-wCC">
+            <objects>
+                <viewController storyboardIdentifier="transactionContactUsVC" id="c8h-ey-GDp" customClass="TransactionsContactUsViewController" customModule="nammaApartment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QIf-aZ-TJm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pW4-Z8-Ksy">
+                                <rect key="frame" x="10" y="223.5" width="355" height="220"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Namma Apartments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cps-NR-vhw">
+                                        <rect key="frame" x="10" y="10" width="335" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="bn4-Hc-NIF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Our executive will help you to solve your problem" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VMf-YM-93z">
+                                        <rect key="frame" x="10" y="50" width="335" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="r4n-Ki-1Dg">
+                                        <rect key="frame" x="81.5" y="111" width="192" height="30"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Call" translatesAutoresizingMaskIntoConstraints="NO" id="Iba-IH-jb8">
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="1C3-qA-5GU"/>
+                                                    <constraint firstAttribute="width" constant="30" id="BmW-v2-mhP"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+91-8041179007" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4G-NU-l2I">
+                                                <rect key="frame" x="60" y="0.0" width="132" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.23137254901960785" green="0.68235294117647061" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lz4-eU-foU">
+                                        <rect key="frame" x="39" y="161" width="277" height="30"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Email" translatesAutoresizingMaskIntoConstraints="NO" id="hWC-yd-jXO">
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="TyK-1V-K9g"/>
+                                                    <constraint firstAttribute="width" constant="30" id="wD9-Tx-6HI"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="skychaitanya@kirtanlabs.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIM-Sr-bi7">
+                                                <rect key="frame" x="50" y="0.0" width="227" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.23137254900000001" green="0.68235294120000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="oIM-Sr-bi7" firstAttribute="leading" secondItem="hWC-yd-jXO" secondAttribute="trailing" constant="20" id="9b6-pZ-Dyg"/>
+                                            <constraint firstAttribute="trailing" secondItem="oIM-Sr-bi7" secondAttribute="trailing" id="BcY-fH-8DF"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="r4n-Ki-1Dg" firstAttribute="centerX" secondItem="pW4-Z8-Ksy" secondAttribute="centerX" id="56q-fq-ypc"/>
+                                    <constraint firstAttribute="trailing" secondItem="cps-NR-vhw" secondAttribute="trailing" constant="10" id="AP5-jF-bgh"/>
+                                    <constraint firstItem="VMf-YM-93z" firstAttribute="leading" secondItem="pW4-Z8-Ksy" secondAttribute="leading" constant="10" id="F9q-ym-GPs"/>
+                                    <constraint firstItem="cps-NR-vhw" firstAttribute="top" secondItem="pW4-Z8-Ksy" secondAttribute="top" constant="10" id="UZZ-y6-Edb"/>
+                                    <constraint firstItem="lz4-eU-foU" firstAttribute="top" secondItem="r4n-Ki-1Dg" secondAttribute="bottom" constant="20" id="YYB-lj-mAU"/>
+                                    <constraint firstAttribute="height" constant="220" id="Zfr-sQ-oax"/>
+                                    <constraint firstItem="VMf-YM-93z" firstAttribute="centerX" secondItem="pW4-Z8-Ksy" secondAttribute="centerX" id="brE-oy-KHn"/>
+                                    <constraint firstAttribute="trailing" secondItem="VMf-YM-93z" secondAttribute="trailing" constant="10" id="cxR-c2-4R4"/>
+                                    <constraint firstItem="cps-NR-vhw" firstAttribute="centerX" secondItem="pW4-Z8-Ksy" secondAttribute="centerX" id="mKQ-tJ-9gf"/>
+                                    <constraint firstItem="lz4-eU-foU" firstAttribute="centerX" secondItem="pW4-Z8-Ksy" secondAttribute="centerX" id="mOV-tV-TLM"/>
+                                    <constraint firstItem="cps-NR-vhw" firstAttribute="leading" secondItem="pW4-Z8-Ksy" secondAttribute="leading" constant="10" id="ooU-KW-VFT"/>
+                                    <constraint firstItem="r4n-Ki-1Dg" firstAttribute="top" secondItem="VMf-YM-93z" secondAttribute="bottom" constant="20" id="qGs-E3-JbV"/>
+                                    <constraint firstItem="VMf-YM-93z" firstAttribute="top" secondItem="cps-NR-vhw" secondAttribute="bottom" constant="10" id="wuD-TO-Ore"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pW4-Z8-Ksy" firstAttribute="centerY" secondItem="QIf-aZ-TJm" secondAttribute="centerY" id="5wT-1e-FiN"/>
+                            <constraint firstItem="pW4-Z8-Ksy" firstAttribute="leading" secondItem="G7X-QD-Ycj" secondAttribute="leading" constant="10" id="oEo-5u-vHn"/>
+                            <constraint firstItem="G7X-QD-Ycj" firstAttribute="trailing" secondItem="pW4-Z8-Ksy" secondAttribute="trailing" constant="10" id="pJE-EY-hnp"/>
+                            <constraint firstItem="pW4-Z8-Ksy" firstAttribute="centerX" secondItem="QIf-aZ-TJm" secondAttribute="centerX" id="rbB-Nm-CAk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="G7X-QD-Ycj"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardView" destination="pW4-Z8-Ksy" id="kIZ-AK-WFr"/>
+                        <outlet property="img_Call" destination="Iba-IH-jb8" id="epc-6h-AEI"/>
+                        <outlet property="img_Email" destination="hWC-yd-jXO" id="uB2-oK-f5m"/>
+                        <outlet property="lbl_ContactMessage" destination="VMf-YM-93z" id="JQA-tB-JEf"/>
+                        <outlet property="lbl_ContactTitle" destination="cps-NR-vhw" id="MvS-Ch-CXp"/>
+                        <outlet property="lbl_Mail" destination="oIM-Sr-bi7" id="Wc7-nV-Mf7"/>
+                        <outlet property="lbl_mobileNumber" destination="S4G-NU-l2I" id="8mB-oZ-7NJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MbG-qk-scY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3695.1999999999998" y="709.29535232383819"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="Vsk-Nw-3iJ">
             <objects>
@@ -11274,6 +11382,7 @@
         <image name="Cancel" width="128" height="128"/>
         <image name="Edit" width="128" height="128"/>
         <image name="EditIcon" width="16" height="16"/>
+        <image name="Email" width="128" height="128"/>
         <image name="EmergencyBell" width="128" height="128"/>
         <image name="ExpectingVisitor" width="128" height="128"/>
         <image name="Help" width="48" height="48"/>

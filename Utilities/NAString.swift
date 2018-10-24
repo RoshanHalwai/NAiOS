@@ -2300,5 +2300,25 @@ class NAString : NSObject {
     func secondCell_ID() -> String {
         return String("Cell1")
     }
+    
+    func transactionContact() -> String {
+        return String("Contact Namma Apartments")
+    }
+    
+    func transactionContactMessage() -> String {
+        return String("Our executive will help you to solve your problem")
+    }
+    
+    func mobileNumber() -> String {
+        return String("+91-8041179007")
+    }
+    
+    func email() -> String {
+        return String("skychaitanya@kirtanlabs.com")
+    }
+    
+    func contactUs() -> String {
+        return String("Contact Us")
+    }
 }
 
