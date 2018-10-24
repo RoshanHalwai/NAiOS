@@ -134,6 +134,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             }
         }
     }
+    
     //This will call when any error occurred during transaction
     func onPaymentError(_ code: Int32, description str: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().failure(), Message: str, buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
