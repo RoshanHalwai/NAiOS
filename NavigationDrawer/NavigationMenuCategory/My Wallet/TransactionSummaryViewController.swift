@@ -20,7 +20,7 @@ class TransactionSummaryViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Total_Amount: UILabel!
     @IBOutlet weak var status_ImageView: UIImageView!
     @IBOutlet weak var btn_Copy: UIButton!
-
+    
     var transactionUID = String()
     var transactionDate = String()
     var totalAmount = Float()
@@ -32,6 +32,10 @@ class TransactionSummaryViewController: NANavigationViewController {
         
         self.ConfigureNavBarTitle(title: NAString().transactionSummary())
         self.navigationItem.rightBarButtonItem = nil
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        contact_Us_ParentView.isUserInteractionEnabled = true
+        contact_Us_ParentView.addGestureRecognizer(tap)
         
         lbl_PaymentID.text = transactionUID
         lbl_Total_Amount.text = String(totalAmount)
@@ -54,6 +58,13 @@ class TransactionSummaryViewController: NANavigationViewController {
         NAShadowEffect().shadowEffectForView(view: transactionID_Parent_View)
         NAShadowEffect().shadowEffectForView(view: transaction_Amount_ParentView)
         NAShadowEffect().shadowEffectForView(view: contact_Us_ParentView)
+    }
+    
+    //Create Guesture Function
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        let transactionContactUsVC = NAViewPresenter().transactionContactUsVC()
+        transactionContactUsVC.navTitle = NAString().contactUs()
+        self.navigationController?.pushViewController(transactionContactUsVC, animated: true)
     }
     
     @IBAction func btn_Copy_Action(_ sender: UIButton) {
