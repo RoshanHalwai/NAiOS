@@ -79,6 +79,7 @@
 		423633D22133F74600637F5F /* NoticeBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */; };
 		423D477421522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */; };
 		4244B7C6216CA310006788CD /* MyGatePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244B7C5216CA310006788CD /* MyGatePassViewController.swift */; };
+		4260E43821804E360076A570 /* TransactionsContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4260E43721804E360076A570 /* TransactionsContactUsViewController.swift */; };
 		426A1F30214D342C0003ED01 /* MyFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */; };
 		42914D9C2126872F00B3B57A /* NAEventManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42914D9B2126872F00B3B57A /* NAEventManagement.swift */; };
 		4293324F212D93AF005BAC80 /* NAMyGuardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */; };
@@ -466,6 +467,7 @@
 		423633D12133F74600637F5F /* NoticeBoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeBoardTableViewCell.swift; sourceTree = "<group>"; };
 		423D477321522B94001DA4C1 /* DonateFoodHistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateFoodHistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4244B7C5216CA310006788CD /* MyGatePassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGatePassViewController.swift; sourceTree = "<group>"; };
+		4260E43721804E360076A570 /* TransactionsContactUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsContactUsViewController.swift; sourceTree = "<group>"; };
 		426A1F2F214D342C0003ED01 /* MyFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFoodViewController.swift; sourceTree = "<group>"; };
 		42914D9B2126872F00B3B57A /* NAEventManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAEventManagement.swift; sourceTree = "<group>"; };
 		4293324E212D93AF005BAC80 /* NAMyGuardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAMyGuardsViewController.swift; sourceTree = "<group>"; };
@@ -761,6 +763,7 @@
 			isa = PBXGroup;
 			children = (
 				4234754A212EB87200A791AA /* MyWalletViewController.swift */,
+				4260E43721804E360076A570 /* TransactionsContactUsViewController.swift */,
 				08EA577E214649DB00A0574D /* MyTransactionsViewController.swift */,
 				08EA5780214649E400A0574D /* MyTransactionsCollectionViewCell.swift */,
 				5DE874482170E8A200267427 /* TransactionSummaryViewController.swift */,
@@ -1841,6 +1844,7 @@
 				5D774290210DD49F0049344F /* MyFlatTableViewCell.swift in Sources */,
 				08E1F7BF20FA47DF0086F885 /* NAConfirmationAlert.swift in Sources */,
 				86646BC020AB0704002A92B8 /* EmergencyCollectionViewCell.swift in Sources */,
+				4260E43821804E360076A570 /* TransactionsContactUsViewController.swift in Sources */,
 				5D77429A210DD49F0049344F /* OTPViewController.swift in Sources */,
 				5D774294210DD49F0049344F /* RootViewController.swift in Sources */,
 				0816E56720E75A4700116FD0 /* MyVisitorsListViewController.swift in Sources */,
