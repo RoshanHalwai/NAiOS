@@ -40,6 +40,10 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var convenienceFee: Float = 0.0
     var periodArray = [String]()
     var periodString = String()
+    var paymentId = String()
+    var result = String()
+    var currentDateFormat = String()
+    var newDateOfVisit = String()
     
     //created varible for razorPay
     var razorpay: Razorpay!
@@ -48,6 +52,8 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var getUserEmailID = String()
     var getUserPendingAmount = String()
     var gettingPercentageAmount = Double()
+    
+    var userTransactionData = [NAUserTransactions]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +109,14 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         let currentCalendar = Calendar.current
         currentComponents = currentCalendar.dateComponents([.year, .month, .day], from: currentDate as Date)
+        
+        
+        //Getting Current Date and Time
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = NAString().currentDateFormat()
+        currentDateFormat = formatter.string(from: date)
+        print(currentDateFormat)
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
@@ -141,22 +155,31 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         //Storing data in firebase in case of Transaction fail & after getting error code 0
         if code != 2 || str != NAString().paymentCancelledByUser() {
-            storePaymentDetails(paymentId: "", result: NAString().failure().capitalized)
+            paymentId = ""
+            result = NAString().failure().capitalized
         }
     }
     
     //This will call when transaction succeed
     func onPaymentSuccess(_ payment_id: String) {
         NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().success(), Message: "Payment Id \(payment_id)", buttonTitle: NAString().ok(), OkStyle: .default, OK: {action in
+            self.paymentId = payment_id
+            self.result = NAString().successful()
+            let pendingRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
+            pendingRef.removeValue()
+            
             let transactionSummaryVC = NAViewPresenter().transactionSummaryVC()
+            transactionSummaryVC.totalAmount = Float(self.lbl_Cost.text!)!
+            transactionSummaryVC.transactionPeriod = self.newDateOfVisit
+            transactionSummaryVC.status = self.result
+            transactionSummaryVC.transactionDate = self.currentDateFormat
+            transactionSummaryVC.transactionUID = self.paymentId
+            transactionSummaryVC.fromInvitingTransactionsSummaryVC = true
             self.navigationController?.pushViewController(transactionSummaryVC, animated: true)
         })
-        storePaymentDetails(paymentId: payment_id, result: NAString().successful())
-        let pendingRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
-        pendingRef.removeValue()
     }
     
-    func storePaymentDetails(paymentId: String, result: String) {
+    func storePaymentDetails() {
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_TRANSACTIONS)
         let transactionUID : String?
         transactionUID = (userDataRef.childByAutoId().key)
@@ -241,6 +264,13 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
                 } else {
                     self.periodString = self.periodArray.first! + "-" + self.periodArray.last!
                 }
+                
+                //Changing Date Format here & showing in Card View.
+                let inputFormatter = DateFormatter()
+                inputFormatter.dateFormat = "MMyyyy"
+                let showDate = inputFormatter.date(from: self.periodString)
+                inputFormatter.dateFormat = "MMM yyyy"
+                self.newDateOfVisit = inputFormatter.string(from: showDate!)
                 
                 for pendingDue in pendingDues! {
                     let amount = pendingDue.value as! Int
