@@ -53,8 +53,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var getUserPendingAmount = String()
     var gettingPercentageAmount = Double()
     
-    var userTransactionData = [NAUserTransactions]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -267,9 +265,9 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
                 
                 //Changing Date Format here & showing in Card View.
                 let inputFormatter = DateFormatter()
-                inputFormatter.dateFormat = "MMyyyy"
+                inputFormatter.dateFormat = NAString().transactionPeriodFormat()
                 let showDate = inputFormatter.date(from: self.periodString)
-                inputFormatter.dateFormat = "MMM yyyy"
+                inputFormatter.dateFormat = NAString().convertedTransactionPeriodFormat()
                 self.newDateOfVisit = inputFormatter.string(from: showDate!)
                 
                 for pendingDue in pendingDues! {
