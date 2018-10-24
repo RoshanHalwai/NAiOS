@@ -291,4 +291,8 @@ class NAViewPresenter: NSObject {
     func myProfileDataVC() -> MyProfileDataViewController {
         return storyBoard.instantiateViewController(withIdentifier: "myProfileDataVC") as! MyProfileDataViewController
     }
+    
+    func transactionContactUsVC() -> TransactionsContactUsViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "transactionContactUsVC") as! TransactionsContactUsViewController
+    }
 }

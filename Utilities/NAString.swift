@@ -2303,5 +2303,17 @@ class NAString : NSObject {
     func transactionContactMessage() -> String {
         return String("Our executive will help you to solve your problem")
     }
+    
+    func mobileNumber() -> String {
+        return String("+91-8041179007")
+    }
+    
+    func email() -> String {
+        return String("skychaitanya@kirtanlabs.com")
+    }
+    
+    func contactUs() -> String {
+        return String("Contact Us")
+    }
 }
 
