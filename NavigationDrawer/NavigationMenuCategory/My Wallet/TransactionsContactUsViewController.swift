@@ -39,6 +39,7 @@ class TransactionsContactUsViewController: NANavigationViewController {
         NAShadowEffect().shadowEffectForView(view: cardView)
         
         //Setting Label Texts
+        //TODO: Need to Retrieve Mobile Number and Email in Firebase
         lbl_ContactTitle.text = NAString().transactionContact()
         lbl_ContactMessage.text = NAString().transactionContactMessage()
         
