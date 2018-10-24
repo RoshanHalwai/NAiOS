@@ -498,19 +498,19 @@ extension SocietyServicesViewController {
     //Storing User requests of Society service Problems
     func storeSocietyServiceDetails() {
         
-       
+        
         var serviceType = String()
         if (navTitle == NAString().garbage_Collection()) {
             problem = getButtonGarbage_Problem_Text
             serviceType = NAString().garbageCollection()
         } else if (navTitle == NAString().scrapCollection()) {
-            problem = selectedProblem
+            problem = self.txt_SelectAny.text!
             serviceType = NAString().scrap_Collection()
         } else {
             if (self.txt_SelectAny.text == NAString().others()) {
                 problem = self.txt_Others.text!
             } else  {
-                problem = txt_SelectAny.text!
+                problem = self.txt_SelectAny.text!
             }
             serviceType = (navTitle?.lowercased())!
         }
@@ -534,7 +534,7 @@ extension SocietyServicesViewController {
         }
         
         let societyServiceNotificationData = [
-            problemOrScrapType : self.txt_SelectAny.text as Any,
+            problemOrScrapType : problem,
             timeSlotOrQuantity : getButtonHour_Text,
             NASocietyServicesFBKeys.userUID.key: userUID,
             NASocietyServicesFBKeys.societyServiceType.key : serviceType,

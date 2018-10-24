@@ -124,7 +124,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
             self.gettingPercentageAmount = Double((Float(self.pendingDueAmount)! * self.convenienceFee) / 100)
             let totalAmount:Float = Float(Double(Float(self.pendingDueAmount)!) + self.gettingPercentageAmount)
-         
+            
             if self.lbl_Maintenance.text == NAString().noPendingDues() {
                 NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
             } else {
