@@ -20,6 +20,7 @@ class TransactionSummaryViewController: NANavigationViewController {
     @IBOutlet weak var lbl_Total_Amount: UILabel!
     @IBOutlet weak var status_ImageView: UIImageView!
     @IBOutlet weak var btn_Copy: UIButton!
+    @IBOutlet weak var lbl_TransactionPeriod: UILabel!
     
     var transactionUID = String()
     var transactionDate = String()
@@ -42,7 +43,15 @@ class TransactionSummaryViewController: NANavigationViewController {
         lbl_PaymentID.text = transactionUID
         lbl_Total_Amount.text = String(totalAmount)
         lbl_Transaction_Date.text = transactionDate
-        lbl_Transaction_Period.text = transactionPeriod
+        
+        if transactionPeriod.isEmpty {
+            lbl_TransactionPeriod.isHidden = true
+            lbl_Transaction_Period.isHidden = true
+        } else {
+            lbl_TransactionPeriod.isHidden = false
+            lbl_Transaction_Period.isHidden = false
+            lbl_Transaction_Period.text = transactionPeriod
+        }
         
         if status == NAString().successful() {
             transactionID_Parent_View.isHidden = false

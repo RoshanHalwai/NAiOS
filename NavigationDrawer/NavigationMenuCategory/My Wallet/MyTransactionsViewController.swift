@@ -95,44 +95,49 @@ class MyTransactionsViewController: NANavigationViewController, UICollectionView
                     transactionRef.observeSingleEvent(of: .value, with: { (transactionSnapshot) in
                         let transactionData = transactionSnapshot.value as! [String: AnyObject]
                         
-                        let amount = (transactionData[NAUserTransactionFBKeys.amount.key])?.floatValue
-                        let servicecategory = transactionData[NAUserTransactionFBKeys.serviceCategory.key]
-                        let timestamp = (transactionData[NAUserTransactionFBKeys.timestamp.key])?.floatValue
-                        let result = transactionData[NAUserTransactionFBKeys.result.key]
-                        let paymentID = transactionData[NAUserTransactionFBKeys.paymentId.key]
-                        let transactionPeriod = transactionData[NAUserTransactionFBKeys.period.key] as! String
-                        
+                        var servicecategory = String()
+                        var transactionPeriod = String()
                         var startPeriod = String()
                         var endPeriod = String()
                         var transactionMonth = String()
                         
-                        let array = transactionPeriod.split(separator: "-")
-                        startPeriod = String(array[0])
+                        let amount = (transactionData[NAUserTransactionFBKeys.amount.key])?.floatValue
+                        servicecategory = transactionData[NAUserTransactionFBKeys.serviceCategory.key] as! String
+                        let timestamp = (transactionData[NAUserTransactionFBKeys.timestamp.key])?.floatValue
+                        let result = transactionData[NAUserTransactionFBKeys.result.key]
+                        let paymentID = transactionData[NAUserTransactionFBKeys.paymentId.key]
                         
-                        let date = startPeriod
-                        let dateString = String(describing: date)
-                        let dateFormatterGet = DateFormatter()
-                        dateFormatterGet.dateFormat = NAString().transactionPeriodFormat()
-                        let dateAndTime = dateFormatterGet.date(from: dateString)
-                        dateFormatterGet.dateFormat = NAString().convertedTransactionPeriodFormat()
-                        let startingMonth = (dateFormatterGet.string(from: dateAndTime!))
-                        
-                        //Checking pending dues Months count
-                        if array.count == 1 {
-                            transactionMonth = startingMonth
-                        } else {
-                            endPeriod = String(array[1])
-                            let date = endPeriod
+                        if servicecategory != NAString().event_management() {
+                            transactionPeriod = transactionData[NAUserTransactionFBKeys.period.key] as! String
+                            
+                            let array = transactionPeriod.split(separator: "-")
+                            startPeriod = String(array[0])
+                            
+                            let date = startPeriod
                             let dateString = String(describing: date)
                             let dateFormatterGet = DateFormatter()
                             dateFormatterGet.dateFormat = NAString().transactionPeriodFormat()
                             let dateAndTime = dateFormatterGet.date(from: dateString)
                             dateFormatterGet.dateFormat = NAString().convertedTransactionPeriodFormat()
-                            let endMonth = (dateFormatterGet.string(from: dateAndTime!))
-                            transactionMonth = startingMonth + " - " + endMonth
+                            let startingMonth = (dateFormatterGet.string(from: dateAndTime!))
+                            
+                            //Checking pending dues Months count
+                            if array.count == 1 {
+                                transactionMonth = startingMonth
+                            } else {
+                                endPeriod = String(array[1])
+                                let date = endPeriod
+                                let dateString = String(describing: date)
+                                let dateFormatterGet = DateFormatter()
+                                dateFormatterGet.dateFormat = NAString().transactionPeriodFormat()
+                                let dateAndTime = dateFormatterGet.date(from: dateString)
+                                dateFormatterGet.dateFormat = NAString().convertedTransactionPeriodFormat()
+                                let endMonth = (dateFormatterGet.string(from: dateAndTime!))
+                                transactionMonth = startingMonth + " - " + endMonth
+                            }
                         }
                         
-                        let userData = NAUserTransactions(amount: amount!, serviceCategory: servicecategory as! String, timestamp: Int(timestamp! as Float), result: result as! String, transactionId: paymentID as! String, period: transactionMonth)
+                        let userData = NAUserTransactions(amount: amount!, serviceCategory: servicecategory , timestamp: Int(timestamp! as Float), result: result as! String, transactionId: paymentID as! String, period: transactionMonth)
                         
                         self.userTransactionData.append(userData)
                         NAActivityIndicator.shared.hideActivityIndicator()
