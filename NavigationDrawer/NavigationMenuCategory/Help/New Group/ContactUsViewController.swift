@@ -240,6 +240,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             let dv = NAViewPresenter().contactUsHistoryVC()
             dv.serviceType = self.txt_Choose_One.text!
+            dv.fromContactUsHistoryVC = true
             self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)

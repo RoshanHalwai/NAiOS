@@ -15,13 +15,31 @@ class ContactUsHistoryViewController: NANavigationViewController, UITableViewDat
     var userSupportDetails = [NAUserProblems]()
     var serviceType = String()
     
+    var fromContactUsHistoryVC = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = .none
         self.ConfigureNavBarTitle(title: NAString().history().capitalized)
         self.navigationItem.rightBarButtonItem = nil
-        retrievingUserProblemData()        
+        retrievingUserProblemData()
+        
+        //created custom back button for goto My DigiGate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
+    
+    //Navigating Back to digi gate according to Screen coming from
+    @objc func goBackToDigitGate() {
+        if fromContactUsHistoryVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-4]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
     
     //MARK : TableView DataSource & Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
