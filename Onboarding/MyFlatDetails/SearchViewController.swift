@@ -38,7 +38,7 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
         navigationController?.isNavigationBarHidden = true
         searchBar.delegate = self
         
-        usersUIDRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CLIENTS).child(Constants.FIREBASE_CHILD_PRIVATE)
+        usersUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_CLIENTS).child(Constants.FIREBASE_CHILD_PRIVATE)
         
         if navigationTitle == NAString().your_city() {
             usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_CITIES)

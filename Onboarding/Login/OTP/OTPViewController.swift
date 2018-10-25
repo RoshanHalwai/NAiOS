@@ -364,6 +364,7 @@ extension OTPViewController {
         
         //If OTP is Valid then Login Sucess else show Error message in Console
         //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
+        
         Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
             if Reachability.Connection() {
                 if let error = error {
@@ -378,30 +379,27 @@ extension OTPViewController {
                 self.Alert(Message: NAString().connectivity_Validation())
             }
             
-            self.mobileNumberValidRef = Database.database().reference().child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
-            
-            self.userMobileNumberRef?.child(self.getMobileString).setValue(userUID)
+            self.mobileNumberValidRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL).child(self.getMobileString)
             
             self.mobileNumberValidRef?.observeSingleEvent(of: .value, with: { snapshot in
                 
                 if snapshot.exists() {
                     
-                    let userUID = Auth.auth().currentUser?.uid
-                    let userActivationRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_VERIFIED)
+                    /* - User record was found in firebase hence we check if user has Logged Out and Logged In or
+                     - if they have uninstalled and reinstalled the App */
+                    let pref = UserDefaults.standard
+                    pref.set(true, forKey: NAString().userDefault_Account_Created())
                     
-                    //Navigate to NAHome or Activation Requried Screen According to verified value.
-                    userActivationRef.observeSingleEvent(of: .value, with: { (activationSnapshot) in
-                        let verified = activationSnapshot.value as! Int
-                        
-                        if verified == 0 || verified == 2 {
-                            let dest = NAViewPresenter().activationRequiredVC()
-                            self.navigationController?.pushViewController(dest, animated: true)
-                        } else {
-                            self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID!)
-                            let dest = NAViewPresenter().mainScreenVC()
-                            self.navigationController?.pushViewController(dest, animated: true)
+                    if (pref.string(forKey: Constants.FIREBASE_DATABASE_URL) != nil) {
+                        self.startCorrespondingActivity()
+                    } else {
+                        //This block indicates user has uninstalled and reinstalled the App
+                        self.getDatabaseURL{ (databaseURL) in
+                            print()
+                            self.changeDatabaseInstance(databaseURL: databaseURL)
+                            self.startCorrespondingActivity()
                         }
-                    })
+                    }
                 } else {
                     let dest = NAViewPresenter().signupVC()
                     dest.getNewMobileString = self.getMobileString
@@ -410,4 +408,54 @@ extension OTPViewController {
             })
         }
     }
+    
+    ///Gets the environment URL from Firebase mapped with the mobile number under Users
+    ///
+    /// - parameter callback: gives the User Database Environment URL
+    private func getDatabaseURL(callback : @escaping (_ databaseURL : String) -> Void) {
+        var databaseURL = String()
+        let usersAllRef = Constants.FIREBASE_USERS_ALL.child(self.getMobileString)
+        usersAllRef.observeSingleEvent(of: .value) { (urlSnapshot) in
+            databaseURL = urlSnapshot.value as! String
+            
+            callback(databaseURL)
+        }
+    }
 }
+
+extension OTPViewController {
+    
+    //Changes Database instance from Default to User Specific Society Instance
+    func changeDatabaseInstance(databaseURL: String) {
+        
+        let pref = UserDefaults.standard
+        pref.set(databaseURL, forKey: Constants.FIREBASE_DATABASE_URL)
+        pref.set(Constants.SOCIETY_DEV_ENV, forKey: Constants.FIREBASE_ENVIRONMENT)
+        
+        //TODO: Change ENVIRONMENT to SOCIETY_BETA_ENV before rolling out App in APP Store
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.initializeFirebaseApp(FIREBASE_ENV: Constants.SOCIETY_DEV_ENV, databaseURL: databaseURL)
+    }
+    
+    //Starts Activity based on userDefaults Data.
+    func startCorrespondingActivity() {
+        let userUID = Auth.auth().currentUser?.uid
+        let userActivationRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID!).child(Constants.FIREBASE_CHILD_PRIVILEGES).child(Constants.FIREBASE_CHILD_VERIFIED)
+        
+        //Navigate to NAHome or Activation Requried Screen According to verified value.
+        userActivationRef.observeSingleEvent(of: .value, with: { (activationSnapshot) in
+            
+            let verified = activationSnapshot.value as! Int
+            
+            if verified == 0 || verified == 2 {
+                let dest = NAViewPresenter().activationRequiredVC()
+                self.navigationController?.pushViewController(dest, animated: true)
+            } else {
+                self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID!)
+                let dest = NAViewPresenter().mainScreenVC()
+                self.navigationController?.pushViewController(dest, animated: true)
+            }
+        })
+    }
+}
+

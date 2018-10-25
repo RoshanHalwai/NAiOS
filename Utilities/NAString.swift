@@ -1560,6 +1560,10 @@ class NAString : NSObject {
         return ("https://www.nammaapartments.com/faq")
     }
     
+    func appLink() -> String {
+        return ("https://itunes.apple.com/us/app/namma-apartments/id1435813154?mt=8")
+    }
+    
     func privacyPolicyWebsiteLink() -> String {
         return ("https://www.nammaapartments.com/privacy-policy")
     }

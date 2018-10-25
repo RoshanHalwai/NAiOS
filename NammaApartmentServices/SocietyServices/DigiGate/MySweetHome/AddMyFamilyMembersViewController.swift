@@ -460,6 +460,12 @@ extension AddMyFamilyMembersViewController {
         userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_FLATMEMBERS)
         userDataRef?.child(familyMemberUID!).setValue(NAString().gettrue())
         
+        //Mapping Mobile Number with Database Instance URL
+        let preference = UserDefaults.standard
+        let databaseURL = (preference.string(forKey: Constants.FIREBASE_DATABASE_URL)!)
+        let defaultDatabaseRef = Constants.DEFAULT_ALL_USERS_REFERENCE
+        defaultDatabaseRef.child(self.txt_MobileNo.text!).setValue(databaseURL)
+        
         //Map family member's mobile number with uid in users->all
         userAllRef = Constants.FIREBASE_USERS_ALL
         userAllRef?.child(self.txt_MobileNo.text!).setValue(familyMemberUID)
@@ -574,7 +580,7 @@ extension AddMyFamilyMembersViewController {
     func familyMemberExistsOrNot(VC: UIViewController)  {
         
         let familyMemberMobileRef = Constants.FIREBASE_USERS_ALL
-        familyMemberMobileRef.observeSingleEvent(of: .value) { (mobileSnapshot) in
+        familyMemberMobileRef?.observeSingleEvent(of: .value) { (mobileSnapshot) in
             
             var count = 0
             let mobileNumbers = mobileSnapshot.value as! NSDictionary

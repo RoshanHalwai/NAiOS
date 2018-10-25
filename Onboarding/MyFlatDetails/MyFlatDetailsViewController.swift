@@ -37,6 +37,8 @@ class MyFlatDetailsViewController: NANavigationViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     var cities = [String]()
+    var societyDatabaseURL = String()
+    var otpVC = OTPViewController()
     
     //placeHolder instance
     var placeHolder = NSMutableAttributedString()
@@ -194,8 +196,25 @@ class MyFlatDetailsViewController: NANavigationViewController {
         OpacityView.shared.addButtonTagValue = btnContinue.tag
         OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
-        //Calling Function to store UserFlatDetails & Privileges
-        storeUsersDetailsInFirebase()
+
+        let databaseURLRef = Constants.FIREBASE_DATABASE_REFERENCE.child("customers").child(Constants.FIREBASE_CHILD_PRIVATE).child("cities").child(txtCity.text!).child("societies").child(txtSociety.text!).child("databaseURL")
+        databaseURLRef.observeSingleEvent(of: .value, with: { (URLSnapshot) in
+            self.societyDatabaseURL = (URLSnapshot.value as? String)!
+            
+            //Mapping Mobile number with Database URL for Login Purpose
+            let usersAllRef = Constants.FIREBASE_USERS_ALL
+            usersAllRef?.child(self.newMobileNumber).setValue(self.societyDatabaseURL, withCompletionBlock: { (error, ref) in
+                
+                if error == nil {
+                    self.otpVC.changeDatabaseInstance(databaseURL: self.societyDatabaseURL)
+                    
+                    //Calling Function to store UserFlatDetails & Privileges
+                    self.storeUsersDetailsInFirebase()
+                } else {
+                    print("Failure")
+                }
+            })
+        })
     }
     
     @IBAction func btnResidentType(_ sender: Any) {

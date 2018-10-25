@@ -103,13 +103,13 @@ extension MyNeighboursViewController {
         
         let userDataRef = Constants.FIREBASE_USERS_PRIVATE
         //Adding observe event to each of user UID
-        userDataRef.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
+        userDataRef?.observeSingleEvent(of: .value, with: { (userDataSnapshot) in
             
             if userDataSnapshot.exists() {
                 let userDatasUID = userDataSnapshot.value as? NSDictionary
                 
                 for userDataUID in (userDatasUID?.allKeys)! {
-                    userDataRef.child(userDataUID as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+                    userDataRef?.child(userDataUID as! String).observeSingleEvent(of: .value, with: { (snapshot) in
                         let usersData = snapshot.value as? [String: AnyObject]
                         
                         //Creating instance of UserPrivileges Details

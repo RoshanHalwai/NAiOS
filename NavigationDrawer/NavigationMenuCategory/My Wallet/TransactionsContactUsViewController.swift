@@ -83,8 +83,7 @@ class TransactionsContactUsViewController: NANavigationViewController, MFMailCom
        OpacityView.shared.showEventPopupView(view: self, title: NAString().retrievingDetails())
         
         //Retrieving contact us data from firebase
-        let contactUsRef = Database.database().reference().child(Constants.FIREBASE_CHILD_CONTACTUS)
-        contactUsRef.observeSingleEvent(of: .value) { (contactSnapshot) in
+       Constants.DEFAULT_CONTACT_US_REFERENCE.observeSingleEvent(of: .value) { (contactSnapshot) in
             
             let contactUsDetails = contactSnapshot.value as? NSDictionary
             self.phoneNumber = (contactUsDetails![Constants.FIREBASE_CHILD_NUMBER] as? String)!

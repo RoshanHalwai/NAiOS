@@ -484,8 +484,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
                 slotsCount = self.selectedMutipleSlotsArray.count
             }
             
-            let convenienceChargesRef = Constants.FIREBASE_CONVENIENCE_CHARGES
-            convenienceChargesRef.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
+            Constants.DEFAULT_CONVENIENCE_CHARGES_REFERENCE.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
                 self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
                 
                 self.gettingPercentageAmount = (Float(self.totalAmount) * self.convenienceFee) / 100
@@ -546,7 +545,7 @@ extension EventManagementViewController {
         let serviceType = NAString().eventManagement()
         
         let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        eventNotificationUID = eventManagementNotificationRef.childByAutoId().key
+        eventNotificationUID = eventManagementNotificationRef!.childByAutoId().key
         
         let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
         notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())
@@ -562,7 +561,7 @@ extension EventManagementViewController {
             NAEventManagementFBKeys.societyServiceType.key : serviceType,
             NAEventManagementFBKeys.notificationUID.key : eventNotificationUID,
             NAEventManagementFBKeys.status.key : NAString().in_Progress()]
-        eventManagementNotificationRef.child(eventNotificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
+        eventManagementNotificationRef?.child(eventNotificationUID).setValue(eventManagementNotificationData) { (error, snapshot) in
             
             let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_TRANSACTIONS)
             let transactionUID : String?
@@ -582,9 +581,9 @@ extension EventManagementViewController {
             transactionRef.setValue(transactionDetails)
             
             for slots in self.selectedMutipleSlotsArray {
-                eventManagementNotificationRef.child(self.eventNotificationUID).child(NAEventManagementFBKeys.timeSlots.key).child(slots).setValue(NAString().gettrue())
+                eventManagementNotificationRef?.child(self.eventNotificationUID).child(NAEventManagementFBKeys.timeSlots.key).child(slots).setValue(NAString().gettrue())
             }
-            eventManagementNotificationRef.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
+            eventManagementNotificationRef?.child(self.eventNotificationUID).child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000), withCompletionBlock: { (error, snapshot) in
             })
         }
     }
@@ -599,7 +598,7 @@ extension EventManagementViewController {
         OpacityView.shared.showEventPopupView(view: self, title: NAString().event_booking())
         
         let bookingAmountRef = Constants.FIREBASE_BOOKING_SLOT
-        bookingAmountRef.observeSingleEvent(of: .value) { (bookingAmountSnapshot) in
+        bookingAmountRef?.observeSingleEvent(of: .value) { (bookingAmountSnapshot) in
             
             if !bookingAmountSnapshot.exists() {
                 OpacityView.shared.hidingOpacityView()
