@@ -149,6 +149,10 @@ class NAString : NSObject {
         return String("+1")
     }
     
+    func hyphen() -> String {
+        return String("-")
+    }
+    
     func image() -> String {
         return String("▼")
     }
@@ -1795,6 +1799,11 @@ class NAString : NSObject {
     func convertedSocietyServiceTimeStampFormat() -> String {
         return String("EEE, MMM dd, HH:mm")
     }
+    
+    func currentDateFormat() -> String {
+        return String("E, MMM d, HH:mm")
+    }
+    
     func payments() -> String {
         return String("Payments")
     }
@@ -2318,6 +2327,10 @@ class NAString : NSObject {
     
     func contactUs() -> String {
         return String("Contact Us")
+    }
+    
+    func retrievingDetails() -> String {
+        return String("Retrieving details")
     }
 }
 

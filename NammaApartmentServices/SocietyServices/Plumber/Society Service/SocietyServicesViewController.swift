@@ -498,7 +498,6 @@ extension SocietyServicesViewController {
     //Storing User requests of Society service Problems
     func storeSocietyServiceDetails() {
         
-        
         var serviceType = String()
         if (navTitle == NAString().garbage_Collection()) {
             problem = getButtonGarbage_Problem_Text
@@ -515,7 +514,7 @@ extension SocietyServicesViewController {
             serviceType = (navTitle?.lowercased())!
         }
         let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        notificationUID = societyServiceNotificationRef.childByAutoId().key
+        notificationUID = societyServiceNotificationRef.childByAutoId().key!
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION)
         userDataRef.child(serviceType).child(notificationUID).setValue(NAString().gettrue())
         

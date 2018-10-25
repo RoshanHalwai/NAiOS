@@ -27,6 +27,8 @@ class TransactionSummaryViewController: NANavigationViewController {
     var status = String()
     var transactionPeriod = String()
     
+    var fromInvitingTransactionsSummaryVC = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,6 +60,21 @@ class TransactionSummaryViewController: NANavigationViewController {
         NAShadowEffect().shadowEffectForView(view: transactionID_Parent_View)
         NAShadowEffect().shadowEffectForView(view: transaction_Amount_ParentView)
         NAShadowEffect().shadowEffectForView(view: contact_Us_ParentView)
+        
+        //created custom back button for goto My DigiGate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    //Navigating Back to digi gate according to Screen coming from
+    @objc func goBackToDigitGate() {
+        if fromInvitingTransactionsSummaryVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-3]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     //Create Guesture Function
