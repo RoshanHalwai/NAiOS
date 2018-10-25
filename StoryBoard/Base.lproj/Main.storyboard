@@ -286,13 +286,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Select Food Quantity" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCw-XV-wf0">
-                                                <rect key="frame" x="85" y="0.0" width="55" height="53"/>
+                                                <rect key="frame" x="85" y="0.0" width="57.5" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yrz-Wf-NIa">
-                                                <rect key="frame" x="170" y="0.0" width="55.5" height="53"/>
+                                                <rect key="frame" x="172.5" y="0.0" width="53" height="53"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -6322,13 +6322,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request Service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UY-qF-7pc">
-                                                <rect key="frame" x="170" y="0.0" width="55" height="43"/>
+                                                <rect key="frame" x="170" y="0.0" width="53" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enjoy the free service" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53u-9B-EnE">
-                                                <rect key="frame" x="255" y="0.0" width="55" height="43"/>
+                                                <rect key="frame" x="253" y="0.0" width="57" height="43"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -8928,7 +8928,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="3An-dw-6cq">
-                                        <rect key="frame" x="192.5" y="70" width="122.5" height="50"/>
+                                        <rect key="frame" x="192.5" y="70" width="132.5" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="SEf-Om-kdl"/>
                                         </constraints>
@@ -8937,7 +8937,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="btn_ServiceAction:" destination="5lL-n2-dB4" eventType="touchUpInside" id="pIa-BD-WBm"/>
+                                            <action selector="btn_ServiceAction:" destination="5lL-n2-dB4" eventType="touchUpInside" id="6i7-xU-btJ"/>
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gGh-2Z-3KL">
@@ -8956,17 +8956,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="r1T-75-R7O">
-                                        <rect key="frame" x="40" y="70" width="122.5" height="50"/>
+                                        <rect key="frame" x="30" y="70" width="132.5" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Society Services">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="btn_ServiceAction:" destination="5lL-n2-dB4" eventType="touchUpInside" id="3c0-xW-jKp"/>
+                                            <action selector="btn_ServiceAction:" destination="5lL-n2-dB4" eventType="touchUpInside" id="Wdj-3k-508"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="8Lh-hE-ovz">
-                                        <rect key="frame" x="40" y="130" width="275" height="50"/>
+                                        <rect key="frame" x="30" y="130" width="295" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="aTX-0f-8T5"/>
                                         </constraints>
@@ -8975,7 +8975,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="btn_ServiceAction:" destination="5lL-n2-dB4" eventType="touchUpInside" id="sdu-fq-uXd"/>
+                                            <action selector="btn_ServiceAction:" destination="5lL-n2-dB4" eventType="touchUpInside" id="a0H-Tx-LjZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -8992,9 +8992,9 @@
                                     <constraint firstItem="3An-dw-6cq" firstAttribute="height" secondItem="r1T-75-R7O" secondAttribute="height" id="H5V-IR-ZNa"/>
                                     <constraint firstItem="gGh-2Z-3KL" firstAttribute="leading" secondItem="Oqq-Lg-5V2" secondAttribute="leading" constant="8" id="JBK-Ra-Z8S"/>
                                     <constraint firstItem="gSz-HI-j85" firstAttribute="leading" secondItem="Oqq-Lg-5V2" secondAttribute="leading" constant="10" id="Mgp-EY-fMJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="3An-dw-6cq" secondAttribute="trailing" constant="40" id="Ong-fG-bNM"/>
+                                    <constraint firstAttribute="trailing" secondItem="3An-dw-6cq" secondAttribute="trailing" constant="30" id="Ong-fG-bNM"/>
                                     <constraint firstItem="r1T-75-R7O" firstAttribute="firstBaseline" secondItem="3An-dw-6cq" secondAttribute="firstBaseline" id="Pup-sj-DlW"/>
-                                    <constraint firstItem="8Lh-hE-ovz" firstAttribute="leading" secondItem="Oqq-Lg-5V2" secondAttribute="leading" constant="40" id="QqD-fX-d2M"/>
+                                    <constraint firstItem="8Lh-hE-ovz" firstAttribute="leading" secondItem="Oqq-Lg-5V2" secondAttribute="leading" constant="30" id="QqD-fX-d2M"/>
                                     <constraint firstAttribute="trailing" secondItem="gGh-2Z-3KL" secondAttribute="trailing" constant="8" id="Tnr-Wf-BYX"/>
                                     <constraint firstAttribute="bottom" secondItem="VnW-vi-h9K" secondAttribute="bottom" constant="10" id="UrD-J5-e6L"/>
                                     <constraint firstItem="wW0-Dw-6Dp" firstAttribute="top" secondItem="8Lh-hE-ovz" secondAttribute="bottom" constant="20" id="WFo-R0-rqE"/>
@@ -9005,14 +9005,14 @@
                                     <constraint firstItem="r1T-75-R7O" firstAttribute="top" secondItem="3An-dw-6cq" secondAttribute="top" id="fDP-6w-BBf"/>
                                     <constraint firstItem="9Sa-gP-rdS" firstAttribute="leading" secondItem="Oqq-Lg-5V2" secondAttribute="leading" constant="11" id="gdj-0l-pXu"/>
                                     <constraint firstItem="0T7-wo-eTq" firstAttribute="top" secondItem="gSz-HI-j85" secondAttribute="bottom" constant="10" id="hf2-PG-yYl"/>
-                                    <constraint firstAttribute="trailing" secondItem="8Lh-hE-ovz" secondAttribute="trailing" constant="40" id="hwd-XB-3jn"/>
+                                    <constraint firstAttribute="trailing" secondItem="8Lh-hE-ovz" secondAttribute="trailing" constant="30" id="hwd-XB-3jn"/>
                                     <constraint firstItem="0T7-wo-eTq" firstAttribute="leading" secondItem="Oqq-Lg-5V2" secondAttribute="leading" constant="10" id="iXn-p4-b7T"/>
                                     <constraint firstAttribute="trailing" secondItem="gSz-HI-j85" secondAttribute="trailing" constant="10" id="kBq-PY-I1i"/>
                                     <constraint firstItem="npu-Tv-PP7" firstAttribute="top" secondItem="gGh-2Z-3KL" secondAttribute="bottom" constant="5" id="lds-Gv-G3Q"/>
                                     <constraint firstItem="VnW-vi-h9K" firstAttribute="top" secondItem="npu-Tv-PP7" secondAttribute="bottom" constant="10" id="mDN-jT-ode"/>
                                     <constraint firstItem="9Sa-gP-rdS" firstAttribute="top" secondItem="wW0-Dw-6Dp" secondAttribute="bottom" constant="17" id="nfr-cI-8zN"/>
                                     <constraint firstItem="8Lh-hE-ovz" firstAttribute="top" secondItem="3An-dw-6cq" secondAttribute="bottom" constant="10" id="nyw-L4-uFf"/>
-                                    <constraint firstItem="r1T-75-R7O" firstAttribute="leading" secondItem="Oqq-Lg-5V2" secondAttribute="leading" constant="40" id="pei-fu-5Oi"/>
+                                    <constraint firstItem="r1T-75-R7O" firstAttribute="leading" secondItem="Oqq-Lg-5V2" secondAttribute="leading" constant="30" id="pei-fu-5Oi"/>
                                     <constraint firstAttribute="trailing" secondItem="npu-Tv-PP7" secondAttribute="trailing" constant="10" id="svf-iE-qah"/>
                                     <constraint firstAttribute="trailing" secondItem="0T7-wo-eTq" secondAttribute="trailing" constant="10" id="weP-q2-G73"/>
                                     <constraint firstAttribute="trailing" secondItem="9Sa-gP-rdS" secondAttribute="trailing" constant="8" id="wlb-P3-uVj"/>
