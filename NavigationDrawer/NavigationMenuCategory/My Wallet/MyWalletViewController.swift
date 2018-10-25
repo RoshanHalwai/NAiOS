@@ -134,8 +134,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         if self.lbl_Maintenance.text == NAString().noPendingDues() {
             NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().no_Dues_Alert_Title(), Message: NAString().no_Dues_Alert_Message(), buttonTitle: NAString().ok(), OkStyle: .default, OK: nil)
         } else {
-            let convenienceChargesRef = Constants.FIREBASE_CONVENIENCE_CHARGES
-            convenienceChargesRef.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
+            Constants.DEFAULT_CONVENIENCE_CHARGES_REFERENCE.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
                 self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
                 self.gettingPercentageAmount = Double((Float(self.pendingDueAmount)! * self.convenienceFee) / 100)
                 let totalAmount:Float = Float(Double(Float(self.pendingDueAmount)!) + self.gettingPercentageAmount)

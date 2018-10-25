@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import Firebase
+
+let MASTER_DEV_DATABASE_URL = "https://nammaapartments-development.firebaseio.com/"
+let MASTER_BETA_DATABASE_URL = "https://nammaapartments-beta.firebaseio.com/"
 
 struct Constants {
     static let FIREBASE_CHILD_CLIENTS = "clients"
@@ -20,7 +24,7 @@ struct Constants {
     static let FIREBASE_USER = "users"
     static let FIREBASE_CHILD_PRIVATE = "private"
     static let FIREBASE_USER_CHILD_ALL = "all"
-    static let FIREBASE_CHILD_DAILY_SERVICES = "dailyServices"
+    static var FIREBASE_CHILD_DAILY_SERVICES = "dailyServices"
     static let FIREBASE_USER_PUBLIC = "public"
     static let FIREBASE_CHILD_DAILY_SERVICES_TYPE = "dailyServiceType"
     static let FIREBASE_DSTYPE_LAUNDRIES = "laundries"
@@ -128,51 +132,96 @@ struct Constants {
     static let FIREBASE_CHILD_PERIOD = "period"
     static let FIREBASE_CHILD_CONTACTUS = "contactUs"
     static let FIREBASE_CHILD_NUMBER = "number"
+    static let FIREBASE_DATABASE_URL = "firebaseDatabaseURL"
+    static let FIREBASE_ENVIRONMENT = "firebaseEnvironment"
+    static let MASTER_BETA_ENV = "master_beta_env"
+    static let MASTER_DEV_ENV = "master_dev_env"
+    static let SOCIETY_DEV_ENV = "society_dev_env"
+    static let SOCIETY_BETA_ENV = "society_beta_env"
+    static let FIREBASE_CHILD_VERSION_NAME = "versionName"
     
-    static let FIREBASE_DATABASE_REFERENCE = Database.database().reference()
+    static let DEFAULT_ALL_USERS_REFERENCE = Database.database().reference()
+        .child(Constants.FIREBASE_USER)
+        .child(Constants.FIREBASE_USER_CHILD_ALL)
+    static let DEFAULT_VERSION_NAME_REFERENCE = Database.database().reference()
+        .child(Constants.FIREBASE_CHILD_VERSION_NAME)
+    static let DEFAULT_CONVENIENCE_CHARGES_REFERENCE = Database.database().reference()
+        .child(Constants.FIREBASE_TRANSACTIONS)
+        .child(Constants.FIREBASE_CHILD_CONVENIENCE)
+    static let DEFAULT_CONTACT_US_REFERENCE = Database.database().reference().child(Constants.FIREBASE_CHILD_CONTACTUS)
     
-    static let FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(FIREBASE_USER_CHILD_ALL)
+    static var FIREBASE_DATABASE_REFERENCE : DatabaseReference!
+    static var FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL : DatabaseReference!
+    static var FIREBASE_SOCIETY_SERVICES : DatabaseReference!
+    static var FIREBASE_CABS_PRIVATE : DatabaseReference!
+    static var FIREBASE_CABS_ALL : DatabaseReference!
+    static var FIREBASE_USERDATA_PRIVATE : DatabaseReference!
+    static var FIREBASE_DELIVERIES_PRIVATE : DatabaseReference!
+    static var FIREBASE_DELIVERIES_ALL : DatabaseReference!
+    static var FIREBASE_VISITORS_PRIVATE : DatabaseReference!
+    static var FIREBASE_VISITORS_ALL : DatabaseReference!
+    static var FIREBASE_DAILY_SERVICES_ALL_PUBLIC : DatabaseReference!
+    static var FIREBASE_DAILY_SERVICES_ALL_PRIVATE : DatabaseReference!
+    static var FIREBASE_USERS_PRIVATE : DatabaseReference!
+    static var FIREBASE_USERS_ALL : DatabaseReference!
+    static var FIREBASE_EMERGENCY_PRIVATE_ALL : DatabaseReference!
+    static var FIREBASE_EMERGENCY_PUBLIC : DatabaseReference!
+    static var FIREBASE_EVENT_MANAGEMENT : DatabaseReference!
+    static var FIREBASE_BOOKING_SLOT : DatabaseReference!
+    static var FIREBASE_VEHICLES_PRIVATE : DatabaseReference!
+    static var FIREBASE_VEHICLES_ALL : DatabaseReference!
+    static var FIREBASE_GUARD_PRIVATE_DATA : DatabaseReference!
+    static var FIREBASE_CONVENIENCE_CHARGES : DatabaseReference!
     
-    static let FIREBASE_SOCIETY_SERVICES = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_SOCIETYSERVICE)
-    
-    static let FIREBASE_CABS_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_CABS).child(FIREBASE_CHILD_PRIVATE)
-    
-    static let FIREBASE_CABS_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_CABS).child(FIREBASE_USER_CHILD_ALL)
-    
-    static let FIREBASE_USERDATA_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_USERDATA).child(FIREBASE_CHILD_PRIVATE)
-    
-    static let FIREBASE_DELIVERIES_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_DELIVERIES).child(FIREBASE_CHILD_PRIVATE)
-    
-    static let FIREBASE_DELIVERIES_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_DELIVERIES).child(FIREBASE_USER_CHILD_ALL)
-    
-    static let FIREBASE_VISITORS_PRIVATE =
-        FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_VISITORS)
-            .child(FIREBASE_CHILD_PRIVATE)
-    
-    static let FIREBASE_VISITORS_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_VISITORS).child(FIREBASE_USER_CHILD_ALL)
-    
-    static let FIREBASE_DAILY_SERVICES_ALL_PUBLIC = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_DAILY_SERVICES).child(FIREBASE_USER_CHILD_ALL).child(FIREBASE_USER_PUBLIC)
-    
-    static let FIREBASE_DAILY_SERVICES_ALL_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_DAILY_SERVICES).child(FIREBASE_USER_CHILD_ALL).child(FIREBASE_CHILD_PRIVATE)
-    
-    static let FIREBASE_USERS_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_USER)
-        .child(FIREBASE_CHILD_PRIVATE)
-    
-    static let FIREBASE_USERS_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_USER).child(FIREBASE_USER_CHILD_ALL)
-    
-    static let FIREBASE_EMERGENCY_PRIVATE_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_EMERGENCY).child(FIREBASE_CHILD_PRIVATE).child(FIREBASE_USER_CHILD_ALL)
-    
-    static let FIREBASE_EMERGENCY_PUBLIC = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_EMERGENCY).child(FIREBASE_USER_PUBLIC)
-    
-    static let FIREBASE_EVENT_MANAGEMENT = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_EVENT_MANAGEMENT)
-    
-    static let FIREBASE_BOOKING_SLOT = FIREBASE_EVENT_MANAGEMENT.child(FIREBASE_CHILD_BOOKING_AMOUNT)
-    
-    static let FIREBASE_VEHICLES_PRIVATE = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_VEHICLES).child(FIREBASE_CHILD_PRIVATE)
-    
-    static let FIREBASE_VEHICLES_ALL = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_VEHICLES).child(FIREBASE_USER_CHILD_ALL)
-    
-    static let FIREBASE_GUARD_PRIVATE_DATA = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_CHILD_GUARD).child(FIREBASE_CHILD_PRIVATE).child(FIREBASE_CHILD_DATA)
-    
-    static let FIREBASE_CONVENIENCE_CHARGES = FIREBASE_DATABASE_REFERENCE.child(FIREBASE_TRANSACTIONS).child(FIREBASE_CHILD_CONVENIENCE)
+    func configureFB(environment : String) {
+        
+        let FIREBASE_APP = FirebaseApp.app(name: environment)
+        Constants.FIREBASE_DATABASE_REFERENCE = Database.database(app: FIREBASE_APP!).reference()
+        
+        Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+        Constants.FIREBASE_SOCIETY_SERVICES = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICE)
+        
+        Constants.FIREBASE_CABS_PRIVATE = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_CHILD_PRIVATE)
+        
+        Constants.FIREBASE_CABS_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_CABS).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+        Constants.FIREBASE_USERDATA_PRIVATE = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_USERDATA).child(Constants.FIREBASE_CHILD_PRIVATE)
+        
+        Constants.FIREBASE_DELIVERIES_PRIVATE = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_CHILD_PRIVATE)
+        
+        Constants.FIREBASE_DELIVERIES_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_DELIVERIES).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+        Constants.FIREBASE_VISITORS_PRIVATE =
+            Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_VISITORS)
+                .child(Constants.FIREBASE_CHILD_PRIVATE)
+        
+        Constants.FIREBASE_VISITORS_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_VISITORS).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+        Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_USER_PUBLIC)
+        
+        Constants.FIREBASE_DAILY_SERVICES_ALL_PRIVATE = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_DAILY_SERVICES).child(Constants.FIREBASE_USER_CHILD_ALL).child(Constants.FIREBASE_CHILD_PRIVATE)
+        
+        Constants.FIREBASE_USERS_PRIVATE = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_USER)
+            .child(Constants.FIREBASE_CHILD_PRIVATE)
+        
+        Constants.FIREBASE_USERS_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_USER).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+        Constants.FIREBASE_EMERGENCY_PRIVATE_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EMERGENCY).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+        Constants.FIREBASE_EMERGENCY_PUBLIC = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EMERGENCY).child(Constants.FIREBASE_USER_PUBLIC)
+        
+        Constants.FIREBASE_EVENT_MANAGEMENT = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
+        
+        Constants.FIREBASE_BOOKING_SLOT = Constants.FIREBASE_EVENT_MANAGEMENT.child(Constants.FIREBASE_CHILD_BOOKING_AMOUNT)
+        
+        Constants.FIREBASE_VEHICLES_PRIVATE = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_CHILD_PRIVATE)
+        
+        Constants.FIREBASE_VEHICLES_ALL = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_VEHICLES).child(Constants.FIREBASE_USER_CHILD_ALL)
+        
+        Constants.FIREBASE_GUARD_PRIVATE_DATA = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_GUARD).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_DATA)
+        
+        Constants.FIREBASE_CONVENIENCE_CHARGES = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_TRANSACTIONS).child(Constants.FIREBASE_CHILD_CONVENIENCE)
+        
+    }
 }

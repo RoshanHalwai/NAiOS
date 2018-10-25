@@ -43,13 +43,15 @@ class CustomLaunchScreenViewController: NANavigationViewController {
         let accountCreated = NAString().userDefault_Account_Created()
         let verified = NAString().userDefault_Verified()
         
-        let versionRef = Constants.FIREBASE_DATABASE_REFERENCE.child("versionName")
+        let versionRef = Constants.DEFAULT_VERSION_NAME_REFERENCE
         versionRef.observe(.value) { (versionSnapshot) in
             let version = versionSnapshot.value as? String
             let presentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"]! as! String
             if version != presentVersion {
                 let alert = UIAlertController(title: NAString().new_Version_Title() , message: NAString().new_version_message(), preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NAString().update().capitalized, style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: NAString().update().capitalized, style: .default, handler: {action in
+                    UIApplication.shared.open(URL(string: NAString().appLink())!, options: [:], completionHandler: nil)
+                }))
                 alert.view.backgroundColor = UIColor.white
                 alert.view.layer.cornerRadius = 10
                 self.present(alert, animated: true)

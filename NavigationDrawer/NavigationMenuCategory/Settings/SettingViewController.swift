@@ -29,6 +29,7 @@ class SettingViewController: NANavigationViewController {
     var navTitle = String()
     var selectLanguage = String()
     var userNotificationRef : DatabaseReference?
+    var environment = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +108,7 @@ class SettingViewController: NANavigationViewController {
     
     //To Signout the current user
     @objc func signoutAction() {
+        let accountCreated = NAString().userDefault_Account_Created()
         //Signout Confirmation Alert
         NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().logout_Confirmation_Title(), Message: NAString().logout_Confirmation_Message(), CancelStyle: .default, OkStyle: .destructive, OK: { (action) in
             let preferences = UserDefaults.standard
@@ -114,8 +116,24 @@ class SettingViewController: NANavigationViewController {
             let loggedIn = NAString().userDefault_Logged_In()
             preferences.removeObject(forKey: userUID)
             preferences.set(false, forKey: loggedIn)
+            preferences.set(false, forKey: accountCreated)
+            preferences.removeObject(forKey: "firebaseEnvironment")
+           //preferences.set("", forKey: "firebaseEnvironment")
+            preferences.removeObject(forKey: Constants.FIREBASE_DATABASE_URL)
+            //preferences.set(nil, forKey: Constants.FIREBASE_DATABASE_URL)
             preferences.synchronize()
+            
+            if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+                let value = dict["PROJECT_ID"] as! String
+                
+                if value == "nammaapartments-development" {
+                    self.environment = Constants.MASTER_DEV_ENV
+                } else {
+                    self.environment = Constants.MASTER_BETA_ENV
+                }
+            }
             if self.storyboard != nil {
+                Constants().configureFB(environment: self.environment)
                 let NavLogin = NAViewPresenter().loginVC()
                 self.navigationController?.pushViewController(NavLogin, animated: true)
             }
