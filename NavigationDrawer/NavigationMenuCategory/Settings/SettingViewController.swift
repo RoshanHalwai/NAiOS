@@ -118,6 +118,7 @@ class SettingViewController: NANavigationViewController {
             preferences.removeObject(forKey: Constants.FIREBASE_DATABASE_URL)
             preferences.synchronize()
             
+            //Check which Database instance should be used
             if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
                 let value = dict["PROJECT_ID"] as! String
                 

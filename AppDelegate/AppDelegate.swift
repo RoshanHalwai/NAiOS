@@ -59,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func initializeEnv() {
         //Check which Database instance should be used
         let preference = UserDefaults.standard
-        
         if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             let value = dict["PROJECT_ID"] as! String
             if value == Constants.PROJECT_ID {
@@ -87,9 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     /// - parameter environment: Current Environment of the Application
     func getDatabaseURL(environment : String) {
         if environment == Constants.MASTER_DEV_ENV {
-            DATABASE_URL = MASTER_DEV_DATABASE_URL
+            DATABASE_URL = DEFAULT_DEV_DATABASE_URL
         } else {
-            DATABASE_URL = MASTER_BETA_DATABASE_URL
+            DATABASE_URL = DEFAULT_BETA_DATABASE_URL
         }
     }
     

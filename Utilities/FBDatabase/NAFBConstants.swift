@@ -11,9 +11,6 @@ import UIKit
 import FirebaseDatabase
 import Firebase
 
-let MASTER_DEV_DATABASE_URL = "https://nammaapartments-development.firebaseio.com/"
-let MASTER_BETA_DATABASE_URL = "https://nammaapartments-beta.firebaseio.com/"
-
 struct Constants {
     static let PROJECT_ID = "nammaapartments-development"
     static let FIREBASE_CHILD_CLIENTS = "clients"
@@ -174,6 +171,7 @@ struct Constants {
     static var FIREBASE_GUARD_PRIVATE_DATA : DatabaseReference!
     static var FIREBASE_CONVENIENCE_CHARGES : DatabaseReference!
     
+    //Initializing Current Environment for Database References
     func configureFB(environment : String) {
         
         let FIREBASE_APP = FirebaseApp.app(name: environment)
@@ -223,6 +221,5 @@ struct Constants {
         Constants.FIREBASE_GUARD_PRIVATE_DATA = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_GUARD).child(Constants.FIREBASE_CHILD_PRIVATE).child(Constants.FIREBASE_CHILD_DATA)
         
         Constants.FIREBASE_CONVENIENCE_CHARGES = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_TRANSACTIONS).child(Constants.FIREBASE_CHILD_CONVENIENCE)
-        
     }
 }
