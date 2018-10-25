@@ -180,6 +180,7 @@ class MyFoodViewController: NANavigationViewController {
             let dv = NAViewPresenter().donateFoodHistoryVC()
             self.txt_FoodType.text = ""
             self.selectedFoodButtonColor(tag: 0)
+            dv.fromDonateFoodHistoryVC = true
             self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)
