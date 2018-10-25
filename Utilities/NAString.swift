@@ -1780,6 +1780,10 @@ class NAString : NSObject {
         return String("Apartment Services")
     }
     
+    func miscellaneous() -> String {
+        return String("Miscellaneous")
+    }
+    
     func myTransactions() -> String {
         return String("My Transaction")
     }
@@ -2331,6 +2335,10 @@ class NAString : NSObject {
     
     func retrievingDetails() -> String {
         return String("Retrieving details")
+    }
+    
+    func soundSettings() -> String {
+        return String("Fetching your Sound Settings")
     }
 }
 

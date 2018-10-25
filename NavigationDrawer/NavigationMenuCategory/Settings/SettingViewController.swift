@@ -140,6 +140,9 @@ extension SettingViewController {
     
     func retrieveNotificationSoundFromFirebase() {
         
+        OpacityView.shared.showingOpacityView(view: self)
+        OpacityView.shared.showEventPopupView(view: self, title: NAString().soundSettings())
+        
         let notificationSoundRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
             .child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
             .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
@@ -176,6 +179,9 @@ extension SettingViewController {
             } else {
                 self.switch_Guest.isOn = false
             }
+            
+            OpacityView.shared.hidingOpacityView()
+            OpacityView.shared.hidingPopupView()
         }
     }
 }

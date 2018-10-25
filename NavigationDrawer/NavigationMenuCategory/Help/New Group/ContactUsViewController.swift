@@ -19,6 +19,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     @IBOutlet weak var btn_Society_Services: UIButton!
     @IBOutlet weak var btn_Apartment_Services: UIButton!
     @IBOutlet weak var btn_Submit_Request: UIButton!
+    @IBOutlet weak var btn_Miscellaneous: UIButton!
     
     @IBOutlet weak var txt_Choose_One: UITextField!
     
@@ -46,6 +47,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         
         btn_Society_Services.tag = 1
         btn_Apartment_Services.tag = 2
+        btn_Miscellaneous.tag = 3
         
         NAShadowEffect().shadowEffectForView(view: card_View)
         lbl_Select_Service_Category.text = NAString().selectServiceCategory()
@@ -74,10 +76,12 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         //Apply Button Text
         btn_Society_Services.setTitle(NAString().societyService(), for: .normal)
         btn_Apartment_Services.setTitle(NAString().ApartmentServices(), for: .normal)
+        btn_Miscellaneous.setTitle(NAString().miscellaneous(), for: .normal)
         
         //color set on selected
         btn_Society_Services.setTitleColor(UIColor.black, for: .selected)
         btn_Apartment_Services.setTitleColor(UIColor.black, for: .selected)
+        btn_Miscellaneous.setTitleColor(UIColor.black, for: .selected)
         
         //Creating History icon on Navigation bar
         let historyButton = UIButton(type: .system)
@@ -100,6 +104,8 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         btn_Society_Services.layer.borderWidth = CGFloat(NAString().two())
         btn_Apartment_Services.layer.cornerRadius = CGFloat(NAString().fifteen())
         btn_Apartment_Services.layer.borderWidth = CGFloat(NAString().two())
+        btn_Miscellaneous.layer.cornerRadius = CGFloat(NAString().fifteen())
+        btn_Miscellaneous.layer.borderWidth = CGFloat(NAString().two())
         
         txt_Describe_Your_Problem.layer.borderColor = UIColor.black.cgColor
         txt_Describe_Your_Problem.layer.borderWidth = 2
@@ -108,6 +114,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         selectServicebuttons.removeAll()
         selectServicebuttons.append(btn_Society_Services)
         selectServicebuttons.append(btn_Apartment_Services)
+        selectServicebuttons.append(btn_Miscellaneous)
         
         self.selectedServiceColor(tag: btn_Society_Services.tag)
         
@@ -233,6 +240,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
         let okAction = UIAlertAction(title:NAString().ok(), style: .default) { (action) in
             let dv = NAViewPresenter().contactUsHistoryVC()
             dv.serviceType = self.txt_Choose_One.text!
+            dv.fromContactUsHistoryVC = true
             self.navigationController?.pushViewController(dv, animated: true)
         }
         alert.addAction(okAction)

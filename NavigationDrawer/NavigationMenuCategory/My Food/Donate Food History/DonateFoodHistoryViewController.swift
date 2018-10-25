@@ -13,6 +13,8 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
     
     var userFoodDonationDetails = [NAUserFoodDonations]()
     
+    var fromDonateFoodHistoryVC = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,6 +37,21 @@ class DonateFoodHistoryViewController: NANavigationViewController, UICollectionV
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
+        
+        //created custom back button for goto My DigiGate
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
+    }
+    
+    //Navigating Back to digi gate according to Screen coming from
+    @objc func goBackToDigitGate() {
+        if fromDonateFoodHistoryVC {
+            let vcToPop = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)!-3]
+            self.navigationController?.popToViewController(vcToPop!, animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

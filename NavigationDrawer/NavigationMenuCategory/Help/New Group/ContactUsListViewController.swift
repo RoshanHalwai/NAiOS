@@ -18,6 +18,8 @@ class ContactUsListViewController: NANavigationViewController, UITableViewDelega
     
     var apartmentServiceArray = [NAString().cook(), NAString().maid(), NAString().car_bike_cleaning(), NAString().child_day_care(), NAString().daily_newspaper(), NAString().milk_man(), NAString().laundry(), NAString().driver()]
     
+    var miscellaneousArray = [NAString().My_Profile(),NAString().my_vehicles(),NAString().my_guards(),NAString().myNeighbours(),NAString().donateFood(),NAString().notice_board()]
+    
     var searchActive : Bool = false
     
     var navigationTitle = String()
@@ -32,8 +34,10 @@ class ContactUsListViewController: NANavigationViewController, UITableViewDelega
         
         if contactUsVC.getServiceButton_Text == NAString().societyService() {
             gettingArray = societyServiceArray
-        } else {
+        } else if contactUsVC.getServiceButton_Text == NAString().ApartmentServices() {
             gettingArray = apartmentServiceArray
+        } else {
+            gettingArray = miscellaneousArray
         }
         
         //Hiding Navigation Bar
