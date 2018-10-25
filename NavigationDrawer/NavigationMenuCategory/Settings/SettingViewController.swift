@@ -12,15 +12,12 @@ import FirebaseDatabase
 class SettingViewController: NANavigationViewController {
     
     @IBOutlet weak var sound_settings_View: UIView!
-    
     @IBOutlet weak var btn_signOut: UIButton!
-    
     @IBOutlet weak var sound_Settings_Label: UILabel!
     @IBOutlet weak var guest_Notification_Label: UILabel!
     @IBOutlet weak var dailyService_Notification_Label: UILabel!
     @IBOutlet weak var cab_Notification_Label: UILabel!
     @IBOutlet weak var package_Notification_Label: UILabel!
-    
     @IBOutlet weak var switch_Guest: UISwitch!
     @IBOutlet weak var switch_DailyServices: UISwitch!
     @IBOutlet weak var switch_Cab: UISwitch!
@@ -117,16 +114,14 @@ class SettingViewController: NANavigationViewController {
             preferences.removeObject(forKey: userUID)
             preferences.set(false, forKey: loggedIn)
             preferences.set(false, forKey: accountCreated)
-            preferences.removeObject(forKey: "firebaseEnvironment")
-           //preferences.set("", forKey: "firebaseEnvironment")
+            preferences.removeObject(forKey: Constants.FIREBASE_ENVIRONMENT)
             preferences.removeObject(forKey: Constants.FIREBASE_DATABASE_URL)
-            //preferences.set(nil, forKey: Constants.FIREBASE_DATABASE_URL)
             preferences.synchronize()
             
             if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
                 let value = dict["PROJECT_ID"] as! String
                 
-                if value == "nammaapartments-development" {
+                if value == Constants.PROJECT_ID {
                     self.environment = Constants.MASTER_DEV_ENV
                 } else {
                     self.environment = Constants.MASTER_BETA_ENV

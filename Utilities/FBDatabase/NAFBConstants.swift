@@ -15,6 +15,7 @@ let MASTER_DEV_DATABASE_URL = "https://nammaapartments-development.firebaseio.co
 let MASTER_BETA_DATABASE_URL = "https://nammaapartments-beta.firebaseio.com/"
 
 struct Constants {
+    static let PROJECT_ID = "nammaapartments-development"
     static let FIREBASE_CHILD_CLIENTS = "clients"
     static let FIREBASE_CHILD_VISITORS = "visitors"
     static let FIREBASE_CHILD_PRE_APPROVED = "preApproved"

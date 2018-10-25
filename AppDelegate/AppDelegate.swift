@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //This method will call when application finished its launching state.
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-   
+        
         //Formatting Navigation Controller From Globally.
         UIApplication.shared.statusBarStyle = .lightContent
         UINavigationBar.appearance().clipsToBounds = true
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let launchVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().rootVC())
         self.window?.rootViewController = launchVC
         self.window?.makeKeyAndVisible()
-   
+        
         //Initialize Environment and Firebase based on Target Type (DEV/BETA)
         initializeEnv()
         
@@ -62,16 +62,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             let value = dict["PROJECT_ID"] as! String
-            if value == "nammaapartments-development" {
+            if value == Constants.PROJECT_ID {
                 APP_ENV = Constants.MASTER_DEV_ENV
             } else {
                 APP_ENV = Constants.MASTER_BETA_ENV
             }
-            preference.set(APP_ENV, forKey: "firebaseEnvironment")
+            preference.set(APP_ENV, forKey: Constants.FIREBASE_ENVIRONMENT)
         }
         
-       
-        FIREBASE_ENV = preference.string(forKey: "firebaseEnvironment")!
+        FIREBASE_ENV = preference.string(forKey: Constants.FIREBASE_ENVIRONMENT)!
         
         if (preference.string(forKey: Constants.FIREBASE_DATABASE_URL) != nil) {
             DATABASE_URL = preference.string(forKey: Constants.FIREBASE_DATABASE_URL)!
@@ -79,28 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             getDatabaseURL(environment: FIREBASE_ENV)
         }
         
-        if APP_ENV == Constants.MASTER_DEV_ENV {
-            let DEV_OPTIONS = FirebaseOptions(googleAppID: "1:703896080530:ios:61a460236dc64533", gcmSenderID: "703896080530")
-            DEV_OPTIONS.apiKey = "AIzaSyAEM6CUqV8swQnTOAqLGMpKZ4ENzqLJF1Q"
-            DEV_OPTIONS.clientID = "703896080530-d8lmkpdohf5e1ogutir7iu1gabi5trtn.apps.googleusercontent.com"
-            DEV_OPTIONS.bundleID = "com.kirtanlab.nammaapartments"
-            DEV_OPTIONS.databaseURL = DEFAULT_DEV_DATABASE_URL
-            DEV_OPTIONS.storageBucket = "nammaapartments-development.appspot.com"
-            DEV_OPTIONS.projectID = "nammaapartments-development"
-            FirebaseApp.configure(name: Constants.MASTER_DEV_ENV, options : DEV_OPTIONS)
-        } else {
-            let BETA_OPTIONS = FirebaseOptions(googleAppID: "1:896005326129:ios:61a460236dc64533", gcmSenderID: "896005326129")
-            BETA_OPTIONS.apiKey = "AIzaSyD9IHUOpY4ItiSI0Ly2seAaeFFDqFZJY9I"
-            BETA_OPTIONS.clientID = "896005326129-ivn188nh5aosljk6tchkpdc6rlmtj4pu.apps.googleusercontent.com"
-            BETA_OPTIONS.bundleID = "com.kirtanlab.nammaapartments"
-            BETA_OPTIONS.databaseURL = DEFAULT_BETA_DATABASE_URL
-            BETA_OPTIONS.storageBucket = "nammaapartments-beta.appspot.com"
-            BETA_OPTIONS.projectID = "nammaapartments-beta"
-            FirebaseApp.configure(name: Constants.MASTER_BETA_ENV, options : BETA_OPTIONS)
-        }
-        
         FirebaseApp.configure()
-        initializeFirebaseApp(environment: FIREBASE_ENV, databaseURL: DATABASE_URL)
+        initializeFirebaseApp(FIREBASE_ENV: FIREBASE_ENV, databaseURL: DATABASE_URL)
     }
     
     /// Gets the database URL of the current environment
@@ -108,19 +87,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     /// - parameter environment: Current Environment of the Application
     func getDatabaseURL(environment : String) {
         if environment == Constants.MASTER_DEV_ENV {
-           DATABASE_URL = MASTER_DEV_DATABASE_URL
+            DATABASE_URL = MASTER_DEV_DATABASE_URL
         } else {
-           DATABASE_URL = MASTER_BETA_DATABASE_URL
+            DATABASE_URL = MASTER_BETA_DATABASE_URL
         }
     }
-
+    
     /// Gets the Current Environment and its Database URL
     ///
     /// - parameter environment: Current Environment of the Application
     /// - parameter databaseURL: Current Environment Database URL
-    func initializeFirebaseApp(environment: String, databaseURL : String) {
-        switch environment {
-        case Constants.SOCIETY_DEV_ENV :
+    func initializeFirebaseApp(FIREBASE_ENV: String, databaseURL : String) {
+        switch FIREBASE_ENV {
+        case Constants.MASTER_DEV_ENV, Constants.SOCIETY_DEV_ENV :
             let DEV_OPTIONS = FirebaseOptions(googleAppID: "1:703896080530:ios:61a460236dc64533", gcmSenderID: "703896080530")
             DEV_OPTIONS.apiKey = "AIzaSyAEM6CUqV8swQnTOAqLGMpKZ4ENzqLJF1Q"
             DEV_OPTIONS.clientID = "703896080530-d8lmkpdohf5e1ogutir7iu1gabi5trtn.apps.googleusercontent.com"
@@ -128,10 +107,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             DEV_OPTIONS.databaseURL = databaseURL
             DEV_OPTIONS.storageBucket = "nammaapartments-development.appspot.com"
             DEV_OPTIONS.projectID = "nammaapartments-development"
-            FirebaseApp.configure(name: Constants.SOCIETY_DEV_ENV, options : DEV_OPTIONS)
+
+            if (FirebaseApp.app(name: FIREBASE_ENV)?.options == nil) {
+                FirebaseApp.configure(name: FIREBASE_ENV, options : DEV_OPTIONS)
+            }
             break
             
-        case Constants.SOCIETY_BETA_ENV :
+        case Constants.MASTER_BETA_ENV, Constants.SOCIETY_BETA_ENV :
             let BETA_OPTIONS = FirebaseOptions(googleAppID: "1:896005326129:ios:61a460236dc64533", gcmSenderID: "896005326129")
             BETA_OPTIONS.apiKey = "AIzaSyD9IHUOpY4ItiSI0Ly2seAaeFFDqFZJY9I"
             BETA_OPTIONS.clientID = "896005326129-ivn188nh5aosljk6tchkpdc6rlmtj4pu.apps.googleusercontent.com"
@@ -139,23 +121,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             BETA_OPTIONS.databaseURL = databaseURL
             BETA_OPTIONS.storageBucket = "nammaapartments-beta.appspot.com"
             BETA_OPTIONS.projectID = "nammaapartments-beta"
-            FirebaseApp.configure(name: Constants.SOCIETY_BETA_ENV, options : BETA_OPTIONS)
+            
+            if (FirebaseApp.app(name: FIREBASE_ENV)?.options == nil) {
+                 FirebaseApp.configure(name: FIREBASE_ENV, options : BETA_OPTIONS)
+            }
             break
         default:
             break
         }
-       Constants().configureFB(environment: environment)
+        Constants().configureFB(environment: FIREBASE_ENV)
     }
-    
-//    private void initializeApp(final Context context, final FirebaseOptions firebaseOptions, final String Environment) {
-//    try {
-//    FirebaseApp.initializeApp(context, firebaseOptions, Environment);
-//    } catch (Exception e) {
-//    Log.d(“Namma Apartments”, e.getLocalizedMessage());
-//    }
-//    }
-    
-    
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         //Calling establishing channel for FCM function
         connectToFCM()

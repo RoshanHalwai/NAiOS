@@ -430,10 +430,11 @@ extension OTPViewController {
         
         let pref = UserDefaults.standard
         pref.set(databaseURL, forKey: Constants.FIREBASE_DATABASE_URL)
+        pref.set(Constants.SOCIETY_DEV_ENV, forKey: Constants.FIREBASE_ENVIRONMENT)
         
         //TODO: Change ENVIRONMENT to SOCIETY_BETA_ENV before rolling out App in APP Store
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.initializeFirebaseApp(environment: Constants.SOCIETY_DEV_ENV, databaseURL: databaseURL)
+        appDelegate.initializeFirebaseApp(FIREBASE_ENV: Constants.SOCIETY_DEV_ENV, databaseURL: databaseURL)
     }
     
     //Starts Activity based on userDefaults Data.

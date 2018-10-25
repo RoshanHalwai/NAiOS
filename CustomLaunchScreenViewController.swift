@@ -76,8 +76,7 @@ class CustomLaunchScreenViewController: NANavigationViewController {
                             }
                         } else {
                             var userUID = String()
-                            userUID = preferences.object(forKey: UserUID) as! String
-                            preferences.synchronize()
+                            userUID = (Auth.auth().currentUser?.uid)!
                             
                             var usersVerifiedRef : DatabaseReference?
                             usersVerifiedRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID)
