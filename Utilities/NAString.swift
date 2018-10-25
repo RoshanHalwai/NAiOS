@@ -1776,6 +1776,10 @@ class NAString : NSObject {
         return String("Apartment Services")
     }
     
+    func miscellaneous() -> String {
+        return String("Miscellaneous")
+    }
+    
     func myTransactions() -> String {
         return String("My Transaction")
     }
