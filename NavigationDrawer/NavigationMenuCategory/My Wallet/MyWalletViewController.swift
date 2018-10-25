@@ -165,7 +165,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             self.result = NAString().successful()
             let pendingRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
             pendingRef.removeValue()
-            
+            self.storePaymentDetails(paymentUID: payment_id, status: NAString().successful())
             let transactionSummaryVC = NAViewPresenter().transactionSummaryVC()
             transactionSummaryVC.totalAmount = Float(self.lbl_Cost.text!)!
             transactionSummaryVC.transactionPeriod = self.newDateOfVisit
@@ -177,7 +177,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         })
     }
     
-    func storePaymentDetails() {
+    func storePaymentDetails(paymentUID : String, status : String) {
         let userDataRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_TRANSACTIONS)
         let transactionUID : String?
         transactionUID = (userDataRef.childByAutoId().key)
@@ -187,8 +187,8 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         let transactionDetails = [
             NAUserTransactionFBKeys.amount.key :lbl_Cost.text as Any,
-            NAUserTransactionFBKeys.paymentId.key : paymentId,
-            NAUserTransactionFBKeys.result.key : result,
+            NAUserTransactionFBKeys.paymentId.key : paymentUID,
+            NAUserTransactionFBKeys.result.key : status,
             NAUserTransactionFBKeys.serviceCategory.key : paymentDescription,
             NAUserTransactionFBKeys.timestamp.key : (Int64(Date().timeIntervalSince1970 * 1000)),
             NAUserTransactionFBKeys.uid.key : transactionUID as Any,
