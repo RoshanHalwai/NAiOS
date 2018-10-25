@@ -2328,5 +2328,9 @@ class NAString : NSObject {
     func retrievingDetails() -> String {
         return String("Retrieving details")
     }
+    
+    func soundSettings() -> String {
+        return String("Fetching your Sound Settings")
+    }
 }
 
