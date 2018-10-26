@@ -45,9 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         Messaging.messaging().delegate = self
         
-        //Setup firebase Crashlytics here
-        Fabric.with([Crashlytics.self])
-        Fabric.sharedSDK().debug = true
+//        //Setup firebase Crashlytics here
+//        Fabric.with([Crashlytics.self])
+//        Fabric.sharedSDK().debug = true
         
         /*Calling UNService Notification Class for Push Notifications */
         UNService.shared.authorize()

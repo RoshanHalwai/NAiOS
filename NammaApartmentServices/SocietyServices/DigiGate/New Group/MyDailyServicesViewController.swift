@@ -419,7 +419,7 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
         let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
             
             self.NADailyServicesList.remove(at: indx)
-            self.dailyServiceInUserRef?.child(dailyService.getType()).child(dailyService.getuid()).setValue(NAString().getfalse())
+            self.dailyServiceInUserRef?.child(dailyService.getType()).child(dailyService.getuid()).child(dailyService.getUserUID()).setValue(NAString().getfalse())
             
             //Showing Error Layout Message if the List is Empty
             if self.NADailyServicesList.isEmpty {
@@ -445,7 +445,7 @@ extension MyDailyServicesViewController : dataCollectionProtocolDailyService{
      - Else, we display the cardView of all daily services of the current user.*/
     func checkAndRetrieveDailyService() {
         let retrieveDailyList : RetrievingDailyServicesList
-        retrieveDailyList = RetrievingDailyServicesList.init(userUID: userUID)
+        retrieveDailyList = RetrievingDailyServicesList.init(pastDailyServicesListRequired: true)
         retrieveDailyList.getAllDailyServices { (userDailyServivcesList) in
             NAActivityIndicator.shared.hideActivityIndicator()
             if userDailyServivcesList.isEmpty {
