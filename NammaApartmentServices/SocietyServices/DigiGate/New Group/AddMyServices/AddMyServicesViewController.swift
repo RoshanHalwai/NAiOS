@@ -452,7 +452,7 @@ extension AddMyServicesViewController {
             .child(Constants.FIREBASE_CHILD_DAILY_SERVICES)
             .child(dailyServiceKey)
         
-        userDataRef?.child(dailyServiceUID!).setValue(NAString().gettrue())
+        userDataRef?.child(dailyServiceUID!).child(userUID).setValue(NAString().gettrue())
         
         dailyServicesPrivateRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PRIVATE
         

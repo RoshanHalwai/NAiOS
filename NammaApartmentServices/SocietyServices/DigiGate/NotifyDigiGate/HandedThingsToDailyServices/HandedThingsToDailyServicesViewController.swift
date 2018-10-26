@@ -261,7 +261,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
     func retrieveEnteredDailyServices() {
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         let retrieveDailyList : RetrievingDailyServicesList
-        retrieveDailyList = RetrievingDailyServicesList.init(userUID: userUID)
+        retrieveDailyList = RetrievingDailyServicesList.init(pastDailyServicesListRequired: true)
         retrieveDailyList.getAllDailyServices { (userDailyServivcesList) in
             if userDailyServivcesList.isEmpty {
                 NAActivityIndicator.shared.hideActivityIndicator()

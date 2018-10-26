@@ -167,7 +167,7 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
     func retrieveHandedThingsdailyServiceHistory() {
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         let retrieveDailyList : RetrievingDailyServicesList
-        retrieveDailyList = RetrievingDailyServicesList.init(userUID: userUID)
+        retrieveDailyList = RetrievingDailyServicesList.init(pastDailyServicesListRequired: false)
         retrieveDailyList.getAllDailyServices { (userDailyServivcesList) in
             
             if userDailyServivcesList.isEmpty {
