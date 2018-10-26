@@ -21,6 +21,8 @@ class ActivationRequired: NANavigationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isHidden = false
+
         self.welcomeImage.isHidden = true
         self.welcomeDescription.isHidden = true
         
