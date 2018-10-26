@@ -21,6 +21,7 @@ class TransactionSummaryViewController: NANavigationViewController {
     @IBOutlet weak var status_ImageView: UIImageView!
     @IBOutlet weak var btn_Copy: UIButton!
     @IBOutlet weak var lbl_TransactionPeriod: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var transactionUID = String()
     var transactionDate = String()
@@ -39,6 +40,9 @@ class TransactionSummaryViewController: NANavigationViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
         contact_Us_ParentView.isUserInteractionEnabled = true
         contact_Us_ParentView.addGestureRecognizer(tap)
+        
+        //scrollView
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 40, 0)
         
         lbl_PaymentID.text = transactionUID
         lbl_Total_Amount.text = String(totalAmount)
