@@ -373,7 +373,7 @@ class AwaitingResponseViewController: NANavigationViewController {
             let societyServiceUID: String = societyServiceData?[NASocietyServicesFBKeys.takenBy.key] as! String
             let societyServiceType: String = societyServiceData?[NASocietyServicesFBKeys.societyServiceType.key] as! String
             
-            let societyServiceDataRef = Database.database().reference().child(Constants.FIREBASE_CHILD_SOCIETYSERVICE)
+            let societyServiceDataRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICE)
                 .child(societyServiceType)
                 .child(Constants.FIREBASE_CHILD_PRIVATE)
                 .child(Constants.FIREBASE_CHILD_DATA)
