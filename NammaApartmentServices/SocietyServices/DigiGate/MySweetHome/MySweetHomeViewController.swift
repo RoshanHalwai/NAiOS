@@ -141,13 +141,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         
         cell.lbl_MySweetHomeName.text = flatMember.personalDetails.fullName
         
-        if flatMember.familyMembers.contains(userUID) {
-            cell.lbl_MySweetHomeRelation.text = NAString().family_Member()
-        } else {
-            cell.lbl_MySweetHomeRelation.text = NAString().friend()
-        }
         cell.lbl_MySweetHomeGrantAccess.text = flatMember.privileges.getGrantAccess() ? "Yes" : "No"
-                
+        
         //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
         cell.MySweeetHomeimg.sd_setShowActivityIndicatorView(true)
         cell.MySweeetHomeimg.sd_setIndicatorStyle(.gray)
@@ -164,10 +159,8 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.MySweeetHomeimg.clipsToBounds = true
         
         cell.lbl_MySweetHomeName.font = NAFont().headerFont()
-        cell.lbl_MySweetHomeRelation.font = NAFont().headerFont()
         cell.lbl_MySweetHomeGrantAccess.font = NAFont().headerFont()
         cell.lbl_Name.font = NAFont().headerFont()
-        cell.lbl_Relation.font = NAFont().headerFont()
         cell.lbl_GrantAccess.font = NAFont().headerFont()
         cell.lbl_Call.font = NAFont().cellButtonFont()
         cell.lbl_Message.font = NAFont().cellButtonFont()
@@ -175,12 +168,10 @@ class MySweetHomeViewController: NANavigationViewController , UICollectionViewDe
         cell.lbl_Remove.font = NAFont().cellButtonFont()
         
         cell.lbl_Name.font = NAFont().textFieldFont()
-        cell.lbl_Relation.font = NAFont().textFieldFont()
         cell.lbl_GrantAccess.font = NAFont().textFieldFont()
         
         //assigning title to cell Labels
         cell.lbl_Name.text = NAString().name()
-        cell.lbl_Relation.text = NAString().relation()
         cell.lbl_GrantAccess.text = NAString().access()
         cell.lbl_Call.text = NAString().call()
         cell.lbl_Message.text = NAString().message()
