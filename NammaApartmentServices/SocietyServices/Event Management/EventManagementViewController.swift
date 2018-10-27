@@ -545,7 +545,7 @@ extension EventManagementViewController {
         let serviceType = NAString().eventManagement()
         
         let eventManagementNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
-        eventNotificationUID = eventManagementNotificationRef!.childByAutoId().key
+        eventNotificationUID = eventManagementNotificationRef!.childByAutoId().key!
         
         let notificationUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICENOTIFICATION).child(Constants.FIREBASE_CHILD_EVENT_MANAGEMENT)
         notificationUIDRef.child(eventNotificationUID).setValue(NAString().gettrue())
@@ -571,7 +571,7 @@ extension EventManagementViewController {
             let transactionRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_TRANSACTIONS).child(Constants.FIREBASE_CHILD_PRIVATE).child(transactionUID!)
             
             let transactionDetails = [
-                NAUserTransactionFBKeys.amount.key :self.totalAmount,
+                NAUserTransactionFBKeys.amount.key :self.getFinalAmount,
                 NAUserTransactionFBKeys.paymentId.key : paymentId,
                 NAUserTransactionFBKeys.result.key : NAString().successful(),
                 NAUserTransactionFBKeys.serviceCategory.key : NAString().event_management(),
@@ -639,5 +639,3 @@ extension EventManagementViewController {
         }
     }
 }
-
-
