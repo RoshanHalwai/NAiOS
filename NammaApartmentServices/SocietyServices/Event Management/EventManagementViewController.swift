@@ -571,7 +571,7 @@ extension EventManagementViewController {
             let transactionRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_TRANSACTIONS).child(Constants.FIREBASE_CHILD_PRIVATE).child(transactionUID!)
             
             let transactionDetails = [
-                NAUserTransactionFBKeys.amount.key :self.totalAmount,
+                NAUserTransactionFBKeys.amount.key :self.getFinalAmount,
                 NAUserTransactionFBKeys.paymentId.key : paymentId,
                 NAUserTransactionFBKeys.result.key : NAString().successful(),
                 NAUserTransactionFBKeys.serviceCategory.key : NAString().event_management(),
@@ -639,5 +639,3 @@ extension EventManagementViewController {
         }
     }
 }
-
-
