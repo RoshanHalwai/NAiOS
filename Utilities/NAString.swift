@@ -2341,6 +2341,14 @@ class NAString : NSObject {
         return String("Fetching your Sound Settings")
     }
     
+    func guestRemoveTitle() -> String {
+        return String("Delete Message")
+    }
+    
+    func guestRemoveMessage() -> String {
+        return String("Sorry, you cannot remove this Guest, since you are not the inviter of this Guest.")
+    }
+    
     func callAssociation() -> String {
         return String("Call Namma Apartments")
     }
