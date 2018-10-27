@@ -206,7 +206,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
             formatter.dateFormat = "dd-MM-yyyy"
             let currentDate = formatter.string(from: date)
             
-            self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(DSList.getType()).child(DSList.getuid()).child(userUID).child(Constants.FIREBASE_HANDEDTHINGS)
+            self.dailyServicePublicRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(DSList.getType()).child(DSList.getuid()).child(DSList.getUserUID()).child(Constants.FIREBASE_HANDEDTHINGS)
             
             //Implemented Completion block,becouse need to show AlertView after storing data in Firebase.
             self.dailyServicePublicRef?.child(currentDate).setValue(cell.txt_Description.text, withCompletionBlock: { (error,ref) in
@@ -265,7 +265,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         retrieveDailyList.getAllDailyServices { (userDailyServivcesList) in
             if userDailyServivcesList.isEmpty {
                 NAActivityIndicator.shared.hideActivityIndicator()
-                self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
             } else {
                 var count = 0
                 for dailyServiceData in userDailyServivcesList {
@@ -277,7 +277,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
                     }
                     if count == userDailyServivcesList.count && self.dailyServiceHandedThingsList.isEmpty {
                         NAActivityIndicator.shared.hideActivityIndicator()
-                        self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailable())
+                        self.layoutObj.layoutFeatureUnavailable(mainView: self, newText: NAString().dailyServiceNotAvailableHandedThings())
                     }
                 }
             }

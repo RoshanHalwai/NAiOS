@@ -36,7 +36,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
             NAActivityIndicator.shared.hideActivityIndicator()
             
             if(guestDataList.count == 0) {
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsGuestsHistory())
             } else {
                 for guestData in guestDataList {
                     
@@ -46,7 +46,7 @@ class HandedThingsGuestHistoryViewController: NANavigationViewController, UIColl
                     }
                 }
                 if(self.handedThingsList.count == 0) {
-                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsGuestsHistory())
                 }
                 self.collectionView.reloadData()
             }

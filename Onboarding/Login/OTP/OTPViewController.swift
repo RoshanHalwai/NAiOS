@@ -414,7 +414,7 @@ extension OTPViewController {
     /// - parameter callback: gives the User Database Environment URL
     private func getDatabaseURL(callback : @escaping (_ databaseURL : String) -> Void) {
         var databaseURL = String()
-        let usersAllRef = Constants.FIREBASE_USERS_ALL.child(self.getMobileString)
+        let usersAllRef = Constants.DEFAULT_ALL_USERS_REFERENCE.child(self.getMobileString)
         usersAllRef.observeSingleEvent(of: .value) { (urlSnapshot) in
             databaseURL = urlSnapshot.value as! String
             

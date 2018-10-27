@@ -312,7 +312,7 @@ extension MyVehiclesViewController {
                             let vehicleData = snapshot.value as?[String: AnyObject]
                             let vehicleType = (vehicleData?[VehicleListFBKeys.vehicleType.key] as? String)!
                             let addedDate = vehicleData?[VehicleListFBKeys.addedDate.key] as? String
-                            let ownerName = GlobalUserData.shared.personalDetails_Items.first?.getfullName()
+                            let ownerName = vehicleData?[VehicleListFBKeys.ownerName.key] as? String
                             let vehicleNumber = vehicleData?[VehicleListFBKeys.vehicleNumber.key] as? String
                             let vehicleUID = vehicleData?[VehicleListFBKeys.vehicleUID.key] as? String
                             let vehicleDetails = NAExpectingVehicle(addedDate: addedDate,ownerName: ownerName, vehicleNumber: vehicleNumber!,vehicleType: vehicleType, vehicleUID: vehicleUID)
