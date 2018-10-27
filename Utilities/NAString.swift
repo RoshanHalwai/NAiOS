@@ -2342,7 +2342,7 @@ class NAString : NSObject {
     }
     
     func callAssociation() -> String {
-        return String("Call Association")
+        return String("Call Namma Apartments")
     }
 }
 
