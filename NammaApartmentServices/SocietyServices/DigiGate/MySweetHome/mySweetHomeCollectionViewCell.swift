@@ -22,11 +22,9 @@ class mySweetHomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var MySweeetHomeimg: UIImageView!
     
     @IBOutlet weak var lbl_Name: UILabel!
-    @IBOutlet weak var lbl_Relation: UILabel!
     @IBOutlet weak var lbl_GrantAccess: UILabel!
     
     @IBOutlet weak var lbl_MySweetHomeName: UILabel!
-    @IBOutlet weak var lbl_MySweetHomeRelation: UILabel!
     @IBOutlet weak var lbl_MySweetHomeGrantAccess: UILabel!
     
     @IBOutlet weak var btn_Call: UIButton!
