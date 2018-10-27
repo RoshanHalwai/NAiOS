@@ -2340,5 +2340,9 @@ class NAString : NSObject {
     func soundSettings() -> String {
         return String("Fetching your Sound Settings")
     }
+    
+    func callAssociation() -> String {
+        return String("Call Namma Apartments")
+    }
 }
 
