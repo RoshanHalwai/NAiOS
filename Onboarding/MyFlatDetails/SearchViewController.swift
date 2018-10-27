@@ -87,18 +87,18 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID()) as! UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: NAString().cellID())
         if(searchActive) {
             filteredArray = filteredArray.sorted()
-            cell.textLabel?.text = filteredArray[indexPath.row]
+            cell?.textLabel?.text = filteredArray[indexPath.row]
         } else {
             gettingArray = gettingArray.sorted()
-            cell.textLabel?.text = gettingArray[indexPath.row]
+            cell?.textLabel?.text = gettingArray[indexPath.row]
         }
         
         //Label formatting & setting
-        cell.textLabel?.font = NAFont().textFieldFont()
-        return cell
+        cell?.textLabel?.font = NAFont().textFieldFont()
+        return cell!
     }
     
     //Getting Data on Selecting Particular data of cell from the Index path.

@@ -44,6 +44,9 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var result = String()
     var currentDateFormat = String()
     var newDateOfVisit = String()
+    var totalAmountInInt = Int()
+    var totalAmount = Float()
+    var userPaidAmount = Float()
     
     //created varible for razorPay
     var razorpay: Razorpay!
@@ -137,9 +140,9 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             Constants.DEFAULT_CONVENIENCE_CHARGES_REFERENCE.observeSingleEvent(of: .value) { (convenienceChargesSnapshot) in
                 self.convenienceFee = (convenienceChargesSnapshot.value as? NSNumber)?.floatValue ?? 0
                 self.gettingPercentageAmount = Double((Float(self.pendingDueAmount)! * self.convenienceFee) / 100)
-                let totalAmount:Float = Float(Double(Float(self.pendingDueAmount)!) + self.gettingPercentageAmount)
+                self.totalAmount = Float(Double(Float(self.pendingDueAmount)!) + self.gettingPercentageAmount)
                 
-                NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: Int(self.pendingDueAmount)!, additionalCharges: Float(self.gettingPercentageAmount), totalAmount: (Float(totalAmount)), chargesPer: (self.convenienceFee)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
+                NAConfirmationAlert().paymentsConfirmationDialog(VC: self, Title: NAString().maintenanceBill(), Message: NAString().maintenanceAmountAlert_Message(maintenanceAmount: Int(self.pendingDueAmount)!, additionalCharges: Float(self.gettingPercentageAmount), totalAmount: (Float(self.totalAmount)), chargesPer: (self.convenienceFee)), CancelStyle: .default, OkStyle: .default, OK: { (action) in
                     self.showPaymentUI()
                 }, Cancel: nil, cancelActionTitle: NAString().cancel().uppercased(), okActionTitle: NAString().payNow())
             }
@@ -166,7 +169,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             pendingRef.removeValue()
             self.storePaymentDetails(paymentUID: payment_id, status: NAString().successful())
             let transactionSummaryVC = NAViewPresenter().transactionSummaryVC()
-            transactionSummaryVC.totalAmount = Float(self.lbl_Cost.text!)!
+            transactionSummaryVC.totalAmount = Float(self.userPaidAmount)
             transactionSummaryVC.transactionPeriod = self.newDateOfVisit
             transactionSummaryVC.status = self.result
             transactionSummaryVC.transactionDate = self.currentDateFormat
@@ -185,7 +188,7 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         let transactionRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_TRANSACTIONS).child(Constants.FIREBASE_CHILD_PRIVATE).child(transactionUID!)
         
         let transactionDetails = [
-            NAUserTransactionFBKeys.amount.key :lbl_Cost.text as Any,
+            NAUserTransactionFBKeys.amount.key : Float(userPaidAmount),
             NAUserTransactionFBKeys.paymentId.key : paymentUID,
             NAUserTransactionFBKeys.result.key : status,
             NAUserTransactionFBKeys.serviceCategory.key : paymentDescription,
@@ -199,15 +202,17 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     //This will show the default UI of RazorPay with some user's informations.
     func showPaymentUI() {
         
-        let percentageChargesInPaisa: Int = Int(self.gettingPercentageAmount * 100)
-        self.pendingDueAmount = String(percentageChargesInPaisa)
+        let percentageChargesInPaisa: Int = Int(Float(self.gettingPercentageAmount) * 100)
+        print(percentageChargesInPaisa)
         
-        let pendingChargesInInt = Int(pendingDueAmount)
         let pendingAmountInInt = Int(getUserPendingAmount)
-        let totalAmountInInt = pendingChargesInInt! + pendingAmountInInt!
+        self.totalAmountInInt = percentageChargesInPaisa + pendingAmountInInt!
         
         //Converting Int to String for showing in RazorPay
         let totalPendingAmount = "\(totalAmountInInt)"
+        
+        let userPaidamountInPaisa = (Float(totalPendingAmount)! / 100)
+        self.userPaidAmount = userPaidamountInPaisa
         
         let options: [String:Any] = [
             "amount" : totalPendingAmount,
