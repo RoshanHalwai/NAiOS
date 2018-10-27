@@ -2346,7 +2346,11 @@ class NAString : NSObject {
     }
     
     func guestRemoveMessage() -> String {
-        return String("Sorry, you cannot remove this Visitor, since you are not the inviter of this Visitor.")
+        return String("Sorry, you cannot remove this Guest, since you are not the inviter of this Guest.")
+    }
+    
+    func callAssociation() -> String {
+        return String("Call Namma Apartments")
     }
 }
 
