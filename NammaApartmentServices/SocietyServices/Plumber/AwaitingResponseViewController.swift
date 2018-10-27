@@ -104,7 +104,7 @@ class AwaitingResponseViewController: NANavigationViewController {
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
         
-        //Performing Actions on click of UILabels(MobileNumber & Email)
+        //Performing Actions on click of UILabel MobileNumber
         let tapMobileNumber = UITapGestureRecognizer(target: self, action: #selector(tapOnCallAssociation))
         lbl_CallAssociation.isUserInteractionEnabled = true
         lbl_CallAssociation.addGestureRecognizer(tapMobileNumber)
