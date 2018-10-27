@@ -26,6 +26,9 @@ class AwaitingResponseViewController: NANavigationViewController {
     @IBOutlet weak var opacity_View: UIView!
     @IBOutlet weak var rating_Parent_View: UIView!
     
+    @IBOutlet weak var lbl_CallAssociation : UILabel!
+    @IBOutlet weak var img_Call : UIImageView!
+    
     @IBOutlet weak var activityIndicator : UIActivityIndicatorView?
     @IBOutlet weak var img_Title : UIImageView?
     @IBOutlet weak var cardView : UIView?
@@ -44,9 +47,13 @@ class AwaitingResponseViewController: NANavigationViewController {
     var societyServiceType = String()
     var societyServiceUID = String()
     var societyServiceStatus = String()
+    var phoneNumber = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Retrieving societyServiceAdmin data from firebase
+        retrieveSocietyServicesFromFirebase()
         
         //Passing NavigationBar Title
         super.ConfigureNavBarTitle(title: navTitle!)
@@ -61,6 +68,9 @@ class AwaitingResponseViewController: NANavigationViewController {
         lbl_Mobile?.font = NAFont().textFieldFont()
         lbl_OTP?.font = NAFont().textFieldFont()
         lbl_NotAvailable?.font = NAFont().headerFont()
+        lbl_CallAssociation.font = NAFont().labelFont()
+        
+        lbl_CallAssociation.text = NAString().callAssociation()
         
         //Accept CardUIView
         acceptCardView?.layer.cornerRadius = 3
@@ -94,6 +104,11 @@ class AwaitingResponseViewController: NANavigationViewController {
         self.navigationItem.leftBarButtonItem = backButton
         self.navigationItem.hidesBackButton = true
         
+        //Performing Actions on click of UILabel MobileNumber
+        let tapMobileNumber = UITapGestureRecognizer(target: self, action: #selector(tapOnCallAssociation))
+        lbl_CallAssociation.isUserInteractionEnabled = true
+        lbl_CallAssociation.addGestureRecognizer(tapMobileNumber)
+        
         //Formatting & setting UIBUTTONS
         btn_Call.setTitle(NAString().call().uppercased(), for: .normal)
         btn_Call.titleLabel?.font = NAFont().buttonFont()
@@ -109,6 +124,24 @@ class AwaitingResponseViewController: NANavigationViewController {
         btn_RequestAgain.titleLabel?.font = NAFont().buttonFont()
         btn_RequestAgain.setTitleColor(NAColor().buttonFontColor(), for: .normal)
         btn_RequestAgain.backgroundColor = NAColor().buttonBgColor()
+        
+        lbl_CallAssociation.attributedText = NSAttributedString(string: NAString().callAssociation(), attributes:
+            [.underlineStyle: NSUnderlineStyle.styleSingle.rawValue])
+    }
+    
+    //Implemented Call Functionlity
+    @objc func tapOnCallAssociation(sender:UITapGestureRecognizer) {
+        UIApplication.shared.open(NSURL(string: "tel://\(self.phoneNumber)")! as URL, options: [:], completionHandler: nil)
+    }
+    
+    func retrieveSocietyServicesFromFirebase() {
+        
+        let societyServiceRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_SOCIETYSERVICE).child(Constants.FIREBASE_CHILD_ADMIN)
+        societyServiceRef.observeSingleEvent(of: .value) { (societyServiceAdminSnapshot) in
+            
+            let societyServiceAdminDetails = societyServiceAdminSnapshot.value as? NSDictionary
+            self.phoneNumber = (societyServiceAdminDetails![Constants.FIREBASE_CHILD_MOBILENUMBER] as? String)!
+        }
     }
     
     @IBAction func btnRequestAgain() {

@@ -20,6 +20,7 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     @IBOutlet weak var btn_Apartment_Services: UIButton!
     @IBOutlet weak var btn_Submit_Request: UIButton!
     @IBOutlet weak var btn_Miscellaneous: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var txt_Choose_One: UITextField!
     
@@ -40,6 +41,9 @@ class ContactUsViewController: NANavigationViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //scrollView
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 200, 0)
         
         getServiceButton_Text = NAString().societyService()
         txt_Choose_One.inputView = UIView()
