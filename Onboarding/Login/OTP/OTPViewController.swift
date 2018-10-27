@@ -208,6 +208,11 @@ class OTPViewController: NANavigationViewController {
         }
         //Back to My Sweet Home screen
         if(lbl_OTPDescription.text == self.familyMemberType) {
+            
+            //Showing Please wait PopUpView while while Verifying OTP
+            OpacityView.shared.showingOpacityView(view: self)
+            OpacityView.shared.showingPopupView(view: self)
+            
             //Creating Credential variable to check correct OTP String.
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
             
@@ -216,11 +221,15 @@ class OTPViewController: NANavigationViewController {
             Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
                 if let error = error {
                     print("error",error.localizedDescription)
+                    OpacityView.shared.hidingOpacityView()
+                    OpacityView.shared.hidingPopupView()
                     self.lbl_OTP_Validation.isHidden = false
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return
                 } else {
                     //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
+                    OpacityView.shared.hidingOpacityView()
+                    OpacityView.shared.hidingPopupView()
                     self.familyDelegateData.familydataPassing()
                     self.navigationController?.popViewController(animated: true)
                     self.delegate?.activityIndicator_function(withData: (Any).self)              }
@@ -229,6 +238,10 @@ class OTPViewController: NANavigationViewController {
         //Back to My Daily Services Screen
         if (lbl_OTPDescription.text ==  NAString().enter_verification_code(first: "your \(self.dailyServiceType)", second: self.getCountryCodeString, third: self.getMobileString))  {
             
+            //Showing Please wait PopUpView while while Verifying OTP
+            OpacityView.shared.showingOpacityView(view: self)
+            OpacityView.shared.showingPopupView(view: self)
+            
             //Creating Credential variable to check correct OTP String.
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
             
@@ -237,14 +250,19 @@ class OTPViewController: NANavigationViewController {
             Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
                 if let error = error {
                     print("error",error.localizedDescription)
+                    OpacityView.shared.hidingOpacityView()
+                    OpacityView.shared.hidingPopupView()
                     self.lbl_OTP_Validation.isHidden = false
                     self.lbl_OTP_Validation.text = NAString().incorrect_otp()
                     return
                 } else {
                     //Setting delegete for after verifying OTP It will stores the daily Service Data in Firebase & navigating back to Add My daily Service Screen.
+                    OpacityView.shared.hidingOpacityView()
+                    OpacityView.shared.hidingPopupView()
                     self.delegateData.dataPassing()
                     self.navigationController?.popViewController(animated: true)
-                    self.delegate?.activityIndicator_function(withData: (Any).self)                }
+                    self.delegate?.activityIndicator_function(withData: (Any).self)
+                }
             }
         }
     }
@@ -414,7 +432,7 @@ extension OTPViewController {
     /// - parameter callback: gives the User Database Environment URL
     private func getDatabaseURL(callback : @escaping (_ databaseURL : String) -> Void) {
         var databaseURL = String()
-        let usersAllRef = Constants.FIREBASE_USERS_ALL.child(self.getMobileString)
+        let usersAllRef = Constants.DEFAULT_ALL_USERS_REFERENCE.child(self.getMobileString)
         usersAllRef.observeSingleEvent(of: .value) { (urlSnapshot) in
             databaseURL = urlSnapshot.value as! String
             

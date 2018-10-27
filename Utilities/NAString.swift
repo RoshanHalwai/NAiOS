@@ -1107,7 +1107,15 @@ class NAString : NSObject {
     }
     
     func layoutFeatureErrorVisitorList() -> String {
+        return String ("There have been no Guests invited for your Flat yet.")
+    }
+    
+    func layoutFeatureErrorHandedThingsGuests() -> String {
         return String ("Sorry, you cannot use this feature since currently there are no Guests at your Flat.")
+    }
+    
+    func layoutFeatureErrorHandedThingsGuestsHistory() -> String {
+        return String ("You haven't handed any thing to your Guests.")
     }
     
     func layoutFeatureErrorTransactionsList() -> String {
@@ -1261,7 +1269,11 @@ class NAString : NSObject {
     }
     
     func dailyServiceNotAvailableHandedThings() -> String {
-        return String ("You haven't handed any things to your Daily Services.")
+        return String ("Sorry, you cannot use this feature since currently there is no Daily Service at your Flat.")
+    }
+    
+    func dailyServiceNotAvailableHandedThingsHistory() -> String {
+        return String ("You haven't handed any thing to your Daily Services.")
     }
     
     func societyServiceNotAvailable(serviceName: String) -> String {
@@ -2339,6 +2351,14 @@ class NAString : NSObject {
     
     func soundSettings() -> String {
         return String("Fetching your Sound Settings")
+    }
+    
+    func guestRemoveTitle() -> String {
+        return String("Delete Message")
+    }
+    
+    func guestRemoveMessage() -> String {
+        return String("Sorry, you cannot remove this Guest, since you are not the inviter of this Guest.")
     }
     
     func callAssociation() -> String {

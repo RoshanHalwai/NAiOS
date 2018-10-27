@@ -46,7 +46,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         
         //Here Adding Observer Value Using NotificationCenter
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshData(notification:)), name: Notification.Name("refreshRescheduledData"), object: nil)
-       
+        
         //info Button Action
         infoButton()
         
@@ -127,7 +127,7 @@ class MyGuestListViewController: NANavigationViewController,UICollectionViewDele
         cell.lbl_MyVisitorDate.text = dateString
         cell.lbl_MyVisitorName.text = nammaApartmentVisitor.getfullName()
         cell.lbl_MyVisitorType.text = nammaApartmentVisitor.getstatus()
-  
+        
         //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
         cell.myVisitorImage.sd_setShowActivityIndicatorView(true)
         cell.myVisitorImage.sd_setIndicatorStyle(.gray)
@@ -231,49 +231,57 @@ extension MyGuestListViewController : dataCollectionProtocol {
     func deleteData(indx: Int, cell: UICollectionViewCell) {
         let visitor_UId =  myVisitorList[indx]
         
-        self.userDataRef = GlobalUserData.shared.getUserDataReference()
-            .child(Constants.FIREBASE_CHILD_VISITORS)
-            .child(userUID)
-            .child(visitor_UId.getuid())
-        
-        var removeButtonTitle: String?
-        var removeButtonMessage: String?
-        
-        //Changing Alert Title and Message Based on the Visitor status
-        if visitor_UId.getstatus() == NAString().notEntered() {
-            removeButtonTitle = NAString().cancel_invitation()
-            removeButtonMessage = NAString().remove_invitation_message()
+        if visitor_UId.getinviterUID() == userUID {
+            self.userDataRef = GlobalUserData.shared.getUserDataReference()
+                .child(Constants.FIREBASE_CHILD_VISITORS)
+                .child(userUID)
+                .child(visitor_UId.getuid())
+            
+            var removeButtonTitle: String?
+            var removeButtonMessage: String?
+            
+            //Changing Alert Title and Message Based on the Visitor status
+            if visitor_UId.getstatus() == NAString().notEntered() {
+                removeButtonTitle = NAString().cancel_invitation()
+                removeButtonMessage = NAString().remove_invitation_message()
+            } else {
+                removeButtonTitle = NAString().remove_guest()
+                removeButtonMessage = NAString().remove_guests_message()
+            }
+            
+            let alert = UIAlertController(title: removeButtonTitle, message: removeButtonMessage, preferredStyle: .alert)
+            let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
+            let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
+                
+                //Changing the Value of Visitor UID to false on Remove Button Click.
+                self.userDataRef?.setValue(NAString().getfalse())
+                
+                //Remove collection view cell item with animation
+                self.myVisitorList.remove(at: indx)
+                
+                //Showing Error layout Message if all the Visitors Data removed from the Guests List.
+                if self.myVisitorList.isEmpty {
+                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                }
+                //animation at final state
+                cell.alpha = 1
+                cell.layer.transform = CATransform3DIdentity
+                UIView.animate(withDuration: 0.3) {
+                    cell.alpha = 0.0
+                    cell.transform = CGAffineTransform.identity
+                }
+                Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
+            }
+            alert.addAction(actionNO) //add No action on AlertView
+            alert.addAction(actionYES) //add YES action on AlertView
+            present(alert, animated: true, completion: nil)
         } else {
-            removeButtonTitle = NAString().remove_guest()
-            removeButtonMessage = NAString().remove_guests_message()
+            //creating alert controller
+            let alert = UIAlertController(title: NAString().guestRemoveTitle() , message: NAString().guestRemoveMessage(), preferredStyle: .alert)
+            let okAction = UIAlertAction(title: NAString().ok(), style: .default, handler: nil)
+            alert.addAction(okAction)
+            present(alert, animated: true, completion: nil)
         }
-        
-        let alert = UIAlertController(title: removeButtonTitle, message: removeButtonMessage, preferredStyle: .alert)
-        let actionNO = UIAlertAction(title:NAString().no(), style: .cancel) { (action) in }
-        let actionYES = UIAlertAction(title:NAString().yes(), style: .default) { (action) in
-            
-            //Changing the Value of Visitor UID to false on Remove Button Click.
-            self.userDataRef?.setValue(NAString().getfalse())
-            
-            //Remove collection view cell item with animation
-            self.myVisitorList.remove(at: indx)
-            
-            //Showing Error layout Message if all the Visitors Data removed from the Guests List.
-            if self.myVisitorList.isEmpty {
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
-            }
-            //animation at final state
-            cell.alpha = 1
-            cell.layer.transform = CATransform3DIdentity
-            UIView.animate(withDuration: 0.3) {
-                cell.alpha = 0.0
-                cell.transform = CGAffineTransform.identity
-            }
-            Timer.scheduledTimer(timeInterval: 0.24, target: self, selector: #selector(self.reloadCollectionData), userInfo: nil, repeats: false)
-        }
-        alert.addAction(actionNO) //add No action on AlertView
-        alert.addAction(actionYES) //add YES action on AlertView
-        present(alert, animated: true, completion: nil)
     }
     
     @objc func reloadCollectionData() {

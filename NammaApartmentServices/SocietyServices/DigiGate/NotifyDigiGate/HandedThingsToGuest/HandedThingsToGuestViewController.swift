@@ -250,7 +250,7 @@ extension HandedThingsToGuestViewController {
             NAActivityIndicator.shared.hideActivityIndicator()
             
             if(guestDataList.count == 0) {
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsGuests())
             } else {
                 for guestData in guestDataList {
                     
@@ -260,7 +260,7 @@ extension HandedThingsToGuestViewController {
                     }
                 }
                 if(self.handedThingsList.count == 0) {
-                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorVisitorList())
+                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorHandedThingsGuests())
                 }
                 self.tableView.reloadData()
             }
