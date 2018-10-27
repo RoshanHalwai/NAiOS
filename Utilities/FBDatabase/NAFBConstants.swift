@@ -130,6 +130,7 @@ struct Constants {
     static let FIREBASE_CHILD_PERIOD = "period"
     static let FIREBASE_CHILD_CONTACTUS = "contactUs"
     static let FIREBASE_CHILD_NUMBER = "number"
+    static let FIREBASE_CHILD_MOBILENUMBER = "mobileNumber"
     static let FIREBASE_DATABASE_URL = "firebaseDatabaseURL"
     static let FIREBASE_ENVIRONMENT = "firebaseEnvironment"
     static let MASTER_BETA_ENV = "master_beta_env"
