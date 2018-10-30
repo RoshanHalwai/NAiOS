@@ -133,14 +133,12 @@ class RetrievingDailyServicesList {
             for dailyServiceCategory in dailyServiceCategoriesList {
                 
                 self.getDailyServicesUIDs(dailyServiceCategories: dailyServiceCategory, callback: { (dailyServiceUIDList) in
-                    self.count = self.count + 1
                     //checking if the Daily Service UIDList is not equal to zero
                     if dailyServiceUIDList.count != 0 {
                         dailyServiceUIDDictiornary.updateValue(dailyServiceUIDList, forKey: dailyServiceCategory)
                     }
                     
-                    if self.count == dailyServiceCategoriesList.count {
-                        self.count = 0
+                    if dailyServiceUIDDictiornary.count == dailyServiceCategoriesList.count {
                         callback(dailyServiceUIDDictiornary as NSDictionary)
                     }
                 })
@@ -161,13 +159,18 @@ class RetrievingDailyServicesList {
                 let dailyServicesUIDs = DSUIDSnapshot.value as! NSDictionary
                 for dailyServiceType in dailyServicesUIDs {
                     dailyServiceUIDRef?.child(dailyServiceType.key as! String).observeSingleEvent(of: .value, with: { (userUIDSnapshot) in
+                        self.count = self.count + 1
                         let userUIDMap = userUIDSnapshot.value as? NSDictionary
                         for userUID in userUIDMap! {
                             if userUID.value as! Bool == NAString().gettrue() || userUID.value as! Bool == self.pastDailyServicesListRequired {
                                 dailyServiceUIDList.updateValue(userUID.key as! String, forKey: dailyServiceType.key as! String)
                             }
                         }
-                       callback(dailyServiceUIDList)
+                        
+                        if self.count == dailyServicesUIDs.count {
+                            self.count = 0
+                           callback(dailyServiceUIDList)
+                        }
                     })
                 }
             }
