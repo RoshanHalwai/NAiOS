@@ -29,8 +29,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let remoteNotif = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String: Any]
+        
+        if remoteNotif != nil {
+            //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
+            let guestType = remoteNotif![Constants.FIREBASE_CHILD_VISITOR_TYPE] as? String
+            let guestUID = remoteNotif![Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
+            let profilePhot = remoteNotif!["profile_photo"] as? String
+            let mobileNumber = remoteNotif!["mobile_number"] as? String
+            let message = remoteNotif!["message"] as? String
+            
+            let guestPref = UserDefaults.standard
+            guestPref.set(guestType, forKey: "guestType")
+            guestPref.set(guestUID, forKey: "guestUID")
+            guestPref.set(profilePhot, forKey: "profilePhot")
+            guestPref.set(mobileNumber, forKey: "mobileNumber")
+            guestPref.set(message, forKey: "message")
+            guestPref.synchronize()
+        } else {
+         print("APNs is empty")
+        }
+        
         //Formatting Navigation Controller From Globally.
         UIApplication.shared.statusBarStyle = .lightContent
+     
         UINavigationBar.appearance().clipsToBounds = true
         let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
         statusBar.backgroundColor = UIColor.black

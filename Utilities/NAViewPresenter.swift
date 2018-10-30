@@ -129,6 +129,10 @@ class NAViewPresenter: NSObject {
         return String("RootVC")
     }
     
+    func navigationVC() -> String  {
+        return String("NotificationViewController")
+    }
+    
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController
@@ -294,5 +298,9 @@ class NAViewPresenter: NSObject {
     
     func transactionContactUsVC() -> TransactionsContactUsViewController {
         return storyBoard.instantiateViewController(withIdentifier: "transactionContactUsVC") as! TransactionsContactUsViewController
+    }
+    
+    func notificationScreenVC() -> NotificationViewController {
+        return storyBoard.instantiateViewController(withIdentifier: "NotificationViewController") as! NotificationViewController
     }
 }

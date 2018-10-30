@@ -141,6 +141,8 @@
 		8628857A21590A0F00CC540B /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8628857321590A0F00CC540B /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8628857F2159129900CC540B /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628857E2159129900CC540B /* DownloadService.swift */; };
 		8628858021591BB700CC540B /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8628857E2159129900CC540B /* DownloadService.swift */; };
+		862CDC1A21885DD80071AEB5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CDC18218857B80071AEB5 /* NotificationViewController.swift */; };
+		862CDC1B21885DD90071AEB5 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CDC18218857B80071AEB5 /* NotificationViewController.swift */; };
 		862CF63321452999007D2A5F /* retrieveUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862CF63221452999007D2A5F /* retrieveUserData.swift */; };
 		8637B602212BD4CC00BACB0C /* EventManagementCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */; };
 		86494B8D20C10E9300B9980C /* RescheduleMyGuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */; };
@@ -541,6 +543,7 @@
 		8628857521590A0F00CC540B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8628857721590A0F00CC540B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8628857E2159129900CC540B /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
+		862CDC18218857B80071AEB5 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		862CF63221452999007D2A5F /* retrieveUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = retrieveUserData.swift; sourceTree = "<group>"; };
 		8637B601212BD4CC00BACB0C /* EventManagementCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManagementCardViewController.swift; sourceTree = "<group>"; };
 		86494B8C20C10E9300B9980C /* RescheduleMyGuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescheduleMyGuestListViewController.swift; sourceTree = "<group>"; };
@@ -1127,6 +1130,7 @@
 			children = (
 				8628855D2158E64E00CC540B /* UNService.swift */,
 				8628857E2159129900CC540B /* DownloadService.swift */,
+				862CDC18218857B80071AEB5 /* NotificationViewController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1760,6 +1764,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartment/Pods-nammaApartment-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1771,6 +1776,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1792,6 +1798,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-nammaApartmentBETA/Pods-nammaApartmentBETA-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -1803,6 +1810,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -1957,6 +1965,7 @@
 				4234754B212EB87200A791AA /* MyWalletViewController.swift in Sources */,
 				082CAAA8214A431200FA0E8E /* CustomLaunchScreenViewController.swift in Sources */,
 				5D60F269216F48B000A940CC /* NeighboursCollectionViewCell.swift in Sources */,
+				862CDC1A21885DD80071AEB5 /* NotificationViewController.swift in Sources */,
 				42245146214FBDE600CD2C0E /* NammaApartmentFood.swift in Sources */,
 				86D19EFA20A2B26300FB7DC8 /* ExpectingArrivalViewController.swift in Sources */,
 				5D18B39E20BA6E0A00758070 /* mySweetHomeCollectionViewCell.swift in Sources */,
@@ -2088,6 +2097,7 @@
 				86F7B42C215D1FAD005A26CE /* HelpViewController.swift in Sources */,
 				86F7B42D215D1FAD005A26CE /* MyGuestListViewController.swift in Sources */,
 				86F7B42E215D1FAD005A26CE /* MyFlatTableViewCell.swift in Sources */,
+				862CDC1B21885DD90071AEB5 /* NotificationViewController.swift in Sources */,
 				86F7B42F215D1FAD005A26CE /* NAConfirmationAlert.swift in Sources */,
 				86F7B430215D1FAD005A26CE /* EmergencyCollectionViewCell.swift in Sources */,
 				86F7B431215D1FAD005A26CE /* OTPViewController.swift in Sources */,

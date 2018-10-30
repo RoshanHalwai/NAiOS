@@ -64,12 +64,22 @@ class CustomLaunchScreenViewController: NANavigationViewController {
                                 var userUID = String()
                                 userUID = preferences.object(forKey: UserUID) as! String
                                 preferences.synchronize()
-                                
                                 self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                                let NavMain = self.storyboard?.instantiateViewController(withIdentifier:   NAViewPresenter().mainNavigation())
-                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                                appDelegate.window?.rootViewController = NavMain
-                                appDelegate.window?.makeKeyAndVisible()
+                                
+                                let guestPref = UserDefaults.standard
+                                if guestPref.object(forKey: "guestType") != nil {
+                                   // self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                                    let notificationVC = self.storyboard?.instantiateViewController(withIdentifier:    "NotificationViewController")
+                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                    appDelegate.window?.rootViewController = notificationVC
+                                    appDelegate.window?.makeKeyAndVisible()
+                                }
+                                else {
+                                    let NavMain = self.storyboard?.instantiateViewController(withIdentifier:   NAViewPresenter().mainNavigation())
+                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                    appDelegate.window?.rootViewController = NavMain
+                                    appDelegate.window?.makeKeyAndVisible()
+                                }
                             } else {
                                 let NavLogin = NAViewPresenter().loginVC()
                                 self.navigationController?.pushViewController(NavLogin, animated: true)

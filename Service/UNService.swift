@@ -44,21 +44,6 @@ extension UNService: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         
-        //On click of particular Notification it will navigate to that particular screen.
-        //Created varibale to get Notification Type from UserInfo
-        let notificationType = userInfo[Constants.FIREBASE_NOTIFICATION_TYPE] as? String
-        
-        if notificationType == Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD {
-            let dest = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
-            window?.rootViewController = dest
-            window?.makeKeyAndVisible()
-            
-        } else {
-            let launchVC = storyboard.instantiateViewController(withIdentifier: NAViewPresenter().rootVC())
-            window?.rootViewController = launchVC
-            window?.makeKeyAndVisible()
-        }
-        
         //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
         let guestType = userInfo[Constants.FIREBASE_CHILD_VISITOR_TYPE] as? String
         let guestUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
@@ -66,16 +51,30 @@ extension UNService: UNUserNotificationCenterDelegate {
         let message = userInfo[NAString()._message_()] as? String
         let mobileNumber = userInfo[NAString().mobile_Number()] as? String
         
+        let guestPref = UserDefaults.standard
+        guestPref.set(guestType, forKey: "guestType")
+        guestPref.set(guestUID, forKey: "guestUID")
+        guestPref.set(profilePhoto, forKey: "profilePhot")
+        guestPref.set(mobileNumber, forKey: "mobileNumber")
+        guestPref.set(message, forKey: "message")
+        guestPref.synchronize()
+        
+        // self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+        let notificationVC = self.storyboard.instantiateViewController(withIdentifier: "NotificationViewController")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = notificationVC
+        appDelegate.window?.makeKeyAndVisible()
+        
         //Here we are performing Action on Notification Buttons & We created this buttons in  "setActionCategories" function.
         if response.notification.request.content.categoryIdentifier == NAString().notificationActionCategory() {
-            
+
             //Created Firebase reference to get currently invited visitor by E-Intercom
             var gateNotificationRef : DatabaseReference?
             gateNotificationRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID).child(guestType!).child(guestUID!)
-            
+
             //Performing accept & reject on click of recently invited visitor by E-Intercom from Notification view.
             switch response.actionIdentifier {
-                
+
             //If Accept button will pressed
             case NAString().notificationAcceptIdentifier():
                 gateNotificationRef?.child(NAString().status()).setValue(NAString().accepted())
@@ -88,19 +87,19 @@ extension UNService: UNUserNotificationCenterDelegate {
                     visitorType = Constants.FIREBASE_CHILD_DELIVERIES
                 }
                 let postApprovedRef = Database.database().reference().child(visitorType).child(Constants.FIREBASE_CHILD_PRIVATE).child(guestUID!)
-                
+
                 //Getting Current Date and Time when User clicked on Accept
                 let date = Date()
                 let formatter = DateFormatter()
                 formatter.dateFormat = NAString().current_Date_Format()
                 let currentDate = formatter.string(from: date)
-                
+
                 if visitorType == Constants.FIREBASE_CHILD_VISITORS {
-                    
+
                     //Mapping GuestUID with true
                     let userDataGuestRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_VISITORS).child(userUID)
                     userDataGuestRef.child(guestUID!).setValue(NAString().gettrue())
-                    
+
                     let guestMobileRef = Constants.FIREBASE_VISITORS_ALL.child(mobileNumber!)
                     guestMobileRef.setValue(guestUID)
                     //Storing Post Approved Guests
@@ -118,11 +117,11 @@ extension UNService: UNUserNotificationCenterDelegate {
                     ]
                     postApprovedRef.setValue(postApprovedGuestsData)
                 } else if visitorType == Constants.FIREBASE_CHILD_CABS {
-                    
+
                     //Mapping CabUID with true
                     let userDataCabRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_CABS).child(userUID)
                     userDataCabRef.child(guestUID!).setValue(NAString().gettrue())
-                    
+
                     //Storing PostApproved Cabs
                     let replacedMessage = message?.replacingOccurrences(of: NAString().your_Cab_Numbered(), with: "")
                     let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
@@ -138,11 +137,11 @@ extension UNService: UNUserNotificationCenterDelegate {
                     ]
                     postApprovedRef.setValue(postApprovedCabs)
                 } else {
-                    
+
                     //Mapping PackageUID with true
                     let userDataPackageRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_DELIVERIES).child(userUID)
                     userDataPackageRef.child(guestUID!).setValue(NAString().gettrue())
-                    
+
                     //Storing PostApproved Packages
                     let replacedMessage = message?.replacingOccurrences(of: NAString().your_package_vendor(), with: "")
                     let visitorRef = replacedMessage?.replacingOccurrences(of: NAString().wants_to_enter_Society(), with: "")
@@ -157,12 +156,11 @@ extension UNService: UNUserNotificationCenterDelegate {
                     postApprovedRef.setValue(postApprovedPackages)
                 }
                 break
-                
+
             //If Reject button will pressed
             case NAString().notificationRejectIdentifier():
                 gateNotificationRef?.child(NAString().status()).setValue(NAString().rejected())
                 break
-                
             default:
                 break
             }
@@ -204,33 +202,33 @@ extension UNService: UNUserNotificationCenterDelegate {
         
         let options: UNNotificationPresentationOptions = [.alert, .sound]
         let userInfo = notification.request.content.userInfo
-        
+   
         //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
         let guestType = userInfo[Constants.FIREBASE_CHILD_VISITOR_TYPE] as? String
         let guestUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String
-        
+       
         //retrieving user’sFlat Details
         let userFlatDetails = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FLATDETAILS)
         userFlatDetails.observeSingleEvent(of: .value) { (flatSnapshot) in
-            
+
             //Getting Data Form Firebase & Adding into Model Class
             let userFlatData = flatSnapshot.value as? [String: AnyObject]
-            
+
             let apartmentName = userFlatData?[UserFlatListFBKeys.apartmentName.key] as! String
             let city = userFlatData?[UserFlatListFBKeys.city.key] as! String
             let flatNumber = userFlatData?[UserFlatListFBKeys.flatNumber.key] as! String
             let societyName = userFlatData?[UserFlatListFBKeys.societyName.key] as! String
-            
+
             if (guestUID != nil) && guestType != nil {
-                
+
                 let gateNotificationUserRef = Constants.FIREBASE_USERDATA_PRIVATE.child(city).child(societyName).child(apartmentName).child(flatNumber).child(Constants.FIREBASE_CHILD_GATE_NOTIFICATION).child(userUID)
-                
+
                 let gateNotificationRef = gateNotificationUserRef.child(guestType!).child(guestUID!)
                 let gateNotificationStatusRef = gateNotificationUserRef.child(guestType!).child(guestUID!).child(Constants.FIREBASE_STATUS)
-                
+
                 //This deplay function we are calling to set ignored value in firebase, if user not accept & reject the E-Intercom Visitor.
                 self.delay(30) {
-                    
+
                    gateNotificationStatusRef.observeSingleEvent(of: .value, with: { (statusSnapshot) in
                         if !statusSnapshot.exists() {
                             center.removeAllDeliveredNotifications()
