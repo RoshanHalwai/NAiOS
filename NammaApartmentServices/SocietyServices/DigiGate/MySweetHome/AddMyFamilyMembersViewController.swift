@@ -452,7 +452,11 @@ extension AddMyFamilyMembersViewController {
     func storingFamilyMembers() {
         //Showing PopupView
         OpacityView.shared.showingOpacityView(view: self)
-        OpacityView.shared.showingPopupView(view: self)
+        if familyType == familyMember {
+            OpacityView.shared.showEventPopupView(view: self, title: NAString().addFamilyMemberTitle(name: NAString().friend()))
+        } else {
+            OpacityView.shared.showEventPopupView(view: self, title: NAString().addFamilyMemberTitle(name: NAString().family_Member()))
+        }
         
         let familyMemberUID = Auth.auth().currentUser?.uid
         
