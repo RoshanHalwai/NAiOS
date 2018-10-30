@@ -142,13 +142,14 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                         let sortedArray = notificationUIDArray.sorted()
                         //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
                         let reversedArray = sortedArray.reversed()
+                        var count = 0
                         for notifictionUID in reversedArray {
                             
                             let societyServiceNotificationRef = Constants.FIREBASE_SOCIETY_SERVICE_NOTIFICATION_ALL
                                 .child(notifictionUID)
                             
                             societyServiceNotificationRef.observeSingleEvent(of: .value) { (snapshot) in
-                                
+                                count = count + 1
                                 let societyServiceData = snapshot.value as? [String: AnyObject]
                                 
                                 if (self.navigationTitle == NAString().scrap_Collection()) {
@@ -172,8 +173,15 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                         self.NASocietyServiceData.append(societyServiceDataList)
                                     }
                                 }
-                                NAActivityIndicator.shared.hideActivityIndicator()
-                                self.collectionView.reloadData()
+                                
+                                if count == reversedArray.count {
+                                    NAActivityIndicator.shared.hideActivityIndicator()
+                                    if self.NASocietyServiceData.count == 0 {
+                                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
+                                    } else {
+                                         self.collectionView.reloadData()
+                                    }
+                                }
                             }
                         }
                     } else {
