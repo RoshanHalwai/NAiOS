@@ -216,6 +216,7 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
                     let okAction = UIAlertAction(title: NAString().ok(), style: .default) { (_) in
                         let lv = NAViewPresenter().handedThingsServiceHistoryVC()
                         lv.titleName = NAString().history()
+                        cell.txt_Description.text = ""
                         self.navigationController?.pushViewController(lv, animated: true)
                     }
                     alert.addAction(okAction)

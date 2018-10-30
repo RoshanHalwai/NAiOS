@@ -18,7 +18,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
     var titleName =  String()
     
     @IBOutlet weak var tableView: UITableView!
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -172,6 +172,7 @@ class HandedThingsToGuestViewController: NANavigationViewController,UITableViewD
                     let alert = UIAlertController(title: NAString().notify_btnClick_Alert_title(), message: NAString().notify_btnClick_Alert_message(), preferredStyle: UIAlertControllerStyle.alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
                         let lv = NAViewPresenter().handedThingsGuestHistoryVC()
+                        cell.txt_Description.text = ""
                         self.navigationController?.pushViewController(lv, animated: true)
                         lv.titleName = NAString().history().capitalized
                     }
