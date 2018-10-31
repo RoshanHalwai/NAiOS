@@ -16,7 +16,7 @@ def shared_pods
     pod 'FirebaseUI/Phone'
     pod 'Fabric'
     pod 'Crashlytics'
-    pod 'razorpay-pod', '1.0.18'
+    pod 'razorpay-pod', '1.0.24'
     pod 'GoogleToolboxForMac', '~> 2.1'
     pod 'SDWebImage'
 end

@@ -50,13 +50,9 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! DigitalGateCollectionViewCell
-        
         cell.cellTitle.text = digiGateArray[indexPath.row]
         cell.cellImage.image = UIImage(named: digiGateArray[indexPath.row])
-        
-        //Label formatting & Setting
         cell.cellTitle.font = NAFont().textFieldFont()
-        
         return cell
     }
     
