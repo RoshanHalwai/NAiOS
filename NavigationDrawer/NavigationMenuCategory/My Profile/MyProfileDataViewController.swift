@@ -99,24 +99,6 @@ class MyProfileDataViewController: NANavigationViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    //Email Validation Function
-    func isValidEmailAddress(emailAddressString: String) -> Bool {
-        
-        var returnValue = true
-        let validEmail = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
-        do {
-            let emailTextInput = try NSRegularExpression(pattern: validEmail)
-            let emailString = emailAddressString as NSString
-            let results = emailTextInput.matches(in: emailAddressString, range: NSRange(location: 0, length: emailString.length))
-            if results.count == 0 {
-                returnValue = false
-            }
-        } catch {
-            returnValue = false
-        }
-        return  returnValue
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         lbl_Validation.isHidden = true
         txt_Name.underlined()
@@ -138,7 +120,7 @@ class MyProfileDataViewController: NANavigationViewController {
                         lbl_Validation.isHidden = true
                         txt_Name.underlined()
                         let providedEmailAddress = self.txt_Name.text
-                        let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
+                        let isEmailAddressIsValid = NAFirebase().isValidEmailAddress(emailAddressString: providedEmailAddress!)
                         if !(newMail?.isEmpty)! {
                             if isEmailAddressIsValid {
                                 lbl_Validation.isHidden = true

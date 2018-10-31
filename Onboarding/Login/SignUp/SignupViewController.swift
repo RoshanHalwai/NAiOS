@@ -126,7 +126,7 @@ class SignupViewController: NANavigationViewController {
     
     @IBAction func signup_BtnSignup(_ sender: Any) {
         let providedEmailAddress = signup_TxtEmailId.text
-        let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
+        let isEmailAddressIsValid = NAFirebase().isValidEmailAddress(emailAddressString: providedEmailAddress!)
         if profileImage.image == #imageLiteral(resourceName: "imageIcon") {
             lbl_Image_Validation.isHidden = false
             lbl_Image_Validation.text = NAString().please_upload_Image()
@@ -171,7 +171,7 @@ extension SignupViewController {
     
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
-      toSelectImages(VC: self)
+        toSelectImages(VC: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -180,23 +180,6 @@ extension SignupViewController {
             lbl_Image_Validation.isHidden = true
         }
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func isValidEmailAddress(emailAddressString: String) -> Bool {
-        
-        var returnValue = true
-        let validEmail = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
-        do {
-            let emailTextInput = try NSRegularExpression(pattern: validEmail)
-            let emailString = emailAddressString as NSString
-            let results = emailTextInput.matches(in: emailAddressString, range: NSRange(location: 0, length: emailString.length))
-            if results.count == 0 {
-                returnValue = false
-            }
-        } catch {
-            returnValue = false
-        }
-        return  returnValue
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
