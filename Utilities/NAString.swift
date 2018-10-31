@@ -2364,5 +2364,9 @@ class NAString : NSObject {
     func callAssociation() -> String {
         return String("Call Namma Apartments")
     }
+    
+    func statusBar() -> String {
+        return String("statusBar")
+    }
 }
 

@@ -129,7 +129,7 @@ class NAViewPresenter: NSObject {
         return String("RootVC")
     }
     
-    func navigationVC() -> String  {
+    func notificationVC() -> String  {
         return String("NotificationViewController")
     }
     

@@ -50,24 +50,9 @@ class DigitalGateViewController: NANavigationViewController,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! DigitalGateCollectionViewCell
-        
-        let guestPref = UserDefaults.standard
-        print(guestPref.object(forKey: "guestType") as Any)
-        print(guestPref.object(forKey: "guestUID") as Any)
-        print(guestPref.object(forKey: "profilePhot") as Any)
-        print(guestPref.object(forKey: "mobileNumber") as Any)
-        print(guestPref.object(forKey: "message") as Any)
-        
-        let msg = (guestPref.object(forKey: "mobileNumber"))
-        
-        
-       // cell.cellTitle.text = digiGateArray[indexPath.row]
-       // cell.cellImage.image = UIImage(named: digiGateArray[indexPath.row])
-        cell.cellImage.image = UIImage(named: guestPref.object(forKey: "profilePhot") as! String)
-        cell.cellTitle.text = msg as! String
-        //Label formatting & Setting
+        cell.cellTitle.text = digiGateArray[indexPath.row]
+        cell.cellImage.image = UIImage(named: digiGateArray[indexPath.row])
         cell.cellTitle.font = NAFont().textFieldFont()
-        
         return cell
     }
     
