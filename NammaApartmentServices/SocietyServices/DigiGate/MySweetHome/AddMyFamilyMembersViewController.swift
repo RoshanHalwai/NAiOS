@@ -57,7 +57,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
     var userAllRef : DatabaseReference?
     var userFamilyMemberRef : DatabaseReference?
     var currentUserRef : DatabaseReference?
-    var userNotificationSoundRef: DatabaseReference?
     
     /* - Scrollview.
      - To set navigation title.

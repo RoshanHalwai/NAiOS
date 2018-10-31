@@ -65,7 +65,6 @@ class MyFlatDetailsViewController: NANavigationViewController {
     var UsersDataRef : DatabaseReference?
     var usersMobileNumberRef : DatabaseReference?
     var userFlatMemberRef : DatabaseReference?
-    var userNotificationSoundRef: DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
