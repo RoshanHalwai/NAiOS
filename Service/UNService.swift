@@ -76,7 +76,6 @@ extension UNService: UNUserNotificationCenterDelegate {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = notificationVC
             appDelegate.window?.makeKeyAndVisible()
-
             break
         default:
             let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())

@@ -33,8 +33,8 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         
         let preferences = UserDefaults.standard
         let UserUID = NAString().userDefault_USERUID()
-        if preferences.object(forKey: "sender_uid") != nil {
-            neighboursUID = preferences.object(forKey: "sender_uid") as! String
+        if preferences.object(forKey: Constants.NOTIFICATION_SENDER_UID) != nil {
+            neighboursUID = preferences.object(forKey: Constants.NOTIFICATION_SENDER_UID) as! String
         }
         userUID = preferences.object(forKey: UserUID) as! String
         preferences.synchronize()
@@ -106,7 +106,7 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
             if myNeighboursList.uid == self.neighboursUID {
                 cell.batchView.isHidden = true
                 let preferences = UserDefaults.standard
-                preferences.removeObject(forKey: "sender_uid")
+                preferences.removeObject(forKey: Constants.NOTIFICATION_SENDER_UID)
             }
             let sendMessageVC = NAViewPresenter().sendMessageVC()
             sendMessageVC.neighbourUID = myNeighboursList.getneighbourUID()
