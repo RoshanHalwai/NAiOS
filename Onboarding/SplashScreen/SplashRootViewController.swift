@@ -29,8 +29,7 @@ class SplashRootViewController: UIPageViewController,UIPageViewControllerDataSou
         self.dataSource = self
         self.delegate = self
         
-        if let firstViewController = viewControllerList.first
-        {
+        if let firstViewController = viewControllerList.first {
             self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         }
     }

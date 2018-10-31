@@ -57,7 +57,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
     var userAllRef : DatabaseReference?
     var userFamilyMemberRef : DatabaseReference?
     var currentUserRef : DatabaseReference?
-    var userNotificationSoundRef: DatabaseReference?
     
     /* - Scrollview.
      - To set navigation title.
@@ -324,7 +323,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
     
     @IBAction func btn_Action_addDetails(_ sender: UIButton) {
         let providedEmailAddress = txt_Email.text
-        let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
+        let isEmailAddressIsValid = NAValidation().isValidEmailAddress(emailAddressString: providedEmailAddress!)
         if !(txt_Email.text?.isEmpty)! {
             if isEmailAddressIsValid {
                 lbl_Email_Validation.isHidden = true
@@ -396,23 +395,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
         destVC.familyMemberType = segmentType
         destVC.delegate = self
         familyMemberExistsOrNot(VC: destVC)
-    }
-    
-    func isValidEmailAddress(emailAddressString: String) -> Bool {
-        
-        var returnValue = true
-        let validEmail = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
-        do {
-            let emailTextInput = try NSRegularExpression(pattern: validEmail)
-            let emailString = emailAddressString as NSString
-            let results = emailTextInput.matches(in: emailAddressString, range: NSRange(location: 0, length: emailString.length))
-            if results.count == 0 {
-                returnValue = false
-            }
-        } catch {
-            returnValue = false
-        }
-        return  returnValue
     }
     
     //Accept only 10 digit mobile number and Check for Text Removal. 
@@ -561,17 +543,6 @@ extension AddMyFamilyMembersViewController {
         //storing Time stamp for flat members
         let userOtherDetailsRef = Constants.FIREBASE_USERS_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
         userOtherDetailsRef.child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000))
-        
-        //Stroring notification sounds under Other Details -> Notification Sound
-        userNotificationSoundRef = Constants.FIREBASE_USERS_PRIVATE.child(familyMemberUID!)
-            .child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
-            .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
-        
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_GUEST_SOUND).setValue(NAString().gettrue())
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND).setValue(NAString().gettrue())
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_CAB_SOUND).setValue(NAString().gettrue())
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_PACKAGE_SOUND).setValue(NAString().gettrue())
         
         //Store family member's UID under users data structure for future use
         userUIDRef = Constants.FIREBASE_USERS_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_UID)
