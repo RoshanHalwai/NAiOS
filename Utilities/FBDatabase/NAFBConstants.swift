@@ -143,6 +143,9 @@ struct Constants {
     static let NOTIFICATION_GUEST_PROFILE_PHOTO = "profilePhoto"
     static let NOTIFICATION_GUEST_MOBILE_NUMBER = "mobileNumber"
     static let NOTIFICATION_GUEST_MESSAGE = "message"
+    static let NOTIFICATION_SENDER_UID = "sender_uid"
+    static let NOTIFICATION_TYPE_E_INTERCOM = "E-Intercom"
+    static let NOTIFICATION_TYPE_CHAT = "neighbour_chat"
     
     static let DEFAULT_ALL_USERS_REFERENCE = Database.database().reference()
         .child(Constants.FIREBASE_USER)

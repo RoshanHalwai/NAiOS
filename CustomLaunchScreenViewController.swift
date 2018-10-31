@@ -68,13 +68,13 @@ class CustomLaunchScreenViewController: NANavigationViewController {
                                 
                                 let guestPref = UserDefaults.standard
                                 
-                                if guestPref.object(forKey: "guestType") != nil {
-                                    let notificationVC = self.storyboard?.instantiateViewController(withIdentifier:    "NotificationViewController")
+                                if guestPref.object(forKey: Constants.NOTIFICATION_GUEST_TYPE) != nil {
+                                    let notificationVC = self.storyboard?.instantiateViewController(withIdentifier: NAViewPresenter().notificationVC())
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                     appDelegate.window?.rootViewController = notificationVC
                                     appDelegate.window?.makeKeyAndVisible()
                                 } else if guestPref.object(forKey: "sender_uid") != nil {
-                                    let neighboursVC = self.storyboard?.instantiateViewController(withIdentifier: "myNeighbours")
+                                    let neighboursVC = self.storyboard?.instantiateViewController(withIdentifier: NAViewPresenter().neighbourVC())
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                     appDelegate.window?.rootViewController = neighboursVC
                                     appDelegate.window?.makeKeyAndVisible()

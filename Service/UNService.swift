@@ -51,8 +51,8 @@ extension UNService: UNUserNotificationCenterDelegate {
         let message = userInfo[NAString()._message_()] as? String
         let mobileNumber = userInfo[NAString().mobile_Number()] as? String
         let useruid = userInfo["user_uid"] as? String
-        let senderUID =  userInfo["sender_uid"] as? String
-        
+        let senderUID =  userInfo[Constants.NOTIFICATION_SENDER_UID] as? String
+        let notificationType = userInfo[Constants.FIREBASE_NOTIFICATION_TYPE] as? String
         let guestPref = UserDefaults.standard
         guestPref.set(guestType, forKey: Constants.NOTIFICATION_GUEST_TYPE)
         guestPref.set(guestUID, forKey: Constants.NOTIFICATION_GUEST_UID)
@@ -60,44 +60,30 @@ extension UNService: UNUserNotificationCenterDelegate {
         guestPref.set(mobileNumber, forKey: Constants.NOTIFICATION_GUEST_MOBILE_NUMBER)
         guestPref.set(message, forKey: Constants.NOTIFICATION_GUEST_MESSAGE)
         guestPref.set(useruid, forKey: Constants.FIREBASE_USERUID)
-        guestPref.set(senderUID, forKey: "sender_uid")
+        guestPref.set(senderUID, forKey: Constants.NOTIFICATION_SENDER_UID)
         guestPref.synchronize()
         
-        let notificationVC = self.storyboard.instantiateViewController(withIdentifier: "myNeighbours")
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = notificationVC
-        appDelegate.window?.makeKeyAndVisible()
-        
+        //Navigating according to Notification Type
+        switch notificationType {
+        case Constants.NOTIFICATION_TYPE_E_INTERCOM :
+            let notificationVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().notificationVC())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = notificationVC
+            appDelegate.window?.makeKeyAndVisible()
+            break
+        case Constants.NOTIFICATION_TYPE_CHAT :
+            let notificationVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().neighbourVC())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = notificationVC
+            appDelegate.window?.makeKeyAndVisible()
 
-//        switch "type" {
-////        case <#pattern#>:
-////            let notificationVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().notificationVC())
-////            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-////            appDelegate.window?.rootViewController = notificationVC
-////            appDelegate.window?.makeKeyAndVisible()
-////            break
-//        case "neighbour_chat" :
-//            let notificationVC = self.storyboard.instantiateViewController(withIdentifier: "myNeighboursVC")
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appDelegate.window?.rootViewController = notificationVC
-//            appDelegate.window?.makeKeyAndVisible()
-//            break
-//        default:
-//            let mainScreenVc = self.storyboard.instantiateViewController(withIdentifier: "myNeighboursVC" )
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appDelegate.window?.rootViewController = mainScreenVc
-//            appDelegate.window?.makeKeyAndVisible()
-      //  }
-
-        
-        
-        
-//
-//        // self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-//        let notificationVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().notificationVC())
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        appDelegate.window?.rootViewController = notificationVC
-//        appDelegate.window?.makeKeyAndVisible()
+            break
+        default:
+            let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = NavMain
+            appDelegate.window?.makeKeyAndVisible()
+        }
         
         UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler()
@@ -114,7 +100,6 @@ extension UNService: UNUserNotificationCenterDelegate {
         
         let options: UNNotificationPresentationOptions = [.alert, .sound]
         let userInfo = notification.request.content.userInfo
-        print("My Notification payload data:",userInfo as Any)
         
         //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
         let guestType = userInfo[Constants.FIREBASE_CHILD_VISITOR_TYPE] as? String

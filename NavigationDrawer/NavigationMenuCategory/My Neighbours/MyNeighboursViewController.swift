@@ -61,7 +61,21 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
+        
+        //created custom back button for goto Home Screen
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
+    
+    //Navigating Back to digi gate according to Screen coming from
+    @objc func goBackToDigitGate() {
+        let NavMain = self.storyboard?.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = NavMain
+        appDelegate.window?.makeKeyAndVisible()
+    }
+
 
     //MARK: CollectionView Delegate & DataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
