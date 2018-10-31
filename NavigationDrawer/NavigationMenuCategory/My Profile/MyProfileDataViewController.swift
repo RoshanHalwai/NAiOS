@@ -120,7 +120,7 @@ class MyProfileDataViewController: NANavigationViewController {
                         lbl_Validation.isHidden = true
                         txt_Name.underlined()
                         let providedEmailAddress = self.txt_Name.text
-                        let isEmailAddressIsValid = NAFirebase().isValidEmailAddress(emailAddressString: providedEmailAddress!)
+                        let isEmailAddressIsValid = NAValidation().isValidEmailAddress(emailAddressString: providedEmailAddress!)
                         if !(newMail?.isEmpty)! {
                             if isEmailAddressIsValid {
                                 lbl_Validation.isHidden = true

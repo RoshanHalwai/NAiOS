@@ -323,7 +323,7 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
     
     @IBAction func btn_Action_addDetails(_ sender: UIButton) {
         let providedEmailAddress = txt_Email.text
-        let isEmailAddressIsValid = isValidEmailAddress(emailAddressString: providedEmailAddress!)
+        let isEmailAddressIsValid = NAValidation().isValidEmailAddress(emailAddressString: providedEmailAddress!)
         if !(txt_Email.text?.isEmpty)! {
             if isEmailAddressIsValid {
                 lbl_Email_Validation.isHidden = true
@@ -395,23 +395,6 @@ class AddMyFamilyMembersViewController: NANavigationViewController, AlertViewDel
         destVC.familyMemberType = segmentType
         destVC.delegate = self
         familyMemberExistsOrNot(VC: destVC)
-    }
-    
-    func isValidEmailAddress(emailAddressString: String) -> Bool {
-        
-        var returnValue = true
-        let validEmail = "[A-Z0-9a-z.-_]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,3}"
-        do {
-            let emailTextInput = try NSRegularExpression(pattern: validEmail)
-            let emailString = emailAddressString as NSString
-            let results = emailTextInput.matches(in: emailAddressString, range: NSRange(location: 0, length: emailString.length))
-            if results.count == 0 {
-                returnValue = false
-            }
-        } catch {
-            returnValue = false
-        }
-        return  returnValue
     }
     
     //Accept only 10 digit mobile number and Check for Text Removal. 

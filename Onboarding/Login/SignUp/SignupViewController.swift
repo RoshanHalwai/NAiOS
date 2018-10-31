@@ -126,7 +126,7 @@ class SignupViewController: NANavigationViewController {
     
     @IBAction func signup_BtnSignup(_ sender: Any) {
         let providedEmailAddress = signup_TxtEmailId.text
-        let isEmailAddressIsValid = NAFirebase().isValidEmailAddress(emailAddressString: providedEmailAddress!)
+        let isEmailAddressIsValid = NAValidation().isValidEmailAddress(emailAddressString: providedEmailAddress!)
         if profileImage.image == #imageLiteral(resourceName: "imageIcon") {
             lbl_Image_Validation.isHidden = false
             lbl_Image_Validation.text = NAString().please_upload_Image()
