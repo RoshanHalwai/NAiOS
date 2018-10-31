@@ -28,10 +28,18 @@ enum NoticeBoardListFBKeys: String {
 
 class NAExpectingNoticeBoard {
     
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var title : String?
     var description : String?
     var nameOfAdmin : String?
     var dateAndTime : String?
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(title : String?,description : String?,nameOfAdmin : String?,dateAndTime : String) {
         self.title = title

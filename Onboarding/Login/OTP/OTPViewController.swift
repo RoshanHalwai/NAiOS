@@ -427,6 +427,10 @@ extension OTPViewController {
         }
     }
     
+    /* ------------------------------------------------------------- *
+     * Private API's
+     * ------------------------------------------------------------- */
+    
     ///Gets the environment URL from Firebase mapped with the mobile number under Users
     ///
     /// - parameter callback: gives the User Database Environment URL

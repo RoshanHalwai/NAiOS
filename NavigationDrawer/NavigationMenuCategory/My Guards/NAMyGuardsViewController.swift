@@ -28,10 +28,18 @@ enum GuardsListFBKeys: String {
 
 class NAExpectingGuard {
     
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var fullName : String
     var profilePhoto : String
     var status : String
     var gateNumber : Int
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(fullName : String,profilePhoto : String, status: String, gateNumber: Int) {
         self.fullName = fullName

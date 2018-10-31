@@ -34,6 +34,11 @@ enum DailyServicesListFBKeys: String {
 }
 
 class NammaApartmentDailyServices {
+    
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     //defining strings according to firebase names which is inside the Daily Services Node.
     var fullName: String?
     var phoneNumber: String?
@@ -47,6 +52,10 @@ class NammaApartmentDailyServices {
     private var type: String?
     private var numberOfFlat: Int?
     private var status: String?
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     //initilaize the variables
     init(fullName: String?,phoneNumber: String?,profilePhoto: String?,providedThings: String,dateOfHandedThings: String,rating: Int?,timeOfVisit: String?,uid: String?, type: String?, numberOfFlat: Int?,status: String?, userUID: String?) {

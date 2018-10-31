@@ -10,16 +10,29 @@ import Foundation
 import FirebaseDatabase
 
 class RetrievingApartmentServicesData {
+    
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var dailyServiceUID : String
     var dailyServiceType : String
     var rating = 0
     var count = 0
     var flatCount = 0
     
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
+    
     init(dailyServiceUID: String, dailyServiceType: String) {
         self.dailyServiceUID = dailyServiceUID
         self.dailyServiceType = dailyServiceType
     }
+    
+    /* ------------------------------------------------------------- *
+     * Public API's
+     * ------------------------------------------------------------- */
     
     //Calculating average rating for particular daily service and getting Daily service data under first owner UID
     public func getDailyServicesDetails(callback: @escaping (_ dailyServiceData: NammaApartmentDailyServices) -> Void) {
@@ -49,6 +62,10 @@ class RetrievingApartmentServicesData {
             })
         }
     }
+    
+    /* ------------------------------------------------------------- *
+     * Private API's
+     * ------------------------------------------------------------- */
     
     //Getting Owners UID List
     private func getDailyServiceOwnersUIDList(callback: @escaping (_ ownersUIDList: [String]) -> Void) {

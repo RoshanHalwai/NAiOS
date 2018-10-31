@@ -32,9 +32,18 @@ enum DonateFoodListFBKeys: String {
 }
 
 class NAUserFoodDonations {
+    
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     private var foodQuantity: String
     private var foodType: String
     private var timeStamp = Int()
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(foodQuantity: String, foodType: String, timeStamp: Int) {
         self.foodQuantity = foodQuantity

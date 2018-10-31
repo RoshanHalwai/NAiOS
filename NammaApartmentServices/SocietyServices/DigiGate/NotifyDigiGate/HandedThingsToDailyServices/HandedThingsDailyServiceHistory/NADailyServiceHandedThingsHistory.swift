@@ -11,6 +11,10 @@ import UIKit
 
 class NADailyServiceHandedThingsHistory {
     
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var fullName: String?
     var profilePhoto: String?
     var timeOfVisit: String?
@@ -19,6 +23,10 @@ class NADailyServiceHandedThingsHistory {
     private var type: String?
     private var handedThings: String?
     private var status: String?
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     //initilaize the variables
     init(fullName: String,profilePhoto: String,timeOfVisit: String,uid: String?,dateOfVisit: String?,type: String?,handedThings: String?,status: String?) {
