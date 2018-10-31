@@ -138,6 +138,11 @@ struct Constants {
     static let SOCIETY_DEV_ENV = "society_dev_env"
     static let SOCIETY_BETA_ENV = "society_beta_env"
     static let FIREBASE_CHILD_VERSION_NAME = "versionName"
+    static let NOTIFICATION_GUEST_TYPE = "guestType"
+    static let NOTIFICATION_GUEST_UID = "guestUID"
+    static let NOTIFICATION_GUEST_PROFILE_PHOTO = "profilePhoto"
+    static let NOTIFICATION_GUEST_MOBILE_NUMBER = "mobileNumber"
+    static let NOTIFICATION_GUEST_MESSAGE = "message"
     
     static let DEFAULT_ALL_USERS_REFERENCE = Database.database().reference()
         .child(Constants.FIREBASE_USER)
