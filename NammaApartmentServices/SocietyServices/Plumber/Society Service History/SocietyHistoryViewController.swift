@@ -179,20 +179,23 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                                     if self.NASocietyServiceData.count == 0 {
                                         NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
                                     } else {
-                                         self.collectionView.reloadData()
+                                        self.collectionView.reloadData()
                                     }
                                 }
                             }
                         }
                     } else {
-                        NAActivityIndicator.shared.hideActivityIndicator()
-                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
+                        self.displayErrorMessage()
                     }
                 })
             } else {
-                NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
+                self.displayErrorMessage()
             }
         }
+    }
+    
+    func displayErrorMessage() {
+        NAActivityIndicator.shared.hideActivityIndicator()
+        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
     }
 }

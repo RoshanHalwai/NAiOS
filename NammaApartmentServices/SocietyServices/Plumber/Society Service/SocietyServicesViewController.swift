@@ -166,11 +166,7 @@ class SocietyServicesViewController: NANavigationViewController {
         btn_WetWaste.layer.borderWidth = 1
         
         //cardUIView
-        cardView.layer.cornerRadius = 3
-        cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
-        cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-        cardView.layer.shadowRadius = 1.7
-        cardView.layer.shadowOpacity = 0.45
+        NAShadowEffect().shadowEffectForView(view: cardView)
         
         //Calling Button Color Function
         self.selectedColor(tag: btn_Immediately.tag)
