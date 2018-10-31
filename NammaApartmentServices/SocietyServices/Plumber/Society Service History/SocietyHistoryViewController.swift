@@ -185,17 +185,14 @@ class SocietyHistoryViewController: NANavigationViewController, UICollectionView
                             }
                         }
                     } else {
-                        self.displayErrorMessage()
+                        NAActivityIndicator.shared.hideActivityIndicator()
+                        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
                     }
                 })
             } else {
-                self.displayErrorMessage()
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
             }
         }
-    }
-    
-    func displayErrorMessage() {
-        NAActivityIndicator.shared.hideActivityIndicator()
-        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().societyServiceNotAvailable(serviceName: self.serviceTypeString.capitalized))
     }
 }
