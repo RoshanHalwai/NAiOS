@@ -45,6 +45,7 @@ class EditMyProfileViewController: NANavigationViewController {
     var adminUID : String?
     var updatedAdminUID : String?
     let imagePickerController = UIImagePickerController()
+    var environment = String()
     
     /* - Creating Text Field Action for Name for first letter to be Capital.
      - Assigning Delegates for text fields and Tableview & Removing Separator lines for tableview cells.
@@ -99,6 +100,15 @@ class EditMyProfileViewController: NANavigationViewController {
         lbl_EIntercomSerialNo.font = NAFont().layoutFeatureErrorFont()
         lbl_EIntercomNumber.font = NAFont().layoutFeatureErrorFont()
         
+        //Creating logout icon on Navigation bar
+        let logoutButton = UIButton(type: .system)
+        logoutButton.setImage(#imageLiteral(resourceName: "logout"), for: .normal)
+        logoutButton.addTarget(self, action: #selector(self.signoutAction), for: .touchUpInside)
+        let logout = UIBarButtonItem(customView: logoutButton)
+        
+        //created logout button icon
+        self.navigationItem.setRightBarButtonItems([logout], animated: true)
+        
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.width/2
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.height/2
         profile_Image.clipsToBounds = true
@@ -129,6 +139,39 @@ class EditMyProfileViewController: NANavigationViewController {
             }
             queue.waitUntilAllOperationsAreFinished()
         })
+    }
+    
+    //To Signout the current user
+    @objc func signoutAction() {
+        let accountCreated = NAString().userDefault_Account_Created()
+        //Signout Confirmation Alert
+        NAConfirmationAlert().showConfirmationDialog(VC: self, Title: NAString().logout_Confirmation_Title(), Message: NAString().logout_Confirmation_Message(), CancelStyle: .default, OkStyle: .destructive, OK: { (action) in
+            let preferences = UserDefaults.standard
+            let userUID = NAString().userDefault_USERUID()
+            let loggedIn = NAString().userDefault_Logged_In()
+            preferences.removeObject(forKey: userUID)
+            preferences.set(false, forKey: loggedIn)
+            preferences.set(false, forKey: accountCreated)
+            preferences.removeObject(forKey: Constants.FIREBASE_ENVIRONMENT)
+            preferences.removeObject(forKey: Constants.FIREBASE_DATABASE_URL)
+            preferences.synchronize()
+            
+            //Check which Database instance should be used
+            if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"), let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
+                let value = dict["PROJECT_ID"] as! String
+                
+                if value == Constants.PROJECT_ID {
+                    self.environment = Constants.MASTER_DEV_ENV
+                } else {
+                    self.environment = Constants.MASTER_BETA_ENV
+                }
+            }
+            if self.storyboard != nil {
+                Constants().configureFB(environment: self.environment)
+                let NavLogin = NAViewPresenter().loginVC()
+                self.navigationController?.pushViewController(NavLogin, animated: true)
+            }
+        }, Cancel: { (action) in}, cancelActionTitle: NAString().no(), okActionTitle: NAString().yes())
     }
     
     //Created Global function to get Profile image from firebase in Visitor List
@@ -206,7 +249,7 @@ class EditMyProfileViewController: NANavigationViewController {
     
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
-       toSelectImages(VC: self)
+        toSelectImages(VC: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
