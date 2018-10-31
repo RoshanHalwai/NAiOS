@@ -133,6 +133,10 @@ class NAViewPresenter: NSObject {
         return String("NotificationViewController")
     }
     
+    func neighbourVC() -> String  {
+        return String("myNeighbours")
+    }
+    
     //Digi Gate Vc
     func digiGateVC() -> DigitalGateViewController {
         return storyBoard.instantiateViewController(withIdentifier: "digiGateVC") as! DigitalGateViewController

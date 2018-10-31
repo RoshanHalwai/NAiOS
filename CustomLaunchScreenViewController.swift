@@ -67,13 +67,18 @@ class CustomLaunchScreenViewController: NANavigationViewController {
                                 self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
                                 
                                 let guestPref = UserDefaults.standard
+                                
                                 if guestPref.object(forKey: "guestType") != nil {
                                     let notificationVC = self.storyboard?.instantiateViewController(withIdentifier:    "NotificationViewController")
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                     appDelegate.window?.rootViewController = notificationVC
                                     appDelegate.window?.makeKeyAndVisible()
-                                }
-                                else {
+                                } else if guestPref.object(forKey: "sender_uid") != nil {
+                                    let neighboursVC = self.storyboard?.instantiateViewController(withIdentifier: "myNeighbours")
+                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                    appDelegate.window?.rootViewController = neighboursVC
+                                    appDelegate.window?.makeKeyAndVisible()
+                                } else {
                                     let NavMain = self.storyboard?.instantiateViewController(withIdentifier:   NAViewPresenter().mainNavigation())
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                     appDelegate.window?.rootViewController = NavMain

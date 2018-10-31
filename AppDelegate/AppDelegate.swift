@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let mobileNumber = remoteNotif!["mobile_number"] as? String
             let message = remoteNotif!["message"] as? String
             let useruid = remoteNotif!["user_uid"] as? String
+            let senderUID =  remoteNotif!["sender_uid"] as? String
             
             let guestPref = UserDefaults.standard
             guestPref.set(guestType, forKey: Constants.NOTIFICATION_GUEST_TYPE)
@@ -47,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             guestPref.set(mobileNumber, forKey: Constants.NOTIFICATION_GUEST_MOBILE_NUMBER)
             guestPref.set(message, forKey: Constants.NOTIFICATION_GUEST_MESSAGE)
             guestPref.set(useruid, forKey: Constants.FIREBASE_USERUID)
+            guestPref.set(senderUID, forKey: "sender_uid")
             guestPref.synchronize()
         } else {
          print("APNs is empty")
