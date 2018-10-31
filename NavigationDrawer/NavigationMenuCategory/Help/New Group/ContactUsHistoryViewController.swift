@@ -40,7 +40,6 @@ class ContactUsHistoryViewController: NANavigationViewController, UITableViewDat
         }
     }
     
-    
     //MARK : TableView DataSource & Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userSupportDetails.count
@@ -88,12 +87,7 @@ class ContactUsHistoryViewController: NANavigationViewController, UITableViewDat
         cell?.lbl_Status_Detail.font = NAFont().headerFont()
         
         //cardUIView
-        cell?.cardView.layer.cornerRadius = 3
-        cell?.cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
-        cell?.cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-        cell?.cardView.layer.shadowRadius = 1.7
-        cell?.cardView.layer.shadowOpacity = 0.45
-        cell?.isUserInteractionEnabled = false
+        NAShadowEffect().shadowEffectForView(view: (cell?.cardView)!)
         
         return cell!
     }
