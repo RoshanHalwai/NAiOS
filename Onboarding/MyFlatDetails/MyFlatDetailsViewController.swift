@@ -196,7 +196,7 @@ class MyFlatDetailsViewController: NANavigationViewController {
         OpacityView.shared.addButtonTagValue = btnContinue.tag
         OpacityView.shared.showingOpacityView(view: self)
         OpacityView.shared.showingPopupView(view: self)
-
+        
         let databaseURLRef = Constants.FIREBASE_DATABASE_REFERENCE.child("customers").child(Constants.FIREBASE_CHILD_PRIVATE).child("cities").child(txtCity.text!).child("societies").child(txtSociety.text!).child("databaseURL")
         databaseURLRef.observeSingleEvent(of: .value, with: { (URLSnapshot) in
             self.societyDatabaseURL = (URLSnapshot.value as? String)!
@@ -412,16 +412,6 @@ extension MyFlatDetailsViewController {
                             self.userFlatMemberRef = Constants.FIREBASE_USERDATA_PRIVATE.child(self.txtCity.text!).child(self.txtSociety.text!).child(self.txtApartment.text!).child(self.txtFlat.text!).child(Constants.FIREBASE_CHILD_FLATMEMBERS)
                             
                             self.userFlatMemberRef?.child(userUID!).setValue(NAString().gettrue())
-                            
-                            //Stroring notification sounds under Other Details -> Notification Sound
-                            self.userNotificationSoundRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID!)
-                                .child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
-                                .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
-                            
-                            self.userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_GUEST_SOUND).setValue(NAString().gettrue())
-                            self.userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND).setValue(NAString().gettrue())
-                            self.userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_CAB_SOUND).setValue(NAString().gettrue())
-                            self.userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_PACKAGE_SOUND).setValue(NAString().gettrue())
                             
                             let preferences = UserDefaults.standard
                             let accountCreated = NAString().userDefault_Account_Created()

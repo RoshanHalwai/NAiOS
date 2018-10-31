@@ -17,7 +17,7 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     
     var sideMenuArray = [NAString().My_Profile(), NAString().my_family_members(),NAString().my_vehicles(),NAString().my_guards(),
-        NAString().myNeighbours(), NAString().payments(),NAString().donateFood(), NAString().notice_board(), NAString().settings(), NAString().help(), NAString().rate_us()]
+                         NAString().myNeighbours(), NAString().payments(),NAString().donateFood(), NAString().notice_board(), NAString().help(), NAString().rate_us()]
     
     var mainScreen: MainScreenViewController!
     
@@ -85,14 +85,10 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             let noticeBoardVC = NAViewPresenter().noticeBoardVC()
             self.navigationController?.pushViewController(noticeBoardVC, animated: true)
         case 8 :
-            let dv4 = NAViewPresenter().settingVC()
-            dv4.navTitle = NAString().settings()
-            self.navigationController?.pushViewController(dv4, animated: true)
-        case 9 :
             let dv3 = NAViewPresenter().helpVC()
             dv3.navTitle = NAString().help()
             self.navigationController?.pushViewController(dv3, animated: true)
-        case 10 :
+        case 9 :
             /** calling 'showReviewView' method with desired launch counts needed. **/
             if #available(iOS 10.3, *) {
                 //TODO: Need to pass some functionality in future, when we upload our app in App Store.

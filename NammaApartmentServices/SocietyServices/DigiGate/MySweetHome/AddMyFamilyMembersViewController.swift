@@ -562,17 +562,6 @@ extension AddMyFamilyMembersViewController {
         let userOtherDetailsRef = Constants.FIREBASE_USERS_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
         userOtherDetailsRef.child(Constants.FIREBASE_CHILD_TIMESTAMP).setValue(Int64(Date().timeIntervalSince1970 * 1000))
         
-        //Stroring notification sounds under Other Details -> Notification Sound
-        userNotificationSoundRef = Constants.FIREBASE_USERS_PRIVATE.child(familyMemberUID!)
-            .child(Constants.FIREBASE_CHILD_OTHER_DETAILS)
-            .child(Constants.FIREBASE_CHILD_NOTIFICATION_SOUND)
-        
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_EINTERCOM_SOUND).setValue(NAString().gettrue())
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_GUEST_SOUND).setValue(NAString().gettrue())
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_DAILYSERVICE_SOUND).setValue(NAString().gettrue())
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_CAB_SOUND).setValue(NAString().gettrue())
-        userNotificationSoundRef?.child(Constants.FIREBASE_CHILD_PACKAGE_SOUND).setValue(NAString().gettrue())
-        
         //Store family member's UID under users data structure for future use
         userUIDRef = Constants.FIREBASE_USERS_PRIVATE.child(familyMemberUID!).child(Constants.FIREBASE_CHILD_UID)
         userUIDRef?.setValue(familyMemberUID!)
