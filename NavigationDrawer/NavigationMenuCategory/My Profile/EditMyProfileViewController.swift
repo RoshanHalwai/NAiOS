@@ -46,7 +46,7 @@ class EditMyProfileViewController: NANavigationViewController {
     var updatedAdminUID : String?
     let imagePickerController = UIImagePickerController()
     var environment = String()
-
+    
     /* - Creating Text Field Action for Name for first letter to be Capital.
      - Assigning Delegates for text fields and Tableview & Removing Separator lines for tableview cells.
      - Creating Round Image using Corner Radius and Giving Scroll view EdgeInset Values.
@@ -106,7 +106,7 @@ class EditMyProfileViewController: NANavigationViewController {
         logoutButton.addTarget(self, action: #selector(self.signoutAction), for: .touchUpInside)
         let logout = UIBarButtonItem(customView: logoutButton)
         
-        //created Array for history and info button icons
+        //created logout button icon
         self.navigationItem.setRightBarButtonItems([logout], animated: true)
         
         self.profile_Image.layer.cornerRadius = self.profile_Image.frame.size.width/2
@@ -249,7 +249,7 @@ class EditMyProfileViewController: NANavigationViewController {
     
     //Function to appear select image from by tapping image
     @objc func imageTapped() {
-       toSelectImages(VC: self)
+        toSelectImages(VC: self)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
