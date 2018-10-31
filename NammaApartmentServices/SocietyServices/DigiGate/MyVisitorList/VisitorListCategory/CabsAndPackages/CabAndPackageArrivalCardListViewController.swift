@@ -263,8 +263,7 @@ extension CabAndPackageArrivalCardListViewController {
         cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
             var isFlatMemberKeys = false
             if !(snapshotCab.exists()) {
-                NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                self.displayCabErrorMessage()
             } else {
                 let userUIDRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
                 userUIDRef.observe(.value, with: { (snapshot) in
@@ -284,8 +283,7 @@ extension CabAndPackageArrivalCardListViewController {
                                         if flatMemberUIDKey == familyMembersUID || flatMemberUIDKey == userUID || flatMemberUIDKey == friendUID {
                                             isFlatMemberKeys = true
                                         } else if (isFlatMemberKeys == false){
-                                            NAActivityIndicator.shared.hideActivityIndicator()
-                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                                            self.displayCabErrorMessage()
                                         }
                                     }
                                 }
@@ -299,8 +297,7 @@ extension CabAndPackageArrivalCardListViewController {
                                 if flatMemberUIDKey == userUID {
                                     isFlatMemberKeys = true
                                 } else if (isFlatMemberKeys == false)  {
-                                    NAActivityIndicator.shared.hideActivityIndicator()
-                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
+                                    self.displayCabErrorMessage()
                                 }
                             }
                         }
@@ -357,8 +354,7 @@ extension CabAndPackageArrivalCardListViewController {
         cabRef.observeSingleEvent(of: .value, with: { (snapshotCab) in
             var isFlatMemberKeys = false
             if !(snapshotCab.exists()) {
-                NAActivityIndicator.shared.hideActivityIndicator()
-                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
+                self.displayPackageErrorMessage()
             } else {
                 let userUIDRef = Constants.FIREBASE_USERS_PRIVATE.child(userUID).child(Constants.FIREBASE_CHILD_FAMILY_MEMBERS)
                 userUIDRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -377,8 +373,7 @@ extension CabAndPackageArrivalCardListViewController {
                                         if flatMemberUIDKey == familyMembersUID || flatMemberUIDKey == userUID || flatMemberUIDKey == friendUID {
                                             isFlatMemberKeys = true
                                         } else if (isFlatMemberKeys == false){
-                                            NAActivityIndicator.shared.hideActivityIndicator()
-                                            NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
+                                            self.displayPackageErrorMessage()
                                         }
                                     }
                                 }
@@ -392,8 +387,7 @@ extension CabAndPackageArrivalCardListViewController {
                                 if flatMemberUIDKey == userUID {
                                     isFlatMemberKeys = true
                                 } else if (isFlatMemberKeys == false)  {
-                                    NAActivityIndicator.shared.hideActivityIndicator()
-                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
+                                    self.displayPackageErrorMessage()
                                 }
                             }
                         }
@@ -401,6 +395,16 @@ extension CabAndPackageArrivalCardListViewController {
                 })
             }
         })
+    }
+    
+    func displayPackageErrorMessage() {
+        NAActivityIndicator.shared.hideActivityIndicator()
+        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorpackageArrivalList())
+    }
+    
+    func displayCabErrorMessage() {
+        NAActivityIndicator.shared.hideActivityIndicator()
+        NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().layoutFeatureErrorCabArrivalList())
     }
 }
 

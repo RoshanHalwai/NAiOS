@@ -73,18 +73,8 @@ class AwaitingResponseViewController: NANavigationViewController {
         lbl_CallAssociation.text = NAString().callAssociation()
         
         //Accept CardUIView
-        acceptCardView?.layer.cornerRadius = 3
-        acceptCardView?.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
-        acceptCardView?.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-        acceptCardView?.layer.shadowRadius = 1.7
-        acceptCardView?.layer.shadowOpacity = 0.45
-        
-        //cardUIView
-        cardView?.layer.cornerRadius = 3
-        cardView?.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
-        cardView?.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-        cardView?.layer.shadowRadius = 1.7
-        cardView?.layer.shadowOpacity = 0.45
+        NAShadowEffect().shadowEffectForView(view: acceptCardView!)
+        NAShadowEffect().shadowEffectForView(view: cardView!)
         
         //Hiding History NavigationBar  RightBarButtonItem
         navigationItem.rightBarButtonItem = nil
