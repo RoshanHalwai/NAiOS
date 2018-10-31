@@ -521,8 +521,7 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
             }
         }
         btn_stackView.isHidden = false
-        OpacityView.shared.hidingPopupView()
-        OpacityView.shared.hidingOpacityView()
+        self.hidingPopUpView()
     }
 }
 
@@ -601,12 +600,10 @@ extension EventManagementViewController {
         bookingAmountRef?.observeSingleEvent(of: .value) { (bookingAmountSnapshot) in
             
             if !bookingAmountSnapshot.exists() {
-                OpacityView.shared.hidingOpacityView()
-                OpacityView.shared.hidingPopupView()
+                self.hidingPopUpView()
                 NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().event_booking_facility())
             } else {
-                OpacityView.shared.hidingOpacityView()
-                OpacityView.shared.hidingPopupView()
+                 self.hidingPopUpView()
                 
                 self.bookingAmount = bookingAmountSnapshot.value as! Int
                 
@@ -637,5 +634,10 @@ extension EventManagementViewController {
                 self.btn_Book.isHidden = false
             }
         }
+    }
+    
+    func hidingPopUpView() {
+        OpacityView.shared.hidingOpacityView()
+        OpacityView.shared.hidingPopupView()
     }
 }

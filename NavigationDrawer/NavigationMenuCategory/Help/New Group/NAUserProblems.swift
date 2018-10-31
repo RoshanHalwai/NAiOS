@@ -31,11 +31,20 @@ enum SupportDetailsFBKeys: String {
 }
 
 class NAUserProblems {
+    
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     private var problemDescription: String
     private var serviceCategory: String
     private var serviceType: String
     private var status: String
     private var timestamp: Int
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(problemDescription: String, serviceCategory: String, serviceType: String, status: String, timestamp: Int) {
         self.problemDescription = problemDescription

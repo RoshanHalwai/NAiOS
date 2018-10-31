@@ -156,9 +156,6 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         cell.lbl_Type.text = NAString().type()
         cell.lbl_Things_Type.text = NAString().things()
         
-        //setting image round
-        cell.image_View.layer.cornerRadius = cell.image_View.frame.size.width/2
-        cell.image_View.clipsToBounds = true
         return cell
     }
     

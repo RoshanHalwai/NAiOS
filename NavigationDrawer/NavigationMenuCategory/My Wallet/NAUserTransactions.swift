@@ -34,6 +34,11 @@ enum NAUserTransactionFBKeys: String {
 }
 
 class NAUserTransactions {
+    
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     //defining strings according to firebase names which is inside the visitor Node.
     private var amount: Float
     private var serviceCategory: String
@@ -41,6 +46,10 @@ class NAUserTransactions {
     private var result: String
     private var transactionId : String
     private var period : String
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     //initilaize the variables
     init(amount: Float, serviceCategory: String, timestamp: Int, result: String, transactionId: String, period: String) {

@@ -213,11 +213,7 @@ class ExpectingArrivalViewController: NANavigationViewController {
         btn_NotifyGate.heightAnchor.constraint(equalToConstant: 39).isActive = true
         
         //cardUIView
-        cardView.layer.cornerRadius = 3
-        cardView.layer.shadowColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0).cgColor
-        cardView.layer.shadowOffset = CGSize(width: 0, height: 1.75)
-        cardView.layer.shadowRadius = 1.7
-        cardView.layer.shadowOpacity = 0.45
+        NAShadowEffect().shadowEffectForView(view: cardView)
         
         //info Button Action
         infoButton()

@@ -183,14 +183,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         cell.myCookImage.sd_setIndicatorStyle(.gray)
         cell.myCookImage.sd_setImage(with: URL(string: dailyServicesData.getprofilePhoto()!), completed: nil)
         
-        cell.lbl_CookName.font = NAFont().textFieldFont()
-        cell.lbl_CookRating.font = NAFont().textFieldFont()
-        cell.lbl_CookFlat.font = NAFont().textFieldFont()
-        
-        cell.lbl_MyCookName.font = NAFont().headerFont()
-        cell.lbl_MyCookRating.font = NAFont().headerFont()
-        cell.lbl_MyCookFlat.font = NAFont().headerFont()
-        
         NAShadowEffect().shadowEffect(Cell: cell)
         
         //setting image round

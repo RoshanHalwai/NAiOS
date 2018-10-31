@@ -32,12 +32,20 @@ enum NAEventManagementFBKeys : String {
 }
 
 class NAEventManagement {
-   
+    
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var title: String?
     var date: String?
     var timeSlot = [String]()
     var status: String?
     var category: String?
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     //initilaize the variables
     init(title: String?,date: String?,timeSlot: [String],status: String?, category: String?) {
@@ -47,7 +55,7 @@ class NAEventManagement {
         self.status = status
         self.category = category
     }
-
+    
     func getTitle() -> String {
         return title!
     }

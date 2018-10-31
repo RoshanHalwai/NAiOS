@@ -34,11 +34,19 @@ enum NANeighboursListKeys: String {
 
 class NAExpectingNeighbours {
     
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var name : String
     var profilePhoto : String
     var apartment : String
     var flat : String
     var uid : String
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(name : String,profilePhoto : String, apartment: String, flat: String, uid: String) {
         self.name = name
@@ -70,9 +78,18 @@ class NAExpectingNeighbours {
 }
 
 class NANeighboursChat {
+    
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var message : String
     var receiverUID : String
     var timeStamp : Int
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(message: String, receiverUID: String, timeStamp: Int) {
         self.message = message
