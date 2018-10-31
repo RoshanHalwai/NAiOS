@@ -36,7 +36,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
     var pendingAmount = 0
     var pendingDueAmount = String()
     var maintenanceCost = Int()
-    var currentComponents = DateComponents()
     var convenienceFee: Float = 0.0
     var periodArray = [String]()
     var periodString = String()
@@ -61,8 +60,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         
         //Payment Gateway Namma Apartment API KEY for Transactions
         razorpay = Razorpay.initWithKey("rzp_live_NpHSQJwSuvSIts", andDelegate: self)
-        
-        storingPendingDues()
         
         //Retrieving Firebase Data in Pending Dues
         retrievingPendingDues()
@@ -103,21 +100,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
         myAccount_CardView.isUserInteractionEnabled = true
         myAccount_CardView.addGestureRecognizer(tap)
-        
-        let currentDate = NSDate()
-        let currentDateFormatter = DateFormatter()
-        currentDateFormatter.dateFormat = "MM-dd-yyyy"
-        
-        let currentCalendar = Calendar.current
-        currentComponents = currentCalendar.dateComponents([.year, .month, .day], from: currentDate as Date)
-        
-        
-        //Getting Current Date and Time
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = NAString().currentDateFormat()
-        currentDateFormat = formatter.string(from: date)
-        print(currentDateFormat)
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
@@ -224,36 +206,6 @@ class MyWalletViewController: NANavigationViewController,RazorpayPaymentCompleti
             ],
             ]
         razorpay.open(options)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        storingPendingDues()
-    }
-    
-    //Storing Pending Dues in Firebase
-    func storingPendingDues() {
-        let maintenanceCostRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_MAINTENANCE_COST)
-        maintenanceCostRef.observeSingleEvent(of: .value) { (costSnapshot) in
-            if costSnapshot.exists() {
-                self.maintenanceCost = costSnapshot.value as! Int
-                
-                let pendingDueRef = GlobalUserData.shared.getUserDataReference().child(Constants.FIREBASE_CHILD_PENDINGDUES)
-                
-                let date = NSDate()
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MMyyyy"
-                
-                let calendar = Calendar.current
-                var components = calendar.dateComponents([.year, .month, .day], from: date as Date)
-                components.setValue(1, for: .day)
-                
-                if components == self.currentComponents {
-                    let firstDayOfMonth = calendar.date(from: components)
-                    let currentDueMonth = dateFormatter.string(from: firstDayOfMonth!)
-                    pendingDueRef.child(currentDueMonth).setValue(self.maintenanceCost)
-                }
-            }
-        }
     }
     
     //Retrieving Pending Dues in Firebase
