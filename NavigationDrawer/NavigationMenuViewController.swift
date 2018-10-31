@@ -71,7 +71,6 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
             self.navigationController?.pushViewController(dv2, animated: true)
         case 4 :
             let myNeighboursVC = NAViewPresenter().myNeighboursVC()
-            myNeighboursVC.navTitle = NAString().myNeighbours()
             self.navigationController?.pushViewController(myNeighboursVC, animated: true)
         case 5 :
             let myWalletVC = NAViewPresenter().myWalletVC()

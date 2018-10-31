@@ -67,13 +67,18 @@ class CustomLaunchScreenViewController: NANavigationViewController {
                                 self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
                                 
                                 let guestPref = UserDefaults.standard
-                                if guestPref.object(forKey: "guestType") != nil {
-                                    let notificationVC = self.storyboard?.instantiateViewController(withIdentifier:    "NotificationViewController")
+                                
+                                if guestPref.object(forKey: Constants.NOTIFICATION_GUEST_TYPE) != nil {
+                                    let notificationVC = self.storyboard?.instantiateViewController(withIdentifier: NAViewPresenter().notificationVC())
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                     appDelegate.window?.rootViewController = notificationVC
                                     appDelegate.window?.makeKeyAndVisible()
-                                }
-                                else {
+                                } else if guestPref.object(forKey: Constants.NOTIFICATION_SENDER_UID) != nil {
+                                    let neighboursVC = self.storyboard?.instantiateViewController(withIdentifier: NAViewPresenter().neighbourVC())
+                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                    appDelegate.window?.rootViewController = neighboursVC
+                                    appDelegate.window?.makeKeyAndVisible()
+                                } else {
                                     let NavMain = self.storyboard?.instantiateViewController(withIdentifier:   NAViewPresenter().mainNavigation())
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                     appDelegate.window?.rootViewController = NavMain

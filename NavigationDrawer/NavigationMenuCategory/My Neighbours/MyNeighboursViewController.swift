@@ -18,16 +18,30 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
     var apartmentName = String()
     var flatNumber = String()
     var navTitle = String()
+    var neighboursUID = String()
+    var userUID = String()
+
     
+    //Created instance for calling retrieveUserData class function
+    var loadingUserData = retrieveUserData()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.ConfigureNavBarTitle(title: NAString().myNeighbours())
+        self.navigationItem.rightBarButtonItem = nil
         
+        let preferences = UserDefaults.standard
+        let UserUID = NAString().userDefault_USERUID()
+        if preferences.object(forKey: Constants.NOTIFICATION_SENDER_UID) != nil {
+            neighboursUID = preferences.object(forKey: Constants.NOTIFICATION_SENDER_UID) as! String
+        }
+        userUID = preferences.object(forKey: UserUID) as! String
+        preferences.synchronize()
+        self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+                
         //Show Progress indicator while we retrieve users
         NAActivityIndicator.shared.showActivityIndicator(view: self)
-        
-        //Setting & Formatting Navigation bar
-        super.ConfigureNavBarTitle(title: navTitle)
-        self.navigationItem.rightBarButtonItem = nil
         
         //Calling RetrievieMyNeighboursData In Firebase
         self.retrieviedMyNeighboursDataInFirebase()
@@ -48,8 +62,21 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         //apply defined layout to collectionview
         collectionView!.collectionViewLayout = layout
         
+        //created custom back button for goto Home Screen
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "backBarButton"), style: .plain, target: self, action: #selector(goBackToDigitGate))
+        self.navigationItem.leftBarButtonItem = backButton
+        self.navigationItem.hidesBackButton = true
     }
     
+    //Navigating Back to digi gate according to Screen coming from
+    @objc func goBackToDigitGate() {
+        let NavMain = self.storyboard?.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = NavMain
+        appDelegate.window?.makeKeyAndVisible()
+    }
+
+
     //MARK: CollectionView Delegate & DataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myExpectedNeighboursList.count
@@ -61,6 +88,12 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         let myNeighboursList : NAExpectingNeighbours
         myNeighboursList = myExpectedNeighboursList[indexPath.row]
         
+        if myNeighboursList.uid == self.neighboursUID {
+            cell.batchView.isHidden = false
+        } else {
+            cell.batchView.isHidden = true
+        }
+        
         cell.lbl_MyNeighbourName.text = myNeighboursList.getname()
         cell.lbl_MyNeighbourApartment.text = myNeighboursList.getapartment()
         cell.lbl_MyNeighbourFlat.text = myNeighboursList.getflat()
@@ -70,6 +103,11 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         cell.myNeighboursImage.sd_setImage(with: URL(string: myNeighboursList.getprofilePhoto()!), completed: nil)
        
         cell.actionMessage = {
+            if myNeighboursList.uid == self.neighboursUID {
+                cell.batchView.isHidden = true
+                let preferences = UserDefaults.standard
+                preferences.removeObject(forKey: Constants.NOTIFICATION_SENDER_UID)
+            }
             let sendMessageVC = NAViewPresenter().sendMessageVC()
             sendMessageVC.neighbourUID = myNeighboursList.getneighbourUID()
             sendMessageVC.neighbourApartment = myNeighboursList.getapartment()
@@ -108,8 +146,15 @@ extension MyNeighboursViewController {
             if userDataSnapshot.exists() {
                 let userDatasUID = userDataSnapshot.value as? NSDictionary
                 
-                for userDataUID in (userDatasUID?.allKeys)! {
-                    userDataRef?.child(userDataUID as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+                var UIDArray = [String]()
+                UIDArray = (userDatasUID?.allKeys)! as! [String]
+                if !(self.neighboursUID.isEmpty) {
+                    let index = UIDArray.index(of : self.neighboursUID)
+                    UIDArray.rearrange(from: index!, to: 0)
+                }
+                
+                for userDataUID in UIDArray {
+                    userDataRef?.child(userDataUID).observeSingleEvent(of: .value, with: { (snapshot) in
                         let usersData = snapshot.value as? [String: AnyObject]
                         
                         //Creating instance of UserPrivileges Details
@@ -126,7 +171,7 @@ extension MyNeighboursViewController {
                         let name = userPersonalDataMap?[UserPersonalListFBKeys.fullName.key] as! String
                         let profilePhoto = userPersonalDataMap?[UserPersonalListFBKeys.profilePhoto.key] as? String
                         
-                        let neighboursDetails = NAExpectingNeighbours(name: name, profilePhoto: profilePhoto!, apartment: self.apartmentName, flat: self.flatNumber, uid: userDataUID as! String)
+                        let neighboursDetails = NAExpectingNeighbours(name: name, profilePhoto: profilePhoto!, apartment: self.apartmentName, flat: self.flatNumber, uid: userDataUID)
                         
                         if admin == true && !(self.apartmentName == GlobalUserData.shared.flatDetails_Items.first?.apartmentName && self.flatNumber == GlobalUserData.shared.flatDetails_Items.first?.flatNumber) {
                             self.myExpectedNeighboursList.append(neighboursDetails)
@@ -139,5 +184,10 @@ extension MyNeighboursViewController {
                 }
             }
         })
+    }
+}
+extension Array {
+    mutating func rearrange(from: Int, to: Int) {
+        insert(remove(at: from), at: to)
     }
 }

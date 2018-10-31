@@ -51,7 +51,8 @@ extension UNService: UNUserNotificationCenterDelegate {
         let message = userInfo[NAString()._message_()] as? String
         let mobileNumber = userInfo[NAString().mobile_Number()] as? String
         let useruid = userInfo["user_uid"] as? String
-        
+        let senderUID =  userInfo[Constants.NOTIFICATION_SENDER_UID] as? String
+        let notificationType = userInfo[Constants.FIREBASE_NOTIFICATION_TYPE] as? String
         let guestPref = UserDefaults.standard
         guestPref.set(guestType, forKey: Constants.NOTIFICATION_GUEST_TYPE)
         guestPref.set(guestUID, forKey: Constants.NOTIFICATION_GUEST_UID)
@@ -59,13 +60,29 @@ extension UNService: UNUserNotificationCenterDelegate {
         guestPref.set(mobileNumber, forKey: Constants.NOTIFICATION_GUEST_MOBILE_NUMBER)
         guestPref.set(message, forKey: Constants.NOTIFICATION_GUEST_MESSAGE)
         guestPref.set(useruid, forKey: Constants.FIREBASE_USERUID)
+        guestPref.set(senderUID, forKey: Constants.NOTIFICATION_SENDER_UID)
         guestPref.synchronize()
         
-        // self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-        let notificationVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().notificationVC())
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = notificationVC
-        appDelegate.window?.makeKeyAndVisible()
+        //Navigating according to Notification Type
+        switch notificationType {
+        case Constants.NOTIFICATION_TYPE_E_INTERCOM :
+            let notificationVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().notificationVC())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = notificationVC
+            appDelegate.window?.makeKeyAndVisible()
+            break
+        case Constants.NOTIFICATION_TYPE_CHAT :
+            let notificationVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().neighbourVC())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = notificationVC
+            appDelegate.window?.makeKeyAndVisible()
+            break
+        default:
+            let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = NavMain
+            appDelegate.window?.makeKeyAndVisible()
+        }
         
         UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler()
