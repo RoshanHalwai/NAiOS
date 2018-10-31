@@ -45,6 +45,10 @@ enum NASocietyServicesFBKeys : String {
 
 class NASocietyServices {
     
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var problem : String
     var timeSlot : String
     var userUID : String
@@ -56,6 +60,10 @@ class NASocietyServices {
     var fullName : String
     var mobileNumber : String
     var timeStamp : Int
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(problem: String, timeSlot : String, userUID: String, societyServiceType: String, notificationUID: String, status: String, takenBy: String, endOTP: String, fullName : String, mobileNumber : String, timeStamp: Int) {
         self.problem = problem

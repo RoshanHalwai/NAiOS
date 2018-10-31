@@ -31,11 +31,19 @@ enum VehicleListFBKeys: String {
 
 class NAExpectingVehicle {
     
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var addedDate : String?
     var ownerName : String?
     var vehicleNumber : String?
     var vehicleType : String?
     var vehicleUID : String?
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(addedDate : String?,ownerName : String?, vehicleNumber: String?,vehicleType: String?, vehicleUID : String?) {
         self.addedDate = addedDate

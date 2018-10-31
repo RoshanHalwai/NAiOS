@@ -11,15 +11,27 @@ import UIKit
 import FirebaseDatabase
 
 class RetrievingDailyServicesList {
+    
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var userDataRef : DatabaseReference?
     var count = 0
     var pastDailyServicesListRequired: Bool
     
-    //Initializing variables
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
+    
     init(pastDailyServicesListRequired: Bool) {
         userDataRef = GlobalUserData.shared.getUserDataReference()
         self.pastDailyServicesListRequired = pastDailyServicesListRequired
     }
+    
+    /* ------------------------------------------------------------- *
+     * Public API's
+     * ------------------------------------------------------------- */
     
     public func getAllDailyServices(callback: @escaping (_ userDailyServivcesList: [NammaApartmentDailyServices]) -> Void) {
         
@@ -47,6 +59,10 @@ class RetrievingDailyServicesList {
             }
         }
     }
+    
+    /* ------------------------------------------------------------- *
+     * Private API's
+     * ------------------------------------------------------------- */
     
     ///Returns a map with key as {@link DailyServiceType} and values as all daily services under that category
     ///which is in turn an instance of {@link NammaApartmentDailyService}
@@ -169,7 +185,7 @@ class RetrievingDailyServicesList {
                         
                         if self.count == dailyServicesUIDs.count {
                             self.count = 0
-                           callback(dailyServiceUIDList)
+                            callback(dailyServiceUIDList)
                         }
                     })
                 }

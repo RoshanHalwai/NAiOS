@@ -30,11 +30,19 @@ enum ExpectingArrivalListFBKeys : String {
 
 class NAExpectingArrival {
     
+    /* ------------------------------------------------------------- *
+     * Class Members Declaration
+     * ------------------------------------------------------------- */
+    
     var approvalType : String?
     var dateAndTimeOfArrival : String?
     var reference : String?
     var status : String?
     var inviterUID : String?
+    
+    /* ------------------------------------------------------------- *
+     * Constructor
+     * ------------------------------------------------------------- */
     
     init(approvalType : String?,dateAndTimeOfArrival : String?, reference: String?, status: String?, inviterUID : String?) {
         self.approvalType = approvalType
