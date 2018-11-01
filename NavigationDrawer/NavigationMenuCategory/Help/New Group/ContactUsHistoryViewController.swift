@@ -86,6 +86,8 @@ class ContactUsHistoryViewController: NANavigationViewController, UITableViewDat
         cell?.lbl_Date_Detail.font = NAFont().headerFont()
         cell?.lbl_Status_Detail.font = NAFont().headerFont()
         
+        cell!.isUserInteractionEnabled = false
+        
         //cardUIView
         NAShadowEffect().shadowEffectForView(view: (cell?.cardView)!)
         

@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let message = remoteNotif![Constants.NOTIFICATION_GUEST_MESSAGE] as? String
             let useruid = remoteNotif!["user_uid"] as? String
             let senderUID =  remoteNotif![Constants.NOTIFICATION_SENDER_UID] as? String
+            let notificationType = remoteNotif![Constants.FIREBASE_NOTIFICATION_TYPE] as? String
             
             let guestPref = UserDefaults.standard
             guestPref.set(guestType, forKey: Constants.NOTIFICATION_GUEST_TYPE)
@@ -49,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             guestPref.set(message, forKey: Constants.NOTIFICATION_GUEST_MESSAGE)
             guestPref.set(useruid, forKey: Constants.FIREBASE_USERUID)
             guestPref.set(senderUID, forKey: Constants.NOTIFICATION_SENDER_UID)
+            guestPref.set(notificationType, forKey: Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD)
             guestPref.synchronize()
         }
         

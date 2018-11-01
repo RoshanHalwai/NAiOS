@@ -392,6 +392,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         starRatingView.minimumValue = 0
         starRatingView.value = 1
         starRatingView.tintColor = UIColor.yellow
+        starRatingView.isHidden = true
         starRatingView.allowsHalfStars = false
         starRatingView.emptyStarImage = UIImage(named: "EmptyStar")?.withRenderingMode(.alwaysTemplate)
         starRatingView.filledStarImage = UIImage(named: "FullStar")?.withRenderingMode(.alwaysTemplate)

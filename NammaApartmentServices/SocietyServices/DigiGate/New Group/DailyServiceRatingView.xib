@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,13 +35,9 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hlJ-fa-Iqd" customClass="HCSStarRatingView">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hlJ-fa-Iqd" customClass="HCSStarRatingView">
                     <rect key="frame" x="25" y="98" width="230" height="44"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="6Pb-Bx-mud"/>
-                        <constraint firstAttribute="width" constant="230" id="czC-uB-Txw"/>
-                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="image" keyPath="emptyStarImage" value="EmptyStar"/>
                         <userDefinedRuntimeAttribute type="image" keyPath="filledStarImage" value="FullStar"/>
@@ -53,7 +49,7 @@
                         <action selector="didValueChange:" destination="-1" eventType="valueChanged" id="vzE-z2-aGr"/>
                     </connections>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNi-7D-2L5">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNi-7D-2L5">
                     <rect key="frame" x="0.0" y="160" width="280" height="39"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -68,13 +64,13 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="3do-C7-2Qa" secondAttribute="trailing" constant="20" id="Cs1-2v-qxW"/>
                 <constraint firstItem="cNi-7D-2L5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Etr-xP-Wnf"/>
                 <constraint firstItem="3do-C7-2Qa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="MRK-de-jHe"/>
+                <constraint firstItem="cNi-7D-2L5" firstAttribute="top" secondItem="hlJ-fa-Iqd" secondAttribute="bottom" constant="18" id="QOi-KK-bJZ"/>
                 <constraint firstItem="cNi-7D-2L5" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="QsT-F7-uxJ"/>
+                <constraint firstItem="hlJ-fa-Iqd" firstAttribute="top" secondItem="3do-C7-2Qa" secondAttribute="bottom" constant="25" id="Ta7-Lw-lfc"/>
                 <constraint firstItem="3do-C7-2Qa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="VeQ-L7-3K6"/>
-                <constraint firstItem="hlJ-fa-Iqd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="g0i-tq-ANF"/>
-                <constraint firstItem="hlJ-fa-Iqd" firstAttribute="top" secondItem="3do-C7-2Qa" secondAttribute="bottom" constant="25" id="gtv-7p-gu2"/>
-                <constraint firstItem="cNi-7D-2L5" firstAttribute="top" secondItem="hlJ-fa-Iqd" secondAttribute="bottom" constant="18" id="sO2-cC-5em"/>
+                <constraint firstItem="hlJ-fa-Iqd" firstAttribute="centerX" secondItem="cNi-7D-2L5" secondAttribute="centerX" id="ZuL-05-oNG"/>
+                <constraint firstItem="hlJ-fa-Iqd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="gV2-Gf-icY"/>
                 <constraint firstItem="cNi-7D-2L5" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="szh-rD-NAv"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="hlJ-fa-Iqd" secondAttribute="trailing" constant="25" id="yGA-Z4-eXE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -82,7 +78,7 @@
         </view>
     </objects>
     <resources>
-        <image name="EmptyStar" width="32" height="32"/>
-        <image name="FullStar" width="32" height="32"/>
+        <image name="EmptyStar" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="FullStar" width="418.90908813476562" height="418.90908813476562"/>
     </resources>
 </document>
