@@ -17,6 +17,11 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Removing data from Notification User Defaults which we are setted in App delegate
+        let guestPref = UserDefaults.standard
+        guestPref.removeObject(forKey: Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD)
+        guestPref.synchronize()
+        
         //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
