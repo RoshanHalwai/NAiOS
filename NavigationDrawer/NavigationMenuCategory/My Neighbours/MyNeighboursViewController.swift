@@ -135,7 +135,6 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         sendMessageVC.neighbourApartment = neighboursList.getapartment()
         sendMessageVC.neighbourFlat = neighboursList.getflat()
         self.navigationController?.pushViewController(sendMessageVC, animated: true)
-       
     }
 }
 
