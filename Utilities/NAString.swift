@@ -2145,5 +2145,21 @@ class NAString : NSObject {
     func statusBar() -> String {
         return String("statusBar")
     }
+    
+    func myGuardsLayoutErrorMessage() -> String {
+        return String("Sorry, you cannot use this feature since currently there are no Guards at your Flat.")
+    }
+    
+    func myNeighboursLayoutErrorMessage() -> String {
+        return String("Sorry, you cannot use this feature since your Neighbour's have not installed the App yet.")
+    }
+    
+    func left() -> String {
+        return String("Left")
+    }
+    
+    func guestCancelMessage() -> String {
+        return String("Sorry, you cannot remove this Guest, since their status has not been updated.")
+    }
 }
 

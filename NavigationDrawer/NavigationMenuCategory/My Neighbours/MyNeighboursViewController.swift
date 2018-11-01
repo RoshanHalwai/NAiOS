@@ -160,9 +160,10 @@ extension MyNeighboursViewController {
                     let index = UIDArray.index(of : self.neighboursUID)
                     UIDArray.rearrange(from: index!, to: 0)
                 }
-                
+                var count = 0
                 for userDataUID in UIDArray {
                     userDataRef?.child(userDataUID).observeSingleEvent(of: .value, with: { (snapshot) in
+                        count = count + 1
                         let usersData = snapshot.value as? [String: AnyObject]
                         
                         //Creating instance of UserPrivileges Details
@@ -187,6 +188,13 @@ extension MyNeighboursViewController {
                             //Hiding Progress indicator after retrieving data.
                             NAActivityIndicator.shared.hideActivityIndicator()
                             self.collectionView.reloadData()
+                        } else {
+                            if count == UIDArray.count {
+                                NAActivityIndicator.shared.hideActivityIndicator()
+                                if self.myExpectedNeighboursList.count == 0 {
+                                    NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().myNeighboursLayoutErrorMessage())
+                                }
+                            }
                         }
                     })
                 }
