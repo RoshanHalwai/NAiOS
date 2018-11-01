@@ -20,14 +20,14 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
     var navTitle = String()
     var neighboursUID = String()
     var userUID = String()
-
+    
     
     //Created instance for calling retrieveUserData class function
     var loadingUserData = retrieveUserData()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.ConfigureNavBarTitle(title: NAString().myNeighbours())
         self.navigationItem.rightBarButtonItem = nil
         
@@ -39,7 +39,7 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         userUID = preferences.object(forKey: UserUID) as! String
         preferences.synchronize()
         self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-                
+        
         //Show Progress indicator while we retrieve users
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
@@ -75,8 +75,8 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         appDelegate.window?.rootViewController = NavMain
         appDelegate.window?.makeKeyAndVisible()
     }
-
-
+    
+    
     //MARK: CollectionView Delegate & DataSource Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myExpectedNeighboursList.count
@@ -101,7 +101,7 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         cell.myNeighboursImage.sd_setShowActivityIndicatorView(true)
         cell.myNeighboursImage.sd_setIndicatorStyle(.gray)
         cell.myNeighboursImage.sd_setImage(with: URL(string: myNeighboursList.getprofilePhoto()!), completed: nil)
-       
+        
         cell.actionMessage = {
             if myNeighboursList.uid == self.neighboursUID {
                 cell.batchView.isHidden = true
