@@ -102,19 +102,6 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         cell.myNeighboursImage.sd_setIndicatorStyle(.gray)
         cell.myNeighboursImage.sd_setImage(with: URL(string: myNeighboursList.getprofilePhoto()!), completed: nil)
         
-        cell.actionMessage = {
-            if myNeighboursList.uid == self.neighboursUID {
-                cell.batchView.isHidden = true
-                let preferences = UserDefaults.standard
-                preferences.removeObject(forKey: Constants.NOTIFICATION_SENDER_UID)
-            }
-            let sendMessageVC = NAViewPresenter().sendMessageVC()
-            sendMessageVC.neighbourUID = myNeighboursList.getneighbourUID()
-            sendMessageVC.neighbourApartment = myNeighboursList.getapartment()
-            sendMessageVC.neighbourFlat = myNeighboursList.getflat()
-            self.navigationController?.pushViewController(sendMessageVC, animated: true)
-        }
-        
         //assigning font & style to cell labels
         cell.lbl_MyNeighbourName.font = NAFont().headerFont()
         cell.lbl_MyNeighbourApartment.font = NAFont().headerFont()
@@ -132,6 +119,22 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         NAShadowEffect().shadowEffect(Cell: cell)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let neighboursList = myExpectedNeighboursList[indexPath.row]
+        
+        if neighboursList.uid == self.neighboursUID {
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! NeighboursCollectionViewCell
+                cell.batchView.isHidden = true
+                let preferences = UserDefaults.standard
+                preferences.removeObject(forKey: Constants.NOTIFICATION_SENDER_UID)
+        }
+        let sendMessageVC = NAViewPresenter().sendMessageVC()
+        sendMessageVC.neighbourUID = neighboursList.getneighbourUID()
+        sendMessageVC.neighbourApartment = neighboursList.getapartment()
+        sendMessageVC.neighbourFlat = neighboursList.getflat()
+        self.navigationController?.pushViewController(sendMessageVC, animated: true)
     }
 }
 

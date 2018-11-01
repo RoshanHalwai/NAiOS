@@ -21,14 +21,6 @@ class NeighboursCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btn_Message: UIButton!
     @IBOutlet weak var batchView: UIView!
     
-    var actionMessage : (() -> Void)? = nil
-    
-    @IBAction func btnMessage(_ sender: UIButton) {
-        if let btnMessageAction = self.actionMessage {
-            btnMessageAction()
-        }
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
