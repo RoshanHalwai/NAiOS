@@ -17,6 +17,11 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Removing data from Notification User Defaults which we are setted in App delegate
+        let guestPref = UserDefaults.standard
+        guestPref.removeObject(forKey: Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD)
+        guestPref.synchronize()
+        
         //Show Progress indicator while we retrieve user guests
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
@@ -25,6 +30,7 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         self.navigationItem.rightBarButtonItem = nil
         
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()
@@ -71,6 +77,7 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         
         //cardUIView
         NAShadowEffect().shadowEffectForView(view: cell.cardView)
+        cell.isUserInteractionEnabled = false
         
         return cell
     }
@@ -85,7 +92,11 @@ extension NoticeBoardViewController {
             if noticeBoardSnapshot.exists() {
                 if let noticeBoardsUID = noticeBoardSnapshot.value as? [String: Any] {
                     let noticeBoardUIDKeys = Array(noticeBoardsUID.keys)
-                    for noticeBoardUID in noticeBoardUIDKeys {
+                    //sorting UID's
+                    let sortedArray = noticeBoardUIDKeys.sorted()
+                    //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
+                    let reversedArray = sortedArray.reversed()
+                    for noticeBoardUID in reversedArray {
                         noticeBoardDataRef.child(noticeBoardUID).observeSingleEvent(of: .value, with: { (snapshot) in
                             let noticeBoardData = snapshot.value as? [String: AnyObject]
                             let title : String = (noticeBoardData?[NoticeBoardListFBKeys.title.key])! as! String
