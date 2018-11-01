@@ -167,6 +167,18 @@
 		868D189220DA4ACD007AD1D0 /* UserFlatDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189120DA4ACD007AD1D0 /* UserFlatDetails.swift */; };
 		868D189420DA4B11007AD1D0 /* UserPersonalDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189320DA4B11007AD1D0 /* UserPersonalDetails.swift */; };
 		868D189620DA4B3E007AD1D0 /* UserPrivileges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868D189520DA4B3E007AD1D0 /* UserPrivileges.swift */; };
+		8692CD58218ACB1300616EF6 /* ContactUsHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EAC91D216239A900CB0EC9 /* ContactUsHistoryTableViewCell.swift */; };
+		8692CD59218ACB3100616EF6 /* RetrievingDailyServicesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D70F49721749A7D0089E0EC /* RetrievingDailyServicesList.swift */; };
+		8692CD5A218ACB4800616EF6 /* SendMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F26C216F48E100A940CC /* SendMessageViewController.swift */; };
+		8692CD5B218ACB9500616EF6 /* RetrievingApartmentServicesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC9761221649D5200B1928F /* RetrievingApartmentServicesData.swift */; };
+		8692CD5C218ACC4800616EF6 /* DailyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC976102162029100B1928F /* DailyServiceRatingView.swift */; };
+		8692CD5D218ACC7A00616EF6 /* MyNeighboursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F266216F48A700A940CC /* MyNeighboursViewController.swift */; };
+		8692CD5E218ACC7D00616EF6 /* NeighboursCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F268216F48AF00A940CC /* NeighboursCollectionViewCell.swift */; };
+		8692CD5F218ACC8200616EF6 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F2702170A71000A940CC /* UserTableViewCell.swift */; };
+		8692CD60218ACC8500616EF6 /* ReceiverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F2722170A72500A940CC /* ReceiverTableViewCell.swift */; };
+		8692CD61218ACC8800616EF6 /* NANeighbours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D60F26A216F48B700A940CC /* NANeighbours.swift */; };
+		8692CD62218ACC8C00616EF6 /* MyGatePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244B7C5216CA310006788CD /* MyGatePassViewController.swift */; };
+		8692CD63218ACC9D00616EF6 /* TransactionSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE874482170E8A200267427 /* TransactionSummaryViewController.swift */; };
 		869EA5E720FB7A7000AA7B66 /* NammaApartmentArrival.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869EA5E620FB7A7000AA7B66 /* NammaApartmentArrival.swift */; };
 		86A48B4920DE7FEF00DC0CAE /* NAActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4820DE7FEF00DC0CAE /* NAActivityIndicator.swift */; };
 		86A48B4B20DE8A6300DC0CAE /* NAFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A48B4A20DE8A6300DC0CAE /* NAFirebase.swift */; };
@@ -1991,6 +2003,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8692CD5E218ACC7D00616EF6 /* NeighboursCollectionViewCell.swift in Sources */,
 				86F7B3D0215D1FAD005A26CE /* SocietyTableViewController.swift in Sources */,
 				420324B421759E69005BC455 /* MyProfileDataViewController.swift in Sources */,
 				86F7B3D1215D1FAD005A26CE /* NAFont.swift in Sources */,
@@ -2047,8 +2060,10 @@
 				86F7B403215D1FAD005A26CE /* SearchTableViewCell.swift in Sources */,
 				86F7B404215D1FAD005A26CE /* NammaApartmentEmergency.swift in Sources */,
 				86F7B405215D1FAD005A26CE /* RaiseAlarmViewController.swift in Sources */,
+				8692CD5C218ACC4800616EF6 /* DailyServiceRatingView.swift in Sources */,
 				86F7B406215D1FAD005A26CE /* EmergencyViewController.swift in Sources */,
 				86F7B407215D1FAD005A26CE /* MyVehiclesCollectionViewCell.swift in Sources */,
+				8692CD5B218ACB9500616EF6 /* RetrievingApartmentServicesData.swift in Sources */,
 				86F7B408215D1FAD005A26CE /* NoticeBoardViewController.swift in Sources */,
 				86F7B409215D1FAD005A26CE /* EditMyProfileViewController.swift in Sources */,
 				86F7B40A215D1FAD005A26CE /* MyVisitorsListCollectionViewCell.swift in Sources */,
@@ -2061,11 +2076,13 @@
 				86F7B411215D1FAD005A26CE /* DownloadService.swift in Sources */,
 				86F7B412215D1FAD005A26CE /* DonateFoodHistoryCollectionViewCell.swift in Sources */,
 				86F7B413215D1FAD005A26CE /* ContactUsHistoryViewController.swift in Sources */,
+				8692CD63218ACC9D00616EF6 /* TransactionSummaryViewController.swift in Sources */,
 				86F7B414215D1FAD005A26CE /* NavigationMenuViewController.swift in Sources */,
 				86F7B415215D1FAD005A26CE /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */,
 				86F7B416215D1FAD005A26CE /* RetrievingGuestList.swift in Sources */,
 				86F7B417215D1FAD005A26CE /* NAEventManagement.swift in Sources */,
 				86F7B418215D1FAD005A26CE /* SocietyServicesViewController.swift in Sources */,
+				8692CD59218ACB3100616EF6 /* RetrievingDailyServicesList.swift in Sources */,
 				86F7B419215D1FAD005A26CE /* PopupView.swift in Sources */,
 				86F7B41A215D1FAD005A26CE /* EventManagementHistoryTableViewCell.swift in Sources */,
 				86F7B41B215D1FAD005A26CE /* AddMyServicesViewController.swift in Sources */,
@@ -2084,6 +2101,7 @@
 				86F7B429215D1FAD005A26CE /* NAColor.swift in Sources */,
 				86F7B42A215D1FAD005A26CE /* NavigationMenuTableViewCell.swift in Sources */,
 				86F7B42B215D1FAD005A26CE /* DigitalGateViewController.swift in Sources */,
+				8692CD5F218ACC8200616EF6 /* UserTableViewCell.swift in Sources */,
 				86F7B42C215D1FAD005A26CE /* HelpViewController.swift in Sources */,
 				86F7B42D215D1FAD005A26CE /* MyGuestListViewController.swift in Sources */,
 				86F7B42E215D1FAD005A26CE /* MyFlatTableViewCell.swift in Sources */,
@@ -2091,14 +2109,18 @@
 				86F7B42F215D1FAD005A26CE /* NAConfirmationAlert.swift in Sources */,
 				86F7B430215D1FAD005A26CE /* EmergencyCollectionViewCell.swift in Sources */,
 				86F7B431215D1FAD005A26CE /* OTPViewController.swift in Sources */,
+				8692CD5A218ACB4800616EF6 /* SendMessageViewController.swift in Sources */,
 				86F7B432215D1FAD005A26CE /* RootViewController.swift in Sources */,
 				86F7B433215D1FAD005A26CE /* MyVisitorsListViewController.swift in Sources */,
+				8692CD62218ACC8C00616EF6 /* MyGatePassViewController.swift in Sources */,
+				8692CD58218ACB1300616EF6 /* ContactUsHistoryTableViewCell.swift in Sources */,
 				86F7B434215D1FAD005A26CE /* NAFirebase.swift in Sources */,
 				86F7B435215D1FAD005A26CE /* HandedThingsToGuestTableViewCell.swift in Sources */,
 				86F7B436215D1FAD005A26CE /* NammaApartmentDailyServices.swift in Sources */,
 				86F7B437215D1FAD005A26CE /* HandedThingsToDailyServicesTableViewCell.swift in Sources */,
 				86F7B438215D1FAD005A26CE /* NADailyServiceHandedThingsHistory.swift in Sources */,
 				86F7B439215D1FAD005A26CE /* HandedThingsDailyServicesHistoryCollectionViewCell.swift in Sources */,
+				8692CD5D218ACC7A00616EF6 /* MyNeighboursViewController.swift in Sources */,
 				86F7B43A215D1FAD005A26CE /* NammaApartmentVisitor.swift in Sources */,
 				86F7B43B215D1FAD005A26CE /* NAUser.swift in Sources */,
 				86F7B43C215D1FAD005A26CE /* NammaApartmentVehicle.swift in Sources */,
@@ -2106,8 +2128,10 @@
 				86F7B43E215D1FAD005A26CE /* ContactUsViewController.swift in Sources */,
 				86F7B43F215D1FAD005A26CE /* HandedHistory.swift in Sources */,
 				86F7B440215D1FAD005A26CE /* namaApartment.xcdatamodeld in Sources */,
+				8692CD61218ACC8800616EF6 /* NANeighbours.swift in Sources */,
 				86F7B441215D1FAD005A26CE /* MyTransactionsViewController.swift in Sources */,
 				86F7B442215D1FAD005A26CE /* DataModel.swift in Sources */,
+				8692CD60218ACC8500616EF6 /* ReceiverTableViewCell.swift in Sources */,
 				86F7B443215D1FAD005A26CE /* SocietyHistoryCollectionViewCell.swift in Sources */,
 				86F7B444215D1FAD005A26CE /* RescheduleMyGuestListViewController.swift in Sources */,
 				86F7B445215D1FAD005A26CE /* NAFBConstants.swift in Sources */,
