@@ -38,19 +38,17 @@ class SearchViewController: NANavigationViewController, UITableViewDelegate, UIT
         navigationController?.isNavigationBarHidden = true
         searchBar.delegate = self
         
-        usersUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_CLIENTS).child(Constants.FIREBASE_CHILD_PRIVATE)
+        usersUIDRef = Constants.FIREBASE_DATABASE_REFERENCE.child(Constants.FIREBASE_CHILD_CUSTOMERS).child(Constants.FIREBASE_CHILD_PRIVATE)
         
         if navigationTitle == NAString().your_city() {
             usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_CITIES)
         } else if navigationTitle == NAString().your_society() {
-            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_SOCIETIES)
-                .child(textFieldText)
+            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_CITIES).child(myFlatDetailsVC.txtCity.text!).child(Constants.FIREBASE_CHILD_SOCIETIES)
         } else if navigationTitle == NAString().your_apartment() {
-            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_APARTMENTS)
-                .child(textFieldText)
+            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_CITIES).child(myFlatDetailsVC.txtCity.text!).child(Constants.FIREBASE_CHILD_SOCIETIES).child(myFlatDetailsVC.txtSociety.text!).child(Constants.FIREBASE_CHILD_APARTMENTS)
+            
         } else {
-            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_FLATS)
-                .child(textFieldText)
+            usersUIDRef = usersUIDRef?.child(Constants.FIREBASE_CHILD_CITIES).child(myFlatDetailsVC.txtCity.text!).child(Constants.FIREBASE_CHILD_SOCIETIES).child(myFlatDetailsVC.txtSociety.text!).child(Constants.FIREBASE_CHILD_APARTMENTS).child(myFlatDetailsVC.txtApartment.text!)
         }
         updateItemInList(userClientRef: usersUIDRef!)
     }

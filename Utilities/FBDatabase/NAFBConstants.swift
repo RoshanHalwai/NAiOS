@@ -14,6 +14,7 @@ import Firebase
 struct Constants {
     static let PROJECT_ID = "nammaapartments-development"
     static let FIREBASE_CHILD_CLIENTS = "clients"
+    static let FIREBASE_CHILD_CUSTOMERS = "customers"
     static let FIREBASE_CHILD_VISITORS = "visitors"
     static let FIREBASE_CHILD_PRE_APPROVED = "preApproved"
     static let FIREBASE_CHILD_POST_APPROVED = "postApproved"
