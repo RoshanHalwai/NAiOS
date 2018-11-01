@@ -2145,5 +2145,13 @@ class NAString : NSObject {
     func statusBar() -> String {
         return String("statusBar")
     }
+    
+    func left() -> String {
+        return String("Left")
+    }
+    
+    func guestCancelMessage() -> String {
+        return String("Sorry, you cannot remove this Visitor, since their status has not been updated.")
+    }
 }
 
