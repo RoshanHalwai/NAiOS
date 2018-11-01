@@ -113,8 +113,9 @@ extension MyGuardsViewController {
                         self.collectionView.reloadData()
                     })
                 }
+            } else {
+                
             }
-            
         }
     }
 }
