@@ -71,6 +71,7 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         
         //cardUIView
         NAShadowEffect().shadowEffectForView(view: cell.cardView)
+        cell.isUserInteractionEnabled = false
         
         return cell
     }
