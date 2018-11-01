@@ -77,6 +77,12 @@ extension UNService: UNUserNotificationCenterDelegate {
             appDelegate.window?.rootViewController = notificationVC
             appDelegate.window?.makeKeyAndVisible()
             break
+        case Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD :
+            let notificationVC = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = notificationVC
+            appDelegate.window?.makeKeyAndVisible()
+            break
         default:
             let NavMain = self.storyboard.instantiateViewController(withIdentifier: NAViewPresenter().mainNavigation())
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -99,7 +105,7 @@ extension UNService: UNUserNotificationCenterDelegate {
         
         let options: UNNotificationPresentationOptions = [.alert, .sound]
         let userInfo = notification.request.content.userInfo
-        
+    
         //Getting guestUID & guestType from UserInfo & using it for setting values in firebase.
         let guestType = userInfo[Constants.FIREBASE_CHILD_VISITOR_TYPE] as? String
         let guestUID = userInfo[Constants.FIREBASE_CHILD_NOTIFICATION_UID] as? String

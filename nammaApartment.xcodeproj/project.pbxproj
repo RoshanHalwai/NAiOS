@@ -29,6 +29,8 @@
 		085646722101FA0C00C5FBF6 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646712101FA0C00C5FBF6 /* HelpViewController.swift */; };
 		085646742101FA3300C5FBF6 /* HelpCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085646732101FA3300C5FBF6 /* HelpCollectionViewCell.swift */; };
 		0856467A21020CBE00C5FBF6 /* NAShodowEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856467921020CBE00C5FBF6 /* NAShodowEffect.swift */; };
+		088B6043218B24D1005028BB /* DailyServiceRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC9760E2162026500B1928F /* DailyServiceRatingView.xib */; };
+		088B6044218B24D5005028BB /* DailyServiceRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC976102162029100B1928F /* DailyServiceRatingView.swift */; };
 		089A94B8210836940088F519 /* NoticeBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A94B7210836940088F519 /* NoticeBoardViewController.swift */; };
 		08E1F7BB20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BA20F9DCC40086F885 /* CabAndPackageArrivalCardListViewController.swift */; };
 		08E1F7BD20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1F7BC20F9E1120086F885 /* CabAndPackageArrivalCardListCollectionViewCell.swift */; };
@@ -1610,6 +1612,7 @@
 				86F7B477215D1FBA005A26CE /* GoogleService-Info.plist in Resources */,
 				86F7B469215D1FAD005A26CE /* Assets.xcassets in Resources */,
 				86F7B46B215D1FAD005A26CE /* Lato-Italic.ttf in Resources */,
+				088B6043218B24D1005028BB /* DailyServiceRatingView.xib in Resources */,
 				86F7B46C215D1FAD005A26CE /* PopupView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2049,6 +2052,7 @@
 				86F7B3FC215D1FAD005A26CE /* SearchViewController.swift in Sources */,
 				86F7B3FD215D1FAD005A26CE /* NAViewPresenter.swift in Sources */,
 				86F7B3FE215D1FAD005A26CE /* MyGuardsViewController.swift in Sources */,
+				088B6044218B24D5005028BB /* DailyServiceRatingView.swift in Sources */,
 				86F7B3FF215D1FAD005A26CE /* NoticeBoardTableViewCell.swift in Sources */,
 				86F7B400215D1FAD005A26CE /* NASocietyServices.swift in Sources */,
 				86F7B401215D1FAD005A26CE /* MyGuestListCollectionViewCell.swift in Sources */,

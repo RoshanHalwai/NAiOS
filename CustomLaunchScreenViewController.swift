@@ -78,6 +78,11 @@ class CustomLaunchScreenViewController: NANavigationViewController {
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
                                     appDelegate.window?.rootViewController = neighboursVC
                                     appDelegate.window?.makeKeyAndVisible()
+                                } else if guestPref.object(forKey: Constants.FIREBASE_NOTIFICATION_TYPE_NOTICE_BOARD) != nil {
+                                    let notificationVC = self.storyboard?.instantiateViewController(withIdentifier: NAViewPresenter().noticeBoardScreen())
+                                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                    appDelegate.window?.rootViewController = notificationVC
+                                    appDelegate.window?.makeKeyAndVisible()
                                 } else {
                                     let NavMain = self.storyboard?.instantiateViewController(withIdentifier:   NAViewPresenter().mainNavigation())
                                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
