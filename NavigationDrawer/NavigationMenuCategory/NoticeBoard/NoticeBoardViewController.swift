@@ -25,6 +25,7 @@ class NoticeBoardViewController: NANavigationViewController,UITableViewDelegate,
         self.navigationItem.rightBarButtonItem = nil
         
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         
         //Calling RetrievieMyGuardData In Firebase
         self.retrieviedNoticeBoardDataInFirebase()
@@ -86,7 +87,11 @@ extension NoticeBoardViewController {
             if noticeBoardSnapshot.exists() {
                 if let noticeBoardsUID = noticeBoardSnapshot.value as? [String: Any] {
                     let noticeBoardUIDKeys = Array(noticeBoardsUID.keys)
-                    for noticeBoardUID in noticeBoardUIDKeys {
+                    //sorting UID's
+                    let sortedArray = noticeBoardUIDKeys.sorted()
+                    //Reversing the Array order to make sure that Latest Request Data should be on the top in the List
+                    let reversedArray = sortedArray.reversed()
+                    for noticeBoardUID in reversedArray {
                         noticeBoardDataRef.child(noticeBoardUID).observeSingleEvent(of: .value, with: { (snapshot) in
                             let noticeBoardData = snapshot.value as? [String: AnyObject]
                             let title : String = (noticeBoardData?[NoticeBoardListFBKeys.title.key])! as! String
