@@ -2151,7 +2151,7 @@ class NAString : NSObject {
     }
     
     func guestCancelMessage() -> String {
-        return String("Sorry, you cannot remove this Visitor, since their status has not been updated.")
+        return String("Sorry, you cannot remove this Guest, since their status has not been updated.")
     }
 }
 
