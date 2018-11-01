@@ -182,6 +182,8 @@ extension MyNeighboursViewController {
                         }
                     })
                 }
+            } else {
+                
             }
         })
     }
