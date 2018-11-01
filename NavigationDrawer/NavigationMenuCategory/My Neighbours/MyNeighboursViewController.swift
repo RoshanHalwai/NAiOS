@@ -30,16 +30,7 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         
         self.ConfigureNavBarTitle(title: NAString().myNeighbours())
         self.navigationItem.rightBarButtonItem = nil
-        
-        let preferences = UserDefaults.standard
-        let UserUID = NAString().userDefault_USERUID()
-        if preferences.object(forKey: Constants.NOTIFICATION_SENDER_UID) != nil {
-            neighboursUID = preferences.object(forKey: Constants.NOTIFICATION_SENDER_UID) as! String
-        }
-        userUID = preferences.object(forKey: UserUID) as! String
-        preferences.synchronize()
-        self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
-        
+    
         //Show Progress indicator while we retrieve users
         NAActivityIndicator.shared.showActivityIndicator(view: self)
         
@@ -88,7 +79,7 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         let myNeighboursList : NAExpectingNeighbours
         myNeighboursList = myExpectedNeighboursList[indexPath.row]
         
-        if myNeighboursList.uid == self.neighboursUID {
+        if myNeighboursList.getneighbourUID() == self.neighboursUID {
             cell.batchView.isHidden = false
         } else {
             cell.batchView.isHidden = true
@@ -120,20 +111,34 @@ class MyNeighboursViewController: NANavigationViewController, UICollectionViewDe
         
         return cell
     }
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
+        let preferences = UserDefaults.standard
+        let UserUID = NAString().userDefault_USERUID()
+        if preferences.object(forKey: Constants.NOTIFICATION_SENDER_UID) != nil {
+            self.neighboursUID = preferences.object(forKey: Constants.NOTIFICATION_SENDER_UID) as! String
+        } else {
+            self.neighboursUID = ""
+        }
+        userUID = preferences.object(forKey: UserUID) as! String
+        preferences.synchronize()
+        self.loadingUserData.retrieveUserDataFromFirebase(userId: userUID)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let neighboursList = myExpectedNeighboursList[indexPath.row]
-        
-        if neighboursList.uid == self.neighboursUID {
-             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! NeighboursCollectionViewCell
-                cell.batchView.isHidden = true
-                let preferences = UserDefaults.standard
-                preferences.removeObject(forKey: Constants.NOTIFICATION_SENDER_UID)
-        }
+
         let sendMessageVC = NAViewPresenter().sendMessageVC()
         sendMessageVC.neighbourUID = neighboursList.getneighbourUID()
         sendMessageVC.neighbourApartment = neighboursList.getapartment()
         sendMessageVC.neighbourFlat = neighboursList.getflat()
+        if neighboursList.getneighbourUID() == self.neighboursUID {
+            let preferences = UserDefaults.standard
+            preferences.removeObject(forKey: Constants.NOTIFICATION_SENDER_UID)
+            preferences.synchronize()
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NAString().cellID(), for: indexPath) as! NeighboursCollectionViewCell
+            cell.batchView.isHidden = true
+        }
         self.navigationController?.pushViewController(sendMessageVC, animated: true)
     }
 }
