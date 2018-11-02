@@ -360,7 +360,7 @@ class MyDailyServicesViewController: NANavigationViewController,UICollectionView
         
         dailyServiceUID = NADailyServicesList[index]
         
-        let dailyServiceRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType).child(dailyServiceUID.getuid()).child(userUID)
+        let dailyServiceRef = Constants.FIREBASE_DAILY_SERVICES_ALL_PUBLIC.child(dailyServiceType).child(dailyServiceUID.getuid()).child(dailyServiceUID.getUserUID())
         dailyServiceRef.child(Constants.FIREBASE_CHILD_RATING).setValue(serviceRating)
         
         dailyServiceRef.observe(.value) { (snapshot) in
