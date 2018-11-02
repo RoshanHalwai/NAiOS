@@ -65,7 +65,7 @@ class MyGuardsViewController: NANavigationViewController,UICollectionViewDelegat
         let gateNumber : Int = myGuardsList.getgateNumber()
         let gateNoString = String(gateNumber)
         cell.lbl_MyGuardGateNo.text = gateNoString
-       
+        
         //Retrieving Image & Showing Activity Indicator on top of image with the help of 'SDWebImage Pod'
         cell.myGuardImage.sd_setShowActivityIndicatorView(true)
         cell.myGuardImage.sd_setIndicatorStyle(.gray)
@@ -113,8 +113,10 @@ extension MyGuardsViewController {
                         self.collectionView.reloadData()
                     })
                 }
+            } else {
+                NAActivityIndicator.shared.hideActivityIndicator()
+                NAFirebase().layoutFeatureUnavailable(mainView: self, newText: NAString().myGuardsLayoutErrorMessage())
             }
-            
         }
     }
 }

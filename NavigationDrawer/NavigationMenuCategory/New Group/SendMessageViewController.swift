@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class SendMessageViewController: NANavigationViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     
@@ -24,12 +26,14 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
     var neighbourApartment = String()
     var neighbourFlat = String()
     var messageTime = String()
+    var userUID = String()
     
     var neighboursChat = [NANeighboursChat]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        userUID = (Auth.auth().currentUser?.uid)!
         self.ConfigureNavBarTitle(title: NAString().send_Message())
         self.navigationItem.rightBarButtonItem = nil
         text_View.backgroundColor = UIColor.white
@@ -176,12 +180,12 @@ class SendMessageViewController: NANavigationViewController, UITableViewDataSour
                     .child(self.neighbourApartment)
                     .child(self.neighbourFlat)
                     .child(Constants.FIREBASE_CHILD_CHATS)
-                    .child(userUID)
+                    .child(self.userUID)
                 neighbourDataRef.setValue(chatRoomUID)
             }
             let chatAllRef = Constants.FIREBASE_DATABASE_REFERENCE
                 .child(Constants.FIREBASE_CHILD_CHATS).child(Constants.FIREBASE_USER_CHILD_ALL).child(chatRoomUID!)
-            let UIDs = [userUID: NAString().gettrue(),
+            let UIDs = [self.userUID: NAString().gettrue(),
                         self.neighbourUID: NAString().gettrue()]
             chatAllRef.setValue(UIDs)
             

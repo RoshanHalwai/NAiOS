@@ -18,6 +18,7 @@ class RetrievingDailyServicesList {
     
     var userDataRef : DatabaseReference?
     var count = 0
+    var noOfDailyServicesType = 0
     var pastDailyServicesListRequired: Bool
     
     /* ------------------------------------------------------------- *
@@ -149,12 +150,14 @@ class RetrievingDailyServicesList {
             for dailyServiceCategory in dailyServiceCategoriesList {
                 
                 self.getDailyServicesUIDs(dailyServiceCategories: dailyServiceCategory, callback: { (dailyServiceUIDList) in
+                    self.noOfDailyServicesType = self.noOfDailyServicesType + 1
                     //checking if the Daily Service UIDList is not equal to zero
                     if dailyServiceUIDList.count != 0 {
                         dailyServiceUIDDictiornary.updateValue(dailyServiceUIDList, forKey: dailyServiceCategory)
                     }
                     
-                    if dailyServiceUIDDictiornary.count == dailyServiceCategoriesList.count {
+                    if self.noOfDailyServicesType == dailyServiceCategoriesList.count {
+                        self.noOfDailyServicesType = 0
                         callback(dailyServiceUIDDictiornary as NSDictionary)
                     }
                 })
