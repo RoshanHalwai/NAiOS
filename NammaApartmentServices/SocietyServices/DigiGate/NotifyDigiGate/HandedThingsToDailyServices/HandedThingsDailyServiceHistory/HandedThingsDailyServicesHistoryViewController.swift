@@ -84,7 +84,6 @@ class HandedThingsDailyServicesHistoryViewController: NANavigationViewController
         let newDateOfVisit = inputFormatter.string(from: showDate!)
         
         //Implementing switch case to get daily services type in proper format
-        //TODO: Need to refactore & Use this swicth case from global function
         switch DSHandedList.getType() {
         case Constants.FIREBASE_DSTYPE_COOKS:
             dailyServiceKey = NAString().cook()

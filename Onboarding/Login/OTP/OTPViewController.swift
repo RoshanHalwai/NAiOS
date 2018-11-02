@@ -217,7 +217,6 @@ class OTPViewController: NANavigationViewController {
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
             
             //If OTP is Valid then Login Sucess else show Error message in Console
-            //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
             Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
                 if let error = error {
                     print("error",error.localizedDescription)
@@ -246,7 +245,6 @@ class OTPViewController: NANavigationViewController {
             let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
             
             //If OTP is Valid then Login Sucess else show Error message in Console
-            //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
             Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
                 if let error = error {
                     print("error",error.localizedDescription)
@@ -340,7 +338,6 @@ class OTPViewController: NANavigationViewController {
      - IF verification code not sent. */
     
     func triggerOTPFromFirebase() {
-        //TODO: Printing Errors in Console so that other developers can understand.
         PhoneAuthProvider.provider().verifyPhoneNumber(getCountryCodeString + getMobileString, uiDelegate: nil) { (verificationID, error) in
             if ((error) != nil) {
                 
@@ -381,8 +378,6 @@ extension OTPViewController {
         let Credentials  = PhoneAuthProvider.provider().credential(withVerificationID: self.credentialID, verificationCode: self.finalOTPString)
         
         //If OTP is Valid then Login Sucess else show Error message in Console
-        //TODO: Priniting Errors in Console so that other developer can identify that whats going on.
-        
         Auth.auth().signInAndRetrieveData(with: Credentials) { (authResult, error) in
             if Reachability.Connection() {
                 if let error = error {
@@ -452,11 +447,11 @@ extension OTPViewController {
         
         let pref = UserDefaults.standard
         pref.set(databaseURL, forKey: Constants.FIREBASE_DATABASE_URL)
-        pref.set(Constants.SOCIETY_DEV_ENV, forKey: Constants.FIREBASE_ENVIRONMENT)
+        pref.set(Constants.SOCIETY_BETA_ENV, forKey: Constants.FIREBASE_ENVIRONMENT)
         
         //TODO: Change ENVIRONMENT to SOCIETY_BETA_ENV before rolling out App in APP Store
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.initializeFirebaseApp(FIREBASE_ENV: Constants.SOCIETY_DEV_ENV, databaseURL: databaseURL)
+        appDelegate.initializeFirebaseApp(FIREBASE_ENV: Constants.SOCIETY_BETA_ENV, databaseURL: databaseURL)
     }
     
     //Starts Activity based on userDefaults Data.

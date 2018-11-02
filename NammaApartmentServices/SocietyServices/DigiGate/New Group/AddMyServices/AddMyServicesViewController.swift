@@ -487,7 +487,6 @@ extension AddMyServicesViewController {
             uploadImageRef?.downloadURL(completion: { (url, urlError) in
                 
                 if urlError == nil {
-                    //TODO: Hardcoded rating, Need to change in future.
                     let dailyServicesData = [
                         NADailyServicesStringFBKeys.fullName.key : self.txt_Name.text! as String,
                         NADailyServicesStringFBKeys.phoneNumber.key : self.txt_MobileNo.text!,
@@ -505,7 +504,6 @@ extension AddMyServicesViewController {
                     OpacityView.shared.hidingPopupView()
                     self.AlertViewAction()
                 } else {
-                    //TODO: Using else condtion for printing error if anything is wrong while storing data
                     print("Error is:",urlError as Any)
                 }
             })
