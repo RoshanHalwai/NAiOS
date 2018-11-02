@@ -522,7 +522,7 @@ extension SocietyServicesViewController {
         if navTitle == NAString().scrapCollection() {
             problemOrScrapType = NASocietyServicesFBKeys.scrapType.key
             timeSlotOrQuantity = NASocietyServicesFBKeys.quantity.key
-            uidOrNotificationUID = NASocietyServicesFBKeys.uid.key
+            uidOrNotificationUID = NASocietyServicesFBKeys.notificationUID.key
         } else {
             problemOrScrapType = NASocietyServicesFBKeys.problem.key
             timeSlotOrQuantity = NASocietyServicesFBKeys.timeSlot.key
