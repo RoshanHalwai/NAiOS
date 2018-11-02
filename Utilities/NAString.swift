@@ -348,6 +348,14 @@ class NAString : NSObject {
         return String("E-Intercom")
     }
     
+    func eIntercomMessage() -> String {
+        return String("E-Intercom Message")
+    }
+    
+    func eIntercomMessageDescription() -> String {
+        return String("Visitor entry request has been ignored.")
+    }
+    
     //Particular ViewController Count
     func count_two() -> Int {
         return Int(2)

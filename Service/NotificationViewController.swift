@@ -109,6 +109,7 @@ class NotificationViewController: NANavigationViewController {
                     self.imageView.image = UIImage(named: "ExpectingPackage")
                     break
                 }
+                self.watchOnNotificationStatus()
             }
         })
     }
@@ -207,5 +208,16 @@ class NotificationViewController: NANavigationViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.window?.rootViewController = notificationVC
         appDelegate.window?.makeKeyAndVisible()
+    }
+    
+    func watchOnNotificationStatus() {
+ 
+        gateNotificationRef?.child(NAString().status()).observe(.value, with: { (statusSnapshot) in
+            if statusSnapshot.exists() {
+                NAConfirmationAlert().showNotificationDialog(VC: self, Title: NAString().eIntercomMessage(), Message: NAString().eIntercomMessageDescription(), buttonTitle: NAString().ok(), OkStyle: .default, OK: { (UIAlertAction) in
+                    self.navigateBackToHomeScreen()
+                })
+            }
+        })
     }
 }
