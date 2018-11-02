@@ -90,7 +90,6 @@ class NavigationMenuViewController: UIViewController,UITableViewDelegate, UITabl
         case 9 :
             /** calling 'showReviewView' method with desired launch counts needed. **/
             if #available(iOS 10.3, *) {
-                //TODO: Need to pass some functionality in future, when we upload our app in App Store.
                 RateUs().showReviewView(afterMinimumLaunchCount: 0)
             }
         default:

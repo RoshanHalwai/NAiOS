@@ -255,7 +255,6 @@ extension CabAndPackageArrivalCardListViewController {
     }
     
     //Retriving Expecting cab data for both family & friends
-    //TODO: Need to fix -> Progress bar is showing without error layout msg if friend will invite a cab for the first time.
     func checkAndRetrieveCabArrivals() {
         var friend = [String]()
         friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()
@@ -346,7 +345,6 @@ extension CabAndPackageArrivalCardListViewController {
     }
     
     //Retriving Expecting Package data for both family & friends
-    //  TODO: Need to fix -> Progress bar is showing without error layout msg if friend will invite a Package for the first time.
     func checkAndRetrievePackageArrivals() {
         var friend = [String]()
         friend = GlobalUserData.shared.getNammaApartmentUser().getFriends()

@@ -205,7 +205,6 @@ class ApartmentServicesViewController: NANavigationViewController,UICollectionVi
         }
         
         //Implementing Calling ShareUI here on Refer click
-        //TODO: Need to remove hardcoded text
         cell.actionRefer = {
             let shareUI = UIActivityViewController(activityItems: [NAString().referToSocietyServives()], applicationActivities: nil)
             self.present(shareUI, animated: true, completion: nil)

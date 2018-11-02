@@ -101,7 +101,6 @@ class HandedThingsToDailyServicesViewController: NANavigationViewController, UIT
         DSList = dailyServiceHandedThingsList[indexPath.row]
         
         //Implementing switch case to get daily services type in proper format
-        //TODO: Need to refactore & Use this swicth case from global function
         switch DSList.getType() {
         case Constants.FIREBASE_DSTYPE_COOKS:
             dailyServiceKey = NAString().cook()

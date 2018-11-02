@@ -340,7 +340,6 @@ class EventManagementViewController: NANavigationViewController, RazorpayPayment
     //This will show the default UI of RazorPay with some user’s informations.
     func showPaymentUI() {
         let options: [String:Any] = [
-            //TODO: Need to give Actual Total Amount of event Slots before App Update.
             "amount" : getFinalAmountInString,
             "description": paymentDescription,
             "name": NAString().splash_NammaHeader_Title(),
